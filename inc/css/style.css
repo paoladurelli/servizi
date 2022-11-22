@@ -7,3 +7,3071 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : paola.durelli
 */
 
+/*------------------ GENERICI ----------------------*/
+.comment-forbidden, .comment-add{
+  display: none !important;
+}
+html {
+  scroll-behavior: smooth;
+}
+.mb-5{
+  margin-bottom: 5px !important;
+}
+.mb-10{
+  margin-bottom: 10px !important;
+}
+.mb-30{
+  margin-bottom: 30px !important;
+}
+.mb-20{
+  margin-bottom: 20px !important;
+}
+.mb-2{
+  margin-bottom: 2px !important;
+}
+.pb-6{
+  padding-bottom: 6px !important;
+}
+.pd-15{
+  padding: 15px !important;
+}
+
+.mb-50{
+  margin-bottom: 50px !important;
+}
+.mt-30{
+  margin-top: 30px !important;
+}
+.pd-30{
+  padding: 30px !important;
+}
+.mt-15{
+  margin-top: 15px !important;
+}
+.mb-15{
+  margin-bottom: 15px !important;
+}
+.pl-15{
+  padding-left: 15px !important;
+}
+.pl-10{
+  padding-left: 10px !important;
+}
+.pl-25{
+  padding-left: 25px !important;
+}
+.pr-10{
+  padding-right: 10px !important;
+}
+
+.pt-35{
+  padding-top: 35px !important;
+}
+
+.fs-1rem{
+  font-size: 1rem !important;
+}
+
+.inline_element{
+  display: inline-flex;
+}
+.mr-5{
+  margin-right: 5px !important;
+}
+.mr-10{
+  margin-right: 10px !important;
+}
+.italic_font{
+  font-style: italic !important;
+}
+
+.pb-0{
+  padding-bottom: 0 !important;
+}
+
+.margin_bottom_0{
+  margin-bottom: 0 !important;
+}
+.Allegatifs-smaller{
+  font-size: 1.05rem !important;
+}
+body .text-white{
+  color: #fff !important;
+}
+
+.tag-categorie a{
+  align-items: center;
+  background: #fcfdff;
+  border: 1px solid #dfe4f2;
+  border-radius: 12px;
+  display: inline-flex;
+  height: 24px;
+  justify-content: space-evenly;
+  margin-right: 4px;
+  min-width: 100px;
+  padding: 0 16px 2px 8px;
+  transition: all .05s;
+  background-color: transparent;
+  border-color: #06c;
+  color: #06c;
+  margin: 4px auto;
+  padding-right: 8px;
+  text-decoration: none;
+  margin-right: 10px;
+  font-size: 0.8rem !important;
+  /*margin-bottom: 0 !important;*/
+}
+.tag-categorie{
+  margin-bottom: 0 !important;
+}
+
+
+.tag-categorie a:hover{
+  text-decoration: underline;
+  color: white !important;
+  background-color: #06c;
+}
+
+.container-news-allegati-link .col-md-6{
+  margin-bottom: 20px !important;
+}
+
+.color-white{
+  color: #fff !important;
+}
+
+.container_index_pagina{
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+  position: relative;
+  padding-left: 0 !important;
+  cursor: pointer;
+}
+
+.sidebar-single p a{
+  /*padding-left: 25px;*/
+  /*padding-right: 20px;*/
+  font-size: 0.92rem;
+}
+
+.nascondi_item{
+  opacity: 0;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+  display: none;
+}
+
+.container_index_pagina h3:after{
+  content: '';
+  position: absolute;
+  /*left: 18px;*/
+  top: 5px;
+  right: 2px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #000;
+  clear: both;
+}
+
+.container_index_pagina.hide_childs_sidemenu h3:after {
+border-bottom: 0 !important;
+  border-top: 10px solid #000 !important;
+}
+
+.sidebar-single p{
+  margin-bottom: 0px !important;
+}
+
+.sidebar-single p a:hover{
+  text-decoration: none !important;
+  font-weight: bold !important;
+  font-size: 1rem;
+}
+
+.page-node-typepage #it-region-sidebar-first{
+  overflow-x: hidden;
+}
+
+.it-header-center-wrapper .it-header-center-content-wrapper .it-brand-wrapper a .icon{
+  width: unset !important;
+}
+
+.latest_update_date{
+  margin-top: 35px !important;
+}
+
+.latest_update_date h5{
+  font-size: 1.15rem !important;
+}
+
+@media screen and (max-width: 767px){
+  .container_index_pagina{
+    text-align: center !important;
+  }
+}
+
+.breadcrumb .breadcrumb-item a{
+  text-decoration: none;
+}
+
+.breadcrumb .breadcrumb-item a:hover{
+  text-decoration: underline !important;
+}
+
+
+.it-page-title__wrapper h1.page-title{
+  font-size: 1.4rem !important;
+}
+
+.breadcrumb{
+  margin-bottom: 0 !important;
+}
+
+.filter_calendario_home {
+  text-align: right;
+  margin-bottom: 30px !important;
+}
+.filter_calendario_home a{
+  margin: 0 3px !important;
+}
+
+.align-center{
+  text-align: center !important;
+}
+.justy-center{
+  justify-content: center !important;
+}
+
+@media screen and (max-width: 767px){
+  .it-page-title__wrapper h1.page-title{
+    padding-left: 10px;
+  }
+}
+
+.card_assistenza .card::after{
+    display: none !important;
+}
+
+.cmp-tag__tag {
+  font-size: .875rem;
+  font-weight: 600;
+  color: #008758;
+  padding: 0 0.75rem;
+  border: 1px solid #008758;
+  text-decoration: none;
+  border-radius: 50px;
+}
+
+
+.error-tag__tag {
+  font-size: .875rem;
+  font-weight: 600;
+  color: #FF0000;
+  padding: 0 0.75rem;
+  border: 1px solid #FF0000;
+  text-decoration: none;
+  border-radius: 50px;
+}
+
+.bg-grigio {
+  background-color: #eceff1!important;
+}
+
+
+.navbar .navbar-collapsable .navbar-nav li a.nav-link.active.focus--mouse
+{
+  background: transparent;
+  border-left: 0;
+  border-color: #fff !important;
+}
+
+#page-default > main{
+  /*margin-bottom: 50px !important;*/
+}
+
+
+#it-region-footer-first .field--name-body a, #it-region-footer-second .field--name-body a, #it-region-footer-third .field--name-body a, #it-region-footer-fourth .field--name-body a{
+  color: white !important;
+  text-decoration: none;
+}
+
+#it-region-footer-first .field--name-body a:hover, #it-region-footer-second .field--name-body a:hover, #it-region-footer-third .field--name-body a:hover, #it-region-footer-fourth .field--name-body a:hover{
+  text-decoration: underline !important;
+}
+
+.it-footer-main h2{
+  font-size: 1.12em !important;
+}
+
+#it-region-footer-first,
+#it-region-footer-second,
+#it-region-footer-third,
+#it-region-footer-fourth{
+  word-break: break-all !important;
+}
+
+@media screen and (min-width: 767px) {
+  #it-region-footer-first,
+  #it-region-footer-second,
+  #it-region-footer-third{
+    height: 100%;
+  }
+  #it-region-footer-first > nav,
+  #it-region-footer-second > nav,
+  #it-region-footer-third > nav{
+    min-height: 50%;
+  }
+}
+#it-region-footer-first h2,
+#it-region-footer-second h2,
+#it-region-footer-third h2,
+#it-region-footer-four h2{
+  border-bottom: 1px solid white !important;
+  padding-bottom: 5px !important;
+}
+
+#it-region-footer-eight svg{
+  fill: white;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+#it-region-footer-eight a:hover svg{
+  fill: #0066cc !important;
+}
+
+.it-footer-small-prints ul.it-footer-small-prints-list {
+  padding: 0.5rem 1rem !important;
+}
+
+body .contextual-links .quickedit a{
+  color: black !important;
+}
+
+#it-block-gtranslate {
+  display: none !important;
+}
+
+#it-block-sceltalinguacustom{
+  margin-right: 15px !important;
+}
+
+.it-footer ul{
+  padding: 0 !important;
+}
+
+.it-footer li{
+  list-style: none !important;
+}
+
+.it-footer ul{
+  padding: 0 !important;
+}
+
+.it-footer a{
+  color: white;
+  text-decoration: none;
+}
+.it-footer a:hover{
+  text-decoration: underline;
+}
+
+
+.notification{
+  /*background: unset !important;*/
+  z-index: 9999;
+}
+
+.region.notification.show{
+  display: block;
+}
+
+.alert.show{
+  padding-left: 0 !important;
+  overflow: hidden;
+}
+
+.alert.show{
+  padding-top: 65px;
+}
+
+#block-navigazioneprincipale-2 .card:after
+.col-tax-list .card:after{
+  display:none !important;
+}
+.col-tax-list a{
+  text-decoration: none;
+  /*color: black !important;*/
+}
+.col-tax-list a:hover{
+  text-decoration: underline !important;
+}
+
+
+.text_resized{
+  font-size: 1rem !important;
+}
+.title_resized{
+  font-size: 0.95rem !important;
+}
+
+@media screen and (max-width: 767px){
+  .it-footer-small-prints-list .list-inline-item{
+    padding-bottom: 0 !important
+  }
+  .hide-mobile-footer{
+    display: none !important;
+  }
+}
+
+.it-footer-small-prints-list .list-inline-item a:hover{
+  text-decoration: underline !important;
+}
+
+/*.it-header-center-wrapper .it-header-center-content-wrapper .it-right-zone .it-socials ul .icon{*/
+.it-header-center-wrapper .it-header-center-content-wrapper .it-right-zone .it-socials .icon{
+  width: 20px !important;
+  height: 20px !important;
+}
+.it-header-center-wrapper .it-header-center-content-wrapper .it-right-zone .it-socials a .icon{
+  fill: white;
+}
+
+.it-header-center-wrapper .it-header-center-content-wrapper .it-right-zone .it-socials a:hover .icon{
+  fill: black !important;
+}
+
+.it-local-tasks_wrapper.mb-5{
+  margin-bottom: 15px !important;
+}
+
+.col.after-content__col.after-content__first{
+  /*border-right: 1px solid black;*/
+}
+
+.container.main-container{
+  padding-bottom: 15px !important;
+}
+
+@media screen and (max-width: 767px){
+  .container.main-container{
+    padding: 15px !important;
+  }
+}
+
+.background_image{
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 80px;
+  margin-top: 3px;
+  margin-right: 2px;
+}
+
+.col-md-8.container-content-block h5{
+  font-weight: 400 !important;
+}
+
+.text_bold{
+  font-weight: bold !important;
+}
+
+body{
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/*body.path-frontpage{*/
+  /*overflow-x: hidden;*/
+/*}*/
+
+#it-region-home-second-row-full-width, #it-region-home-first-row-full-width{
+  /*max-width: 100vw !important;*/
+  overflow-x: hidden !important;
+}
+
+.border-bottom-white{
+  border-bottom: 1px solid white !important;
+}
+
+.cursor_pointer{
+  cursor: pointer !important;
+}
+
+.descrizione_menu_block{
+  font-size: 0.8rem !important;
+  font-weight: normal;
+  margin-top: 7px;
+}
+
+.search_pages_menu a{
+  text-decoration: none;
+}
+.search_pages_menu a:hover{
+  text-decoration: underline !important;
+}
+
+.search_pages_menu h5{
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.search_pages_menu p{
+  margin-bottom: 6.5px !important;
+  padding-left: 5px !important;
+}
+.search_pages_menu p > a{
+  color: #0066cc !important;
+}
+
+.link_classic{
+  text-decoration: none;
+}
+.link_classic:hover{
+  text-decoration: underline !important;
+}
+
+.container_ulteriori_info{
+  margin-top: 25px !important;
+}
+
+  /*-----------------------------------------------------*/
+
+/*--------------------- pagina area personale -----------*/
+
+.areapersonale .intestazione .areapersonale-menu .titolo-sezione {
+  margin-top: 16px;
+  text-align: center;
+  position: relative;
+}
+
+.areapersonale .intestazione .areapersonale-menu .titolo-sezione .menu-profilo-ap {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: .889em;
+}
+
+.areapersonale .intestazione{
+  padding-bottom: 42px;
+  margin-bottom: 25px;
+}
+/*--------------------- pagina area personale -----------*/
+
+
+/* ----------------- BLOCCO MENU CON RICERCA ------------*/
+
+.menu-lista-apri{
+  font-weight: 500;
+  margin-top: 3px;
+}
+
+.menu-lista-apri.hide{
+  display: none;
+}
+
+.menu-lista-chiudi{
+  display: none;
+  font-weight: 500;
+  margin-top: 3px;
+
+}
+
+.menu-lista-chiudi.show{
+  display: block !important;
+}
+
+.show_more_menulista{
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.5s linear;
+}
+
+.show_more_menulista.show{
+  height: auto !important;
+  opacity: 1;
+}
+
+/* ----------------- END BLOCCO MENU CON RICERCA ------------*/
+
+/*---------------------- BLOCCO EXPAND FOOTER--------------*/
+
+.footer-menu-lista-apri{
+  font-weight: 500;
+  margin-top: 3px;
+}
+
+.footer-menu-lista-apri.hide{
+  display: none;
+}
+
+.footer-menu-lista-chiudi{
+  display: none;
+  font-weight: 500;
+  margin-top: 3px;
+
+}
+
+.footer-menu-lista-chiudi.show{
+  display: block !important;
+}
+
+.footer_show_more_menulista{
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.5s linear;
+}
+
+.footer_show_more_menulista.show{
+  height: auto !important;
+  opacity: 1;
+}
+
+#it-region-footer-second svg{
+  fill: white !important;
+}
+
+.it-footer-small-prints a, .it-footer-small-prints a:hover:not(.disabled){
+  font-size: 0.75rem !important;
+}
+
+/*----------------------END BLOCCO EXPAND FOOTER--------------*/
+
+
+
+/*----------------- BLOCCO SIDE ELENCO NEWS-------------------------*/
+
+.it-sidebar-first__wrapper .view-articoli-blocco{
+  padding-top: 10px !important;
+}
+
+.it-sidebar-first__wrapper .view-articoli-blocco .views-row{
+  padding: 10px !important;
+  padding-left: 25px !important;
+}
+
+.it-sidebar-first__wrapper .view-articoli-blocco .views-row a{
+  text-decoration: none;
+}
+
+.it-sidebar-first__wrapper .view-articoli-blocco .views-row a:hover{
+  text-decoration: underline;
+}
+
+/*----------------- END BLOCCO SIDE ELENCO NEWS-------------------------*/
+
+/*-------------- PAGINA ELENCO EVENTI -------------------*/
+
+
+.path-vivere-il-comune .immagine_lista_news{
+  background-size: cover;
+  background-position: center;
+  height: 250px;
+}
+.path-vivere-il-comune .card:after{
+  display: none !important;
+}
+.path-vivere-il-comune .view-id-eventi .card a{
+  text-decoration: none;
+}
+
+.path-vivere-il-comune .view-id-eventi .card a:hover{
+  text-decoration: underline !important;
+}
+
+.path-vivere-il-comune .view-eventi .card-title {
+  line-height: 1.1;
+  font-size: 1.2rem !important;
+}
+
+.path-vivere-il-comune h2{
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.path-vivere-il-comune .view-novita .col-news-list h4{
+  line-height: 1.1;
+  font-size: 1.2rem !important;
+}
+
+.path-vivere-il-comune .view-novita .card a{
+  text-decoration: none;
+}
+
+.path-vivere-il-comune .view-novita .card a:hover{
+  text-decoration: underline !important;
+}
+
+.path-vivere-il-comune .btn.btn-primary{
+  color: white !important;
+}
+.path-vivere-il-comune h1.page-title{
+  font-size: 1.555rem !important;
+  font-weight: 600;
+}
+
+/*------------------------------------------------------*/
+
+
+/*-------------- PAGINA ELENCO NEWS -------------------*/
+
+.path-novita .view-articoli .card {
+  /*-webkit-box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.4);*/
+  /*box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.4);*/
+  box-shadow: 4px 4px 8px 0 rgb(0 0 0 / 10%);
+  width: 100% !important;
+
+}
+.path-novita .view-articoli .col-news-list {
+  /*margin-bottom: 30px !important;*/
+  /*padding-left: 15px;*/
+  /*padding-right: 15px;*/
+}
+
+.path-novita .view-articoli .col-news-list .card-title a {
+text-decoration: none;
+  /*color: black;*/
+}
+
+.path-novita .view-articoli .col-news-list .card-title a:hover{
+  text-decoration: underline !important;
+}
+
+.path-novita .view-articoli .col-news-list .card-title {
+  margin-bottom: 5px !important;
+}
+.path-novita .view-articoli .col-news-list .card-text{
+  font-size: 0.9rem;
+}
+
+.path-novita .view-articoli .img-news-list {
+  border-radius: 6px;
+  /*max-height: 200px !important;*/
+}
+.path-novita .view-articoli .time-created-news-list {
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/*.path-novita .view-articoli .col-news-list .read-more-news-list{*/
+  /*position: relative;*/
+  /*top: 25px;*/
+  /*font-weight: 600 !important;*/
+  /*text-decoration: none;*/
+/*}*/
+
+/*.path-novita .view-articoli .col-news-list .read-more-news-list:hover{*/
+  /*text-decoration: underline !important;*/
+/*}*/
+.path-novita .view-articoli .col-news-list h4{
+  line-height: 1.1;
+  font-size: 1.2rem !important;
+}
+
+.path-novita main{
+  background-color: #f2f7fc;
+}
+
+
+.path-novita .immagine_lista_news{
+  background-size: cover;
+  background-position: center;
+  height: 250px;
+}
+.path-novita .card:after{
+  display: none !important;
+}
+
+.path-novita h2{
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/*.path-novita .view-novita{*/
+  /*display: none !important;*/
+/*}*/
+
+/*.path-novita #it-block-italiagov-content{*/
+  /*display: none;*/
+/*}*/
+/*-------------- END PAGINA ELENCO NEWS -------------------*/
+
+/*------------------ PAGINA NEWS SINGOLA -------*/
+
+.news_image{
+  width: 100%;
+  height: 450px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 50px !important;
+}
+.container-row-news-single{
+  border-top: 1px solid #b1b1b3;
+  border-bottom: 1px solid #b1b1b3;
+}
+.container-row-news-single .sidebar-single{
+  padding: 25px;
+  /*position: fixed;*/
+  /*top: 100;*/
+  /*width: 100%;*/
+  padding-left: 0 !important;
+}
+.container-row-news-single .sidebar-single .container.is-sticky{
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  /*top: 170px !important;*/
+  top: 12% !important;
+}
+.container-news-allegati-link{
+  /*margin-bottom: 40px !important;*/
+  margin-bottom: 8px !important;
+}
+.container-row-news-single .container-content-block{
+  padding: 25px;
+  border-left: 1px solid #b1b1b3;
+}
+.container-news-allegati-link .card-teaser a{
+  text-decoration: none;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+.container-news-allegati-link .card-teaser a:hover{
+  text-decoration: underline;
+}
+.container_ulteriori_info .callout{
+  max-width: 100% !important;
+}
+.container-row-news-single .card_location{
+  margin-bottom: 25px !important;
+}
+
+/*.container-row-news-single .sidebar-single p {*/
+  /*font-weight: 600;*/
+  /*font-size: 1.1rem;*/
+/*}*/
+
+.addtoany_list a span{
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding-left: 10px;
+}
+.addtoany_list a{
+  margin-bottom: 5px;
+}
+
+.addtoany_list a svg{
+  width: 25px !important;
+}
+
+.sidebar-single a{
+  text-decoration: none;
+}
+.sidebar-single > .container{
+  padding-left: 0 !important;
+}
+.sidebar-single a:hover{
+  text-decoration: underline !important;
+}
+.container-row-news-single h3.no_toc{
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  font-size: .833em;
+  margin-top: 5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding-left: 24px;
+  padding-right: 24px;
+  /*border-bottom: 4px solid #b1b1b3;*/
+}
+
+
+.container_index_pagina .progress{
+  content: "";
+  position: absolute;
+  left: 0;
+  /*bottom: -4px;*/
+  width: 40px;
+  height: 4px;
+  background-color: #0066cc;
+}
+
+.sidebar__title_separator{
+  width: 110%;
+}
+
+.container_index_pagina h3{
+  padding-left: 0 !important;
+}
+
+@media screen and (max-width: 767px){
+  #it-block-italiagov-content article>.container.main-container{
+    padding: 0 25px !important;
+  }
+  .container-row-news-single .sidebar-single{
+    padding-left: 25px !important;
+  }
+}
+
+
+.accesso_button_header{
+  background-color: #0059b3;
+  border-left: 1px solid #06c;
+}
+
+.col-md-8.container-content-block{
+  background-color: white !important;
+  z-index: 2;
+  padding-bottom: 70px !important;
+}
+
+.margin_top_5{
+  margin-top: 5px !important;
+}
+.margin_bottom_5{
+  margin-bottom: 5px !important;
+}
+
+.padding_0{
+  padding: 0 !important;
+}
+
+/*----------------------------------------------------*/
+
+/*-------------- PAGINA ELENCO eventi -------------------*/
+
+.path-novita .view-eventi .card {
+  /*-webkit-box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.4);*/
+  /*box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.4);*/
+  box-shadow: 4px 4px 8px 0 rgb(0 0 0 / 10%);
+  width: 100% !important;
+
+}
+.path-novita .view-eventi .col-news-list {
+  /*margin-bottom: 30px !important;*/
+  /*padding-left: 15px;*/
+  /*padding-right: 15px;*/
+}
+
+.path-novita .view-eventi .col-news-list .card-title a {
+  text-decoration: none;
+  /*color: black;*/
+}
+
+.path-novita .view-eventi .col-news-list .card-title a:hover{
+  text-decoration: underline !important;
+}
+
+.path-novita .view-eventi .col-news-list .card-title {
+  margin-bottom: 5px !important;
+}
+.path-novita .view-eventi .col-news-list .card-text{
+  font-size: 0.9rem;
+}
+
+.path-novita .view-eventi .img-news-list {
+  border-radius: 6px;
+  /*max-height: 200px !important;*/
+}
+.path-novita .view-eventi .time-created-news-list {
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.path-novita .view-eventi .col-news-list .read-more-news-list{
+  position: relative;
+  top: 25px;
+  font-weight: 600 !important;
+  text-decoration: none;
+}
+
+.path-novita .view-eventi .col-news-list .read-more-news-list:hover{
+  text-decoration: underline !important;
+}
+.path-novita .view-eventi .col-news-list h4{
+  line-height: 1.1;
+  font-size: 1.2rem !important;
+}
+
+.path-novita main{
+  background-color: #f2f7fc;
+}
+
+.path-novita .immagine_lista_news{
+  background-size: cover;
+  background-position: center;
+  height: 250px;
+}
+.path-novita .card:after{
+  display: none !important;
+}
+
+.path-novita .btn.btn-primary{
+  color: white !important;
+}
+
+/*-------------- END PAGINA ELENCO eventi -------------------*/
+
+/*-------------- PAGINA ELENCO comunicati -------------------*/
+.path-novita .view-comunicati-stampa .col-news-list h4{
+  line-height: 1.1;
+  font-size: 1.2rem !important;
+}
+
+.path-novita .view-comunicati-stampa .col-news-list .card-title a {
+  text-decoration: none;
+  /*color: black;*/
+}
+
+.path-novita .view-comunicati-stampa .col-news-list .card-title a:hover{
+  text-decoration: underline !important;
+}
+
+.path-novita .view-comunicati-stampa .col-news-list .card-title {
+  margin-bottom: 5px !important;
+}
+.path-novita .view-comunicati-stampa .col-news-list .card-text{
+  font-size: 0.9rem;
+}
+
+.path-novita .view-comunicati-stampa .img-news-list {
+  border-radius: 6px;
+  /*max-height: 200px !important;*/
+}
+.path-novita .view-comunicati-stampa .time-created-news-list {
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/*.path-novita .view-comunicati-stampa .col-news-list .read-more-news-list{*/
+  /*position: relative;*/
+  /*top: 25px;*/
+  /*font-weight: 600 !important;*/
+  /*text-decoration: none;*/
+/*}*/
+/*-------------- END PAGINA ELENCO comunicati -------------------*/
+
+
+
+
+/*----------------------- TAXONOMY LIST FATHER----------------------------*/
+.path-argomenti .view-categorie .card {
+  /*-webkit-box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.4);*/
+  /*box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.4);*/
+  box-shadow: 4px 4px 8px 0 rgb(0 0 0 / 10%);
+  width: 100% !important;
+  /*border-radius: 6px;*/
+  /*margin-left: 5%;*/
+  /*margin-right: 5%;*/
+}
+.path-argomenti #it-block-italiagov-page-title{
+  display: none !important;
+}
+
+.path-argomenti .view-categorie .col-tax-list {
+  /*margin-bottom: 30px !important;*/
+  /*padding-left: 15px;*/
+  /*padding-right: 15px;*/
+}
+.path-argomenti .view-categorie .col-tax-list .card:after {
+  display: none !important;
+}
+
+.path-argomenti .view-categorie .col-tax-list .card-title {
+  margin-bottom: 5px !important;
+}
+.path-argomenti .view-categorie .col-tax-list .card-text{
+  font-size: 0.9rem;
+}
+
+.path-argomenti .view-categorie .img-news-list {
+  border-radius: 6px;
+}
+.path-argomenti .view-categorie .time-created-news-list {
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/*.path-argomenti .view-categorie .col-tax-list .read-more-news-list{*/
+  /*position: relative;*/
+  /*top: 25px;*/
+  /*font-weight: 600 !important;*/
+  /*text-decoration: none;*/
+  /*text-align: right;*/
+/*}*/
+
+/*.path-argomenti .view-categorie .col-tax-list .read-more-news-list:hover{*/
+  /*text-decoration: underline !important;*/
+/*}*/
+
+.path-argomenti main{
+  background-color: #f2f7fc;
+}
+
+.path-argomenti main > .container.main-container{
+  max-width: unset !important;
+}
+
+
+.path-argomenti .view-categorie{
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 6px;
+  padding-right: 6px;
+  width: 100%;
+}
+
+
+@media screen and (min-width: 1200px) {
+  .path-argomenti .view-categorie {
+    max-width: 1184px;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .path-argomenti .view-argomenti-in-evidenza-pagina > h5{
+    padding-left: 20px !important;
+  }
+
+  .path-argomenti .view-id-categorie > h5{
+    padding-left: 15px !important;
+  }
+}
+
+.view-argomenti-in-evidenza-pagina{
+  margin: 0 auto;
+  max-width: 1184px;
+}
+.path-argomenti #it-block-views-block-argomenti-in-evidenza-pagina-block-1{
+  background-color: white !important;
+  padding: 15px 0 !important;
+}
+
+.path-argomenti #it-region-breadcrumb{
+  margin: 0 auto;
+  max-width: 1184px;
+}
+.path-argomenti #it-block-italiagov-content{
+  padding: 15px 0 !important;
+}
+.path-argomenti .container.main-container > .row > .col{
+  padding: 0 !important;
+}
+
+/*@media screen and(min-width: 992px) {*/
+  /*.path-argomenti .view-categorie {*/
+    /*max-width: 960px;*/
+  /*}*/
+/*}*/
+
+  /*@media screen and (min-width: 768px){*/
+    /*.path-argomenti .view-categorie {*/
+      /*max-width: 668px;*/
+    /*}*/
+  /*}*/
+
+    /*@media screen and (min-width: 576px) {*/
+      /*.path-argomenti .view-categorie {*/
+        /*max-width: 540px;*/
+      /*}*/
+    /*}*/
+
+
+.path-taxonomy .view-taxonomy-term .col-tax-list .card-title{
+  line-height: 1.1;
+  font-size: 1.2rem !important;
+}
+
+.path-taxonomy .immagine_lista_category{
+  background-size: cover;
+  background-position: center;
+  height: 250px;
+}
+
+.path-taxonomy .col-tax-list .card:after{
+  display: none !important;
+}
+
+.view-argomenti-in-evidenza-pagina .card-title a{
+  text-decoration: none;
+}
+
+.view-argomenti-in-evidenza-pagina .card-title a:hover{
+  text-decoration: underline !important;
+}
+
+.view-argomenti-in-evidenza-pagina .card:after{
+  display: none !important;
+}
+
+.view-argomenti-in-evidenza-pagina .card:before{
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.075) 0%, #111111 74%);
+  content: ' ';
+  display: block;
+  height: 100%;
+  left: 0;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+@media screen and (max-width: 767px){
+  .view-argomenti-in-evidenza-pagina > .row{
+    margin-bottom: 25px !important;
+  }
+}
+
+  /*----------------------- END TAXONOMY LIST FATHER----------------------------*/
+
+/*----------------------- TAXONOMY LIST NEWS----------------------------*/
+
+.path-taxonomy .view-taxonomy-term .card {
+  /*-webkit-box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.4);*/
+  /*box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.4);*/
+  box-shadow: 4px 4px 8px 0 rgb(0 0 0 / 10%);
+  width: 100% !important;
+  /*border-radius: 6px;*/
+  /*margin-left: 5%;*/
+  /*margin-right: 5%;*/
+}
+.path-taxonomy .view-taxonomy-term .col-tax-list {
+  margin-bottom: 10px !important;
+  /*padding-left: 15px;*/
+  /*padding-right: 15px;*/
+}
+
+.path-taxonomy .view-taxonomy-term .col-tax-list .card-title {
+  margin-bottom: 5px !important;
+}
+.path-taxonomy .view-taxonomy-term .col-tax-list .card-text{
+  font-size: 0.9rem;
+}
+
+.path-taxonomy .view-taxonomy-term .img-news-list {
+  border-radius: 6px;
+}
+.path-taxonomy .view-taxonomy-term .time-created-news-list {
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/*.path-taxonomy .view-taxonomy-term .col-tax-list .read-more-news-list{*/
+  /*position: relative;*/
+  /*top: 25px;*/
+  /*font-weight: 600 !important;*/
+  /*text-decoration: none;*/
+/*}*/
+
+/*.path-taxonomy .view-taxonomy-term .col-tax-list .read-more-news-list:hover{*/
+  /*text-decoration: underline !important;*/
+/*}*/
+
+.path-taxonomy main{
+  background-color: #f2f7fc;
+}
+
+.path-taxonomy .container_info_argom{
+  box-shadow: 4px 4px 8px 0 rgb(90 103 114 / 10%);
+  background-color: #fff;
+  border-radius: 4px;
+  position: relative;
+  padding: 19px 64px;
+  margin-bottom: 10px;
+  padding-bottom: 5px !important;
+}
+.path-taxonomy .contenitore_uffigiogestore{
+  box-shadow: 4px 4px 8px 4px rgb(90 103 114 / 10%);
+  background-color: #fff;
+  border-radius: 4px;
+  position: relative;
+  padding: 7px;
+  padding-left: 12px;
+  border-left: 5px solid #0066cc;
+}
+.path-taxonomy .contenitore_uffigiogestore h5.card-title{
+  margin-bottom: 0 !important;
+}
+
+.path-taxonomy .contenitore_uffigiogestore a{
+  text-decoration: none;
+}
+.path-taxonomy .contenitore_uffigiogestore a:hover{
+  text-decoration: underline !important;
+}
+
+@media screen and (max-width: 767px){
+  .path-taxonomy .container_info_argom{
+    padding: 20px !important;
+  }
+}
+
+.path-taxonomy .view-header{
+  display: none;
+}
+
+/*----------------------- END TAXONOMY LIST----------------------------*/
+
+/*-------------------PAGINA VIVERE IL COMUNE-------------------------*/
+
+.path-vivere-il-comune main{
+  background-color: #f2f7fc;
+}
+
+.path-vivere-il-comune #block-navigazioneprincipale-9 .card:after{
+  display: none !important;
+}
+
+.path-vivere-il-comune #block-navigazioneprincipale-9 .card a{
+ text-decoration: none;
+}
+
+.path-vivere-il-comune #block-navigazioneprincipale-9 .card a:hover{
+  text-decoration: underline !important;
+}
+/*.path-vivere-il-comune #it-block-italiagov-content{*/
+  /*display: none !important;*/
+/*}*/
+
+.path-vivere-il-comune .view-luoghi .card:after{
+  display: none !important;
+}
+
+/*-------------------END PAGINA VIVERE IL COMUNE-------------------------*/
+
+/*-------------- PAGINA AMMINISTRAZIONE -------------------*/
+.path-amministrazione main{
+  background-color: #f2f7fc;
+}
+
+.path-amministrazione .card-title{
+  line-height: 1.1;
+  font-size: 1.2rem !important;
+}
+
+#block-navigazioneprincipale-2 a{
+  text-decoration: none;
+  /*color: black !important;*/
+}
+#block-navigazioneprincipale-2 a:hover{
+  text-decoration: underline !important;
+}
+
+#block-navigazioneprincipale-2 h4{
+  font-size: 1.2rem !important;
+}
+
+#block-navigazioneprincipale-2 .card:after{
+  display: none !important;
+}
+
+.path-amministrazione .view-politici .card:after{
+  display: none !important;
+}
+
+.path-amministrazione .view-luoghi .card:after{
+  display: none !important;
+}
+
+.page-node-typeamministrazione-trasparente .it-sidebar-first__wrapper.is-sticky{
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 12% !important;
+}
+
+.page-node-typeamministrazione-trasparente .master_page a:hover {
+  text-decoration: none !important;
+  font-weight: bold !important;
+  font-size: 1rem;
+}
+
+/*-------------- END PAGINA AMMINISTRAZIONE -------------------*/
+
+/*-----------------ENTI E FONDAZIONI --------------*/
+
+
+.path-amministrazione .view-enti-e-fondazioni .card:after{
+  display: none !important;
+}
+
+.path-amministrazione .view-enti-e-fondazioni .card:after{
+  display: none !important;
+}
+.path-amministrazione .view-enti-e-fondazioni .card .card-title a{
+  text-decoration: none;
+}
+.path-amministrazione .view-enti-e-fondazioni .card .card-title a:hover{
+  text-decoration: underline !important;
+}
+
+
+  /*---------------- END ENTI E FONDAZIONI ----------------------------*/
+
+
+/*-------------- organi di governo-----------------------*/
+
+.path-amministrazione #block-navigazioneprincipale-6 .card:after{
+  display: none !important;
+}
+
+.path-amministrazione #block-navigazioneprincipale-6 .card:after{
+  display: none !important;
+}
+
+.path-amministrazione #block-navigazioneprincipale-6 .card .card-title a{
+  text-decoration: none;
+}
+.path-amministrazione #block-navigazioneprincipale-6 .card .card-title a:hover{
+  text-decoration: underline !important;
+}
+
+/*-------------- end organi di governo-----------------------*/
+
+
+/*-------------- PAGINA ELENCO UFFICI -------------------*/
+
+.path-amministrazione .view-uffici .card {
+  /*-webkit-box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.4);*/
+  /*box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.4);*/
+  box-shadow: 4px 4px 8px 0 rgb(0 0 0 / 10%);
+  width: 100% !important;
+  /*border-radius: 6px;*/
+  /*margin-left: 5%;*/
+  /*margin-right: 5%;*/
+}
+.path-amministrazione .view-uffici .col-uffici-list {
+  /*margin-bottom: 30px !important;*/
+  /*padding-left: 15px;*/
+  /*padding-right: 15px;*/
+}
+
+.path-amministrazione .view-uffici .col-uffici-list .card-title {
+  margin-bottom: 5px !important;
+}
+.path-amministrazione .view-uffici .col-uffici-list .card-text{
+  font-size: 0.9rem;
+}
+
+.path-amministrazione .view-uffici .img-uffici-list {
+  border-radius: 6px;
+}
+.path-amministrazione .view-uffici .time-created-uffici-list {
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.path-amministrazione .view-uffici .col-uffici-list .read-more-uffici-list{
+  position: relative;
+  top: 25px;
+  font-weight: 600 !important;
+  text-decoration: none;
+}
+
+.path-amministrazione .view-uffici .col-uffici-list .read-more-uffici-list:hover{
+  text-decoration: underline !important;
+}
+
+.path-amministrazione .view-uffici .col-uffici-list p{
+  margin-bottom: 5px !important;
+}
+
+.path-amministrazione .col-uffici-list .card a{
+text-decoration: none;
+}
+.path-amministrazione .col-uffici-list .card a:hover{
+  text-decoration: underline !important;
+}
+
+.path-amministrazione .col-uffici-list .card:after{
+display: none !important;
+}
+
+.path-amministrazione .col-uffici-list a{
+  text-decoratio: none;
+  color: black !important;
+}
+.path-amministrazione .col-uffici-list a:hover{
+  text-decoratio: underline;
+}
+.container_filter_uffici .pagination{
+  align-items: center;
+  justify-content: center;
+}
+
+.container_filter_uffici .pagination .page-link:hover{
+  font-weight: bold !important;
+  font-size: 1.15rem !important;
+}
+
+
+.path-amministrazione .pagination .page-item .page-link{
+  border: 1px solid #06c;
+  color: #06c;
+  background-color: transparent;
+}
+
+.path-amministrazione .container_filter_uffici .pagination .page-item .page-link[aria-current]{
+  border: 1px solid #06c;
+  color: white !important;
+  background-color: #06c;
+}
+
+.remove_filter a {
+  text-align: center;
+  margin-bottom: 30px;
+  align-items: center;
+  background-color: transparent;
+  /*border: none;*/
+  border-radius: 4px;
+  /*color: #5b6f82;*/
+  display: flex;
+  font-size: .8888888889rem;
+  font-weight: 600;
+  height: 2.5rem;
+  justify-content: center;
+  min-width: 2.5rem;
+  border: 1px solid #06c;
+  color: #06c;
+  text-decoration: none;
+}
+.remove_filter a:hover{
+  font-weight: bold !important;
+  font-size: 1.15rem !important;
+}
+
+
+/*orari Ufficio*/
+
+.office-hours-status--closed{
+  color: red !important;
+  font-weight: 400;
+}
+.office-hours-status--open{
+  color: green !important;
+  font-weight: 400;
+}
+.office-hours__item-comments{
+  display: none !important;
+}
+
+.office-hours__item-label{
+  width: unset !important;
+  margin-right: 7px !important;
+  font-weight: normal;
+}
+/*-----------------------------/*
+
+
+/*-------------- END PAGINA ELENCO UFFICI -------------------*/
+
+
+/*------------------------- HOMEPAGE -------------------*/
+.home-first-row__wrapper{
+  background-color: #f2f7fc;
+}
+
+.home-first-row__col{
+  position: relative;
+  top: -35px;
+}
+
+.header_calendario_home{
+  width: 100%;
+  background-color: #0a7bc1;
+  padding: 5px !important;
+  color: white;
+  text-align: center;
+  border-top-left-radius: 4px;
+  border-top-right-radius:4px;
+  /*margin-bottom: 20px !important;*/
+}
+
+.carosello_home_calendario .elemento_carousel{
+  /*min-height: 150px;*/
+  /*background-color: #f5f5f5 !important;*/
+  /*padding: 20px !important;*/
+  /*border: 1px solid black*/
+  /*width: 98%;*/
+  /*margin: 0 auto;*/
+  /*box-shadow: 8px 0px 32px -8px rgb(0 0 0 / 20%);*/
+}
+
+.owl-carousel-calendario .owl-item{
+  border-right: 1px solid #d8d8d8;
+  /*min-height: 300px !important;*/
+}
+
+.owl-carousel-calendario .owl-stage{
+  display: flex;
+}
+
+.image_calendar{
+  background-size: cover;
+  background-position: center;
+  /*width: 150px;*/
+  /*max-width: 100px;*/
+  margin-right: 10px !important;
+  border-radius: 5px;
+
+  min-height: 50px;
+  min-width: 70px;
+  max-height: 50px;
+  max-width: 70px;
+
+}
+
+.carosello_home_calendario .contant_calendar_item{
+  /*border-right: 1px solid #d8d8d8;*/
+}
+
+.carosello_home_calendario .owl-item {
+  min-height: 200px !important;
+}
+
+.carosello_home_calendario .elemento_carousel .header{
+  /*background-color: #e5f8fe;*/
+  padding: 10px !important;
+  text-align: center;
+  padding-top: 0 !important;
+  /*border-bottom: 1px solid #d8d8d8;*/
+}
+
+.carosello_home_calendario .elemento_carousel .content{
+  /*background-color: #e5f8fe;*/
+  padding: 10px !important;
+}
+
+#it-block-views-block-calendario-homepage-block-1{
+  margin-top: 50px !important;
+}
+
+.carosello_home_calendario{
+  box-shadow: 8px 0px 32px -8px rgb(0 0 0 / 20%);
+}
+
+.evento_calendar_home{
+  padding: 10px;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.evento_calendar_home .card-title{
+  margin-bottom: 0 !important;
+}
+.evento_calendar_home .card-title a{
+  text-decoration: none;
+}
+.evento_calendar_home .card-title a:hover{
+  text-decoration: underline;
+}
+
+.evento_calendar_home.view_more{
+  width: 100%;
+  padding: 0;
+  border: none !important;
+  justify-content: right;
+  padding-top: 5px;
+}
+
+.evento_calendar_home.view_more a{
+  /*color: #fff;*/
+  font-weight: 400;
+}
+
+.customPrevBtn, .customNextBtn{
+text-decoration: none !important;
+}
+.customPrevBtn svg, .customNextBtn svg{
+  cursor: pointer;
+}
+
+.view-news-homepage .link_to_news{
+  text-decoration: none;
+}
+.view-news-homepage .link_to_news:hover{
+  text-decoration: underline !important;
+}
+
+.view-news-homepage .novità_slider_link{
+  text-decoration: none;
+}
+.view-news-homepage .novità_slider_link:hover{
+  text-decoration: underline !important;
+}
+
+.view-news-homepage .novità_slider_link svg{
+  fill: #06c;
+}
+
+.owl-carousel-news .card:after{
+  display: none !important;
+}
+
+.owl-carousel-news .icone_navigator{
+  text-align: right;
+}
+
+.immagine_slider_news{
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 500px;
+}
+
+@media screen and (max-width: 767px){
+  .owl-carousel-news .icone_navigator{
+    text-align: center !important;
+  }
+  .immagine_slider_news{
+    height: 250px;
+  }
+}
+
+.view-sezioni-importanti .card-title a{
+  text-decoration: none;
+  font-size: 1.1rem !important;
+}
+
+.view-sezioni-importanti .card-title a:hover{
+text-decoration: underline !important;
+}
+.view-sezioni-importanti .card.card-teaser{
+  border: 1px solid #f2f7fc !important;
+}
+
+.view-sezioni-importanti .card-image-wrapper.with-read-more {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.view-sezioni-importanti .card-teaser{
+  padding: 0 !important;
+}
+
+.view-sezioni-importanti{
+  z-index: 3
+}
+
+@media screen and (max-width: 767px){
+  .view.view-altri-argomenti-homepage .tag-categorie a{
+    padding: 8px !important;
+  }
+  .view.view-altri-argomenti-homepage{
+    padding: 15px !important;
+  }
+}
+
+.link_sezioni_imp{
+  text-decoration: none;
+}
+.link_sezioni_imp:hover{
+  text-decoration: underline !important;
+}
+
+/* ---------------------- image vai alla galleria ------------------ */
+.galleria-home-foto:before {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.075) 0%, #0066cc 71%);
+  content: ' ';
+  display: block;
+  height: 100%;
+  left: 0;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.galleria-home-foto .layer{
+  z-index:2;
+  position: relative;
+}
+
+.galleria-home-foto a{
+  text-decoration: none;
+}
+
+.galleria-home-foto a:hover{
+  text-decoration: underline !important;
+}
+
+.galleria-home-foto {
+  background: url("/sites/default/files/2022-06/bergamo_tramonto.jpg") no-repeat;
+  background-position: 100%;
+  height: 260px;
+  background-size: cover;
+  padding: 52px;
+}
+
+@media screen and (max-width: 800px){
+  .galleria-home-foto{
+    justify-content: center !important;
+    align-items: center !important;
+    display: flex !important;
+  }
+
+}
+
+/* ---------------end vai alla galleria ----------------------------*/
+
+#it-block-views-block-argomenti-in-evidenza-block-1 .argomenti-foto {
+  background: url("/sites/default/files/2022-11/cologno_slide_1_0.jpg") no-repeat;
+  background-position-y: 27%;
+  background-color: #0066cc;
+  height: 260px;
+  background-size: cover;
+  display: block;
+  position: relative;
+  padding-top: 52px;
+}
+
+#it-block-views-block-argomenti-in-evidenza-block-1 .argomenti-foto .titolosezione{
+  color: white;
+}
+
+#it-block-views-block-argomenti-in-evidenza-block-1 .container_card_in_evidenza{
+  position: relative;
+  top: -25px
+}
+
+@media screen and (max-width: 800px){
+  #it-block-views-block-argomenti-in-evidenza-block-1 .argomenti-foto .titolosezione{
+    text-align: center !important;
+  }
+
+  .view-siti-tematici h4{
+    text-align: center;
+  }
+
+}
+.view-siti-tematici{
+  margin-bottom: 50px !important;
+}
+
+.view-siti-tematici .card a{
+  text-decoration: none;
+}
+.view-siti-tematici .card a:hover{
+  text-decoration: underline !important;
+  text-decoration-color: white;
+}
+.container_card_in_evidenza a{
+  text-decoration:none;
+}
+
+.container_card_in_evidenza a:hover{
+  text-decoration:underline !important;
+}
+
+.container_card_in_evidenza .card-title svg{
+  width: 40px !important;
+}
+
+
+#it-block-anchor h2{
+  display: none !important;
+}
+
+/*------------------------- END HOMEPAGE -------------------*/
+
+/*------------ ORGANI DI GOVERNO-----------------*/
+
+.container-persone .card{
+  min-height: 200px;
+}
+
+.contenitore_giunta_consiglio a{
+  text-decoration: none;
+}
+.contenitore_giunta_consiglio a:hover{
+  text-decoration: underline;
+}
+
+.link_belong {
+  /*font-size: 1.4rem !important;*/
+  margin-left: 10px !important;
+  font-weight: 500 !important;
+}
+
+/*-------------------------------------------------------*/
+
+/*------------------- REGOLAMENTI ---------------*/
+
+.link_tempi_fasi{
+  text-decoration: none;
+}
+
+.link_tempi_fasi:hover{
+  text-decoration: underline !important;
+}
+
+
+/*------------------- END REGOLAMENTI ---------------*/
+
+
+a.pulsante_leggi_dipiu{
+  font-size: 0.8rem !important;
+  font-weight: bold;
+  color: #007a52 !important;
+  text-decoration: none;
+  margin-bottom: 5px !important;
+  text-align: right;  
+  width: 100%;
+  display: inline-block;
+}
+
+.pulsante_leggi_dipiu:hover{
+  text-decoration: underline !important;
+}
+
+
+/*------------- navigation top slim*/
+.it-header-wrapper .it-nav-wrapper .it-header-navbar-wrapper nav{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+/*-------------- end navigation top slim*/
+
+/*------------ ELENCO GALLERIE -----------------*/
+
+.path-gallerie .view-gallerie .card {
+  /*-webkit-box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.4);*/
+  /*box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.4);*/
+  box-shadow: 4px 4px 8px 0 rgb(0 0 0 / 10%);
+  width: 100% !important;
+
+}
+.path-gallerie .view-gallerie .col-news-list {
+  margin-bottom: 10px !important;
+  /*padding-left: 15px;*/
+  /*padding-right: 15px;*/
+}
+
+.path-gallerie .view-gallerie .col-news-list .card-title {
+  margin-bottom: 5px !important;
+}
+.path-gallerie .view-gallerie .col-news-list .card-text{
+  font-size: 0.9rem;
+}
+
+.path-gallerie .view-gallerie .img-news-list {
+  border-radius: 6px;
+  background-size: cover;
+  background-position: center;
+  height: 250px;
+}
+
+/*.owl-carousel .owl-stage, .owl-carousel.owl-drag .owl-item{*/
+  /*-ms-touch-action: auto;*/
+  /*touch-action: auto;*/
+/*}*/
+
+.owl-carousel{
+  overflow-y: hidden !important;
+}
+
+.path-gallerie .view-gallerie .time-created-news-list {
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/*.path-gallerie .view-gallerie .col-news-list .read-more-news-list{*/
+  /*position: relative;*/
+  /*top: 25px;*/
+  /*font-weight: 600 !important;*/
+  /*text-decoration: none;*/
+/*}*/
+
+/*.path-gallerie .view-gallerie .col-news-list .read-more-news-list:hover{*/
+  /*text-decoration: underline !important;*/
+/*}*/
+
+
+.path-gallerie main{
+  background-color: #f2f7fc;
+}
+
+.path-gallerie .col-news-list .card-title a {
+  text-decoration: none;
+  /*color: black;*/
+}
+
+.path-gallerie .col-news-list .card-title a:hover{
+  text-decoration: underline !important;
+}
+
+.path-gallerie .col-news-list .card:after{
+  display: none;
+}
+
+.path-gallerie .col-news-list .card-title{
+  line-height: 1.1;
+  font-size: 1.2rem !important;
+}
+
+/*------------END ELENCO GALLERIE -----------------*/
+
+
+/*---------------- Galleria singola------------------*/
+
+.container_gallery .col-md-4 img{
+  height: 100%;
+  max-height: 200px !important;
+}
+
+.container_gallery .col-md-4{
+  margin-bottom: 15px !important;
+}
+
+/*------------------ end Galleria singola------------------*/
+
+/*pagina amm trasparente*/
+
+#it-region-sidebar-first .list-item {
+  padding-bottom: 0 !important;
+}
+
+#it-region-sidebar-first .list-item, #it-region-sidebar-first .list-item:hover span{
+  text-decoration: none !important;
+}
+
+#it-region-sidebar-first .list-item:hover{
+  font-weight: bold !important;
+  font-size: 1rem;
+}
+
+#it-region-sidebar-first {
+  margin-left: 7px;
+}
+
+#it-block-navigazioneprincipale-3 .sidebar__title{
+  padding-left: 0 !important
+}
+
+#it-block-navigazioneprincipale-3 .list-item{
+  padding-left: 0 !important;
+}
+
+@media screen and (max-width: 767px){
+  #it-block-navigazioneprincipale-3 .list-item{
+    padding-left: 25px !important;
+  }
+}
+
+/*end pagina amm trasparente*/
+
+
+/*------ sottopagine Amministrazione trasparente ---------------------*/
+
+#accordion_normativa{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+
+.page-node-typepagina-amm-trasparente #it-block-navigazioneprincipale-4 li a{
+  padding-bottom: 0 !important;
+  font-size: 0.90rem;
+}
+.page-node-typepagina-amm-trasparente #it-block-navigazioneprincipale-4 .sidebar-wrapper{
+padding-top: 0 !important;
+}
+
+#it-block-navigazioneprincipale-4 .sidebar-wrapper.it-line-left-side{
+  border-left: none !important;
+}
+
+/*------ end sottopagine Amministrazione trasparente ---------------------*/
+
+/*------ bandi e gare  ---------------------*/
+
+.path-bandi-e-gare .container.main-container{
+  margin-bottom: 75px !important;
+}
+
+#it-block-formespostobandi-e-garepage-1 .form-item-field-anno-pubblicazione-value, #it-block-formespostobandi-e-garepage-1 .form-item-field-cig-value, #it-block-formespostobandi-e-garepage-1 .form-item-title, #it-block-formespostobandi-e-garepage-1 .form-item-field-data-inizio-lavori-value, #it-block-formespostobandi-e-garepage-1 .form-item-field-data-fine-lavori-value{
+  width: 100% !important;
+}
+
+#it-block-formespostobandi-e-garepage-1 .form-item{
+  margin-bottom: 20px !important;
+  margin-top: 25px !important;
+}
+
+.path-bandi-e-gare .view-bandi-e-gare a{
+  text-decoration: none;
+}
+
+.path-bandi-e-gare .view-bandi-e-gare a:hover{
+  text-decoration: underline !important;
+}
+
+.path-bandi-e-gare #edit-submit-bandi-e-gare--2{
+  width: 100% !important;
+}
+
+
+/*------ end bandi e gare ---------------------*/
+
+/*-------------------aree-----------------------------*/
+.view-id-aree .col-tax-list{
+  /*margin-bottom: 15px !important;*/
+}
+
+.view-id-aree .col-tax-list .card:after{
+  display: none !important;
+}
+
+/*-------------------end aree-----------------------------*/
+
+
+/*----------------lingua selector-----------------*/
+#language_select .list{
+  text-align:center;
+}
+
+.icona_lingua{
+  position: relative;
+  left: -10% !important;
+  fill: white;
+  width: 20px;
+  height: 20px;
+}
+
+@media screen and (min-width: 767px){
+  #language_select{
+    /*width: 105px !important;*/
+  }
+  .icona_lingua{
+    display: none !important;
+  }
+}
+@media screen and (max-width: 767px){
+  #language_select {
+    -webkit-appearance: none !important;
+    min-width: 70px !important;
+  }
+}
+@media only screen and (max-width: 767px){
+  .icona_lingua{
+    left: -15% !important;
+  }
+}
+
+/*------------------------------------------------*/
+
+
+/*Login Page WITH spid e cie*/
+
+.path-user:not(.user-logged-in){
+
+}
+
+.lista_assist_spid{
+  padding: 0 !important;
+  margin-bottom: 20px;
+  margin-top: 10px !important;
+}
+
+.lista_assist_spid p{
+  margin-bottom: 0 !important;
+}
+
+.lista_assist_spid li
+{
+  list-style: none !important;
+}
+
+@media screen and (max-width: 900px){
+  .path-area-riservata .it-content__wrapper{
+    margin-bottom: 50px !important;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .path-area-riservata #it-region-sidebar-second{
+    text-align:center !important;
+  }
+  .path-area-riservata #it-block-italiagov-content {
+    padding: 0 15px !important;
+  }
+}
+
+/*----------------------------------*/
+
+/*------------------- webform valutazione ------------------*/
+
+
+#it-block-webform{
+  /*padding: 0 20%;*/
+  margin-bottom: 50px;
+  /*text-align: center;*/
+}
+
+@media screen and (max-width: 767px){
+  #it-block-webform{
+    text-align: center !important;
+    padding: 25px !important;
+  }
+  #page-default > main{
+    margin-bottom: 0 !important;
+  }
+}
+
+#it-block-risultatovalutazionecontenuto{
+  text-align: center;
+}
+
+.star-form #edit-valutazione{
+  display: inline-flex;
+}
+.star-form #edit-valutazione .js-form-item{
+  margin-left: 10px !important;
+}
+
+.webform-submission-valutazione-form .webform-button--submit{
+  margin-top: 25px !important;
+}
+
+
+.webform-submission-valutazione-form .js-form-item-breve-commento{
+  margin-top: 25px !important;
+  margin-bottom: 0 !important;
+}
+
+.webform-confirmation__back{
+  display: none !important;
+}
+
+
+#it-region-after-content-full-width{
+  text-align: center;
+}
+
+#edit-dove-hai-incontrato-le-maggiori-difficolta---wrapper, #edit-quali-sono-stati-gli-aspetti-che-hai-preferito---wrapper {
+
+  text-align: left;
+
+}
+
+#it-block-webform h2{
+  font-size: 1rem !important;
+}
+
+#it-block-risultatovalutazionecontenuto h2{
+  font-size: 1rem !important;
+}
+
+.after-content.container{
+  margin-bottom: 65px !important;
+  padding-top: 25px !important;
+}
+
+.star_show_valutation img{
+  margin: 5px !important;
+}
+/*-------------------------------------------------------------*/
+
+
+/*----------- PERSONALE AMMINISTRATIVO LIST ------------------*/
+
+.view-personale-amministrativo .col-tax-list h4.card-title{
+  margin-bottom: 0;
+}
+
+.view-personale-amministrativo .col-tax-list{
+  margin-bottom: 10px !important;
+}
+
+.view-personale-amministrativo .col-tax-list a{
+  text-decoration: none;
+}
+.view-personale-amministrativo .col-tax-list  a:hover{
+  text-decoration: underline;
+}
+
+.view-personale-amministrativo .col-tax-list .card-body .card-text{
+  margin-bottom: 0 !important;
+}
+
+.view-personale-amministrativo .col-tax-list .card:after{
+  display:none !important;
+}
+
+.view-personale-amministrativo{
+  margin-bottom: 50px !important;
+}
+/*----------- END PERSONALE AMMINISTRATIVO LIST ------------------*/
+
+
+/*--------------BANDO DI CONCORSO ------------------------*/
+
+.page-node-typebandi-di-concorso .timeline-element .card:after{
+  display: none !important;
+}
+.page-node-typebandi-di-concorso  .timeline-element .it-pin-wrapper{
+  cursor: pointer;
+}
+
+.page-node-typebandi-di-concorso  .timeline-element .it-pin-wrapper:hover + .card-wrapper h5{
+  font-size: 1.2rem !important;
+}
+
+.page-node-typebandi-di-concorso  .card-wrapper h5{
+  font-weight: bold !important;
+}
+
+.it-pin-wrapper.it-evidence.non-pubblicata .pin-icon{
+  background-color: #f5f5f5
+}
+.it-pin-wrapper.it-evidence.non-pubblicata .pin-text{
+  background: #f5f5f5;
+  color: black !important;
+}
+
+.page-node-typebandi-di-concorso .timeline-element{
+  width: 100% !important;
+}
+
+.page-node-typebandi-di-concorso .it-timeline-wrapper .col-12:nth-child(odd) h5{
+  position: relative;
+  left: 1% !important;
+  top: 10px !important;
+  font-size: 1.1rem;
+}
+
+.page-node-typebandi-di-concorso .it-timeline-wrapper .col-12:nth-child(even) h5{
+  position: relative;
+  left: 5px !important;
+  top: 10px !important;
+  font-size: 1.1rem;
+}
+
+@media screen and (max-width: 999px){
+  .page-node-typebandi-di-concorso .timeline-element .card-title.nascondi_mobile{
+    display:none !important;
+  }
+}
+
+@media screen and (min-width: 1000px){
+  .page-node-typebandi-di-concorso .timeline-element .card-title.nascondi_desktop{
+    display:none !important;
+  }
+}
+
+/*.path-documenti .col-news-list h4{*/
+  /*line-height: 1.1;*/
+  /*font-size: 1.2rem !important;*/
+/*}*/
+/*.path-documenti .col-news-list a{*/
+/*text-decoration: none;*/
+/*}*/
+/*.path-documenti a:hover{*/
+  /*text-decoration: underline !important;*/
+/*}*/
+
+/*.path-documenti .card {*/
+  /*box-shadow: 4px 4px 8px 0 rgb(0 0 0 / 10%);*/
+  /*width: 100% !important;*/
+/*}*/
+/*.path-documenti .card:after{*/
+  /*display: none !important;*/
+/*}*/
+
+
+.path-amministrazione .col-news-list h4{
+  line-height: 1.1;
+  font-size: 1.2rem !important;
+}
+.path-amministrazione .col-news-list a{
+  text-decoration: none;
+}
+.path-amministrazione a:hover{
+  text-decoration: underline !important;
+}
+
+.path-amministrazione .card {
+  box-shadow: 4px 4px 8px 0 rgb(0 0 0 / 10%);
+  width: 100% !important;
+}
+.path-amministrazione .card:after{
+  display: none !important;
+}
+
+
+.it-timeline-wrapper .row:after{
+  left: 40px !important;
+}
+
+.it-timeline-wrapper .col-12 .timeline-element{
+  left: 40px !important;
+  width: 100%;
+}
+
+.it-timeline-wrapper .col-12 .it-pin-wrapper{
+  flex-direction: unset !important;
+}
+.it-timeline-wrapper .col-12:nth-child(2n) .timeline-element .it-pin-wrapper{
+  left: -20px;
+}
+
+.it-timeline-wrapper .col-12:nth-child(odd) .it-pin-wrapper .pin-text span:after{
+  left: -5px !important;
+}
+
+.it-timeline-wrapper .col-12 .timeline-element{
+  left: -2px !important;
+}
+
+.it-timeline-wrapper .col-12:nth-child(odd) .timeline-element{
+  left: -80px !important;
+  position: relative;
+}
+
+.it-timeline-wrapper .it-pin-wrapper.it-evidence .pin-text{
+  position: relative;
+}
+
+@media screen and (min-width: 767px){
+  .it-timeline-wrapper .col-12:nth-child(odd) .it-pin-wrapper.it-evidence .pin-text{
+    /*left: 25px !important;*/
+  }
+  .it-timeline-wrapper .col-12:nth-child(odd) .card-wrapper .card{
+    text-align: left;
+  }
+
+  /*.it-timeline-wrapper .col-12:nth-child(even) .card-wrapper{*/
+    /*position: relative;*/
+    /*left: 7%;*/
+
+  /*}*/
+}
+
+@media (min-width: 994px) {
+  .it-timeline-wrapper .col-12:nth-child(odd) .it-pin-wrapper {
+    flex-direction: row-reverse;
+    left: auto;
+    right: -62px;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1000px){
+  .it-timeline-wrapper .col-12 .timeline-element{
+    position: relative !important;
+    left: -38px !important;
+  }
+
+
+}
+
+@media screen and (min-width: 1000px){
+  .it-timeline-wrapper .col-12:nth-child(odd) .card-wrapper{
+    position: relative;
+    left: 40%;
+  }
+}
+
+@media screen and (max-width: 1000px){
+  .it-timeline-wrapper .it-pin-wrapper{
+    left: 18px !important;
+  }
+}
+
+@media screen and (max-width: 1000px){
+  .it-timeline-wrapper .col-12:nth-child(odd) .timeline-element{
+    /*left: -80px !important;*/
+    position: unset !important;
+  }
+  .it-timeline-wrapper .card-wrapper{
+    /*padding-top: 25px;*/
+    /*padding-left: 15px;*/
+
+  }
+}
+
+
+@media screen and (min-width: 991px) and (max-width: 1000px){
+  .it-timeline-wrapper .card-wrapper{
+margin-left: 30px !important;
+
+  }
+}
+
+.it-pin-wrapper .pin-icon{
+  margin-right: 0 !important;
+}
+
+/*----------------- END BANDO DI CONCORSO --------------- */
+
+/*-------------------page-node-typeeventi ---------------------*/
+
+.page-node-typeeventi .timeline-element{
+  width: 100% !important;
+}
+
+.page-node-typeeventi .it-timeline-wrapper .col-12:nth-child(odd) h5{
+  position: relative;
+  left: 1% !important;
+  top: 10px !important;
+  font-size: 1.1rem;
+}
+
+.page-node-typeeventi .it-timeline-wrapper .col-12:nth-child(even) h5{
+  position: relative;
+  left: 5px !important;
+  top: 10px !important;
+  font-size: 1.1rem;
+}
+
+@media screen and (max-width: 999px){
+  .page-node-typeeventi .timeline-element .card-title.nascondi_mobile{
+    display:none !important;
+  }
+}
+
+@media screen and (min-width: 1000px){
+  .page-node-typeeventi .timeline-element .card-title.nascondi_desktop{
+    display:none !important;
+  }
+}
+
+/*-------------------end page-node-typeeventi ---------------------*/
+/*------------------ DOCUMENTI -----------------------*/
+
+.path-documenti main{
+  background-color: #f2f7fc;
+}
+.path-documenti .card-title{
+  line-height: 1.1;
+  font-size: 1.2rem !important;
+}
+
+.path-documenti .card-title a {
+  text-decoration: none;
+}
+
+.path-documenti .card-title a:hover{
+  text-decoration: underline !important;
+}
+
+.path-documenti .card:after{
+  display: none !important;
+}
+
+/*------------------ END DOCUMENTI -----------------------*/
+
+/*--------------- MODULISTICA --------------------*/
+
+/*.path-documenti main{*/
+  /*background-color: #f2f7fc;*/
+/*}*/
+/*.path-documenti .view-modulistica .col-news-list h4{*/
+  /*line-height: 1.1;*/
+  /*font-size: 1.2rem !important;*/
+/*}*/
+/*.path-documenti .view-modulistica .col-news-list a{*/
+  /*text-decoration: none;*/
+/*}*/
+/*.path-documenti .view-modulistica .col-news-list a:hover{*/
+  /*text-decoration: underline !important;*/
+/*}*/
+
+/*.path-documenti .view-modulistica .card {*/
+  /*box-shadow: 4px 4px 8px 0 rgb(0 0 0 / 10%);*/
+  /*width: 100% !important;*/
+/*}*/
+/*.path-documenti .card:after{*/
+  /*display: none !important;*/
+/*}*/
+
+.path-amministrazione main{
+  background-color: #f2f7fc;
+}
+.path-amministrazione .view-modulistica .col-news-list h4{
+  line-height: 1.1;
+  font-size: 1.2rem !important;
+}
+.path-amministrazione .view-modulistica .col-news-list a{
+  text-decoration: none;
+}
+.path-amministrazione .view-modulistica .col-news-list a:hover{
+  text-decoration: underline !important;
+}
+
+.path-amministrazione .view-modulistica .card {
+  box-shadow: 4px 4px 8px 0 rgb(0 0 0 / 10%);
+  width: 100% !important;
+}
+.path-amministrazione .card:after{
+  display: none !important;
+}
+
+.path-amministrazione .read-more-news-list{
+  text-decoration: none;
+}
+.path-amministrazione .read-more-news-list:hover{
+  text-decoration: underline !important;
+}
+/*--------------------------------------------------*/
+
+/*---------------- documenti ---------------*/
+
+.path-amministrazione #block-navigazioneprincipale-5-menu{
+  display: none;
+}
+
+.path-amministrazione #block-navigazioneprincipale-5 a{
+  text-decoration: none;
+}
+.path-amministrazione #block-navigazioneprincipale-5 a:hover{
+  text-decoration: underline !important;
+}
+
+/*-----------------------------------*/
+
+/*---------------- atti normativi-------------------*/
+.path-amministrazione .view-atti-normativi a{
+  text-decoration: none;
+}
+
+.path-amministrazione .view-atti-normativi a:hover{
+  text-decoration: underline !important;
+}
+
+
+/*---------------- end atti normativi-------------------*/
+
+
+/*-----------------avvisi importanti-------------------------------*/
+.avvisi_importanti{
+  background-color: #b10707;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.avvisi_importanti .container{
+  padding-left: 2%;
+}
+.avvisi_importanti a{
+  color: white !important;
+  text-decoration: none;
+}
+
+.avvisi_importanti a:hover{
+  text-decoration: underline !important;
+}
+
+/*-----------------end avvisi importanti-------------------------------*/
+
+
+.path-servizi main{
+  background-color: #f2f7fc;
+}
+.path-servizi .view-servizi a{
+  text-decoration: none;
+}
+
+.path-servizi .view-servizi a:hover{
+  text-decoration: underline !important;
+}
+
+.path-servizi .view-servizi h4{
+  line-height: 1.1;
+  font-size: 1.1rem !important;
+}
+
+.path-servizi .card:after{
+  display: none !important;
+}
+
+.path-servizi .view-display-id-tax_servizi h4{
+  line-height: 1.1;
+  font-size: 1.2rem !important;
+}
+
+.path-servizi h1.page-title{
+font-size: 1.555rem !important;
+  font-weight: 600;
+}
+
+#edit-valutazione .form-check-label:before{
+  border-color: transparent !important;
+  content: "\2605";
+  margin: unset !important;
+  /*position: relative !important;*/
+  font-size: 2rem !important;
+  height: 36px;
+  width: 35px;
+}
+
+#edit-valutazione .form-check-label:after{
+  border-color: transparent !important;
+  background-color: transparent !important;
+  content: "\2605";
+  z-index: 2;
+  color: #0066cc;
+  font-size: 0.1rem !important;
+  margin: 0;
+  width: 100%;
+  height: 40px;
+  left: -25%;
+  top: -2px;
+}
+
+.form-check-label.option.illuminate:before{
+  /*color: #0066cc;*/
+  color: #fdcc0d;
+}
+
+#edit-valutazione .form-check-label.active:before{
+  /*color: yellow !important;*/
+}
+
+.star-form label p{
+  display: none !important;
+}
+
+/*.owl-theme .owl-controls .owl-page {*/
+  /*display: inline-block;*/
+/*}*/
+/*.owl-theme .owl-controls .owl-page span {*/
+  /*background: none repeat scroll 0 0 #869791;*/
+  /*border-radius: 20px;*/
+  /*display: block;*/
+  /*height: 12px;*/
+  /*margin: 5px 7px;*/
+  /*opacity: 0.5;*/
+  /*width: 12px;*/
+/*}*/
+
+.owl-carousel-news .owl-dots{
+  position: absolute;
+  bottom: 16%;
+  left: 40%;
+}
+
+.owl-carousel-news .owl-nav{
+display: none !important;
+}
+
+@media screen and (min-width: 2100px){
+  .owl-carousel-news .owl-dots{
+    left: 44%;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .owl-carousel-news .owl-dots {
+    position: relative !important;
+    bottom: 5% !important;
+    left: 0 !important;
+  }
+
+  .owl-carousel-calendario .owl-dots{
+    display: none;
+  }
+}
+
+.owl-carousel-calendario .owl-nav{
+  display: none;
+}
+
+
+/*------------------------path eventi data-------------*/
+.path-eventi-data main{
+  background-color: #f2f7fc;
+}
+
+.path-eventi-data .immagine_lista_news{
+  background-size: cover;
+  background-position: center;
+  height: 250px;
+}
+.path-eventi-data .card:after{
+  display: none !important;
+}
+
+.path-eventi-data .view-eventi-data .col-news-list h4{
+  line-height: 1.1;
+  font-size: 1.2rem !important;
+}
+
+.path-eventi-data .view-eventi-data h4 a{
+ text-decoration: none;
+}
+
+.path-eventi-data .view-eventi-data h4 a:hover{
+  text-decoration: underline;
+}
+
+.path-eventi-data main .page-title{
+  display: none !important;
+}
+
+/*----------------- end path eventi data --------------*/
+
+
+/*--------------- novità---------------------*/
+.path-novita main{
+  background-color: #f2f7fc;
+}
+
+.path-novita .immagine_lista_news{
+  background-size: cover;
+  background-position: center;
+  height: 250px;
+}
+.path-novita .card:after{
+  display: none !important;
+}
+.path-novita .view-novita  .col-news-list .card-title a{
+  text-decoration: none;
+}
+.path-novita .view-novita  .col-news-list .card-title a:hover{
+  text-decoration: underline !important;
+}
+.path-novita .view-novita  .col-news-list h4{
+  line-height: 1.1;
+  font-size: 1.2rem !important;
+}
+.path-novita .titolo_argomento a{
+  text-decoration: none;
+}
+.path-novita .titolo_argomento a:hover{
+  text-decoration: underline !important;
+}
+
+.path-novita h1.page-title {
+  font-size: 1.555rem !important;
+  font-weight: 600;
+}
+
+/*------------------ end novità----------------*/
+
+
+
+
+/*--------------- login page amministratore ---------------*/
+
+#page-user-login .main-container #it-region-brand a .icon{
+  width: 70px !important;
+}
+
+.it-footer-main .it-brand-wrapper a .icon{
+  height: 55px !important;
+}
+
+/*-------------------- end login page amministratore --------------*/
+
+.path-risultati-ricerca a{
+  text-decoration: none;
+}
+
+.path-risultati-ricerca a:hover{
+  text-decoration: underline !important;
+}
+
+.path-risultati-ricerca .card:after{
+  display: none !important;
+}
+
+.close_search.close{
+float: unset !important;
+  opacity: 1 !important;
+}
+
+.contenitore_form_ricerca_head{
+  display: inline-flex !important;
+}
+
+
+/*--------------------------------------------------*/
+/*-------------- page-node-typeservizi-comunali---------------------------------*/
+
+
+.page-node-typeservizi-comunali .it-timeline-wrapper .col-12:nth-child(odd) h5{
+  position: relative;
+  left: 1% !important;
+  top: 18px !important;
+  font-size: 1.1rem;
+}
+
+.page-node-typeservizi-comunali .it-timeline-wrapper .col-12:nth-child(even) h5{
+  position: relative;
+  left: 5px !important;
+  top: 18px !important;
+  font-size: 1.1rem;
+}
+
+@media screen and (max-width: 999px){
+  .page-node-typeservizi-comunali .timeline-element .card-title.nascondi_mobile{
+    display:none !important;
+  }
+}
+
+@media screen and (min-width: 1000px){
+  .page-node-typeservizi-comunali .timeline-element .card-title.nascondi_desktop{
+    display:none !important;
+  }
+  .card-wrapper.nascondi_desktop{
+    display: none !important;
+  }
+}
+
+/*----------------- end page-node-typeservizi-comunali ------------------------*/
+
+/**/
+
+.cmp-info-progress.d-none{
+  display: none !important;
+}
+
+.cmp-info-progress .step-active .info-progress-body {
+  border-bottom: 2px solid #0066CC;
+}
+
+.steppers-content .card:after{
+  display: none !important;
+}
+
+.cmp-info-progress .info-progress-wrapper:not(:last-child) {
+  border-right: 1px solid #e7eaed;
+}
+
+.cmp-info-progress .info-progress-wrapper:first-child {
+  border-left: 1px solid #e7eaed;
+}
+
+.cmp-card .card.has-bkg-grey, .cmp-card .card.has-bkg-primary-grey {
+  /*padding: 1.5rem;*/
+  background-color: #ebeef0;
+  padding: 35px !important;
+}
+
+.titillium.hero-text{
+  color: #000 !important;
+}
+
+.cmp-card .radio-body.border-bottom.border-light{
+  padding: 7px !important;
+}
+
+.custom_search_btn{
+  /*margin-top: 15px !important;*/
+  font-weight: 400 !important;
+  color: #9b9b9b !important;
+  height: 48px !important;
+  border: 0 !important;
+  border-radius: 4px !important;
+  background-color: #f2f2f2 !important;
+
+}
+
+.custom_ico_search{
+  position: absolute !important;
+  width: 48px !important;
+  text-align: center !important;
+  right: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  vertical-align: middle !important;
+  background-color: #0066CC !important;
+  border-radius: 0 4px 4px 0 !important;
+  border: 0 !important;
+  padding: 8px !important;
+  cursor: pointer !important;
+  z-index: 2 !important;
+}
+
+.has-bg-grey {
+    background-color: #0066cc0d;
+}
+
+.card.card-teaser-info {
+    border-left: 8px solid #0066CC;
+}
+
+.title_services_card_contact:hover{
+    text-decoration: underline !important;
+}
+
+.card_contatti_servizi a{
+    text-decoration: none;
+}
+
+.card_contatti_servizi a:hover{
+    text-decoration: underline !important;
+}
+
+/*------------ documentazione style collection --------------------*/
+
+.ident_documentazione{
+  margin-left: 25px !important;
+  margin-bottom: 5px;
+}
+.contenitore_documentazione_allegati{
+  border-bottom: 1px dotted #D3D7D9;
+  margin-bottom: 25px !important;
+}
+
+.ident_documentazione a{
+  text-decoration: none;
+}
+
+.ident_documentazione a:hover{
+  text-decoration: underline !important;
+}
+
+body .accordion-item .accordion-body h5.titolo_documentazione_allegati{
+  font-size: 1rem !important;
+  font-weight: bold !important;
+}
+
+.accordion-header .accordion-button {
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background-color: rgba(0,0,0,0);
+  border-top: 1px solid #e3e4e6;
+  box-shadow: none;
+  padding: 14px 24px;
+  cursor: pointer;
+  color: #06c;
+  font-weight: 600;
+}
+.accordion-header{
+  font-size: 1.05rem !important;
+}
+
+.accordion-header .accordion-button::after {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 24 24' %3E%3Cg%3E%3Cpath fill='hsl(210deg, 100%, 40%)' d='M12,10.3l4.8,4.8c0.3,0.3,0.8,0.3,1.1,0c0.3-0.3,0.3-0.8,0-1c0,0,0,0,0,0l-4.8-4.8c-0.6-0.6-1.5-0.6-2.1,0L6.2,14c-0.3,0.3-0.3,0.8,0,1c0,0,0,0,0,0c0.3,0.3,0.8,0.3,1.1,0L12,10.3z'/%3E%3C/g%3E%3C/svg%3E");
+  float: right;
+  width: 1.5rem;
+  height: auto;
+  line-height: .1rem;
+  color: #7ab8f5;
+  transition: transform .3s;
+  background-image: none;
+  transform: scaleY(-1);
+}
+
+.accordion-header .accordion-button:not(.collapsed)::after {
+  transform: scaleY(1);
+}
+
+.accordion-body {
+  margin-bottom: 25px !important;
+  margin-left: 25px !important;
+}
+
+/*------------ end documentazione style collection --------------------*/
