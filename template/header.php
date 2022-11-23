@@ -11,7 +11,7 @@
                             <div class="it-header-slim-wrapper-content">
                                 <a class="d-lg-block navbar-brand" target="_blank" href="#" aria-label="Vai al portale {Nome della Regione} - link esterno - apertura nuova scheda" title="Vai al portale {Nome della Regione}"><?php echo $configData['nome_regione']; ?></a>
                                 <div class="it-header-slim-right-zone" role="navigation">
-                                <div class="nav-item dropdown">
+                                <!--<div class="nav-item dropdown">
                                     <button type="button" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="languages" aria-haspopup="true">
                                         <span class="visually-hidden">Lingua attiva:</span>
                                         <span>ITA</span>
@@ -31,7 +31,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
                                 <div class="it-user-wrapper nav-item dropdown">
                                     <a aria-expanded="false" class="btn btn-primary btn-icon btn-full" data-bs-toggle="dropdown" href="#" data-focus-mouse="false">
                                         <span class="rounded-icon">
@@ -91,24 +91,22 @@
                         <div class="col-12">
                             <div class="it-header-center-content-wrapper">
                                 <div class="it-brand-wrapper">
-                                    <a href="#">
-                                        <svg class="icon" aria-hidden="true">
-                                            <use href="../lib/svg/sprites.svg#it-pa"></use>
-                                        </svg>
+                                    <a href="<?php echo $configData['url_comune'];?>" target="_blank" title="Home" rel="home">
+                                        <img src="./media/images/logo.png" alt="Home" class="icon img-fluid">
                                         <div class="it-brand-text">
-                                            <div class="it-brand-title"><?php echo $configData['nome_comune']; ?></div>
+                                            <h2 class="no_toc"><?php echo $configData['nome_comune']; ?> - <em>Servizi online</em></h2>
                                         </div>
                                     </a>
                                 </div>
                                 <div class="it-right-zone">
-                                    <div class="it-search-wrapper">
+                                    <!--div class="it-search-wrapper">
                                         <span class="d-none d-md-block">Cerca</span>
                                         <button class="search-link rounded-icon" type="button" data-bs-toggle="modal" data-bs-target="#search-modal" aria-label="Cerca nel sito">
                                             <svg class="icon">
                                                 <use href="./lib/svg/sprites.svg#it-search"></use>
                                             </svg>
                                         </button>
-                                    </div>
+                                    </div-->
                                 </div>
                             </div>
                         </div>
@@ -145,28 +143,6 @@
                                                 <div class="it-brand-title"><?php echo $configData['nome_comune']; ?></div>
                                             </div>
                                         </a>
-                                        <ul class="navbar-nav" data-element="main-navigation">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#" data-element="management">
-                                                    <span>Amministrazione</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#" data-element="news">
-                                                    <span>Novità</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#" data-element="all-services">
-                                                    <span>Servizi</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#" data-element="live">
-                                                    <span>Vivere <?php echo $configData['nome_comune']; ?></span>
-                                                </a>
-                                            </li>
-                                        </ul>
                                     </div>
                                 </div>
                             </nav>

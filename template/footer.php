@@ -1,4 +1,4 @@
-        <div class="modal fade search-modal" id="search-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <!--<div class="modal fade search-modal" id="search-modal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content perfect-scrollbar">
                     <div class="modal-body">
@@ -56,8 +56,8 @@
                                                 <li role="listitem">
                                                     <a href="#">Voucher connettività</a>
                                                 </li>
-                                            </ul><!-- /searches-list -->
-                                        </div><!-- /searches-list-wrapper -->
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -65,247 +65,126 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <footer class="it-footer" id="footer">
-            <div class="it-footer-main">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 footer-items-wrapper logo-wrapper">
-                            <img class="ue-logo" src="./assets/images/logo-eu-inverted.svg" alt="logo Unione Europea">
+        </div>-->
+        <footer class="it-footer">
+           <div class="it-footer-main">
+             <div class="container">
+                 <section>
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
                             <div class="it-brand-wrapper">
-                                <a href="#">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="./lib/svg/sprites.svg#it-pa"></use>
-                                    </svg>
-                                    <div class="it-brand-text">
-                                        <h2 class="no_toc"><?php echo $configData['nome_comune']; ?></h2>
+                                <div id="it-region-brand" class="region brand">
+                                    <div id="it-block-brandingdelsito" class="block block-system block-system-branding-block">
+                                        <a href="<?php echo $configData['url_comune'];?>" target="_blank" title="Home" rel="home">
+                                           <img src="./media/images/logo.png" alt="Home" class="icon img-fluid">
+                                           <div class="it-brand-text">
+                                               <h2 class="no_toc"><?php echo $configData['nome_comune']; ?></h2>
+                                               <h3 class="no_toc d-none d-md-block">Provincia di <?php echo $configData['provincia_estesa_comune']; ?></h3>
+                                           </div>
+                                       </a>
                                     </div>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </section>
+                 <section class="py-4 border-white">
                     <div class="row">
-                        <div class="col-md-3 footer-items-wrapper">
-                            <h3 class="footer-heading-title">Amministrazione</h3>
-                            <ul class="footer-list">
-                                <li>
-                                    <a href="#">Organi di governo</a>
-                                </li>
-                                <li>
-                                    <a href="#">Aree amministrative</a>
-                                </li>
-                                <li>
-                                    <a href="#">Uffici</a>
-                                </li>
-                                <li>
-                                    <a href="#">Enti e fondazioni</a>
-                                </li>
-                                <li>
-                                    <a href="#">Politici</a>
-                                </li>
-                                <li>
-                                    <a href="#">Personale amministrativo</a>
-                                </li>
-                                <li>
-                                    <a href="#">Documenti e dati</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6 footer-items-wrapper">
-                            <h3 class="footer-heading-title">Categorie di servizio</h3>
+                        <div class="col-md-3 col-lg-9 pb-2">
+                            <h5 class="border-bottom-white mb-15 pb-6 title_resized">CONTATTI</h5>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <ul class="footer-list">
-                                        <li>
-                                            <a href="#">Anagrafe e stato civile</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Cultura e tempo libero</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Vita lavorativa</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Imprese e commercio</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Appalti pubblici</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Catasto e urbanistica</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Turismo</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Mobilità e trasporti</a>
-                                        </li>
-                                    </ul>
+                                <div class="col-md-4 col-lg-4 pb-2" style="">
+                                    <div id="it-region-footer-five" class="region footer_five">
+                                        <div id="it-block-footer1" class="block block-block-content">
+                                            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item">
+                                                <p><strong>Comune di <?php echo $configData['nome_comune']; ?></strong><br>
+                                                <?php echo $configData['indirizzo_comune']; ?> - <?php echo $configData['cap_comune']; ?> <?php echo $configData['nome_comune']; ?> <?php echo $configData['provincia_comune']; ?><br/>
+                                                Codice fiscale / P. IVA: <?php echo $configData['CFPIVA_comune']; ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <ul class="footer-list">
-                                        <li>
-                                            <a href="#">Educazione e formazione</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Giustizia e sicurezza pubblica</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Tributi, finanze e contravvenzioni</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Ambiente</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Salute, benessere e assistenza</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Autorizzazioni</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Agricoltura e pesca</a>
-                                        </li>
-                                    </ul>
+                                <div class="col-md-4 col-lg-4 pb-2" style="">
+                                    <div id="it-region-footer-six" class="region footer_six">
+                                        <div id="it-block-dichiarazionediaccessibilita" class="block block-block-content">
+                                            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item">
+                                                <p>
+                                                    <br>
+                                                    <a href="mailto:<?php echo $configData['pec_comune']; ?>"><?php echo $configData['pec_comune']; ?></a><br>
+                                                    Tel. <?php echo $configData['tel_comune']; ?><br/>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-4 pb-2" style="">
+                                    <div id="it-region-footer-six" class="region footer_six">
+                                        <div id="it-block-dichiarazionediaccessibilita" class="block block-block-content">
+                                            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item">
+                                                <p>
+                                                    <br>
+                                                    <a href="<?php echo $configData['url_comune']; ?>" target="_blank">Vai al sito del Comune</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-3 footer-items-wrapper">
-                            <h3 class="footer-heading-title">Novità</h3>
-                            <ul class="footer-list">
-                                <li>
-                                    <a href="#">Notizie</a>
-                                </li>
-                                <li>
-                                    <a href="#">Comunicati</a>
-                                </li>
-                                <li>
-                                    <a href="#">Avvisi</a>
-                                </li>
-                            </ul>
-                            <h3 class="footer-heading-title">Vivere <?php echo $configData['nome_comune']; ?></h3>
-                            <ul class="footer-list">
-                                <li>
-                                    <a href="#">Luoghi</a>
-                                </li>
-                                <li>
-                                    <a href="#">Eventi</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-9 mt-md-4 footer-items-wrapper">
-                            <h3 class="footer-heading-title">Contatti</h3>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <p class="footer-info">Comune di <?php echo $configData['nome_comune']; ?><br>
-                                        <?php echo $configData['indirizzo_comune']; ?> - <?php echo $configData['cap_comune']; ?> <?php echo $configData['nome_comune']; ?> <?php echo $configData['provincia_comune']; ?><br/>
-                                        Codice fiscale / P. IVA: <?php echo $configData['CFPIVA_comune']; ?><br><br>
-                                        <a href="#">Ufficio Relazioni con il Pubblico</a><br>
-                                        Numero verde: 800 016 123<br>
-                                        SMS e WhatsApp: +39 320 1234567<br>
-                                        <a href="mailto:<?php echo $configData['pec_comune']; ?>">Posta Elettronica Certificata</a><br>
-                                        Centralino unico: <?php echo $configData['tel_comune']; ?>
-                                    </p>
-                                </div>
-                                <div class="col-md-4">
-                                    <ul class="footer-list">
-                                        <li>
-                                            <a href="#" data-element="faq">Leggi le FAQ</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Prenotazione appuntamento</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" data-element="report-inefficiency">Segnalazione disservizio</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Richiesta d'assistenza</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <ul class="footer-list">
-                                        <li>
-                                            <a href="#">Amministrazione trasparente</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" data-element="privacy-policy-link">Informativa privacy</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Note legali</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" data-element="accessibility-link">Dichiarazione di accessibilità</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                            <div class="col-md-3 col-lg-3 pb-2" style="">
                             </div>
-                        </div>
-                        <div class="col-md-3 mt-md-4 footer-items-wrapper">
-                            <h3 class="footer-heading-title">Seguici su</h3>
-                            <ul class="list-inline text-start social">
-                                <li class="list-inline-item">
-                                    <a class="p-1 text-white" href="#" target="_blank">
-                                        <svg class="icon icon-sm icon-white align-top">
-                                            <use xlink:href="../assets/bootstrap-italia/dist/svg/sprites.svg#it-twitter"></use>
-                                        </svg>
-                                        <span class="visually-hidden">Twitter</span>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="p-1 text-white" href="#" target="_blank">
-                                        <svg class="icon icon-sm icon-white align-top">
-                                            <use xlink:href="../assets/bootstrap-italia/dist/svg/sprites.svg#it-facebook"></use>
-                                        </svg>
-                                        <span class="visually-hidden">Facebook</span>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="p-1 text-white" href="#" target="_blank">
-                                        <svg class="icon icon-sm icon-white align-top">
-                                            <use xlink:href="../assets/bootstrap-italia/dist/svg/sprites.svg#it-youtube"></use>
-                                        </svg>
-                                        <span class="visually-hidden">YouTube</span>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="p-1 text-white" href="#" target="_blank">
-                                        <svg class="icon icon-sm icon-white align-top">
-                                            <use xlink:href="../assets/bootstrap-italia/dist/svg/sprites.svg#it-telegram"></use>
-                                        </svg>
-                                        <span class="visually-hidden">Telegram</span>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="p-1 text-white" href="#" target="_blank">
-                                        <svg class="icon icon-sm icon-white align-top">
-                                            <use xlink:href="../assets/bootstrap-italia/dist/svg/sprites.svg#it-whatsapp"></use>
-                                        </svg>
-                                        <span class="visually-hidden">Whatsapp</span>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="p-1 text-white" href="#" target="_blank">
-                                        <svg class="icon icon-sm icon-white align-top">
-                                            <use xlink:href="../assets/bootstrap-italia/dist/svg/sprites.svg#it-rss"></use>
-                                        </svg>
-                                        <span class="visually-hidden">RSS</span>
-                                    </a>
-                                </li>
-                            </ul>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12 footer-items-wrapper">
-                            <div class="footer-bottom">
-                                <a href="#">Media policy</a>
-                                <a href="#">Mappa del sito</a>
+                </section>
+            </div>
+        </div>
+        <div class="it-footer-small-prints clearfix">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-md-7">
+                        <div id="it-region-footer-small-prints" class="region footer_small_prints">
+                            <nav role="navigation" aria-labelledby="block-smallprints-menu" id="block-smallprints" class="block block-menu navigation menu--small-prints">
+                                <ul data-block="smallprints" class="it-footer-small-prints-list list-inline mb-0 d-flex flex-column flex-md-row">
+                                    <li class="list-inline-item">
+                                        <a href="/informativa-sulla-privacy" data-drupal-link-system-path="node/598">Informativa sulla Privacy</a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="/utilizzo-dei-cookies" data-drupal-link-system-path="node/599">Utilizzo dei cookies</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5">
+                        <div id="it-region-footer-credits" class="region footer_credits">
+                            <div id="it-block-footerloghi" class="block block-block-content">
+                                <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item">
+                                    <div class="loghi_progetto">
+                                        <div class="lista_loghi_progetto">
+                                            <span class="loghi_progetto_img logo_progetto_1">
+                                                <a aria-label="Collegamento a sito esterno - Sito Proxima - nuova finestra" href="https://www.proximalab.it" target="blank" title="Sito Proximalab">
+                                                    <img alt="Logo Proxima" src="./media/images/footer_proxima.png">
+                                                </a>
+                                            </span> 
+                                            <span class="loghi_progetto_img logo_progetto_2">
+                                                <a aria-label="Collegamento a sito esterno - Sito Governo Italiano - nuova finestra" href="https://www.governo.it" target="blank" title="Sito Governo Italiano">
+                                                    <img alt="Logo Repubblica Italiana" src="./media/images/footer_repubblica.svg">
+                                                </a>
+                                            </span> 
+                                            <span class="loghi_progetto_img logo_progetto_3">
+                                                <a aria-label="Collegamento a sito esterno - Sito Unione Europea - nuova finestra" href="https://europa.eu/european-union/index_it" target="blank" title="Sito Unione Europea">
+                                                    <img alt="Logo Unione Europea" src="./media/images/europa.png">
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </footer> 
+        </div>
+        </footer>
         <script>window.__PUBLIC_PATH__ = "./lib/fonts"</script>
         <script src="./lib/js/bootstrap-italia.bundle.min.js"></script>
         <script src="./inc/script/scripts.js"></script>

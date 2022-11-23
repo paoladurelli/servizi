@@ -1922,7 +1922,6 @@ text-decoration: underline !important;
 a.pulsante_leggi_dipiu{
   font-size: 0.8rem !important;
   font-weight: bold;
-  color: #007a52 !important;
   text-decoration: none;
   margin-bottom: 5px !important;
   text-align: right;  
@@ -3075,3 +3074,41 @@ body .accordion-item .accordion-body h5.titolo_documentazione_allegati{
 }
 
 /*------------ end documentazione style collection --------------------*/
+/* HEADER */
+    .it-header-wrapper {
+      margin-bottom: 30px;
+    }
+
+    header .menu-wrapper {
+        display: none !important;
+    }
+
+    
+/* FOOTER */
+    .loghi_progetto_img a{
+        text-decoration: none !important;
+    }
+    .loghi_progetto_img{
+        padding: 5px !important;
+    }
+    .it-footer-small-prints-list .list-inline-item{
+       padding: 0 !important;
+    }
+    .logo_progetto_1 a img{
+        width: 40px;
+        padding-right: 10px;
+    }
+    .logo_progetto_2 a img{
+        width: 40px;
+        padding-right: 10px;
+    }
+    .logo_progetto_3 a img{
+        width: 200px;
+    }
+    
+
+    @media screen and (max-width: 768px){
+        .loghi_progetto{
+            padding-bottom: 25px;
+        }
+    }
