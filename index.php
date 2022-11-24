@@ -43,6 +43,7 @@ if (!empty(trim($_SESSION["CF"]))){
     $_SESSION['Email'] = $email;
     
     /* faccio il redirect alla dashboard del cliente */
+    
     header("location: ./bacheca.php");
     /* TO DO */
     /* fare i diversi redirect in base al post che ci arriva dal sito del comune */

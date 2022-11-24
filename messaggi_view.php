@@ -1,14 +1,15 @@
+<!doctype html>
+<html lang="it">
 <?php 
     /* file di inclusione */
     $configData = require './env/config_servizi.php';
     include './fun/utility.php';
 
-    /* pagina dove vengono visualizzati tutti i messaggi */
+    /* pagina dettaglio messaggio */
     session_start();
 
     include './template/head.php';
     include './template/header.php';
-
 ?>
     <main>
         <div class="container" id="main-container">
@@ -67,7 +68,34 @@
                 </div>
             </div>
             <div class="it-page-sections-container">
-                <?php include 'messaggi_main.php'; ?>
+                <?php
+                    $configDB = require './env/config.php';
+                    $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+                    $rif1 = filter_input(INPUT_GET, 'rif');
+                    $rif = number_format($rif1);
+                    $sql = "SELECT * FROM messaggi WHERE id = ". $rif;
+                    $result = $connessione->query($sql);
+
+                    if ($result->num_rows > 0) {
+                    // output data of each row
+                        while($row = $result->fetch_assoc()) {
+                            $date = date_create($row["data_msg"]);
+
+                            echo '<div class="card shadow-sm px-4 pt-4 pb-4">
+                                <div class="card-header border-0 p-0 m-0">
+                                    <date class="date-xsmall">'.date_format($date,"d/m/Y").'</date>
+                                </div>
+                                <div class="card-body p-0 my-2">
+                                    <h4 class="title-small-semi-bold t-primary m-0 mb-1">'.NomeServizioById($row["servizio_id"]).'</h4>
+                                    <p class="text-paragraph">'.$row["testo"].'</p>
+                                </div>
+                                </div>';
+                        }
+                    } else {
+                        echo "Nessun messaggio presente";
+                    }
+                    $connessione->close();                                            
+                ?>
             </div>
         </div>
     </main>

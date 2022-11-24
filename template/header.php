@@ -1,8 +1,3 @@
- <?php 
-    /* file di inclusione */
-    $configData = require './env/config_servizi.php';
-?> 
-
         <header class="it-header-wrapper" data-bs-target="#header-nav-wrapper" style="">
             <div class="it-header-slim-wrapper">
                 <div class="container">

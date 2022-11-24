@@ -1,9 +1,15 @@
-<?php
-/* pagina dove l'utente trova tutti i servizi e le sezioni della sua area privata */
-session_start();
+<!doctype html>
+<html lang="it">
+<?php 
+    /* file di inclusione */
+    $configData = require './env/config_servizi.php';
+    include './fun/utility.php';
 
-include './template/head.php';
-include './template/header.php';
+    /* pagina di tutti i servizi */
+    session_start();
+
+    include './template/head.php';
+    include './template/header.php';
 
 ?>
     <main>

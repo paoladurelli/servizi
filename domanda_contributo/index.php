@@ -1,13 +1,12 @@
-<?php 
-    /* file di inclusione */
-    $configData = require './env/config_servizi.php';
-    include './fun/utility.php';
+<?php
+/* pagina dove l'utente trova tutti i servizi e le sezioni della sua area privata */
+session_start();
 
-    /* pagina iniziale */
-    session_start();
-
-    include './template/head.php';
-    include './template/header.php';
+include '../template/head_servizi.php';
+include '../template/header.php';
+/* file di inclusione */
+$configData = require '../env/config_servizi.php';
+include '../fun/utility.php';
 ?>
     <main>
         <div class="container" id="main-container">
@@ -121,7 +120,6 @@
                                         </div>
                                     </div>
                                     <div class="card-body p-0">
-                                        <?php include 'messaggi_bacheca.php'; ?>
                                         <button type="button" class="btn btn-xs btn-me btn-label t-primary px-0">
                                             <a href="messaggi_list.php">
                                                 Vedi altri messaggi
@@ -141,7 +139,6 @@
                                         </div>
                                     </div>
                                     <div class="card-body p-0">
-                                        <?php include 'attivita_bacheca.php'; ?>
                                         <button type="button" class="btn btn-xs btn-me btn-label t-primary px-0">
                                             <a href="attivita_list.php">
                                                 <span class="">Vedi altre attività</span>
@@ -158,4 +155,4 @@
         </div>
     </main>
 
-<?php include './template/footer.php'; 
+<?php include '../template/footer.php'; 
