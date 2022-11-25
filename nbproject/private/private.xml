@@ -4,15 +4,17 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/servizi/servizi_list.php</file>
-            <file>file:/C:/xampp/htdocs/servizi/messaggi_view.php</file>
+            <file>file:/C:/xampp/htdocs/servizi/lib/css/bootstrap-italia-comuni.min.css</file>
+            <file>file:/C:/xampp/htdocs/servizi/template/header_servizi.php</file>
             <file>file:/C:/xampp/htdocs/servizi/domanda_contributo/index.php</file>
-            <file>file:/C:/xampp/htdocs/servizi/attivita_bacheca.php</file>
+            <file>file:/C:/xampp/htdocs/servizi/template/footer_servizi.php</file>
             <file>file:/C:/xampp/htdocs/servizi/template/head_servizi.php</file>
-            <file>file:/C:/xampp/htdocs/servizi/attivita_main.php</file>
-            <file>file:/C:/xampp/htdocs/servizi/template/header.php</file>
+            <file>file:/C:/xampp/htdocs/servizi/inc/css/style.css</file>
+            <file>file:/C:/xampp/htdocs/servizi/domanda_contributo/compilazione_dati.php</file>
+            <file>file:/C:/xampp/htdocs/servizi/index.php</file>
             <file>file:/C:/xampp/htdocs/servizi/template/head.php</file>
-            <file>file:/C:/xampp/htdocs/servizi/bacheca.php</file>
             <file>file:/C:/xampp/htdocs/servizi/attivita_list.php</file>
+            <file>file:/C:/xampp/htdocs/servizi/domanda_contributo/dichiarazioni.php</file>
         </group>
     </open-files>
 </project-private>

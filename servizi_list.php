@@ -68,7 +68,7 @@
                     </div>
                 </div>
             </div>
-            <div class="it-page-sections-container">
+            <div class="it-page-sections-container page-servizi">
                 <?php include 'servizi_main.php'; ?>
             </div>
         </div>
