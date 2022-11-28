@@ -9,6 +9,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 :root{
   --bs-primary: #CD2D23;
+  --bs-primary-hls: hsl(4deg, 71%, 47%);
   --bs-secondary: #F9AF12;
 }
 
@@ -43,6 +44,9 @@ html {
 
 .mb-50{
   margin-bottom: 50px !important;
+}
+.mt-50{
+  margin-top: 50px !important;
 }
 .mt-30{
   margin-top: 30px !important;
@@ -102,6 +106,24 @@ html {
 }
 body .text-white{
   color: #fff !important;
+}
+
+.color-primary{
+    color: var(--bs-primary);
+}
+
+.width-66{
+    width: 66%;
+}
+
+.alert-warning{
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='rgb(244,96,7)' d='M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 19a9 9 0 1 1 9-9 9 9 0 0 1-9 9zm-.5-6.8V5.7h1.2v8.5zm-.1 2.3h1.2v1.8h-1.2z'%3E%3C/path%3E%3C/svg%3E");
+    background-position: 20px 16px;
+    background-repeat: no-repeat;
+    background-size: 32px 32px;
+    border: 1px solid #f46007;
+    border-left: 8px solid #f46007;
+    margin-top: 20px;  
 }
 
 .tag-categorie a{
