@@ -116,6 +116,11 @@ body .text-white{
     width: 66%;
 }
 
+.menu-servizi .active .icon {
+  fill: var(--bs-primary);
+  width: 20px;
+}
+
 .alert-warning{
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='rgb(244,96,7)' d='M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 19a9 9 0 1 1 9-9 9 9 0 0 1-9 9zm-.5-6.8V5.7h1.2v8.5zm-.1 2.3h1.2v1.8h-1.2z'%3E%3C/path%3E%3C/svg%3E");
     background-position: 20px 16px;
@@ -674,7 +679,12 @@ a.pulsante_leggi_dipiu{
      border-radius: 10px; 
      border-left: 7px solid var(--bs-primary);
  }
- 
+ .page-servizi .disabled .card .card-body{ 
+     border: 1px solid #000; 
+     border-radius: 10px; 
+     border-left: 7px solid #cdcdcd;
+ }
+  
  .page-servizi .card::after{
      margin-top: 20px;
  }

@@ -12,12 +12,12 @@
     <main>
         <div class="container" id="main-container">
             <div class="row justify-content-center">
-                <div class="col-12 col-lg-10">
+                <div class="col-12">
                     <div class="cmp-breadcrumbs" role="navigation">
                         <nav class="breadcrumb-container">
                             <ol class="breadcrumb p-0" data-element="breadcrumb">
                                 <li class="breadcrumb-item"><a href="../bacheca.php">Home</a></li>
-                                <li class="breadcrumb-item" aria-current="page"><span class="separator">/</span><a href="../servizi.php">Servizi</a></li>
+                                <li class="breadcrumb-item" aria-current="page"><span class="separator">/</span><a href="../servizi_list.php">Servizi</a></li>
                                 <li class="breadcrumb-item active" aria-current="page"><span class="separator">/</span>Presentare domanda per un contributo</li>
                             </ol>
                         </nav>
@@ -31,15 +31,15 @@
                 <div class="col-12 p-0  menu-servizi">
                     <div class="cmp-nav-tab mb-4 mb-lg-5 mt-lg-4">
                         <div class="row">
-                            <div class="col-lg-3">INFORMATIVA SULLA PRIVACY</div>
-                            <div class="col-lg-3"><span class="active">COMPILAZIONE DATI</span></div>
-                            <div class="col-lg-3">TERMINI E CONDIZIONI</div>
-                            <div class="col-lg-3">RIEPILOGO</div>
+                            <div class="col-lg-3 text-center">INFORMATIVA SULLA PRIVACY</div>
+                            <div class="col-lg-3 text-center"><span class="active"><span class="active"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right-circle"></use></svg>COMPILAZIONE DATI</span></div>
+                            <div class="col-lg-3 text-center">TERMINI E CONDIZIONI</div>
+                            <div class="col-lg-3 text-center">RIEPILOGO</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <form action="dichiarazioni.php" id="frm_dati" method="post">
+            <form action="#" id="dc_frm_dati" method="post" enctype="multipart/form-data">
                 <div class="it-page-sections-container">
                     <div class="row">
                         <div class="col-12 col-lg-3 d-lg-block mb-4 d-none">
@@ -65,27 +65,27 @@
                                                             <div class="accordion-body">
                                                                 <ul class="link-list" data-element="page-index">
                                                                     <li class="nav-item">
-                                                                        <a class="nav-link" href="#richiedente">
+                                                                        <a class="nav-link" href="#dc_richiedente">
                                                                             <span class="title-medium">Richiedente</span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="nav-item">
-                                                                        <a class="nav-link" href="#beneficiario">
+                                                                        <a class="nav-link" href="#dc_beneficiario">
                                                                             <span class="title-medium">Beneficiario</span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="nav-item">
-                                                                        <a class="nav-link" href="#richiesta">
+                                                                        <a class="nav-link" href="#dc_richiesta">
                                                                             <span class="title-medium">Richiesta</span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="nav-item">
-                                                                        <a class="nav-link" href="#pagamento">
+                                                                        <a class="nav-link" href="#dc_pagamento">
                                                                             <span class="title-medium">Metodi di pagamento</span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="nav-item">
-                                                                        <a class="nav-link" href="#allegati">
+                                                                        <a class="nav-link" href="#dc_allegati">
                                                                             <span class="title-medium">Allegati</span>
                                                                         </a>
                                                                     </li>
@@ -102,7 +102,12 @@
                         </div>
 
                         <div class="col-12 col-lg-8 offset-lg-1 body-compilazione-dati">
-                            <div class="it-page-section mb-50 mb-lg-90" id="richiedente">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div id="dc_frm_dati_pnl_return"></div>
+                                </div>
+                            </div>
+                            <div class="it-page-section mb-50 mb-lg-90" id="dc_richiedente">
                                 <div class="cmp-card">
                                     <div class="card">
                                         <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -125,40 +130,40 @@
                                                             <div class="col-lg-12"><h5 class="color-primary"><b>Anagrafica</b></h5></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Nome<br/><input type="text" id="richiedente-nome" value="<?php echo $_SESSION['Nome']; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Nome<br/><input type="text" id="dc_richiedente-nome" value="<?php echo $_SESSION['Nome']; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Cognome<br/><input type="text" id="richiedente-cognome" value="<?php echo $_SESSION['Cognome']; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Cognome<br/><input type="text" id="dc_richiedente-cognome" value="<?php echo $_SESSION['Cognome']; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Codice Fiscale<br/><input type="text" id="richiedente-cf" value="<?php echo $_SESSION['CF']; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Codice Fiscale<br/><input type="text" id="dc_richiedente-cf" value="<?php echo $_SESSION['CF']; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Data di Nascita<br/><input type="text" id="richiedente-data-nascita" value="<?php echo $_SESSION['Cognome']; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Data di Nascita<br/><input type="text" id="dc_richiedente-data-nascita" value="<?php echo $_SESSION['Cognome']; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Luogo di Nascita<br/><input type="text" id="richiedente-luogo-nascita" value="<?php echo $_SESSION['Cognome']; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Luogo di Nascita<br/><input type="text" id="dc_richiedente-luogo-nascita" value="<?php echo $_SESSION['Cognome']; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Via e Numero civico<br/><input type="text" id="richiedente-via" value="<?php echo $_SESSION['Nome']; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Via e Numero civico<br/><input type="text" id="dc_richiedente-via" value="<?php echo $_SESSION['Nome']; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Località<br/><input type="text" id="richiedente-località" value="<?php echo $configData['nome_comune']; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Località<br/><input type="text" id="dc_richiedente-località" value="<?php echo $configData['nome_comune']; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Provincia<br/><input type="text" id="richiedente-provincia" value="<?php echo $configData['provincia_estesa_comune']; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Provincia<br/><input type="text" id="dc_richiedente-provincia" value="<?php echo $configData['provincia_estesa_comune']; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>E-mail<br/><input type="text" id="richiedente-email" value="<?php echo $_SESSION['Email']; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>E-mail<br/><input type="text" id="dc_richiedente-email" value="<?php echo $_SESSION['Email']; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Telefono<br/><input type="text" id="richiedente-tel" value="" /></p></div>
+                                                            <div class="col-lg-12"><p>Telefono<br/><input type="text" id="dc_richiedente-tel" value="" required /></p></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -173,18 +178,18 @@
                                         </div>
                                         <div class="card-body">
                                             <ul class="card_rb">
-                                                <li><label><input type="radio" name="rb_qualita_di" value="D">diretto interessato*</label></li>
-                                                <li><label><input type="radio" name="rb_qualita_di" value="T">tutore*</label></li>
-                                                <li><label><input type="radio" name="rb_qualita_di" value="A">amministratore di sostegno*</label></li>
-                                                <li><label><input type="radio" name="rb_qualita_di" value="P">procuratore*</label></li>
-                                                <li><label><input type="radio" name="rb_qualita_di" value="E">persona delegata*</label></li>
+                                                <li><label><input type="radio" name="dc_rb_qualita_di" value="D">diretto interessato*</label></li>
+                                                <li><label><input type="radio" name="dc_rb_qualita_di" value="T">tutore*</label></li>
+                                                <li><label><input type="radio" name="dc_rb_qualita_di" value="A">amministratore di sostegno*</label></li>
+                                                <li><label><input type="radio" name="dc_rb_qualita_di" value="P">procuratore*</label></li>
+                                                <li><label><input type="radio" name="dc_rb_qualita_di" value="E">persona delegata*</label></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="it-page-section mb-50 mb-lg-90" id="beneficiario">
+                            <div class="it-page-section mb-50 mb-lg-90" id="dc_beneficiario">
                                 <div class="cmp-card">
                                     <div class="card">
                                         <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -192,52 +197,52 @@
                                                 <h2 class="title-xxlarge mb-3">Beneficiario</h2>
                                             </div>
                                         </div>
-                                        <div class="card-body" id="pnl-beneficiario">
+                                        <div class="card-body" id="dc_pnl-beneficiario">
                                             <div class="row">
                                                 <div class="col-lg-12"><h5 class="color-primary"><b>Anagrafica</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Nome<br/><input type="text" id="beneficiario-nome" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Nome<br/><input type="text" id="dc_beneficiario-nome" value="" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Cognome<br/><input type="text" id="beneficiario-cognome" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Cognome<br/><input type="text" id="dc_beneficiario-cognome" value="" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Codice Fiscale<br/><input type="text" id="beneficiario-cf" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Codice Fiscale<br/><input type="text" id="dc_beneficiario-cf" value="" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Data di Nascita<br/><input type="text" id="beneficiario-data-nascita" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Data di Nascita<br/><input type="text" id="dc_beneficiario-data-nascita" value="" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Luogo di Nascita<br/><input type="text" id="beneficiario-luogo-nascita" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Luogo di Nascita<br/><input type="text" id="dc_beneficiario-luogo-nascita" value="" required /></p></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Via e Numero civico<br/><input type="text" id="beneficiario-via" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Via e Numero civico<br/><input type="text" id="dc_beneficiario-via" value="" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Località<br/><input type="text" id="beneficiario-località" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Località<br/><input type="text" id="dc_beneficiario-località" value="" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Provincia<br/><input type="text" id="beneficiario-provincia" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Provincia<br/><input type="text" id="dc_beneficiario-provincia" value="" required /></p></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>E-mail<br/><input type="text" id="beneficiario-email" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>E-mail<br/><input type="text" id="dc_beneficiario-email" value="" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Telefono<br/><input type="text" id="beneficiario-tel" value="" /></p></div>
+                                                <div class="col-lg-12"><p>Telefono<br/><input type="text" id="dc_beneficiario-tel" value="" /></p></div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="it-page-section mb-50 mb-lg-90" id="richiesta">
+                            <div class="it-page-section mb-50 mb-lg-90" id="dc_richiesta">
                                 <div class="cmp-card">
                                     <div class="card">
                                         <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -247,17 +252,17 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Contributo di &euro;<br/><input type="text" id="importo-contributo" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Contributo di &euro;<br/><input type="text" id="dc_importo-contributo" value="" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Finalizzato a<br/><textarea name="finalita-contributo" id="finalita-contributo" rows="4" required></textarea></p></div>
+                                                <div class="col-lg-12"><p>Finalizzato a<br/><textarea name="dc_finalita-contributo" id="dc_finalita-contributo" rows="4" required></textarea></p></div>
                                             </div>                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="it-page-section mb-50 mb-lg-90" id="pagamento">
+                            <div class="it-page-section mb-50 mb-lg-90" id="dc_pagamento">
                                 <div class="cmp-card">
                                     <div class="card">
                                         <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -275,15 +280,19 @@
                                                 if ($result->num_rows > 0) {
                                                 // output data of each row
                                                     while($row = $result->fetch_assoc()) {
-                                                        echo '<div class="row">';
-                                                            echo '<div class="col-12">';
-                                                                echo NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"];
-                                                            echo '</div>';
+                                                        echo '<div class="row mb-3">';
+                                                            echo '<div class="col-12"><p><label>';
+                                                                echo '<input type="radio" name="ckb_pagamento" value="'.$row['id'].'" ';
+                                                                if($row["predefinito"]=='1'){ echo 'checked'; }
+                                                                echo ' />&nbsp;' . NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"];
+                                                            echo '</label></p></div>';
                                                         echo '</div>';
                                                     }
                                                 }
                                                 $connessione->close();
                                             ?>
+                                            <div id="dc_pnl_new_mdp"></div>
+
                                             <div class="row">
                                                 <div class="col-12 text-center">
                                                     <button type="button" class="btn btn-primary width-66" data-bs-toggle="modal" data-bs-target="#AddPagamentoModal"><svg class="icon"><use href="../lib/svg/sprites.svg#it-plus"></use></svg>Aggiungi</button>
@@ -294,7 +303,7 @@
                                 </div>
                             </div>
                             
-                            <div class="it-page-section mb-50 mb-lg-90" id="allegati">
+                            <div class="it-page-section mb-50 mb-lg-90" id="dc_allegati">
                                 <div class="cmp-card">
                                     <div class="card">
                                         <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -303,12 +312,30 @@
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <button type="button" class="btn btn-xs btn-me btn-label t-primary px-0">
-                                                <a href="attivita_list.php">
-                                                    <span class="">Vedi altre attività</span>
-                                                </a>
-                                            </button>
-                                            </a>
+                                            <div class="row">
+                                                <div class="col-lg-6 text-center">
+                                                    <h6>Documento che attesta potere di firma</h6>
+                                                    <input type="file" name="dc_uploadPotereFirma" id="dc_uploadPotereFirma" class="upload" />
+                                                    <label for="dc_uploadPotereFirma">
+                                                        <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
+                                                        <span>Upload</span>
+                                                    </label>
+                                                    <ul class="upload-file-list" id="dc_uploadPotereFirma-file">
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-6 text-center">
+                                                    <h6>Documentazione utile al riconoscimento del contributo</h6>
+                                                    <p><small>(esempi: contrato affitto, bollette, spese sanitarie, debiti…)</small></p>
+                                                    <input type="file" name="dc_uploadDocumentazione" id="dc_uploadDocumentazione" class="upload" multiple="multiple" />
+                                                    <label for="dc_uploadDocumentazione">
+                                                        <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
+                                                        <span>Upload</span>
+                                                    </label>
+                                                    <ul class="upload-file-list" id="dc_uploadDocumentazione-file">
+                                                    </ul>
+                                                    
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -316,13 +343,13 @@
                             
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <button type="submit" class="btn btn-default"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</button>
+                                    <button type="button" id="dc_btn_back" class="btn btn-default"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</button>
                                 </div>
                                 <div class="col-lg-4" style="text-align: center;">
-                                    <button type="submit" class="btn btn-secondary">Salva richiesta</button>
+                                    <button type="button" id="dc_btn_salva_richiesta" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#SalvaRichiestaModal">Salva richiesta</button>
                                 </div>
                                 <div class="col-lg-4" style="text-align: right;">
-                                    <button type="submit" class="btn btn-primary">Avanti <svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
+                                    <button type="button" id="dc_btn_concludi_richiesta" class="btn btn-primary">Avanti <svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
                                 </div>
                             </div>
                         </div>
@@ -334,7 +361,7 @@
     <!-- Modal -->
     <div class="modal fade" tabindex="-1" role="dialog" id="AddPagamentoModal" aria-labelledby="AddPagamentoModalTitle">
         <div class="modal-dialog" role="document">
-            <form method="POST" action="#" name="frm_add_metodo_pagamento" id="frm_add_metodo_pagamento">
+            <form method="POST" action="#" name="dc_frm_add_metodo_pagamento" id="dc_frm_add_metodo_pagamento">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h2 class="modal-title h5 no_toc" id="AddPagamentoModalTitle">Aggiungi metodo di pagamento</h2>
@@ -342,35 +369,55 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-lg-12">
-                                <div id="pnl_return"></div>
+                                <div id="dc_pnl_return"></div>
                             </div>
                         </div>
-                        <div id="pnl_data">
+                        <div id="dc_pnl_data">
                             <div class="row">
                                 <div class="col-lg-12 mt-3 mb-3"><h6>Scegli il metodo di pagamento e inserisci i dati richiesti.</h6></div>
                             </div>
 
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <select id="sel_tipo_pagamento">
+                                    <select id="dc_sel_tipo_pagamento">
                                         <?php echo ViewAllTipiPagamento(); ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-12"><input type="text" id="txt_numero_pagamento" value="" /></p></div>
+                                <div class="col-lg-12"><input type="text" id="dc_txt_numero_pagamento" value="" maxlength="25" /></p></div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-12 mt-5"><label><input type="checkbox" id="ck_pagamento_predefinito" value="" />&nbsp;E' il pagamento predefinito</label></p></div>
+                                <div class="col-lg-12 mt-5"><label><input type="checkbox" id="dc_ck_pagamento_predefinito" value="" />&nbsp;E' il pagamento predefinito</label></p></div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary btn-sm" id="btn_save_close" type="submit">Salva e chiudi</button><!-- poi aggiungo data-bs-dismiss="modal" -->
+                        <button class="btn btn-primary btn-sm" id="dc_btn_save" type="submit">Salva</button>
+                        <button class="btn btn-primary btn-sm" id="dc_btn_close" type="button" data-bs-dismiss="modal">Chiudi</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 
+    <div class="modal fade" tabindex="-1" role="dialog" id="SalvaRichiestaModal" aria-labelledby="SalvaRichiestaModalTitle">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title h5 no_toc" id="SalvaRichiestaModalTitle">Salva la richiesta in corso</h2>
+                </div>
+                <div class="modal-body">
+                    <p>Cliccando su "Salva come bozza" la tua richiesta verrà salvata ma <b>NON</b> verrà inviata.<br/>Potrai comunque trovarla nelle tue attività e concludere la richiesta.</p>
+                    <h6>Vuoi salvare l'attuale richiesta come bozza?</h6>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default btn-sm" id="dc_salva_richiesta_btn_close" type="button" data-bs-dismiss="modal">Chiudi</button>
+                    <button class="btn btn-primary btn-sm" id="dc_salva_richiesta_btn_save" type="submit">Salva come bozza</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
 <?php include '../template/footer_servizi.php'; 
