@@ -137,22 +137,69 @@ $(document).ready(function () {
 
     /* script inerenti le tre action del form principale */
     $('#dc_btn_back').click(function(){
-        window.history.back();
+        window.location.href = 'index.php';
     });
     
     
+    function showValues() {
+      var str = $('#dc_frm_dati').serialize();
+      console.log(str);
+    }
+
     $('#dc_salva_richiesta_btn_save').click(function(){
         $('#SalvaRichiestaModal').modal('toggle');
+
+        $("input[type='checkbox'], input[type='radio']" ).on( "click", showValues );
+        $("select").on("change",showValues);
+        showValues();
+
+
         /* TO DO */
-        $("#dc_frm_dati").validate({
-            debug: true,
-            submitHandler: function() {
-                $("#dc_frm_dati").submit();
+        $.ajax({
+            type: "POST",
+            url: "save_bozza.php",
+            data: $('#dc_frm_dati').serialize(),
+            dataType: "json",
+            encode: true
+        }).done(function (data) {
+            if (!data.success) {
+
+            } else {
+                
             }
+        })
+        .fail(function (data) {
+            console.log(data);
         });
+
+        event.preventDefault();
     });
     
+    
     $('#dc_btn_concludi_richiesta').click(function(){
+        /* TO DO */
+        /* validazione e salvataggio come bozza */
+        $.ajax({
+            type: "POST",
+            url: "save_dati.php",
+            data: $('#dc_frm_dati').serialize(),
+            dataType: "json",
+            encode: true
+        }).done(function (data) {
+            if (!data.success) {
+
+            } else {
+                
+            }
+        })
+        .fail(function (data) {
+            console.log(data);
+        });
+
+        event.preventDefault();
+        
+        
+        
         window.location.href = 'dichiarazioni.php';
     });
     

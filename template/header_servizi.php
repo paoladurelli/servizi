@@ -30,7 +30,7 @@
                                 <div class="it-user-wrapper nav-item dropdown">
                                     <a aria-expanded="false" class="btn btn-primary btn-icon btn-full" data-bs-toggle="dropdown" href="#" data-focus-mouse="false">
                                         <span class="rounded-icon">
-                                            <img src="https://picsum.photos/20/20" class="border rounded-circle icon-white" alt="Mario Rossi">
+                                            <?php echo substr($_SESSION['Nome'],0,1) . substr($_SESSION['Cognome'],0,1); ?>
                                         </span>
                                         <span class="d-none d-lg-block"><?php echo $_SESSION['Nome'] . ' ' . $_SESSION['Cognome']; ?></span>
                                         <svg class="icon icon-white d-none d-lg-block">
@@ -43,22 +43,19 @@
                                                 <div class="link-list-wrapper">
                                                     <ul class="link-list">
                                                         <li>
-                                                            <a class="dropdown-item list-item" href="#"><span>I miei servizi</span></a>
+                                                            <a class="dropdown-item list-item" href="../servizi_list.php"><span>Servizi</span></a>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item list-item" href="#"><span>Le mie pratiche</span></a>
+                                                            <a class="dropdown-item list-item" href="../attivita_list.php"><span>Pratiche</span></a>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item list-item" href="#"><span>Notifiche</span></a>
+                                                            <a class="dropdown-item list-item" href="../messaggi_list.php"><span>Notifiche</span></a>
                                                         </li>
                                                         <li>
                                                             <span class="divider"></span>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item list-item" href="#"><span>Impostazioni</span></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="list-item left-icon" href="#">
+                                                            <a class="list-item left-icon" href="../logout.php">
                                                                 <svg class="icon icon-primary icon-sm left">
                                                                     <use xlink:href="../lib/svg/sprites.svg#it-external-link">
                                                                     </use>
@@ -86,10 +83,11 @@
                         <div class="col-12">
                             <div class="it-header-center-content-wrapper">
                                 <div class="it-brand-wrapper">
-                                    <a href="<?php echo $configData['url_comune'];?>" target="_blank" title="Home" rel="home">
+                                    <a href="../bacheca.php" title="Home" rel="home">
                                         <img src="../media/images/logo.png" alt="Home" class="icon img-fluid">
                                         <div class="it-brand-text">
-                                            <h2 class="no_toc"><?php echo $configData['nome_comune']; ?> - <em>Servizi online</em></h2>
+                                            <h2 class="no_toc">Comune di <?php echo $configData['nome_comune']; ?> - <em>Servizi online</em></h2>
+                                            <p class="mb-0">Provincia di <?php echo $configData['provincia_estesa_comune']; ?></p>
                                         </div>
                                     </a>
                                 </div>

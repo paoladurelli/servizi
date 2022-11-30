@@ -1,6 +1,7 @@
 <?php 
     /* file di inclusione */
     $configData = require '../env/config_servizi.php';
+    $configDB = require '../env/config.php';
     include '../fun/utility.php';
 
     /* pagina iniziale */
@@ -32,7 +33,7 @@
                     <div class="cmp-nav-tab mb-4 mb-lg-5 mt-lg-4">
                         <div class="row">
                             <div class="col-lg-3 text-center">INFORMATIVA SULLA PRIVACY</div>
-                            <div class="col-lg-3 text-center"><span class="active"><span class="active"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right-circle"></use></svg>COMPILAZIONE DATI</span></div>
+                            <div class="col-lg-3 text-center"><span class="active"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right-circle"></use></svg>COMPILAZIONE DATI</span></div>
                             <div class="col-lg-3 text-center">TERMINI E CONDIZIONI</div>
                             <div class="col-lg-3 text-center">RIEPILOGO</div>
                         </div>
@@ -129,39 +130,62 @@
                                                         <div class="row">
                                                             <div class="col-lg-12"><h5 class="color-primary"><b>Anagrafica</b></h5></div>
                                                         </div>
+                                                        <?php 
+                                                        /* DATI ESTRAPOLATI DA DB - start */ 
+                                                        $connessioneAn = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+                                                        $sql = "SELECT * FROM anagrafica WHERE CodiceFiscale = '". $_SESSION['CF']."'";
+                                                        $resultAn = $connessioneAn->query($sql);
+
+                                                        if ($resultAn->num_rows > 0) {
+                                                        // output data of each row
+                                                            while($row = $resultAn->fetch_assoc()) {
+                                                                $cf = $row["CodiceFiscale"];
+                                                                $nome = $row["Nome"];
+                                                                $cognome = $row["Cognome"];
+                                                                $email = $row["Email"];
+                                                                $datanascita = $row["DataNascita"];
+                                                                $luogonascita = $row["LuogoNascita"];
+                                                            }
+                                                        }
+                                                        $connessioneAn->close();
+                                                        ?>
+                                                        
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Nome<br/><input type="text" id="dc_richiedente-nome" value="<?php echo $_SESSION['Nome']; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Nome<br/><input type="text" id="dc_richiedente-nome" value="<?php echo $nome; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Cognome<br/><input type="text" id="dc_richiedente-cognome" value="<?php echo $_SESSION['Cognome']; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Cognome<br/><input type="text" id="dc_richiedente-cognome" value="<?php echo $cognome; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Codice Fiscale<br/><input type="text" id="dc_richiedente-cf" value="<?php echo $_SESSION['CF']; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Codice Fiscale<br/><input type="text" id="dc_richiedente-cf" value="<?php echo $cf; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Data di Nascita<br/><input type="text" id="dc_richiedente-data-nascita" value="<?php echo $_SESSION['Cognome']; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Data di Nascita<br/><input type="text" id="dc_richiedente-data-nascita" value="<?php echo $datanascita; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Luogo di Nascita<br/><input type="text" id="dc_richiedente-luogo-nascita" value="<?php echo $_SESSION['Cognome']; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Luogo di Nascita<br/><input type="text" id="dc_richiedente-luogo-nascita" value="<?php echo $luogonascita; ?>" disabled /></p></div>
                                                         </div>
+                                                        <?php /* DATI ESTRAPOLATI DA DB - end */ ?>
                                                         <div class="row">
                                                             <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Via e Numero civico<br/><input type="text" id="dc_richiedente-via" value="<?php echo $_SESSION['Nome']; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Via e Numero civico<br/><input type="text" id="dc_richiedente-via" value="" required /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Località<br/><input type="text" id="dc_richiedente-località" value="<?php echo $configData['nome_comune']; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Località<br/><input type="text" id="dc_richiedente-località" value="<?php echo $configData['nome_comune']; ?>" required /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Provincia<br/><input type="text" id="dc_richiedente-provincia" value="<?php echo $configData['provincia_estesa_comune']; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Provincia<br/><input type="text" id="dc_richiedente-provincia" value="<?php echo $configData['provincia_estesa_comune']; ?>" required /></p></div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                                         </div>
+                                                        <?php /* DATI ESTRAPOLATI DA DB - start */ ?>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>E-mail<br/><input type="text" id="dc_richiedente-email" value="<?php echo $_SESSION['Email']; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>E-mail<br/><input type="text" id="dc_richiedente-email" value="<?php echo $email; ?>" disabled /></p></div>
                                                         </div>
+                                                        <?php /* DATI ESTRAPOLATI DA DB - end */ ?>
                                                         <div class="row">
                                                             <div class="col-lg-12"><p>Telefono<br/><input type="text" id="dc_richiedente-tel" value="" required /></p></div>
                                                         </div>
@@ -272,7 +296,6 @@
                                         </div>
                                         <div class="card-body">
                                             <?php
-                                                $configDB = require '../env/config.php';
                                                 $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
                                                 $sql = "SELECT * FROM metodi_pagamento WHERE cf = '". $_SESSION['CF']."'";
                                                 $result = $connessione->query($sql);
@@ -342,13 +365,13 @@
                             </div>
                             
                             <div class="row">
-                                <div class="col-lg-4">
+                                <div class="col-lg-4 text-left-lg text-center mb-20">
                                     <button type="button" id="dc_btn_back" class="btn btn-default"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</button>
                                 </div>
-                                <div class="col-lg-4" style="text-align: center;">
+                                <div class="col-lg-4 text-center mb-20">
                                     <button type="button" id="dc_btn_salva_richiesta" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#SalvaRichiestaModal">Salva richiesta</button>
                                 </div>
-                                <div class="col-lg-4" style="text-align: right;">
+                                <div class="col-lg-4 text-right-lg text-center mb-20">
                                     <button type="button" id="dc_btn_concludi_richiesta" class="btn btn-primary">Avanti <svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
                                 </div>
                             </div>

@@ -17,7 +17,7 @@
                     <div class="cmp-breadcrumbs" role="navigation">
                         <nav class="breadcrumb-container">
                             <ol class="breadcrumb p-0" data-element="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="bacheca.php">Home</a></li>
                                 <li class="breadcrumb-item active" aria-current="page"><span class="separator">/</span>Area personale</li>
                             </ol>
                         </nav>

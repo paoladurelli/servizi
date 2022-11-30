@@ -17,7 +17,7 @@
                         <nav class="breadcrumb-container">
                             <ol class="breadcrumb p-0" data-element="breadcrumb">
                                 <li class="breadcrumb-item"><a href="../bacheca.php">Home</a></li>
-                                <li class="breadcrumb-item" aria-current="page"><span class="separator">/</span><a href="../servizi.php">Servizi</a></li>
+                                <li class="breadcrumb-item" aria-current="page"><span class="separator">/</span><a href="../servizi_list.php">Servizi</a></li>
                                 <li class="breadcrumb-item active" aria-current="page"><span class="separator">/</span>Presentare domanda per un contributo</li>
                             </ol>
                         </nav>
@@ -32,7 +32,7 @@
                         <div class="row">
                             <div class="col-lg-3">INFORMATIVA SULLA PRIVACY</div>
                             <div class="col-lg-3">COMPILAZIONE DATI</div>
-                            <div class="col-lg-3"><span class="active">TERMINI E CONDIZIONI</span></div>
+                            <div class="col-lg-3"><span class="active"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right-circle"></use></svg>TERMINI E CONDIZIONI</span></div>
                             <div class="col-lg-3">RIEPILOGO</div>
                         </div>
                     </div>
@@ -60,10 +60,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-6">
-                            <button type="submit" class="btn btn-default"><a href="compilazione_dati.php"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a></button>
+                        <div class="col-lg-6 text-left-lg text-center mb-20">
+                            <button type="button" class="btn btn-default"><a href="compilazione_dati.php"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a></button>
                         </div>
-                        <div class="col-lg-6" style="text-align: right;">
+                        <div class="col-lg-6 text-right-lg text-center mb-20">
                             <button type="submit" class="btn btn-primary">Conferma e invia <svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
                         </div>
                     </div>

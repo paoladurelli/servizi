@@ -18,38 +18,6 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `servizi`
---
-
-DELIMITER $$
---
--- Procedure
---
-CREATE DEFINER=`root`@`localhost` PROCEDURE `View_attivita` (IN `CF_to` INT(16))  READS SQL DATA SELECT attivita.id as attivita_id, attivita.data_attivita, servizi.NomeServizio as NomeServizio, status.nome as NomeStatus FROM attivita
-LEFT JOIN servizi ON attivita.servizio_id = servizi.id
-LEFT JOIN status ON attivita.status_id = status.id
-WHERE attivita.cf = CF_to$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `View_attivita_limit` (IN `CF` VARCHAR(16) CHARSET utf8, IN `nr_limit` INT)  READS SQL DATA SELECT attivita.id as attivita_id, attivita.data_attivita, servizi.NomeServizio as NomeServizio, status.nome as NomeStatus FROM attivita
-LEFT JOIN servizi ON attivita.servizio_id = servizi.id
-LEFT JOIN status ON attivita.status_id = status.id
-WHERE attivita.cf = CF
-LIMIT nr_limit$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `View_messaggi` (IN `CF_to` VARCHAR(16) CHARSET utf8)  READS SQL DATA SQL SECURITY INVOKER SELECT messaggi.id as messaggi_id, messaggi.testo, messaggi.data_msg, servizi.NomeServizio as NomeServizio FROM messaggi
-LEFT JOIN servizi ON messaggi.servizio_id = servizi.id 
-WHERE messaggi.CF_to = CF_to$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `View_messaggi_limit` (IN `CF_to` VARCHAR(16), IN `nr_limit` INT)  READS SQL DATA SELECT messaggi.id as messaggi_id, messaggi.testo, messaggi.data_msg, servizi.NomeServizio as NomeServizio FROM messaggi
-LEFT JOIN servizi ON messaggi.servizio_id = servizi.id 
-WHERE messaggi.CF_to = CF_to
-LIMIT nr_limit$$
-
-DELIMITER ;
-
--- --------------------------------------------------------
-
---
 -- Struttura della tabella `anagrafica`
 --
 
@@ -132,8 +100,8 @@ CREATE TABLE `metodi_pagamento` (
 --
 
 INSERT INTO `metodi_pagamento` (`id`, `cf`, `tipo_pagamento`, `numero_pagamento`, `predefinito`) VALUES
-(38, 'GCFLGA52M15F244X', 1, 'IT88990456465000000154646', b'0'),
-(64, 'GCFLGA52M15F244X', 2, '7878787878787878878', b'1');
+(1, 'GCFLGA52M15F244X', 1, 'IT88990456465000000154646', b'0'),
+(2, 'GCFLGA52M15F244X', 2, '7878787878787878878', b'1');
 
 -- --------------------------------------------------------
 
@@ -292,7 +260,7 @@ ALTER TABLE `messaggi`
 -- AUTO_INCREMENT per la tabella `metodi_pagamento`
 --
 ALTER TABLE `metodi_pagamento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT per la tabella `servizi`

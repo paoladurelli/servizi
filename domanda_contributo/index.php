@@ -17,7 +17,7 @@
                         <nav class="breadcrumb-container">
                             <ol class="breadcrumb p-0" data-element="breadcrumb">
                                 <li class="breadcrumb-item"><a href="../bacheca.php">Home</a></li>
-                                <li class="breadcrumb-item" aria-current="page"><span class="separator">/</span><a href="../servizi.php">Servizi</a></li>
+                                <li class="breadcrumb-item" aria-current="page"><span class="separator">/</span><a href="../servizi_list.php">Servizi</a></li>
                                 <li class="breadcrumb-item active" aria-current="page"><span class="separator">/</span>Presentare domanda per un contributo</li>
                             </ol>
                         </nav>

@@ -11,6 +11,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
   --bs-primary: #CD2D23;
   --bs-primary-hls: hsl(4deg, 71%, 47%);
   --bs-secondary: #F9AF12;
+  --btn-primary: #4e7e5b;
+  --btn-primary-hover: #3c6046;
 }
 
 /*------------------ GENERICI ----------------------*/
@@ -108,6 +110,18 @@ body .text-white{
   color: #fff !important;
 }
 
+h1, .h1{
+    color: #796c31;
+}
+
+main {
+    min-height: 600px;
+}
+
+.it-user-wrapper .btn-primary{
+    background-color: var(--bs-primary);
+}
+
 .color-primary{
     color: var(--bs-primary);
 }
@@ -119,6 +133,11 @@ body .text-white{
 .menu-servizi .active .icon {
   fill: var(--bs-primary);
   width: 20px;
+}
+
+.btn .icon {
+  width: 21px;
+  height: 21px;
 }
 
 .alert-warning{
@@ -673,18 +692,40 @@ a.pulsante_leggi_dipiu{
     }
 
 /* CARD  */
+.page-servizi .card{ 
+    min-height: 280px;
+}
 
- .page-servizi .card .card-body{ 
-     border: 1px solid #000; 
-     border-radius: 10px; 
-     border-left: 7px solid var(--bs-primary);
- }
- .page-servizi .disabled .card .card-body{ 
-     border: 1px solid #000; 
-     border-radius: 10px; 
-     border-left: 7px solid #cdcdcd;
- }
+.page-servizi .card .card-title a{
+    text-decoration: none;
+}
+
+.page-servizi .card .card-title a:hover{
+    text-decoration: underline;
+}
+
+.page-servizi .card .card-body{ 
+    border: 1px solid #000; 
+    border-radius: 10px; 
+    border-left: 7px solid var(--bs-primary);
+}
+.page-servizi .disabled .card .card-body{ 
+    border: 1px solid #000; 
+    border-radius: 10px; 
+    border-left: 7px solid #cdcdcd;
+}
   
- .page-servizi .card::after{
-     margin-top: 20px;
- }
+.page-servizi .card::after{
+    margin-top: 20px;
+}
+ 
+.page-servizi .card .card-body .icon{
+    float: left;
+    margin-right: 3px;
+    margin-top: -3px;
+}
+
+.page-servizi .card .card-body .read-more-news-list .icon{
+    float: right;
+    fill: var(--bs-primary);
+}
