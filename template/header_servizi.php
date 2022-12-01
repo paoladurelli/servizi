@@ -43,19 +43,19 @@
                                                 <div class="link-list-wrapper">
                                                     <ul class="link-list">
                                                         <li>
-                                                            <a class="dropdown-item list-item" href="../servizi_list.php"><span>Servizi</span></a>
+                                                            <a class="dropdown-item list-item" href="/servizi_list.php"><span>Servizi</span></a>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item list-item" href="../attivita_list.php"><span>Pratiche</span></a>
+                                                            <a class="dropdown-item list-item" href="/attivita_list.php"><span>Pratiche</span></a>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item list-item" href="../messaggi_list.php"><span>Notifiche</span></a>
+                                                            <a class="dropdown-item list-item" href="/messaggi_list.php"><span>Notifiche</span></a>
                                                         </li>
                                                         <li>
                                                             <span class="divider"></span>
                                                         </li>
                                                         <li>
-                                                            <a class="list-item left-icon" href="../logout.php">
+                                                            <a class="list-item left-icon" href="/logout.php">
                                                                 <svg class="icon icon-primary icon-sm left">
                                                                     <use xlink:href="../lib/svg/sprites.svg#it-external-link">
                                                                     </use>
@@ -128,14 +128,7 @@
                                         </button>
                                     </div>
                                     <div class="menu-wrapper">
-                                        <a href="#" aria-label="home Nome del Comune" class="logo-hamburger">
-                                            <svg class="icon" aria-hidden="true">
-                                                <use href="../lib/svg/sprites.svg#it-pa"></use>
-                                            </svg>
-                                            <div class="it-brand-text">
-                                                <div class="it-brand-title"><?php echo $configData['nome_comune']; ?></div>
-                                            </div>
-                                        </a>
+                                        <?php include "menu_header.php"; ?>
                                     </div>
                                 </div>
                             </nav>

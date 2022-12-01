@@ -1,5 +1,15 @@
 /* CUSTOM SCRIPTS PER SERVIZI */
 
+/* start script per footer */
+$("#footer-menu-lista-button").click(function() {
+    setTimeout(function () {
+        $(".footer-menu-lista-apri").toggleClass('hide');
+        $(".footer-menu-lista-chiudi").toggleClass('show');
+        $(".footer_show_more_menulista").toggleClass('show');
+    },50);
+});
+/* end script per footer */
+
 /* START dc_ (domanda contributo) */
 $('input[type=radio][name=dc_rb_qualita_di]').change(function() {
     if (this.value === 'D') {
@@ -16,8 +26,8 @@ $('input[type=radio][name=dc_rb_qualita_di]').change(function() {
         /* Indirizzo */
         $('#dc_beneficiario-via').val($('#dc_richiedente-via').val());
         $('#dc_beneficiario-via').prop( "disabled", true );
-        $('#dc_beneficiario-località').val($('#dc_richiedente-località').val());
-        $('#dc_beneficiario-località').prop( "disabled", true );
+        $('#dc_beneficiario-localita').val($('#dc_richiedente-localita').val());
+        $('#dc_beneficiario-localita').prop( "disabled", true );
         $('#dc_beneficiario-provincia').val($('#dc_richiedente-provincia').val());
         $('#dc_beneficiario-provincia').prop( "disabled", true );
         /* Contatti */
@@ -40,8 +50,8 @@ $('input[type=radio][name=dc_rb_qualita_di]').change(function() {
         /* Indirizzo */
         $('#dc_beneficiario-via').val('');
         $('#dc_beneficiario-via').prop( "disabled", false );
-        $('#dc_beneficiario-località').val('');
-        $('#dc_beneficiario-località').prop( "disabled", false );
+        $('#dc_beneficiario-localita').val('');
+        $('#dc_beneficiario-localita').prop( "disabled", false );
         $('#dc_beneficiario-provincia').val('');
         $('#dc_beneficiario-provincia').prop( "disabled", false );
         /* Contatti */
@@ -126,13 +136,18 @@ $(document).ready(function () {
     });
 
     $('#dc_uploadDocumentazione').change(function(e) {
-        let fileName = e.target.files[0].name;
-        var _size = e.target.files[0].size;
-        var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
-        i=0;while(_size>900){_size/=1024;i++;}
-        var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
-        let fileSize = exactSize;
-        $('#dc_uploadDocumentazione-file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+        $('#dc_uploadDocumentazione-file').empty();
+        
+        var totalfiles = document.getElementById('dc_uploadDocumentazione').files.length;
+        for (var index = 0; index < totalfiles; index++) {
+            let fileName = e.target.files[index].name;
+            var _size = e.target.files[index].size;
+            var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
+            i=0;while(_size>900){_size/=1024;i++;}
+            var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
+            let fileSize = exactSize;
+            $('#dc_uploadDocumentazione-file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+        }
     });    
 
     /* script inerenti le tre action del form principale */
@@ -140,45 +155,51 @@ $(document).ready(function () {
         window.location.href = 'index.php';
     });
     
-    
-    function showValues() {
-      var str = $('#dc_frm_dati').serialize();
-      console.log(str);
-    }
-
     $('#dc_salva_richiesta_btn_save').click(function(){
         $('#SalvaRichiestaModal').modal('toggle');
+        
+        var form = $('#dc_frm_dati');
+        var disabled = form.find(':input:disabled').removeAttr('disabled');
+        formData = new FormData();
+        formParams = form.serializeArray();
 
-        $("input[type='checkbox'], input[type='radio']" ).on( "click", showValues );
-        $("select").on("change",showValues);
-        showValues();
-
-
-        /* TO DO */
-        $.ajax({
-            type: "POST",
-            url: "save_bozza.php",
-            data: $('#dc_frm_dati').serialize(),
-            dataType: "json",
-            encode: true
-        }).done(function (data) {
-            if (!data.success) {
-
-            } else {
-                
-            }
-        })
-        .fail(function (data) {
-            console.log(data);
+        $.each(form.find('input[type="file"]'), function(i, tag) {
+            $.each($(tag)[0].files, function(i, file) {
+                formData.append(tag.name, file);
+            });
         });
 
+        $.each(formParams, function(i, val) {
+            formData.append(val.name, val.value);
+        });
+        disabled.attr('disabled','disabled');
+
+        /* TO DO*/
+        $.ajax({
+            type: $('#dc_frm_dati').attr("method"),
+            url: "save_bozza.php",
+            data: formData,
+            dataType: "json",
+            processData: false,
+            contentType: false,
+            success: function (data)
+            {
+                alert(data);
+                /* fai redirect alla pagina attivita_list.php */                
+            },
+            error: function (desc)
+            {
+                console.log(desc.responseText);
+            }
+        });
+        
         event.preventDefault();
     });
     
     
     $('#dc_btn_concludi_richiesta').click(function(){
         /* TO DO */
-        /* validazione e salvataggio come bozza */
+        /* validazione e salvataggio come tmp */
         $.ajax({
             type: "POST",
             url: "save_dati.php",
@@ -187,7 +208,11 @@ $(document).ready(function () {
             encode: true
         }).done(function (data) {
             if (!data.success) {
-
+                /* script per segnalare i dati mancanti */
+                for(var index = 0; index < data.length; index++) {
+                    var src = data[index];
+                    alert(src);
+                }
             } else {
                 
             }

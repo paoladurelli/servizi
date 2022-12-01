@@ -1,5 +1,3 @@
-<!doctype html>
-<html lang="it">
 <?php 
     /* file di inclusione */
     $configData = require './env/config_servizi.php';

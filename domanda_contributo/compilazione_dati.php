@@ -41,6 +41,7 @@
                 </div>
             </div>
             <form action="#" id="dc_frm_dati" method="post" enctype="multipart/form-data">
+                <input type="hidden" id="dc_bozza_id" name="dc_bozza_id" value=""/>
                 <div class="it-page-sections-container">
                     <div class="row">
                         <div class="col-12 col-lg-3 d-lg-block mb-4 d-none">
@@ -151,43 +152,43 @@
                                                         ?>
                                                         
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Nome<br/><input type="text" id="dc_richiedente-nome" value="<?php echo $nome; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Nome<br/><input type="text" id="dc_richiedente-nome" name="dc_richiedente-nome" value="<?php echo $nome; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Cognome<br/><input type="text" id="dc_richiedente-cognome" value="<?php echo $cognome; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Cognome<br/><input type="text" id="dc_richiedente-cognome" name="dc_richiedente-cognome" value="<?php echo $cognome; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Codice Fiscale<br/><input type="text" id="dc_richiedente-cf" value="<?php echo $cf; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Codice Fiscale<br/><input type="text" id="dc_richiedente-cf" name="dc_richiedente-cf" value="<?php echo $cf; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Data di Nascita<br/><input type="text" id="dc_richiedente-data-nascita" value="<?php echo $datanascita; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Data di Nascita<br/><input type="text" id="dc_richiedente-data-nascita" name="dc_richiedente-data-nascita" value="<?php echo $datanascita; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Luogo di Nascita<br/><input type="text" id="dc_richiedente-luogo-nascita" value="<?php echo $luogonascita; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Luogo di Nascita<br/><input type="text" id="dc_richiedente-luogo-nascita" name="dc_richiedente-luogo-nascita" value="<?php echo $luogonascita; ?>" disabled /></p></div>
                                                         </div>
                                                         <?php /* DATI ESTRAPOLATI DA DB - end */ ?>
                                                         <div class="row">
                                                             <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Via e Numero civico<br/><input type="text" id="dc_richiedente-via" value="" required /></p></div>
+                                                            <div class="col-lg-12"><p>Via e Numero civico<br/><input type="text" id="dc_richiedente-via" name="dc_richiedente-via" value="" required /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Località<br/><input type="text" id="dc_richiedente-località" value="<?php echo $configData['nome_comune']; ?>" required /></p></div>
+                                                            <div class="col-lg-12"><p>Località<br/><input type="text" id="dc_richiedente-localita" name="dc_richiedente-localita" value="<?php echo $configData['nome_comune']; ?>" required /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Provincia<br/><input type="text" id="dc_richiedente-provincia" value="<?php echo $configData['provincia_estesa_comune']; ?>" required /></p></div>
+                                                            <div class="col-lg-12"><p>Provincia<br/><input type="text" id="dc_richiedente-provincia" name="dc_richiedente-provincia" value="<?php echo $configData['provincia_estesa_comune']; ?>" required /></p></div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                                         </div>
                                                         <?php /* DATI ESTRAPOLATI DA DB - start */ ?>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>E-mail<br/><input type="text" id="dc_richiedente-email" value="<?php echo $email; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>E-mail<br/><input type="text" id="dc_richiedente-email" name="dc_richiedente-email" value="<?php echo $email; ?>" disabled /></p></div>
                                                         </div>
                                                         <?php /* DATI ESTRAPOLATI DA DB - end */ ?>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Telefono<br/><input type="text" id="dc_richiedente-tel" value="" required /></p></div>
+                                                            <div class="col-lg-12"><p>Telefono<br/><input type="text" id="dc_richiedente-tel" name="dc_richiedente-tel" value="" required /></p></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -202,11 +203,11 @@
                                         </div>
                                         <div class="card-body">
                                             <ul class="card_rb">
-                                                <li><label><input type="radio" name="dc_rb_qualita_di" value="D">diretto interessato*</label></li>
-                                                <li><label><input type="radio" name="dc_rb_qualita_di" value="T">tutore*</label></li>
-                                                <li><label><input type="radio" name="dc_rb_qualita_di" value="A">amministratore di sostegno*</label></li>
-                                                <li><label><input type="radio" name="dc_rb_qualita_di" value="P">procuratore*</label></li>
-                                                <li><label><input type="radio" name="dc_rb_qualita_di" value="E">persona delegata*</label></li>
+                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="D">diretto interessato*</label></li>
+                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="T">tutore*</label></li>
+                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="A">amministratore di sostegno*</label></li>
+                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="P">procuratore*</label></li>
+                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="E">persona delegata*</label></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -226,40 +227,40 @@
                                                 <div class="col-lg-12"><h5 class="color-primary"><b>Anagrafica</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Nome<br/><input type="text" id="dc_beneficiario-nome" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Nome<br/><input type="text" id="dc_beneficiario-nome" name="dc_beneficiario-nome" value="" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Cognome<br/><input type="text" id="dc_beneficiario-cognome" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Cognome<br/><input type="text" id="dc_beneficiario-cognome" name="dc_beneficiario-cognome" value="" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Codice Fiscale<br/><input type="text" id="dc_beneficiario-cf" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Codice Fiscale<br/><input type="text" id="dc_beneficiario-cf" name="dc_beneficiario-cf" value="" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Data di Nascita<br/><input type="text" id="dc_beneficiario-data-nascita" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Data di Nascita<br/><input type="text" id="dc_beneficiario-data-nascita" name="dc_beneficiario-data-nascita" value="" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Luogo di Nascita<br/><input type="text" id="dc_beneficiario-luogo-nascita" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Luogo di Nascita<br/><input type="text" id="dc_beneficiario-luogo-nascita" name="dc_beneficiario-luogo-nascita" value="" required /></p></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Via e Numero civico<br/><input type="text" id="dc_beneficiario-via" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Via e Numero civico<br/><input type="text" id="dc_beneficiario-via" name="dc_beneficiario-via" value="" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Località<br/><input type="text" id="dc_beneficiario-località" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Località<br/><input type="text" id="dc_beneficiario-localita" name="dc_beneficiario-localita" value="" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Provincia<br/><input type="text" id="dc_beneficiario-provincia" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Provincia<br/><input type="text" id="dc_beneficiario-provincia" name="dc_beneficiario-provincia" value="" required /></p></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>E-mail<br/><input type="text" id="dc_beneficiario-email" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>E-mail<br/><input type="text" id="dc_beneficiario-email" name="dc_beneficiario-email" value="" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Telefono<br/><input type="text" id="dc_beneficiario-tel" value="" /></p></div>
+                                                <div class="col-lg-12"><p>Telefono<br/><input type="text" id="dc_beneficiario-tel" name="dc_beneficiario-tel" value="" /></p></div>
                                             </div>
                                         </div>
                                     </div>
@@ -276,10 +277,10 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Contributo di &euro;<br/><input type="text" id="dc_importo-contributo" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Contributo di &euro;<br/><input type="text" id="dc_importo-contributo" name="dc_importo-contributo" value="" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Finalizzato a<br/><textarea name="dc_finalita-contributo" id="dc_finalita-contributo" rows="4" required></textarea></p></div>
+                                                <div class="col-lg-12"><p>Finalizzato a<br/><textarea id="dc_finalita-contributo" name="dc_finalita-contributo" rows="4" required></textarea></p></div>
                                             </div>                                            
                                         </div>
                                     </div>
@@ -305,7 +306,7 @@
                                                     while($row = $result->fetch_assoc()) {
                                                         echo '<div class="row mb-3">';
                                                             echo '<div class="col-12"><p><label>';
-                                                                echo '<input type="radio" name="ckb_pagamento" value="'.$row['id'].'" ';
+                                                                echo '<input type="radio" id="ckb_pagamento" name="ckb_pagamento" value="'.$row['id'].'" ';
                                                                 if($row["predefinito"]=='1'){ echo 'checked'; }
                                                                 echo ' />&nbsp;' . NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"];
                                                             echo '</label></p></div>';
@@ -349,7 +350,7 @@
                                                 <div class="col-lg-6 text-center">
                                                     <h6>Documentazione utile al riconoscimento del contributo</h6>
                                                     <p><small>(esempi: contrato affitto, bollette, spese sanitarie, debiti…)</small></p>
-                                                    <input type="file" name="dc_uploadDocumentazione" id="dc_uploadDocumentazione" class="upload" multiple="multiple" />
+                                                    <input type="file" name="dc_uploadDocumentazione[]" id="dc_uploadDocumentazione" class="upload" multiple="multiple" />
                                                     <label for="dc_uploadDocumentazione">
                                                         <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
                                                         <span>Upload</span>

@@ -128,14 +128,7 @@
                                         </button>
                                     </div>
                                     <div class="menu-wrapper">
-                                        <a href="#" aria-label="home Nome del Comune" class="logo-hamburger">
-                                            <svg class="icon" aria-hidden="true">
-                                                <use href="./lib/svg/sprites.svg#it-pa"></use>
-                                            </svg>
-                                            <div class="it-brand-text">
-                                                <div class="it-brand-title"><?php echo $configData['nome_comune']; ?></div>
-                                            </div>
-                                        </a>
+                                        <?php include "menu_header.php"; ?>
                                     </div>
                                 </div>
                             </nav>
