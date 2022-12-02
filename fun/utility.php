@@ -15,6 +15,36 @@ function NomeServizioById($Servizio_id){
     $connessioneNomeServizioById->close();
 }
 
+function LinkServizioById($Servizio_id){
+    $configDB = require './env/config.php';
+    $connessioneLinkServizioById = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sqlLinkServizioById = "SELECT LinkServizio FROM servizi WHERE id = ". $Servizio_id;
+    $resultLinkServizioById = $connessioneLinkServizioById->query($sqlLinkServizioById);
+
+    if ($resultLinkServizioById->num_rows > 0) {
+    // output data of each row
+        while($rowLinkServizioById = $resultLinkServizioById->fetch_assoc()) {
+            return $rowLinkServizioById["LinkServizio"];
+        }
+    }
+    $connessioneLinkServizioById->close();
+}
+
+function PrefissoServizioById($Servizio_id){
+    $configDB = require './env/config.php';
+    $connessioneLinkServizioById = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sqlLinkServizioById = "SELECT PrefissoServizio FROM servizi WHERE id = ". $Servizio_id;
+    $resultLinkServizioById = $connessioneLinkServizioById->query($sqlLinkServizioById);
+
+    if ($resultLinkServizioById->num_rows > 0) {
+    // output data of each row
+        while($rowLinkServizioById = $resultLinkServizioById->fetch_assoc()) {
+            return $rowLinkServizioById["PrefissoServizio"];
+        }
+    }
+    $connessioneLinkServizioById->close();
+}
+
 function NomeMetodoPagamentoById($Pagamento_id){
     $configDB = require '../env/config.php';
     $connessioneNMPBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
@@ -56,4 +86,17 @@ function ViewTipiPagamentoById($ID){
         }
     }
     $connessioneVATP->close();
+}
+
+function CreateLinkAttivita($ServizioId,$pratica_id,$StatusId){
+    $linkServizio = LinkServizioById($ServizioId);
+    $prefissoServizio = PrefissoServizioById($ServizioId);
+    if($StatusId == 1){
+        $linkServizio .= "/index.php?".$prefissoServizio."bozza_id=".$pratica_id;
+    }else{
+        /* TO DO */
+        $linkServizio = "attivita_list.php";
+    }
+    
+    return $linkServizio;
 }

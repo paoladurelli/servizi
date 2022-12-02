@@ -60,6 +60,7 @@
                                         <p>Il comune di <?php echo $configData['nome_comune']; ?> gestisce i dati personali forniti e liberamente comunicati sulla base dell'articolo 13 del Regolamento (UE) 2016/679 General data protection regulation (Gdpr) e degli articoli 13 e successive modifiche e integrazione del decreto legislativo (di seguito d.lgs) 267/2000 (Testo unico enti locali).</p>
                                         <p>Per i dettagli sul trattamento dei dati personali consulta l'<a href="<?php echo $configData['url_comune']; ?>/privacy">informativa sulla privacy</a></p>
                                         <form name="frm_privacy" action="compilazione_dati.php" method="post">
+                                            <input type="hidden" id="dc_bozza_id" name="dc_bozza_id" value="<?php if(isset($_GET["dc_bozza_id"])){ echo $_GET["dc_bozza_id"]; } ?>" />
                                             <p><label><input type="checkbox" name="ckb_privacy" required /> <b>Ho letto e compreso l'informativa sulla privacy</b></label></p>
                                             <p><button type="submit" class="btn btn-primary">Avanti <svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button></p>
                                         </form>

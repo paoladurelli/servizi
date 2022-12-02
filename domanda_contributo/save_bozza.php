@@ -38,31 +38,30 @@ if(!isset($_POST['dc_bozza_id']) || $_POST['dc_bozza_id'] == ''){
 
     /* dc_uploadPotereFirma - start */
     if(isset($_FILES['dc_uploadPotereFirma']['name']) && $_FILES['dc_uploadPotereFirma']['name'] != ''){
-       // File name INIT
-       $filename = $_FILES['dc_uploadPotereFirma']['name'];
+        // File name INIT
+        $filename = $_FILES['dc_uploadPotereFirma']['name'];
 
-       // Get extension
-       $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+        // Get extension
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 
-       // Valid image extension
-       $valid_ext = array("png","jpeg","jpg","pdf");
+        // Valid image extension
+        $valid_ext = array("png","jpeg","jpg","pdf");
 
-       // Check extension
-       if(in_array($ext, $valid_ext)){
-          //New file name
-          $filename = "dc_potere_firma_bozza_" . $new_id . $ext;
-          // File path
-          $path = $upload_location.$filename;
+        // Check extension
+        if(in_array($ext, $valid_ext)){
+            //New file name
+            $filename = "dc_potere_firma_bozza_" . $new_id. "." . $ext;
+            // File path
+            $path = $upload_location.$filename;
 
-          // Upload file
-        if(move_uploaded_file($_FILES['dc_uploadPotereFirma']['tmp_name'],$path)){
-            $files_arr[] = $path;
-            /* salvo nel DB i nomi */
-            $sqlUPD = "UPDATE domanda_contributo SET uploadPotereFirma = '".$filename."' WHERE id = ".$new_id;
-            echo $sqlUPD;
-            $connessioneUPD->query($sqlUPD);
-         }
-       }
+            // Upload file
+            if(move_uploaded_file($_FILES['dc_uploadPotereFirma']['tmp_name'],$path)){
+                $files_arr[] = $path;
+                /* salvo nel DB i nomi */
+                $sqlUPD = "UPDATE domanda_contributo SET uploadPotereFirma = '".$filename."' WHERE id = ".$new_id;
+                $connessioneUPD->query($sqlUPD);
+            }
+        }
     }
     /* dc_uploadPotereFirma - end */
 
@@ -73,43 +72,44 @@ if(!isset($_POST['dc_bozza_id']) || $_POST['dc_bozza_id'] == ''){
         // Loop all files
         for($index = 0;$index < $countfiles;$index++){
 
-           if(isset($_FILES['dc_uploadDocumentazione']['name'][$index]) && $_FILES['dc_uploadDocumentazione']['name'][$index] != ''){
-              // File name INIT
-              $filename = $_FILES['dc_uploadDocumentazione']['name'][$index];
+            if(isset($_FILES['dc_uploadDocumentazione']['name'][$index]) && $_FILES['dc_uploadDocumentazione']['name'][$index] != ''){
+                // File name INIT
+                $filename = $_FILES['dc_uploadDocumentazione']['name'][$index];
 
-              // Get extension
-              $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+                // Get extension
+                $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 
-              // Valid image extension
-              $valid_ext = array("png","jpeg","jpg","pdf");
+                // Valid image extension
+                $valid_ext = array("png","jpeg","jpg","pdf");
 
-              // Check extension
-              if(in_array($ext, $valid_ext)){
-                 //New file name
-                 $filename = "dc_documentazione_bozza_" . $new_id . "_" . $index. "." . $ext;
-                 // File path
-                 $path = $upload_location.$filename;
+                // Check extension
+                if(in_array($ext, $valid_ext)){
+                    //New file name
+                    $filename = "dc_documentazione_bozza_" . $new_id . "_" . $index. "." . $ext;
+                    // File path
+                    $path = $upload_location.$filename;
 
-                 // Upload file
-                 if(move_uploaded_file($_FILES['dc_uploadDocumentazione']['tmp_name'][$index],$path)){
-                    $files_arr[] = $path;
-                    /* salvo nel DB i nomi */
-                    $sqlUPD = "UPDATE domanda_contributo SET uploadDocumentazione = 'uploadDocumentazione;".$filename."' WHERE id = ".$new_id;
-                    $connessioneUPD->query($sqlUPD);
-                 }
-              }
-           }
+                    // Upload file
+                    if(move_uploaded_file($_FILES['dc_uploadDocumentazione']['tmp_name'][$index],$path)){
+                        $files_arr[] = $path;
+                        /* salvo nel DB i nomi */
+                        $sqlUPD = "UPDATE domanda_contributo SET uploadDocumentazione = CONCAT(uploadDocumentazione, '".$filename.";') WHERE id = ".$new_id;
+                        $connessioneUPD->query($sqlUPD);
+                    }
+                }
+            }
         }
     }
     /* dc_uploadDocumentazione - end */
 
-/* salvo nelle attitivà la creazione della bozza per domanda_contributo */
+/* salvo nelle attitivà la creazione o modifica della bozza per domanda_contributo */
+    $sqlINS = "INSERT INTO attivita (cf,servizio_id,pratica_id,status_id) VALUES ('".$_POST['dc_richiedente-cf']."',11,".$new_id.",1)";
+    $connessioneINS->query($sqlINS);
     
     
 /* salvo nei messaggi che ho una bozza da completare per domanda_contributo */
-    
-    
+    $sqlINS = "INSERT INTO messaggi (CF_to,servizio_id,testo) VALUES ('".$_POST['dc_richiedente-cf']."',11,'La tua domanda di contributo è stata salvata come  bozza')";
+    $connessioneINS->query($sqlINS);
     
 /* invio risposta al js */
 echo json_encode('allright');
-die;

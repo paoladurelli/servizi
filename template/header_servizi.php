@@ -43,13 +43,13 @@
                                                 <div class="link-list-wrapper">
                                                     <ul class="link-list">
                                                         <li>
-                                                            <a class="dropdown-item list-item" href="/servizi_list.php"><span>Servizi</span></a>
+                                                            <a class="dropdown-item list-item" href="../servizi_list.php"><span>Servizi</span></a>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item list-item" href="/attivita_list.php"><span>Pratiche</span></a>
+                                                            <a class="dropdown-item list-item" href="../attivita_list.php"><span>Pratiche</span></a>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item list-item" href="/messaggi_list.php"><span>Notifiche</span></a>
+                                                            <a class="dropdown-item list-item" href="../messaggi_list.php"><span>Notifiche</span></a>
                                                         </li>
                                                         <li>
                                                             <span class="divider"></span>

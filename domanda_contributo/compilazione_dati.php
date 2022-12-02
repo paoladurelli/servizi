@@ -9,6 +9,113 @@
 
     include '../template/head_servizi.php';
     include '../template/header_servizi.php';
+    
+    /* settare le variabili */
+    $dc_bozza_id = "";
+    $cf = "";
+    $nome = "";
+    $cognome = "";
+    $email = "";
+    $datanascita = "";
+    $luogonascita = "";
+    $richiedenteVia = "";
+    $richiedenteLocalita = "";
+    $richiedenteProvincia = "";
+    $richiedenteTel = "";
+    $inQualitaDi = "";
+    $beneficiarioNome = "";
+    $beneficiarioCognome = "";
+    $beneficiarioCf = "";
+    $beneficiarioDataNascita = "";
+    $beneficiarioLuogoNascita = "";
+    $beneficiarioVia = "";
+    $beneficiarioLocalita = "";
+    $beneficiarioProvincia = "";
+    $beneficiarioEmail = "";
+    $beneficiarioTel = "";
+    $importoContributo = "";
+    $finalitaContributo = "";
+    $tipoPagamento_id = "";
+    $uploadPotereFirma = "";
+    $tmpUploadDocumentazione1 = "";
+    $tmpUploadDocumentaziones = "";
+    $uploadDocumentazione = "";
+
+    
+    /* se mi viene passato l'id della bozza, vado a richiamare i dati salvati */
+    if(isset($_POST["dc_bozza_id"]) && $_POST["dc_bozza_id"]<>''){
+        /* DATI ESTRAPOLATI DA DB - start */ 
+        $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+        $sql = "SELECT * FROM domanda_contributo WHERE richiedenteCf = '". $_SESSION['CF']."' and id =" . $_POST["dc_bozza_id"];
+        $result = $connessione->query($sql);
+
+        if ($result->num_rows > 0) {
+        // output data of each row
+            while($row = $result->fetch_assoc()) {
+                $dc_bozza_id = $_POST["dc_bozza_id"];
+                $cf = $row["richiedenteCf"];
+                $nome = $row["richiedenteNome"];
+                $cognome = $row["richiedenteCognome"];
+                $email = $row["richiedenteEmail"];
+                $datanascita = $row["richiedenteDataNascita"];
+                $luogonascita = $row["richiedenteLuogoNascita"];
+                $richiedenteVia = $row["richiedenteVia"];
+                $richiedenteLocalita = $row["richiedenteLocalita"];
+                $richiedenteProvincia = $row["richiedenteProvincia"];
+                $richiedenteTel = $row["richiedenteTel"];
+
+                $inQualitaDi = $row["inQualitaDi"];
+
+                $beneficiarioNome = $row["beneficiarioNome"];
+                $beneficiarioCognome = $row["beneficiarioCognome"];
+                $beneficiarioCf = $row["beneficiarioCf"];
+                $beneficiarioDataNascita = $row["beneficiarioDataNascita"];
+                $beneficiarioLuogoNascita = $row["beneficiarioLuogoNascita"];
+                $beneficiarioVia = $row["beneficiarioVia"];
+                $beneficiarioLocalita = $row["beneficiarioLocalita"];
+                $beneficiarioProvincia = $row["beneficiarioProvincia"];
+                $beneficiarioEmail = $row["beneficiarioEmail"];
+                $beneficiarioTel = $row["beneficiarioTel"];
+
+                $importoContributo = $row["importoContributo"];
+                $finalitaContributo = $row["finalitaContributo"];
+
+                $tipoPagamento_id = $row["tipoPagamento_id"];
+
+                $uploadPotereFirma = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadPotereFirma"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
+                
+                $tmpUploadDocumentazione1 = substr($row["uploadDocumentazione"],0,-1);
+                $tmpUploadDocumentaziones = explode(';', $tmpUploadDocumentazione1);
+                $uploadDocumentazione = "";
+                foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
+                    $uploadDocumentazione .= "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $tmpUploadDocumentazione ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
+                }
+            }
+        }
+        $connessione->close();
+     }else{
+        /* DATI ESTRAPOLATI DA DB - start */ 
+        $connessioneAn = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+        $sql = "SELECT * FROM anagrafica WHERE CodiceFiscale = '". $_SESSION['CF']."'";
+        $resultAn = $connessioneAn->query($sql);
+
+        if ($resultAn->num_rows > 0) {
+        // output data of each row
+            while($row = $resultAn->fetch_assoc()) {
+                $cf = $row["CodiceFiscale"];
+                $nome = $row["Nome"];
+                $cognome = $row["Cognome"];
+                $email = $row["Email"];
+                $datanascita = $row["DataNascita"];
+                $luogonascita = $row["LuogoNascita"];
+                $richiedenteLocalita = $configData['nome_comune'];
+                $richiedenteProvincia = $configData['provincia_estesa_comune'];
+            }
+        }
+        $connessioneAn->close();
+        /* DATI ESTRAPOLATI DA DB - end */
+        /* il resto rimane vuoto */
+    }
 ?>
     <main>
         <div class="container" id="main-container">
@@ -41,7 +148,7 @@
                 </div>
             </div>
             <form action="#" id="dc_frm_dati" method="post" enctype="multipart/form-data">
-                <input type="hidden" id="dc_bozza_id" name="dc_bozza_id" value=""/>
+                <input type="hidden" id="dc_bozza_id" name="dc_bozza_id" value="<?php echo $dc_bozza_id; ?>"/>
                 <div class="it-page-sections-container">
                     <div class="row">
                         <div class="col-12 col-lg-3 d-lg-block mb-4 d-none">
@@ -131,26 +238,6 @@
                                                         <div class="row">
                                                             <div class="col-lg-12"><h5 class="color-primary"><b>Anagrafica</b></h5></div>
                                                         </div>
-                                                        <?php 
-                                                        /* DATI ESTRAPOLATI DA DB - start */ 
-                                                        $connessioneAn = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-                                                        $sql = "SELECT * FROM anagrafica WHERE CodiceFiscale = '". $_SESSION['CF']."'";
-                                                        $resultAn = $connessioneAn->query($sql);
-
-                                                        if ($resultAn->num_rows > 0) {
-                                                        // output data of each row
-                                                            while($row = $resultAn->fetch_assoc()) {
-                                                                $cf = $row["CodiceFiscale"];
-                                                                $nome = $row["Nome"];
-                                                                $cognome = $row["Cognome"];
-                                                                $email = $row["Email"];
-                                                                $datanascita = $row["DataNascita"];
-                                                                $luogonascita = $row["LuogoNascita"];
-                                                            }
-                                                        }
-                                                        $connessioneAn->close();
-                                                        ?>
-                                                        
                                                         <div class="row">
                                                             <div class="col-lg-12"><p>Nome<br/><input type="text" id="dc_richiedente-nome" name="dc_richiedente-nome" value="<?php echo $nome; ?>" disabled /></p></div>
                                                         </div>
@@ -166,29 +253,26 @@
                                                         <div class="row">
                                                             <div class="col-lg-12"><p>Luogo di Nascita<br/><input type="text" id="dc_richiedente-luogo-nascita" name="dc_richiedente-luogo-nascita" value="<?php echo $luogonascita; ?>" disabled /></p></div>
                                                         </div>
-                                                        <?php /* DATI ESTRAPOLATI DA DB - end */ ?>
                                                         <div class="row">
                                                             <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Via e Numero civico<br/><input type="text" id="dc_richiedente-via" name="dc_richiedente-via" value="" required /></p></div>
+                                                            <div class="col-lg-12"><p>Via e Numero civico<br/><input type="text" id="dc_richiedente-via" name="dc_richiedente-via" value="<?php echo $richiedenteVia; ?>" required /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Località<br/><input type="text" id="dc_richiedente-localita" name="dc_richiedente-localita" value="<?php echo $configData['nome_comune']; ?>" required /></p></div>
+                                                            <div class="col-lg-12"><p>Località<br/><input type="text" id="dc_richiedente-localita" name="dc_richiedente-localita" value="<?php echo $richiedenteLocalita; ?>" required /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Provincia<br/><input type="text" id="dc_richiedente-provincia" name="dc_richiedente-provincia" value="<?php echo $configData['provincia_estesa_comune']; ?>" required /></p></div>
+                                                            <div class="col-lg-12"><p>Provincia<br/><input type="text" id="dc_richiedente-provincia" name="dc_richiedente-provincia" value="<?php echo $richiedenteProvincia; ?>" required /></p></div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                                         </div>
-                                                        <?php /* DATI ESTRAPOLATI DA DB - start */ ?>
                                                         <div class="row">
                                                             <div class="col-lg-12"><p>E-mail<br/><input type="text" id="dc_richiedente-email" name="dc_richiedente-email" value="<?php echo $email; ?>" disabled /></p></div>
                                                         </div>
-                                                        <?php /* DATI ESTRAPOLATI DA DB - end */ ?>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Telefono<br/><input type="text" id="dc_richiedente-tel" name="dc_richiedente-tel" value="" required /></p></div>
+                                                            <div class="col-lg-12"><p>Telefono<br/><input type="text" id="dc_richiedente-tel" name="dc_richiedente-tel" value="<?php echo $richiedenteTel; ?>" required /></p></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -203,11 +287,11 @@
                                         </div>
                                         <div class="card-body">
                                             <ul class="card_rb">
-                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="D">diretto interessato*</label></li>
-                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="T">tutore*</label></li>
-                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="A">amministratore di sostegno*</label></li>
-                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="P">procuratore*</label></li>
-                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="E">persona delegata*</label></li>
+                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="D" <?php if($inQualitaDi == "D"){ echo 'checked'; } ?>>diretto interessato*</label></li>
+                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="T" <?php if($inQualitaDi == "T"){ echo 'checked'; } ?>>tutore*</label></li>
+                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="A" <?php if($inQualitaDi == "A"){ echo 'checked'; } ?>>amministratore di sostegno*</label></li>
+                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="P" <?php if($inQualitaDi == "P"){ echo 'checked'; } ?>>procuratore*</label></li>
+                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="E" <?php if($inQualitaDi == "E"){ echo 'checked'; } ?>>persona delegata*</label></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -227,40 +311,40 @@
                                                 <div class="col-lg-12"><h5 class="color-primary"><b>Anagrafica</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Nome<br/><input type="text" id="dc_beneficiario-nome" name="dc_beneficiario-nome" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Nome<br/><input type="text" id="dc_beneficiario-nome" name="dc_beneficiario-nome" value="<?php echo $beneficiarioNome; ?>" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Cognome<br/><input type="text" id="dc_beneficiario-cognome" name="dc_beneficiario-cognome" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Cognome<br/><input type="text" id="dc_beneficiario-cognome" name="dc_beneficiario-cognome" value="<?php echo $beneficiarioCognome; ?>" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Codice Fiscale<br/><input type="text" id="dc_beneficiario-cf" name="dc_beneficiario-cf" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Codice Fiscale<br/><input type="text" id="dc_beneficiario-cf" name="dc_beneficiario-cf" value="<?php echo $beneficiarioCf; ?>" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Data di Nascita<br/><input type="text" id="dc_beneficiario-data-nascita" name="dc_beneficiario-data-nascita" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Data di Nascita<br/><input type="text" id="dc_beneficiario-data-nascita" name="dc_beneficiario-data-nascita" value="<?php echo $beneficiarioDataNascita; ?>" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Luogo di Nascita<br/><input type="text" id="dc_beneficiario-luogo-nascita" name="dc_beneficiario-luogo-nascita" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Luogo di Nascita<br/><input type="text" id="dc_beneficiario-luogo-nascita" name="dc_beneficiario-luogo-nascita" value="<?php echo $beneficiarioLuogoNascita; ?>" required /></p></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Via e Numero civico<br/><input type="text" id="dc_beneficiario-via" name="dc_beneficiario-via" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Via e Numero civico<br/><input type="text" id="dc_beneficiario-via" name="dc_beneficiario-via" value="<?php echo $beneficiarioVia; ?>" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Località<br/><input type="text" id="dc_beneficiario-localita" name="dc_beneficiario-localita" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Località<br/><input type="text" id="dc_beneficiario-localita" name="dc_beneficiario-localita" value="<?php echo $beneficiarioLocalita; ?>" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Provincia<br/><input type="text" id="dc_beneficiario-provincia" name="dc_beneficiario-provincia" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Provincia<br/><input type="text" id="dc_beneficiario-provincia" name="dc_beneficiario-provincia" value="<?php echo $beneficiarioProvincia; ?>" required /></p></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>E-mail<br/><input type="text" id="dc_beneficiario-email" name="dc_beneficiario-email" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>E-mail<br/><input type="text" id="dc_beneficiario-email" name="dc_beneficiario-email" value="<?php echo $beneficiarioEmail; ?>" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Telefono<br/><input type="text" id="dc_beneficiario-tel" name="dc_beneficiario-tel" value="" /></p></div>
+                                                <div class="col-lg-12"><p>Telefono<br/><input type="text" id="dc_beneficiario-tel" name="dc_beneficiario-tel" value="<?php echo $beneficiarioTel; ?>" /></p></div>
                                             </div>
                                         </div>
                                     </div>
@@ -277,10 +361,10 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Contributo di &euro;<br/><input type="text" id="dc_importo-contributo" name="dc_importo-contributo" value="" required /></p></div>
+                                                <div class="col-lg-12"><p>Contributo di &euro;<br/><input type="text" id="dc_importo-contributo" name="dc_importo-contributo" value="<?php echo $importoContributo; ?>" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Finalizzato a<br/><textarea id="dc_finalita-contributo" name="dc_finalita-contributo" rows="4" required></textarea></p></div>
+                                                <div class="col-lg-12"><p>Finalizzato a<br/><textarea id="dc_finalita-contributo" name="dc_finalita-contributo" rows="4" required><?php echo $finalitaContributo; ?></textarea></p></div>
                                             </div>                                            
                                         </div>
                                     </div>
@@ -308,6 +392,7 @@
                                                             echo '<div class="col-12"><p><label>';
                                                                 echo '<input type="radio" id="ckb_pagamento" name="ckb_pagamento" value="'.$row['id'].'" ';
                                                                 if($row["predefinito"]=='1'){ echo 'checked'; }
+                                                                if($row["predefinito"]==$tipoPagamento_id){ echo 'checked'; }
                                                                 echo ' />&nbsp;' . NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"];
                                                             echo '</label></p></div>';
                                                         echo '</div>';
@@ -345,6 +430,7 @@
                                                         <span>Upload</span>
                                                     </label>
                                                     <ul class="upload-file-list" id="dc_uploadPotereFirma-file">
+                                                        <?php echo $uploadPotereFirma; ?>
                                                     </ul>
                                                 </div>
                                                 <div class="col-lg-6 text-center">
@@ -356,6 +442,7 @@
                                                         <span>Upload</span>
                                                     </label>
                                                     <ul class="upload-file-list" id="dc_uploadDocumentazione-file">
+                                                        <?php echo $uploadDocumentazione; ?>
                                                     </ul>
                                                     
                                                 </div>
@@ -370,10 +457,10 @@
                                     <button type="button" id="dc_btn_back" class="btn btn-default"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</button>
                                 </div>
                                 <div class="col-lg-4 text-center mb-20">
-                                    <button type="button" id="dc_btn_salva_richiesta" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#SalvaRichiestaModal">Salva richiesta</button>
+                                    <button type="button" id="dc_btn_salva_richiesta" name="dc_btn_salva_richiesta" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#SalvaRichiestaModal">Salva richiesta</button>
                                 </div>
                                 <div class="col-lg-4 text-right-lg text-center mb-20">
-                                    <button type="button" id="dc_btn_concludi_richiesta" class="btn btn-primary">Avanti <svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
+                                    <button type="button" id="dc_btn_concludi_richiesta" name="dc_btn_concludi_richiesta" class="btn btn-primary">Avanti <svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
                                 </div>
                             </div>
                         </div>

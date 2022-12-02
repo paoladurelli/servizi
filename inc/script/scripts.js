@@ -174,7 +174,6 @@ $(document).ready(function () {
         });
         disabled.attr('disabled','disabled');
 
-        /* TO DO*/
         $.ajax({
             type: $('#dc_frm_dati').attr("method"),
             url: "save_bozza.php",
@@ -184,8 +183,8 @@ $(document).ready(function () {
             contentType: false,
             success: function (data)
             {
-                alert(data);
-                /* fai redirect alla pagina attivita_list.php */                
+                console.log(data);
+                window.location.href = '../attivita_list.php';
             },
             error: function (desc)
             {
@@ -198,46 +197,81 @@ $(document).ready(function () {
     
     
     $('#dc_btn_concludi_richiesta').click(function(){
-        /* TO DO */
+        var form = $('#dc_frm_dati');
+        var disabled = form.find(':input:disabled').removeAttr('disabled');
+        formData = new FormData();
+        formParams = form.serializeArray();
+
+        $.each(form.find('input[type="file"]'), function(i, tag) {
+            $.each($(tag)[0].files, function(i, file) {
+                formData.append(tag.name, file);
+            });
+        });
+
+        $.each(formParams, function(i, val) {
+            formData.append(val.name, val.value);
+        });
+        disabled.attr('disabled','disabled');
+        
         /* validazione e salvataggio come tmp */
         $.ajax({
-            type: "POST",
             url: "save_dati.php",
-            data: $('#dc_frm_dati').serialize(),
+            type: $('#dc_frm_dati').attr("method"),
+            data: formData,
             dataType: "json",
-            encode: true
+            processData: false,
+            contentType: false
         }).done(function (data) {
             if (!data.success) {
                 /* script per segnalare i dati mancanti */
-                for(var index = 0; index < data.length; index++) {
+                for(var index = 0; index < data.errors.length; index++) {
                     var src = data[index];
-                    alert(src);
                 }
+                $("#dc_frm_dati_pnl_return").append(src);
+                $("#dc_frm_dati_pnl_return").addClass("alert alert-warning");
             } else {
-                
+                window.location.href = 'dichiarazioni.php?pratican=' + data.message;
             }
         })
         .fail(function (data) {
             console.log(data);
-        });
+        }); 
 
         event.preventDefault();
-        
-        
-        
-        window.location.href = 'dichiarazioni.php';
     });
     
     
+    $('#dc_conferma_invia').click(function(){
+        
+        var form = $('#dc_conferma_invia');
+        formData = new FormData();
+        formParams = form.serializeArray();
+
+        $.each(formParams, function(i, val) {
+            formData.append(val.name, val.value);
+        });
+        
+        /* prendo la pratica e inserisco il numero che genero e lo inserisco anche nella riga con status bozza */
+        $.ajax({
+            url: "save_pratica.php",
+            type: $('#dc_conferma_invia').attr("method"),
+            data: formData,
+            dataType: "json",
+            processData: false,
+            contentType: false
+        }).done(function (data) {
+            if (data.success) {
+                window.location.href = 'riepilogo.php?pratican=' + data.message;
+            }
+        })
+        .fail(function (data) {
+            console.log(data);
+        }); 
+
+        event.preventDefault();
+    });
     /* END dc_ */
     
 });
 
-
-/*
-function getUserData(nome){
-    alert(nome);
-    $('#beneficiario-nome').val(nome);    
-}
- */
 

@@ -18,7 +18,7 @@
                         <date class="date-xsmall">'.date_format($date,"d/m/Y").'</date>
                     </div>
                     <div class="card-body p-0 my-2">
-                        <h3 class="title-small-semi-bold t-primary m-0 mb-1"><a href="#" class="text-decoration-none">'.$row["NomeServizio"].'</a></h3>
+                        <h3 class="title-small-semi-bold t-primary m-0 mb-1"><a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="text-decoration-none">'.$row["NomeServizio"].'</a></h3>
                         <p class="text-paragraph text-truncate">'.$row["NomeStatus"].'</p>
                     </div>
                 </div>
