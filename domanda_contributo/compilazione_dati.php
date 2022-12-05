@@ -239,40 +239,40 @@
                                                             <div class="col-lg-12"><h5 class="color-primary"><b>Anagrafica</b></h5></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Nome<br/><input type="text" id="dc_richiedente-nome" name="dc_richiedente-nome" value="<?php echo $nome; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Nome<br/><input type="text" id="dc_richiedente_nome" name="dc_richiedente_nome" value="<?php echo $nome; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Cognome<br/><input type="text" id="dc_richiedente-cognome" name="dc_richiedente-cognome" value="<?php echo $cognome; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Cognome<br/><input type="text" id="dc_richiedente_cognome" name="dc_richiedente_cognome" value="<?php echo $cognome; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Codice Fiscale<br/><input type="text" id="dc_richiedente-cf" name="dc_richiedente-cf" value="<?php echo $cf; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Codice Fiscale<br/><input type="text" id="dc_richiedente_cf" name="dc_richiedente_cf" value="<?php echo $cf; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Data di Nascita<br/><input type="text" id="dc_richiedente-data-nascita" name="dc_richiedente-data-nascita" value="<?php echo $datanascita; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Data di Nascita<br/><input type="text" id="dc_richiedente_data_nascita" name="dc_richiedente_data_nascita" value="<?php echo $datanascita; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Luogo di Nascita<br/><input type="text" id="dc_richiedente-luogo-nascita" name="dc_richiedente-luogo-nascita" value="<?php echo $luogonascita; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>Luogo di Nascita<br/><input type="text" id="dc_richiedente_luogo_nascita" name="dc_richiedente_luogo_nascita" value="<?php echo $luogonascita; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Via e Numero civico<br/><input type="text" id="dc_richiedente-via" name="dc_richiedente-via" value="<?php echo $richiedenteVia; ?>" required /></p></div>
+                                                            <div class="col-lg-12"><p>Via e Numero civico<br/><input type="text" id="dc_richiedente_via" name="dc_richiedente_via" value="<?php echo $richiedenteVia; ?>" required /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Località<br/><input type="text" id="dc_richiedente-localita" name="dc_richiedente-localita" value="<?php echo $richiedenteLocalita; ?>" required /></p></div>
+                                                            <div class="col-lg-12"><p>Località<br/><input type="text" id="dc_richiedente_localita" name="dc_richiedente_localita" value="<?php echo $richiedenteLocalita; ?>" required /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Provincia<br/><input type="text" id="dc_richiedente-provincia" name="dc_richiedente-provincia" value="<?php echo $richiedenteProvincia; ?>" required /></p></div>
+                                                            <div class="col-lg-12"><p>Provincia<br/><input type="text" id="dc_richiedente_provincia" name="dc_richiedente_provincia" value="<?php echo $richiedenteProvincia; ?>" required /></p></div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>E-mail<br/><input type="text" id="dc_richiedente-email" name="dc_richiedente-email" value="<?php echo $email; ?>" disabled /></p></div>
+                                                            <div class="col-lg-12"><p>E-mail<br/><input type="text" id="dc_richiedente_email" name="dc_richiedente_email" value="<?php echo $email; ?>" disabled /></p></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12"><p>Telefono<br/><input type="text" id="dc_richiedente-tel" name="dc_richiedente-tel" value="<?php echo $richiedenteTel; ?>" required /></p></div>
+                                                            <div class="col-lg-12"><p>Telefono<br/><input type="text" id="dc_richiedente_tel" name="dc_richiedente_tel" value="<?php echo $richiedenteTel; ?>" required /></p></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -306,45 +306,45 @@
                                                 <h2 class="title-xxlarge mb-3">Beneficiario</h2>
                                             </div>
                                         </div>
-                                        <div class="card-body" id="dc_pnl-beneficiario">
+                                        <div class="card-body" id="dc_pnl_beneficiario">
                                             <div class="row">
                                                 <div class="col-lg-12"><h5 class="color-primary"><b>Anagrafica</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Nome<br/><input type="text" id="dc_beneficiario-nome" name="dc_beneficiario-nome" value="<?php echo $beneficiarioNome; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p>Nome<br/><input type="text" id="dc_beneficiario_nome" name="dc_beneficiario_nome" value="<?php echo $beneficiarioNome; ?>" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Cognome<br/><input type="text" id="dc_beneficiario-cognome" name="dc_beneficiario-cognome" value="<?php echo $beneficiarioCognome; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p>Cognome<br/><input type="text" id="dc_beneficiario_cognome" name="dc_beneficiario_cognome" value="<?php echo $beneficiarioCognome; ?>" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Codice Fiscale<br/><input type="text" id="dc_beneficiario-cf" name="dc_beneficiario-cf" value="<?php echo $beneficiarioCf; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p>Codice Fiscale<br/><input type="text" id="dc_beneficiario_cf" name="dc_beneficiario_cf" value="<?php echo $beneficiarioCf; ?>" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Data di Nascita<br/><input type="text" id="dc_beneficiario-data-nascita" name="dc_beneficiario-data-nascita" value="<?php echo $beneficiarioDataNascita; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p>Data di Nascita<br/><input type="text" id="dc_beneficiario_data_nascita" name="dc_beneficiario_data_nascita" value="<?php echo $beneficiarioDataNascita; ?>" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Luogo di Nascita<br/><input type="text" id="dc_beneficiario-luogo-nascita" name="dc_beneficiario-luogo-nascita" value="<?php echo $beneficiarioLuogoNascita; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p>Luogo di Nascita<br/><input type="text" id="dc_beneficiario_luogo_nascita" name="dc_beneficiario_luogo_nascita" value="<?php echo $beneficiarioLuogoNascita; ?>" required /></p></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Via e Numero civico<br/><input type="text" id="dc_beneficiario-via" name="dc_beneficiario-via" value="<?php echo $beneficiarioVia; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p>Via e Numero civico<br/><input type="text" id="dc_beneficiario_via" name="dc_beneficiario_via" value="<?php echo $beneficiarioVia; ?>" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Località<br/><input type="text" id="dc_beneficiario-localita" name="dc_beneficiario-localita" value="<?php echo $beneficiarioLocalita; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p>Località<br/><input type="text" id="dc_beneficiario_localita" name="dc_beneficiario_localita" value="<?php echo $beneficiarioLocalita; ?>" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Provincia<br/><input type="text" id="dc_beneficiario-provincia" name="dc_beneficiario-provincia" value="<?php echo $beneficiarioProvincia; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p>Provincia<br/><input type="text" id="dc_beneficiario_provincia" name="dc_beneficiario_provincia" value="<?php echo $beneficiarioProvincia; ?>" required /></p></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>E-mail<br/><input type="text" id="dc_beneficiario-email" name="dc_beneficiario-email" value="<?php echo $beneficiarioEmail; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p>E-mail<br/><input type="text" id="dc_beneficiario_email" name="dc_beneficiario_email" value="<?php echo $beneficiarioEmail; ?>" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Telefono<br/><input type="text" id="dc_beneficiario-tel" name="dc_beneficiario-tel" value="<?php echo $beneficiarioTel; ?>" /></p></div>
+                                                <div class="col-lg-12"><p>Telefono<br/><input type="text" id="dc_beneficiario_tel" name="dc_beneficiario_tel" value="<?php echo $beneficiarioTel; ?>" /></p></div>
                                             </div>
                                         </div>
                                     </div>
@@ -361,10 +361,10 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Contributo di &euro;<br/><input type="text" id="dc_importo-contributo" name="dc_importo-contributo" value="<?php echo $importoContributo; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p>Contributo di &euro;<br/><input type="text" id="dc_importo_contributo" name="dc_importo_contributo" value="<?php echo $importoContributo; ?>" required /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Finalizzato a<br/><textarea id="dc_finalita-contributo" name="dc_finalita-contributo" rows="4" required><?php echo $finalitaContributo; ?></textarea></p></div>
+                                                <div class="col-lg-12"><p>Finalizzato a<br/><textarea id="dc_finalita_contributo" name="dc_finalita_contributo" rows="4" required><?php echo $finalitaContributo; ?></textarea></p></div>
                                             </div>                                            
                                         </div>
                                     </div>
@@ -429,7 +429,7 @@
                                                         <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
                                                         <span>Upload</span>
                                                     </label>
-                                                    <ul class="upload-file-list" id="dc_uploadPotereFirma-file">
+                                                    <ul class="upload-file-list" id="dc_uploadPotereFirma_file">
                                                         <?php echo $uploadPotereFirma; ?>
                                                     </ul>
                                                 </div>
@@ -441,7 +441,7 @@
                                                         <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
                                                         <span>Upload</span>
                                                     </label>
-                                                    <ul class="upload-file-list" id="dc_uploadDocumentazione-file">
+                                                    <ul class="upload-file-list" id="dc_uploadDocumentazione_file">
                                                         <?php echo $uploadDocumentazione; ?>
                                                     </ul>
                                                     

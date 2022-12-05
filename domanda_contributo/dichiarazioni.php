@@ -39,7 +39,6 @@
                 </div>
             </div>
             <div class="container">
-                <form action="dichiarazioni.php" id="frm_dati" method="post">
                     <div class="row">
                         <div class="col-12 col-lg-8 offset-lg-1">
                             <div class="it-page-section mb-40 mb-lg-60">

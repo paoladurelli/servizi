@@ -94,9 +94,21 @@ function CreateLinkAttivita($ServizioId,$pratica_id,$StatusId){
     if($StatusId == 1){
         $linkServizio .= "/index.php?".$prefissoServizio."bozza_id=".$pratica_id;
     }else{
-        /* TO DO */
-        $linkServizio = "attivita_list.php";
+        $linkServizio .= "/dettaglio.php?".$prefissoServizio."pratica_id=".$pratica_id;
     }
     
     return $linkServizio;
+}
+
+function NameStatusById($status_id){
+    $configDB = require '../env/config.php';
+    $connessioneVATP = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sqlVATP = "SELECT nome FROM status WHERE id = ". $status_id;
+    $resultVATP = $connessioneVATP->query($sqlVATP);    
+    if ($resultVATP->num_rows > 0) {
+        while($rowVATP = $resultVATP->fetch_assoc()) {
+            return $rowVATP["nome"];
+        }
+    }
+    $connessioneVATP->close();
 }

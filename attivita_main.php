@@ -12,14 +12,21 @@
         while($row = $result->fetch_assoc()) {
             $date = date_create($row["data_attivita"]);
             
-            echo '<div class="cmp-card-latest-messages mb-3" data-bs-toggle="modal" data-bs-target="#modal-message'.$i.'" id="'.$i.'">
-                <div class="card shadow-sm px-4 pt-4 pb-4">
+            echo '<div class="cmp-card-latest-messages mb-3" id="'.$i.'">
+                <div class="card shadow-sm px-4 pt-4 pb-4 ">
                     <div class="card-header border-0 p-0 m-0">
-                        <date class="date-xsmall">'.date_format($date,"d/m/Y").'</date>
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <h4 class="title-small-semi-bold t-primary m-0 mb-1"><a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="text-decoration-none">'.$row["NomeServizio"].'</a></h4>
+                                <date class="date-xsmall">'.date_format($date,"d/m/Y").'</date>
+                            </div>
+                            <div class="col-lg-2 img-responsive">
+                                <img src=".\media\images\icons\status_'.$row["StatusId"].'.png" title="'.$row["NomeStatus"].'" alt="'.$row["NomeStatus"].'"/>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body p-0 my-2">
-                        <h3 class="title-small-semi-bold t-primary m-0 mb-1"><a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="text-decoration-none">'.$row["NomeServizio"].'</a></h3>
-                        <p class="text-paragraph text-truncate">'.$row["NomeStatus"].'</p>
+                        
                     </div>
                 </div>
             </div>';

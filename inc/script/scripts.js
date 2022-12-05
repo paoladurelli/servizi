@@ -13,52 +13,52 @@ $("#footer-menu-lista-button").click(function() {
 /* START dc_ (domanda contributo) */
 $('input[type=radio][name=dc_rb_qualita_di]').change(function() {
     if (this.value === 'D') {
-        $('#dc_beneficiario-nome').val($('#dc_richiedente-nome').val());
-        $('#dc_beneficiario-nome').prop( "disabled", true );
-        $('#dc_beneficiario-cognome').val($('#dc_richiedente-cognome').val());
-        $('#dc_beneficiario-cognome').prop( "disabled", true );
-        $('#dc_beneficiario-cf').val($('#dc_richiedente-cf').val());
-        $('#dc_beneficiario-cf').prop( "disabled", true );
-        $('#dc_beneficiario-data-nascita').val($('#dc_richiedente-data-nascita').val());
-        $('#dc_beneficiario-data-nascita').prop( "disabled", true );
-        $('#dc_beneficiario-luogo-nascita').val($('#dc_richiedente-luogo-nascita').val());
-        $('#dc_beneficiario-luogo-nascita').prop( "disabled", true );
+        $('#dc_beneficiario_nome').val($('#dc_richiedente_nome').val());
+        $('#dc_beneficiario_nome').prop( "disabled", true );
+        $('#dc_beneficiario_cognome').val($('#dc_richiedente_cognome').val());
+        $('#dc_beneficiario_cognome').prop( "disabled", true );
+        $('#dc_beneficiario_cf').val($('#dc_richiedente_cf').val());
+        $('#dc_beneficiario_cf').prop( "disabled", true );
+        $('#dc_beneficiario_data_nascita').val($('#dc_richiedente_data_nascita').val());
+        $('#dc_beneficiario_data_nascita').prop( "disabled", true );
+        $('#dc_beneficiario_luogo_nascita').val($('#dc_richiedente_luogo_nascita').val());
+        $('#dc_beneficiario_luogo_nascita').prop( "disabled", true );
         /* Indirizzo */
-        $('#dc_beneficiario-via').val($('#dc_richiedente-via').val());
-        $('#dc_beneficiario-via').prop( "disabled", true );
-        $('#dc_beneficiario-localita').val($('#dc_richiedente-localita').val());
-        $('#dc_beneficiario-localita').prop( "disabled", true );
-        $('#dc_beneficiario-provincia').val($('#dc_richiedente-provincia').val());
-        $('#dc_beneficiario-provincia').prop( "disabled", true );
+        $('#dc_beneficiario_via').val($('#dc_richiedente_via').val());
+        $('#dc_beneficiario_via').prop( "disabled", true );
+        $('#dc_beneficiario_localita').val($('#dc_richiedente_localita').val());
+        $('#dc_beneficiario_localita').prop( "disabled", true );
+        $('#dc_beneficiario_provincia').val($('#dc_richiedente_provincia').val());
+        $('#dc_beneficiario_provincia').prop( "disabled", true );
         /* Contatti */
-        $('#dc_beneficiario-email').val($('#dc_richiedente-email').val());
-        $('#dc_beneficiario-email').prop( "disabled", true );
-        $('#dc_beneficiario-tel').val($('#dc_richiedente-tel').val());
-        $('#dc_beneficiario-tel').prop( "disabled", true );
+        $('#dc_beneficiario_email').val($('#dc_richiedente_email').val());
+        $('#dc_beneficiario_email').prop( "disabled", true );
+        $('#dc_beneficiario_tel').val($('#dc_richiedente_tel').val());
+        $('#dc_beneficiario_tel').prop( "disabled", true );
     }
     else{
-        $('#dc_beneficiario-nome').val('');
-        $('#dc_beneficiario-nome').prop( "disabled", false );
-        $('#dc_beneficiario-cognome').val('');
-        $('#dc_beneficiario-cognome').prop( "disabled", false );
-        $('#dc_beneficiario-cf').val('');
-        $('#dc_beneficiario-cf').prop( "disabled", false );
-        $('#dc_beneficiario-data-nascita').val('');
-        $('#dc_beneficiario-data-nascita').prop( "disabled", false );
-        $('#dc_beneficiario-luogo-nascita').val('');
-        $('#dc_beneficiario-luogo-nascita').prop( "disabled", false );
+        $('#dc_beneficiario_nome').val('');
+        $('#dc_beneficiario_nome').prop( "disabled", false );
+        $('#dc_beneficiario_cognome').val('');
+        $('#dc_beneficiario_cognome').prop( "disabled", false );
+        $('#dc_beneficiario_cf').val('');
+        $('#dc_beneficiario_cf').prop( "disabled", false );
+        $('#dc_beneficiario_data-nascita').val('');
+        $('#dc_beneficiario_data-nascita').prop( "disabled", false );
+        $('#dc_beneficiario_luogo-nascita').val('');
+        $('#dc_beneficiario_luogo-nascita').prop( "disabled", false );
         /* Indirizzo */
-        $('#dc_beneficiario-via').val('');
-        $('#dc_beneficiario-via').prop( "disabled", false );
-        $('#dc_beneficiario-localita').val('');
-        $('#dc_beneficiario-localita').prop( "disabled", false );
-        $('#dc_beneficiario-provincia').val('');
-        $('#dc_beneficiario-provincia').prop( "disabled", false );
+        $('#dc_beneficiario_via').val('');
+        $('#dc_beneficiario_via').prop( "disabled", false );
+        $('#dc_beneficiario_localita').val('');
+        $('#dc_beneficiario_localita').prop( "disabled", false );
+        $('#dc_beneficiario_provincia').val('');
+        $('#dc_beneficiario_provincia').prop( "disabled", false );
         /* Contatti */
-        $('#dc_beneficiario-email').val('');
-        $('#dc_beneficiario-email').prop( "disabled", false );
-        $('#dc_beneficiario-tel').val('');
-        $('#dc_beneficiario-tel').prop( "disabled", false );
+        $('#dc_beneficiario_email').val('');
+        $('#dc_beneficiario_email').prop( "disabled", false );
+        $('#dc_beneficiario_tel').val('');
+        $('#dc_beneficiario_tel').prop( "disabled", false );
     }
 });
 
@@ -125,18 +125,18 @@ $(document).ready(function () {
     
     /* script inerenti gli upload dei documenti */
     $('#dc_uploadPotereFirma').change(function(e) {
-        $('#dc_uploadPotereFirma-file').empty();
+        $('#dc_uploadPotereFirma_file').empty();
         let fileName = e.target.files[0].name;
         var _size = e.target.files[0].size;
         var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
         i=0;while(_size>900){_size/=1024;i++;}
         var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
         let fileSize = exactSize;
-        $('#dc_uploadPotereFirma-file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+        $('#dc_uploadPotereFirma_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
     });
 
     $('#dc_uploadDocumentazione').change(function(e) {
-        $('#dc_uploadDocumentazione-file').empty();
+        $('#dc_uploadDocumentazione_file').empty();
         
         var totalfiles = document.getElementById('dc_uploadDocumentazione').files.length;
         for (var index = 0; index < totalfiles; index++) {
@@ -146,7 +146,7 @@ $(document).ready(function () {
             i=0;while(_size>900){_size/=1024;i++;}
             var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
             let fileSize = exactSize;
-            $('#dc_uploadDocumentazione-file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+            $('#dc_uploadDocumentazione_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
         }
     });    
 
@@ -223,12 +223,100 @@ $(document).ready(function () {
             contentType: false
         }).done(function (data) {
             if (!data.success) {
+                $("#dc_frm_dati_pnl_return").empty();
                 /* script per segnalare i dati mancanti */
+/*
                 for(var index = 0; index < data.errors.length; index++) {
                     var src = data[index];
                 }
                 $("#dc_frm_dati_pnl_return").append(src);
+*/
+
+                $("#dc_frm_dati_pnl_return").append(
+                    "<div style='color: var(--bs-orange);'>ATTENZIONE</div>"
+                );
+                $("#dc_frm_dati_pnl_return").append("<div>Ci sono alcune informazioni mancanti o errate</div><ul>");
+                if (data.errors.dc_richiedente_cognome) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.dc_richiedente_cognome);
+                }
+                if (data.errors.dc_richiedente_cf) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.dc_richiedente_cf);
+                }
+                if (data.errors.dc_richiedente_data_nascita) {
+                    $("#dc_frm_dati_pnl_return").append(data.dc_richiedente_data_nascita);
+                }
+                if (data.errors.dc_richiedente_luogo_nascita) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.dc_richiedente_luogo_nascita);
+                }
+                if (data.errors.dc_richiedente_via) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.dc_richiedente_via);
+                }
+                if (data.errors.dc_richiedente_localita) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.dc_richiedente_localita);
+                }
+                if (data.errors.dc_richiedente_provincia) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.dc_richiedente_provincia);
+                }
+                if (data.errors.dc_richiedente_email) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.dc_richiedente_email);
+                }
+                if (data.errors.dc_richiedente_tel) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.dc_richiedente_tel);
+                }
+                if (data.errors.dc_rb_qualita_di) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.dc_rb_qualita_di);
+                }
+                if (data.errors.dc_beneficiario_nome) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.dc_beneficiario_nome);
+                }
+                if (data.errors.dc_beneficiario_cognome) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.dc_beneficiario_cognome);
+                }
+                if (data.errors.dc_beneficiario_cf) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.dc_beneficiario_cf);
+                }
+                if (data.errors.dc_beneficiario_data_nascita) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.dc_beneficiario_data_nascita);
+                }
+                if (data.errors.dc_beneficiario_luogo_nascita) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.dc_beneficiario_luogo_nascita);
+                }
+                if (data.errors.dc_beneficiario_via) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.dc_beneficiario_via);
+                }
+                if (data.errors.dc_beneficiario_localita) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.dc_beneficiario_localita);
+                }
+                if (data.errors.dc_beneficiario_provincia) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.dc_beneficiario_provincia);
+                }
+                if (data.errors.dc_beneficiario_email) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.dc_beneficiario_email);
+                }
+                if (data.errors.dc_beneficiario_tel) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.dc_beneficiario_tel);
+                }
+                if (data.errors.dc_importo_contributo) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.dc_importo_contributo);
+                }
+                if (data.errors.dc_finalita_contributo) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.dc_finalita_contributo);
+                }
+                if (data.errors.ckb_pagamento) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.ckb_pagamento);
+                }
+                if (data.errors.dc_uploadPotereFirma) {
+                    $("#dc_frm_dati_pnl_return").append(data.errors.dc_uploadPotereFirma);
+                }
+                $("#dc_frm_dati_pnl_return").append("</ul>");
+
+            
                 $("#dc_frm_dati_pnl_return").addClass("alert alert-warning");
+                
+                $('html, body').animate({
+                    scrollTop: $("#dc_frm_dati_pnl_return").offset().top
+                }, 2000);
+                
             } else {
                 window.location.href = 'dichiarazioni.php?pratican=' + data.message;
             }
