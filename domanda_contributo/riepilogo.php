@@ -51,11 +51,15 @@
                                             <p>Inviato il: <b><?php echo date("d-m-Y"); ?></b></p>
                                             <p>&nbsp;</p>
                                             <p>Abbiamo inviato il riepilogo all'email: <b><?php echo $_SESSION["Email"]; ?></b></p>
-                                            <p class="mt-5"><a class="btn btn-primary" href="#">Scarica la ricevuta in PDF</a></p>
+                                            <form action="../lib/tcpdf/TCPDF-master/examples/dc_pdf_pratica.php" method="POST" id="dc_frm_download_pdf" name="dc_frm_download_pdf">
+                                                <input type="hidden" name="dc_download_pdf_id" id="dc_download_pdf_id" value="<?php echo $_GET['praticai']; ?>" />
+                                                <input type="hidden" name="dc_download_pdf_pratica" id="dc_download_pdf_pratica" value="<?php echo $_GET['pratican']; ?>" />
+                                                <p class="mt-5"><button type="submit" class="btn btn-primary" id="dc_download_pdf" name="dc_download_pdf" href="#">Scarica la ricevuta in PDF</button></p>
+                                            </form>
                                             <p>&nbsp;</p>
                                             <h5>Prossimi passi</h5>
                                             <p>Esito richiesta</p>
-                                            <p><a href="#">Consulta la richiesta</a> nella tua area riservata.</p>
+                                            <p><a href="dettaglio.php?dc_pratica_id=<?php echo $_GET['praticai']; ?>">Consulta la richiesta</a> nella tua area riservata.</p>
                                         </div>
                                     </div>
                                 </div>

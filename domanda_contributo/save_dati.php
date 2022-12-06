@@ -137,6 +137,7 @@ if (!empty($errors)) {
                 if(move_uploaded_file($_FILES['dc_uploadPotereFirma']['tmp_name'],$path)){
                     $files_arr[] = $path;
                     /* salvo nel DB i nomi */
+                    $connessioneUPD = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
                     $sqlUPD = "UPDATE domanda_contributo SET uploadPotereFirma = '".$filename."' WHERE id = ".$new_id;
                     $connessioneUPD->query($sqlUPD);
                 }
@@ -172,6 +173,7 @@ if (!empty($errors)) {
                         if(move_uploaded_file($_FILES['dc_uploadDocumentazione']['tmp_name'][$index],$path)){
                             $files_arr[] = $path;
                             /* salvo nel DB i nomi */
+                            $connessioneUPD = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
                             $sqlUPD = "UPDATE domanda_contributo SET uploadDocumentazione = CONCAT(uploadDocumentazione, '".$filename.";') WHERE id = ".$new_id;
                             $connessioneUPD->query($sqlUPD);
                         }

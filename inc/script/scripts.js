@@ -349,7 +349,9 @@ $(document).ready(function () {
             contentType: false
         }).done(function (data) {
             if (data.success) {
-                window.location.href = 'riepilogo.php?pratican=' + data.message;
+                window.location.href = 'riepilogo.php?pratican=' + data.pratica + '&praticai=' + data.id;
+            }else{
+                console.log(data.error);
             }
         })
         .fail(function (data) {
@@ -358,6 +360,8 @@ $(document).ready(function () {
 
         event.preventDefault();
     });
+    
+ 
     /* END dc_ */
     
 });
