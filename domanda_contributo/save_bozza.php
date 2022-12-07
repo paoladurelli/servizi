@@ -6,10 +6,35 @@ session_start();
 $connessioneINS = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
 $connessioneUPD = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
     
+$richiedenteNome = isset($_POST['dc_richiedente_nome']) ? $_POST['dc_richiedente_nome'] : "";
+$richiedenteCognome = isset($_POST['dc_richiedente_cognome']) ? $_POST['dc_richiedente_cognome'] : "";
+$richiedenteCf = isset($_POST['dc_richiedente_cf']) ? $_POST['dc_richiedente_cf'] : "";
+$richiedenteDataNascita = isset($_POST['dc_richiedente_data_nascita']) ? $_POST['dc_richiedente_data_nascita'] : "";
+$richiedenteLuogoNascita = isset($_POST['dc_richiedente_luogo_nascita']) ? $_POST['dc_richiedente_luogo_nascita'] : "";
+$richiedenteVia = isset($_POST['dc_richiedente_via']) ? $_POST['dc_richiedente_via'] : "";
+$richiedenteLocalita = isset($_POST['dc_richiedente_localita']) ? $_POST['dc_richiedente_localita'] : "";
+$richiedenteProvincia = isset($_POST['dc_richiedente_provincia']) ? $_POST['dc_richiedente_provincia'] : "";
+$richiedenteEmail = isset($_POST['dc_richiedente_email']) ? $_POST['dc_richiedente_email'] : "";
+$richiedenteTel = isset($_POST['dc_richiedente_tel']) ? $_POST['dc_richiedente_tel'] : "";
+$inQualitaDi = isset($_POST['dc_rb_qualita_di']) ? $_POST['dc_rb_qualita_di'] : "";
+$beneficiarioNome = isset($_POST['dc_beneficiario_nome']) ? $_POST['dc_beneficiario_nome'] : "";
+$beneficiarioCognome = isset($_POST['dc_beneficiario_cognome']) ? $_POST['dc_beneficiario_cognome'] : "";
+$beneficiarioCf = isset($_POST['dc_beneficiario_cf']) ? $_POST['dc_beneficiario_cf'] : "";
+$beneficiarioDataNascita = isset($_POST['dc_beneficiario_data_nascita']) ? $_POST['dc_beneficiario_data_nascita'] : "";
+$beneficiarioLuogoNascita = isset($_POST['dc_beneficiario_luogo_nascita']) ? $_POST['dc_beneficiario_luogo_nascita'] : "";
+$beneficiarioVia = isset($_POST['dc_beneficiario_via']) ? $_POST['dc_beneficiario_via'] : "";
+$beneficiarioLocalita = isset($_POST['dc_beneficiario_localita']) ? $_POST['dc_beneficiario_localita'] : "";
+$beneficiarioProvincia = isset($_POST['dc_beneficiario_provincia']) ? $_POST['dc_beneficiario_provincia'] : "";
+$beneficiarioEmail = isset($_POST['dc_beneficiario_email']) ? $_POST['dc_beneficiario_email'] : "";
+$beneficiarioTel = isset($_POST['dc_beneficiario_tel']) ? $_POST['dc_beneficiario_tel'] : "";
+$importoContributo = isset($_POST['dc_importo_contributo']) ? $_POST['dc_importo_contributo'] : "";
+$finalitaContributo = isset($_POST['dc_finalita_contributo']) ? $_POST['dc_finalita_contributo'] : "";
+$tipoPagamento_id = isset($_POST['ckb_pagamento']) ? $_POST['ckb_pagamento'] : "";
+
 /* salvo tutti i dati nel DB nella tabella domanda_contributo */
 if(!isset($_POST['dc_bozza_id']) || $_POST['dc_bozza_id'] == ''){
 
-    $sqlINS = "INSERT INTO `domanda_contributo`(status_id,richiedenteNome,richiedenteCognome,richiedenteCf,richiedenteDataNascita,richiedenteLuogoNascita,richiedenteVia,richiedenteLocalita,richiedenteProvincia,richiedenteEmail,richiedenteTel,inQualitaDi,beneficiarioNome,beneficiarioCognome,beneficiarioCf,beneficiarioDataNascita,beneficiarioLuogoNascita,beneficiarioVia,beneficiarioLocalita,beneficiarioProvincia,beneficiarioEmail,beneficiarioTel,importoContributo,finalitaContributo,tipoPagamento_id) VALUES (1,'".$_POST['dc_richiedente-nome']."','".$_POST['dc_richiedente-cognome']."','".$_POST['dc_richiedente-cf']."','".$_POST['dc_richiedente-data-nascita']."','".$_POST['dc_richiedente-luogo-nascita']."','".$_POST['dc_richiedente-via']."','".$_POST['dc_richiedente-localita']."','".$_POST['dc_richiedente-provincia']."','".$_POST['dc_richiedente-email']."','".$_POST['dc_richiedente-tel']."','".$_POST['dc_rb_qualita_di']."','".$_POST['dc_beneficiario-nome']."','".$_POST['dc_beneficiario-cognome']."','".$_POST['dc_beneficiario-cf']."','".$_POST['dc_beneficiario-data-nascita']."','".$_POST['dc_beneficiario-luogo-nascita']."','".$_POST['dc_beneficiario-via']."','".$_POST['dc_beneficiario-localita']."','".$_POST['dc_beneficiario-provincia']."','".$_POST['dc_beneficiario-email']."','".$_POST['dc_beneficiario-tel']."','".$_POST['dc_importo-contributo']."','".$_POST['dc_finalita-contributo']."','".$_POST['ckb_pagamento']."')";
+    $sqlINS = "INSERT INTO `domanda_contributo`(status_id,richiedenteNome,richiedenteCognome,richiedenteCf,richiedenteDataNascita,richiedenteLuogoNascita,richiedenteVia,richiedenteLocalita,richiedenteProvincia,richiedenteEmail,richiedenteTel,inQualitaDi,beneficiarioNome,beneficiarioCognome,beneficiarioCf,beneficiarioDataNascita,beneficiarioLuogoNascita,beneficiarioVia,beneficiarioLocalita,beneficiarioProvincia,beneficiarioEmail,beneficiarioTel,importoContributo,finalitaContributo,tipoPagamento_id) VALUES (1,'".$richiedenteNome."','".$richiedenteCognome."','".$richiedenteCf."','".$richiedenteDataNascita."','".$richiedenteLuogoNascita."','".$richiedenteVia."','".$richiedenteLocalita."','".$richiedenteProvincia."','".$richiedenteEmail."','".$richiedenteTel."','".$inQualitaDi."','".$beneficiarioNome."','".$beneficiarioCognome."','".$beneficiarioCf."','".$beneficiarioDataNascita."','".$beneficiarioLuogoNascita."','".$beneficiarioVia."','".$beneficiarioLocalita."','".$beneficiarioProvincia."','".$beneficiarioEmail."','".$beneficiarioTel."','".$importoContributo."','".$finalitaContributo."','".$tipoPagamento_id."')";
     $connessioneINS->query($sqlINS);
 
     $sqlINS = "SELECT id FROM domanda_contributo WHERE richiedenteCf = '". $_SESSION['CF']."' and status_id = 1 ORDER BY id DESC LIMIT 1";
@@ -25,7 +50,7 @@ if(!isset($_POST['dc_bozza_id']) || $_POST['dc_bozza_id'] == ''){
     }
 }else{
     /* se esiste già la bozza vado a modificarne i dati */
-    $sqlUPD = "UPDATE domanda_contributo SET richiedenteNome = '".$_POST['dc_richiedente-nome']."', richiedenteCognome = '".$_POST['dc_richiedente-cognome']."', richiedenteCf = '".$_POST['dc_richiedente-cf']."', richiedenteDataNascita = '".$_POST['dc_richiedente-data-nascita']."', richiedenteLuogoNascita = '".$_POST['dc_richiedente-luogo-nascita']."', richiedenteVia = '".$_POST['dc_richiedente-via']."', richiedenteLocalita = '".$_POST['dc_richiedente-localita']."', richiedenteProvincia = '".$_POST['dc_richiedente-provincia']."', richiedenteEmail = '".$_POST['dc_richiedente-email']."', richiedenteTel = '".$_POST['dc_richiedente-tel']."', inQualitaDi = '".$_POST['dc_rb_qualita_di']."', beneficiarioNome = '".$_POST['dc_beneficiario-nome']."', beneficiarioCognome = '".$_POST['dc_beneficiario-cognome']."', beneficiarioCf = '".$_POST['dc_beneficiario-cf']."', beneficiarioDataNascita = '".$_POST['dc_beneficiario-data-nascita']."', beneficiarioLuogoNascita = '".$_POST['dc_beneficiario-luogo-nascita']."', beneficiarioVia = '".$_POST['dc_beneficiario-via']."', beneficiarioLocalita = '".$_POST['dc_beneficiario-localita']."', beneficiarioProvincia = '".$_POST['dc_beneficiario-provincia']."', beneficiarioEmail = '".$_POST['dc_beneficiario-email']."', beneficiarioTel = '".$_POST['dc_beneficiario-tel']."', importoContributo = '".$_POST['dc_importo-contributo']."', finalitaContributo = '".$_POST['dc_finalita-contributo']."', tipoPagamento_id = '".$_POST['ckb_pagamento']."' WHERE id = '".$_POST['dc_bozza_id']."'";
+    $sqlUPD = "UPDATE domanda_contributo SET richiedenteNome = '". $richiedenteNome ."', richiedenteCognome = '". $richiedenteCognome ."', richiedenteCf = '". $richiedenteCf ."', richiedenteDataNascita = '". $richiedenteDataNascita ."', richiedenteLuogoNascita = '". $richiedenteLuogoNascita ."', richiedenteVia = '". $richiedenteVia ."', richiedenteLocalita = '". $richiedenteLocalita ."', richiedenteProvincia = '". $richiedenteProvincia ."', richiedenteEmail = '". $richiedenteEmail ."', richiedenteTel = '". $richiedenteTel ."', inQualitaDi = '". $inQualitaDi ."', beneficiarioNome = '". $beneficiarioNome ."', beneficiarioCognome = '". $beneficiarioCognome ."', beneficiarioCf = '". $beneficiarioCf ."', beneficiarioDataNascita = '". $beneficiarioDataNascita ."', beneficiarioLuogoNascita = '". $beneficiarioLuogoNascita ."', beneficiarioVia = '". $beneficiarioVia ."', beneficiarioLocalita = '". $beneficiarioLocalita ."', beneficiarioProvincia = '". $beneficiarioProvincia ."', beneficiarioEmail = '". $beneficiarioEmail ."', beneficiarioTel = '". $beneficiarioTel ."', importoContributo = '". $importoContributo ."', finalitaContributo = '". $finalitaContributo ."', tipoPagamento_id = '". $tipoPagamento_id ."' WHERE id = '".$_POST['dc_bozza_id']."'";
     $connessioneUPD->query($sqlUPD);
     $new_id = $_POST['dc_bozza_id'];
 }
@@ -103,12 +128,12 @@ if(!isset($_POST['dc_bozza_id']) || $_POST['dc_bozza_id'] == ''){
     /* dc_uploadDocumentazione - end */
 
 /* salvo nelle attitivà la creazione o modifica della bozza per domanda_contributo */
-    $sqlINS = "INSERT INTO attivita (cf,servizio_id,pratica_id,status_id) VALUES ('".$_POST['dc_richiedente-cf']."',11,".$new_id.",1)";
+    $sqlINS = "INSERT INTO attivita (cf,servizio_id,pratica_id,status_id) VALUES ('".$_POST['dc_richiedente_cf']."',11,".$new_id.",1)";
     $connessioneINS->query($sqlINS);
     
     
 /* salvo nei messaggi che ho una bozza da completare per domanda_contributo */
-    $sqlINS = "INSERT INTO messaggi (CF_to,servizio_id,testo) VALUES ('".$_POST['dc_richiedente-cf']."',11,'La tua domanda di contributo è stata salvata come  bozza')";
+    $sqlINS = "INSERT INTO messaggi (CF_to,servizio_id,testo) VALUES ('".$_POST['dc_richiedente_cf']."',11,'La tua domanda di contributo è stata salvata come  bozza')";
     $connessioneINS->query($sqlINS);
     
 /* invio risposta al js */

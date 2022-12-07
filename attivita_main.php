@@ -17,8 +17,7 @@
                     <div class="card-header border-0 p-0 m-0">
                         <div class="row">
                             <div class="col-lg-10">
-                                <h4 class="title-small-semi-bold t-primary m-0 mb-1"><a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="text-decoration-none">'.$row["NomeServizio"].'</a></h4>
-                                <date class="date-xsmall">'.date_format($date,"d/m/Y").'</date>
+                                <p class="title-small-semi-bold t-primary m-0 mb-1"><a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="text-decoration-none">'.$row["NomeServizio"].'</a></p>
                             </div>
                             <div class="col-lg-2 img-responsive">
                                 <img src=".\media\images\icons\status_'.$row["StatusId"].'.png" title="'.$row["NomeStatus"].'" alt="'.$row["NomeStatus"].'"/>
@@ -26,7 +25,16 @@
                         </div>
                     </div>
                     <div class="card-body p-0 my-2">
-                        
+                        <div class="row">
+                            <div class="col-lg-10">
+                                '.CfAltroByPraticaId($row['ServizioId'],$row["pratica_id"]);
+                                if($row["StatusId"] != 1){
+                                    echo '<p class="text-paragraph">Numero Pratica: '.NumeroPraticaById($row["ServizioId"],$row["pratica_id"]).'</p>';
+                                }
+                                echo '<p class="text-paragraph">Stato: '.$row["NomeStatus"].'</p>
+                                <date class="date-xsmall">'.date_format($date,"d/m/Y").'</date>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>';

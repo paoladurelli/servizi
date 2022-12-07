@@ -4,30 +4,15 @@
 $configData = require '../../../../env/config_servizi.php';
 $configDB = require '../../../../env/config.php';
 
-function NomeMetodoPagamentoById($Pagamento_id){
-    $configDB = require '../../../../env/config.php';
-    $connessioneNMPBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-    $sqlNMPBI = "SELECT Nome as NomeTipoPagamento FROM tipo_pagamento WHERE id = ". $Pagamento_id;
-    $resultNMPBI = $connessioneNMPBI->query($sqlNMPBI);
-
-    if ($resultNMPBI->num_rows > 0) {
-    // output data of each row
-        while($rowNMPBI = $resultNMPBI->fetch_assoc()) {
-            return $rowNMPBI["NomeTipoPagamento"];
-        }
-    }
-    $connessioneNMPBI->close();
-}
-
 session_start();
 
-$numeroPratica = $_POST['dc_download_pdf_pratica'];
+$numeroPratica = $_POST['am_download_pdf_pratica'];
 
 /* con l'id vado a richiamare i dati salvati */
-    if(isset($_POST["dc_download_pdf_id"]) && $_POST["dc_download_pdf_id"]<>''){
+    if(isset($_POST["am_download_pdf_id"]) && $_POST["am_download_pdf_id"]<>''){
         /* DATI ESTRAPOLATI DA DB - start */ 
         $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-        $sql = "SELECT * FROM domanda_contributo WHERE richiedenteCf = '". $_SESSION['CF']."' and id =" . $_POST["dc_download_pdf_id"];
+        $sql = "SELECT * FROM assegno_maternita WHERE richiedenteCf = '". $_SESSION['CF']."' and id =" . $_POST["am_download_pdf_id"];
         $result = $connessione->query($sql);
 
         if ($result->num_rows > 0) {
@@ -43,36 +28,14 @@ $numeroPratica = $_POST['dc_download_pdf_pratica'];
                 $richiedenteLocalita = $row["richiedenteLocalita"];
                 $richiedenteProvincia = $row["richiedenteProvincia"];
                 $richiedenteTel = $row["richiedenteTel"];
-
-                $beneficiarioNome = $row["beneficiarioNome"];
-                $beneficiarioCognome = $row["beneficiarioCognome"];
-                $beneficiarioCf = $row["beneficiarioCf"];
-                $beneficiarioDataNascita = $row["beneficiarioDataNascita"];
-                $beneficiarioLuogoNascita = $row["beneficiarioLuogoNascita"];
-                $beneficiarioVia = $row["beneficiarioVia"];
-                $beneficiarioLocalita = $row["beneficiarioLocalita"];
-                $beneficiarioProvincia = $row["beneficiarioProvincia"];
-                $beneficiarioEmail = $row["beneficiarioEmail"];
-                $beneficiarioTel = $row["beneficiarioTel"];
-
-                $tipoPagamento_id = $row["tipoPagamento_id"];
-            }
-        }
-        
-        $sql = "SELECT * FROM metodi_pagamento WHERE cf = '". $_SESSION['CF']."'";
-        $resultMP = $connessione->query($sql);
-
-        if ($resultMP->num_rows > 0) {
-        // output data of each row
-            while($row = $resultMP->fetch_assoc()) {
-                if($row["predefinito"]=='1'){ 
-                    $pagamento = NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"]; 
-                }
+                
+                $minoreNome = $row["minoreNome"];
+                $minoreCognome = $row["minoreCognome"];
+                $minoreDataNascita = $row["minoreDataNascita"];
+                $minoreLuogoNascita = $row["minoreLuogoNascita"];
             }
         }
         $connessione->close();
-        
-        
     }
 
 // Include the main TCPDF library (search for installation path).
@@ -96,7 +59,7 @@ class MYPDF extends TCPDF {
             // Set font
             $this->SetFont('helvetica','I',8);
             // Page number
-            $this->Cell(0,10,'Pagina '.$this->getAliasNumPage().'/'.$this->getAliasNbPages() . ' - ServiziOnLine / Domanda di contributo',0,false,'C',0,'',0,false,'T','M');
+            $this->Cell(0,10,'Pagina '.$this->getAliasNumPage().'/'.$this->getAliasNbPages() . ' - ServiziOnLine / Domanda per assegno di maternità',0,false,'C',0,'',0,false,'T','M');
     }
 }
 
@@ -218,40 +181,20 @@ $html = <<<EOD
     </tr>
 </table>
 <br>
-<h4>DATI BENEFICIARIO</h4>
+<h4>DATI MINORE</h4>
 <br>
 <table style="padding: 12px 10px;">
     <tr>
         <th style="padding: 12px 10px; width: 40%; font-weight: 600;">Nome e Cognome</th>
-        <td style="padding: 12px 10px; width: 60%; font-weight: normal;">$beneficiarioNome $beneficiarioCognome</td>
-    </tr>
-    <tr>
-        <th style="padding: 12px 10px; width: 40%; font-weight: 600;">Codice Fiscale</th>
-        <td style="padding: 12px 10px; width: 60%; font-weight: normal;">$beneficiarioCf</td>        
+        <td style="padding: 12px 10px; width: 60%; font-weight: normal;">$minoreNome $minoreCognome</td>
     </tr>
     <tr>
         <th style="padding: 12px 10px; width: 40%; font-weight: 600;">Data di Nascita</th>
-        <td style="padding: 12px 10px; width: 60%; font-weight: normal;">$beneficiarioDataNascita</td>
+        <td style="padding: 12px 10px; width: 60%; font-weight: normal;">$minoreDataNascita</td>
     </tr>
     <tr>
         <th style="padding: 12px 10px; width: 40%; font-weight: 600;">Luogo di Nascita</th>
-        <td style="padding: 12px 10px; width: 60%; font-weight: normal;">$beneficiarioLuogoNascita</td>
-    </tr>
-    <tr>
-        <th style="padding: 12px 10px; width: 40%; font-weight: 600;">Residente a</th>
-        <td style="padding: 12px 10px; width: 60%; font-weight: normal;">$beneficiarioLocalita - $beneficiarioProvincia</td>        
-    </tr>
-    <tr>
-        <th style="padding: 12px 10px; width: 40%; font-weight: 600;">In Via</th>
-        <td style="padding: 12px 10px; width: 60%; font-weight: normal;">$beneficiarioVia</td>
-    </tr>
-    <tr>
-        <td style="padding: 12px 10px; width: 40%; font-weight: 600;">Telefono</td>
-        <td style="padding: 12px 10px; width: 60%; font-weight: normal;">$beneficiarioTel</td>        
-    </tr>
-    <tr>
-        <td style="padding: 12px 10px; width: 40%; font-weight: 600;">Email</td>
-        <td style="padding: 12px 10px; width: 60%; font-weight: normal;">$beneficiarioEmail</td>
+        <td style="padding: 12px 10px; width: 60%; font-weight: normal;">$minoreLuogoNascita</td>
     </tr>
 </table>
 EOD;

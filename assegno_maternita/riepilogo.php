@@ -18,7 +18,7 @@
                             <ol class="breadcrumb p-0" data-element="breadcrumb">
                                 <li class="breadcrumb-item"><a href="../bacheca.php">Home</a></li>
                                 <li class="breadcrumb-item" aria-current="page"><span class="separator">/</span><a href="../servizi_list.php">Servizi</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><span class="separator">/</span>Presentare domanda per un contributo</li>
+                                <li class="breadcrumb-item active" aria-current="page"><span class="separator">/</span>Presentare domanda per assegno di maternità</li>
                             </ol>
                         </nav>
                     </div>
@@ -47,14 +47,14 @@
                                     <div class="card-body p-0">
                                         <div class="text-center">
                                             <h5>Richiesta inviata</h5>
-                                            <p>Grazie, abbiamo ricevuto la tua richiesta per la pratica <b><?php echo $_GET['pratican']; ?> domanda di contributo economico.</b></p>
+                                            <p>Grazie, abbiamo ricevuto la tua richiesta per la pratica <b><?php echo $_GET['pratican']; ?> domanda per assegno di maternità.</b></p>
                                             <p>Inviato il: <b><?php echo date("d-m-Y"); ?></b></p>
                                             <p>&nbsp;</p>
                                             <p>Abbiamo inviato il riepilogo all'email: <b><?php echo $_SESSION["Email"]; ?></b></p>
-                                            <form action="../lib/tcpdf/TCPDF-master/examples/dc_pdf_pratica.php" method="POST" id="dc_frm_download_pdf" name="dc_frm_download_pdf">
-                                                <input type="hidden" name="dc_download_pdf_id" id="dc_download_pdf_id" value="<?php echo $_GET['praticai']; ?>" />
-                                                <input type="hidden" name="dc_download_pdf_pratica" id="dc_download_pdf_pratica" value="<?php echo $_GET['pratican']; ?>" />
-                                                <p class="mt-5"><button type="submit" class="btn btn-primary" id="dc_download_pdf" name="dc_download_pdf" href="#">Scarica la ricevuta in PDF</button></p>
+                                            <form action="../lib/tcpdf/TCPDF-master/examples/am_pdf_pratica.php" method="POST" id="am_frm_download_pdf" name="am_frm_download_pdf">
+                                                <input type="hidden" name="am_download_pdf_id" id="am_download_pdf_id" value="<?php echo $_GET['praticai']; ?>" />
+                                                <input type="hidden" name="am_download_pdf_pratica" id="am_download_pdf_pratica" value="<?php echo $_GET['pratican']; ?>" />
+                                                <p class="mt-5"><button type="submit" class="btn btn-primary" id="am_download_pdf" name="am_download_pdf" href="#">Scarica la ricevuta in PDF</button></p>
                                             </form>
                                             <p>&nbsp;</p>
                                             <h5>Prossimi passi</h5>

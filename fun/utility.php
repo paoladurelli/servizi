@@ -112,3 +112,44 @@ function NameStatusById($status_id){
     }
     $connessioneVATP->close();
 }
+
+function NumeroPraticaById($servizio_id,$pratica_id){
+    switch($servizio_id) {
+        case 9: $table = "assegno_maternita"; break;
+        case 11: $table = "domanda_contributo"; break;
+    }
+    $configDB = require './env/config.php';
+    $connessioneNPBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sqlNPBI = "SELECT NumeroPratica FROM " . $table . " WHERE id = ". $pratica_id;
+    $resultNPBI = $connessioneNPBI->query($sqlNPBI);
+    if ($resultNPBI->num_rows > 0) {
+        while($rowNPBI = $resultNPBI->fetch_assoc()) {
+            return $rowNPBI["NumeroPratica"];
+        }
+    }
+    $connessioneNPBI->close();
+}
+
+
+function CfAltroByPraticaId($servizio_id,$pratica_id){
+    switch($servizio_id) {
+        case 9: 
+            /* assegno_maternita */
+            return "";
+            break;
+        case 11: 
+            $configDB = require './env/config.php';
+            $connessioneCABPI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+            $sqlCABPI = "SELECT beneficiarioCf FROM domanda_contributo WHERE id = ". $pratica_id;
+            $resultCABPI = $connessioneCABPI->query($sqlCABPI);
+            if ($resultCABPI->num_rows > 0) {
+                while($rowCABPI = $resultCABPI->fetch_assoc()) {
+                    return "<p class='text-paragraph'>C.F. del beneficiario: ". $rowCABPI["beneficiarioCf"] . "</p>";
+                }
+            }
+            $connessioneCABPI->close();
+            break;
+    }
+
+}
+

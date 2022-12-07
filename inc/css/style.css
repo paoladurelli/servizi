@@ -110,6 +110,10 @@ h1, .h1{
     color: #796c31;
 }
 
+.hidden{
+    display: none;
+}
+
 main {
     min-height: 600px;
 }
@@ -760,4 +764,14 @@ a.pulsante_leggi_dipiu{
 .page-servizi .card .card-body .read-more-news-list .icon{
     float: right;
     fill: var(--bs-primary);
+}
+
+
+.title-small-semi-bold {
+  font-weight: 700;
+  font-size: 1.1em;
+}
+
+.date-xsmall {
+  font-size: 0.7em;
 }

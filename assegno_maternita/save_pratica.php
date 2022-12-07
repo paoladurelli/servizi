@@ -19,7 +19,7 @@ $data = [];
    
 /* controllo che non sia un refresh della pagina che creerebbe una nuova riga - controllo quindi che la riga con status tmp non abbia il campo numero pratica già popolato */
     $connessioneCheck = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-    $sqlCheck = "SELECT id FROM domanda_contributo WHERE richiedenteCf = '". $_SESSION['CF']."' and id = " . $_POST['pratican'] ." and status_id = 0 and numeroPratica = ''";
+    $sqlCheck = "SELECT id FROM assegno_maternita WHERE richiedenteCf = '". $_SESSION['CF']."' and id = " . $_POST['pratican'] ." and status_id = 0 and numeroPratica = ''";
     $data['error'] = $sqlCheck;
     $resultCheck = $connessioneCheck->query($sqlCheck);
     
@@ -27,7 +27,7 @@ $data = [];
         
         /* genero numero pratica */
         $connessioneNP = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-        $sqlNP = "SELECT NumeroPratica FROM domanda_contributo WHERE status_id > 1 ORDER BY id DESC LIMIT 1";
+        $sqlNP = "SELECT NumeroPratica FROM assegno_maternita WHERE status_id > 1 ORDER BY id DESC LIMIT 1";
         $resultNP = $connessioneNP->query($sqlNP);
 
         if ($resultNP->num_rows > 0) {
@@ -46,50 +46,57 @@ $data = [];
         /* DATI ESTRAPOLATI DA DB - start */
         /* estrapolo i dati salvati con status tmp */
         $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-        $sql = "SELECT * FROM `domanda_contributo` WHERE id = " . $_POST['pratican'];
+        $sql = "SELECT * FROM assegno_maternita WHERE id = " . $_POST['pratican'];
         $result = $connessione->query($sql);
 
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
 
                 /* rinomino i file */
-                $uploadPotereFirma = $row["uploadPotereFirma"];
-                $NewuploadPotereFirma = str_replace("_bozza_","_".$NumeroPratica."_",$uploadPotereFirma);
-
-                $upload_location = "../uploads/domanda_contributo/";
-
-                if (file_exists($upload_location.$uploadPotereFirma)){
-                    $renamed= rename($upload_location.$uploadPotereFirma,$upload_location.$NewuploadPotereFirma);
+                $upload_location = "../uploads/assegno_maternita/";
+                
+                $uploadCartaIdentitaFronte = $row["uploadCartaIdentitaFronte"];
+                $NewuploadCartaIdentitaFronte = str_replace("_bozza_","_".$NumeroPratica."_",$uploadCartaIdentitaFronte);
+                if (file_exists($upload_location.$uploadCartaIdentitaFronte)){
+                    $renamed= rename($upload_location.$uploadCartaIdentitaFronte,$upload_location.$NewuploadCartaIdentitaFronte);
+                }else{
+                    $data['error'] = "The original file that you want to rename doesn't exist";
+                }
+                
+                
+                $uploadCartaIdentitaRetro = $row["uploadCartaIdentitaRetro"];
+                $NewuploadCartaIdentitaRetro = str_replace("_bozza_","_".$NumeroPratica."_",$uploadCartaIdentitaRetro);
+                if (file_exists($upload_location.$uploadCartaIdentitaRetro)){
+                    $renamed= rename($upload_location.$uploadCartaIdentitaRetro,$upload_location.$NewuploadCartaIdentitaRetro);
                 }else{
                     $data['error'] = "The original file that you want to rename doesn't exist";
                 }
 
-                $NewuploadDocumentazione = "";
 
-                $tmpUploadDocumentazione1 = substr($row["uploadDocumentazione"],0,-1);
-                $tmpUploadDocumentaziones = explode(';', $tmpUploadDocumentazione1);
-                $uploadDocumentazione = "";
-                foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
-                    $uploadDocumentazione = $tmpUploadDocumentazione;
-                    $NewuploadDocumentazioneTmp = str_replace("_bozza_","_".$NumeroPratica."_",$uploadDocumentazione);
-
-                    if (file_exists($upload_location.$uploadDocumentazione)){
-                        $renamed= rename($upload_location.$uploadDocumentazione,$upload_location.$NewuploadDocumentazioneTmp);
-                    }else{
-                        $data['error'] = "The original file that you want to rename doesn't exist";
-                    }
-                    $NewuploadDocumentazione .= $NewuploadDocumentazioneTmp.";";
+                $uploadTitoloSoggiorno = $row["uploadTitoloSoggiorno"];
+                $NewuploadTitoloSoggiorno = str_replace("_bozza_","_".$NumeroPratica."_",$uploadTitoloSoggiorno);
+                if (file_exists($upload_location.$uploadTitoloSoggiorno)){
+                    $renamed= rename($upload_location.$uploadTitoloSoggiorno,$upload_location.$NewuploadTitoloSoggiorno);
+                }else{
+                    $data['error'] = "The original file that you want to rename doesn't exist";
                 }
 
-                $data['pratica'] = $NewuploadDocumentazione;
 
+                $uploadDichiarazioneDatoreLavoro = $row["uploadDichiarazioneDatoreLavoro"];
+                $NewuploadDichiarazioneDatoreLavoro = str_replace("_bozza_","_".$NumeroPratica."_",$uploadDichiarazioneDatoreLavoro);
+                if (file_exists($upload_location.$uploadDichiarazioneDatoreLavoro)){
+                    $renamed= rename($upload_location.$uploadDichiarazioneDatoreLavoro,$upload_location.$NewuploadDichiarazioneDatoreLavoro);
+                }else{
+                    $data['error'] = "The original file that you want to rename doesn't exist";
+                }                
+                              
                 /* salvo tutti i dati in una riga nuova con status 2 */
                 $connessioneINS = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-                $sqlINS = "INSERT INTO `domanda_contributo`(status_id,richiedenteNome,richiedenteCognome,richiedenteCf,richiedenteDataNascita,richiedenteLuogoNascita,richiedenteVia,richiedenteLocalita,richiedenteProvincia,richiedenteEmail,richiedenteTel,inQualitaDi,beneficiarioNome,beneficiarioCognome,beneficiarioCf,beneficiarioDataNascita,beneficiarioLuogoNascita,beneficiarioVia,beneficiarioLocalita,beneficiarioProvincia,beneficiarioEmail,beneficiarioTel,importoContributo,finalitaContributo,tipoPagamento_id,uploadPotereFirma,uploadDocumentazione,NumeroPratica) VALUES (2,'".$row['richiedenteNome']."','".$row['richiedenteCognome']."','".$row['richiedenteCf']."','".$row['richiedenteDataNascita']."','".$row['richiedenteLuogoNascita']."','".$row['richiedenteVia']."','".$row['richiedenteLocalita']."','".$row['richiedenteProvincia']."','".$row['richiedenteEmail']."','".$row['richiedenteTel']."','".$row['inQualitaDi']."','".$row['beneficiarioNome']."','".$row['beneficiarioCognome']."','".$row['beneficiarioCf']."','".$row['beneficiarioDataNascita']."','".$row['beneficiarioLuogoNascita']."','".$row['beneficiarioVia']."','".$row['beneficiarioLocalita']."','".$row['beneficiarioProvincia']."','".$row['beneficiarioEmail']."','".$row['beneficiarioTel']."','".$row['importoContributo']."','".$row['finalitaContributo']."','".$row['tipoPagamento_id']."','".$NewuploadPotereFirma."','".$NewuploadDocumentazione."','".$NumeroPratica."')";
+                $sqlINS = "INSERT INTO assegno_maternita(status_id,richiedenteCf,richiedenteNome,richiedenteCognome,richiedenteDataNascita,richiedenteLuogoNascita,richiedenteVia,richiedenteLocalita,richiedenteProvincia,richiedenteEmail,richiedenteTel,minoreNome,minoreCognome,minoreDataNascita,minoreLuogoNascita,tipoRichiesta,DichiarazioneCittadinanza,DichiarazioneSoggiornoNumero,DichiarazioneSoggiornoQuestura,DichiarazioneSoggiornoData,DichiarazioneSoggiornoDataRinnovo,DichiarazioneAffidamento,DichiarazioneAffidamentoData,tipoPagamento_id,uploadCartaIdentitaFronte,uploadCartaIdentitaRetro,uploadTitoloSoggiorno,uploadDichiarazioneDatoreLavoro,NumeroPratica) VALUES (2,'".$row['richiedenteCf']."','".$row['richiedenteNome']."','".$row['richiedenteCognome']."','".$row['richiedenteDataNascita']."','".$row['richiedenteLuogoNascita']."','".$row['richiedenteVia']."','".$row['richiedenteLocalita']."','".$row['richiedenteProvincia']."','".$row['richiedenteEmail']."','".$row['richiedenteTel']."','".$row['minoreNome']."','".$row['minoreCognome']."','".$row['minoreDataNascita']."','".$row['minoreLuogoNascita']."','".$row['tipoRichiesta']."','".$row['DichiarazioneCittadinanza']."','".$row['DichiarazioneSoggiornoNumero']."','".$row['DichiarazioneSoggiornoQuestura']."','".$row['DichiarazioneSoggiornoData']."','".$row['DichiarazioneSoggiornoDataRinnovo']."','".$row['DichiarazioneAffidamento']."','".$row['DichiarazioneAffidamentoData']."','".$row['tipoPagamento_id']."','".$NewuploadCartaIdentitaFronte."','".$NewuploadCartaIdentitaRetro."','".$NewuploadTitoloSoggiorno."','".$NewuploadDichiarazioneDatoreLavoro."','".$NumeroPratica."')";
                 $connessioneINS->query($sqlINS);
 
                 /* ricavo il nuovo id */
-                $sqlINS = "SELECT id FROM domanda_contributo WHERE richiedenteCf = '". $_SESSION['CF'] ."' and status_id = 2 ORDER BY id DESC LIMIT 1";
+                $sqlINS = "SELECT id FROM assegno_maternita WHERE richiedenteCf = '". $_SESSION['CF'] ."' and status_id = 2 ORDER BY id DESC LIMIT 1";
                 $resultINS = $connessioneINS->query($sqlINS);
                 if ($resultINS->num_rows > 0) {
                 // output data of each row
@@ -103,16 +110,16 @@ $data = [];
 
                 /* vado ad inserire nella bozza il numero pratica - questo mi serve per lo storico. */
                 $connessioneUPD = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-                $sqlUPD = "UPDATE domanda_contributo SET NumeroPratica = '".$NumeroPratica."' WHERE id = ".$_POST['pratican'];
+                $sqlUPD = "UPDATE assegno_maternita SET NumeroPratica = '".$NumeroPratica."' WHERE id = ".$_POST['pratican'];
                 $connessioneUPD->query($sqlUPD);
 
                 /* salvo nelle attitivà la creazione o modifica della bozza per domanda_contributo */
-                    $sqlINS = "INSERT INTO attivita (cf,servizio_id,pratica_id,status_id) VALUES ('". $_SESSION['CF'] ."',11,".$new_id.",2)";
+                    $sqlINS = "INSERT INTO attivita (cf,servizio_id,pratica_id,status_id) VALUES ('". $_SESSION['CF'] ."',9,".$new_id.",2)";
                     $connessioneINS->query($sqlINS);
 
 
                 /* salvo nei messaggi che ho una bozza da completare per domanda_contributo */
-                    $sqlINS = "INSERT INTO messaggi (CF_to,servizio_id,testo) VALUES ('". $_SESSION['CF'] ."',11,'La tua domanda di contributo è stata inviata.<br/>Il numero della pratica è: <b>".$NumeroPratica."</b>')";
+                    $sqlINS = "INSERT INTO messaggi (CF_to,servizio_id,testo) VALUES ('". $_SESSION['CF'] ."',9,'La tua richiesta di assegno di maternità è stata inviata.<br/>Il numero della pratica è: <b>".$NumeroPratica."</b>')";
                     $connessioneINS->query($sqlINS);            
 
 
@@ -128,10 +135,10 @@ $data = [];
                     $phpmailer->setFrom($configData['mail_comune'], 'Comune di ' . $configData['nome_comune']);
                     $phpmailer->addAddress('paola.durelli@proximalab.it', 'Proxima');
                     $phpmailer->addAddress($configData['mail_comune'], 'Comune di ' . $configData['nome_comune']);
-                    $phpmailer->Subject = 'Comune di '. $configData['nome_comune'] . ' - Domanda di contributo  - '.$NumeroPratica.' - '. $_SESSION['CF'];
+                    $phpmailer->Subject = 'Comune di '. $configData['nome_comune'] . ' - Richiesta assegno di maternit&agrave; - '.$NumeroPratica.' - '. $_SESSION['CF'];
                     $phpmailer->isHTML(true);
                     $mailContent = '
-                        <p>L\'utente ' . $_SESSION['Nome'] . ' ' . $_SESSION['Cognome'] . '(C.F. '.$_SESSION['CF'].') ha inviato una domanda contributo.<br/>'
+                        <p>L\'utente ' . $_SESSION['Nome'] . ' ' . $_SESSION['Cognome'] . ' (C.F. '.$_SESSION['CF'].') ha inviato una domanda contributo.<br/>'
                             . 'Il numero della pratica &egrave;: <b>'.$NumeroPratica.'</b><br/>
                             <a href="'.$configData['url_servizi'].'/backend">Accedi al Backend per vedere i dati</a></p>
                         ';
@@ -158,12 +165,12 @@ $data = [];
                     $phpmailer2->setFrom($configData['mail_comune'], 'Comune di ' . $configData['nome_comune']);
                     $phpmailer2->addAddress('paola.durelli@proximalab.it', 'Proxima');
                     $phpmailer2->addAddress($_SESSION["Email"]);
-                    $phpmailer2->Subject = 'Comune di '. $configData['nome_comune'] . ' - Domanda di contributo ';
+                    $phpmailer2->Subject = 'Comune di '. $configData['nome_comune'] . ' - Richiesta assegno di maternit&agrave; ';
                     $phpmailer2->isHTML(true);
                     $mailContent2 = '
-                        <p>Ciao ' . $_SESSION['Nome'] . ' ' . $_SESSION['Cognome'] . ',<br/>
-                            la tua domanda contributo &egrave; stata inviata correttamente.<br/>
-                            Il numero della pratica &egrave;: <b>'.$NumeroPratica.'</b><br/>
+                        <p>Ciao ' . $_SESSION['Nome'] . ' ' . $_SESSION['Cognome'] . ',<br/>'
+                            . ' la tua richiesta di assegno di maternit&agrave; &egrave; stata inviata correttamente.<br/>'
+                            . 'Il numero della pratica &egrave;: <b>'.$NumeroPratica.'</b><br/>
                             Presto riceverai una nostra risposta.<br/>
                             Grazie<br/>
                             <em>Comune di '. $configData['nome_comune'] . '</em></p>
