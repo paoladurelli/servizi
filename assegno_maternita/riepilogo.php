@@ -59,7 +59,7 @@
                                             <p>&nbsp;</p>
                                             <h5>Prossimi passi</h5>
                                             <p>Esito richiesta</p>
-                                            <p><a href="dettaglio.php?dc_pratica_id=<?php echo $_GET['praticai']; ?>">Consulta la richiesta</a> nella tua area riservata.</p>
+                                            <p><a href="dettaglio.php?am_pratica_id=<?php echo $_GET['praticai']; ?>">Consulta la richiesta</a> nella tua area riservata.</p>
                                         </div>
                                     </div>
                                 </div>

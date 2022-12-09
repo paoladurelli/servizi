@@ -178,12 +178,12 @@ if(!isset($_POST['am_bozza_id']) || $_POST['am_bozza_id'] == ''){
     /* am_uploadDichiarazioneDatoreLavoro - end */
 
 /* salvo nelle attitivà la creazione o modifica della bozza per domanda_contributo */
-    $sqlINS = "INSERT INTO attivita (cf,servizio_id,pratica_id,status_id) VALUES ('".$_POST['am_richiedente-cf']."',9,".$new_id.",1)";
+    $sqlINS = "INSERT INTO attivita (cf,servizio_id,pratica_id,status_id,data_attivita) VALUES ('".$_POST['am_richiedente_cf']."',9,".$new_id.",1,'".date('Y-m-d')."')";
     $connessioneINS->query($sqlINS);
     
     
 /* salvo nei messaggi che ho una bozza da completare per domanda_contributo */
-    $sqlINS = "INSERT INTO messaggi (CF_to,servizio_id,testo) VALUES ('".$_POST['am_richiedente-cf']."',9,'La tua domanda per l\'assegno di maternità è stata salvata come bozza')";
+    $sqlINS = "INSERT INTO messaggi (CF_to,servizio_id,testo,data_msg) VALUES ('".$_POST['am_richiedente_cf']."',9,'La tua domanda per l\'assegno di maternità è stata salvata come bozza','".date('Y-m-d')."')";
     $connessioneINS->query($sqlINS);
     
 /* invio risposta al js */

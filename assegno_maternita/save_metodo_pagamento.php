@@ -13,6 +13,11 @@ if (empty($_POST['txt_numero_pagamento'])) {
     $errors['txt_numero_pagamento'] = 'Numero richiesto.';
 }
 
+if($_POST['sel_tipo_pagamento'] == "1"  && (!isValidIBAN($_POST['txt_numero_pagamento']))){
+    $errors['txt_numero_pagamento'] = 'IBAN non corretto.';
+}
+
+
 if (!empty($errors)) {
     $data['success'] = false;
     $data['errors'] = $errors;
@@ -36,13 +41,17 @@ if (!empty($errors)) {
     // output data of each row
         while($row = $result->fetch_assoc()) {
             $data['new_row'] = '<div class="row mb-3">';
-                $data['new_row'] .= '<div class="col-12"><p><label>';
+                $data['new_row'] .= '<div class="col-11"><p><label>';
                     $data['new_row'] .= '<input type="radio" name="ckb_pagamento" value="'.$row['id'].'" ';
                     if($row["predefinito"]==1){ $data['new_row'] .= 'checked'; }
                     $data['new_row'] .= ' />&nbsp;' . NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"];
                 $data['new_row'] .= '</label></p></div>';
+                $data['new_row'] .= '<div class="col-1">';
+                    $data['new_row'] .= '<a href="#" class="delete_class" id="'.$row["id"].'" alt="cancella metodo di pagamento" title="cancella metodo di pagamento"><svg class="bg-light icon align-bottom"><use href="../lib/svg/sprites.svg#it-close-circle"></use></svg></a>';
+                $data['new_row'] .= '</div>';
             $data['new_row'] .= '</div>';
         }
     }
 }
+
 echo json_encode($data);

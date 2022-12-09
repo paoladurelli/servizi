@@ -43,16 +43,16 @@
 
     
     /* se mi viene passato l'id della bozza, vado a richiamare i dati salvati */
-    if(isset($_POST["dc_bozza_id"]) && $_POST["dc_bozza_id"]<>''){
+    if(isset($_GET["dc_bozza_id"]) && $_GET["dc_bozza_id"]<>''){
         /* DATI ESTRAPOLATI DA DB - start */ 
         $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-        $sql = "SELECT * FROM domanda_contributo WHERE richiedenteCf = '". $_SESSION['CF']."' and id =" . $_POST["dc_bozza_id"];
+        $sql = "SELECT * FROM domanda_contributo WHERE richiedenteCf = '". $_SESSION['CF']."' and id =" . $_GET["dc_bozza_id"];
         $result = $connessione->query($sql);
 
         if ($result->num_rows > 0) {
         // output data of each row
             while($row = $result->fetch_assoc()) {
-                $dc_bozza_id = $_POST["dc_bozza_id"];
+                $dc_bozza_id = $_GET["dc_bozza_id"];
                 $cf = $row["richiedenteCf"];
                 $nome = $row["richiedenteNome"];
                 $cognome = $row["richiedenteCognome"];
@@ -232,54 +232,54 @@
                                                 <div class="col-lg-12"><h5 class="color-primary"><b>Anagrafica</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Nome<br/><input type="text" id="dc_richiedente_nome" name="dc_richiedente_nome" value="<?php echo $nome; ?>" disabled /></p></div>
+                                                <div class="col-lg-12"><p id="dc_richiedente_nome_txt">Nome *<br/><input type="text" id="dc_richiedente_nome" name="dc_richiedente_nome" value="<?php echo $nome; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Cognome<br/><input type="text" id="dc_richiedente_cognome" name="dc_richiedente_cognome" value="<?php echo $cognome; ?>" disabled /></p></div>
+                                                <div class="col-lg-12"><p id="dc_richiedente_cognome_txt">Cognome *<br/><input type="text" id="dc_richiedente_cognome" name="dc_richiedente_cognome" value="<?php echo $cognome; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Codice Fiscale<br/><input type="text" id="dc_richiedente_cf" name="dc_richiedente_cf" value="<?php echo $cf; ?>" disabled /></p></div>
+                                                <div class="col-lg-12"><p id="dc_richiedente_cf_txt">Codice Fiscale *<br/><input type="text" id="dc_richiedente_cf" name="dc_richiedente_cf" value="<?php echo $cf; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Data di Nascita<br/><input type="text" id="dc_richiedente_data_nascita" name="dc_richiedente_data_nascita" value="<?php echo $datanascita; ?>" disabled /></p></div>
+                                                <div class="col-lg-12"><p id="dc_richiedente_data_nascita_txt">Data di Nascita *<br/><input type="date" id="dc_richiedente_data_nascita" name="dc_richiedente_data_nascita" value="<?php echo $datanascita; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Luogo di Nascita<br/><input type="text" id="dc_richiedente_luogo_nascita" name="dc_richiedente_luogo_nascita" value="<?php echo $luogonascita; ?>" disabled /></p></div>
+                                                <div class="col-lg-12"><p id="dc_richiedente_luogo_nascita_txt">Luogo di Nascita *<br/><input type="text" id="dc_richiedente_luogo_nascita" name="dc_richiedente_luogo_nascita" value="<?php echo $luogonascita; ?>" /></p></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Via e Numero civico<br/><input type="text" id="dc_richiedente_via" name="dc_richiedente_via" value="<?php echo $richiedenteVia; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p id="dc_richiedente_via_txt">Via e Numero civico *<br/><input type="text" id="dc_richiedente_via" name="dc_richiedente_via" value="<?php echo $richiedenteVia; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Località<br/><input type="text" id="dc_richiedente_localita" name="dc_richiedente_localita" value="<?php echo $richiedenteLocalita; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p id="dc_richiedente_localita_txt">Località *<br/><input type="text" id="dc_richiedente_localita" name="dc_richiedente_localita" value="<?php echo $richiedenteLocalita; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Provincia<br/><input type="text" id="dc_richiedente_provincia" name="dc_richiedente_provincia" value="<?php echo $richiedenteProvincia; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p id="dc_richiedente_provincia_txt">Provincia *<br/><input type="text" id="dc_richiedente_provincia" name="dc_richiedente_provincia" value="<?php echo $richiedenteProvincia; ?>" /></p></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>E-mail<br/><input type="text" id="dc_richiedente_email" name="dc_richiedente_email" value="<?php echo $email; ?>" disabled /></p></div>
+                                                <div class="col-lg-12"><p id="dc_richiedente_email_txt">E-mail *<br/><input type="email" id="dc_richiedente_email" name="dc_richiedente_email" value="<?php echo $email; ?>" disabled /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Telefono<br/><input type="text" id="dc_richiedente_tel" name="dc_richiedente_tel" value="<?php echo $richiedenteTel; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p id="dc_richiedente_tel_txt">Telefono *<br/><input type="tel" id="dc_richiedente_tel" name="dc_richiedente_tel" value="<?php echo $richiedenteTel; ?>" /></p></div>
                                             </div>
                                         </div>
                                         <div class="card-header border-0 p-0 mb-lg-30 m-0">
                                             <div>
-                                                <p><b>In qualità di</b></p>
+                                                <p id="dc_rb_qualita_di_txt"><b>In qualità di *</b></p>
                                             </div>
                                         </div>
                                         <div class="card-body">
                                             <ul class="card_rb">
-                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="D" <?php if($inQualitaDi == "D"){ echo 'checked'; } ?>>diretto interessato*</label></li>
-                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="T" <?php if($inQualitaDi == "T"){ echo 'checked'; } ?>>tutore*</label></li>
-                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="A" <?php if($inQualitaDi == "A"){ echo 'checked'; } ?>>amministratore di sostegno*</label></li>
-                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="P" <?php if($inQualitaDi == "P"){ echo 'checked'; } ?>>procuratore*</label></li>
-                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="E" <?php if($inQualitaDi == "E"){ echo 'checked'; } ?>>persona delegata*</label></li>
+                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="D" <?php if($inQualitaDi == "D"){ echo 'checked'; } ?>>diretto interessato</label></li>
+                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="T" <?php if($inQualitaDi == "T"){ echo 'checked'; } ?>>tutore</label></li>
+                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="A" <?php if($inQualitaDi == "A"){ echo 'checked'; } ?>>amministratore di sostegno</label></li>
+                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="P" <?php if($inQualitaDi == "P"){ echo 'checked'; } ?>>procuratore</label></li>
+                                                <li><label><input type="radio" id="dc_rb_qualita_di" name="dc_rb_qualita_di" value="E" <?php if($inQualitaDi == "E"){ echo 'checked'; } ?>>persona delegata</label></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -299,40 +299,40 @@
                                                 <div class="col-lg-12"><h5 class="color-primary"><b>Anagrafica</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Nome<br/><input type="text" id="dc_beneficiario_nome" name="dc_beneficiario_nome" value="<?php echo $beneficiarioNome; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p id="dc_beneficiario_nome_txt">Nome *<br/><input type="text" id="dc_beneficiario_nome" name="dc_beneficiario_nome" value="<?php echo $beneficiarioNome; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Cognome<br/><input type="text" id="dc_beneficiario_cognome" name="dc_beneficiario_cognome" value="<?php echo $beneficiarioCognome; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p id="dc_beneficiario_cognome_txt">Cognome *<br/><input type="text" id="dc_beneficiario_cognome" name="dc_beneficiario_cognome" value="<?php echo $beneficiarioCognome; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Codice Fiscale<br/><input type="text" id="dc_beneficiario_cf" name="dc_beneficiario_cf" value="<?php echo $beneficiarioCf; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p id="dc_beneficiario_cf_txt">Codice Fiscale *<br/><input type="text" id="dc_beneficiario_cf" name="dc_beneficiario_cf" value="<?php echo $beneficiarioCf; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Data di Nascita<br/><input type="text" id="dc_beneficiario_data_nascita" name="dc_beneficiario_data_nascita" value="<?php echo $beneficiarioDataNascita; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p id="dc_beneficiario_data_nascita_txt">Data di Nascita *<br/><input type="date" id="dc_beneficiario_data_nascita" name="dc_beneficiario_data_nascita" value="<?php echo $beneficiarioDataNascita; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Luogo di Nascita<br/><input type="text" id="dc_beneficiario_luogo_nascita" name="dc_beneficiario_luogo_nascita" value="<?php echo $beneficiarioLuogoNascita; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p id="dc_beneficiario_luogo_nascita_txt">Luogo di Nascita *<br/><input type="text" id="dc_beneficiario_luogo_nascita" name="dc_beneficiario_luogo_nascita" value="<?php echo $beneficiarioLuogoNascita; ?>" /></p></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Via e Numero civico<br/><input type="text" id="dc_beneficiario_via" name="dc_beneficiario_via" value="<?php echo $beneficiarioVia; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p id="dc_beneficiario_via_txt">Via e Numero civico *<br/><input type="text" id="dc_beneficiario_via" name="dc_beneficiario_via" value="<?php echo $beneficiarioVia; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Località<br/><input type="text" id="dc_beneficiario_localita" name="dc_beneficiario_localita" value="<?php echo $beneficiarioLocalita; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p id="dc_beneficiario_localita_txt">Località *<br/><input type="text" id="dc_beneficiario_localita" name="dc_beneficiario_localita" value="<?php echo $beneficiarioLocalita; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Provincia<br/><input type="text" id="dc_beneficiario_provincia" name="dc_beneficiario_provincia" value="<?php echo $beneficiarioProvincia; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p id="dc_beneficiario_provincia_txt">Provincia *<br/><input type="text" id="dc_beneficiario_provincia" name="dc_beneficiario_provincia" value="<?php echo $beneficiarioProvincia; ?>" /></p></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>E-mail<br/><input type="text" id="dc_beneficiario_email" name="dc_beneficiario_email" value="<?php echo $beneficiarioEmail; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p id="dc_beneficiario_email_txt">E-mail *<br/><input type="email" id="dc_beneficiario_email" name="dc_beneficiario_email" value="<?php echo $beneficiarioEmail; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Telefono<br/><input type="text" id="dc_beneficiario_tel" name="dc_beneficiario_tel" value="<?php echo $beneficiarioTel; ?>" /></p></div>
+                                                <div class="col-lg-12"><p id="dc_beneficiario_tel_txt">Telefono *<br/><input type="tel" id="dc_beneficiario_tel" name="dc_beneficiario_tel" value="<?php echo $beneficiarioTel; ?>" /></p></div>
                                             </div>
                                         </div>
                                     </div>
@@ -349,10 +349,10 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Contributo di &euro;<br/><input type="text" id="dc_importo_contributo" name="dc_importo_contributo" value="<?php echo $importoContributo; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p id="dc_importo_contributo_txt">Contributo di &euro; *<br/><input type="text" id="dc_importo_contributo" name="dc_importo_contributo" value="<?php echo $importoContributo; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Finalizzato a<br/><textarea id="dc_finalita_contributo" name="dc_finalita_contributo" rows="4" required><?php echo $finalitaContributo; ?></textarea></p></div>
+                                                <div class="col-lg-12"><p id="dc_finalita_contributo_txt">Finalizzato a *<br/><textarea id="dc_finalita_contributo" name="dc_finalita_contributo" rows="4"><?php echo $finalitaContributo; ?></textarea></p></div>
                                             </div>                                            
                                         </div>
                                     </div>
@@ -364,10 +364,11 @@
                                     <div class="card">
                                         <div class="card-header border-0 p-0 mb-lg-30 m-0">
                                             <div class="d-flex">
-                                                <h2 class="title-xxlarge mb-3">Metodi di pagamento</h2>
+                                                <h2 class="title-xxlarge mb-3" id="ckb_pagamento_txt">Metodi di pagamento *</h2>
                                             </div>
                                         </div>
                                         <div class="card-body">
+                                            <div id="dc_pnl_metodi_pagamento">
                                             <?php
                                                 $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
                                                 $sql = "SELECT * FROM metodi_pagamento WHERE cf = '". $_SESSION['CF']."'";
@@ -377,17 +378,21 @@
                                                 // output data of each row
                                                     while($row = $result->fetch_assoc()) {
                                                         echo '<div class="row mb-3">';
-                                                            echo '<div class="col-12"><p><label>';
+                                                            echo '<div class="col-11"><p><label>';
                                                                 echo '<input type="radio" id="ckb_pagamento" name="ckb_pagamento" value="'.$row['id'].'" ';
                                                                 if($row["predefinito"]=='1'){ echo 'checked'; }
                                                                 if($row["predefinito"]==$tipoPagamento_id){ echo 'checked'; }
                                                                 echo ' />&nbsp;' . NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"];
                                                             echo '</label></p></div>';
+                                                            echo '<div class="col-1">';
+                                                                echo '<a href="#" class="delete_class" id="'.$row['id'].'" alt="cancella metodo di pagamento" title="cancella metodo di pagamento"><svg class="bg-light icon align-bottom"><use href="../lib/svg/sprites.svg#it-close-circle"></use></svg></a>';
+                                                            echo '</div>';
                                                         echo '</div>';
                                                     }
                                                 }
                                                 $connessione->close();
                                             ?>
+                                            </div>
                                             <div id="dc_pnl_new_mdp"></div>
 
                                             <div class="row">
@@ -411,7 +416,7 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-lg-6 text-center">
-                                                    <h6>Documento che attesta potere di firma</h6>
+                                                    <h6 id="dc_uploadPotereFirma_txt">Documento che attesta potere di firma</h6>
                                                     <input type="file" name="dc_uploadPotereFirma" id="dc_uploadPotereFirma" class="upload" />
                                                     <label for="dc_uploadPotereFirma">
                                                         <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
@@ -422,7 +427,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="col-lg-6 text-center">
-                                                    <h6>Documentazione utile al riconoscimento del contributo</h6>
+                                                    <h6 id="dc_uploadDocumentazione_txt">Documentazione utile al riconoscimento del contributo *</h6>
                                                     <p><small>(esempi: contrato affitto, bollette, spese sanitarie, debiti…)</small></p>
                                                     <input type="file" name="dc_uploadDocumentazione[]" id="dc_uploadDocumentazione" class="upload" multiple="multiple" />
                                                     <label for="dc_uploadDocumentazione">
@@ -478,13 +483,13 @@
 
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <select id="dc_sel_tipo_pagamento">
+                                    <select id="dc_sel_tipo_pagamento" name="dc_sel_tipo_pagamento">
                                         <?php echo ViewAllTipiPagamento(); ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-12"><input type="text" id="dc_txt_numero_pagamento" value="" maxlength="25" /></p></div>
+                                <div class="col-lg-12"><input type="text" id="dc_txt_numero_pagamento" value="" /></p></div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-12 mt-5"><label><input type="checkbox" id="dc_ck_pagamento_predefinito" value="" />&nbsp;E' il pagamento predefinito</label></p></div>

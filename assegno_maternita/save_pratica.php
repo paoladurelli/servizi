@@ -37,10 +37,10 @@ $data = [];
                 $numberPraticaTmp = substr($LastPratica, -8);
                 $numberPraticaTmp2 = filter_var($numberPraticaTmp, FILTER_SANITIZE_NUMBER_INT) + 1;
                 $length = 8;
-                $NumeroPratica = "DC".str_pad($numberPraticaTmp2,$length,"0", STR_PAD_LEFT);
+                $NumeroPratica = "AM".str_pad($numberPraticaTmp2,$length,"0", STR_PAD_LEFT);
             }
         }else{
-            $NumeroPratica = "DC00000001";
+            $NumeroPratica = "AM00000001";
         }
 
         /* DATI ESTRAPOLATI DA DB - start */
@@ -114,16 +114,16 @@ $data = [];
                 $connessioneUPD->query($sqlUPD);
 
                 /* salvo nelle attitivà la creazione o modifica della bozza per domanda_contributo */
-                    $sqlINS = "INSERT INTO attivita (cf,servizio_id,pratica_id,status_id) VALUES ('". $_SESSION['CF'] ."',9,".$new_id.",2)";
+                    $sqlINS = "INSERT INTO attivita (cf,servizio_id,pratica_id,status_id,data_attivita) VALUES ('". $_SESSION['CF'] ."',9,".$new_id.",2,'".date('Y-m-d')."')";
                     $connessioneINS->query($sqlINS);
 
 
                 /* salvo nei messaggi che ho una bozza da completare per domanda_contributo */
-                    $sqlINS = "INSERT INTO messaggi (CF_to,servizio_id,testo) VALUES ('". $_SESSION['CF'] ."',9,'La tua richiesta di assegno di maternità è stata inviata.<br/>Il numero della pratica è: <b>".$NumeroPratica."</b>')";
+                    $sqlINS = "INSERT INTO messaggi (CF_to,servizio_id,testo,data_msg) VALUES ('". $_SESSION['CF'] ."',9,'La tua richiesta di assegno di maternità è stata inviata.<br/>Il numero della pratica è: <b>".$NumeroPratica."</b>','".date('Y-m-d')."')";
                     $connessioneINS->query($sqlINS);            
 
 
-                /* mando mail al comune - start */
+                /* mando mail al comune - start
                     $phpmailer = new PHPMailer();
                     $phpmailer->isSMTP();
                     $phpmailer->Host = $configSmtp['smtp_host'];
@@ -150,10 +150,10 @@ $data = [];
                     }else{
                         $data['error'] .= 'Message could not be sent.';
                         $data['error'] .= 'Mailer Error: ' . $phpmailer->ErrorInfo;
-                    }
+                    } */
                 /* mando mail al comune - end */
 
-                /* mando mail all'utente - start */
+                /* mando mail all'utente - start
                     $phpmailer2 = new PHPMailer();
                     $phpmailer2->isSMTP();
                     $phpmailer2->Host = $configSmtp['smtp_host'];
@@ -186,7 +186,7 @@ $data = [];
                     }else{
                         $data['error'] .= 'Message could not be sent.';
                         $data['error'] .= 'Mailer Error: ' . $phpmailer2->ErrorInfo;
-                    }
+                    } */
                 /* mando mail all'utente - end */
 
             }   

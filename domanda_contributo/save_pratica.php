@@ -107,12 +107,12 @@ $data = [];
                 $connessioneUPD->query($sqlUPD);
 
                 /* salvo nelle attitivà la creazione o modifica della bozza per domanda_contributo */
-                    $sqlINS = "INSERT INTO attivita (cf,servizio_id,pratica_id,status_id) VALUES ('". $_SESSION['CF'] ."',11,".$new_id.",2)";
+                    $sqlINS = "INSERT INTO attivita (cf,servizio_id,pratica_id,status_id,data_attivita) VALUES ('". $_SESSION['CF'] ."',11,".$new_id.",2,'".date('Y-m-d')."')";
                     $connessioneINS->query($sqlINS);
 
 
                 /* salvo nei messaggi che ho una bozza da completare per domanda_contributo */
-                    $sqlINS = "INSERT INTO messaggi (CF_to,servizio_id,testo) VALUES ('". $_SESSION['CF'] ."',11,'La tua domanda di contributo è stata inviata.<br/>Il numero della pratica è: <b>".$NumeroPratica."</b>')";
+                    $sqlINS = "INSERT INTO messaggi (CF_to,servizio_id,testo,data_msg) VALUES ('". $_SESSION['CF'] ."',11,'La tua domanda di contributo è stata inviata.<br/>Il numero della pratica è: <b>".$NumeroPratica."</b>','".date('Y-m-d')."')";
                     $connessioneINS->query($sqlINS);            
 
 
