@@ -3,13 +3,7 @@
     Author     : paola.durelli
 */
 
-:root{
-  --bs-primary: #CD2D23;
-  --bs-primary-hls: hsl(4deg, 71%, 47%);
-  --bs-secondary: #F9AF12;
-  --btn-primary: #4e7e5b;
-  --btn-primary-hover: #3c6046;
-}
+@import "customize.css";
 
 /*------------------ GENERICI ----------------------*/
 .comment-forbidden, .comment-add{
@@ -138,6 +132,18 @@ main {
 .btn .icon {
   width: 21px;
   height: 21px;
+}
+
+#dc_pnl_metodi_pagamento .icon{
+    background-color: #FFFFFF!important;
+}
+
+#divButtons button {
+  float: right;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 200px;
 }
 
 .footer_show_more_menulista {

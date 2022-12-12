@@ -52,6 +52,9 @@
                                                             <a class="dropdown-item list-item" href="messaggi_list.php"><span>Notifiche</span></a>
                                                         </li>
                                                         <li>
+                                                            <a class="dropdown-item list-item" href="https://www.nuovoportale.proximalab.it/area-riservata"><span>Area Riservata</span></a>
+                                                        </li>
+                                                        <li>
                                                             <span class="divider"></span>
                                                         </li>
                                                         <li>

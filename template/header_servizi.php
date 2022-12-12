@@ -52,6 +52,9 @@
                                                             <a class="dropdown-item list-item" href="../messaggi_list.php"><span>Notifiche</span></a>
                                                         </li>
                                                         <li>
+                                                            <a class="dropdown-item list-item" href="https://www.nuovoportale.proximalab.it/area-riservata"><span>Area Riservata</span></a>
+                                                        </li>
+                                                        <li>
                                                             <span class="divider"></span>
                                                         </li>
                                                         <li>
@@ -86,8 +89,8 @@
                                     <a href="../bacheca.php" title="Home" rel="home">
                                         <img src="../media/images/logo.png" alt="Home" class="icon img-fluid">
                                         <div class="it-brand-text">
-                                            <h2 class="no_toc">Comune di <?php echo $configData['nome_comune']; ?> - <em>Servizi online</em></h2>
-                                            <p class="mb-0">Provincia di <?php echo $configData['provincia_estesa_comune']; ?></p>
+                                            <h2 class="no_toc">Comune di <?php echo $configData['nome_comune']; ?></h2>
+                                            <p class="mb-0">Servizi online</p>
                                         </div>
                                     </a>
                                 </div>

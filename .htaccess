@@ -1,0 +1,3 @@
+SetEnv PHPRC /home/customer/www/servizionline.thelabsupport.com/public_html/php.ini
+
+#php_flag display_errors off

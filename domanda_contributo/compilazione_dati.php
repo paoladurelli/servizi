@@ -82,13 +82,16 @@
 
                 $tipoPagamento_id = $row["tipoPagamento_id"];
 
-                $uploadPotereFirma = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadPotereFirma"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
-                
-                $tmpUploadDocumentazione1 = substr($row["uploadDocumentazione"],0,-1);
-                $tmpUploadDocumentaziones = explode(';', $tmpUploadDocumentazione1);
-                $uploadDocumentazione = "";
-                foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
-                    $uploadDocumentazione .= "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $tmpUploadDocumentazione ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
+                if($row["uploadPotereFirma"] != ''){
+                    $uploadPotereFirma = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadPotereFirma"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
+                }
+                if($row["uploadDocumentazione"] != ''){
+                    $tmpUploadDocumentazione1 = substr($row["uploadDocumentazione"],0,-1);
+                    $tmpUploadDocumentaziones = explode(';', $tmpUploadDocumentazione1);
+                    $uploadDocumentazione = "";
+                    foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
+                        $uploadDocumentazione .= "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $tmpUploadDocumentazione ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
+                    }
                 }
             }
         }
@@ -446,14 +449,10 @@
                             </div>
                             
                             <div class="row">
-                                <div class="col-lg-4 text-left-lg text-center mb-20">
-                                    <button type="button" id="dc_btn_back" class="btn btn-default"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</button>
-                                </div>
-                                <div class="col-lg-4 text-center mb-20">
-                                    <button type="button" id="dc_btn_salva_richiesta" name="dc_btn_salva_richiesta" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#SalvaRichiestaModal">Salva richiesta</button>
-                                </div>
-                                <div class="col-lg-4 text-right-lg text-center mb-20">
+                                <div class="col-12" id="divButtons">
                                     <button type="button" id="dc_btn_concludi_richiesta" name="dc_btn_concludi_richiesta" class="btn btn-primary">Avanti <svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
+                                    <button type="button" id="dc_btn_salva_richiesta" name="dc_btn_salva_richiesta" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#SalvaRichiestaModal">Salva richiesta</button>
+                                    <button type="button" id="dc_btn_back" class="btn btn-default"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</button>
                                 </div>
                             </div>
                         </div>

@@ -55,40 +55,45 @@ $data = [];
                 /* rinomino i file */
                 $upload_location = "../uploads/assegno_maternita/";
                 
-                $uploadCartaIdentitaFronte = $row["uploadCartaIdentitaFronte"];
-                $NewuploadCartaIdentitaFronte = str_replace("_bozza_","_".$NumeroPratica."_",$uploadCartaIdentitaFronte);
-                if (file_exists($upload_location.$uploadCartaIdentitaFronte)){
-                    $renamed= rename($upload_location.$uploadCartaIdentitaFronte,$upload_location.$NewuploadCartaIdentitaFronte);
-                }else{
-                    $data['error'] = "The original file that you want to rename doesn't exist";
+                if(!empty($row["uploadCartaIdentitaFronte"])){
+                    $uploadCartaIdentitaFronte = $row["uploadCartaIdentitaFronte"];
+                    $NewuploadCartaIdentitaFronte = str_replace("_bozza_","_".$NumeroPratica."_",$uploadCartaIdentitaFronte);
+                    if (file_exists($upload_location.$uploadCartaIdentitaFronte)){
+                        $renamed= rename($upload_location.$uploadCartaIdentitaFronte,$upload_location.$NewuploadCartaIdentitaFronte);
+                    }else{
+                        $data['error'] = "The original file that you want to rename doesn't exist";
+                    }
                 }
                 
-                
-                $uploadCartaIdentitaRetro = $row["uploadCartaIdentitaRetro"];
-                $NewuploadCartaIdentitaRetro = str_replace("_bozza_","_".$NumeroPratica."_",$uploadCartaIdentitaRetro);
-                if (file_exists($upload_location.$uploadCartaIdentitaRetro)){
-                    $renamed= rename($upload_location.$uploadCartaIdentitaRetro,$upload_location.$NewuploadCartaIdentitaRetro);
-                }else{
-                    $data['error'] = "The original file that you want to rename doesn't exist";
+                if(!empty($row["uploadCartaIdentitaRetro"])){
+                    $uploadCartaIdentitaRetro = $row["uploadCartaIdentitaRetro"];
+                    $NewuploadCartaIdentitaRetro = str_replace("_bozza_","_".$NumeroPratica."_",$uploadCartaIdentitaRetro);
+                    if (file_exists($upload_location.$uploadCartaIdentitaRetro)){
+                        $renamed= rename($upload_location.$uploadCartaIdentitaRetro,$upload_location.$NewuploadCartaIdentitaRetro);
+                    }else{
+                        $data['error'] = "The original file that you want to rename doesn't exist";
+                    }
                 }
 
-
-                $uploadTitoloSoggiorno = $row["uploadTitoloSoggiorno"];
-                $NewuploadTitoloSoggiorno = str_replace("_bozza_","_".$NumeroPratica."_",$uploadTitoloSoggiorno);
-                if (file_exists($upload_location.$uploadTitoloSoggiorno)){
-                    $renamed= rename($upload_location.$uploadTitoloSoggiorno,$upload_location.$NewuploadTitoloSoggiorno);
-                }else{
-                    $data['error'] = "The original file that you want to rename doesn't exist";
+                if(!empty($row["uploadTitoloSoggiorno"])){
+                    $uploadTitoloSoggiorno = $row["uploadTitoloSoggiorno"];
+                    $NewuploadTitoloSoggiorno = str_replace("_bozza_","_".$NumeroPratica."_",$uploadTitoloSoggiorno);
+                    if (file_exists($upload_location.$uploadTitoloSoggiorno)){
+                        $renamed= rename($upload_location.$uploadTitoloSoggiorno,$upload_location.$NewuploadTitoloSoggiorno);
+                    }else{
+                        $data['error'] = "The original file that you want to rename doesn't exist";
+                    }
                 }
 
-
-                $uploadDichiarazioneDatoreLavoro = $row["uploadDichiarazioneDatoreLavoro"];
-                $NewuploadDichiarazioneDatoreLavoro = str_replace("_bozza_","_".$NumeroPratica."_",$uploadDichiarazioneDatoreLavoro);
-                if (file_exists($upload_location.$uploadDichiarazioneDatoreLavoro)){
-                    $renamed= rename($upload_location.$uploadDichiarazioneDatoreLavoro,$upload_location.$NewuploadDichiarazioneDatoreLavoro);
-                }else{
-                    $data['error'] = "The original file that you want to rename doesn't exist";
-                }                
+                if(!empty($row["uploadDichiarazioneDatoreLavoro"])){
+                    $uploadDichiarazioneDatoreLavoro = $row["uploadDichiarazioneDatoreLavoro"];
+                    $NewuploadDichiarazioneDatoreLavoro = str_replace("_bozza_","_".$NumeroPratica."_",$uploadDichiarazioneDatoreLavoro);
+                    if (file_exists($upload_location.$uploadDichiarazioneDatoreLavoro)){
+                        $renamed= rename($upload_location.$uploadDichiarazioneDatoreLavoro,$upload_location.$NewuploadDichiarazioneDatoreLavoro);
+                    }else{
+                        $data['error'] = "The original file that you want to rename doesn't exist";
+                    }
+                }
                               
                 /* salvo tutti i dati in una riga nuova con status 2 */
                 $connessioneINS = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);

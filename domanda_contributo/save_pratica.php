@@ -51,36 +51,38 @@ $data = [];
 
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
-
+                
                 /* rinomino i file */
-                $uploadPotereFirma = $row["uploadPotereFirma"];
-                $NewuploadPotereFirma = str_replace("_bozza_","_".$NumeroPratica."_",$uploadPotereFirma);
-
                 $upload_location = "../uploads/domanda_contributo/";
-
-                if (file_exists($upload_location.$uploadPotereFirma)){
-                    $renamed= rename($upload_location.$uploadPotereFirma,$upload_location.$NewuploadPotereFirma);
-                }else{
-                    $data['error'] = "The original file that you want to rename doesn't exist";
-                }
-
-                $NewuploadDocumentazione = "";
-
-                $tmpUploadDocumentazione1 = substr($row["uploadDocumentazione"],0,-1);
-                $tmpUploadDocumentaziones = explode(';', $tmpUploadDocumentazione1);
-                $uploadDocumentazione = "";
-                foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
-                    $uploadDocumentazione = $tmpUploadDocumentazione;
-                    $NewuploadDocumentazioneTmp = str_replace("_bozza_","_".$NumeroPratica."_",$uploadDocumentazione);
-
-                    if (file_exists($upload_location.$uploadDocumentazione)){
-                        $renamed= rename($upload_location.$uploadDocumentazione,$upload_location.$NewuploadDocumentazioneTmp);
+                
+                if(!empty($row["uploadPotereFirma"])){
+                    $uploadPotereFirma = $row["uploadPotereFirma"];
+                    $NewuploadPotereFirma = str_replace("_bozza_","_".$NumeroPratica."_",$uploadPotereFirma);
+                    if (file_exists($upload_location.$uploadPotereFirma)){
+                        $renamed= rename($upload_location.$uploadPotereFirma,$upload_location.$NewuploadPotereFirma);
                     }else{
                         $data['error'] = "The original file that you want to rename doesn't exist";
-                    }
-                    $NewuploadDocumentazione .= $NewuploadDocumentazioneTmp.";";
+                    }                    
                 }
 
+
+                $NewuploadDocumentazione = "";
+                if(!empty($row["uploadDocumentazione"])){
+                    $tmpUploadDocumentazione1 = substr($row["uploadDocumentazione"],0,-1);
+                    $tmpUploadDocumentaziones = explode(';', $tmpUploadDocumentazione1);
+                    $uploadDocumentazione = "";
+                    foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
+                        $uploadDocumentazione = $tmpUploadDocumentazione;
+                        $NewuploadDocumentazioneTmp = str_replace("_bozza_","_".$NumeroPratica."_",$uploadDocumentazione);
+
+                        if (file_exists($upload_location.$uploadDocumentazione)){
+                            $renamed= rename($upload_location.$uploadDocumentazione,$upload_location.$NewuploadDocumentazioneTmp);
+                        }else{
+                            $data['error'] = "The original file that you want to rename doesn't exist";
+                        }
+                        $NewuploadDocumentazione .= $NewuploadDocumentazioneTmp.";";
+                    }
+                }
                 $data['pratica'] = $NewuploadDocumentazione;
 
                 /* salvo tutti i dati in una riga nuova con status 2 */
