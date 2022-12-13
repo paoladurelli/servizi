@@ -12,7 +12,7 @@
     <main>
         <div class="container" id="main-container">
             <div class="row justify-content-center">
-                <div class="col-12 col-lg-10">
+                <div class="col-12">
                     <div class="cmp-breadcrumbs" role="navigation">
                         <nav class="breadcrumb-container">
                             <ol class="breadcrumb p-0" data-element="breadcrumb">
@@ -27,39 +27,179 @@
                         <p class="subtitle-small">CF: <?php echo $_SESSION['CF']; ?></p>
                     </div>
                 </div>
-                <div class="col-12 col-lg-10 menu-servizi">
-                    <div class="container mb-4 mb-lg-5 mt-lg-4">
+                <div class="col-12 p-0 menu-servizi">
+                    <div class="cmp-nav-tab mb-4 mb-lg-5 mt-lg-4">
                         <div class="row">
-                            <div class="col-lg-3">INFORMATIVA SULLA PRIVACY</div>
-                            <div class="col-lg-3">COMPILAZIONE DATI</div>
-                            <div class="col-lg-3">TERMINI E CONDIZIONI</div>
-                            <div class="col-lg-3"><span class="active"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right-circle"></use></svg>RIEPILOGO</span></div>
+                            <div class="col-lg-3 text-center">INFORMATIVA SULLA PRIVACY</div>
+                            <div class="col-lg-3 text-center">COMPILAZIONE DATI</div>
+                            <div class="col-lg-3 text-center">TERMINI E CONDIZIONI</div>
+                            <div class="col-lg-3 text-center"><span class="active"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right-circle"></use></svg>RIEPILOGO</span></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="container">
+            <div class="it-page-sections-container">
                 <div class="row">
-                    <div class="col-12">
-                        <div class="it-page-section mb-40 mb-lg-60">
+                    <div class="col-12 col-lg-3 d-lg-block mb-4 d-none">
+                        <div class="cmp-navscroll sticky-top" aria-labelledby="accordion-title-one">
+                            <nav class="navbar it-navscroll-wrapper navbar-expand-lg" data-bs-navscroll>
+                                <div class="navbar-custom" id="navbarNavProgress">
+                                    <div class="menu-wrapper">
+                                        <div class="link-list-wrapper">
+                                            <div class="accordion">
+                                                <div class="accordion-item">
+                                                    <span class="accordion-header" id="accordion-title-one">
+                                                        <button class="accordion-button pb-10 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-one" aria-expanded="true" aria-controls="collapse-one">
+                                                            INDICE DI PAGINA
+                                                            <svg class="icon icon-xs right">
+                                                                <use href="../lib/svg/sprites.svg#it-expand"></use>
+                                                            </svg>
+                                                        </button>
+                                                    </span>
+                                                    <div class="progress">
+                                                        <div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <div id="collapse-one" class="accordion-collapse collapse show" role="region" aria-labelledby="accordion-title-one">
+                                                        <div class="accordion-body">
+                                                            <ul class="link-list" data-element="page-index">
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link" href="#dc_stato_richiesta">
+                                                                        <span class="title-medium">Stato richiesta</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link" href="#dc_scarica_ricevuta">
+                                                                        <span class="title-medium">Scarica Ricevuta</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link" href="#dc_prossimi_passi">
+                                                                        <span class="title-medium">Prossimi passi</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link" href="#dc_area_riservata">
+                                                                        <span class="title-medium">Area Riservata</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-9 body-riepilogo">
+                        <div class="it-page-section mb-50 mb-lg-90" id="dc_stato_richiesta">
                             <div class="cmp-card">
                                 <div class="card">
-                                    <div class="card-body p-0">
-                                        <div class="text-center">
-                                            <h5>Richiesta inviata</h5>
-                                            <p>Grazie, abbiamo ricevuto la tua richiesta per la pratica <b><?php echo $_GET['pratican']; ?> domanda di contributo economico.</b></p>
-                                            <p>Inviato il: <b><?php echo date("d-m-Y"); ?></b></p>
-                                            <p>&nbsp;</p>
-                                            <p>Abbiamo inviato il riepilogo all'email: <b><?php echo $_SESSION["Email"]; ?></b></p>
-                                            <form action="../lib/tcpdf/TCPDF-master/examples/dc_pdf_pratica.php" method="POST" id="dc_frm_download_pdf" name="dc_frm_download_pdf">
-                                                <input type="hidden" name="dc_download_pdf_id" id="dc_download_pdf_id" value="<?php echo $_GET['praticai']; ?>" />
-                                                <input type="hidden" name="dc_download_pdf_pratica" id="dc_download_pdf_pratica" value="<?php echo $_GET['pratican']; ?>" />
-                                                <p class="mt-5"><button type="submit" class="btn btn-primary" id="dc_download_pdf" name="dc_download_pdf" href="#">Scarica la ricevuta in PDF</button></p>
-                                            </form>
-                                            <p>&nbsp;</p>
-                                            <h5>Prossimi passi</h5>
-                                            <p>Esito richiesta</p>
-                                            <p><a href="dettaglio.php?dc_pratica_id=<?php echo $_GET['praticai']; ?>">Consulta la richiesta</a> nella tua area riservata.</p>
+                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                        <div>
+                                            <h2 class="title-xxlarge mb-3">Stato richiesta</h2>
+                                        </div>
+                                    </div>
+                                    <div class="card-body" style="margin-bottom:40px;">
+                                        <div class="row">
+                                            <div class="col-lg-12"><h5 class="color-primary"><b>Richiesta inviata correttamente</b></h5></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <p>Abbiamo ricevuto la tua richiesta per la pratica:<br/><b><?php echo $_GET['pratican']; ?> domanda di contributo economico.</b></p>
+                                                <p>Inviata il: <b><?php echo date("d-m-Y"); ?></b></p>
+                                                <p>Troverai il riepilogo nella tua e-mail: <b><?php echo $_SESSION["Email"]; ?></b></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="it-page-section mb-50 mb-lg-90" id="dc_scarica_ricevuta">
+                            <div class="cmp-card">
+                                <div class="card">
+                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                        <div>
+                                            <h2 class="title-xxlarge mb-3">Scarica la ricevuta</h2>
+                                        </div>
+                                    </div>
+                                    <div class="card-body" style="margin-bottom:40px;">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <form action="../lib/tcpdf/TCPDF-master/examples/dc_pdf_pratica.php" method="POST" id="dc_frm_download_pdf" name="dc_frm_download_pdf">
+                                                    <input type="hidden" name="dc_download_pdf_id" id="dc_download_pdf_id" value="<?php echo $_GET['praticai']; ?>" />
+                                                    <input type="hidden" name="dc_download_pdf_pratica" id="dc_download_pdf_pratica" value="<?php echo $_GET['pratican']; ?>" />
+                                                    <p class="mt-5 text-center"><button type="submit" class="btn btn-primary" id="dc_download_pdf" name="dc_download_pdf" href="#">Scarica la ricevuta in PDF</button></p>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>          
+                        </div>
+                        <div class="it-page-section mb-50 mb-lg-90" id="dc_prossimi_passi">
+                            <div class="cmp-card">
+                                <div class="card">
+                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                        <div>
+                                            <h2 class="title-xxlarge mb-3">Prossimi passi</h2>
+                                        </div>
+                                    </div>
+                                    <div class="card-body" style="margin-bottom:40px;">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="row stepper mb0">
+                                                    <div class="offset-md-1 col-md-11">
+                                                        <div class="step">
+                                                            <div class="date-step">
+                                                                <span class="date-step-giorno"><?php echo date("d"); ?></span><br>
+                                                                <span class="date-step-mese"><?php echo date("M/Y"); ?></span>
+                                                                <span class="pallino"></span>
+                                                            </div>
+                                                            <div class="testo-step">
+                                                                <div class="scheda-gestione">
+                                                                    <p>Data invio richiesta</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <?php $Date = date('Y-m-d'); ?>
+
+                                                        <div class="step">
+                                                            <div class="date-step">
+                                                                <span class="date-step-giorno"><?php echo date('d', strtotime($Date. ' + 10 days')); ?></span><br>
+                                                                <span class="date-step-mese"><?php echo date('M/Y', strtotime($Date. ' + 10 days')); ?></span>
+                                                                <span class="pallino"></span>
+                                                            </div>
+                                                            <div class="testo-step">
+                                                                <div class="scheda-gestione">
+                                                                    <p>Data esito richiesta</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="it-page-section mb-50 mb-lg-90" id="dc_area_riservata">
+                            <div class="cmp-card">
+                                <div class="card">
+                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                        <div>
+                                            <h2 class="title-xxlarge mb-3">Area riservata</h2>
+                                        </div>
+                                    </div>
+                                    <div class="card-body" style="margin-bottom:40px;">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <p><a href="dettaglio.php?dc_pratica_id=<?php echo $_GET['praticai']; ?>">Consulta la richiesta</a> nella tua area riservata.</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -75,10 +215,10 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title h5 no_toc" id="SalvaRichiestaModalTitle">Salva la richiesta in corso</h2>
+                    <h2 class="modal-title h5 no_toc" id="ElaborazioneRichiestaTitle">Salvataggio della richiesta in corso</h2>
                 </div>
                 <div class="modal-body">
-                    <p>Stiamo elaborando la tua richiesta.</p>                    
+                    <p>Stiamo elaborando la tua richiesta.</p>
                 </div>
             </div>
         </div>

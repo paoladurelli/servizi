@@ -222,7 +222,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-8 offset-lg-1 body-compilazione-dati">
+                        <div class="col-12 col-lg-9 body-compilazione-dati">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div id="am_frm_dati_pnl_return"></div>

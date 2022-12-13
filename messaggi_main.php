@@ -10,15 +10,17 @@
         while($row = $result->fetch_assoc()) {
             $date = date_create($row["data_msg"]);
             
-            echo '<div class="card shadow-sm mb-3 px-4 pt-4 pb-4">
-                <div class="card-header border-0 p-0 m-0">
-                    <date class="date-xsmall">'.date_format($date,"d/m/Y").'</date>
+            echo '<div class="col-lg-6">
+                <div class="card shadow-sm mb-4 px-4 pt-4 pb-4">
+                    <div class="card-header border-0 p-0 m-0">
+                        <date class="date-xsmall">'.date_format($date,"d/m/Y").'</date>
+                    </div>
+                    <div class="card-body p-0 my-2">
+                        <h3 class="title-small-semi-bold t-primary m-0 mb-1">'.$row["NomeServizio"].'</h3>
+                        <p class="text-paragraph text-truncate">'.$row["testo"].'</p>
+                    </div>
                 </div>
-                <div class="card-body p-0 my-2">
-                    <h3 class="title-small-semi-bold t-primary m-0 mb-1">'.$row["NomeServizio"].'</h3>
-                    <p class="text-paragraph text-truncate">'.$row["testo"].'</p>
-                </div>
-                </div>';
+            </div>';
         }
     } else {
         echo "Nessun messaggio presente";

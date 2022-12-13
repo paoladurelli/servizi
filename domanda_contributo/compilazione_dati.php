@@ -139,7 +139,7 @@
                         <p>Hai bisogno di assistenza? <a href="mailto:<?php echo $configData['pec_comune']; ?>">Contattaci</a></p>
                     </div>
                 </div>
-                <div class="col-12 p-0  menu-servizi">
+                <div class="col-12 p-0 menu-servizi">
                     <div class="cmp-nav-tab mb-4 mb-lg-5 mt-lg-4">
                         <div class="row">
                             <div class="col-lg-3 text-center">INFORMATIVA SULLA PRIVACY</div>
@@ -213,7 +213,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-8 offset-lg-1 body-compilazione-dati">
+                        <div class="col-12 col-lg-9 body-compilazione-dati">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div id="dc_frm_dati_pnl_return"></div>

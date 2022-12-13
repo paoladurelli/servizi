@@ -176,7 +176,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-lg-8 offset-lg-1 body-compilazione-dati">
+                    <div class="col-12 col-lg-9 body-compilazione-dati">
                         <div class="row">
                             <div class="col-12 p-0  menu-servizi">
                                 <div class="cmp-nav-tab mb-4 mb-lg-5 mt-lg-4">

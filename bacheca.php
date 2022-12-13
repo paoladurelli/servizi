@@ -111,7 +111,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-lg-8 offset-lg-1">
+                    <div class="col-12 col-lg-9">
                         <div class="it-page-section mb-40 mb-lg-60" id="latest-posts">
                             <div class="cmp-card">
                                 <div class="card">
@@ -121,7 +121,9 @@
                                         </div>
                                     </div>
                                     <div class="card-body p-0">
-                                        <?php include 'messaggi_bacheca.php'; ?>
+                                        <div class="row">
+                                            <?php include 'messaggi_bacheca.php'; ?>
+                                        </div>
                                         <button type="button" class="btn btn-xs btn-me btn-label t-primary px-0">
                                             <a href="messaggi_list.php">
                                                 Vedi altri messaggi
@@ -141,7 +143,9 @@
                                         </div>
                                     </div>
                                     <div class="card-body p-0">
-                                        <?php include 'attivita_bacheca.php'; ?>
+                                        <div class="row">
+                                            <?php include 'attivita_bacheca.php'; ?>
+                                        </div>
                                         <button type="button" class="btn btn-xs btn-me btn-label t-primary px-0">
                                             <a href="attivita_list.php">
                                                 <span class="">Vedi altre attività</span>

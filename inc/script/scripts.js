@@ -157,11 +157,21 @@ $(document).ready(function () {
         $('#dc_uploadPotereFirma_file').empty();
         let fileName = e.target.files[0].name;
         var _size = e.target.files[0].size;
-        var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
-        i=0;while(_size>900){_size/=1024;i++;}
-        var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
-        let fileSize = exactSize;
-        $('#dc_uploadPotereFirma_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+        var maxFileSize = 500;
+        var checkSize = parseFloat(_size / 1024).toFixed(2);
+         //Check if the file size is less than maximum file size
+        if (checkSize < maxFileSize) {
+            var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
+            i=0;while(_size>900){_size/=1024;i++;}
+            var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
+            let fileSize = exactSize;
+            $('#dc_uploadPotereFirma_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+             return true;
+        } else {
+             alert('Il file deve pesare al massimo 500 Kb');
+             $('#dc_uploadPotereFirma').val('');
+             return false;
+        }        
     });
 
     $('#dc_uploadDocumentazione').change(function(e) {
@@ -171,11 +181,21 @@ $(document).ready(function () {
         for (var index = 0; index < totalfiles; index++) {
             let fileName = e.target.files[index].name;
             var _size = e.target.files[index].size;
-            var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
-            i=0;while(_size>900){_size/=1024;i++;}
-            var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
-            let fileSize = exactSize;
-            $('#dc_uploadDocumentazione_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+            var maxFileSize = 500;
+            var checkSize = parseFloat(_size / 1024).toFixed(2);
+             //Check if the file size is less than maximum file size
+            if (checkSize < maxFileSize) {
+                var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
+                i=0;while(_size>900){_size/=1024;i++;}
+                var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
+                let fileSize = exactSize;
+                $('#dc_uploadDocumentazione_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+                return true;
+            } else {
+                 alert('Il file deve pesare al massimo 500 Kb');
+                 $('#dc_uploadDocumentazione').val('');
+                 return false;
+            }                
         }
     });    
 
@@ -212,7 +232,6 @@ $(document).ready(function () {
             contentType: false,
             success: function (data)
             {
-                /*console.log(data);*/
                 window.location.href = '../attivita_list.php';
             },
             error: function (desc)
@@ -306,7 +325,6 @@ $(document).ready(function () {
             contentType: false
         }).done(function (data) {
             if (!data.success) {
-                console.log(data.errors);
                 $("#dc_frm_dati_pnl_return").empty();
                 $("#dc_frm_dati_pnl_return").append(
                     "<div style='color: var(--bs-orange);'>ATTENZIONE</div>"
@@ -474,7 +492,7 @@ $(document).ready(function () {
         formData = new FormData();
         formParams = form.serializeArray();
 
-        $.each(formParams, function(i, val) {
+        $.each(formParams, function(val) {
             formData.append(val.name, val.value);
         });
         
@@ -593,7 +611,6 @@ $(document).ready(function () {
 
     $("input[name$='am_DichiarazioneCittadinanza']").change(function() {
         var test = $(this).val();
-        console.log(test);
         if(test == "E"){
             $("#am_DichiarazioneSoggiorno").show(300);
         }else{
@@ -612,44 +629,85 @@ $(document).ready(function () {
     /* script inerenti gli upload dei documenti */
     $('#am_uploadCartaIdentitaFronte').change(function(e) {
         $('#am_uploadCartaIdentitaFronte_file').empty();
-        console.log("passo");
         let fileName = e.target.files[0].name;
         var _size = e.target.files[0].size;
-        var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
-        i=0;while(_size>900){_size/=1024;i++;}
-        var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
-        let fileSize = exactSize;
-        $('#am_uploadCartaIdentitaFronte_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+        var maxFileSize = 500;
+        var checkSize = parseFloat(_size / 1024).toFixed(2);
+         //Check if the file size is less than maximum file size
+        if (checkSize < maxFileSize) {
+            var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
+            i=0;while(_size>900){_size/=1024;i++;}
+            var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
+            let fileSize = exactSize;
+            $('#am_uploadCartaIdentitaFronte_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+             return true;
+        } else {
+             alert('Il file deve pesare al massimo 500 Kb');
+             $('#am_uploadCartaIdentitaFronte').val('');
+             return false;
+        }
     });
+    
     $('#am_uploadCartaIdentitaRetro').change(function(e) {
         $('#am_uploadCartaIdentitaRetro_file').empty();
         let fileName = e.target.files[0].name;
         var _size = e.target.files[0].size;
-        var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
-        i=0;while(_size>900){_size/=1024;i++;}
-        var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
-        let fileSize = exactSize;
-        $('#am_uploadCartaIdentitaRetro_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+        var maxFileSize = 500;
+        var checkSize = parseFloat(_size / 1024).toFixed(2);
+         //Check if the file size is less than maximum file size
+        if (checkSize < maxFileSize) {
+            var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
+            i=0;while(_size>900){_size/=1024;i++;}
+            var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
+            let fileSize = exactSize;
+            $('#am_uploadCartaIdentitaRetro_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+            return true;
+        } else {
+             alert('Il file deve pesare al massimo 500 Kb');
+             $('#am_uploadCartaIdentitaRetro').val('');
+             return false;
+        }
     });
+    
     $('#am_uploadTitoloSoggiorno').change(function(e) {
         $('#am_uploadTitoloSoggiorno_file').empty();
         let fileName = e.target.files[0].name;
         var _size = e.target.files[0].size;
-        var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
-        i=0;while(_size>900){_size/=1024;i++;}
-        var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
-        let fileSize = exactSize;
-        $('#am_uploadTitoloSoggiorno').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+        var maxFileSize = 500;
+        var checkSize = parseFloat(_size / 1024).toFixed(2);
+         //Check if the file size is less than maximum file size
+        if (checkSize < maxFileSize) {
+            var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
+            i=0;while(_size>900){_size/=1024;i++;}
+            var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
+            let fileSize = exactSize;
+            $('#am_uploadTitoloSoggiorno_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+            return true;
+        } else {
+             alert('Il file deve pesare al massimo 500 Kb');
+             $('#am_uploadTitoloSoggiorno').val('');
+             return false;
+        }
     });
     $('#am_uploadDichiarazioneDatoreLavoro').change(function(e) {
         $('am_uploadDichiarazioneDatoreLavoro_file').empty();
         let fileName = e.target.files[0].name;
         var _size = e.target.files[0].size;
-        var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
-        i=0;while(_size>900){_size/=1024;i++;}
-        var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
-        let fileSize = exactSize;
-        $('#am_uploadDichiarazioneDatoreLavoro').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+        var maxFileSize = 500;
+        var checkSize = parseFloat(_size / 1024).toFixed(2);
+         //Check if the file size is less than maximum file size
+        if (checkSize < maxFileSize) {
+            var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
+            i=0;while(_size>900){_size/=1024;i++;}
+            var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
+            let fileSize = exactSize;
+            $('#am_uploadDichiarazioneDatoreLavoro_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+            return true;
+        } else {
+             alert('Il file deve pesare al massimo 500 Kb');
+             $('#am_uploadDichiarazioneDatoreLavoro').val('');
+             return false;
+        }
     });
 
     /* script inerenti le tre action del form principale */
@@ -685,7 +743,6 @@ $(document).ready(function () {
             contentType: false,
             success: function (data)
             {
-                /*console.log(data);*/
                 window.location.href = '../attivita_list.php';
             },
             error: function (desc)

@@ -111,9 +111,11 @@
                             </nav>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-8 offset-lg-1 body-attivita">
+                    <div class="col-12 col-lg-9 body-attivita">
                         <div class="it-page-section mb-50 mb-lg-90" id="pratiche">
-                            <?php include 'attivita_main.php'; ?>
+                            <div class="row">
+                                <?php include 'attivita_main.php'; ?>
+                            </div>
                         </div>
                     </div>
                 </div>

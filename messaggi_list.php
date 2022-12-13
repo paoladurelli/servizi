@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </div>
-            <div class="it-page-sections-container">
+            <div class="it-page-sections-container row">
                 <?php include 'messaggi_main.php'; ?>
             </div>
         </div>
