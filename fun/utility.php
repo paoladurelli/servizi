@@ -300,7 +300,7 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                     $returnText = "";
 
                     if(($rowVTABI['uploadCartaIdentitaFronte'] != "" || $rowVTABI['uploadCartaIdentitaFronte'] != NULL) || ($rowVTABI['uploadCartaIdentitaRetro'] != "" || $rowVTABI['uploadCartaIdentitaRetro'] != NULL) || ($rowVTABI['uploadTitoloSoggiorno'] != "" || $rowVTABI['uploadTitoloSoggiorno'] != NULL) || ($rowVTABI['uploadDichiarazioneDatoreLavoro'] != "" || $rowVTABI['uploadDichiarazioneDatoreLavoro'] != NULL)){
-                        $returnText = "<p class='text-allegati-xsmall'>ALLEGATI</p>";
+                        $returnText = "<div class='col-lg-12 mb-30'><p class='text-allegati-xsmall'>ALLEGATI</p>";
                     }
                     
                     
@@ -356,7 +356,12 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                         }
                     }
 
+                    if(($rowVTABI['uploadCartaIdentitaFronte'] != "" || $rowVTABI['uploadCartaIdentitaFronte'] != NULL) || ($rowVTABI['uploadCartaIdentitaRetro'] != "" || $rowVTABI['uploadCartaIdentitaRetro'] != NULL) || ($rowVTABI['uploadTitoloSoggiorno'] != "" || $rowVTABI['uploadTitoloSoggiorno'] != NULL) || ($rowVTABI['uploadDichiarazioneDatoreLavoro'] != "" || $rowVTABI['uploadDichiarazioneDatoreLavoro'] != NULL)){
+                        $returnText .= "</div>";
+                    }
+                    
                 }
+                
                 return $returnText;
             }
             $connessioneVTABI->close();
@@ -372,7 +377,7 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                     $returnText = "";
                     
                     if(($rowVTABI['uploadPotereFirma'] != "" || $rowVTABI['uploadPotereFirma'] != NULL) || ($rowVTABI['uploadDocumentazione'] != "" || $rowVTABI['uploadDocumentazione'] != NULL)){
-                        $returnText .= "<p class='text-allegati-xsmall'>ALLEGATI</p>";
+                        $returnText .= "<div class='col-lg-12 mb-30'><p class='text-allegati-xsmall'>ALLEGATI</p>";
                     }
                     
                     /* potere firma */
@@ -404,6 +409,9 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                             }
                         }
                     }
+                    if(($rowVTABI['uploadPotereFirma'] != "" || $rowVTABI['uploadPotereFirma'] != NULL) || ($rowVTABI['uploadDocumentazione'] != "" || $rowVTABI['uploadDocumentazione'] != NULL)){
+                        $returnText .= "</div>";
+                    }
                 }
                 return $returnText;
             }
@@ -416,21 +424,21 @@ function DownloadRicevutaById($ServizioId,$PraticaId){
     switch($ServizioId) {
         case 9: 
             /* assegno_maternita */
-            return '<p class="text-allegati-xsmall">RICEVUTA</p>
+            return '<div class="col-lg-12 mb-30"><p class="text-allegati-xsmall">RICEVUTA</p>
             <form action="./lib/tcpdf/TCPDF-master/examples/am_pdf_pratica.php" method="POST" id="am_frm_download_pdf" name="am_frm_download_pdf">
                 <input type="hidden" name="am_download_pdf_id" id="am_download_pdf_id" value="'.$PraticaId.'" />
                 <input type="hidden" name="am_download_pdf_pratica" id="am_download_pdf_pratica" value="'.NumeroPraticaById($ServizioId,$PraticaId).'" />
                 <input type="image" name="submit" src="./media/images/icons/pdf.png" border="0" alt="Submit" class="thumb-view" />
-            </form>';
+            </form></div>';
             break;
         case 11:
             /* domanda_contributo */
-            return '<p class="text-allegati-xsmall">RICEVUTA</p>
+            return '<div class="col-lg-12 mb-30"><p class="text-allegati-xsmall">RICEVUTA</p>
             <form action="./lib/tcpdf/TCPDF-master/examples/dc_pdf_pratica.php" method="POST" id="dc_frm_download_pdf" name="dc_frm_download_pdf">
                 <input type="hidden" name="dc_download_pdf_id" id="dc_download_pdf_id" value="'.$PraticaId.'" />
                 <input type="hidden" name="dc_download_pdf_pratica" id="dc_download_pdf_pratica" value="'.NumeroPraticaById($ServizioId,$PraticaId).'" />
                 <input type="image" name="submit" src="./media/images/icons/pdf.png" border="0" alt="Submit" class="thumb-view" />
-            </form>';
+            </form></div>';
             break;
     }                              
 }

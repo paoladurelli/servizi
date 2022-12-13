@@ -12,7 +12,7 @@
         while($row = $result->fetch_assoc()) {
             $date = date_create($row["data_attivita"]);
             if($row['StatusId'] != "0" || (NumeroPraticaById($row["ServizioId"],$row["pratica_id"]) != '')){
-                echo '<div class="col-lg-6">
+                echo '<div class="col-lg-12">
                     <div class="cmp-card-latest-messages mb-4">
                         <div class="card shadow-sm px-4 pt-4 pb-4">
                             <div class="card-header border-0 p-0 m-0">
@@ -29,19 +29,15 @@
                             </div>
                             <div class="card-body p-0 my-2">
                                 <div class="row">
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-8">
                                         '.CfAltroByPraticaId($row['ServizioId'],$row["pratica_id"]).
                                         '<p class="text-paragraph">Numero Pratica: '.NumeroPraticaById($row["ServizioId"],$row["pratica_id"]).'</p>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        '.ViewThumbAllegatiById($row["ServizioId"],$row["pratica_id"]).'
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        '.DownloadRicevutaById($row["ServizioId"],$row["pratica_id"]).'
+                                    <div class="col-lg-4">
+                                        <div class="row">
+                                            '.ViewThumbAllegatiById($row["ServizioId"],$row["pratica_id"]).'
+                                            '.DownloadRicevutaById($row["ServizioId"],$row["pratica_id"]).'
+                                        </div>
                                     </div>
                                 </div>
                             </div>
