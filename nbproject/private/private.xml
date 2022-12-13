@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>attivita_main.php</url>
+            <bookmark id="1">
+                <name/>
+                <line>32</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/xampp/htdocs/servizi/assegno_maternita/riepilogo.php</file>
+            <file>file:/C:/xampp/htdocs/servizi/attivita_bacheca.php</file>
+            <file>file:/C:/xampp/htdocs/servizi/inc/css/style.css</file>
+            <file>file:/C:/xampp/htdocs/servizi/attivita_main.php</file>
+            <file>file:/C:/xampp/htdocs/servizi/domanda_contributo/dettaglio.php</file>
+            <file>file:/C:/xampp/htdocs/servizi/fun/utility.php</file>
+            <file>file:/C:/xampp/htdocs/servizi/bacheca.php</file>
+            <file>file:/C:/xampp/htdocs/servizi/attivita_list.php</file>
+        </group>
     </open-files>
 </project-private>
