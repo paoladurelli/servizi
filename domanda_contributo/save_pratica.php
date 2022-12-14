@@ -55,6 +55,7 @@ $data = [];
                 /* rinomino i file */
                 $upload_location = "../uploads/domanda_contributo/";
                 
+                $NewuploadPotereFirma = "";
                 if(!empty($row["uploadPotereFirma"])){
                     $uploadPotereFirma = $row["uploadPotereFirma"];
                     $NewuploadPotereFirma = str_replace("_bozza_","_".$NumeroPratica."_",$uploadPotereFirma);

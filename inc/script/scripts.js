@@ -492,9 +492,11 @@ $(document).ready(function () {
         formData = new FormData();
         formParams = form.serializeArray();
 
-        $.each(formParams, function(val) {
+        $.each(formParams, function(i,val) {
             formData.append(val.name, val.value);
         });
+        
+        console.log(formData);
         
         /* prendo la pratica e inserisco il numero che genero e lo inserisco anche nella riga con status bozza */
         $.ajax({

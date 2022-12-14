@@ -5,17 +5,12 @@
             <url>attivita_main.php</url>
             <bookmark id="1">
                 <name/>
-                <line>49</line>
+                <line>54</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/xampp/htdocs/servizi/lib/tcpdf/TCPDF-master/examples/am_pdf_comune.php</file>
-            <file>file:/C:/xampp/htdocs/servizi/domanda_contributo/save_pratica.php</file>
-            <file>file:/C:/xampp/htdocs/servizi/lib/tcpdf/TCPDF-master/examples/dc_pdf_comune.php</file>
-            <file>file:/C:/xampp/htdocs/servizi/assegno_maternita/test.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
