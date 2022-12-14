@@ -2,7 +2,11 @@
     $configDB = require './env/config.php';
     $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
     
-    $sql = "CALL View_messaggi('".$_SESSION['CF']."')";
+    $sql = "SELECT messaggi.id as messaggi_id, messaggi.testo, messaggi.data_msg, servizi.NomeServizio as NomeServizio FROM messaggi
+            LEFT JOIN servizi ON messaggi.servizio_id = servizi.id 
+            WHERE messaggi.CF_to = '".$_SESSION['CF']."'
+            ORDER BY messaggi.data_msg DESC, messaggi.id DESC";
+
     $result = $connessione->query($sql);
    
     if ($result->num_rows > 0) {

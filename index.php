@@ -14,7 +14,7 @@ if (!empty(trim($_SESSION["CF"]))){
 /* mi connetto al DB per vedere se il codice fiscale è già presente nell'anagrafica */
     $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
 
-    $sql = "SELECT * FROM anagrafica WHERE CodiceFiscale='GCFLGA52M15F244X'";
+    $sql = "SELECT * FROM anagrafica WHERE CodiceFiscale='DRLPLA80S48L400S'";
     $result = $connessione->query($sql);
 
     if ($result->num_rows > 0) {

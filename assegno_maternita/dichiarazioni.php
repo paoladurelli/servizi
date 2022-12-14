@@ -66,7 +66,7 @@
                             <button type="button" class="btn btn-default"><a href="compilazione_dati.php"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a></button>
                         </div>
                         <div class="col-lg-6 text-right-lg text-center mb-20">
-                            <form method="POST" action="#" name="dc_conferma_invia" id="dc_conferma_invia">
+                            <form method="POST" action="#" name="am_conferma_invia" id="am_conferma_invia">
                                 <input type="hidden" name="pratican" id="pratican" value="<?php echo $_GET['pratican']; ?>" />
                                 <button type="button" class="btn btn-primary">Conferma e invia <svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
                             </form>
@@ -75,5 +75,18 @@
             </div>
         </div>
     </main>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="ElaborazioneRichiestaModal" aria-labelledby="ElaborazioneRichiestaTitle">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title h5 no_toc" id="ElaborazioneRichiestaTitle">Salvataggio della richiesta in corso</h2>
+                </div>
+                <div class="modal-body mb-30">
+                    <p>Stiamo elaborando la tua richiesta.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <?php include '../template/footer_servizi.php'; 

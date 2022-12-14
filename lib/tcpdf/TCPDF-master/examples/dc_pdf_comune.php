@@ -19,8 +19,6 @@ function MetodoPagamentoById($Pagamento_id){
     $connessioneNMPBI->close();
 }
 
-session_start();
-
 /* con l'id vado a richiamare i dati salvati */
     if(isset($new_id) && $new_id<>''){
         /* DATI ESTRAPOLATI DA DB - start */ 
@@ -36,7 +34,7 @@ session_start();
                 $nome = $row["richiedenteNome"];
                 $cognome = $row["richiedenteCognome"];
                 $email = $row["richiedenteEmail"];
-                $datanascita = $row["richiedenteDataNascita"];
+                $datanascita = date("d/m/Y", strtotime($row["richiedenteDataNascita"]));
                 $luogonascita = $row["richiedenteLuogoNascita"];
                 $richiedenteVia = $row["richiedenteVia"];
                 $richiedenteLocalita = $row["richiedenteLocalita"];
@@ -46,7 +44,7 @@ session_start();
                 $beneficiarioNome = $row["beneficiarioNome"];
                 $beneficiarioCognome = $row["beneficiarioCognome"];
                 $beneficiarioCf = $row["beneficiarioCf"];
-                $beneficiarioDataNascita = $row["beneficiarioDataNascita"];
+                $beneficiarioDataNascita = date("d/m/Y", strtotime($row["beneficiarioDataNascita"]));
                 $beneficiarioLuogoNascita = $row["beneficiarioLuogoNascita"];
                 $beneficiarioVia = $row["beneficiarioVia"];
                 $beneficiarioLocalita = $row["beneficiarioLocalita"];
@@ -77,7 +75,6 @@ class MYPDF extends TCPDF {
         // Logo
         $image_file = K_PATH_IMAGES.'header_pdf.jpg';
         $this->Image($image_file, 10, 10, 185, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-        // Set font
     }
 
     // Page footer
@@ -89,8 +86,6 @@ class MYPDF extends TCPDF {
         $this->SetFont('helvetica','I',8);
         $footer_text = "<table style='width: 100%;'><tr><td style='text-align: center;'>Cap.".$configData['cap_comune']." – ".$configData['indirizzo_comune']." – ".$configData['CFPIVA_comune']."<br>Tel ". $configData['tel_comune'] ." - PEC: ". $configData['pec_comune'] ."<br>". $configData['url_comune'] ." – e-mail: " . $configData['mail_comune'] ."</td></tr></table>";
         $this->writeHTML($footer_text, false, true, false, true); 
-        
-        /*$this->Cell(0,10,$footer_text,0,false,'C',0,'',0,false,'T','M');*/
     }
 }
     
@@ -206,9 +201,9 @@ $html = <<<EOD
     </tr>
     <tr>
         <td style="padding: 12px 10px;">
-            <p>Il sottoscritto/a <b>$nome $cognome</b></p>
+            <p>Il sottoscritto/a <b>$cognome $nome</b></p>
             <p>nato/a a <b>$luogonascita</b> il <b>$datanascita</b>  C.F. <b>$cf</b></p>
-            <p>residente a <b>$richiedenteLocalita - $richiedenteProvincia</b> in via <b>$richiedenteVia</b></p>
+            <p>residente a <b>$richiedenteLocalita - $richiedenteProvincia</b> in <b>$richiedenteVia</b></p>
             <p>tel./tell. <b>$richiedenteTel</b> e- mail <b>$email</b></p>
             <p>$qualita</p>
         </td>

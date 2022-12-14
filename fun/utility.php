@@ -115,6 +115,22 @@ function isValidIBAN($iban)
     return false;
 }
 
+function isValidCarta($carta)
+{
+    if(strlen($carta) < 5) return false;
+    $carta = strtolower(str_replace(' ','',$carta));
+
+    if (strlen($carta) == 16) {
+        return true;
+    }
+    
+    if(is_numeric($carta)){
+        return true;
+    }
+    
+    return false;
+}
+
 /* funzioni per la validazione - end */
 
 function NomeServizioById($Servizio_id){

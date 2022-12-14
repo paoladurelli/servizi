@@ -12,11 +12,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/xampp/htdocs/servizi/lib/tcpdf/TCPDF-master/examples/am_pdf_comune.php</file>
             <file>file:/C:/xampp/htdocs/servizi/domanda_contributo/save_pratica.php</file>
-            <file>file:/C:/xampp/htdocs/servizi/domanda_contributo/compilazione_dati.php</file>
             <file>file:/C:/xampp/htdocs/servizi/lib/tcpdf/TCPDF-master/examples/dc_pdf_comune.php</file>
-            <file>file:/C:/xampp/htdocs/servizi/env/config_servizi.php</file>
-            <file>file:/C:/xampp/htdocs/servizi/domanda_contributo/dettaglio.php</file>
+            <file>file:/C:/xampp/htdocs/servizi/assegno_maternita/test.php</file>
         </group>
     </open-files>
 </project-private>

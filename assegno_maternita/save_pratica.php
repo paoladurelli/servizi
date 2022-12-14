@@ -55,6 +55,7 @@ $data = [];
                 /* rinomino i file */
                 $upload_location = "../uploads/assegno_maternita/";
                 
+                $NewuploadCartaIdentitaFronte = "";
                 if(!empty($row["uploadCartaIdentitaFronte"])){
                     $uploadCartaIdentitaFronte = $row["uploadCartaIdentitaFronte"];
                     $NewuploadCartaIdentitaFronte = str_replace("_bozza_","_".$NumeroPratica."_",$uploadCartaIdentitaFronte);
@@ -65,6 +66,7 @@ $data = [];
                     }
                 }
                 
+                $NewuploadCartaIdentitaRetro = "";
                 if(!empty($row["uploadCartaIdentitaRetro"])){
                     $uploadCartaIdentitaRetro = $row["uploadCartaIdentitaRetro"];
                     $NewuploadCartaIdentitaRetro = str_replace("_bozza_","_".$NumeroPratica."_",$uploadCartaIdentitaRetro);
@@ -75,6 +77,7 @@ $data = [];
                     }
                 }
 
+                $NewuploadTitoloSoggiorno = "";
                 if(!empty($row["uploadTitoloSoggiorno"])){
                     $uploadTitoloSoggiorno = $row["uploadTitoloSoggiorno"];
                     $NewuploadTitoloSoggiorno = str_replace("_bozza_","_".$NumeroPratica."_",$uploadTitoloSoggiorno);
@@ -85,6 +88,7 @@ $data = [];
                     }
                 }
 
+                $NewuploadDichiarazioneDatoreLavoro = "";
                 if(!empty($row["uploadDichiarazioneDatoreLavoro"])){
                     $uploadDichiarazioneDatoreLavoro = $row["uploadDichiarazioneDatoreLavoro"];
                     $NewuploadDichiarazioneDatoreLavoro = str_replace("_bozza_","_".$NumeroPratica."_",$uploadDichiarazioneDatoreLavoro);
@@ -105,9 +109,9 @@ $data = [];
                 $resultINS = $connessioneINS->query($sqlINS);
                 if ($resultINS->num_rows > 0) {
                 // output data of each row
-                    while($row = $resultINS->fetch_assoc()) {
+                    while($rowINS = $resultINS->fetch_assoc()) {
                         /* prendo il nuovo id */
-                        $new_id = $row['id'];
+                        $new_id = $rowINS['id'];
                     }
                 }
 
@@ -128,6 +132,11 @@ $data = [];
                     $connessioneINS->query($sqlINS);            
 
 
+                /* preparo il pdf da allegare alla mail del comune */
+                    include '../lib/tcpdf/TCPDF-master/tcpdf.php';
+                    include '../lib/tcpdf/TCPDF-master/examples/am_pdf_comune.php'; 
+                    
+                    
                 /* mando mail al comune - start
                     $phpmailer = new PHPMailer();
                     $phpmailer->isSMTP();
@@ -137,15 +146,40 @@ $data = [];
                     $phpmailer->SMTPSecure = $configSmtp['smtp_secure'];
                     $phpmailer->Username = $configSmtp['smtp_username'];
                     $phpmailer->Password = $configSmtp['smtp_password'];
-                    $phpmailer->setFrom($configData['mail_comune'], 'Comune di ' . $configData['nome_comune']);
+                    $phpmailer->setFrom($row['richiedenteEmail']);
                     $phpmailer->addAddress('paola.durelli@proximalab.it', 'Proxima');
                     $phpmailer->addAddress($configData['mail_comune'], 'Comune di ' . $configData['nome_comune']);
                     $phpmailer->Subject = 'Comune di '. $configData['nome_comune'] . ' - Richiesta assegno di maternit&agrave; - '.$NumeroPratica.' - '. $_SESSION['CF'];
+                    
+                /* Add Static Attachment */
+                    /* allego la pratica completa appena creata
+                    $attachment = '/uploads/pratiche/'. $NumeroPratica . '.pdf';
+                    $phpmailer->AddAttachment($attachment , $NumeroPratica . '.pdf');
+
+                // se ci sono altri documenti, li allego
+                    if($row["uploadCartaIdentitaFronte"] <> ''){
+                        $attachment = '/uploads/assegno_maternita/'. $row["uploadCartaIdentitaFronte"];
+                        $phpmailer->AddAttachment($attachment , $row["uploadCartaIdentitaFronte"]);
+                    }
+                    if($row["uploadCartaIdentitaRetro"] <> ''){
+                        $attachment = '/uploads/assegno_maternita/'. $row["uploadCartaIdentitaRetro"];
+                        $phpmailer->AddAttachment($attachment , $row["uploadCartaIdentitaRetro"]);
+                    }
+                    if($row["uploadTitoloSoggiorno"] <> ''){
+                        $attachment = '/uploads/assegno_maternita/'. $row["uploadTitoloSoggiorno"];
+                        $phpmailer->AddAttachment($attachment , $row["uploadTitoloSoggiorno"]);
+                    }
+                    if($row["uploadDichiarazioneDatoreLavoro"] <> ''){
+                        $attachment = '/uploads/assegno_maternita/'. $row["uploadDichiarazioneDatoreLavoro"];
+                        $phpmailer->AddAttachment($attachment , $row["uploadDichiarazioneDatoreLavoro"]);
+                    }
+                    
                     $phpmailer->isHTML(true);
                     $mailContent = '
                         <p>L\'utente ' . $_SESSION['Nome'] . ' ' . $_SESSION['Cognome'] . ' (C.F. '.$_SESSION['CF'].') ha inviato una domanda contributo.<br/>'
-                            . 'Il numero della pratica &egrave;: <b>'.$NumeroPratica.'</b><br/>
-                            <a href="'.$configData['url_servizi'].'/backend">Accedi al Backend per vedere i dati</a></p>
+                            . 'Il numero della pratica &egrave;: <b>'.$NumeroPratica.'</b><br/>'
+                            .'In allegato la domanda e gli allegati richiesti.'
+                            .'<a href="'.$configData['url_servizi'].'/backend">Accedi al Backend per vedere i dati</a></p>
                         ';
                     $phpmailer->Body = $mailContent;
 
@@ -176,6 +210,7 @@ $data = [];
                         <p>Ciao ' . $_SESSION['Nome'] . ' ' . $_SESSION['Cognome'] . ',<br/>'
                             . ' la tua richiesta di assegno di maternit&agrave; &egrave; stata inviata correttamente.<br/>'
                             . 'Il numero della pratica &egrave;: <b>'.$NumeroPratica.'</b><br/>
+                            <a href="'. $configData['url_servizi'] .'lib/tcpdf/TCPDF-master/examples/am_pdf_pratica.php">Scarica il documento della pratica</a><br/>
                             Presto riceverai una nostra risposta.<br/>
                             Grazie<br/>
                             <em>Comune di '. $configData['nome_comune'] . '</em></p>

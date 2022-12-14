@@ -90,7 +90,7 @@ if (!isset($_POST['am_DichiarazioneAffidamento'])) {
 if (isset($_POST['am_DichiarazioneAffidamento']) && $_POST['am_DichiarazioneAffidamentoData']==""){
     $errors['am_DichiarazioneAffidamentoData'] = "<li><a href='#am_DichiarazioneAffidamentoData_txt'>Inserire la Data inizio affido</a></li>";
 }
-if ($_POST['ckb_pagamento']==""){
+if (!isset($_POST['ckb_pagamento']) && empty($_POST['ckb_pagamento'])){
     $errors['ckb_pagamento'] = "<li><a href='#ckb_pagamento_txt'>Selezionare il Metodo di pagamento</a></li>";
 }
 if (empty($_FILES['am_uploadCartaIdentitaFronte'])){

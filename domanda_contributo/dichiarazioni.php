@@ -73,4 +73,16 @@
         </div>
     </main>
 
+    <div class="modal fade" tabindex="-1" role="dialog" id="ElaborazioneRichiestaModal" aria-labelledby="ElaborazioneRichiestaTitle">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title h5 no_toc" id="ElaborazioneRichiestaTitle">Salvataggio della richiesta in corso</h2>
+                </div>
+                <div class="modal-body mb-30">
+                    <p>Stiamo elaborando la tua richiesta.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 <?php include '../template/footer_servizi.php'; 

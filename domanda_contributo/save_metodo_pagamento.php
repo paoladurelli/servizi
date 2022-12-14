@@ -16,6 +16,9 @@ if (empty($_POST['txt_numero_pagamento'])) {
 if($_POST['sel_tipo_pagamento'] == "1"  && (!isValidIBAN($_POST['txt_numero_pagamento']))){
     $errors['txt_numero_pagamento'] = 'IBAN non corretto.';
 }
+if($_POST['sel_tipo_pagamento'] == "2"  && (!isValidCarta($_POST['txt_numero_pagamento']))){
+    $errors['txt_numero_pagamento'] = 'Numero Carta non corretto.';
+}
 
 
 if (!empty($errors)) {

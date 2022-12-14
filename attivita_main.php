@@ -2,7 +2,12 @@
     $configDB = require './env/config.php';
     $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
 
-    $sql = "CALL View_attivita('".$_SESSION['CF']."')";
+    $sql = "SELECT attivita.id as attivita_id, attivita.data_attivita, attivita.pratica_id as pratica_id, attivita.servizio_id as ServizioId, attivita.status_id as StatusId, servizi.NomeServizio as NomeServizio, status.nome as NomeStatus FROM attivita
+            LEFT JOIN servizi ON attivita.servizio_id = servizi.id
+            LEFT JOIN status ON attivita.status_id = status.id
+            WHERE attivita.cf = '".$_SESSION['CF']."'
+            AND attivita.status_id != 0
+            ORDER BY attivita.data_attivita DESC, attivita.id DESC";
     $result = $connessione->query($sql);
    
     if ($result->num_rows > 0) {

@@ -95,9 +95,9 @@ $data = [];
                 $resultINS = $connessioneINS->query($sqlINS);
                 if ($resultINS->num_rows > 0) {
                 // output data of each row
-                    while($row = $resultINS->fetch_assoc()) {
+                    while($rowINS = $resultINS->fetch_assoc()) {
                         /* prendo il nuovo id */
-                        $new_id = $row['id'];
+                        $new_id = $rowINS['id'];
                     }
                 }
 
@@ -121,7 +121,7 @@ $data = [];
                     include '../lib/tcpdf/TCPDF-master/tcpdf.php';
                     include '../lib/tcpdf/TCPDF-master/examples/dc_pdf_comune.php'; 
 
-                /* mando mail al comune - start */
+                /* mando mail al comune - start
                     $phpmailer = new PHPMailer();
                     $phpmailer->isSMTP();
                     $phpmailer->Host = $configSmtp['smtp_host'];
@@ -130,20 +130,20 @@ $data = [];
                     $phpmailer->SMTPSecure = $configSmtp['smtp_secure'];
                     $phpmailer->Username = $configSmtp['smtp_username'];
                     $phpmailer->Password = $configSmtp['smtp_password'];
-                    $phpmailer->setFrom($row['richiedenteEmail'], $row['richiedenteNome'] . ' ' . $row['richiedenteCognome']);
+                    $phpmailer->setFrom($row['richiedenteEmail']);
                     $phpmailer->addAddress('paola.durelli@proximalab.it', 'Proxima');
                     $phpmailer->addAddress($configData['mail_comune'], 'Comune di ' . $configData['nome_comune']);
                     $phpmailer->Subject = 'Comune di '. $configData['nome_comune'] . ' - Domanda di contributo  - '.$NumeroPratica.' - '. $_SESSION['CF'];
 
-                    /* Add Static Attachment */
-                    /* allego la pratica completa appena creata */
+                    // Add Static Attachment
+                    // allego la pratica completa appena creata
                     $attachment = '/uploads/pratiche/'. $NumeroPratica . '.pdf';
-                    $mail->AddAttachment($attachment , $NumeroPratica . '.pdf');
+                    $phpmailer->AddAttachment($attachment , $NumeroPratica . '.pdf');
                     
-                    /* se ci sono altri documenti, li allego */
+                    // se ci sono altri documenti, li allego
                     if($row["uploadPotereFirma"] <> ''){
                         $attachment = '/uploads/domanda_contributo/'. $row["uploadPotereFirma"];
-                        $mail->AddAttachment($attachment , $row["uploadPotereFirma"]);
+                        $phpmailer->AddAttachment($attachment , $row["uploadPotereFirma"]);
                     }
                     if($row["uploadDocumentazione"] <> ''){
                         $tmpUploadDocumentazione1 = substr($row["uploadDocumentazione"],0,-1);
@@ -151,7 +151,7 @@ $data = [];
                         
                         foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
                             $attachment = '/uploads/domanda_contributo/'. $tmpUploadDocumentazione;
-                            $mail->AddAttachment($attachment , $tmpUploadDocumentazione);
+                            $phpmailer->AddAttachment($attachment , $tmpUploadDocumentazione);
                         }
                     }
                     
@@ -169,10 +169,10 @@ $data = [];
                     }else{
                         $data['error'] .= 'Message could not be sent.';
                         $data['error'] .= 'Mailer Error: ' . $phpmailer->ErrorInfo;
-                    }
+                    } */
                 /* mando mail al comune - end */
 
-                /* mando mail all'utente - start */
+                /* mando mail all'utente - start
                     $phpmailer2 = new PHPMailer();
                     $phpmailer2->isSMTP();
                     $phpmailer2->Host = $configSmtp['smtp_host'];
@@ -190,7 +190,7 @@ $data = [];
                         <p>Ciao ' . $_SESSION['Nome'] . ' ' . $_SESSION['Cognome'] . ',<br/>
                             la tua domanda contributo &egrave; stata inviata correttamente.<br/>
                             Il numero della pratica &egrave;: <b>'.$NumeroPratica.'</b><br/>
-                            <a href="'. $configData['url_servizi'] .'lib/tcpdf/TCPDF-master/examples/dc_pdf_pratica.php">Scarica il documento della pratica</a>
+                            <a href="'. $configData['url_servizi'] .'lib/tcpdf/TCPDF-master/examples/dc_pdf_pratica.php">Scarica il documento della pratica</a><br/>
                             Presto riceverai una nostra risposta.<br/>
                             Grazie<br/>
                             <em>Comune di '. $configData['nome_comune'] . '</em></p>
@@ -206,7 +206,7 @@ $data = [];
                     }else{
                         $data['error'] .= 'Message could not be sent.';
                         $data['error'] .= 'Mailer Error: ' . $phpmailer2->ErrorInfo;
-                    }
+                    } */
                 /* mando mail all'utente - end */
 
             }   
