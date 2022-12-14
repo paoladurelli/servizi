@@ -5,21 +5,18 @@
             <url>attivita_main.php</url>
             <bookmark id="1">
                 <name/>
-                <line>32</line>
+                <line>49</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/servizi/assegno_maternita/riepilogo.php</file>
-            <file>file:/C:/xampp/htdocs/servizi/attivita_bacheca.php</file>
-            <file>file:/C:/xampp/htdocs/servizi/inc/css/style.css</file>
-            <file>file:/C:/xampp/htdocs/servizi/attivita_main.php</file>
+            <file>file:/C:/xampp/htdocs/servizi/domanda_contributo/save_pratica.php</file>
+            <file>file:/C:/xampp/htdocs/servizi/domanda_contributo/compilazione_dati.php</file>
+            <file>file:/C:/xampp/htdocs/servizi/lib/tcpdf/TCPDF-master/examples/dc_pdf_comune.php</file>
+            <file>file:/C:/xampp/htdocs/servizi/env/config_servizi.php</file>
             <file>file:/C:/xampp/htdocs/servizi/domanda_contributo/dettaglio.php</file>
-            <file>file:/C:/xampp/htdocs/servizi/fun/utility.php</file>
-            <file>file:/C:/xampp/htdocs/servizi/bacheca.php</file>
-            <file>file:/C:/xampp/htdocs/servizi/attivita_list.php</file>
         </group>
     </open-files>
 </project-private>

@@ -9,105 +9,102 @@ $data = [];
 
 /* check validazione */
 if($_POST['am_richiedente_nome']==""){
-    $errors['am_richiedente_nome'] = "<li><a href='#dc_richiedente_nome_txt'>Nome del richiedente</a></li>";
+    $errors['am_richiedente_nome'] = "<li><a href='#dc_richiedente_nome_txt'>Inserire il Nome del richiedente</a></li>";
 }
 if($_POST['am_richiedente_cognome']==""){
-    $errors['am_richiedente_cognome'] = "<li><a href='#am_richiedente_cognome_txt'>Cognome del richiedente</a></li>";
+    $errors['am_richiedente_cognome'] = "<li><a href='#am_richiedente_cognome_txt'>Inserire il Cognome del richiedente</a></li>";
 }
-if($_POST['am_richiedente_cf']=="" && !isValidCodiceFiscale($_POST['am_richiedente_cf'])){
-    $errors['am_richiedente_cf'] = "<li><a href='#am_richiedente_cf_txt'>Codice Fiscale del richiedente</a></li>";
+if($_POST['am_richiedente_cf']==""){
+    $errors['am_richiedente_cf'] = "<li><a href='#am_richiedente_cf_txt'>Inserire il Codice Fiscale del richiedente</a></li>";
+}
+if(!isValidCodiceFiscale($_POST['am_richiedente_cf'])){
+    $errors['am_richiedente_cf'] = "<li><a href='#am_richiedente_cf_txt'>Codice Fiscale del richiedente NON corretto</a></li>";
 }
 if($_POST['am_richiedente_data_nascita']==""){
-    $errors['am_richiedente_data_nascita'] = "<li><a href='#am_richiedente_data_nascita_txt'>Data di nascita del richiedente</a></li>";
+    $errors['am_richiedente_data_nascita'] = "<li><a href='#am_richiedente_data_nascita_txt'>Inserire la Data di nascita del richiedente</a></li>";
 }
 if($_POST['am_richiedente_luogo_nascita']==""){
-    $errors['am_richiedente_luogo_nascita'] = "<li><a href='#am_richiedente_luogo_nascita_txt'>Luogo di Nascita del richiedente</a></li>";
+    $errors['am_richiedente_luogo_nascita'] = "<li><a href='#am_richiedente_luogo_nascita_txt'>Inserire il Luogo di Nascita del richiedente</a></li>";
 }
 if($_POST['am_richiedente_via']==""){
-    $errors['am_richiedente_via'] = "<li><a href='#am_richiedente_via_txt'>Via del richiedente</a></li>";
+    $errors['am_richiedente_via'] = "<li><a href='#am_richiedente_via_txt'>Inserire la Via del richiedente</a></li>";
 }
-if($_POST['am_richiedente_localita']=="" || $_POST['am_richiedente_localita'] <> $configData['nome_comune']){
-    $errors['am_richiedente_localita'] = "<li><a href='#am_richiedente_localita_txt'>Località del richiedente</a></li>";
+if($_POST['am_richiedente_localita']==""){
+    $errors['am_richiedente_localita'] = "<li><a href='#am_richiedente_localita_txt'>Inserire la Località del richiedente</a></li>";
+}
+if($_POST['am_richiedente_localita'] <> $configData['nome_comune']){
+    $errors['am_richiedente_localita'] = "<li><a href='#am_richiedente_localita_txt'>Località del richiedente inserita NON corriponde con il Comune</a></li>";
 }
 if($_POST['am_richiedente_provincia']==""){
-    $errors['am_richiedente_provincia'] = "<li><a href='#am_richiedente_provincia_txt'>Provincia del richiedente</a></li>";
+    $errors['am_richiedente_provincia'] = "<li><a href='#am_richiedente_provincia_txt'>Inserire la Provincia del richiedente</a></li>";
 }
-if($_POST['am_richiedente_email']=="" || (!filter_var($_POST['am_richiedente_email'], FILTER_VALIDATE_EMAIL))){
-    $errors['am_richiedente_email'] = "<li><a href='#am_richiedente_email_txt'>Email del richiedente</a></li>";
+if($_POST['am_richiedente_email']==""){
+    $errors['am_richiedente_email'] = "<li><a href='#am_richiedente_email_txt'>Inserire l'Email del richiedente</a></li>";
 }
-if($_POST['am_richiedente_tel']=="" || !isValidTelephoneNumber($_POST['am_richiedente_tel']) == "error"){
-    $errors['am_richiedente_tel'] = "<li><a href='#am_richiedente_tel_txt'>Telefono del richiedente</a></li>";
+if(!filter_var($_POST['am_richiedente_email'], FILTER_VALIDATE_EMAIL)){
+    $errors['am_richiedente_email'] = "<li><a href='#am_richiedente_email_txt'>Email del richiedente NON corretta</a></li>";
 }
-
+if($_POST['am_richiedente_tel']==""){
+    $errors['am_richiedente_tel'] = "<li><a href='#am_richiedente_tel_txt'>Inserire il Telefono del richiedente</a></li>";
+}
+if(!isValidTelephoneNumber($_POST['am_richiedente_tel']) == "error"){
+    $errors['am_richiedente_tel'] = "<li><a href='#am_richiedente_tel_txt'>Telefono del richiedente NON corretto</a></li>";
+}
 if ($_POST['am_minoreNome']==""){
-    $errors['am_minoreNome'] = "<li><a href='#am_minoreNome_txt'>Nome del minore</a></li>";
+    $errors['am_minoreNome'] = "<li><a href='#am_minoreNome_txt'>Inserire il Nome del minore</a></li>";
 }
-
 if ($_POST['am_minoreCognome']==""){
-    $errors['am_minoreCognome'] = "<li><a href='#am_minoreCognome_txt'>Cognome del minore</a></li>";
+    $errors['am_minoreCognome'] = "<li><a href='#am_minoreCognome_txt'>Inserire il Cognome del minore</a></li>";
 }
-
 if ($_POST['am_minoreDataNascita']==""){
-    $errors['am_minoreDataNascita'] = "<li><a href='#am_minoreDataNascita_txt'>Data di nascita del minore</a></li>";
+    $errors['am_minoreDataNascita'] = "<li><a href='#am_minoreDataNascita_txt'>Inserire la Data di nascita del minore</a></li>";
 }
-
 if ($_POST['am_minoreLuogoNascita']==""){
-    $errors['am_minoreLuogoNascita'] = "<li><a href='#am_minoreLuogoNascita_txt'>Luogo di nascita del minore</a></li>";
+    $errors['am_minoreLuogoNascita'] = "<li><a href='#am_minoreLuogoNascita_txt'>Inserire il Luogo di nascita del minore</a></li>";
 }
-
 if(!isset($_POST['am_tipoRichiesta']) || $_POST['am_tipoRichiesta']==""){
-    $errors['am_tipoRichiesta'] = "<li><a href='#am_tipoRichiesta_txt'>Tipo di richiesta</a></li>";
+    $errors['am_tipoRichiesta'] = "<li><a href='#am_tipoRichiesta_txt'>Selezionare il Tipo di richiesta</a></li>";
 }
-
 if(!isset($_POST['am_DichiarazioneCittadinanza']) || $_POST['am_DichiarazioneCittadinanza']==""){
-    $errors['am_DichiarazioneCittadinanza'] = "<li><a href='#am_DichiarazioneCittadinanza_txt'>Cittadinanza</a></li>";
+    $errors['am_DichiarazioneCittadinanza'] = "<li><a href='#am_DichiarazioneCittadinanza_txt'>Selezionare la Cittadinanza</a></li>";
 }
-
 if(isset($_POST['am_DichiarazioneCittadinanza'])){
     if($_POST['am_DichiarazioneCittadinanza']=="E" && empty($_POST['am_DichiarazioneSoggiornoNumero'])){
-        $errors['am_DichiarazioneSoggiornoNumero'] = "<li><a href='#am_DichiarazioneSoggiornoNumero_txt'>Numero titolo di soggiorno</a></li>";
+        $errors['am_DichiarazioneSoggiornoNumero'] = "<li><a href='#am_DichiarazioneSoggiornoNumero_txt'>Inserire il Numero titolo di soggiorno</a></li>";
     }
     if($_POST['am_DichiarazioneCittadinanza']=="E" && empty($_POST['am_DichiarazioneSoggiornoQuestura'])){
-        $errors['am_DichiarazioneSoggiornoQuestura'] = "<li><a href='#am_DichiarazioneSoggiornoQuestura_txt'>Questura di rilascio del titolo di soggiorno</a></li>";
+        $errors['am_DichiarazioneSoggiornoQuestura'] = "<li><a href='#am_DichiarazioneSoggiornoQuestura_txt'>Inserire la Questura di rilascio del titolo di soggiorno</a></li>";
     }
     if($_POST['am_DichiarazioneCittadinanza']=="E" && empty($_POST['am_DichiarazioneSoggiornoData'])){
-        $errors['am_DichiarazioneSoggiornoData'] = "<li><a href='#dam_DichiarazioneSoggiornoData_txt'>Data di rilascio del titolo di soggiorno</a></li>";
+        $errors['am_DichiarazioneSoggiornoData'] = "<li><a href='#dam_DichiarazioneSoggiornoData_txt'>Inserire la Data di rilascio del titolo di soggiorno</a></li>";
     }
     if($_POST['am_DichiarazioneCittadinanza']=="E" && empty($_POST['am_DichiarazioneSoggiornoDataRinnovo']) && empty($_POST['am_DichiarazioneSoggiornoData'])){
-        $errors['am_DichiarazioneSoggiornoDataRinnovo'] = "<li><a href='#am_DichiarazioneSoggiornoDataRinnovo_txt'>Data di rinnovo del titolo di soggiorno</a></li>";
+        $errors['am_DichiarazioneSoggiornoDataRinnovo'] = "<li><a href='#am_DichiarazioneSoggiornoDataRinnovo_txt'>Inserire la Data di rinnovo del titolo di soggiorno</a></li>";
     }
 }
-
 if (!isset($_POST['am_DichiarazioneAffidamento'])) {
     $am_DichiarazioneAffidamento = 0;
 }else{
     $am_DichiarazioneAffidamento = $_POST['am_DichiarazioneAffidamento'];
 }
-
 if (isset($_POST['am_DichiarazioneAffidamento']) && $_POST['am_DichiarazioneAffidamentoData']==""){
-    $errors['am_DichiarazioneAffidamentoData'] = "<li><a href='#am_DichiarazioneAffidamentoData_txt'>Data inizio affido</a></li>";
+    $errors['am_DichiarazioneAffidamentoData'] = "<li><a href='#am_DichiarazioneAffidamentoData_txt'>Inserire la Data inizio affido</a></li>";
 }
-
 if ($_POST['ckb_pagamento']==""){
-    $errors['ckb_pagamento'] = "<li><a href='#ckb_pagamento_txt'>Metodo di pagamento</a></li>";
+    $errors['ckb_pagamento'] = "<li><a href='#ckb_pagamento_txt'>Selezionare il Metodo di pagamento</a></li>";
 }
-
 if (empty($_FILES['am_uploadCartaIdentitaFronte'])){
-    $errors['am_uploadCartaIdentitaFronte'] = "<li><a href='#am_uploadCartaIdentitaFronte_txt'>Fronte della carta di identità</a></li>";
+    $errors['am_uploadCartaIdentitaFronte'] = "<li><a href='#am_uploadCartaIdentitaFronte_txt'>Allegare il Fronte della carta di identità</a></li>";
 }
-
 if (empty($_FILES['am_uploadCartaIdentitaRetro'])){
-    $errors['am_uploadCartaIdentitaRetro'] = "<li><a href='#am_uploadCartaIdentitaRetro_txt'>Retro della carta di identità</a></li>";
+    $errors['am_uploadCartaIdentitaRetro'] = "<li><a href='#am_uploadCartaIdentitaRetro_txt'>Allegare il Retro della carta di identità</a></li>";
 }
-
 if (isset($_POST['am_DichiarazioneCittadinanza']) && $_POST['am_DichiarazioneCittadinanza']=="E" && empty($_FILES['am_uploadTitoloSoggiorno'])){
-    $errors['am_uploadTitoloSoggiorno'] = "<li><a href='#am_uploadTitoloSoggiorno_txt'>Titolo di Soggiorno oppure ricevuta della richiesta di rilascio del permesso di soggiorno</a></li>";
+    $errors['am_uploadTitoloSoggiorno'] = "<li><a href='#am_uploadTitoloSoggiorno_txt'>Allegare il Titolo di Soggiorno oppure ricevuta della richiesta di rilascio del permesso di soggiorno</a></li>";
 }
-
 if (isset($_POST['am_tipoRichiesta']) && $_POST['am_tipoRichiesta']=="QD" && empty($_FILES['am_uploadDichiarazioneDatoreLavoro'])){
-    $errors['am_uploadDichiarazioneDatoreLavoro'] = "<li><a href='#am_uploadDichiarazioneDatoreLavoro_txt'>Dichiarazione del datore di lavoro</a></li>";
+    $errors['am_uploadDichiarazioneDatoreLavoro'] = "<li><a href='#am_uploadDichiarazioneDatoreLavoro_txt'>Allegare la Dichiarazione del datore di lavoro</a></li>";
 }
-
 if (!empty($errors)) {
     $data['success'] = false;
     $data['errors'] = $errors;

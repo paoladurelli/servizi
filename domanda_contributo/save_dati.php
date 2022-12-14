@@ -9,85 +9,108 @@ $data = [];
 
 /* check validazione */
 if($_POST['dc_richiedente_nome']==""){
-    $errors['dc_richiedente_nome'] = "<li><a href='#dc_richiedente_nome_txt'>Nome del richiedente</a></li>";
+    $errors['dc_richiedente_nome'] = "<li><a href='#dc_richiedente_nome_txt'>Inserire il Nome del richiedente</a></li>";
 }
 if($_POST['dc_richiedente_cognome']==""){
-    $errors['dc_richiedente_cognome'] = "<li><a href='#dc_richiedente_cognome_txt'>Cognome del richiedente</a></li>";
+    $errors['dc_richiedente_cognome'] = "<li><a href='#dc_richiedente_cognome_txt'>Inserire il Cognome del richiedente</a></li>";
 }
-if($_POST['dc_richiedente_cf']=="" && !isValidCodiceFiscale($_POST['dc_richiedente_cf'])){
-    $errors['dc_richiedente_cf'] = "<li><a href='#dc_richiedente_cf_txt'>Codice Fiscale del richiedente</a></li>";
+if($_POST['dc_richiedente_cf']==""){
+    $errors['dc_richiedente_cf'] = "<li><a href='#dc_richiedente_cf_txt'>Inserire il Codice Fiscale del richiedente</a></li>";
+}
+if(!isValidCodiceFiscale($_POST['dc_richiedente_cf'])){
+    $errors['dc_richiedente_cf'] = "<li><a href='#dc_richiedente_cf_txt'>Codice Fiscale non valido</a></li>";
 }
 if($_POST['dc_richiedente_data_nascita']==""){
-    $errors['dc_richiedente_data_nascita'] = "<li><a href='#dc_richiedente_data_nascita_txt'>Data di nascita del richiedente</a></li>";
+    $errors['dc_richiedente_data_nascita'] = "<li><a href='#dc_richiedente_data_nascita_txt'>Inserire la Data di nascita del richiedente</a></li>";
 }
 if($_POST['dc_richiedente_luogo_nascita']==""){
-    $errors['dc_richiedente_luogo_nascita'] = "<li><a href='#dc_richiedente_luogo_nascita_txt'>Luogo di Nascita del richiedente</a></li>";
+    $errors['dc_richiedente_luogo_nascita'] = "<li><a href='#dc_richiedente_luogo_nascita_txt'>Inserire il Luogo di Nascita del richiedente</a></li>";
 }
 if($_POST['dc_richiedente_via']==""){
-    $errors['dc_richiedente_via'] = "<li><a href='#dc_richiedente_via_txt'>Via del richiedente</a></li>";
+    $errors['dc_richiedente_via'] = "<li><a href='#dc_richiedente_via_txt'>Inserire la Via del richiedente</a></li>";
 }
-if($_POST['dc_richiedente_localita']=="" || $_POST['dc_richiedente_localita'] <> $configData['nome_comune']){
-    $errors['dc_richiedente_localita'] = "<li><a href='#dc_richiedente_localita_txt'>Località del richiedente</a></li>";
+if($_POST['dc_richiedente_localita']==""){
+    $errors['dc_richiedente_localita'] = "<li><a href='#dc_richiedente_localita_txt'>Inserire la Località del richiedente</a></li>";
+}
+if($_POST['dc_richiedente_localita'] <> $configData['nome_comune']){
+    $errors['dc_richiedente_localita'] = "<li><a href='#dc_richiedente_localita_txt'>Località inserita NON corriponde con il Comune</a></li>";
 }
 if($_POST['dc_richiedente_provincia']==""){
-    $errors['dc_richiedente_provincia'] = "<li><a href='#dc_richiedente_provincia_txt'>Provincia del richiedente</a></li>";
+    $errors['dc_richiedente_provincia'] = "<li><a href='#dc_richiedente_provincia_txt'>Inserire la Provincia del richiedente</a></li>";
 }
-
-if($_POST['dc_richiedente_email']=="" || (!filter_var($_POST['dc_richiedente_email'], FILTER_VALIDATE_EMAIL))){
-    $errors['dc_richiedente_email'] = "<li><a href='#dc_richiedente_email_txt'>Email del richiedente</a></li>";
+if($_POST['dc_richiedente_email']==""){
+    $errors['dc_richiedente_email'] = "<li><a href='#dc_richiedente_email_txt'>Inserire la Email del richiedente</a></li>";
 }
-if($_POST['dc_richiedente_tel']=="" || !isValidTelephoneNumber($_POST['dc_richiedente_tel']) == "error"){
-    $errors['dc_richiedente_tel'] = "<li><a href='#dc_richiedente_tel_txt'>Telefono del richiedente</a></li>";
+if(!filter_var($_POST['dc_richiedente_email'], FILTER_VALIDATE_EMAIL)){
+    $errors['dc_richiedente_email'] = "<li><a href='#dc_richiedente_email_txt'>Email del richiedente NON corretta</a></li>";
+}
+if($_POST['dc_richiedente_tel']==""){
+    $errors['dc_richiedente_tel'] = "<li><a href='#dc_richiedente_tel_txt'>Inserire il Telefono del richiedente</a></li>";
+}
+if(!isValidTelephoneNumber($_POST['dc_richiedente_tel']) == "error"){
+    $errors['dc_richiedente_tel'] = "<li><a href='#dc_richiedente_tel_txt'>Telefono del richiedente NON corretto</a></li>";
 }
 if(!isset($_POST['dc_rb_qualita_di'])){
-    $errors['dc_rb_qualita_di'] = "<li><a href='#dc_rb_qualita_di_txt'>Qualifica del richiedente</a></li>";
+    $errors['dc_rb_qualita_di'] = "<li><a href='#dc_rb_qualita_di_txt'>Inserire la Qualifica del richiedente</a></li>";
 }
 if($_POST['dc_beneficiario_nome']==""){
-    $errors['dc_beneficiario_nome'] = "<li><a href='#dc_beneficiario_nome_txt'>Nome del beneficiario</a></li>";
+    $errors['dc_beneficiario_nome'] = "<li><a href='#dc_beneficiario_nome_txt'>Inserire il Nome del beneficiario</a></li>";
 }
 if($_POST['dc_beneficiario_cognome']==""){
-    $errors['dc_beneficiario_cognome'] = "<li><a href='#dc_beneficiario_cognome_txt'>Cognome del beneficiario</a></li>";
+    $errors['dc_beneficiario_cognome'] = "<li><a href='#dc_beneficiario_cognome_txt'>Inserire il Cognome del beneficiario</a></li>";
 }
-if($_POST['dc_beneficiario_cf']=="" && !isValidCodiceFiscale($_POST['dc_beneficiario_cf'])){
-    $errors['dc_beneficiario_cf'] = "<li><a href='#dc_beneficiario_cf_txt'>Codice fiscale del beneficiario</a></li>";
+if($_POST['dc_beneficiario_cf']==""){
+    $errors['dc_beneficiario_cf'] = "<li><a href='#dc_beneficiario_cf_txt'>Inserire il Codice fiscale del beneficiario</a></li>";
+}
+if(!isValidCodiceFiscale($_POST['dc_beneficiario_cf'])){
+    $errors['dc_beneficiario_cf'] = "<li><a href='#dc_beneficiario_cf_txt'>Codice fiscale del beneficiario NON corretto</a></li>";
 }
 if($_POST['dc_beneficiario_data_nascita']==""){
-    $errors['dc_beneficiario_data_nascita'] = "<li><a href='#dc_beneficiario_data_nascita_txt'>Data di nascita del beneficiario</a></li>";
+    $errors['dc_beneficiario_data_nascita'] = "<li><a href='#dc_beneficiario_data_nascita_txt'>Inserire la Data di nascita del beneficiario</a></li>";
 }
 if($_POST['dc_beneficiario_luogo_nascita']==""){
-    $errors['dc_beneficiario_luogo_nascita'] = "<li><a href='#dc_beneficiario_luogo_nascita_txt'>Luogo di nascita del beneficiario</a></li>";
+    $errors['dc_beneficiario_luogo_nascita'] = "<li><a href='#dc_beneficiario_luogo_nascita_txt'>Inserire il Luogo di nascita del beneficiario</a></li>";
 }
 if($_POST['dc_beneficiario_via']==""){
-    $errors['dc_beneficiario_via'] = "<li><a href='#dc_beneficiario_via_txt'>Via e numero civico del beneficiario</a></li>";
+    $errors['dc_beneficiario_via'] = "<li><a href='#dc_beneficiario_via_txt'>Inserire la Via e il numero civico del beneficiario</a></li>";
 }
-if($_POST['dc_beneficiario_localita']=="" || $_POST['dc_beneficiario_localita'] <> $configData['nome_comune']){
-    $errors['dc_beneficiario_localita'] = "<li><a href='#dc_beneficiario_localita_txt'>Località del beneficiario</a></li>";
+if($_POST['dc_beneficiario_localita']==""){
+    $errors['dc_beneficiario_localita'] = "<li><a href='#dc_beneficiario_localita_txt'>Inserire la Località del beneficiario</a></li>";
+}
+if($_POST['dc_beneficiario_localita'] <> $configData['nome_comune']){
+    $errors['dc_beneficiario_localita'] = "<li><a href='#dc_beneficiario_localita_txt'>La Località del beneficiario inserita NON corriponde con il Comune</a></li>";
 }
 if($_POST['dc_beneficiario_provincia']==""){
-    $errors['dc_beneficiario_provincia'] = "<li><a href='#dc_beneficiario_provincia_txt'>Provincia del beneficiario</a></li>";
+    $errors['dc_beneficiario_provincia'] = "<li><a href='#dc_beneficiario_provincia_txt'>Inserire la Provincia del beneficiario</a></li>";
 }
-if($_POST['dc_beneficiario_email'] =="" || (!filter_var($_POST['dc_beneficiario_email'], FILTER_VALIDATE_EMAIL))){
-    $errors['dc_beneficiario_email'] = "<li><a href='#dc_beneficiario_email_txt'>E-mail del beneficiario</a></li>";
+if($_POST['dc_beneficiario_email'] ==""){
+    $errors['dc_beneficiario_email'] = "<li><a href='#dc_beneficiario_email_txt'>Inserire la E-mail del beneficiario</a></li>";
 }
-if($_POST['dc_beneficiario_tel']=="" || !isValidTelephoneNumber($_POST['dc_beneficiario_tel']) == "error"){
-    $errors['dc_beneficiario_tel'] = "<li><a href='#dc_beneficiario_tel_txt'>Telefono del beneficiario</a></li>";
+if(!filter_var($_POST['dc_beneficiario_email'], FILTER_VALIDATE_EMAIL)){
+    $errors['dc_beneficiario_email'] = "<li><a href='#dc_beneficiario_email_txt'>E-mail del beneficiario NON corretta</a></li>";
+}
+if($_POST['dc_beneficiario_tel']==""){
+    $errors['dc_beneficiario_tel'] = "<li><a href='#dc_beneficiario_tel_txt'>Inserire il Telefono del beneficiario</a></li>";
+}
+if(!isValidTelephoneNumber($_POST['dc_beneficiario_tel']) == "error"){
+    $errors['dc_beneficiario_tel'] = "<li><a href='#dc_beneficiario_tel_txt'>Telefono del beneficiario NON corretto</a></li>";
 }
 if($_POST['dc_importo_contributo']==""){
-    $errors['dc_importo_contributo'] = "<li><a href='#dc_importo_contributo_txt'>Importo del contributo</a></li>";
+    $errors['dc_importo_contributo'] = "<li><a href='#dc_importo_contributo_txt'>Inserire l'Importo del contributo</a></li>";
 }
 if($_POST['dc_finalita_contributo']==""){
-    $errors['dc_finalita_contributo'] = "<li><a href='#dc_finalita_contributo_txt'>Finalità del contributo</a></li>";
+    $errors['dc_finalita_contributo'] = "<li><a href='#dc_finalita_contributo_txt'>Inserire la Finalità del contributo</a></li>";
 }
 if (!isset($_POST['ckb_pagamento'])){
-    $errors['ckb_pagamento'] = "<li><a href='#ckb_pagamento_txt'>Metodo di pagamento</a></li>";
+    $errors['ckb_pagamento'] = "<li><a href='#ckb_pagamento_txt'>Selezionare il Metodo di pagamento</a></li>";
 }
 
 if((!empty($_POST['dc_rb_qualita_di']) && $_POST['dc_rb_qualita_di']!="D") && empty($_FILES['dc_uploadPotereFirma'])){
-    $errors['dc_uploadPotereFirma'] = "<li><a href='#dc_uploadPotereFirma_txt'>Documento che attesta potere di firma</a></li>";
+    $errors['dc_uploadPotereFirma'] = "<li><a href='#dc_uploadPotereFirma_txt'>Allegare il Documento che attesta potere di firma</a></li>";
 }
 
 if(empty($_FILES['dc_uploadDocumentazione'])){
-    $errors['dc_uploadDocumentazione'] = "<li><a href='#dc_uploadDocumentazione_txt'>Documentazione</a></li>";
+    $errors['dc_uploadDocumentazione'] = "<li><a href='#dc_uploadDocumentazione_txt'>Allegare la Documentazione</a></li>";
 }
 
 if (!empty($errors)) {

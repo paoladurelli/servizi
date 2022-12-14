@@ -115,8 +115,11 @@ $data = [];
 
                 /* salvo nei messaggi che ho una bozza da completare per domanda_contributo */
                     $sqlINS = "INSERT INTO messaggi (CF_to,servizio_id,testo,data_msg) VALUES ('". $_SESSION['CF'] ."',11,'La tua domanda di contributo è stata inviata.<br/>Il numero della pratica è: <b>".$NumeroPratica."</b>','".date('Y-m-d')."')";
-                    $connessioneINS->query($sqlINS);            
-
+                    $connessioneINS->query($sqlINS);  
+                    
+                /* preparo il pdf da allegare alla mail del comune */
+                    include '../lib/tcpdf/TCPDF-master/tcpdf.php';
+                    include '../lib/tcpdf/TCPDF-master/examples/dc_pdf_comune.php'; 
 
                 /* mando mail al comune - start */
                     $phpmailer = new PHPMailer();
@@ -127,16 +130,37 @@ $data = [];
                     $phpmailer->SMTPSecure = $configSmtp['smtp_secure'];
                     $phpmailer->Username = $configSmtp['smtp_username'];
                     $phpmailer->Password = $configSmtp['smtp_password'];
-                    $phpmailer->setFrom($configData['mail_comune'], 'Comune di ' . $configData['nome_comune']);
+                    $phpmailer->setFrom($row['richiedenteEmail'], $row['richiedenteNome'] . ' ' . $row['richiedenteCognome']);
                     $phpmailer->addAddress('paola.durelli@proximalab.it', 'Proxima');
                     $phpmailer->addAddress($configData['mail_comune'], 'Comune di ' . $configData['nome_comune']);
                     $phpmailer->Subject = 'Comune di '. $configData['nome_comune'] . ' - Domanda di contributo  - '.$NumeroPratica.' - '. $_SESSION['CF'];
+
+                    /* Add Static Attachment */
+                    /* allego la pratica completa appena creata */
+                    $attachment = '/uploads/pratiche/'. $NumeroPratica . '.pdf';
+                    $mail->AddAttachment($attachment , $NumeroPratica . '.pdf');
+                    
+                    /* se ci sono altri documenti, li allego */
+                    if($row["uploadPotereFirma"] <> ''){
+                        $attachment = '/uploads/domanda_contributo/'. $row["uploadPotereFirma"];
+                        $mail->AddAttachment($attachment , $row["uploadPotereFirma"]);
+                    }
+                    if($row["uploadDocumentazione"] <> ''){
+                        $tmpUploadDocumentazione1 = substr($row["uploadDocumentazione"],0,-1);
+                        $tmpUploadDocumentaziones = explode(';', $tmpUploadDocumentazione1);
+                        
+                        foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
+                            $attachment = '/uploads/domanda_contributo/'. $tmpUploadDocumentazione;
+                            $mail->AddAttachment($attachment , $tmpUploadDocumentazione);
+                        }
+                    }
+                    
                     $phpmailer->isHTML(true);
                     $mailContent = '
                         <p>L\'utente ' . $_SESSION['Nome'] . ' ' . $_SESSION['Cognome'] . '(C.F. '.$_SESSION['CF'].') ha inviato una domanda contributo.<br/>'
-                            . 'Il numero della pratica &egrave;: <b>'.$NumeroPratica.'</b><br/>
-                            <a href="'.$configData['url_servizi'].'/backend">Accedi al Backend per vedere i dati</a></p>
-                        ';
+                            . 'Il numero della pratica &egrave;: <b>'.$NumeroPratica.'</b><br/>'
+                            .'In allegato la domanda e gli allegati richiesti.'
+                            .'<a href="'.$configData['url_servizi'].'/backend">Accedi al Backend per vedere i dati</a></p>';
                     $phpmailer->Body = $mailContent;
 
 
@@ -166,6 +190,7 @@ $data = [];
                         <p>Ciao ' . $_SESSION['Nome'] . ' ' . $_SESSION['Cognome'] . ',<br/>
                             la tua domanda contributo &egrave; stata inviata correttamente.<br/>
                             Il numero della pratica &egrave;: <b>'.$NumeroPratica.'</b><br/>
+                            <a href="'. $configData['url_servizi'] .'lib/tcpdf/TCPDF-master/examples/dc_pdf_pratica.php">Scarica il documento della pratica</a>
                             Presto riceverai una nostra risposta.<br/>
                             Grazie<br/>
                             <em>Comune di '. $configData['nome_comune'] . '</em></p>

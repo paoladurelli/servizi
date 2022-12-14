@@ -11,7 +11,6 @@
     include '../template/header_servizi.php';
     
     /* settare le variabili */
-    $am_bozza_id = "";
     $cf = "";
     $nome = "";
     $cognome = "";
@@ -52,7 +51,6 @@
         // output data of each row
             while($row = $result->fetch_assoc()) {
                 $status_id = $row["status_id"];
-                $am_bozza_id = $_POST["am_bozza_id"];
                 $cf = $row["richiedenteCf"];
                 $nome = $row["richiedenteNome"];
                 $cognome = $row["richiedenteCognome"];
@@ -200,51 +198,44 @@
                                         <p class="subtitle-small">Codice Fiscale:<br/><b><?php echo $_SESSION['CF']; ?></b></p>
 
                                         <div class="accordion-item">
-                                            <h2 class="accordion-header" id="headingThree">
-                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOther" aria-expanded="false" aria-controls="collapseOther">Altri dati</button>
-                                            </h2>
-                                            <div id="collapseOther" class="accordion-collapse collapse" aria-labelledby="headingOther" data-bs-parent="#accordionOther">
-                                                <div class="accordion-body">
-                                                    <div class="row">
-                                                        <div class="col-lg-12"><h5 class="color-primary"><b>Anagrafica</b></h5></div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12"><p>Nome<br/><?php echo $nome; ?></p></div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12"><p>Cognome<br/><?php echo $cognome; ?></p></div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12"><p>Codice Fiscale<br/><?php echo $cf; ?></p></div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12"><p>Data di Nascita<br/><?php echo $datanascita; ?></p></div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12"><p>Luogo di Nascita<br/><?php echo $luogonascita; ?></p></div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12"><p>Via e Numero civico<br/><?php echo $richiedenteVia; ?></p></div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12"><p>Località<br/><?php echo $richiedenteLocalita; ?></p></div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12"><p>Provincia<br/><?php echo $richiedenteProvincia; ?></p></div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12"><p>E-mail<br/><?php echo $email; ?></p></div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12"><p>Telefono<br/><?php echo $richiedenteTel; ?></p></div>
-                                                    </div>
-                                                </div>
+                                            <div class="row">
+                                                <div class="col-lg-12"><h5 class="color-primary"><b>Anagrafica</b></h5></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12"><p>Nome<br/><?php echo $nome; ?></p></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12"><p>Cognome<br/><?php echo $cognome; ?></p></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12"><p>Codice Fiscale<br/><?php echo $cf; ?></p></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12"><p>Data di Nascita<br/><?php echo $datanascita; ?></p></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12"><p>Luogo di Nascita<br/><?php echo $luogonascita; ?></p></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12"><p>Via e Numero civico<br/><?php echo $richiedenteVia; ?></p></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12"><p>Località<br/><?php echo $richiedenteLocalita; ?></p></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12"><p>Provincia<br/><?php echo $richiedenteProvincia; ?></p></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12"><p>E-mail<br/><?php echo $email; ?></p></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12"><p>Telefono<br/><?php echo $richiedenteTel; ?></p></div>
                                             </div>
                                         </div>
                                     </div>
