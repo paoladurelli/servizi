@@ -52,6 +52,9 @@ $data = [];
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 
+                $fromMail = $row['richiedenteEmail'];
+                $fromName = $row['richiedenteNome'] . " " . $row['richiedenteCognome'];
+                
                 /* rinomino i file */
                 $upload_location = "../uploads/domanda_contributo/";
                 
@@ -88,7 +91,7 @@ $data = [];
 
                 /* salvo tutti i dati in una riga nuova con status 2 */
                 $connessioneINS = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-                $sqlINS = "INSERT INTO `domanda_contributo`(status_id,richiedenteNome,richiedenteCognome,richiedenteCf,richiedenteDataNascita,richiedenteLuogoNascita,richiedenteVia,richiedenteLocalita,richiedenteProvincia,richiedenteEmail,richiedenteTel,inQualitaDi,beneficiarioNome,beneficiarioCognome,beneficiarioCf,beneficiarioDataNascita,beneficiarioLuogoNascita,beneficiarioVia,beneficiarioLocalita,beneficiarioProvincia,beneficiarioEmail,beneficiarioTel,importoContributo,finalitaContributo,tipoPagamento_id,uploadPotereFirma,uploadDocumentazione,NumeroPratica) VALUES (2,'".$row['richiedenteNome']."','".$row['richiedenteCognome']."','".$row['richiedenteCf']."','".$row['richiedenteDataNascita']."','".$row['richiedenteLuogoNascita']."','".$row['richiedenteVia']."','".$row['richiedenteLocalita']."','".$row['richiedenteProvincia']."','".$row['richiedenteEmail']."','".$row['richiedenteTel']."','".$row['inQualitaDi']."','".$row['beneficiarioNome']."','".$row['beneficiarioCognome']."','".$row['beneficiarioCf']."','".$row['beneficiarioDataNascita']."','".$row['beneficiarioLuogoNascita']."','".$row['beneficiarioVia']."','".$row['beneficiarioLocalita']."','".$row['beneficiarioProvincia']."','".$row['beneficiarioEmail']."','".$row['beneficiarioTel']."','".$row['importoContributo']."','".$row['finalitaContributo']."','".$row['tipoPagamento_id']."','".$NewuploadPotereFirma."','".$NewuploadDocumentazione."','".$NumeroPratica."')";
+                $sqlINS = "INSERT INTO `domanda_contributo`(status_id,richiedenteNome,richiedenteCognome,richiedenteCf,richiedenteDataNascita,richiedenteLuogoNascita,richiedenteVia,richiedenteLocalita,richiedenteProvincia,richiedenteEmail,richiedenteTel,inQualitaDi,beneficiarioNome,beneficiarioCognome,beneficiarioCf,beneficiarioDataNascita,beneficiarioLuogoNascita,beneficiarioVia,beneficiarioLocalita,beneficiarioProvincia,beneficiarioEmail,beneficiarioTel,importoContributo,finalitaContributo,tipoPagamento_id,uploadPotereFirma,uploadDocumentazione,NumeroPratica) VALUES (2,'".addslashes($row['richiedenteNome'])."','".addslashes($row['richiedenteCognome'])."','".$row['richiedenteCf']."','".$row['richiedenteDataNascita']."','".addslashes($row['richiedenteLuogoNascita'])."','".addslashes($row['richiedenteVia'])."','".addslashes($row['richiedenteLocalita'])."','".$row['richiedenteProvincia']."','".$row['richiedenteEmail']."','".$row['richiedenteTel']."','".$row['inQualitaDi']."','".addslashes($row['beneficiarioNome'])."','".addslashes($row['beneficiarioCognome'])."','".$row['beneficiarioCf']."','".$row['beneficiarioDataNascita']."','".addslashes($row['beneficiarioLuogoNascita'])."','".addslashes($row['beneficiarioVia'])."','".addslashes($row['beneficiarioLocalita'])."','".$row['beneficiarioProvincia']."','".$row['beneficiarioEmail']."','".$row['beneficiarioTel']."','".$row['importoContributo']."','".addslashes($row['finalitaContributo'])."','".$row['tipoPagamento_id']."','".$NewuploadPotereFirma."','".$NewuploadDocumentazione."','".$NumeroPratica."')";
                 $connessioneINS->query($sqlINS);
 
                 /* ricavo il nuovo id */
@@ -122,7 +125,7 @@ $data = [];
                     include '../lib/tcpdf/TCPDF-master/tcpdf.php';
                     include '../lib/tcpdf/TCPDF-master/examples/dc_pdf_comune.php'; 
 
-                /* mando mail al comune - start
+                /* mando mail al comune - start */
                     $phpmailer = new PHPMailer();
                     $phpmailer->isSMTP();
                     $phpmailer->Host = $configSmtp['smtp_host'];
@@ -131,23 +134,23 @@ $data = [];
                     $phpmailer->SMTPSecure = $configSmtp['smtp_secure'];
                     $phpmailer->Username = $configSmtp['smtp_username'];
                     $phpmailer->Password = $configSmtp['smtp_password'];
-                    $phpmailer->setFrom($row['richiedenteEmail']);
+                    $phpmailer->setFrom($fromMail,$fromName);
                     $phpmailer->addAddress('paola.durelli@proximalab.it', 'Proxima');
                     $phpmailer->addAddress($configData['mail_comune'], 'Comune di ' . $configData['nome_comune']);
                     $phpmailer->Subject = 'Comune di '. $configData['nome_comune'] . ' - Domanda di contributo  - '.$NumeroPratica.' - '. $_SESSION['CF'];
 
-                    // Add Static Attachment
-                    // allego la pratica completa appena creata
+                    /* Add Static Attachment */
+                    /* allego la pratica completa appena creata */
                     $attachment = '/uploads/pratiche/'. $NumeroPratica . '.pdf';
                     $phpmailer->AddAttachment($attachment , $NumeroPratica . '.pdf');
                     
-                    // se ci sono altri documenti, li allego
-                    if($row["uploadPotereFirma"] <> ''){
-                        $attachment = '/uploads/domanda_contributo/'. $row["uploadPotereFirma"];
-                        $phpmailer->AddAttachment($attachment , $row["uploadPotereFirma"]);
+                    /* se ci sono altri documenti, li allego */
+                    if($NewuploadPotereFirma <> ''){
+                        $attachment = '/uploads/domanda_contributo/'. $NewuploadPotereFirma;
+                        $phpmailer->AddAttachment($attachment , $NewuploadPotereFirma);
                     }
-                    if($row["uploadDocumentazione"] <> ''){
-                        $tmpUploadDocumentazione1 = substr($row["uploadDocumentazione"],0,-1);
+                    if($NewuploadDocumentazione <> ''){
+                        $tmpUploadDocumentazione1 = substr($NewuploadDocumentazione,0,-1);
                         $tmpUploadDocumentaziones = explode(';', $tmpUploadDocumentazione1);
                         
                         foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
@@ -160,20 +163,19 @@ $data = [];
                     $mailContent = '
                         <p>L\'utente ' . $_SESSION['Nome'] . ' ' . $_SESSION['Cognome'] . '(C.F. '.$_SESSION['CF'].') ha inviato una domanda contributo.<br/>'
                             . 'Il numero della pratica &egrave;: <b>'.$NumeroPratica.'</b><br/>'
-                            .'In allegato la domanda e gli allegati richiesti.'
-                            .'<a href="'.$configData['url_servizi'].'/backend">Accedi al Backend per vedere i dati</a></p>';
+                            .'In allegato la domanda e gli allegati richiesti.</p>'
+                            .'<p><a href="'.$configData['url_servizi'].'/backend">Accedi al Backend per vedere i dati</a></p>';
                     $phpmailer->Body = $mailContent;
 
 
                     if($phpmailer->send()){
-                        $data['error'] .= 'Message has been sent';
                     }else{
                         $data['error'] .= 'Message could not be sent.';
                         $data['error'] .= 'Mailer Error: ' . $phpmailer->ErrorInfo;
-                    } */
+                    } 
                 /* mando mail al comune - end */
 
-                /* mando mail all'utente - start
+                /* mando mail all'utente - start */
                     $phpmailer2 = new PHPMailer();
                     $phpmailer2->isSMTP();
                     $phpmailer2->Host = $configSmtp['smtp_host'];
@@ -207,7 +209,7 @@ $data = [];
                     }else{
                         $data['error'] .= 'Message could not be sent.';
                         $data['error'] .= 'Mailer Error: ' . $phpmailer2->ErrorInfo;
-                    } */
+                    }
                 /* mando mail all'utente - end */
 
             }   

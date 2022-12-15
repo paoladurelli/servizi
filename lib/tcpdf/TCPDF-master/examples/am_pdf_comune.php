@@ -134,10 +134,7 @@ if($tipoRichiesta == "AM"){
 if($DichiarazioneCittadinanza == "I"){
     $cittadinanza = "<p>di essere cittadina italiana o di uno stato appartenente all’Unione Europea;</p>";
 }else{
-    $cittadinanza = "<p>di essere cittadina extracomunitaria in possesso di titolo di soggiorno in corso di validità n. <b>".$DichiarazioneSoggiornoNumero."</b> rilasciata dalla Questura di <b>".$DichiarazioneSoggiornoQuestura."</b> il <b>$DichiarazioneSoggiornoData</b>, oppure di aver presentato richiesta di rinnovo in data <b>".$DichiarazioneSoggiornoDataRinnovo."</b>, ed appartenente ad una delle seguenti tipologie:<br>
-            - permesso di soggiorno CE per soggiornanti di lungo periodo;<br>
-            - altro tipo di permesso valido che consente l’esercizio dell’attività lavorativa;<br>
-        </p>";
+    $cittadinanza = "<p>di essere cittadina extracomunitaria in possesso di titolo di soggiorno in corso di validità n. <b>".$DichiarazioneSoggiornoNumero."</b> rilasciata dalla Questura di <b>".$DichiarazioneSoggiornoQuestura."</b> il <b>$DichiarazioneSoggiornoData</b>, oppure di aver presentato richiesta di rinnovo in data <b>".$DichiarazioneSoggiornoDataRinnovo."</b>, ed appartenente ad una delle seguenti tipologie:<br>- permesso di soggiorno CE per soggiornanti di lungo periodo;<br>- altro tipo di permesso valido che consente l’esercizio dell’attività lavorativa;<br></p>";
 }
 
 if($DichiarazioneAffidamento <> 0){

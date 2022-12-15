@@ -51,6 +51,9 @@ $data = [];
 
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
+                
+                $fromMail = $row['richiedenteEmail'];
+                $fromName = $row['richiedenteNome'] . " " . $row['richiedenteCognome'];
 
                 /* rinomino i file */
                 $upload_location = "../uploads/assegno_maternita/";
@@ -101,7 +104,7 @@ $data = [];
                               
                 /* salvo tutti i dati in una riga nuova con status 2 */
                 $connessioneINS = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-                $sqlINS = "INSERT INTO assegno_maternita(status_id,richiedenteCf,richiedenteNome,richiedenteCognome,richiedenteDataNascita,richiedenteLuogoNascita,richiedenteVia,richiedenteLocalita,richiedenteProvincia,richiedenteEmail,richiedenteTel,minoreNome,minoreCognome,minoreDataNascita,minoreLuogoNascita,tipoRichiesta,DichiarazioneCittadinanza,DichiarazioneSoggiornoNumero,DichiarazioneSoggiornoQuestura,DichiarazioneSoggiornoData,DichiarazioneSoggiornoDataRinnovo,DichiarazioneAffidamento,DichiarazioneAffidamentoData,tipoPagamento_id,uploadCartaIdentitaFronte,uploadCartaIdentitaRetro,uploadTitoloSoggiorno,uploadDichiarazioneDatoreLavoro,NumeroPratica) VALUES (2,'".$row['richiedenteCf']."','".$row['richiedenteNome']."','".$row['richiedenteCognome']."','".$row['richiedenteDataNascita']."','".$row['richiedenteLuogoNascita']."','".$row['richiedenteVia']."','".$row['richiedenteLocalita']."','".$row['richiedenteProvincia']."','".$row['richiedenteEmail']."','".$row['richiedenteTel']."','".$row['minoreNome']."','".$row['minoreCognome']."','".$row['minoreDataNascita']."','".$row['minoreLuogoNascita']."','".$row['tipoRichiesta']."','".$row['DichiarazioneCittadinanza']."','".$row['DichiarazioneSoggiornoNumero']."','".$row['DichiarazioneSoggiornoQuestura']."','".$row['DichiarazioneSoggiornoData']."','".$row['DichiarazioneSoggiornoDataRinnovo']."','".$row['DichiarazioneAffidamento']."','".$row['DichiarazioneAffidamentoData']."','".$row['tipoPagamento_id']."','".$NewuploadCartaIdentitaFronte."','".$NewuploadCartaIdentitaRetro."','".$NewuploadTitoloSoggiorno."','".$NewuploadDichiarazioneDatoreLavoro."','".$NumeroPratica."')";
+                $sqlINS = "INSERT INTO assegno_maternita(status_id,richiedenteCf,richiedenteNome,richiedenteCognome,richiedenteDataNascita,richiedenteLuogoNascita,richiedenteVia,richiedenteLocalita,richiedenteProvincia,richiedenteEmail,richiedenteTel,minoreNome,minoreCognome,minoreDataNascita,minoreLuogoNascita,tipoRichiesta,DichiarazioneCittadinanza,DichiarazioneSoggiornoNumero,DichiarazioneSoggiornoQuestura,DichiarazioneSoggiornoData,DichiarazioneSoggiornoDataRinnovo,DichiarazioneAffidamento,DichiarazioneAffidamentoData,tipoPagamento_id,uploadCartaIdentitaFronte,uploadCartaIdentitaRetro,uploadTitoloSoggiorno,uploadDichiarazioneDatoreLavoro,NumeroPratica) VALUES (2,'".$row['richiedenteCf']."','".addslashes($row['richiedenteNome'])."','".addslashes($row['richiedenteCognome'])."','".$row['richiedenteDataNascita']."','".addslashes($row['richiedenteLuogoNascita'])."','".addslashes($row['richiedenteVia'])."','".addslashes($row['richiedenteLocalita'])."','".$row['richiedenteProvincia']."','".$row['richiedenteEmail']."','".$row['richiedenteTel']."','".addslashes($row['minoreNome'])."','".addslashes($row['minoreCognome'])."','".$row['minoreDataNascita']."','".addslashes($row['minoreLuogoNascita'])."','".$row['tipoRichiesta']."','".$row['DichiarazioneCittadinanza']."','".$row['DichiarazioneSoggiornoNumero']."','".addslashes($row['DichiarazioneSoggiornoQuestura'])."','".$row['DichiarazioneSoggiornoData']."','".$row['DichiarazioneSoggiornoDataRinnovo']."','".$row['DichiarazioneAffidamento']."','".$row['DichiarazioneAffidamentoData']."','".$row['tipoPagamento_id']."','".$NewuploadCartaIdentitaFronte."','".$NewuploadCartaIdentitaRetro."','".$NewuploadTitoloSoggiorno."','".$NewuploadDichiarazioneDatoreLavoro."','".$NumeroPratica."')";
                 $connessioneINS->query($sqlINS);
 
                 /* ricavo il nuovo id */
@@ -137,7 +140,7 @@ $data = [];
                     include '../lib/tcpdf/TCPDF-master/examples/am_pdf_comune.php'; 
                     
                     
-                /* mando mail al comune - start
+                /* mando mail al comune - start */
                     $phpmailer = new PHPMailer();
                     $phpmailer->isSMTP();
                     $phpmailer->Host = $configSmtp['smtp_host'];
@@ -146,40 +149,40 @@ $data = [];
                     $phpmailer->SMTPSecure = $configSmtp['smtp_secure'];
                     $phpmailer->Username = $configSmtp['smtp_username'];
                     $phpmailer->Password = $configSmtp['smtp_password'];
-                    $phpmailer->setFrom($row['richiedenteEmail']);
+                    $phpmailer->setFrom($fromMail,$fromName);
                     $phpmailer->addAddress('paola.durelli@proximalab.it', 'Proxima');
                     $phpmailer->addAddress($configData['mail_comune'], 'Comune di ' . $configData['nome_comune']);
                     $phpmailer->Subject = 'Comune di '. $configData['nome_comune'] . ' - Richiesta assegno di maternit&agrave; - '.$NumeroPratica.' - '. $_SESSION['CF'];
                     
                 /* Add Static Attachment */
-                    /* allego la pratica completa appena creata
+                    /* allego la pratica completa appena creata */
                     $attachment = '/uploads/pratiche/'. $NumeroPratica . '.pdf';
                     $phpmailer->AddAttachment($attachment , $NumeroPratica . '.pdf');
 
-                // se ci sono altri documenti, li allego
-                    if($row["uploadCartaIdentitaFronte"] <> ''){
-                        $attachment = '/uploads/assegno_maternita/'. $row["uploadCartaIdentitaFronte"];
-                        $phpmailer->AddAttachment($attachment , $row["uploadCartaIdentitaFronte"]);
+                /* se ci sono altri documenti, li allego */
+                    if($NewuploadCartaIdentitaFronte <> ''){
+                        $attachment = '/uploads/assegno_maternita/'. $NewuploadCartaIdentitaFronte;
+                        $phpmailer->AddAttachment($attachment , $NewuploadCartaIdentitaFronte);
                     }
-                    if($row["uploadCartaIdentitaRetro"] <> ''){
-                        $attachment = '/uploads/assegno_maternita/'. $row["uploadCartaIdentitaRetro"];
-                        $phpmailer->AddAttachment($attachment , $row["uploadCartaIdentitaRetro"]);
+                    if($NewuploadCartaIdentitaRetro <> ''){
+                        $attachment = '/uploads/assegno_maternita/'. $NewuploadCartaIdentitaRetro;
+                        $phpmailer->AddAttachment($attachment , $NewuploadCartaIdentitaRetro);
                     }
-                    if($row["uploadTitoloSoggiorno"] <> ''){
-                        $attachment = '/uploads/assegno_maternita/'. $row["uploadTitoloSoggiorno"];
-                        $phpmailer->AddAttachment($attachment , $row["uploadTitoloSoggiorno"]);
+                    if($NewuploadTitoloSoggiorno <> ''){
+                        $attachment = '/uploads/assegno_maternita/'. $NewuploadTitoloSoggiorno;
+                        $phpmailer->AddAttachment($attachment , $NewuploadTitoloSoggiorno);
                     }
-                    if($row["uploadDichiarazioneDatoreLavoro"] <> ''){
-                        $attachment = '/uploads/assegno_maternita/'. $row["uploadDichiarazioneDatoreLavoro"];
-                        $phpmailer->AddAttachment($attachment , $row["uploadDichiarazioneDatoreLavoro"]);
+                    if($NewuploadDichiarazioneDatoreLavoro <> ''){
+                        $attachment = '/uploads/assegno_maternita/'. $NewuploadDichiarazioneDatoreLavoro;
+                        $phpmailer->AddAttachment($attachment , $NewuploadDichiarazioneDatoreLavoro);
                     }
                     
                     $phpmailer->isHTML(true);
                     $mailContent = '
-                        <p>L\'utente ' . $_SESSION['Nome'] . ' ' . $_SESSION['Cognome'] . ' (C.F. '.$_SESSION['CF'].') ha inviato una domanda contributo.<br/>'
+                        <p>L\'utente ' . $_SESSION['Nome'] . ' ' . $_SESSION['Cognome'] . ' (C.F. '.$_SESSION['CF'].') ha inviato una richiesta di assegno di maternit&agrave;.<br/>'
                             . 'Il numero della pratica &egrave;: <b>'.$NumeroPratica.'</b><br/>'
-                            .'In allegato la domanda e gli allegati richiesti.'
-                            .'<a href="'.$configData['url_servizi'].'/backend">Accedi al Backend per vedere i dati</a></p>
+                            .'In allegato la domanda e gli allegati richiesti.</p>'
+                            .'<p><a href="'.$configData['url_servizi'].'/backend">Accedi al Backend per vedere i dati</a></p>
                         ';
                     $phpmailer->Body = $mailContent;
 
@@ -189,10 +192,10 @@ $data = [];
                     }else{
                         $data['error'] .= 'Message could not be sent.';
                         $data['error'] .= 'Mailer Error: ' . $phpmailer->ErrorInfo;
-                    } */
+                    }
                 /* mando mail al comune - end */
 
-                /* mando mail all'utente - start
+                /* mando mail all'utente - start */
                     $phpmailer2 = new PHPMailer();
                     $phpmailer2->isSMTP();
                     $phpmailer2->Host = $configSmtp['smtp_host'];
@@ -226,7 +229,7 @@ $data = [];
                     }else{
                         $data['error'] .= 'Message could not be sent.';
                         $data['error'] .= 'Mailer Error: ' . $phpmailer2->ErrorInfo;
-                    } */
+                    }
                 /* mando mail all'utente - end */
 
             }   

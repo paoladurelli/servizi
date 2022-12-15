@@ -37,9 +37,11 @@
     $finalitaContributo = "";
     $tipoPagamento_id = "";
     $uploadPotereFirma = "";
+    $uploadPotereFirmaSaved = "";
     $tmpUploadDocumentazione1 = "";
     $tmpUploadDocumentaziones = "";
     $uploadDocumentazione = "";
+    $uploadDocumentazioneSaved = "";
 
     
     /* se mi viene passato l'id della bozza, vado a richiamare i dati salvati */
@@ -84,6 +86,7 @@
 
                 if($row["uploadPotereFirma"] != ''){
                     $uploadPotereFirma = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadPotereFirma"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
+                    $uploadPotereFirmaSaved = $row["uploadPotereFirma"];
                 }
                 if($row["uploadDocumentazione"] != ''){
                     $tmpUploadDocumentazione1 = substr($row["uploadDocumentazione"],0,-1);
@@ -92,6 +95,7 @@
                     foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
                         $uploadDocumentazione .= "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $tmpUploadDocumentazione ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
                     }
+                    $uploadDocumentazioneSaved = $row["uploadDocumentazione"];
                 }
             }
         }
@@ -136,7 +140,7 @@
                     <div class="cmp-heading pb-3 pb-lg-4">
                         <h1 class="title-xxxlarge">Presentare domanda per un contributo</h1>
                         <p class="subtitle-small">Servizio per la richiesta di sostegno nell'affrontare le spese relative all'assistenza per un familiare non autosufficiente</p>
-                        <p>Hai bisogno di assistenza? <a href="mailto:<?php echo $configData['pec_comune']; ?>">Contattaci</a></p>
+                        <p>Hai bisogno di assistenza? <a href="https://www.nuovoportale.proximalab.it/richiesta-assistenza?category=Salute, benessere e assistenza&service=Contributi economici a persone in stato di bisogno">Contattaci</a></p>
                     </div>
                 </div>
                 <div class="col-12 p-0 menu-servizi">
@@ -385,6 +389,7 @@
                                                                 echo '<input type="radio" id="ckb_pagamento" name="ckb_pagamento" value="'.$row['id'].'" ';
                                                                 if($row["predefinito"]=='1'){ echo 'checked'; }
                                                                 if($row["predefinito"]==$tipoPagamento_id){ echo 'checked'; }
+                                                                if($row["id"]==$tipoPagamento_id){ echo 'checked'; }
                                                                 echo ' />&nbsp;' . NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"];
                                                             echo '</label></p></div>';
                                                             echo '<div class="col-1">';
@@ -418,29 +423,48 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col-lg-6 text-center">
-                                                    <h6 id="dc_uploadPotereFirma_txt">Documento che attesta potere di firma</h6>
-                                                    <input type="file" name="dc_uploadPotereFirma" id="dc_uploadPotereFirma" class="upload" />
-                                                    <label for="dc_uploadPotereFirma">
-                                                        <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
-                                                        <span>Upload</span>
-                                                    </label>
-                                                    <ul class="upload-file-list" id="dc_uploadPotereFirma_file">
-                                                        <?php echo $uploadPotereFirma; ?>
-                                                    </ul>
+                                                <div class="col-lg-12 mb-50">
+                                                    <div class="row">
+                                                        <div class="col-lg-5">
+                                                            <h6 id="dc_uploadPotereFirma_txt">Documento che attesta potere di firma</h6>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <input type="hidden" name="dc_uploadPotereFirmaSaved" id="dc_uploadPotereFirmaSaved" value="<?php echo $uploadPotereFirmaSaved; ?>" />
+                                                            <input type="file" name="dc_uploadPotereFirma" id="dc_uploadPotereFirma" class="upload" value="<?php echo $uploadPotereFirmaSaved; ?>" />
+                                                            <label for="dc_uploadPotereFirma">
+                                                                <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
+                                                                <span>Upload</span>
+                                                            </label>
+                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <ul class="upload-file-list" id="dc_uploadPotereFirma_file">
+                                                                <?php echo $uploadPotereFirma; ?>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="col-lg-6 text-center">
-                                                    <h6 id="dc_uploadDocumentazione_txt">Documentazione utile al riconoscimento del contributo *</h6>
-                                                    <p><small>(esempi: contrato affitto, bollette, spese sanitarie, debiti…)</small></p>
-                                                    <input type="file" name="dc_uploadDocumentazione[]" id="dc_uploadDocumentazione" class="upload" multiple="multiple" />
-                                                    <label for="dc_uploadDocumentazione">
-                                                        <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
-                                                        <span>Upload</span>
-                                                    </label>
-                                                    <ul class="upload-file-list" id="dc_uploadDocumentazione_file">
-                                                        <?php echo $uploadDocumentazione; ?>
-                                                    </ul>
-                                                    
+                                                <div class="col-lg-12 mb-50">
+                                                    <div class="row">
+                                                        <div class="col-lg-5">
+                                                            <h6 id="dc_uploadDocumentazione_txt">Documentazione utile al riconoscimento del contributo *</h6>
+                                                            <p><em><small>(esempi: contratto affitto, bollette, spese sanitarie, debiti…)</small></em></p>
+                                                        </div>                                                    
+                                                        <div class="col-lg-3">
+                                                            <input type="hidden" name="dc_uploadDocumentazioneSaved" id="dc_uploadDocumentazioneSaved" value="<?php echo $uploadDocumentazioneSaved; ?>" />
+                                                            <input type="file" name="dc_uploadDocumentazione[]" id="dc_uploadDocumentazione" class="upload" multiple="multiple" value="" />
+                                                            <label for="dc_uploadDocumentazione">
+                                                                <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
+                                                                <span>Upload</span>
+                                                            </label>
+                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <ul class="upload-file-list" id="dc_uploadDocumentazione_file">
+                                                                <?php echo $uploadDocumentazione; ?>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

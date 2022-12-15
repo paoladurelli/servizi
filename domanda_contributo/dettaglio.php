@@ -57,7 +57,7 @@
                 $nome = $row["richiedenteNome"];
                 $cognome = $row["richiedenteCognome"];
                 $email = $row["richiedenteEmail"];
-                $datanascita = $row["richiedenteDataNascita"];
+                $datanascita = date("d/m/Y", strtotime($row["richiedenteDataNascita"]));
                 $luogonascita = $row["richiedenteLuogoNascita"];
                 $richiedenteVia = $row["richiedenteVia"];
                 $richiedenteLocalita = $row["richiedenteLocalita"];
@@ -69,7 +69,7 @@
                 $beneficiarioNome = $row["beneficiarioNome"];
                 $beneficiarioCognome = $row["beneficiarioCognome"];
                 $beneficiarioCf = $row["beneficiarioCf"];
-                $beneficiarioDataNascita = $row["beneficiarioDataNascita"];
+                $beneficiarioDataNascita = date("d/m/Y", strtotime($row["beneficiarioDataNascita"]));
                 $beneficiarioLuogoNascita = $row["beneficiarioLuogoNascita"];
                 $beneficiarioVia = $row["beneficiarioVia"];
                 $beneficiarioLocalita = $row["beneficiarioLocalita"];
@@ -111,7 +111,7 @@
                     <div class="cmp-heading pb-3 pb-lg-4">
                         <h1 class="title-xxxlarge">Presentare domanda per un contributo</h1>
                         <p class="subtitle-small">Servizio per la richiesta di sostegno nell'affrontare le spese relative all'assistenza per un familiare non autosufficiente</p>
-                        <p>Hai bisogno di assistenza? <a href="mailto:<?php echo $configData['pec_comune']; ?>">Contattaci</a></p>
+                        <p>Hai bisogno di assistenza? <a href="https://www.nuovoportale.proximalab.it/richiesta-assistenza?category=Salute, benessere e assistenza&service=Contributi economici a persone in stato di bisogno">Contattaci</a></p>
                     </div>
                 </div>
             </div>
@@ -353,7 +353,7 @@
                                                 while($row = $result->fetch_assoc()) {
                                                     echo '<div class="row mb-3">';
                                                         echo '<div class="col-12"><p>';
-                                                            if($row["predefinito"]=='1'){ echo NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"]; };
+                                                            if($row["id"]==$tipoPagamento_id){ echo NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"]; }
                                                         echo '</p></div>';
                                                     echo '</div>';
                                                 }

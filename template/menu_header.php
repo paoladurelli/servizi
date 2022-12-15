@@ -5,7 +5,7 @@
         </a>
     </li>
     <li class="nav-item ">
-        <a class="nav-link " href="#">
+        <a class="nav-link " href="https://www.nuovoportale.proximalab.it/user">
             <span>Profilo Utente</span>
         </a>
     </li>

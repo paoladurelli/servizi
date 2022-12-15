@@ -793,6 +793,13 @@ ul.card_rb input{
   color: var(--bs-primary);
 }
 
+.text-xsmall{
+    font-size: 0.7em;
+    font-weight: 500;
+    padding-top: 4px;
+    margin-bottom: 0px;
+}
+
 .thumb-view{
     width: 40px;
     display: inline;

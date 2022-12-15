@@ -41,9 +41,13 @@
     $tipoPagamento_id = "";
 
     $uploadCartaIdentitaFronte = "";
+    $uploadCartaIdentitaFronteSaved = "";
     $uploadCartaIdentitaRetro = "";
+    $uploadCartaIdentitaRetroSaved = "";
     $uploadTitoloSoggiorno = "";
+    $uploadTitoloSoggiornoSaved = "";
     $uploadDichiarazioneDatoreLavoro = "";
+    $uploadDichiarazioneDatoreLavoroSaved = "";
 
     
     /* se mi viene passato l'id della bozza, vado a richiamare i dati salvati */
@@ -87,15 +91,19 @@
                 
                 if($row["uploadCartaIdentitaFronte"] != ''){
                     $uploadCartaIdentitaFronte = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadCartaIdentitaFronte"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
+                    $uploadCartaIdentitaFronteSaved = $row["uploadCartaIdentitaFronte"];
                 }
                 if($row["uploadCartaIdentitaRetro"] != ''){
                     $uploadCartaIdentitaRetro = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadCartaIdentitaRetro"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
+                    $uploadCartaIdentitaRetroSaved = $row["uploadCartaIdentitaRetro"];
                 }
                 if($row["uploadTitoloSoggiorno"] != ''){
                     $uploadTitoloSoggiorno = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadTitoloSoggiorno"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
+                    $uploadTitoloSoggiornoSaved = $row["uploadTitoloSoggiorno"];
                 }
                 if($row["uploadDichiarazioneDatoreLavoro"] != ''){
                     $uploadDichiarazioneDatoreLavoro = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadDichiarazioneDatoreLavoro"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
+                    $uploadDichiarazioneDatoreLavoroSaved = $row["uploadDichiarazioneDatoreLavoro"];
                 }
             }
         }
@@ -140,7 +148,7 @@
                     <div class="cmp-heading pb-3 pb-lg-4">
                         <h1 class="title-xxxlarge">Presentare domanda per assegno di maternità</h1>
                         <p class="subtitle-small">Servizio per la fruizione di contributo economico concesso alle madri non occupate o non aventi diritto al trattamento di maternità, per nascite, adozioni e affidamenti preadottivi.</p>
-                        <p>Hai bisogno di assistenza? <a href="mailto:<?php echo $configData['pec_comune']; ?>">Contattaci</a></p>
+                        <p>Hai bisogno di assistenza? <a href="https://www.nuovoportale.proximalab.it/richiesta-assistenza?category=Salute, benessere e assistenza&service=Contributi economici a persone in stato di bisogno">Contattaci</a></p>
                     </div>
                 </div>
                 <div class="col-12 p-0  menu-servizi">
@@ -364,7 +372,7 @@
                                                         </ul>
                                                     </div>
                                                     <p>&nbsp;</p>
-                                                    <p><label><input type="checkbox" id="am_DichiarazioneAffidamento" name="am_DichiarazioneAffidamento" value="I" <?php if($DichiarazioneAffidamento == 1){ echo 'checked'; } ?>> che il figlio per il quale viene richiesto l’assegno di maternità è in affidamento</label> 
+                                                    <p><label><input type="checkbox" id="am_DichiarazioneAffidamento" name="am_DichiarazioneAffidamento" value="1" <?php if($DichiarazioneAffidamento == 1){ echo 'checked'; } ?>> che il figlio per il quale viene richiesto l’assegno di maternità è in affidamento</label> 
                                                     <div id="am_DataAffidamento" name="am_DataAffidamento">    
                                                         <p id="am_DichiarazioneAffidamentoData_txt">Data Inizio affidamento (in caso di adozione o affidamento preadottivo)<br/><input type="date" id="am_DichiarazioneAffidamentoData" name="am_DichiarazioneAffidamentoData" value="<?php echo $DichiarazioneAffidamentoData; ?>" required /></p>
                                                     </div>
@@ -399,6 +407,7 @@
                                                                 echo '<input type="radio" id="ckb_pagamento" name="ckb_pagamento" value="'.$row['id'].'" ';
                                                                 if($row["predefinito"]=='1'){ echo 'checked'; }
                                                                 if($row["predefinito"]==$tipoPagamento_id){ echo 'checked'; }
+                                                                if($row["id"]==$tipoPagamento_id){ echo 'checked'; }
                                                                 echo ' />&nbsp;' . NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"];
                                                             echo '</label></p></div>';
                                                             echo '<div class="col-1">';
@@ -432,51 +441,90 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col-lg-6 text-center mb-50">
-                                                    <h6 id="am_uploadCartaIdentitaFronte_txt">Documento di identità (fronte) *</h6>
-                                                    <input type="file" name="am_uploadCartaIdentitaFronte" id="am_uploadCartaIdentitaFronte" class="upload" />
-                                                    <label for="am_uploadCartaIdentitaFronte">
-                                                        <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
-                                                        <span>Upload</span>
-                                                    </label>
-                                                    <ul class="upload-file-list" id="am_uploadCartaIdentitaFronte_file" name="am_uploadCartaIdentitaFronte_file">
-                                                        <?php echo $uploadCartaIdentitaFronte; ?>
-                                                    </ul>
+                                                <div class="col-lg-12 mb-50">
+                                                    <div class="row">
+                                                        <div class="col-lg-5">
+                                                            <h6 id="am_uploadCartaIdentitaFronte_txt">Documento di identità (fronte) *</h6>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <input type="hidden" name="am_uploadCartaIdentitaFronteSaved" id="am_uploadCartaIdentitaFronteSaved" value="<?php echo $uploadCartaIdentitaFronteSaved; ?>" />
+                                                            <input type="file" name="am_uploadCartaIdentitaFronte" id="am_uploadCartaIdentitaFronte" class="upload" />
+                                                            <label for="am_uploadCartaIdentitaFronte">
+                                                                <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
+                                                                <span>Upload</span>
+                                                            </label>
+                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <ul class="upload-file-list" id="am_uploadCartaIdentitaFronte_file" name="am_uploadCartaIdentitaFronte_file">
+                                                                <?php echo $uploadCartaIdentitaFronte; ?>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="col-lg-6 text-center mb-50">
-                                                    <h6 id="am_uploadCartaIdentitaRetro_txt">Documento di identità (retro) *</h6>
-                                                    <input type="file" name="am_uploadCartaIdentitaRetro" id="am_uploadCartaIdentitaRetro" class="upload" />
-                                                    <label for="am_uploadCartaIdentitaRetro">
-                                                        <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
-                                                        <span>Upload</span>
-                                                    </label>
-                                                    <ul class="upload-file-list" id="am_uploadCartaIdentitaRetro_file" name="am_uploadCartaIdentitaRetro_file">
-                                                        <?php echo $uploadCartaIdentitaRetro; ?>
-                                                    </ul>
+                                                <div class="col-lg-12 mb-50">
+                                                    <div class="row">
+                                                        <div class="col-lg-5">
+                                                            <h6 id="am_uploadCartaIdentitaRetro_txt">Documento di identità (retro) *</h6>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <input type="hidden" name="am_uploadCartaIdentitaRetroSaved" id="am_uploadCartaIdentitaRetroSaved" value="<?php echo $uploadCartaIdentitaRetroSaved; ?>" />
+                                                            <input type="file" name="am_uploadCartaIdentitaRetro" id="am_uploadCartaIdentitaRetro" class="upload" />
+                                                            <label for="am_uploadCartaIdentitaRetro">
+                                                                <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
+                                                                <span>Upload</span>
+                                                            </label>
+                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <ul class="upload-file-list" id="am_uploadCartaIdentitaRetro_file" name="am_uploadCartaIdentitaRetro_file">
+                                                                <?php echo $uploadCartaIdentitaRetro; ?>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                
-                                                <div class="col-lg-6 text-center">
-                                                    <h6 id="am_uploadTitoloSoggiorno_txt">Copia titolo di soggiorno<br/>oppure</br>ricevuta della richiesta di rilascio del permesso di soggiorno</h6>
-                                                    <input type="file" name="am_uploadTitoloSoggiorno" id="am_uploadTitoloSoggiorno" class="upload" />
-                                                    <label for="am_uploadTitoloSoggiorno">
-                                                        <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
-                                                        <span>Upload</span>
-                                                    </label>
-                                                    <ul class="upload-file-list" id="am_uploadTitoloSoggiorno_file">
-                                                        <?php echo $uploadTitoloSoggiorno; ?>
-                                                    </ul>                                                    
+                                                <div class="col-lg-12 mb-50">
+                                                    <div class="row">
+                                                        <div class="col-lg-5">
+                                                            <h6 id="am_uploadTitoloSoggiorno_txt">Copia titolo di soggiorno<br/>oppure</br>ricevuta della richiesta di rilascio del permesso di soggiorno</h6>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <input type="hidden" name="am_uploadTitoloSoggiornoSaved" id="am_uploadTitoloSoggiornoSaved" value="<?php echo $uploadTitoloSoggiornoSaved; ?>" />
+                                                            <input type="file" name="am_uploadTitoloSoggiorno" id="am_uploadTitoloSoggiorno" class="upload" />
+                                                            <label for="am_uploadTitoloSoggiorno">
+                                                                <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
+                                                                <span>Upload</span>
+                                                            </label>
+                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <ul class="upload-file-list" id="am_uploadTitoloSoggiorno_file">
+                                                                <?php echo $uploadTitoloSoggiorno; ?>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="col-lg-6 text-center">
-                                                    <h6 id="am_uploadDichiarazioneDatoreLavoro_txt">Copia della dichiarazione del datore di lavoro relativa all’importo percepito per la maternità</h6>
-                                                    <p><small>(nel caso di richiesta della quota differenziale dell’assegno di maternità)</small></p>
-                                                    <input type="file" name="am_uploadDichiarazioneDatoreLavoro" id="am_uploadDichiarazioneDatoreLavoro" class="upload" />
-                                                    <label for="am_uploadDichiarazioneDatoreLavoro">
-                                                        <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
-                                                        <span>Upload</span>
-                                                    </label>
-                                                    <ul class="upload-file-list" id="am_uploadDichiarazioneDatoreLavoro_file">
-                                                        <?php echo $uploadDichiarazioneDatoreLavoro; ?>
-                                                    </ul>                                                    
+                                                <div class="col-lg-12">
+                                                    <div class="row">
+                                                        <div class="col-lg-5">
+                                                            <h6 id="am_uploadDichiarazioneDatoreLavoro_txt">Copia della dichiarazione del datore di lavoro relativa all’importo percepito per la maternità</h6>
+                                                            <p><em><small>(nel caso di richiesta della quota differenziale dell’assegno di maternità)</small></em></p>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <input type="hidden" name="am_uploadDichiarazioneDatoreLavoroSaved" id="am_uploadDichiarazioneDatoreLavoroSaved" value="<?php echo $uploadDichiarazioneDatoreLavoroSaved; ?>" />
+                                                            <input type="file" name="am_uploadDichiarazioneDatoreLavoro" id="am_uploadDichiarazioneDatoreLavoro" class="upload" />
+                                                            <label for="am_uploadDichiarazioneDatoreLavoro">
+                                                                <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
+                                                                <span>Upload</span>
+                                                            </label>
+                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <ul class="upload-file-list" id="am_uploadDichiarazioneDatoreLavoro_file">
+                                                                <?php echo $uploadDichiarazioneDatoreLavoro; ?>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

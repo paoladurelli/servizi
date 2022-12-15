@@ -437,24 +437,46 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
 }
 
 function DownloadRicevutaById($ServizioId,$PraticaId){
+    $configDB = require './env/config.php';
+    
     switch($ServizioId) {
         case 9: 
             /* assegno_maternita */
-            return '<div class="col-lg-12 mb-30"><p class="text-allegati-xsmall">RICEVUTA</p>
-            <form action="./lib/tcpdf/TCPDF-master/examples/am_pdf_pratica.php" method="POST" id="am_frm_download_pdf" name="am_frm_download_pdf">
-                <input type="hidden" name="am_download_pdf_id" id="am_download_pdf_id" value="'.$PraticaId.'" />
-                <input type="hidden" name="am_download_pdf_pratica" id="am_download_pdf_pratica" value="'.NumeroPraticaById($ServizioId,$PraticaId).'" />
-                <input type="image" name="submit" src="./media/images/icons/pdf.png" border="0" alt="Submit" class="thumb-view" />
-            </form></div>';
+            $connessioneDRBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+            $sqlVTABI = "SELECT status_id FROM assegno_maternita WHERE id = ". $PraticaId;
+            $resultDRBI = $connessioneDRBI->query($sqlVTABI);
+            if ($resultDRBI->num_rows > 0) {
+                while($rowDRBI = $resultDRBI->fetch_assoc()) {
+                    if($rowDRBI['status_id'] > 1){
+                        return '<div class="col-lg-12 mb-30"><p class="text-allegati-xsmall">RICEVUTA</p>
+                        <form action="./lib/tcpdf/TCPDF-master/examples/am_pdf_pratica.php" method="POST" id="am_frm_download_pdf" name="am_frm_download_pdf">
+                            <input type="hidden" name="am_download_pdf_id" id="am_download_pdf_id" value="'.$PraticaId.'" />
+                            <input type="hidden" name="am_download_pdf_pratica" id="am_download_pdf_pratica" value="'.NumeroPraticaById($ServizioId,$PraticaId).'" />
+                            <input type="image" name="submit" src="./media/images/icons/pdf.png" border="0" alt="Submit" class="thumb-view" />
+                        </form></div>';
+                    }
+                }
+            }
+            $connessioneDRBI->close();
             break;
         case 11:
             /* domanda_contributo */
-            return '<div class="col-lg-12 mb-30"><p class="text-allegati-xsmall">RICEVUTA</p>
-            <form action="./lib/tcpdf/TCPDF-master/examples/dc_pdf_pratica.php" method="POST" id="dc_frm_download_pdf" name="dc_frm_download_pdf">
-                <input type="hidden" name="dc_download_pdf_id" id="dc_download_pdf_id" value="'.$PraticaId.'" />
-                <input type="hidden" name="dc_download_pdf_pratica" id="dc_download_pdf_pratica" value="'.NumeroPraticaById($ServizioId,$PraticaId).'" />
-                <input type="image" name="submit" src="./media/images/icons/pdf.png" border="0" alt="Submit" class="thumb-view" />
-            </form></div>';
+            $connessioneDRBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+            $sqlVTABI = "SELECT status_id FROM domanda_contributo WHERE id = ". $PraticaId;
+            $resultDRBI = $connessioneDRBI->query($sqlVTABI);
+            if ($resultDRBI->num_rows > 0) {
+                while($rowDRBI = $resultDRBI->fetch_assoc()) {
+                    if($rowDRBI['status_id'] > 1){
+                        return '<div class="col-lg-12 mb-30"><p class="text-allegati-xsmall">RICEVUTA</p>
+                        <form action="./lib/tcpdf/TCPDF-master/examples/dc_pdf_pratica.php" method="POST" id="dc_frm_download_pdf" name="dc_frm_download_pdf">
+                            <input type="hidden" name="dc_download_pdf_id" id="dc_download_pdf_id" value="'.$PraticaId.'" />
+                            <input type="hidden" name="dc_download_pdf_pratica" id="dc_download_pdf_pratica" value="'.NumeroPraticaById($ServizioId,$PraticaId).'" />
+                            <input type="image" name="submit" src="./media/images/icons/pdf.png" border="0" alt="Submit" class="thumb-view" />
+                        </form></div>';
+                    }
+                }
+            }
+            $connessioneDRBI->close();
             break;
     }                              
 }

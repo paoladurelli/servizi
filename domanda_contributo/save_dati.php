@@ -105,11 +105,11 @@ if (!isset($_POST['ckb_pagamento'])){
     $errors['ckb_pagamento'] = "<li><a href='#ckb_pagamento_txt'>Selezionare il Metodo di pagamento</a></li>";
 }
 
-if((!empty($_POST['dc_rb_qualita_di']) && $_POST['dc_rb_qualita_di']!="D") && empty($_FILES['dc_uploadPotereFirma'])){
+if((!empty($_POST['dc_rb_qualita_di']) && $_POST['dc_rb_qualita_di']!="D") && (empty($_FILES['dc_uploadPotereFirma']) && $_POST['dc_uploadPotereFirmaSaved'] =='')){
     $errors['dc_uploadPotereFirma'] = "<li><a href='#dc_uploadPotereFirma_txt'>Allegare il Documento che attesta potere di firma</a></li>";
 }
 
-if(empty($_FILES['dc_uploadDocumentazione'])){
+if(empty($_FILES['dc_uploadDocumentazione']) && $_POST['dc_uploadDocumentazioneSaved'] ==''){
     $errors['dc_uploadDocumentazione'] = "<li><a href='#dc_uploadDocumentazione_txt'>Allegare la Documentazione</a></li>";
 }
 
@@ -119,7 +119,7 @@ if (!empty($errors)) {
 } else {
     /* salvo tutti i dati nel DB nella tabella domanda_contributo con status 0 */    
     $connessioneINS = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-    $sqlINS = "INSERT INTO `domanda_contributo`(status_id,richiedenteNome,richiedenteCognome,richiedenteCf,richiedenteDataNascita,richiedenteLuogoNascita,richiedenteVia,richiedenteLocalita,richiedenteProvincia,richiedenteEmail,richiedenteTel,inQualitaDi,beneficiarioNome,beneficiarioCognome,beneficiarioCf,beneficiarioDataNascita,beneficiarioLuogoNascita,beneficiarioVia,beneficiarioLocalita,beneficiarioProvincia,beneficiarioEmail,beneficiarioTel,importoContributo,finalitaContributo,tipoPagamento_id) VALUES (0,'".$_POST['dc_richiedente_nome']."','".$_POST['dc_richiedente_cognome']."','".$_POST['dc_richiedente_cf']."','".$_POST['dc_richiedente_data_nascita']."','".$_POST['dc_richiedente_luogo_nascita']."','".$_POST['dc_richiedente_via']."','".$_POST['dc_richiedente_localita']."','".$_POST['dc_richiedente_provincia']."','".$_POST['dc_richiedente_email']."','".$_POST['dc_richiedente_tel']."','".$_POST['dc_rb_qualita_di']."','".$_POST['dc_beneficiario_nome']."','".$_POST['dc_beneficiario_cognome']."','".$_POST['dc_beneficiario_cf']."','".$_POST['dc_beneficiario_data_nascita']."','".$_POST['dc_beneficiario_luogo_nascita']."','".$_POST['dc_beneficiario_via']."','".$_POST['dc_beneficiario_localita']."','".$_POST['dc_beneficiario_provincia']."','".$_POST['dc_beneficiario_email']."','".$_POST['dc_beneficiario_tel']."','".$_POST['dc_importo_contributo']."','".$_POST['dc_finalita_contributo']."','".$_POST['ckb_pagamento']."')";
+    $sqlINS = "INSERT INTO `domanda_contributo`(status_id,richiedenteNome,richiedenteCognome,richiedenteCf,richiedenteDataNascita,richiedenteLuogoNascita,richiedenteVia,richiedenteLocalita,richiedenteProvincia,richiedenteEmail,richiedenteTel,inQualitaDi,beneficiarioNome,beneficiarioCognome,beneficiarioCf,beneficiarioDataNascita,beneficiarioLuogoNascita,beneficiarioVia,beneficiarioLocalita,beneficiarioProvincia,beneficiarioEmail,beneficiarioTel,importoContributo,finalitaContributo,tipoPagamento_id) VALUES (0,'".addslashes($_POST['dc_richiedente_nome'])."','".addslashes($_POST['dc_richiedente_cognome'])."','".$_POST['dc_richiedente_cf']."','".$_POST['dc_richiedente_data_nascita']."','".addslashes($_POST['dc_richiedente_luogo_nascita'])."','".addslashes($_POST['dc_richiedente_via'])."','".addslashes($_POST['dc_richiedente_localita'])."','".$_POST['dc_richiedente_provincia']."','".$_POST['dc_richiedente_email']."','".$_POST['dc_richiedente_tel']."','".$_POST['dc_rb_qualita_di']."','".addslashes($_POST['dc_beneficiario_nome'])."','".addslashes($_POST['dc_beneficiario_cognome'])."','".$_POST['dc_beneficiario_cf']."','".$_POST['dc_beneficiario_data_nascita']."','".addslashes($_POST['dc_beneficiario_luogo_nascita'])."','".addslashes($_POST['dc_beneficiario_via'])."','".addslashes($_POST['dc_beneficiario_localita'])."','".$_POST['dc_beneficiario_provincia']."','".$_POST['dc_beneficiario_email']."','".$_POST['dc_beneficiario_tel']."','".$_POST['dc_importo_contributo']."','".addslashes($_POST['dc_finalita_contributo'])."','".$_POST['ckb_pagamento']."')";
     $connessioneINS->query($sqlINS);
     
     $sqlINS = "SELECT id FROM domanda_contributo WHERE richiedenteCf = '". $_SESSION['CF']."' and status_id = 0 ORDER BY id DESC LIMIT 1";
@@ -167,6 +167,13 @@ if (!empty($errors)) {
                 $connessioneUPD->query($sqlUPD);
             }
         }
+    }else{
+        if($_POST['dc_uploadPotereFirmaSaved'] != ''){
+            /* salvo nel DB i nomi */
+            $connessioneUPD = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+            $sqlUPD = "UPDATE domanda_contributo SET uploadPotereFirma = '".$_POST['dc_uploadPotereFirmaSaved']."' WHERE id = ".$new_id;
+            $connessioneUPD->query($sqlUPD);
+        }
     }
     /* dc_uploadPotereFirma - end */
 
@@ -204,6 +211,13 @@ if (!empty($errors)) {
                     }
                 }
             }
+        }
+    }else{
+        if($_POST['dc_uploadDocumentazioneSaved'] != ''){
+            /* salvo nel DB i nomi */
+            $connessioneUPD = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+            $sqlUPD = "UPDATE domanda_contributo SET uploadDocumentazione = '".$_POST['dc_uploadDocumentazioneSaved']."' WHERE id = ".$new_id;
+            $connessioneUPD->query($sqlUPD);
         }
     }
     /* dc_uploadDocumentazione - end */

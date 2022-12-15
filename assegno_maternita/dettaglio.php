@@ -55,7 +55,7 @@
                 $nome = $row["richiedenteNome"];
                 $cognome = $row["richiedenteCognome"];
                 $email = $row["richiedenteEmail"];
-                $datanascita = $row["richiedenteDataNascita"];
+                $datanascita = date("d/m/Y", strtotime($row["richiedenteDataNascita"]));
                 $luogonascita = $row["richiedenteLuogoNascita"];
                 $richiedenteVia = $row["richiedenteVia"];
                 $richiedenteLocalita = $row["richiedenteLocalita"];
@@ -64,7 +64,7 @@
                 
                 $minoreNome = $row["minoreNome"];
                 $minoreCognome = $row["minoreCognome"];
-                $minoreDataNascita = $row["minoreDataNascita"];
+                $minoreDataNascita = date("d/m/Y", strtotime($row["minoreDataNascita"]));
                 $minoreLuogoNascita = $row["minoreLuogoNascita"];
 
                 $tipoRichiesta = $row["tipoRichiesta"];
@@ -72,10 +72,10 @@
                 $DichiarazioneCittadinanza = $row["DichiarazioneCittadinanza"];
                 $DichiarazioneSoggiornoNumero = $row["DichiarazioneSoggiornoNumero"];
                 $DichiarazioneSoggiornoQuestura = $row["DichiarazioneSoggiornoQuestura"];
-                $DichiarazioneSoggiornoData = $row["DichiarazioneSoggiornoData"];
-                $DichiarazioneSoggiornoDataRinnovo = $row["DichiarazioneSoggiornoDataRinnovo"];
+                $DichiarazioneSoggiornoData = date("d/m/Y", strtotime($row["DichiarazioneSoggiornoData"]));
+                $DichiarazioneSoggiornoDataRinnovo = date("d/m/Y", strtotime($row["DichiarazioneSoggiornoDataRinnovo"]));
                 $DichiarazioneAffidamento = $row["DichiarazioneAffidamento"];
-                $DichiarazioneAffidamentoData = $row["DichiarazioneAffidamentoData"];
+                $DichiarazioneAffidamentoData = date("d/m/Y", strtotime($row["DichiarazioneAffidamentoData"]));
 
                 $tipoPagamento_id = $row["tipoPagamento_id"];
 
@@ -104,7 +104,7 @@
                     <div class="cmp-heading pb-3 pb-lg-4">
                         <h1 class="title-xxxlarge">Presentare domanda per assegno di maternità</h1>
                         <p class="subtitle-small">Servizio per la fruizione di contributo economico concesso alle madri non occupate o non aventi diritto al trattamento di maternità, per nascite, adozioni e affidamenti preadottivi.</p>
-                        <p>Hai bisogno di assistenza? <a href="mailto:<?php echo $configData['pec_comune']; ?>">Contattaci</a></p>
+                        <p>Hai bisogno di assistenza? <a href="https://www.nuovoportale.proximalab.it/richiesta-assistenza?category=Salute, benessere e assistenza&service=Contributi economici a persone in stato di bisogno">Contattaci</a></p>
                     </div>
                 </div>
             </div>
@@ -315,18 +315,22 @@
                                                     }
                                                 ?>
                                                 </p>
-                                                <div id="am_DichiarazioneSoggiorno" name="am_DichiarazioneSoggiorno">
-                                                    <p>Numero titolo di soggiorno<br/><?php echo $DichiarazioneSoggiornoNumero; ?></p>
-                                                    <p>Rilasciato dalla Questura di<br/><?php echo $DichiarazioneSoggiornoQuestura; ?></p>
-                                                    <p>Data Rilascio<br/><?php echo $DichiarazioneSoggiornoData; ?></p>
-                                                    <p>oppure</p>
-                                                    <p>Data Richiesta rinnovo<br/><?php echo $DichiarazioneSoggiornoDataRinnovo; ?></p>
-                                                    <p>In quanto appartenente ad una delle seguenti tipologie:
-                                                    <ul>
-                                                        <li>permesso di soggiorno CE per soggiornanti di lungo periodo;</li>
-                                                        <li>altro tipo di permesso valido che consente l’esercizio dell’attività lavorativa;</li>
-                                                    </ul>
-                                                </div>
+                                                <?php if($DichiarazioneCittadinanza == "E"){ ?>
+                                                    <div>
+                                                        <p>Numero titolo di soggiorno<br/><?php echo $DichiarazioneSoggiornoNumero; ?></p>
+                                                        <p>Rilasciato dalla Questura di<br/><?php echo $DichiarazioneSoggiornoQuestura; ?></p>
+                                                        <?php if($DichiarazioneSoggiornoData <> ''){ ?>
+                                                            <p>Data Rilascio<br/><?php echo $DichiarazioneSoggiornoData; ?></p>
+                                                        <?php }else{ ?>
+                                                            <p>Data Richiesta rinnovo<br/><?php echo $DichiarazioneSoggiornoDataRinnovo; ?></p>
+                                                        <?php } ?>
+                                                        <p>In quanto appartenente ad una delle seguenti tipologie:
+                                                        <ul>
+                                                            <li>permesso di soggiorno CE per soggiornanti di lungo periodo;</li>
+                                                            <li>altro tipo di permesso valido che consente l’esercizio dell’attività lavorativa;</li>
+                                                        </ul>
+                                                    </div>
+                                                <?php } ?>
                                                 <?php if($DichiarazioneAffidamento == 1){
                                                     echo '<p>che il figlio per il quale viene richiesto l’assegno di maternità è in affidamento</p>'; 
                                                     echo '<p>Data Inizio affidamento (in caso di adozione o affidamento preadottivo): '. $DichiarazioneAffidamentoData . '</p>';
@@ -358,7 +362,7 @@
                                                 while($row = $result->fetch_assoc()) {
                                                     echo '<div class="row mb-3">';
                                                         echo '<div class="col-12"><p>';
-                                                            if($row["predefinito"]=='1'){ echo NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"]; };
+                                                            if($row["id"]==$tipoPagamento_id){ echo NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"]; }
                                                         echo '</p></div>';
                                                     echo '</div>';
                                                 }

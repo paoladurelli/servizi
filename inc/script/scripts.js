@@ -158,6 +158,7 @@ $(document).ready(function () {
         let fileName = e.target.files[0].name;
         var _size = e.target.files[0].size;
         var maxFileSize = 500;
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'pdf'];
         var checkSize = parseFloat(_size / 1024).toFixed(2);
          //Check if the file size is less than maximum file size
         if (checkSize < maxFileSize) {
@@ -165,8 +166,13 @@ $(document).ready(function () {
             i=0;while(_size>900){_size/=1024;i++;}
             var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
             let fileSize = exactSize;
-            $('#dc_uploadPotereFirma_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
-             return true;
+
+            if ($.inArray(fileName.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Formati accettati : "+fileExtension.join(', '));
+            }else{
+                $('#dc_uploadPotereFirma_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+                return true;
+            }
         } else {
              alert('Il file deve pesare al massimo 500 Kb');
              $('#dc_uploadPotereFirma').val('');
@@ -182,6 +188,7 @@ $(document).ready(function () {
             let fileName = e.target.files[index].name;
             var _size = e.target.files[index].size;
             var maxFileSize = 500;
+            var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'pdf'];
             var checkSize = parseFloat(_size / 1024).toFixed(2);
              //Check if the file size is less than maximum file size
             if (checkSize < maxFileSize) {
@@ -189,8 +196,13 @@ $(document).ready(function () {
                 i=0;while(_size>900){_size/=1024;i++;}
                 var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
                 let fileSize = exactSize;
-                $('#dc_uploadDocumentazione_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
-                return true;
+                
+                if ($.inArray(fileName.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                    alert("Formati accettati : "+fileExtension.join(', '));
+                }else{
+                    $('#dc_uploadDocumentazione_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+                    return true;
+                }
             } else {
                  alert('Il file deve pesare al massimo 500 Kb');
                  $('#dc_uploadDocumentazione').val('');
@@ -634,6 +646,7 @@ $(document).ready(function () {
         let fileName = e.target.files[0].name;
         var _size = e.target.files[0].size;
         var maxFileSize = 500;
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'pdf'];
         var checkSize = parseFloat(_size / 1024).toFixed(2);
          //Check if the file size is less than maximum file size
         if (checkSize < maxFileSize) {
@@ -641,8 +654,13 @@ $(document).ready(function () {
             i=0;while(_size>900){_size/=1024;i++;}
             var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
             let fileSize = exactSize;
+
+            if ($.inArray(fileName.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Formati accettati : "+fileExtension.join(', '));
+            }else{
             $('#am_uploadCartaIdentitaFronte_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
              return true;
+            }
         } else {
              alert('Il file deve pesare al massimo 500 Kb');
              $('#am_uploadCartaIdentitaFronte').val('');
@@ -655,6 +673,7 @@ $(document).ready(function () {
         let fileName = e.target.files[0].name;
         var _size = e.target.files[0].size;
         var maxFileSize = 500;
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'pdf'];
         var checkSize = parseFloat(_size / 1024).toFixed(2);
          //Check if the file size is less than maximum file size
         if (checkSize < maxFileSize) {
@@ -662,8 +681,13 @@ $(document).ready(function () {
             i=0;while(_size>900){_size/=1024;i++;}
             var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
             let fileSize = exactSize;
-            $('#am_uploadCartaIdentitaRetro_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
-            return true;
+            
+            if ($.inArray(fileName.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Formati accettati : "+fileExtension.join(', '));
+            }else{
+                $('#am_uploadCartaIdentitaRetro_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+                return true;
+            }
         } else {
              alert('Il file deve pesare al massimo 500 Kb');
              $('#am_uploadCartaIdentitaRetro').val('');
@@ -676,6 +700,7 @@ $(document).ready(function () {
         let fileName = e.target.files[0].name;
         var _size = e.target.files[0].size;
         var maxFileSize = 500;
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'pdf'];
         var checkSize = parseFloat(_size / 1024).toFixed(2);
          //Check if the file size is less than maximum file size
         if (checkSize < maxFileSize) {
@@ -683,8 +708,13 @@ $(document).ready(function () {
             i=0;while(_size>900){_size/=1024;i++;}
             var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
             let fileSize = exactSize;
-            $('#am_uploadTitoloSoggiorno_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
-            return true;
+            
+            if ($.inArray(fileName.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Formati accettati : "+fileExtension.join(', '));
+            }else{
+                $('#am_uploadTitoloSoggiorno_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+                return true;
+            }
         } else {
              alert('Il file deve pesare al massimo 500 Kb');
              $('#am_uploadTitoloSoggiorno').val('');
@@ -696,6 +726,7 @@ $(document).ready(function () {
         let fileName = e.target.files[0].name;
         var _size = e.target.files[0].size;
         var maxFileSize = 500;
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'pdf'];
         var checkSize = parseFloat(_size / 1024).toFixed(2);
          //Check if the file size is less than maximum file size
         if (checkSize < maxFileSize) {
@@ -703,8 +734,13 @@ $(document).ready(function () {
             i=0;while(_size>900){_size/=1024;i++;}
             var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
             let fileSize = exactSize;
-            $('#am_uploadDichiarazioneDatoreLavoro_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
-            return true;
+            
+            if ($.inArray(fileName.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Formati accettati : "+fileExtension.join(', '));
+            }else{
+                $('#am_uploadDichiarazioneDatoreLavoro_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+                return true;
+            }
         } else {
              alert('Il file deve pesare al massimo 500 Kb');
              $('#am_uploadDichiarazioneDatoreLavoro').val('');

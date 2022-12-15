@@ -93,16 +93,16 @@ if (isset($_POST['am_DichiarazioneAffidamento']) && $_POST['am_DichiarazioneAffi
 if (!isset($_POST['ckb_pagamento']) && empty($_POST['ckb_pagamento'])){
     $errors['ckb_pagamento'] = "<li><a href='#ckb_pagamento_txt'>Selezionare il Metodo di pagamento</a></li>";
 }
-if (empty($_FILES['am_uploadCartaIdentitaFronte'])){
+if (empty($_FILES['am_uploadCartaIdentitaFronte']) && $_POST['am_uploadCartaIdentitaFronteSaved'] ==''){
     $errors['am_uploadCartaIdentitaFronte'] = "<li><a href='#am_uploadCartaIdentitaFronte_txt'>Allegare il Fronte della carta di identità</a></li>";
 }
-if (empty($_FILES['am_uploadCartaIdentitaRetro'])){
+if (empty($_FILES['am_uploadCartaIdentitaRetro']) && $_POST['am_uploadCartaIdentitaRetroSaved'] ==''){
     $errors['am_uploadCartaIdentitaRetro'] = "<li><a href='#am_uploadCartaIdentitaRetro_txt'>Allegare il Retro della carta di identità</a></li>";
 }
-if (isset($_POST['am_DichiarazioneCittadinanza']) && $_POST['am_DichiarazioneCittadinanza']=="E" && empty($_FILES['am_uploadTitoloSoggiorno'])){
+if (isset($_POST['am_DichiarazioneCittadinanza']) && $_POST['am_DichiarazioneCittadinanza']=="E" && (empty($_FILES['am_uploadTitoloSoggiorno']) && $_POST['am_uploadTitoloSoggiornoSaved'] =='')){
     $errors['am_uploadTitoloSoggiorno'] = "<li><a href='#am_uploadTitoloSoggiorno_txt'>Allegare il Titolo di Soggiorno oppure ricevuta della richiesta di rilascio del permesso di soggiorno</a></li>";
 }
-if (isset($_POST['am_tipoRichiesta']) && $_POST['am_tipoRichiesta']=="QD" && empty($_FILES['am_uploadDichiarazioneDatoreLavoro'])){
+if (isset($_POST['am_tipoRichiesta']) && $_POST['am_tipoRichiesta']=="QD" && (empty($_FILES['am_uploadDichiarazioneDatoreLavoro']) && $_POST['am_uploadDichiarazioneDatoreLavoroSaved'] =='')){
     $errors['am_uploadDichiarazioneDatoreLavoro'] = "<li><a href='#am_uploadDichiarazioneDatoreLavoro_txt'>Allegare la Dichiarazione del datore di lavoro</a></li>";
 }
 if (!empty($errors)) {
@@ -111,7 +111,7 @@ if (!empty($errors)) {
 } else {
     /* salvo tutti i dati nel DB nella tabella domanda_contributo con status 0 */    
     $connessioneINS = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-    $sqlINS = "INSERT INTO `assegno_maternita` (status_id,richiedenteCf,richiedenteNome,richiedenteCognome,richiedenteDataNascita,richiedenteLuogoNascita,richiedenteVia,richiedenteLocalita,richiedenteProvincia,richiedenteEmail,richiedenteTel,minoreNome,minoreCognome,minoreDataNascita,minoreLuogoNascita,tipoRichiesta,DichiarazioneCittadinanza,DichiarazioneSoggiornoNumero,DichiarazioneSoggiornoQuestura,DichiarazioneSoggiornoData,DichiarazioneSoggiornoDataRinnovo,DichiarazioneAffidamento,DichiarazioneAffidamentoData,tipoPagamento_id) VALUES (0,'".$_POST['am_richiedente_cf']."','".$_POST['am_richiedente_nome']."','".$_POST['am_richiedente_cognome']."','".$_POST['am_richiedente_data_nascita']."','".$_POST['am_richiedente_luogo_nascita']."','".$_POST['am_richiedente_via']."','".$_POST['am_richiedente_localita']."','".$_POST['am_richiedente_provincia']."','".$_POST['am_richiedente_email']."','".$_POST['am_richiedente_tel']."','".$_POST['am_minoreNome']."','".$_POST['am_minoreCognome']."','".$_POST['am_minoreDataNascita']."','".$_POST['am_minoreLuogoNascita']."','".$_POST['am_tipoRichiesta']."','".$_POST['am_DichiarazioneCittadinanza']."','".$_POST['am_DichiarazioneSoggiornoNumero']."','".$_POST['am_DichiarazioneSoggiornoQuestura']."','".$_POST['am_DichiarazioneSoggiornoData']."','".$_POST['am_DichiarazioneSoggiornoDataRinnovo']."','".$am_DichiarazioneAffidamento."','".$_POST['am_DichiarazioneAffidamentoData']."','".$_POST['ckb_pagamento']."')";
+    $sqlINS = "INSERT INTO `assegno_maternita` (status_id,richiedenteCf,richiedenteNome,richiedenteCognome,richiedenteDataNascita,richiedenteLuogoNascita,richiedenteVia,richiedenteLocalita,richiedenteProvincia,richiedenteEmail,richiedenteTel,minoreNome,minoreCognome,minoreDataNascita,minoreLuogoNascita,tipoRichiesta,DichiarazioneCittadinanza,DichiarazioneSoggiornoNumero,DichiarazioneSoggiornoQuestura,DichiarazioneSoggiornoData,DichiarazioneSoggiornoDataRinnovo,DichiarazioneAffidamento,DichiarazioneAffidamentoData,tipoPagamento_id) VALUES (0,'".$_POST['am_richiedente_cf']."','".addslashes($_POST['am_richiedente_nome'])."','".addslashes($_POST['am_richiedente_cognome'])."','".$_POST['am_richiedente_data_nascita']."','".addslashes($_POST['am_richiedente_luogo_nascita'])."','".addslashes($_POST['am_richiedente_via'])."','".addslashes($_POST['am_richiedente_localita'])."','".$_POST['am_richiedente_provincia']."','".$_POST['am_richiedente_email']."','".$_POST['am_richiedente_tel']."','".addslashes($_POST['am_minoreNome'])."','".addslashes($_POST['am_minoreCognome'])."','".$_POST['am_minoreDataNascita']."','".addslashes($_POST['am_minoreLuogoNascita'])."','".$_POST['am_tipoRichiesta']."','".$_POST['am_DichiarazioneCittadinanza']."','".$_POST['am_DichiarazioneSoggiornoNumero']."','".addslashes($_POST['am_DichiarazioneSoggiornoQuestura'])."','".$_POST['am_DichiarazioneSoggiornoData']."','".$_POST['am_DichiarazioneSoggiornoDataRinnovo']."','".$am_DichiarazioneAffidamento."','".$_POST['am_DichiarazioneAffidamentoData']."','".$_POST['ckb_pagamento']."')";
     $connessioneINS->query($sqlINS);
 
     $sqlINS = "SELECT id FROM assegno_maternita WHERE richiedenteCf = '". $_SESSION['CF']."' and status_id = 0 ORDER BY id DESC LIMIT 1";
@@ -159,6 +159,13 @@ if (!empty($errors)) {
                 $connessioneUPD->query($sqlUPD);
             }
         }
+    }else{
+        if($_POST['am_uploadCartaIdentitaFronteSaved'] != ''){
+            /* salvo nel DB i nomi */
+            $connessioneUPD = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+            $sqlUPD = "UPDATE assegno_maternita SET uploadCartaIdentitaFronte = '".$_POST['am_uploadCartaIdentitaFronteSaved']."' WHERE id = ".$new_id;
+            $connessioneUPD->query($sqlUPD);
+        }
     }
     /* am_uploadCartaIdentitaFronte - end */
 
@@ -188,6 +195,13 @@ if (!empty($errors)) {
                 $sqlUPD = "UPDATE assegno_maternita SET uploadCartaIdentitaRetro = '".$filename."' WHERE id = ".$new_id;
                 $connessioneUPD->query($sqlUPD);
             }
+        }
+    }else{
+        if($_POST['am_uploadCartaIdentitaRetroSaved'] != ''){
+            /* salvo nel DB i nomi */
+            $connessioneUPD = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+            $sqlUPD = "UPDATE assegno_maternita SET uploadCartaIdentitaRetro = '".$_POST['am_uploadCartaIdentitaRetroSaved']."' WHERE id = ".$new_id;
+            $connessioneUPD->query($sqlUPD);
         }
     }
     /* am_uploadCartaIdentitaRetro - end */
@@ -219,6 +233,13 @@ if (!empty($errors)) {
                 $connessioneUPD->query($sqlUPD);
             }
         }
+    }else{
+        if($_POST['am_uploadTitoloSoggiornoSaved'] != ''){
+            /* salvo nel DB i nomi */
+            $connessioneUPD = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+            $sqlUPD = "UPDATE assegno_maternita SET uploadTitoloSoggiorno = '".$_POST['am_uploadTitoloSoggiornoSaved']."' WHERE id = ".$new_id;
+            $connessioneUPD->query($sqlUPD);
+        }
     }
     /* am_uploadTitoloSoggiorno - end */
 
@@ -248,6 +269,13 @@ if (!empty($errors)) {
                 $sqlUPD = "UPDATE assegno_maternita SET uploadDichiarazioneDatoreLavoro = '".$filename."' WHERE id = ".$new_id;
                 $connessioneUPD->query($sqlUPD);
             }
+        }
+    }else{
+        if($_POST['am_uploadDichiarazioneDatoreLavoroSaved'] != ''){
+            /* salvo nel DB i nomi */
+            $connessioneUPD = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+            $sqlUPD = "UPDATE assegno_maternita SET uploadDichiarazioneDatoreLavoro = '".$_POST['am_uploadDichiarazioneDatoreLavoroSaved']."' WHERE id = ".$new_id;
+            $connessioneUPD->query($sqlUPD);
         }
     }
     /* am_uploadDichiarazioneDatoreLavoro - end */
