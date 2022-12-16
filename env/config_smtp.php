@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'smtp_host' => 'smtp.office365.com',
+    'smtp_host' => 'gnldm1048.siteground.biz',
     'smtp_auth' => true,
-    'smtp_port' => 587,
-    'smtp_secure' => "PHPMailer::ENCRYPTION_STARTTLS",
-    'smtp_username' => 'sviluppo@proximalab.it',
-    'smtp_password' => 'Magnetica18',
+    'smtp_port' => 25,
+    'smtp_secure' => "tls",
+    'smtp_username' => 'test@nuovoportale.proximalab.it',
+    'smtp_password' => 'Accesso22!',
 ];

@@ -104,7 +104,14 @@
                     <div class="cmp-heading pb-3 pb-lg-4">
                         <h1 class="title-xxxlarge">Presentare domanda per assegno di maternità</h1>
                         <p class="subtitle-small">Servizio per la fruizione di contributo economico concesso alle madri non occupate o non aventi diritto al trattamento di maternità, per nascite, adozioni e affidamenti preadottivi.</p>
-                        <p>Hai bisogno di assistenza? <a href="https://www.nuovoportale.proximalab.it/richiesta-assistenza?category=Salute, benessere e assistenza&service=Contributi economici a persone in stato di bisogno">Contattaci</a></p>
+                        <p style="display: inline;">Hai bisogno di assistenza?</p>
+                        <form action="<?php echo $configData['url_comune']; ?>/richiesta-assistenza" method="post" id="frmRichiestaAssistenza"  style="display: inline;">
+                            <input type="hidden" name="id_assistenza" value="">
+                            <input type="hidden" name="categoria" value="Salute, benessere e assistenza">
+                            <input type="hidden" name="servizio" value="Contributi economici a persone in stato di bisogno">
+                            <input type="hidden" name="descrizione" value="">
+                            <a href="javascript:void()" onclick="document.getElementById('frmRichiestaAssistenza').submit();">Contattaci</a>
+                        </form>
                     </div>
                 </div>
             </div>

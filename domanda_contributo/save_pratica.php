@@ -160,13 +160,22 @@ $data = [];
                     }
                     
                     $phpmailer->isHTML(true);
-                    $mailContent = '
+                    
+                    $message = file_get_contents('../template/mail/toComune.html'); 
+                    $message = str_replace('%nome%', $_SESSION['Nome'], $message); 
+                    $message = str_replace('%cognome%', $_SESSION['Cognome'], $message);
+                    $message = str_replace('%codicefiscale%', $_SESSION['CF'], $message);
+                    $message = str_replace('%numeropratica%', $NumeroPratica, $message);
+                    $message = str_replace('%urlservizi%', $configData['url_servizi'], $message);
+                    $message = str_replace('%servizioselezionato%', 'domanda di contributo economico', $message);
+                    $phpmailer->Body = $message;
+                    
+                    /*$mailContent = '
                         <p>L\'utente ' . $_SESSION['Nome'] . ' ' . $_SESSION['Cognome'] . '(C.F. '.$_SESSION['CF'].') ha inviato una domanda contributo.<br/>'
                             . 'Il numero della pratica &egrave;: <b>'.$NumeroPratica.'</b><br/>'
                             .'In allegato la domanda e gli allegati richiesti.</p>'
                             .'<p><a href="'.$configData['url_servizi'].'/backend">Accedi al Backend per vedere i dati</a></p>';
-                    $phpmailer->Body = $mailContent;
-
+                    $phpmailer->Body = $mailContent;*/
 
                     if($phpmailer->send()){
                     }else{
@@ -189,6 +198,17 @@ $data = [];
                     $phpmailer2->addAddress($_SESSION["Email"]);
                     $phpmailer2->Subject = 'Comune di '. $configData['nome_comune'] . ' - Domanda di contributo ';
                     $phpmailer2->isHTML(true);
+                    
+                    $message2 = file_get_contents('../template/mail/toUser.html'); 
+                    $message2 = str_replace('%nome%', $_SESSION['Nome'], $message2); 
+                    $message2 = str_replace('%cognome%', $_SESSION['Cognome'], $message2);
+                    $message2 = str_replace('%numeropratica%', $NumeroPratica, $message2);
+                    $message2 = str_replace('%urlservizi%', $configData['url_servizi'], $message2);
+                    $message2 = str_replace('%nomecomune%', $configData['nome_comune'], $message2);
+                    $message2 = str_replace('%servizioselezionato%', 'domanda di contributo economico', $message2);
+                    $phpmailer2->Body = $message2;
+                    
+                    /*
                     $mailContent2 = '
                         <p>Ciao ' . $_SESSION['Nome'] . ' ' . $_SESSION['Cognome'] . ',<br/>
                             la tua domanda contributo &egrave; stata inviata correttamente.<br/>
@@ -202,7 +222,7 @@ $data = [];
                         Tel: '. $configData['tel_comune'] .'<br/>
                         Email: ' . $configData['pec_comune'] . '</p>';
                     $phpmailer2->Body = $mailContent2;
-
+                    */
 
                     if($phpmailer2->send()){
                         $data['error'] .= 'Message has been sent';
