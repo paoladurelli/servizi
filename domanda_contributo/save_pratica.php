@@ -87,7 +87,7 @@ $data = [];
                         $NewuploadDocumentazione .= $NewuploadDocumentazioneTmp.";";
                     }
                 }
-                $data['pratica'] = $NewuploadDocumentazione;
+                //$data['pratica'] = $NewuploadDocumentazione;
 
                 /* salvo tutti i dati in una riga nuova con status 2 */
                 $connessioneINS = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
@@ -104,8 +104,7 @@ $data = [];
                         $new_id = $rowINS['id'];
                     }
                 }
-
-                $data['pratica'] = $NumeroPratica . "-" . $new_id;
+                //$data['pratica'] = $NumeroPratica . "-" . $new_id;
 
                 /* vado ad inserire nella bozza il numero pratica - questo mi serve per lo storico. */
                 $connessioneUPD = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
@@ -161,21 +160,16 @@ $data = [];
                     
                     $phpmailer->isHTML(true);
                     
-                    $message = file_get_contents('../template/mail/toComune.html'); 
+                    $message = file_get_contents('../template/mail/toComune.html');
                     $message = str_replace('%nome%', $_SESSION['Nome'], $message); 
                     $message = str_replace('%cognome%', $_SESSION['Cognome'], $message);
                     $message = str_replace('%codicefiscale%', $_SESSION['CF'], $message);
-                    $message = str_replace('%numeropratica%', $NumeroPratica, $message);
-                    $message = str_replace('%urlservizi%', $configData['url_servizi'], $message);
+                    $message = str_replace('%numeropratica%', 'DCTEST0001', $message);
                     $message = str_replace('%servizioselezionato%', 'domanda di contributo economico', $message);
+                    $message = str_replace('%urlservizi%', $configData['url_servizi'], $message);
+                    $message = str_replace('%nomecomune%', $configData['nome_comune'], $message);
+                    $message = str_replace('%anno%', date('Y'), $message);
                     $phpmailer->Body = $message;
-                    
-                    /*$mailContent = '
-                        <p>L\'utente ' . $_SESSION['Nome'] . ' ' . $_SESSION['Cognome'] . '(C.F. '.$_SESSION['CF'].') ha inviato una domanda contributo.<br/>'
-                            . 'Il numero della pratica &egrave;: <b>'.$NumeroPratica.'</b><br/>'
-                            .'In allegato la domanda e gli allegati richiesti.</p>'
-                            .'<p><a href="'.$configData['url_servizi'].'/backend">Accedi al Backend per vedere i dati</a></p>';
-                    $phpmailer->Body = $mailContent;*/
 
                     if($phpmailer->send()){
                     }else{
@@ -185,6 +179,7 @@ $data = [];
                 /* mando mail al comune - end */
 
                 /* mando mail all'utente - start */
+                    /*
                     $phpmailer2 = new PHPMailer();
                     $phpmailer2->isSMTP();
                     $phpmailer2->Host = $configSmtp['smtp_host'];
@@ -208,7 +203,7 @@ $data = [];
                     $message2 = str_replace('%servizioselezionato%', 'domanda di contributo economico', $message2);
                     $phpmailer2->Body = $message2;
                     
-                    /*
+
                     $mailContent2 = '
                         <p>Ciao ' . $_SESSION['Nome'] . ' ' . $_SESSION['Cognome'] . ',<br/>
                             la tua domanda contributo &egrave; stata inviata correttamente.<br/>
@@ -222,7 +217,7 @@ $data = [];
                         Tel: '. $configData['tel_comune'] .'<br/>
                         Email: ' . $configData['pec_comune'] . '</p>';
                     $phpmailer2->Body = $mailContent2;
-                    */
+
 
                     if($phpmailer2->send()){
                         $data['error'] .= 'Message has been sent';
@@ -230,12 +225,12 @@ $data = [];
                         $data['error'] .= 'Message could not be sent.';
                         $data['error'] .= 'Mailer Error: ' . $phpmailer2->ErrorInfo;
                     }
+                    */
                 /* mando mail all'utente - end */
 
             }   
         }
         $data['success'] = true;
-        $data['pratica'] = $NumeroPratica;
         $data['id'] = $new_id;
     }
 

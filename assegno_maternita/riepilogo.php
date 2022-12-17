@@ -77,11 +77,6 @@
                                                                             <span class="title-medium">Prossimi passi</span>
                                                                         </a>
                                                                     </li>
-                                                                    <li class="nav-item">
-                                                                        <a class="nav-link" href="#dc_area_riservata">
-                                                                            <span class="title-medium">Area Riservata</span>
-                                                                        </a>
-                                                                    </li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -181,24 +176,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="it-page-section mb-50 mb-lg-90" id="dc_area_riservata">
-                            <div class="cmp-card">
-                                <div class="card">
-                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
-                                        <div>
-                                            <h2 class="title-xxlarge mb-3">Area riservata</h2>
-                                        </div>
-                                    </div>
-                                    <div class="card-body" style="margin-bottom:40px;">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <p><a href="dettaglio.php?dc_pratica_id=<?php echo $_GET['praticai']; ?>">Consulta la richiesta</a> nella tua area riservata.</p>
                                             </div>
                                         </div>
                                     </div>

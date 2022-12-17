@@ -118,8 +118,6 @@ $data = [];
                     }
                 }
 
-                $data['pratica'] = $NumeroPratica . "-" . $new_id;
-
                 /* vado ad inserire nella bozza il numero pratica - questo mi serve per lo storico. */
                 $connessioneUPD = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
                 $sqlUPD = "UPDATE assegno_maternita SET NumeroPratica = '".$NumeroPratica."' WHERE id = ".$_POST['pratican'];
@@ -260,7 +258,6 @@ $data = [];
             }   
         }
         $data['success'] = true;
-        $data['pratica'] = $NumeroPratica;
         $data['id'] = $new_id;
     }
 
