@@ -12,6 +12,17 @@
 html {
   scroll-behavior: smooth;
 }
+body {
+    color: #5b6f82;
+    background-color: #dcdcdc;
+}
+#main-container {
+    background-color: #fff;
+}
+.cmp-breadcrumbs {
+  margin-top: 30px;
+}
+
 .mb-5{
   margin-bottom: 5px !important;
 }
@@ -90,6 +101,10 @@ html {
   padding-bottom: 0 !important;
 }
 
+.text-right{
+    text-align: right;
+}
+
 .margin_bottom_0{
   margin-bottom: 0 !important;
 }
@@ -110,6 +125,29 @@ h1, .h1{
 
 main {
     min-height: 600px;
+}
+
+.it-header-slim-wrapper {
+    background: var(--bs-secondary);
+}
+
+.it-header-center-wrapper {
+    background: var(--bs-primary);
+}
+
+@media (min-width: 992px){
+    .it-header-navbar-wrapper {
+        background: var(--bs-primary);
+    }
+    .it-header-slim-wrapper .it-header-slim-wrapper-content {
+        padding: 0;
+    }
+    .it-header-center-wrapper .it-header-center-content-wrapper {
+        padding-left: 0;
+    }
+    .navbar .navbar-collapsable .navbar-nav li a.nav-link {
+        padding: 13px 24px 13px 0;
+    }
 }
 
 .it-user-wrapper .btn-primary{
@@ -800,11 +838,17 @@ ul.card_rb input{
     margin-bottom: 0px;
 }
 
+.text-xbig{
+    font-size: 3.7em;
+    margin-bottom: 0px;
+}
+
 .thumb-view{
     width: 40px;
     display: inline;
     float: left;
     margin-right: 10px;
+    margin-bottom: 10px;
 }
 
   /*-----------------------------------------------------*/
@@ -839,7 +883,7 @@ a.pulsante_leggi_dipiu{
 
 /* HEADER */
     .it-header-wrapper {
-      margin-bottom: 30px;
+      margin-bottom: 0px;
     }
 
     /*header .menu-wrapper {
@@ -931,6 +975,63 @@ a.pulsante_leggi_dipiu{
 
 @media (min-width: 992px){
     .card {
-        min-height: 290px;
+        min-height: 380px;
     }
+
+    .body-riepilogo .card,
+    .body-compilazione-dati .card,
+    .body-messaggi .card,
+    #latest-posts .card{
+      min-height: 40px;
+    }
+    
+    #latest-posts .card::after,
+    .body-messaggi .card::after {
+      content: none;
+    }
+}
+
+
+
+/* circle progress bar */
+/*** RADIAL PROGRESS ***/
+/* Circumference = 2πr */
+/* π = 3.1415926535898 */
+/* r = 35 */
+
+svg.radial-progress {
+  height: auto;
+  max-width: 200px;
+  padding: 1em;
+  transform: rotate(-90deg);
+  width: 100%;
+}
+
+svg.radial-progress circle {
+  fill: rgba(0,0,0,0);
+  stroke: #fff;
+  stroke-dashoffset: 219.91148575129; /* Circumference */
+  stroke-width: 10;
+}
+
+svg.radial-progress circle.incomplete { opacity: 0.25; }
+
+svg.radial-progress circle.complete { stroke-dasharray: 219.91148575129; /* Circumference */ }
+
+svg.radial-progress text {
+  font: 400 1em/1 'Oswald', sans-serif;
+  text-anchor: middle;
+}
+
+/*** COLORS ***/
+svg.radial-progress.sent circle { stroke: #202986; }
+svg.radial-progress.working circle { stroke: #e88a1a; }
+svg.radial-progress.accepted circle { stroke: #4e7e5b; }
+svg.radial-progress.refused circle { stroke: #ef0303; }
+
+
+.after-section {
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #cdcdcd;
 }

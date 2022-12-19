@@ -181,7 +181,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-lg-9 body-compilazione-dati">
+                    <div class="col-12 col-lg-9 body-riepilogo">
                         <div class="row">
                             <div class="col-12 p-0  menu-servizi">
                                 <div class="cmp-nav-tab mb-4 mb-lg-5 mt-lg-4">
@@ -200,7 +200,7 @@
                                             <p><b>Informazioni su di te</b></p>
                                         </div>
                                     </div>
-                                    <div class="card-body" style="margin-bottom:40px;">
+                                    <div class="card-body">
                                         <h5><b><?php echo $_SESSION['Nome'] . ' ' . $_SESSION['Cognome']; ?></b></h5>
                                         <p class="subtitle-small">Codice Fiscale:<br/><b><?php echo $_SESSION['CF']; ?></b></p>
 
@@ -209,40 +209,58 @@
                                                 <div class="col-lg-12"><h5 class="color-primary"><b>Anagrafica</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Nome<br/><?php echo $nome; ?></p></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12"><p>Cognome<br/><?php echo $cognome; ?></p></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12"><p>Codice Fiscale<br/><?php echo $cf; ?></p></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12"><p>Data di Nascita<br/><?php echo $datanascita; ?></p></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12"><p>Luogo di Nascita<br/><?php echo $luogonascita; ?></p></div>
+                                                <div class="col-lg-6">
+                                                    <div class="row">
+                                                        <div class="col-12"><p>Nome <b><?php echo $nome; ?></b></p></div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12"><p>Cognome <b><?php echo $cognome; ?></b></p></div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12"><p>Codice Fiscale <b><?php echo $cf; ?></b></p></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="row">
+                                                        <div class="col-12"><p>Data di Nascita <b><?php echo $datanascita; ?></b></p></div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12"><p>Luogo di Nascita <b><?php echo $luogonascita; ?></b></p></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>Via e Numero civico<br/><?php echo $richiedenteVia; ?></p></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12"><p>Località<br/><?php echo $richiedenteLocalita; ?></p></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12"><p>Provincia<br/><?php echo $richiedenteProvincia; ?></p></div>
+                                                <div class="col-lg-6">
+                                                    <div class="row">
+                                                        <div class="col-12"><p>Località <b><?php echo $richiedenteLocalita; ?></b></p></div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12"><p>Provincia <b><?php echo $richiedenteProvincia; ?></b></p></div>
+                                                    </div>                                                    
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="row">
+                                                        <div class="col-12"><p>Via e Numero civico <b><?php echo $richiedenteVia; ?></b></p></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p>E-mail<br/><?php echo $email; ?></p></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12"><p>Telefono<br/><?php echo $richiedenteTel; ?></p></div>
+                                                <div class="col-lg-6">
+                                                    <div class="row">
+                                                        <div class="col-12"><p>E-mail <b><?php echo $email; ?></b></p></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="row">
+                                                        <div class="col-12"><p>Telefono <b><?php echo $richiedenteTel; ?></b></p></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -263,16 +281,22 @@
                                             <div class="col-lg-12"><h5 class="color-primary"><b>Anagrafica</b></h5></div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-12"><p>Nome<br/><?php echo $minoreNome; ?></p></div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12"><p>Cognome<br/><?php echo $minoreCognome; ?></p></div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12"><p>Data di Nascita<br/><?php echo $minoreDataNascita; ?></p></div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12"><p>Luogo di Nascita<br/><?php echo $minoreLuogoNascita; ?></p></div>
+                                            <div class="col-lg-6">
+                                                <div class="row">
+                                                    <div class="col-12"><p>Nome <b><?php echo $minoreNome; ?></b></p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12"><p>Cognome <b><?php echo $minoreCognome; ?></b></p></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="row">
+                                                    <div class="col-12"><p>Data di Nascita <b><?php echo $minoreDataNascita; ?></b></p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12"><p>Luogo di Nascita <b><?php echo $minoreLuogoNascita; ?></b></p></div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -391,40 +415,63 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-lg-6 text-center mb-50">
-                                                <h6>Documento di identità (fronte)</h6>
-                                                <ul class="upload-file-list" id="am_uploadCartaIdentitaFronte_file">
-                                                    <?php echo $uploadCartaIdentitaFronte; ?>
-                                                </ul>
+                                            <div class="col-12 after-section">
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <h6>Documento di identità (fronte)</h6>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <ul class="upload-file-list" id="am_uploadCartaIdentitaFronte_file">
+                                                            <?php echo $uploadCartaIdentitaFronte; ?>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-lg-6 text-center mb-50">
-                                                <h6>Documento di identità (retro)</h6>
-                                                <ul class="upload-file-list" id="am_uploadCartaIdentitaRetro_file">
-                                                    <?php echo $uploadCartaIdentitaRetro; ?>
-                                                </ul>
+                                            <div class="col-12 after-section">
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <h6>Documento di identità (retro)</h6>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <ul class="upload-file-list" id="am_uploadCartaIdentitaRetro_file">
+                                                            <?php echo $uploadCartaIdentitaRetro; ?>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-lg-6 text-center">
-                                                <h6>Copia titolo di soggiorno<br/>oppure</br>ricevuta della richiesta di rilascio del permesso di soggiorno</h6>
-                                                <ul class="upload-file-list" id="am_uploadTitoloSoggiorno_file">
-                                                    <?php echo $uploadTitoloSoggiorno; ?>
-                                                </ul>                                                    
+                                            <div class="col-12 after-section">
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <h6>Copia titolo di soggiorno oppure</br>ricevuta della richiesta di rilascio del permesso di soggiorno</h6>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <ul class="upload-file-list" id="am_uploadTitoloSoggiorno_file">
+                                                            <?php echo $uploadTitoloSoggiorno; ?>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-lg-6 text-center">
-                                                <h6>Copia della dichiarazione del datore di lavoro relativa all’importo percepito per la maternità</h6>
-                                                <p><small>(nel caso di richiesta della quota differenziale dell’assegno di maternità)</small></p>
-                                                <ul class="upload-file-list" id="am_uploadDichiarazioneDatoreLavoro_file">
-                                                    <?php echo $uploadDichiarazioneDatoreLavoro; ?>
-                                                </ul>                                                    
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <h6>Copia della dichiarazione del datore di lavoro relativa all’importo percepito per la maternità</h6>
+                                                        <p><small>(nel caso di richiesta della quota differenziale dell’assegno di maternità)</small></p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <ul class="upload-file-list" id="am_uploadDichiarazioneDatoreLavoro_file">
+                                                            <?php echo $uploadDichiarazioneDatoreLavoro; ?>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
-                            <div class="col-lg-4 text-left-lg text-center mb-20">
-                                <a href="..\attivita_list.php" class="btn btn-default"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
+                            <div class="col-12 text-right mb-20">
+                                <a href="..\attivita_list.php" class="btn btn-secondary"><svg class="icon me-1 mr-lg-10" aria-hidden="true" fill="#fff"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
                             </div>
                         </div>
                     </div>

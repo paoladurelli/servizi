@@ -54,7 +54,7 @@ $data = [];
                 
                 $fromMail = $row['richiedenteEmail'];
                 $fromName = $row['richiedenteNome'] . " " . $row['richiedenteCognome'];
-                
+
                 /* rinomino i file */
                 $upload_location = "../uploads/domanda_contributo/";
                 
@@ -104,7 +104,7 @@ $data = [];
                         $new_id = $rowINS['id'];
                     }
                 }
-                //$data['pratica'] = $NumeroPratica . "-" . $new_id;
+                $data['pratica'] = $NumeroPratica;
 
                 /* vado ad inserire nella bozza il numero pratica - questo mi serve per lo storico. */
                 $connessioneUPD = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
@@ -140,21 +140,24 @@ $data = [];
 
                     /* Add Static Attachment */
                     /* allego la pratica completa appena creata */
-                    $attachment = '/uploads/pratiche/'. $NumeroPratica . '.pdf';
+                    $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/pratiche/'. $NumeroPratica . '.pdf';
                     $phpmailer->AddAttachment($attachment , $NumeroPratica . '.pdf');
+                    echo $attachment;
                     
                     /* se ci sono altri documenti, li allego */
                     if($NewuploadPotereFirma <> ''){
-                        $attachment = '/uploads/domanda_contributo/'. $NewuploadPotereFirma;
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/domanda_contributo/'. $NewuploadPotereFirma;
                         $phpmailer->AddAttachment($attachment , $NewuploadPotereFirma);
+                        echo $attachment;
                     }
                     if($NewuploadDocumentazione <> ''){
                         $tmpUploadDocumentazione1 = substr($NewuploadDocumentazione,0,-1);
                         $tmpUploadDocumentaziones = explode(';', $tmpUploadDocumentazione1);
                         
                         foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
-                            $attachment = '/uploads/domanda_contributo/'. $tmpUploadDocumentazione;
+                            $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/domanda_contributo/'. $tmpUploadDocumentazione;
                             $phpmailer->AddAttachment($attachment , $tmpUploadDocumentazione);
+                            echo $attachment;
                         }
                     }
                     
@@ -164,7 +167,7 @@ $data = [];
                     $message = str_replace('%nome%', $_SESSION['Nome'], $message); 
                     $message = str_replace('%cognome%', $_SESSION['Cognome'], $message);
                     $message = str_replace('%codicefiscale%', $_SESSION['CF'], $message);
-                    $message = str_replace('%numeropratica%', 'DCTEST0001', $message);
+                    $message = str_replace('%numeropratica%', $NumeroPratica, $message);
                     $message = str_replace('%servizioselezionato%', 'domanda di contributo economico', $message);
                     $message = str_replace('%urlservizi%', $configData['url_servizi'], $message);
                     $message = str_replace('%nomecomune%', $configData['nome_comune'], $message);
@@ -179,7 +182,6 @@ $data = [];
                 /* mando mail al comune - end */
 
                 /* mando mail all'utente - start */
-                    /*
                     $phpmailer2 = new PHPMailer();
                     $phpmailer2->isSMTP();
                     $phpmailer2->Host = $configSmtp['smtp_host'];
@@ -194,30 +196,19 @@ $data = [];
                     $phpmailer2->Subject = 'Comune di '. $configData['nome_comune'] . ' - Domanda di contributo ';
                     $phpmailer2->isHTML(true);
                     
-                    $message2 = file_get_contents('../template/mail/toUser.html'); 
+                    $message2 = file_get_contents('../template/mail/toUser.html');
                     $message2 = str_replace('%nome%', $_SESSION['Nome'], $message2); 
                     $message2 = str_replace('%cognome%', $_SESSION['Cognome'], $message2);
+                    $message2 = str_replace('%codicefiscale%', $_SESSION['CF'], $message2);
                     $message2 = str_replace('%numeropratica%', $NumeroPratica, $message2);
-                    $message2 = str_replace('%urlservizi%', $configData['url_servizi'], $message2);
-                    $message2 = str_replace('%nomecomune%', $configData['nome_comune'], $message2);
                     $message2 = str_replace('%servizioselezionato%', 'domanda di contributo economico', $message2);
+                    $message2 = str_replace('%urlservizi%', $configData['url_servizi'], $message);
+                    $message2 = str_replace('%nomecomune%', $configData['nome_comune'], $message2);
+                    $message2 = str_replace('%telcomune%', $configData['tel_comune'], $message2);
+                    $message2 = str_replace('%mailcomune%', $configData['mail_comune'], $message2);
+                    $message2 = str_replace('%anno%', date('Y'), $message2);
+
                     $phpmailer2->Body = $message2;
-                    
-
-                    $mailContent2 = '
-                        <p>Ciao ' . $_SESSION['Nome'] . ' ' . $_SESSION['Cognome'] . ',<br/>
-                            la tua domanda contributo &egrave; stata inviata correttamente.<br/>
-                            Il numero della pratica &egrave;: <b>'.$NumeroPratica.'</b><br/>
-                            <a href="'. $configData['url_servizi'] .'lib/tcpdf/TCPDF-master/examples/dc_pdf_pratica.php">Scarica il documento della pratica</a><br/>
-                            Presto riceverai una nostra risposta.<br/>
-                            Grazie<br/>
-                            <em>Comune di '. $configData['nome_comune'] . '</em></p>
-
-                        <p>Per qualsiasi dubbio contattaci:<br/>
-                        Tel: '. $configData['tel_comune'] .'<br/>
-                        Email: ' . $configData['pec_comune'] . '</p>';
-                    $phpmailer2->Body = $mailContent2;
-
 
                     if($phpmailer2->send()){
                         $data['error'] .= 'Message has been sent';
@@ -225,14 +216,11 @@ $data = [];
                         $data['error'] .= 'Message could not be sent.';
                         $data['error'] .= 'Mailer Error: ' . $phpmailer2->ErrorInfo;
                     }
-                    */
                 /* mando mail all'utente - end */
-
             }   
         }
         $data['success'] = true;
         $data['id'] = $new_id;
     }
-
 
     echo json_encode($data);

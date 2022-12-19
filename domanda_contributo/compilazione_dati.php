@@ -411,8 +411,8 @@
                                             <div id="dc_pnl_new_mdp"></div>
 
                                             <div class="row">
-                                                <div class="col-12 text-center">
-                                                    <button type="button" class="btn btn-primary width-66" data-bs-toggle="modal" data-bs-target="#AddPagamentoModal"><svg class="icon"><use href="../lib/svg/sprites.svg#it-plus"></use></svg>Aggiungi</button>
+                                                <div class="col-12 text-right">
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddPagamentoModal"><svg class="icon"><use href="../lib/svg/sprites.svg#it-plus"></use></svg>Aggiungi</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -430,43 +430,41 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col-lg-12 mb-50">
+                                                <div class="col-12 after-section">
                                                     <div class="row">
-                                                        <div class="col-lg-5">
+                                                        <div class="col-lg-8">
                                                             <h6 id="dc_uploadPotereFirma_txt">Documento che attesta potere di firma</h6>
+                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-4 text-center">
                                                             <input type="hidden" name="dc_uploadPotereFirmaSaved" id="dc_uploadPotereFirmaSaved" value="<?php echo $uploadPotereFirmaSaved; ?>" />
                                                             <input type="file" name="dc_uploadPotereFirma" id="dc_uploadPotereFirma" class="upload" value="<?php echo $uploadPotereFirmaSaved; ?>" />
                                                             <label for="dc_uploadPotereFirma">
                                                                 <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
                                                                 <span>Upload</span>
                                                             </label>
-                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
-                                                        </div>
-                                                        <div class="col-lg-4">
                                                             <ul class="upload-file-list" id="dc_uploadPotereFirma_file">
                                                                 <?php echo $uploadPotereFirma; ?>
-                                                            </ul>
+                                                            </ul>                                                            
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-12 mb-50">
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
                                                     <div class="row">
-                                                        <div class="col-lg-5">
+                                                        <div class="col-lg-8">
                                                             <h6 id="dc_uploadDocumentazione_txt">Documentazione utile al riconoscimento del contributo *</h6>
                                                             <p><em><small>(esempi: contratto affitto, bollette, spese sanitarie, debiti…)</small></em></p>
+                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>                                                    
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-4 text-center">
                                                             <input type="hidden" name="dc_uploadDocumentazioneSaved" id="dc_uploadDocumentazioneSaved" value="<?php echo $uploadDocumentazioneSaved; ?>" />
                                                             <input type="file" name="dc_uploadDocumentazione[]" id="dc_uploadDocumentazione" class="upload" multiple="multiple" value="" />
                                                             <label for="dc_uploadDocumentazione">
                                                                 <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
                                                                 <span>Upload</span>
-                                                            </label>
-                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
-                                                        </div>
-                                                        <div class="col-lg-4">
+                                                            </label>                                                            
                                                             <ul class="upload-file-list" id="dc_uploadDocumentazione_file">
                                                                 <?php echo $uploadDocumentazione; ?>
                                                             </ul>

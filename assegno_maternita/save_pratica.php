@@ -117,6 +117,7 @@ $data = [];
                         $new_id = $rowINS['id'];
                     }
                 }
+                $data['pratica'] = $NumeroPratica;
 
                 /* vado ad inserire nella bozza il numero pratica - questo mi serve per lo storico. */
                 $connessioneUPD = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
@@ -136,7 +137,7 @@ $data = [];
                 /* preparo il pdf da allegare alla mail del comune */
                     include '../lib/tcpdf/TCPDF-master/tcpdf.php';
                     include '../lib/tcpdf/TCPDF-master/examples/am_pdf_comune.php'; 
-                    
+                  
                     
                 /* mando mail al comune - start */
                     $phpmailer = new PHPMailer();
@@ -154,24 +155,24 @@ $data = [];
                     
                 /* Add Static Attachment */
                     /* allego la pratica completa appena creata */
-                    $attachment = '/uploads/pratiche/'. $NumeroPratica . '.pdf';
+                    $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/pratiche/'. $NumeroPratica . '.pdf';
                     $phpmailer->AddAttachment($attachment , $NumeroPratica . '.pdf');
 
                 /* se ci sono altri documenti, li allego */
                     if($NewuploadCartaIdentitaFronte <> ''){
-                        $attachment = '/uploads/assegno_maternita/'. $NewuploadCartaIdentitaFronte;
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/assegno_maternita/'. $NewuploadCartaIdentitaFronte;
                         $phpmailer->AddAttachment($attachment , $NewuploadCartaIdentitaFronte);
                     }
                     if($NewuploadCartaIdentitaRetro <> ''){
-                        $attachment = '/uploads/assegno_maternita/'. $NewuploadCartaIdentitaRetro;
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/assegno_maternita/'. $NewuploadCartaIdentitaRetro;
                         $phpmailer->AddAttachment($attachment , $NewuploadCartaIdentitaRetro);
                     }
                     if($NewuploadTitoloSoggiorno <> ''){
-                        $attachment = '/uploads/assegno_maternita/'. $NewuploadTitoloSoggiorno;
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/assegno_maternita/'. $NewuploadTitoloSoggiorno;
                         $phpmailer->AddAttachment($attachment , $NewuploadTitoloSoggiorno);
                     }
                     if($NewuploadDichiarazioneDatoreLavoro <> ''){
-                        $attachment = '/uploads/assegno_maternita/'. $NewuploadDichiarazioneDatoreLavoro;
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/assegno_maternita/'. $NewuploadDichiarazioneDatoreLavoro;
                         $phpmailer->AddAttachment($attachment , $NewuploadDichiarazioneDatoreLavoro);
                     }
                     
@@ -182,20 +183,12 @@ $data = [];
                     $message = str_replace('%cognome%', $_SESSION['Cognome'], $message);
                     $message = str_replace('%codicefiscale%', $_SESSION['CF'], $message);
                     $message = str_replace('%numeropratica%', $NumeroPratica, $message);
-                    $message = str_replace('%urlservizi%', $configData['url_servizi'], $message);
                     $message = str_replace('%servizioselezionato%', 'richiesta di assegno di maternit&agrave;', $message);
-                    $phpmailer->Body = $message;
-
+                    $message = str_replace('%urlservizi%', $configData['url_servizi'], $message);
+                    $message = str_replace('%nomecomune%', $configData['nome_comune'], $message);
+                    $message = str_replace('%anno%', date('Y'), $message);
                     
-                    /*
-                    $mailContent = '
-                        <p>L\'utente ' . $_SESSION['Nome'] . ' ' . $_SESSION['Cognome'] . ' (C.F. '.$_SESSION['CF'].') ha inviato una richiesta di assegno di maternit&agrave;.<br/>'
-                            . 'Il numero della pratica &egrave;: <b>'.$NumeroPratica.'</b><br/>'
-                            .'In allegato la domanda e gli allegati richiesti.</p>'
-                            .'<p><a href="'.$configData['url_servizi'].'/backend">Accedi al Backend per vedere i dati</a></p>
-                        ';
-                    $phpmailer->Body = $mailContent;
-                    */
+                    $phpmailer->Body = $message;
 
                     if($phpmailer->send()){
                         $data['error'] .= 'Message has been sent';
@@ -224,28 +217,14 @@ $data = [];
                     $message2 = str_replace('%nome%', $_SESSION['Nome'], $message2); 
                     $message2 = str_replace('%cognome%', $_SESSION['Cognome'], $message2);
                     $message2 = str_replace('%numeropratica%', $NumeroPratica, $message2);
+                    $message2 = str_replace('%servizioselezionato%', 'richiesta di assegno di maternit&agrave;', $message2);
                     $message2 = str_replace('%urlservizi%', $configData['url_servizi'], $message2);
                     $message2 = str_replace('%nomecomune%', $configData['nome_comune'], $message2);
-                    $message2 = str_replace('%servizioselezionato%', 'richiesta di assegno di maternit&agrave;', $message2);
                     $message2 = str_replace('%telcomune%', $configData['tel_comune'], $message2);
-                    $message2 = str_replace('%peccomune%', $configData['pec_comune'], $message2);
-                    $phpmailer2->Body = $message2;
-                    
-                    /*
-                    $mailContent2 = '
-                        <p>Ciao ' . $_SESSION['Nome'] . ' ' . $_SESSION['Cognome'] . ',<br/>'
-                            . ' la tua richiesta di assegno di maternit&agrave; &egrave; stata inviata correttamente.<br/>'
-                            . 'Il numero della pratica &egrave;: <b>'.$NumeroPratica.'</b><br/>
-                            <a href="'. $configData['url_servizi'] .'lib/tcpdf/TCPDF-master/examples/am_pdf_pratica.php">Scarica il documento della pratica</a><br/>
-                            Presto riceverai una nostra risposta.<br/>
-                            Grazie<br/>
-                            <em>Comune di '. $configData['nome_comune'] . '</em></p>
+                    $message2 = str_replace('%mailcomune%', $configData['mail_comune'], $message2);
+                    $message2 = str_replace('%anno%', date('Y'), $message2);
 
-                        <p>Per qualsiasi dubbio contattaci:<br/>
-                        Tel: '. $configData['tel_comune'] .'<br/>
-                        Email: ' . $configData['pec_comune'] . '</p>';
-                    $phpmailer2->Body = $mailContent2;
-                    */
+                    $phpmailer2->Body = $message2;
 
                     if($phpmailer2->send()){
                         $data['error'] .= 'Message has been sent';
@@ -254,12 +233,10 @@ $data = [];
                         $data['error'] .= 'Mailer Error: ' . $phpmailer2->ErrorInfo;
                     }
                 /* mando mail all'utente - end */
-
             }   
         }
         $data['success'] = true;
         $data['id'] = $new_id;
     }
-
 
     echo json_encode($data);

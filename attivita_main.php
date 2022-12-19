@@ -40,8 +40,11 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="row">
-                                            <div class="col-lg-9">
+                                            <div class="col-lg-6">
                                                 '.ViewThumbAllegatiById($row["ServizioId"],$row["pratica_id"]).'
+                                            </div>
+                                            <div class="col-lg-3">
+                                                '.DownloadPraticaById($row["ServizioId"],$row["pratica_id"]).'
                                             </div>
                                             <div class="col-lg-3">
                                                 '.DownloadRicevutaById($row["ServizioId"],$row["pratica_id"]).'

@@ -60,7 +60,7 @@
                                                         <li>
                                                             <a class="list-item left-icon" href="/logout.php">
                                                                 <svg class="icon icon-primary icon-sm left">
-                                                                    <use xlink:href="lib/svg/sprites.svg#it-external-link">
+                                                                    <use xlink:href="./lib/svg/sprites.svg#it-external-link">
                                                                     </use>
                                                                 </svg>
                                                                 <span class="fw-bold">Esci</span>

@@ -13,7 +13,7 @@
     <main>
         <div class="container" id="main-container">
             <div class="row justify-content-center">
-                <div class="col-12 col-lg-10">
+                <div class="col-12">
                     <div class="cmp-breadcrumbs" role="navigation">
                         <nav class="breadcrumb-container">
                             <ol class="breadcrumb p-0" data-element="breadcrumb">
@@ -112,6 +112,141 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-9 body-attivita">
+                        <?php
+                            /* recupero i dati per le progress bar */
+                            /* INVIATE */
+                            $configDB = require './env/config.php';
+                            $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+                            $sql = "SELECT COUNT(id) AS CountSent FROM attivita
+                                WHERE cf = '".$_SESSION['CF']."'
+                                AND status_id > 1";
+                            $result = $connessione->query($sql);
+   
+                            if ($result->num_rows > 0) {
+                                // output data of each row
+                                while($row = $result->fetch_assoc()) {
+                                    $countSent = $row['CountSent'];
+                                    $percentageSent = ($countSent*100)/$countSent;
+                                }
+                            }
+                            $connessione->close();
+                            /* INVIATE */
+                            $configDB = require './env/config.php';
+                            $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+                            $sql = "SELECT COUNT(id) AS CountWorking FROM attivita
+                                WHERE attivita.cf = '".$_SESSION['CF']."'
+                                AND attivita.status_id = 3";
+                            $result = $connessione->query($sql);
+   
+                            if ($result->num_rows > 0) {
+                                // output data of each row
+                                while($row = $result->fetch_assoc()) {
+                                    $countWorking = $row['CountWorking'];
+                                    $percentageWorking = ($countWorking*100)/$countSent;
+                                }
+                            }
+                            $connessione->close();
+                            /* ACCETTATE */
+                            $configDB = require './env/config.php';
+                            $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+                            $sql = "SELECT COUNT(id) AS CountAccepted FROM attivita
+                                WHERE attivita.cf = '".$_SESSION['CF']."'
+                                AND attivita.status_id = 4";
+                            $result = $connessione->query($sql);
+   
+                            if ($result->num_rows > 0) {
+                                // output data of each row
+                                while($row = $result->fetch_assoc()) {
+                                    $countAccepted = $row['CountAccepted'];
+                                    $percentageAccepted = ($countAccepted*100)/$countSent;
+                                }
+                            }
+                            $connessione->close();
+                            /* RIFIUTATE */
+                            $configDB = require './env/config.php';
+                            $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+                            $sql = "SELECT COUNT(id) AS CountRefused FROM attivita
+                                WHERE attivita.cf = '".$_SESSION['CF']."'
+                                AND attivita.status_id = 5";
+                            $result = $connessione->query($sql);
+   
+                            if ($result->num_rows > 0) {
+                                // output data of each row
+                                while($row = $result->fetch_assoc()) {
+                                    $countRefused = $row['CountRefused'];
+                                    $percentageRefused = ($countRefused*100)/$countSent;
+                                }
+                            }
+                            $connessione->close();
+                        ?>
+                        <div class="row after-section">
+                            <div class="col-lg-3 text-center">
+                                <svg class="radial-progress sent" data-percentage="<?php echo $percentageSent; ?>" viewBox="0 0 80 80">
+                                    <circle class="incomplete" cx="40" cy="40" r="35"></circle>
+                                    <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 39.58406743523136;"></circle>
+                                    <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)"><?php echo $countSent; ?></text>
+                                </svg>
+                                <p>Pratiche inviate</p>
+                            </div>
+                            <div class="col-lg-3 text-center">
+                                <svg class="radial-progress working" data-percentage="<?php echo $percentageWorking; ?>" viewBox="0 0 80 80">
+                                    <circle class="incomplete" cx="40" cy="40" r="35"></circle>
+                                    <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 39.58406743523136;"></circle>
+                                    <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)"><?php echo $countWorking; ?></text>
+                                </svg>
+                                <p>Pratiche in lavorazione</p>
+                            </div>
+                            <div class="col-lg-3 text-center">
+                                <svg class="radial-progress accepted" data-percentage="<?php echo $percentageAccepted; ?>" viewBox="0 0 80 80">
+                                    <circle class="incomplete" cx="40" cy="40" r="35"></circle>
+                                    <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 147.3406954533613;"></circle>
+                                    <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)"><?php echo $countAccepted; ?></text>
+                                </svg>
+                                <p>Pratiche accettate</p>
+                            </div>
+                            <div class="col-lg-3 text-center">
+                                <svg class="radial-progress refused" data-percentage="<?php echo $percentageRefused; ?>" viewBox="0 0 80 80">
+                                    <circle class="incomplete" cx="40" cy="40" r="35"></circle>
+                                    <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 63.774330867872806;"></circle>
+                                    <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)"><?php echo $countRefused; ?></text>
+                                </svg>
+                                <p>Pratiche rifiutate</p>
+                            </div>
+                        </div>
+                        <!--
+                        <div class="row after-section">
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        Filtra per servizio:
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <select name="ddl_filtra_servizi">
+                                            <option value="">Seleziona il servizio</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        Vai
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        Filtra per stato:
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <select name="ddl_filtra_status">
+                                            <option value="">Seleziona lo stato</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        Vai
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                        -->
                         <div class="it-page-section mb-50 mb-lg-90" id="pratiche">
                             <div class="row">
                                 <?php include 'attivita_main.php'; ?>

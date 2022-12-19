@@ -3,9 +3,9 @@
     Author     : paola.durelli
 */
 :root{
-  --bs-primary: #CD2D23;
-  --bs-primary-hls: hsl(4deg, 71%, 47%);
-  --bs-secondary: #F9AF12;
+  --bs-primary: #4e7e5b;
+  --bs-primary-hls: hsl(160deg, 100%, 48%);
+  --bs-secondary: #00402b;
   --btn-primary: #4e7e5b;
   --btn-primary-hover: #3c6046;
 }

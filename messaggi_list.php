@@ -13,7 +13,7 @@
     <main>
         <div class="container" id="main-container">
             <div class="row justify-content-center">
-                <div class="col-12 col-lg-10">
+                <div class="col-12">
                     <div class="cmp-breadcrumbs" role="navigation">
                         <nav class="breadcrumb-container">
                             <ol class="breadcrumb p-0" data-element="breadcrumb">
@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </div>
-            <div class="it-page-sections-container row">
+            <div class="it-page-sections-container row body-messaggi">
                 <?php include 'messaggi_main.php'; ?>
             </div>
         </div>

@@ -429,8 +429,8 @@
                                             <div id="am_pnl_new_mdp"></div>
 
                                             <div class="row">
-                                                <div class="col-12 text-center">
-                                                    <button type="button" class="btn btn-primary width-66" data-bs-toggle="modal" data-bs-target="#AddPagamentoModal"><svg class="icon"><use href="../lib/svg/sprites.svg#it-plus"></use></svg>Aggiungi</button>
+                                                <div class="col-12 text-right">
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddPagamentoModal"><svg class="icon"><use href="../lib/svg/sprites.svg#it-plus"></use></svg>Aggiungi</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -448,63 +448,57 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col-lg-12 mb-50">
+                                                <div class="col-12 after-section">
                                                     <div class="row">
-                                                        <div class="col-lg-5">
+                                                        <div class="col-lg-8">
                                                             <h6 id="am_uploadCartaIdentitaFronte_txt">Documento di identità (fronte) *</h6>
+                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-4 text-center">
                                                             <input type="hidden" name="am_uploadCartaIdentitaFronteSaved" id="am_uploadCartaIdentitaFronteSaved" value="<?php echo $uploadCartaIdentitaFronteSaved; ?>" />
                                                             <input type="file" name="am_uploadCartaIdentitaFronte" id="am_uploadCartaIdentitaFronte" class="upload" />
                                                             <label for="am_uploadCartaIdentitaFronte">
                                                                 <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
                                                                 <span>Upload</span>
                                                             </label>
-                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
-                                                        </div>
-                                                        <div class="col-lg-4">
                                                             <ul class="upload-file-list" id="am_uploadCartaIdentitaFronte_file" name="am_uploadCartaIdentitaFronte_file">
                                                                 <?php echo $uploadCartaIdentitaFronte; ?>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-12 mb-50">
+                                                <div class="col-12 after-section">
                                                     <div class="row">
-                                                        <div class="col-lg-5">
+                                                        <div class="col-lg-8">
                                                             <h6 id="am_uploadCartaIdentitaRetro_txt">Documento di identità (retro) *</h6>
+                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-4 text-center">
                                                             <input type="hidden" name="am_uploadCartaIdentitaRetroSaved" id="am_uploadCartaIdentitaRetroSaved" value="<?php echo $uploadCartaIdentitaRetroSaved; ?>" />
                                                             <input type="file" name="am_uploadCartaIdentitaRetro" id="am_uploadCartaIdentitaRetro" class="upload" />
                                                             <label for="am_uploadCartaIdentitaRetro">
                                                                 <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
                                                                 <span>Upload</span>
                                                             </label>
-                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
-                                                        </div>
-                                                        <div class="col-lg-4">
                                                             <ul class="upload-file-list" id="am_uploadCartaIdentitaRetro_file" name="am_uploadCartaIdentitaRetro_file">
                                                                 <?php echo $uploadCartaIdentitaRetro; ?>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-12 mb-50">
+                                                <div class="col-12 after-section">
                                                     <div class="row">
-                                                        <div class="col-lg-5">
-                                                            <h6 id="am_uploadTitoloSoggiorno_txt">Copia titolo di soggiorno<br/>oppure</br>ricevuta della richiesta di rilascio del permesso di soggiorno</h6>
+                                                        <div class="col-lg-8">
+                                                            <h6 id="am_uploadTitoloSoggiorno_txt">Copia titolo di soggiorno oppure</br>ricevuta della richiesta di rilascio del permesso di soggiorno</h6>
+                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-4 text-center">
                                                             <input type="hidden" name="am_uploadTitoloSoggiornoSaved" id="am_uploadTitoloSoggiornoSaved" value="<?php echo $uploadTitoloSoggiornoSaved; ?>" />
                                                             <input type="file" name="am_uploadTitoloSoggiorno" id="am_uploadTitoloSoggiorno" class="upload" />
                                                             <label for="am_uploadTitoloSoggiorno">
                                                                 <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
                                                                 <span>Upload</span>
                                                             </label>
-                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
-                                                        </div>
-                                                        <div class="col-lg-4">
                                                             <ul class="upload-file-list" id="am_uploadTitoloSoggiorno_file">
                                                                 <?php echo $uploadTitoloSoggiorno; ?>
                                                             </ul>
@@ -513,20 +507,18 @@
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <div class="row">
-                                                        <div class="col-lg-5">
+                                                        <div class="col-lg-8">
                                                             <h6 id="am_uploadDichiarazioneDatoreLavoro_txt">Copia della dichiarazione del datore di lavoro relativa all’importo percepito per la maternità</h6>
                                                             <p><em><small>(nel caso di richiesta della quota differenziale dell’assegno di maternità)</small></em></p>
+                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-4 text-center">
                                                             <input type="hidden" name="am_uploadDichiarazioneDatoreLavoroSaved" id="am_uploadDichiarazioneDatoreLavoroSaved" value="<?php echo $uploadDichiarazioneDatoreLavoroSaved; ?>" />
                                                             <input type="file" name="am_uploadDichiarazioneDatoreLavoro" id="am_uploadDichiarazioneDatoreLavoro" class="upload" />
                                                             <label for="am_uploadDichiarazioneDatoreLavoro">
                                                                 <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
                                                                 <span>Upload</span>
                                                             </label>
-                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
-                                                        </div>
-                                                        <div class="col-lg-4">
                                                             <ul class="upload-file-list" id="am_uploadDichiarazioneDatoreLavoro_file">
                                                                 <?php echo $uploadDichiarazioneDatoreLavoro; ?>
                                                             </ul>

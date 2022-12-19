@@ -177,7 +177,7 @@
                                     <div id="it-block-seguicisu" class="block block-block-content">
                                         <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item">
                                             <ul class="list-inline text-left social mt-15">
-                                                <li class="list-inline-item"><a class="text-white" href="#" target="_blank"><svg class="icon"><use href="./lib/svg/sprites.svg#it-facebook" xlink:href="../lib/sprites.svg#it-facebook"></use></svg></a></li>
+                                                <li class="list-inline-item"><a class="text-white" href="#" target="_blank"><svg class="icon"><use href="./lib/svg/sprites.svg#it-facebook" xlink:href="./lib/sprites.svg#it-facebook"></use></svg></a></li>
                                                 <li class="list-inline-item"><a class="text-white" href="#" target="_blank"><svg class="icon"><use href="./lib/svg/sprites.svg#it-instagram" xlink:href="./lib/svg/sprites.svg#it-instagram"></use></svg></a></li>
                                                 <li class="list-inline-item"><a class="text-white" href="#" target="_blank"><svg class="icon"><use href="./lib/svg/sprites.svg#it-linkedin" xlink:href="./lib/svg/sprites.svg#it-linkedin"></use></svg></a></li>
                                                 <li class="list-inline-item"><a class="text-white" href="#" target="_blank"><svg class="icon"><use href="./lib/svg/sprites.svg#it-rss" xlink:href="./lib/svg/sprites.svg#it-rss"></use></svg></a></li>
@@ -243,6 +243,9 @@
             </div>
         </footer>
         <script>window.__PUBLIC_PATH__ = "./lib/fonts"</script>
+        <script src="./lib/js/jquery-3.6.1.min.js"></script>
+        <script src="./lib/js/jquery-ui.min.js"></script>
+        <script src="./lib/js/jquery.validate.min.js"></script>
         <script src="./lib/js/bootstrap-italia.bundle.min.js"></script>
         <script src="./inc/script/scripts.js"></script>
     </body>
