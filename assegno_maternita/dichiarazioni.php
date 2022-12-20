@@ -27,7 +27,7 @@
                         <p class="subtitle-small">CF: <?php echo $_SESSION['CF']; ?></p>
                     </div>
                 </div>
-                <div class="col-12 col-lg-10 menu-servizi">
+                <div class="col-12 menu-servizi">
                     <div class="container mb-4 mb-lg-5 mt-lg-4">
                         <div class="row">
                             <div class="col-lg-3">INFORMATIVA SULLA PRIVACY</div>
@@ -40,7 +40,7 @@
             </div>
             <div class="container">
                     <div class="row">
-                        <div class="col-12 col-lg-8 offset-lg-1">
+                        <div class="col-12">
                             <div class="it-page-section mb-40 mb-lg-60">
                                 <div class="cmp-card">
                                     <div class="card">
@@ -62,11 +62,9 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-6 text-left-lg text-center mb-20">
+                        <div class="col-lg-12 text-right mb-20">
                             <button type="button" class="btn btn-default"><a href="compilazione_dati.php"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a></button>
-                        </div>
-                        <div class="col-lg-6 text-right-lg text-center mb-20">
-                            <form method="POST" action="#" name="am_conferma_invia" id="am_conferma_invia">
+                            <form method="POST" action="#" name="am_conferma_invia" id="am_conferma_invia" style="display: inline;">
                                 <input type="hidden" name="pratican" id="pratican" value="<?php echo $_GET['pratican']; ?>" />
                                 <button type="button" class="btn btn-primary">Conferma e invia <svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
                             </form>

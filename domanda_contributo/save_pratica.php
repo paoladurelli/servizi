@@ -125,6 +125,7 @@ $data = [];
                     include '../lib/tcpdf/TCPDF-master/examples/dc_pdf_comune.php'; 
 
                 /* mando mail al comune - start */
+                    /*
                     $phpmailer = new PHPMailer();
                     $phpmailer->isSMTP();
                     $phpmailer->Host = $configSmtp['smtp_host'];
@@ -140,11 +141,13 @@ $data = [];
 
                     /* Add Static Attachment */
                     /* allego la pratica completa appena creata */
+                    /*
                     $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/pratiche/'. $NumeroPratica . '.pdf';
                     $phpmailer->AddAttachment($attachment , $NumeroPratica . '.pdf');
                     echo $attachment;
                     
                     /* se ci sono altri documenti, li allego */
+                    /*
                     if($NewuploadPotereFirma <> ''){
                         $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/domanda_contributo/'. $NewuploadPotereFirma;
                         $phpmailer->AddAttachment($attachment , $NewuploadPotereFirma);
@@ -182,6 +185,7 @@ $data = [];
                 /* mando mail al comune - end */
 
                 /* mando mail all'utente - start */
+                    /*
                     $phpmailer2 = new PHPMailer();
                     $phpmailer2->isSMTP();
                     $phpmailer2->Host = $configSmtp['smtp_host'];

@@ -133,10 +133,10 @@ $qualita = "in qualità di: ";
 switch($inQualitaDi) {
     case "D": 
         $qualita .= "<b>diretto interessato</b>";
-        $documentazioneRichiesta = "documentazione utile al riconoscimento del contributo (esempi: contrato affitto, bollette, spese sanitarie, debiti…)<br>";
+        $documentazioneRichiesta = "documentazione utile al riconoscimento del contributo (esempi: contratto affitto, bollette, spese sanitarie, debiti…)<br>";
         break;
     case "T": 
-        $qualita .= "<b>tutore</b>";
+        $qualita .= "<b>tutore</b> ";
         $qualita .= "di<br>
             cognome e nome <b>".$beneficiarioCognome." ".$beneficiarioNome."</b><br>
             nato/a a <b>".$beneficiarioLuogoNascita."</b> il <b>".$beneficiarioDataNascita."</b>   C.F. <b>".$beneficiarioCf."</b><br/>
@@ -145,7 +145,7 @@ switch($inQualitaDi) {
         $documentazioneRichiesta = "documento che attesta potere di firma<br>documentazione utile al riconoscimento del contributo (esempi: contrato affitto, bollette, spese sanitarie, debiti…)<br>";
         break;
     case "A": 
-        $qualita .= "<b>amministratore di sostegno</b>";
+        $qualita .= "<b>amministratore di sostegno</b> ";
         $qualita .= "di<br>
             cognome e nome <b>".$beneficiarioCognome." ".$beneficiarioNome."</b><br>
             nato/a a <b>".$beneficiarioLuogoNascita."</b> il <b>".$beneficiarioDataNascita."</b>   C.F. <b>".$beneficiarioCf."</b><br/>
@@ -154,7 +154,7 @@ switch($inQualitaDi) {
         $documentazioneRichiesta = "documento che attesta potere di firma<br>documentazione utile al riconoscimento del contributo (esempi: contrato affitto, bollette, spese sanitarie, debiti…)<br>";
         break;
     case "P": 
-        $qualita .= "<b>procuratore</b>";
+        $qualita .= "<b>procuratore</b> ";
         $qualita .= "di<br>
             cognome e nome <b>".$beneficiarioCognome." ".$beneficiarioNome."</b><br>
             nato/a a <b>".$beneficiarioLuogoNascita."</b> il <b>".$beneficiarioDataNascita."</b>   C.F. <b>".$beneficiarioCf."</b><br/>
@@ -163,7 +163,7 @@ switch($inQualitaDi) {
         $documentazioneRichiesta = "documento che attesta potere di firma<br>documentazione utile al riconoscimento del contributo (esempi: contrato affitto, bollette, spese sanitarie, debiti…)<br>";
         break;
     case "E": 
-        $qualita .= "<b>persona delegata</b>";
+        $qualita .= "<b>persona delegata</b> ";
         $qualita .= "di<br>
             cognome e nome <b>".$beneficiarioCognome." ".$beneficiarioNome."</b><br>
             nato/a a <b>".$beneficiarioLuogoNascita."</b> il <b>".$beneficiarioDataNascita."</b>   C.F. <b>".$beneficiarioCf."</b><br/>

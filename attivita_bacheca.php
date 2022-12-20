@@ -22,32 +22,49 @@
                     <div class="cmp-card-latest-messages mb-4">
                         <div class="card shadow-sm px-4 pt-4 pb-4">
                             <div class="card-header border-0 p-0 m-0">
+                                <div class="row mb-2">
+                                    <div class="col-6">
+                                        <date class="date-xsmall">'.date_format($date,"d/m/Y").'</date>
+                                    </div>
+                                    <div class="col-6 text-right">';
+                                    if($row['StatusId'] > 1){
+                                        echo '<date class="date-xsmall">Nr Pratica: <b>'.NumeroPraticaById($row["ServizioId"],$row["pratica_id"]).'</b></date>';
+                                    }
+                                    echo '</div>
+                                </div>
                                 <div class="row">
                                     <div class="col-lg-9">
-                                        <date class="date-xsmall">'.date_format($date,"d/m/Y").'</date>
                                         <p class="title-small-semi-bold t-primary m-0 mb-1"><a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="text-decoration-none">'.$row["NomeServizio"].'</a></p>
                                     </div>
-                                    <div class="col-lg-3 img-responsive">
+                                    <div class="col-lg-3 text-center">
                                         <img src=".\media\images\icons\status_'.$row["StatusId"].'.png" title="'.$row["NomeStatus"].'" alt="'.$row["NomeStatus"].'"/><br/>
-                                        <span class="date-xsmall">'.strtoupper($row["NomeStatus"]).'</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body p-0 my-2">
+                            <div class="card-body p-0">
                                 <div class="row">
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-12 after-section-small">
                                         '.CfAltroByPraticaId($row['ServizioId'],$row["pratica_id"]).
-                                        '<p class="text-paragraph">Numero Pratica: '.NumeroPraticaById($row["ServizioId"],$row["pratica_id"]).'</p>
-                                    </div>
+                                    '</div>
                                     <div class="col-lg-12">
                                         <div class="row">
-                                            <div class="col-lg-9">
+                                            <div class="col-lg-6">
                                                 '.ViewThumbAllegatiById($row["ServizioId"],$row["pratica_id"]).'
-                                            </div>
-                                            <div class="col-lg-3">
-                                                '.DownloadRicevutaById($row["ServizioId"],$row["pratica_id"]).'
-                                            </div>
-                                        </div>
+                                            </div>';
+                                            if($row['StatusId'] > 1){
+                                                echo '<div class="col-lg-3">
+                                                    '.DownloadPraticaById($row["ServizioId"],$row["pratica_id"]).'
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    '.DownloadRicevutaById($row["ServizioId"],$row["pratica_id"]).'
+                                                </div>';
+                                            }else{
+                                                echo '<div class="col-lg-6 text-right">
+                                                    <a href="javascript:void()" onclick="DelAttivita('.$row["ServizioId"].','.$row["pratica_id"].','.$row["StatusId"].');" class="btn-small btn-secondary mr-2">Elimina</a>
+                                                    <a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="btn-small btn-primary">Completa</a>
+                                                </div>';
+                                            }
+                                        echo '</div>
                                     </div>
                                 </div>
                             </div>

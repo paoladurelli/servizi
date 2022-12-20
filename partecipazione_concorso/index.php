@@ -12,7 +12,7 @@
     <main>
         <div class="container" id="main-container">
             <div class="row justify-content-center">
-                <div class="col-12">
+                <div class="col-12 col-lg-10">
                     <div class="cmp-breadcrumbs" role="navigation">
                         <nav class="breadcrumb-container">
                             <ol class="breadcrumb p-0" data-element="breadcrumb">
@@ -52,8 +52,8 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-lg-8 offset-lg-1">
-                        <div class="it-page-section mb-40 mb-lg-60" id="latest-posts">
+                    <div class="col-12">
+                        <div class="it-page-section mb-40 mb-lg-60">
                             <div class="cmp-card">
                                 <div class="card">
                                     <div class="card-body p-0">

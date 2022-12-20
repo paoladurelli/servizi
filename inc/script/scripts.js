@@ -277,7 +277,6 @@ $(document).ready(function () {
         event.preventDefault();
     });
     
-    
     $('#dc_btn_concludi_richiesta').click(function(){
         /* tolgo tutti i required */
             $("#dc_richiedente_nome").removeClass("required");
@@ -517,7 +516,6 @@ $(document).ready(function () {
         event.preventDefault();
     });
     
-    
     $('#dc_conferma_invia').click(function(){
         
         $('#ElaborazioneRichiestaModal').modal('show');
@@ -743,6 +741,7 @@ $(document).ready(function () {
              return false;
         }
     });
+
     $('#am_uploadDichiarazioneDatoreLavoro').change(function(e) {
         $('am_uploadDichiarazioneDatoreLavoro_file').empty();
         let fileName = e.target.files[0].name;
@@ -813,7 +812,6 @@ $(document).ready(function () {
         
         event.preventDefault();
     });
-    
     
     $('#am_btn_concludi_richiesta').click(function(){
         var form = $('#am_frm_dati');
@@ -1031,7 +1029,6 @@ $(document).ready(function () {
         event.preventDefault();
     });
     
-    
     $('#am_conferma_invia').click(function(){
         
         $('#ElaborazioneRichiestaModal').modal('show');
@@ -1066,6 +1063,31 @@ $(document).ready(function () {
         event.preventDefault();
     });
     /* END am_ */
-
-    
 });
+
+function DelAttivita($ServizioId,$pratica_id,$StatusId){
+    if(confirm('Sei sicuro di voler cancellare la bozza?')){
+        formData = new FormData();
+        formData.append('servizioId', $ServizioId);
+        formData.append('praticaId', $pratica_id);
+        formData.append('statusId', $StatusId);
+
+        $.ajax({
+            type: "POST",
+            url: "delete_bozza.php",
+            data: formData,
+            dataType: "json",
+            processData: false,
+            contentType: false,
+            success: function (data)
+            {
+                window.location.href = './attivita_list.php';
+            },
+            error: function (desc)
+            {
+                console.log(desc.responseText);
+            }
+        });
+    }
+    event.preventDefault();
+}

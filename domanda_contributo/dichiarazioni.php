@@ -12,7 +12,7 @@
     <main>
         <div class="container" id="main-container">
             <div class="row justify-content-center">
-                <div class="col-12 col-lg-10">
+                <div class="col-12">
                     <div class="cmp-breadcrumbs" role="navigation">
                         <nav class="breadcrumb-container">
                             <ol class="breadcrumb p-0" data-element="breadcrumb">
@@ -40,7 +40,7 @@
             </div>
             <div class="container">
                     <div class="row">
-                        <div class="col-12 col-lg-8 offset-lg-1">
+                        <div class="col-12">
                             <div class="it-page-section mb-40 mb-lg-60">
                                 <div class="cmp-card">
                                     <div class="card">
@@ -59,11 +59,9 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-6 text-left-lg text-center mb-20">
+                        <div class="col-lg-12 text-right mb-20">
                             <button type="button" class="btn btn-default"><a href="compilazione_dati.php"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a></button>
-                        </div>
-                        <div class="col-lg-6 text-right-lg text-center mb-20">
-                            <form method="POST" action="#" name="dc_conferma_invia" id="dc_conferma_invia">
+                            <form method="POST" action="#" name="dc_conferma_invia" id="dc_conferma_invia" style="display: inline;">
                                 <input type="hidden" name="pratican" id="pratican" value="<?php echo $_GET['pratican']; ?>" />
                                 <button type="button" class="btn btn-primary">Conferma e invia <svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
                             </form>

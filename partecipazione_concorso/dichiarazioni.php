@@ -39,36 +39,34 @@
                 </div>
             </div>
             <div class="container">
-                    <div class="row">
-                        <div class="col-12 col-lg-8 offset-lg-1">
-                            <div class="it-page-section mb-40 mb-lg-60">
-                                <div class="cmp-card">
-                                    <div class="card">
-                                        <div class="card-body p-0">
-                                            <p>Ai sensi degli artt. 46, 47 e 48 del DPR 445/2000, consapevole delle responsabilità penali e delle sanzioni previste in caso di non veridicità del contenuto della presente dichiarazione, di dichiarazione mendace o di formazione di atti falsi di cui agli artt. 75 e 76 del DPR 445/2000, sotto la propria responsabilità</p>
-                                            <ul>
-                                                <li>di essere in possesso di ISEE in corso di validità e congruente allo stato di famiglia privo di omissioni e/o difformità;</li>
-                                                <li>l’insussistenza di rapporti di parentela, entro il quarto grado, o di altri vincoli anche di lavoro o professionali, in corso o riferibili ai due anni precedenti, con gli Amministratori e i Dirigenti del Comune di Villa di Serio.</li>
-                                                <li>di essere a conoscenza che a seguito della presente istanza sarà istruita la pratica e potrà essere richiesta eventuale integrazione di documenti e colloqui con assistente sociale</li>
-                                            </ul>
-                                            <p><b>Cliccando su "Conferma e invia" confermi di aver preso visione dei termini e delle condizioni di servizio sopra elencate.</b></p>
-                                        </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="it-page-section mb-40 mb-lg-60">
+                            <div class="cmp-card">
+                                <div class="card">
+                                    <div class="card-body p-0">
+                                        <p>Ai sensi degli artt. 46, 47 e 48 del DPR 445/2000, consapevole delle responsabilità penali e delle sanzioni previste in caso di non veridicità del contenuto della presente dichiarazione, di dichiarazione mendace o di formazione di atti falsi di cui agli artt. 75 e 76 del DPR 445/2000, sotto la propria responsabilità</p>
+                                        <ul>
+                                            <li>di essere in possesso di ISEE in corso di validità e congruente allo stato di famiglia privo di omissioni e/o difformità;</li>
+                                            <li>l’insussistenza di rapporti di parentela, entro il quarto grado, o di altri vincoli anche di lavoro o professionali, in corso o riferibili ai due anni precedenti, con gli Amministratori e i Dirigenti del Comune di Villa di Serio.</li>
+                                            <li>di essere a conoscenza che a seguito della presente istanza sarà istruita la pratica e potrà essere richiesta eventuale integrazione di documenti e colloqui con assistente sociale</li>
+                                        </ul>
+                                        <p><b>Cliccando su "Conferma e invia" confermi di aver preso visione dei termini e delle condizioni di servizio sopra elencate.</b></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-6 text-left-lg text-center mb-20">
-                            <button type="button" class="btn btn-default"><a href="compilazione_dati.php"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a></button>
-                        </div>
-                        <div class="col-lg-6 text-right-lg text-center mb-20">
-                            <form method="POST" action="#" name="dc_conferma_invia" id="dc_conferma_invia">
-                                <input type="hidden" name="pratican" id="pratican" value="<?php echo $_GET['pratican']; ?>" />
-                                <button type="button" class="btn btn-primary">Conferma e invia <svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
-                            </form>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 text-right mb-20">
+                        <button type="button" class="btn btn-default"><a href="compilazione_dati.php"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a></button>
+                        <form method="POST" action="#" name="pc_conferma_invia" id="pc_conferma_invia" style="display: inline;">
+                            <input type="hidden" name="pratican" id="pratican" value="<?php echo $_GET['pratican']; ?>" />
+                            <button type="button" class="btn btn-primary">Conferma e invia <svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
+                        </form>
                     </div>
+                </div>
             </div>
         </div>
     </main>

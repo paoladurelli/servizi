@@ -12,7 +12,7 @@
     <main>
         <div class="container" id="main-container">
             <div class="row justify-content-center">
-                <div class="col-12">
+                <div class="col-12 col-lg-10">
                     <div class="cmp-breadcrumbs" role="navigation">
                         <nav class="breadcrumb-container">
                             <ol class="breadcrumb p-0" data-element="breadcrumb">
@@ -41,53 +41,53 @@
             <div class="it-page-sections-container">
                 <div class="row">
                     <div class="col-12 col-lg-3 d-lg-block mb-4 d-none">
-                            <div class="cmp-navscroll sticky-top" aria-labelledby="accordion-title-one">
-                                <nav class="navbar it-navscroll-wrapper navbar-expand-lg" data-bs-navscroll>
-                                    <div class="navbar-custom" id="navbarNavProgress">
-                                        <div class="menu-wrapper">
-                                            <div class="link-list-wrapper">
-                                                <div class="accordion">
-                                                    <div class="accordion-item">
-                                                        <span class="accordion-header" id="accordion-title-one">
-                                                            <button class="accordion-button pb-10 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-one" aria-expanded="true" aria-controls="collapse-one">
-                                                                INDICE DI PAGINA
-                                                                <svg class="icon icon-xs right">
-                                                                    <use href="../lib/svg/sprites.svg#it-expand"></use>
-                                                                </svg>
-                                                            </button>
-                                                        </span>
-                                                        <div class="progress">
-                                                            <div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                                        </div>
-                                                        <div id="collapse-one" class="accordion-collapse collapse show" role="region" aria-labelledby="accordion-title-one">
-                                                            <div class="accordion-body">
-                                                                <ul class="link-list" data-element="page-index">
-                                                                    <li class="nav-item">
-                                                                        <a class="nav-link" href="#dc_stato_richiesta">
-                                                                            <span class="title-medium">Stato richiesta</span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="nav-item">
-                                                                        <a class="nav-link" href="#dc_scarica_ricevuta">
-                                                                            <span class="title-medium">Scarica Ricevuta</span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="nav-item">
-                                                                        <a class="nav-link" href="#dc_prossimi_passi">
-                                                                            <span class="title-medium">Prossimi passi</span>
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
+                        <div class="cmp-navscroll sticky-top" aria-labelledby="accordion-title-one">
+                            <nav class="navbar it-navscroll-wrapper navbar-expand-lg" data-bs-navscroll>
+                                <div class="navbar-custom" id="navbarNavProgress">
+                                    <div class="menu-wrapper">
+                                        <div class="link-list-wrapper">
+                                            <div class="accordion">
+                                                <div class="accordion-item">
+                                                    <span class="accordion-header" id="accordion-title-one">
+                                                        <button class="accordion-button pb-10 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-one" aria-expanded="true" aria-controls="collapse-one">
+                                                            INDICE DI PAGINA
+                                                            <svg class="icon icon-xs right">
+                                                                <use href="../lib/svg/sprites.svg#it-expand"></use>
+                                                            </svg>
+                                                        </button>
+                                                    </span>
+                                                    <div class="progress">
+                                                        <div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <div id="collapse-one" class="accordion-collapse collapse show" role="region" aria-labelledby="accordion-title-one">
+                                                        <div class="accordion-body">
+                                                            <ul class="link-list" data-element="page-index">
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link" href="#dc_stato_richiesta">
+                                                                        <span class="title-medium">Stato richiesta</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link" href="#dc_scarica_ricevuta">
+                                                                        <span class="title-medium">Scarica Ricevuta</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link" href="#dc_prossimi_passi">
+                                                                        <span class="title-medium">Prossimi passi</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </nav>
-                            </div>
+                                </div>
+                            </nav>
                         </div>
+                    </div>
 
                     <div class="col-12 col-lg-9 body-riepilogo">
                         <div class="it-page-section mb-50 mb-lg-90" id="dc_stato_richiesta">

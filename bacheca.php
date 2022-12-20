@@ -12,7 +12,7 @@
     <main>
         <div class="container" id="main-container">
             <div class="row justify-content-center">
-                <div class="col-12">
+                <div class="col-12 col-lg-10">
                     <div class="cmp-breadcrumbs" role="navigation">
                         <nav class="breadcrumb-container">
                             <ol class="breadcrumb p-0" data-element="breadcrumb">
@@ -237,23 +237,21 @@
                         </div>
 
                         <div class="it-page-section" id="latest-activities">
-                            <div class="cmp-card">
-                                <div class="card">
-                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
-                                        <div class="d-flex">
-                                            <h2 class="title-xxlarge mb-3">Ultime attività</h2>
-                                        </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h2 class="title-xxlarge mb-3">Ultime attività</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <?php include 'attivita_bacheca.php'; ?>
                                     </div>
-                                    <div class="card-body p-0">
-                                        <div class="row">
-                                            <?php include 'attivita_bacheca.php'; ?>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12 text-right">
-                                                <a href="attivita_list.php" class="btn btn-primary">Vedi altre attività</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-right mb-4">
+                                    <a href="attivita_list.php" class="btn btn-primary">Vedi altre attività</a>
                                 </div>
                             </div>
                         </div>

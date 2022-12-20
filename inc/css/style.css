@@ -18,6 +18,7 @@ body {
 }
 #main-container {
     background-color: #fff;
+    min-height: 600px;
 }
 .cmp-breadcrumbs {
   margin-top: 30px;
@@ -35,9 +36,7 @@ body {
 .mb-20{
   margin-bottom: 20px !important;
 }
-.mb-2{
-  margin-bottom: 2px !important;
-}
+
 .pb-6{
   padding-bottom: 6px !important;
 }
@@ -127,6 +126,11 @@ main {
     min-height: 600px;
 }
 
+form{
+    padding: 0;
+    margin: 0;
+}
+
 .it-header-slim-wrapper {
     background: var(--bs-secondary);
 }
@@ -148,6 +152,10 @@ main {
     .navbar .navbar-collapsable .navbar-nav li a.nav-link {
         padding: 13px 24px 13px 0;
     }
+}
+
+.it-footer-small-prints {
+    background-color: var(--bs-primary);
 }
 
 .it-user-wrapper .btn-primary{
@@ -443,6 +451,27 @@ border-bottom: 0 !important;
 
 .bg-grigio {
   background-color: #eceff1!important;
+}
+
+.btn-small {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 13px;
+  white-space: initial;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 0 solid rgba(0,0,0,0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+  border-radius: 4px;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  padding: 10px 20px;
 }
 
 
@@ -826,7 +855,7 @@ ul.card_rb input{
 }
 
 .text-allegati-xsmall{
-  font-size: 0.8em;
+  font-size: 0.7em;
   font-weight: 600;
   color: var(--bs-primary);
 }
@@ -844,7 +873,6 @@ ul.card_rb input{
 }
 
 .thumb-view{
-    width: 40px;
     display: inline;
     float: left;
     margin-right: 10px;
@@ -985,8 +1013,15 @@ a.pulsante_leggi_dipiu{
       min-height: 40px;
     }
     
+    #latest-activities .card,
+    #pratiche .card{
+      min-height: 270px;
+    }
+    
     #latest-posts .card::after,
-    .body-messaggi .card::after {
+    .body-messaggi .card::after,
+    #latest-activities .card::after,
+    #pratiche .card::after{
       content: none;
     }
 }
@@ -1033,5 +1068,11 @@ svg.radial-progress.refused circle { stroke: #ef0303; }
 .after-section {
   margin-bottom: 40px;
   padding-bottom: 20px;
+  border-bottom: 1px solid #cdcdcd;
+}
+
+.after-section-small {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
   border-bottom: 1px solid #cdcdcd;
 }

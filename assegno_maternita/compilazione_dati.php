@@ -135,7 +135,7 @@
     <main>
         <div class="container" id="main-container">
             <div class="row justify-content-center">
-                <div class="col-12">
+                <div class="col-12 col-lg-10">
                     <div class="cmp-breadcrumbs" role="navigation">
                         <nav class="breadcrumb-container">
                             <ol class="breadcrumb p-0" data-element="breadcrumb">
@@ -149,12 +149,12 @@
                         <h1 class="title-xxxlarge">Presentare domanda per assegno di maternità</h1>
                         <p class="subtitle-small">Servizio per la fruizione di contributo economico concesso alle madri non occupate o non aventi diritto al trattamento di maternità, per nascite, adozioni e affidamenti preadottivi.</p>
                         <p style="display: inline;">Hai bisogno di assistenza?</p>
-                        <form action="<?php echo $configData['url_comune']; ?>/richiesta-assistenza" method="post" id="frmRichiestaAssistenza"  style="display: inline;">
+                        <form action="<?php echo $configData['url_comune']; ?>/richiesta-assistenza" method="post" id="frmRichiestaAssistenza">
                             <input type="hidden" name="id_assistenza" value="">
                             <input type="hidden" name="categoria" value="Salute, benessere e assistenza">
                             <input type="hidden" name="servizio" value="Contributi economici a persone in stato di bisogno">
                             <input type="hidden" name="descrizione" value="">
-                            <a href="javascript:void()" onclick="document.getElementById('frmRichiestaAssistenza').submit();">Contattaci</a>
+                            <a href="javascript:void()" onclick="document.getElementById('frmRichiestaAssistenza').submit();" class="btn btn-primary mt-2">Contattaci</a>
                         </form>
                     </div>
                 </div>
