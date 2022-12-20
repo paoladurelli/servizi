@@ -131,6 +131,22 @@ form{
     margin: 0;
 }
 
+.btn{
+    width: 200px;
+}
+
+.upload[type="file"] + label {
+    width: 200px;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+}
+
+
 .it-header-slim-wrapper {
     background: var(--bs-secondary);
 }
@@ -185,11 +201,19 @@ form{
 }
 
 #divButtons button {
-  float: right;
-  margin-bottom: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
-  width: 200px;
+    float: right;
+    margin-bottom: 20px;
+    margin-left: 0px;
+    margin-right: 10px;
+    width: 200px;
+}
+
+#divButtons a {
+    float: right;
+}
+
+#divButtons button:first-child{
+    margin-right: 40px;
 }
 
 .footer_show_more_menulista {
@@ -1010,23 +1034,27 @@ a.pulsante_leggi_dipiu{
     .body-compilazione-dati .card,
     .body-messaggi .card,
     #latest-posts .card{
-      min-height: 40px;
+        min-height: 40px;
     }
     
     #latest-activities .card,
     #pratiche .card{
-      min-height: 270px;
+        min-height: 260px;
+        padding: 10px;
+        margin-bottom: 30px;
     }
     
     #latest-posts .card::after,
     .body-messaggi .card::after,
     #latest-activities .card::after,
     #pratiche .card::after{
-      content: none;
+        content: none;
     }
 }
 
-
+.ui-dialog-titlebar {
+    display: none;
+}
 
 /* circle progress bar */
 /*** RADIAL PROGRESS ***/

@@ -19,7 +19,7 @@ $data = [];
    
 /* controllo che non sia un refresh della pagina che creerebbe una nuova riga - controllo quindi che la riga con status tmp non abbia il campo numero pratica già popolato */
     $connessioneCheck = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-    $sqlCheck = "SELECT id FROM domanda_contributo WHERE richiedenteCf = '". $_SESSION['CF']."' and id = " . $_POST['pratican'] ." and status_id = 0 and numeroPratica = ''";
+    $sqlCheck = "SELECT id FROM partecipazione_concorso WHERE richiedenteCf = '". $_SESSION['CF']."' and id = " . $_POST['pratican'] ." and status_id = 0 and numeroPratica = ''";
     $data['error'] = $sqlCheck;
     $resultCheck = $connessioneCheck->query($sqlCheck);
     
@@ -27,7 +27,7 @@ $data = [];
         
         /* genero numero pratica */
         $connessioneNP = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-        $sqlNP = "SELECT NumeroPratica FROM domanda_contributo WHERE status_id > 1 ORDER BY id DESC LIMIT 1";
+        $sqlNP = "SELECT NumeroPratica FROM partecipazione_concorso WHERE status_id > 1 ORDER BY id DESC LIMIT 1";
         $resultNP = $connessioneNP->query($sqlNP);
 
         if ($resultNP->num_rows > 0) {
@@ -46,7 +46,7 @@ $data = [];
         /* DATI ESTRAPOLATI DA DB - start */
         /* estrapolo i dati salvati con status tmp */
         $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-        $sql = "SELECT * FROM `domanda_contributo` WHERE id = " . $_POST['pratican'];
+        $sql = "SELECT * FROM `partecipazione_concorso` WHERE id = " . $_POST['pratican'];
         $result = $connessione->query($sql);
 
         if ($result->num_rows > 0) {
@@ -56,7 +56,7 @@ $data = [];
                 $fromName = $row['richiedenteNome'] . " " . $row['richiedenteCognome'];
 
                 /* rinomino i file */
-                $upload_location = "../uploads/domanda_contributo/";
+                $upload_location = "../uploads/partecipazione_concorso/";
                 
                 $NewuploadPotereFirma = "";
                 if(!empty($row["uploadPotereFirma"])){
@@ -91,11 +91,11 @@ $data = [];
 
                 /* salvo tutti i dati in una riga nuova con status 2 */
                 $connessioneINS = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-                $sqlINS = "INSERT INTO `domanda_contributo`(status_id,richiedenteNome,richiedenteCognome,richiedenteCf,richiedenteDataNascita,richiedenteLuogoNascita,richiedenteVia,richiedenteLocalita,richiedenteProvincia,richiedenteEmail,richiedenteTel,inQualitaDi,beneficiarioNome,beneficiarioCognome,beneficiarioCf,beneficiarioDataNascita,beneficiarioLuogoNascita,beneficiarioVia,beneficiarioLocalita,beneficiarioProvincia,beneficiarioEmail,beneficiarioTel,importoContributo,finalitaContributo,tipoPagamento_id,uploadPotereFirma,uploadDocumentazione,NumeroPratica) VALUES (2,'".addslashes($row['richiedenteNome'])."','".addslashes($row['richiedenteCognome'])."','".$row['richiedenteCf']."','".$row['richiedenteDataNascita']."','".addslashes($row['richiedenteLuogoNascita'])."','".addslashes($row['richiedenteVia'])."','".addslashes($row['richiedenteLocalita'])."','".$row['richiedenteProvincia']."','".$row['richiedenteEmail']."','".$row['richiedenteTel']."','".$row['inQualitaDi']."','".addslashes($row['beneficiarioNome'])."','".addslashes($row['beneficiarioCognome'])."','".$row['beneficiarioCf']."','".$row['beneficiarioDataNascita']."','".addslashes($row['beneficiarioLuogoNascita'])."','".addslashes($row['beneficiarioVia'])."','".addslashes($row['beneficiarioLocalita'])."','".$row['beneficiarioProvincia']."','".$row['beneficiarioEmail']."','".$row['beneficiarioTel']."','".$row['importoContributo']."','".addslashes($row['finalitaContributo'])."','".$row['tipoPagamento_id']."','".$NewuploadPotereFirma."','".$NewuploadDocumentazione."','".$NumeroPratica."')";
+                $sqlINS = "INSERT INTO `partecipazione_concorso`(status_id,richiedenteNome,richiedenteCognome,richiedenteCf,richiedenteDataNascita,richiedenteLuogoNascita,richiedenteVia,richiedenteLocalita,richiedenteProvincia,richiedenteEmail,richiedenteTel,inQualitaDi,beneficiarioNome,beneficiarioCognome,beneficiarioCf,beneficiarioDataNascita,beneficiarioLuogoNascita,beneficiarioVia,beneficiarioLocalita,beneficiarioProvincia,beneficiarioEmail,beneficiarioTel,importoContributo,finalitaContributo,tipoPagamento_id,uploadPotereFirma,uploadDocumentazione,NumeroPratica) VALUES (2,'".addslashes($row['richiedenteNome'])."','".addslashes($row['richiedenteCognome'])."','".$row['richiedenteCf']."','".$row['richiedenteDataNascita']."','".addslashes($row['richiedenteLuogoNascita'])."','".addslashes($row['richiedenteVia'])."','".addslashes($row['richiedenteLocalita'])."','".$row['richiedenteProvincia']."','".$row['richiedenteEmail']."','".$row['richiedenteTel']."','".$row['inQualitaDi']."','".addslashes($row['beneficiarioNome'])."','".addslashes($row['beneficiarioCognome'])."','".$row['beneficiarioCf']."','".$row['beneficiarioDataNascita']."','".addslashes($row['beneficiarioLuogoNascita'])."','".addslashes($row['beneficiarioVia'])."','".addslashes($row['beneficiarioLocalita'])."','".$row['beneficiarioProvincia']."','".$row['beneficiarioEmail']."','".$row['beneficiarioTel']."','".$row['importoContributo']."','".addslashes($row['finalitaContributo'])."','".$row['tipoPagamento_id']."','".$NewuploadPotereFirma."','".$NewuploadDocumentazione."','".$NumeroPratica."')";
                 $connessioneINS->query($sqlINS);
 
                 /* ricavo il nuovo id */
-                $sqlINS = "SELECT id FROM domanda_contributo WHERE richiedenteCf = '". $_SESSION['CF'] ."' and status_id = 2 ORDER BY id DESC LIMIT 1";
+                $sqlINS = "SELECT id FROM partecipazione_concorso WHERE richiedenteCf = '". $_SESSION['CF'] ."' and status_id = 2 ORDER BY id DESC LIMIT 1";
                 $resultINS = $connessioneINS->query($sqlINS);
                 if ($resultINS->num_rows > 0) {
                 // output data of each row
@@ -108,21 +108,21 @@ $data = [];
 
                 /* vado ad inserire nella bozza il numero pratica - questo mi serve per lo storico. */
                 $connessioneUPD = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-                $sqlUPD = "UPDATE domanda_contributo SET NumeroPratica = '".$NumeroPratica."' WHERE id = ".$_POST['pratican'];
+                $sqlUPD = "UPDATE partecipazione_concorso SET NumeroPratica = '".$NumeroPratica."' WHERE id = ".$_POST['pratican'];
                 $connessioneUPD->query($sqlUPD);
 
-                /* salvo nelle attitivà la creazione o modifica della bozza per domanda_contributo */
+                /* salvo nelle attitivà la creazione o modifica della bozza per partecipazione_concorso */
                     $sqlINS = "INSERT INTO attivita (cf,servizio_id,pratica_id,status_id,data_attivita) VALUES ('". $_SESSION['CF'] ."',11,".$new_id.",2,'".date('Y-m-d')."')";
                     $connessioneINS->query($sqlINS);
 
 
-                /* salvo nei messaggi che ho una bozza da completare per domanda_contributo */
+                /* salvo nei messaggi che ho una bozza da completare per partecipazione_concorso */
                     $sqlINS = "INSERT INTO messaggi (CF_to,servizio_id,testo,data_msg) VALUES ('". $_SESSION['CF'] ."',11,'La tua domanda di contributo è stata inviata.<br/>Il numero della pratica è: <b>".$NumeroPratica."</b>','".date('Y-m-d')."')";
                     $connessioneINS->query($sqlINS);  
                     
                 /* preparo il pdf da allegare alla mail del comune */
                     include '../lib/tcpdf/TCPDF-master/tcpdf.php';
-                    include '../lib/tcpdf/TCPDF-master/examples/dc_pdf_comune.php'; 
+                    include '../lib/tcpdf/TCPDF-master/examples/pc_pdf_comune.php'; 
 
                 /* mando mail al comune - start */
                     $phpmailer = new PHPMailer();
@@ -146,7 +146,7 @@ $data = [];
                     
                     /* se ci sono altri documenti, li allego */
                     if($NewuploadPotereFirma <> ''){
-                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/domanda_contributo/'. $NewuploadPotereFirma;
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/partecipazione_concorso/'. $NewuploadPotereFirma;
                         $phpmailer->AddAttachment($attachment , $NewuploadPotereFirma);
                         echo $attachment;
                     }
@@ -155,7 +155,7 @@ $data = [];
                         $tmpUploadDocumentaziones = explode(';', $tmpUploadDocumentazione1);
                         
                         foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
-                            $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/domanda_contributo/'. $tmpUploadDocumentazione;
+                            $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/partecipazione_concorso/'. $tmpUploadDocumentazione;
                             $phpmailer->AddAttachment($attachment , $tmpUploadDocumentazione);
                             echo $attachment;
                         }

@@ -141,12 +141,12 @@
                         <h1 class="title-xxxlarge">Presentare domanda per un contributo</h1>
                         <p class="subtitle-small">Servizio per la richiesta di sostegno nell'affrontare le spese relative all'assistenza per un familiare non autosufficiente</p>
                         <p style="display: inline;">Hai bisogno di assistenza?</p>
-                        <form action="<?php echo $configData['url_comune']; ?>/richiesta-assistenza" method="post" id="frmRichiestaAssistenza">
+                        <form action="<?php echo $configData['url_comune']; ?>/richiesta-assistenza" method="post" id="frmRichiestaAssistenza" style="display: inline;">
                             <input type="hidden" name="id_assistenza" value="">
                             <input type="hidden" name="categoria" value="Salute, benessere e assistenza">
                             <input type="hidden" name="servizio" value="Contributi economici a persone in stato di bisogno">
                             <input type="hidden" name="descrizione" value="">
-                            <a href="javascript:void()" onclick="document.getElementById('frmRichiestaAssistenza').submit();" class="btn btn-primary mt-2">Contattaci</a>
+                            <a href="javascript:void()" onclick="document.getElementById('frmRichiestaAssistenza').submit();" class="btn btn-primary" style="margin-left: 10px;margin-top: -5px;">Contattaci</a>
                         </form>
                     </div>
                 </div>
@@ -436,7 +436,7 @@
                                                             <h6 id="dc_uploadPotereFirma_txt">Documento che attesta potere di firma</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-4 text-center">
+                                                        <div class="col-lg-4 text-right">
                                                             <input type="hidden" name="dc_uploadPotereFirmaSaved" id="dc_uploadPotereFirmaSaved" value="<?php echo $uploadPotereFirmaSaved; ?>" />
                                                             <input type="file" name="dc_uploadPotereFirma" id="dc_uploadPotereFirma" class="upload" value="<?php echo $uploadPotereFirmaSaved; ?>" />
                                                             <label for="dc_uploadPotereFirma">
@@ -458,7 +458,7 @@
                                                             <p><em><small>(esempi: contratto affitto, bollette, spese sanitarie, debiti…)</small></em></p>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>                                                    
-                                                        <div class="col-lg-4 text-center">
+                                                        <div class="col-lg-4 text-right">
                                                             <input type="hidden" name="dc_uploadDocumentazioneSaved" id="dc_uploadDocumentazioneSaved" value="<?php echo $uploadDocumentazioneSaved; ?>" />
                                                             <input type="file" name="dc_uploadDocumentazione[]" id="dc_uploadDocumentazione" class="upload" multiple="multiple" value="" />
                                                             <label for="dc_uploadDocumentazione">

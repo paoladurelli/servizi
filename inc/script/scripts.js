@@ -1,27 +1,5 @@
 /* CUSTOM SCRIPTS PER SERVIZI */
 
-
-/* circular progress bar */
-// Remove svg.radial-progress .complete inline styling
-$('svg.radial-progress').each(function( index, value ) { 
-    $(this).find($('circle.complete')).removeAttr( 'style' );
-});
-
-$('svg.radial-progress').each(function( index, value ) { 
-    // Get percentage of progress
-    percent = $(value).data('percentage');
-    // Get radius of the svg's circle.complete
-    radius = $(this).find($('circle.complete')).attr('r');
-    // Get circumference (2πr)
-    circumference = 2 * Math.PI * radius;
-    // Get stroke-dashoffset value based on the percentage of the circumference
-    strokeDashOffset = circumference - ((percent * circumference) / 100);
-    // Transition progress for 1.25 seconds
-    $(this).find($('circle.complete')).animate({'stroke-dashoffset': strokeDashOffset}, 1250);
-});
-
-
-
 /* start script per footer */
 $("#footer-menu-lista-button").click(function() {
     setTimeout(function () {
@@ -88,8 +66,23 @@ $('input[type=radio][name=dc_rb_qualita_di]').change(function() {
     }
 });
 
+$(window).on('load', function(){
+    /* circular progress bar */
+    $('svg.radial-progress').each(function( index, value ) { 
+        // Get percentage of progress
+        percent = $(value).data('percentage');
+        // Get radius of the svg's circle.complete
+        radius = $(this).find($('circle.complete')).attr('r');
+        // Get circumference (2πr)
+        circumference = 2 * Math.PI * radius;
+        // Get stroke-dashoffset value based on the percentage of the circumference
+        strokeDashOffset = circumference - ((percent * circumference) / 100);
+        // Transition progress for 1.25 seconds
+        $(this).find($('circle.complete')).animate({'stroke-dashoffset': strokeDashOffset}, 1250);
+    });
+});
+
 $(document).ready(function () {
-   
     /* script inerenti alla modale per l'aggiunta di un pagamento */
     $("#dc_frm_add_metodo_pagamento").submit(function (event) {
         $("#dc_pnl_return").removeClass();
@@ -1065,12 +1058,27 @@ $(document).ready(function () {
     /* END am_ */
 });
 
-function DelAttivita($ServizioId,$pratica_id,$StatusId){
-    if(confirm('Sei sicuro di voler cancellare la bozza?')){
+$(function(){
+    $(".deleteLink").click(function(){
+       var ServizioId = $(this).data("servizio-id");
+       var PraticaId = $(this).data("pratica-id");
+       var StatusId = $(this).data("status-id");
+       
+       $("#confirmServizioId").val(ServizioId);
+       $("#confirmPraticaId").val(PraticaId);
+       $("#confirmStatusId").val(StatusId);
+       
+       $('#confirmDialog').modal('toggle');
+       
+       event.preventDefault();
+    });
+    
+
+    $(".deleteAttivita").click(function(){
         formData = new FormData();
-        formData.append('servizioId', $ServizioId);
-        formData.append('praticaId', $pratica_id);
-        formData.append('statusId', $StatusId);
+        formData.append('servizioId', $("#confirmServizioId").val());
+        formData.append('praticaId', $("#confirmPraticaId").val());
+        formData.append('statusId', $("#confirmStatusId").val());
 
         $.ajax({
             type: "POST",
@@ -1088,6 +1096,7 @@ function DelAttivita($ServizioId,$pratica_id,$StatusId){
                 console.log(desc.responseText);
             }
         });
-    }
-    event.preventDefault();
-}
+
+        event.preventDefault();
+    });
+});

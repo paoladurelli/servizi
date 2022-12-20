@@ -46,7 +46,7 @@
     if(isset($_GET["dc_pratica_id"]) && $_GET["dc_pratica_id"]<>''){
         /* DATI ESTRAPOLATI DA DB - start */ 
         $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-        $sql = "SELECT * FROM domanda_contributo WHERE richiedenteCf = '". $_SESSION['CF']."' and id =" . $_GET["dc_pratica_id"];
+        $sql = "SELECT * FROM partecipazione_concorso WHERE richiedenteCf = '". $_SESSION['CF']."' and id =" . $_GET["dc_pratica_id"];
         $result = $connessione->query($sql);
 
         if ($result->num_rows > 0) {
@@ -112,12 +112,12 @@
                         <h1 class="title-xxxlarge">Presentare domanda per un contributo</h1>
                         <p class="subtitle-small">Servizio per la richiesta di sostegno nell'affrontare le spese relative all'assistenza per un familiare non autosufficiente</p>
                         <p style="display: inline;">Hai bisogno di assistenza?</p>
-                        <form action="<?php echo $configData['url_comune']; ?>/richiesta-assistenza" method="post" id="frmRichiestaAssistenza">
+                        <form action="<?php echo $configData['url_comune']; ?>/richiesta-assistenza" method="post" id="frmRichiestaAssistenza" style="display: inline;">
                             <input type="hidden" name="id_assistenza" value="">
                             <input type="hidden" name="categoria" value="Salute, benessere e assistenza">
                             <input type="hidden" name="servizio" value="Contributi economici a persone in stato di bisogno">
                             <input type="hidden" name="descrizione" value="">
-                            <a href="javascript:void()" onclick="document.getElementById('frmRichiestaAssistenza').submit();" class="btn btn-primary mt-2">Contattaci</a>
+                            <a href="javascript:void()" onclick="document.getElementById('frmRichiestaAssistenza').submit();" class="btn btn-primary" style="margin-left: 10px; margin-top: -5px;">Contattaci</a>
                         </form>
                     </div>
                 </div>

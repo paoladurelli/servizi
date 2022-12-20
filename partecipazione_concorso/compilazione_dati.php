@@ -156,12 +156,12 @@
                         <h1 class="title-xxxlarge">Presentare domanda di partecipazione a un concorso pubblico</h1>
                         <p class="subtitle-small">Servizio per l'iscrizione a concorsi per trovare impiego presso la Pubblica Amministrazione.</p>
                         <p style="display: inline;">Hai bisogno di assistenza?</p>
-                        <form action="<?php echo $configData['url_comune']; ?>/richiesta-assistenza" method="post" id="frmRichiestaAssistenza">
+                        <form action="<?php echo $configData['url_comune']; ?>/richiesta-assistenza" method="post" id="frmRichiestaAssistenza" style="display: inline;">
                             <input type="hidden" name="id_assistenza" value="">
                             <input type="hidden" name="categoria" value="Salute, benessere e assistenza">
                             <input type="hidden" name="servizio" value="Contributi economici a persone in stato di bisogno">
                             <input type="hidden" name="descrizione" value="">
-                            <a href="javascript:void()" onclick="document.getElementById('frmRichiestaAssistenza').submit();" class="btn btn-primary mt-2">Contattaci</a>
+                            <a href="javascript:void()" onclick="document.getElementById('frmRichiestaAssistenza').submit();" class="btn btn-primary" style="margin-left: 10px;margin-top: -5px;">Contattaci</a>
                         </form>
                     </div>
                 </div>
@@ -322,7 +322,7 @@
                                                             <h6 id="pc_uploadCartaIdentitaFronte_txt">Documento di identità (fronte) *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-4 text-center">
+                                                        <div class="col-lg-4 text-right">
                                                             <input type="hidden" name="pc_uploadCartaIdentitaFronteSaved" id="pc_uploadCartaIdentitaFronteSaved" value="<?php echo $uploadCartaIdentitaFronteSaved; ?>" />
                                                             <input type="file" name="pc_uploadCartaIdentitaFronte" id="pc_uploadCartaIdentitaFronte" class="upload" value="<?php echo $uploadCartaIdentitaFronteSaved; ?>" />
                                                             <label for="pc_uploadCartaIdentitaFronte">
@@ -343,7 +343,7 @@
                                                             <h6 id="pc_uploadCartaIdentitaFronte_txt">Documento di identità (retro) *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-4 text-center">
+                                                        <div class="col-lg-4 text-right">
                                                             <input type="hidden" name="pc_uploadCartaIdentitaRetroSaved" id="pc_uploadCartaIdentitaRetroSaved" value="<?php echo $uploadCartaIdentitaRetroSaved; ?>" />
                                                             <input type="file" name="pc_uploadCartaIdentitaRetro" id="pc_uploadCartaIdentitaRetro" class="upload" value="<?php echo $uploadCartaIdentitaRetroSaved; ?>" />
                                                             <label for="pc_uploadCartaIdentitaRetro">
@@ -364,7 +364,7 @@
                                                             <h6 id="pc_uploadCV_txt">Curriculum Vitae *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>                                                    
-                                                        <div class="col-lg-4 text-center">
+                                                        <div class="col-lg-4 text-right">
                                                             <input type="hidden" name="pc_uploadCVSaved" id="pc_uploadCVSaved" value="<?php echo $uploadCVSaved; ?>" />
                                                             <input type="file" name="pc_uploadCV" id="pc_uploadCV" class="upload" value="" />
                                                             <label for="pc_uploadCV">
@@ -385,7 +385,7 @@
                                                             <h6 id="dc_uploadTitoliPreferenza_txt">Titoli di precedenza o preferenza</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>                                                    
-                                                        <div class="col-lg-4 text-center">
+                                                        <div class="col-lg-4 text-right">
                                                             <input type="hidden" name="pc_uploadTitoliPreferenzaSaved" id="pc_uploadTitoliPreferenzaSaved" value="<?php echo $uploadTitoliPreferenzaSaved; ?>" />
                                                             <input type="file" name="pc_uploadTitoliPreferenza[]" id="pc_uploadTitoliPreferenza" class="upload" multiple="multiple" value="" />
                                                             <label for="pc_uploadTitoliPreferenza">

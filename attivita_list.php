@@ -183,7 +183,7 @@
                             <div class="col-lg-3 text-center">
                                 <svg class="radial-progress sent" data-percentage="<?php echo $percentageSent; ?>" viewBox="0 0 80 80">
                                     <circle class="incomplete" cx="40" cy="40" r="35"></circle>
-                                    <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 39.58406743523136;"></circle>
+                                    <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
                                     <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)"><?php echo $countSent; ?></text>
                                 </svg>
                                 <p>Pratiche inviate</p>
@@ -191,7 +191,7 @@
                             <div class="col-lg-3 text-center">
                                 <svg class="radial-progress working" data-percentage="<?php echo $percentageWorking; ?>" viewBox="0 0 80 80">
                                     <circle class="incomplete" cx="40" cy="40" r="35"></circle>
-                                    <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 39.58406743523136;"></circle>
+                                    <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
                                     <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)"><?php echo $countWorking; ?></text>
                                 </svg>
                                 <p>Pratiche in lavorazione</p>
@@ -199,7 +199,7 @@
                             <div class="col-lg-3 text-center">
                                 <svg class="radial-progress accepted" data-percentage="<?php echo $percentageAccepted; ?>" viewBox="0 0 80 80">
                                     <circle class="incomplete" cx="40" cy="40" r="35"></circle>
-                                    <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 147.3406954533613;"></circle>
+                                    <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
                                     <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)"><?php echo $countAccepted; ?></text>
                                 </svg>
                                 <p>Pratiche accettate</p>
@@ -207,7 +207,7 @@
                             <div class="col-lg-3 text-center">
                                 <svg class="radial-progress refused" data-percentage="<?php echo $percentageRefused; ?>" viewBox="0 0 80 80">
                                     <circle class="incomplete" cx="40" cy="40" r="35"></circle>
-                                    <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 63.774330867872806;"></circle>
+                                    <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
                                     <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)"><?php echo $countRefused; ?></text>
                                 </svg>
                                 <p>Pratiche rifiutate</p>

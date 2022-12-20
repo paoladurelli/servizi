@@ -149,12 +149,12 @@
                         <h1 class="title-xxxlarge">Presentare domanda per assegno di maternità</h1>
                         <p class="subtitle-small">Servizio per la fruizione di contributo economico concesso alle madri non occupate o non aventi diritto al trattamento di maternità, per nascite, adozioni e affidamenti preadottivi.</p>
                         <p style="display: inline;">Hai bisogno di assistenza?</p>
-                        <form action="<?php echo $configData['url_comune']; ?>/richiesta-assistenza" method="post" id="frmRichiestaAssistenza">
+                        <form action="<?php echo $configData['url_comune']; ?>/richiesta-assistenza" method="post" id="frmRichiestaAssistenza" style="display: inline;">
                             <input type="hidden" name="id_assistenza" value="">
                             <input type="hidden" name="categoria" value="Salute, benessere e assistenza">
                             <input type="hidden" name="servizio" value="Contributi economici a persone in stato di bisogno">
                             <input type="hidden" name="descrizione" value="">
-                            <a href="javascript:void()" onclick="document.getElementById('frmRichiestaAssistenza').submit();" class="btn btn-primary mt-2">Contattaci</a>
+                            <a href="javascript:void()" onclick="document.getElementById('frmRichiestaAssistenza').submit();" class="btn btn-primary" style="margin-left: 10px;margin-top: -5px;">Contattaci</a>
                         </form>
                     </div>
                 </div>
@@ -454,10 +454,10 @@
                                                             <h6 id="am_uploadCartaIdentitaFronte_txt">Documento di identità (fronte) *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-4 text-center">
+                                                        <div class="col-lg-4 text-right">
                                                             <input type="hidden" name="am_uploadCartaIdentitaFronteSaved" id="am_uploadCartaIdentitaFronteSaved" value="<?php echo $uploadCartaIdentitaFronteSaved; ?>" />
                                                             <input type="file" name="am_uploadCartaIdentitaFronte" id="am_uploadCartaIdentitaFronte" class="upload" />
-                                                            <label for="am_uploadCartaIdentitaFronte">
+                                                            <label for="am_uploadCartaIdentitaFronte" class="btn btn-primary">
                                                                 <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
                                                                 <span>Upload</span>
                                                             </label>
@@ -473,10 +473,10 @@
                                                             <h6 id="am_uploadCartaIdentitaRetro_txt">Documento di identità (retro) *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-4 text-center">
+                                                        <div class="col-lg-4 text-right">
                                                             <input type="hidden" name="am_uploadCartaIdentitaRetroSaved" id="am_uploadCartaIdentitaRetroSaved" value="<?php echo $uploadCartaIdentitaRetroSaved; ?>" />
                                                             <input type="file" name="am_uploadCartaIdentitaRetro" id="am_uploadCartaIdentitaRetro" class="upload" />
-                                                            <label for="am_uploadCartaIdentitaRetro">
+                                                            <label for="am_uploadCartaIdentitaRetro" class="btn btn-primary">
                                                                 <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
                                                                 <span>Upload</span>
                                                             </label>
@@ -492,10 +492,10 @@
                                                             <h6 id="am_uploadTitoloSoggiorno_txt">Copia titolo di soggiorno oppure</br>ricevuta della richiesta di rilascio del permesso di soggiorno</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-4 text-center">
+                                                        <div class="col-lg-4 text-right">
                                                             <input type="hidden" name="am_uploadTitoloSoggiornoSaved" id="am_uploadTitoloSoggiornoSaved" value="<?php echo $uploadTitoloSoggiornoSaved; ?>" />
                                                             <input type="file" name="am_uploadTitoloSoggiorno" id="am_uploadTitoloSoggiorno" class="upload" />
-                                                            <label for="am_uploadTitoloSoggiorno">
+                                                            <label for="am_uploadTitoloSoggiorno" class="btn btn-primary">
                                                                 <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
                                                                 <span>Upload</span>
                                                             </label>
@@ -512,10 +512,10 @@
                                                             <p><em><small>(nel caso di richiesta della quota differenziale dell’assegno di maternità)</small></em></p>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-4 text-center">
+                                                        <div class="col-lg-4 text-right">
                                                             <input type="hidden" name="am_uploadDichiarazioneDatoreLavoroSaved" id="am_uploadDichiarazioneDatoreLavoroSaved" value="<?php echo $uploadDichiarazioneDatoreLavoroSaved; ?>" />
                                                             <input type="file" name="am_uploadDichiarazioneDatoreLavoro" id="am_uploadDichiarazioneDatoreLavoro" class="upload" />
-                                                            <label for="am_uploadDichiarazioneDatoreLavoro">
+                                                            <label for="am_uploadDichiarazioneDatoreLavoro" class="btn btn-primary">
                                                                 <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
                                                                 <span>Upload</span>
                                                             </label>
@@ -535,7 +535,7 @@
                                 <div class="col-12" id="divButtons">
                                     <button type="button" id="am_btn_concludi_richiesta" name="am_btn_concludi_richiesta" class="btn btn-primary">Avanti <svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
                                     <button type="button" id="am_btn_salva_richiesta" name="am_btn_salva_richiesta" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#SalvaRichiestaModal">Salva richiesta</button>
-                                    <button type="button" id="am_btn_back" class="btn btn-default"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</button>
+                                    <a href="#" id="am_btn_back" class="btn btn-default"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
                                 </div>
                             </div>
                         </div>
