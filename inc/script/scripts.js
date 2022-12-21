@@ -224,7 +224,7 @@ $(document).ready(function () {
                  return false;
             }                
         }
-    });    
+    });
 
     /* script inerenti le tre action del form principale */
     $('#dc_btn_back').click(function(){
@@ -1056,6 +1056,359 @@ $(document).ready(function () {
         event.preventDefault();
     });
     /* END am_ */
+    
+    /* START pc_ partecipazione_concorso */
+    /* script inerenti gli upload dei documenti */
+    $('#pc_uploadCartaIdentitaFronte').change(function(e) {
+        $('#pc_uploadCartaIdentitaFronte_file').empty();
+        let fileName = e.target.files[0].name;
+        var _size = e.target.files[0].size;
+        var maxFileSize = 500;
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'pdf'];
+        var checkSize = parseFloat(_size / 1024).toFixed(2);
+         //Check if the file size is less than maximum file size
+        if (checkSize < maxFileSize) {
+            var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
+            i=0;while(_size>900){_size/=1024;i++;}
+            var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
+            let fileSize = exactSize;
+
+            if ($.inArray(fileName.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Formati accettati : "+fileExtension.join(', '));
+            }else{
+                $('#pc_uploadCartaIdentitaFronte_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+                return true;
+            }
+        } else {
+             alert('Il file deve pesare al massimo 500 Kb');
+             $('#pc_uploadCartaIdentitaFronte').val('');
+             return false;
+        }        
+    });
+
+    $('#pc_uploadCartaIdentitaRetro').change(function(e) {
+        $('#pc_uploadCartaIdentitaRetro_file').empty();
+        let fileName = e.target.files[0].name;
+        var _size = e.target.files[0].size;
+        var maxFileSize = 500;
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'pdf'];
+        var checkSize = parseFloat(_size / 1024).toFixed(2);
+         //Check if the file size is less than maximum file size
+        if (checkSize < maxFileSize) {
+            var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
+            i=0;while(_size>900){_size/=1024;i++;}
+            var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
+            let fileSize = exactSize;
+
+            if ($.inArray(fileName.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Formati accettati : "+fileExtension.join(', '));
+            }else{
+                $('#pc_uploadCartaIdentitaRetro_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+                return true;
+            }
+        } else {
+             alert('Il file deve pesare al massimo 500 Kb');
+             $('#pc_uploadCartaIdentitaRetro').val('');
+             return false;
+        }        
+    });
+
+    $('#pc_uploadCV').change(function(e) {
+        $('#pc_uploadCV_file').empty();
+        let fileName = e.target.files[0].name;
+        var _size = e.target.files[0].size;
+        var maxFileSize = 500;
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'pdf'];
+        var checkSize = parseFloat(_size / 1024).toFixed(2);
+         //Check if the file size is less than maximum file size
+        if (checkSize < maxFileSize) {
+            var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
+            i=0;while(_size>900){_size/=1024;i++;}
+            var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
+            let fileSize = exactSize;
+
+            if ($.inArray(fileName.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Formati accettati : "+fileExtension.join(', '));
+            }else{
+                $('#pc_uploadCV_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+                return true;
+            }
+        } else {
+             alert('Il file deve pesare al massimo 500 Kb');
+             $('#pc_uploadCV').val('');
+             return false;
+        }        
+    });
+
+    $('#pc_uploadTitoliPreferenza').change(function(e) {
+        $('#pc_uploadTitoliPreferenza_file').empty();
+        
+        var totalfiles = document.getElementById('pc_uploadTitoliPreferenza').files.length;
+        for (var index = 0; index < totalfiles; index++) {
+            let fileName = e.target.files[index].name;
+            var _size = e.target.files[index].size;
+            var maxFileSize = 500;
+            var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'pdf'];
+            var checkSize = parseFloat(_size / 1024).toFixed(2);
+             //Check if the file size is less than maximum file size
+            if (checkSize < maxFileSize) {
+                var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
+                i=0;while(_size>900){_size/=1024;i++;}
+                var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
+                let fileSize = exactSize;
+                
+                if ($.inArray(fileName.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                    alert("Formati accettati : "+fileExtension.join(', '));
+                }else{
+                    $('#pc_uploadTitoliPreferenza_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+                    return true;
+                }
+            } else {
+                 alert('Il file deve pesare al massimo 500 Kb');
+                 $('#pc_uploadTitoliPreferenza').val('');
+                 return false;
+            }                
+        }
+    });
+
+    /* script inerenti le tre action del form principale */
+    $('#pc_btn_back').click(function(){
+        window.location.href = 'index.php';
+    });
+    
+    $('#pc_salva_richiesta_btn_save').click(function(){
+        $('#SalvaRichiestaModal').modal('toggle');
+        
+        var form = $('#pc_frm_dati');
+        var disabled = form.find(':input:disabled').removeAttr('disabled');
+        formData = new FormData();
+        formParams = form.serializeArray();
+
+        $.each(form.find('input[type="file"]'), function(i, tag) {
+            $.each($(tag)[0].files, function(i, file) {
+                formData.append(tag.name, file);
+            });
+        });
+
+        $.each(formParams, function(i, val) {
+            formData.append(val.name, val.value);
+        });
+        disabled.attr('disabled','disabled');
+
+        $.ajax({
+            type: $('#pc_frm_dati').attr("method"),
+            url: "save_bozza.php",
+            data: formData,
+            dataType: "json",
+            processData: false,
+            contentType: false,
+            success: function (data)
+            {
+                window.location.href = '../attivita_list.php';
+            },
+            error: function (desc)
+            {
+                console.log(desc.responseText);
+            }
+        });
+        
+        event.preventDefault();
+    });
+    
+    $('#pc_btn_concludi_richiesta').click(function(){
+        /* tolgo tutti i required */
+            $("#dc_richiedente_nome").removeClass("required");
+            $("#dc_richiedente_nome_txt").removeClass("required");
+            $("#dc_richiedente_cognome").removeClass("required");
+            $("#dc_richiedente_cognome_txt").removeClass("required");
+            $("#dc_richiedente_cf").removeClass("required");
+            $("#dc_richiedente_cf_txt").removeClass("required");
+            $("#dc_richiedente_data_nascita").removeClass("required");
+            $("#dc_richiedente_data_nascita_txt").removeClass("required");
+            $("#dc_richiedente_luogo_nascita").removeClass("required");
+            $("#dc_richiedente_luogo_nascita_txt").removeClass("required");
+            $("#dc_richiedente_via").removeClass("required");
+            $("#dc_richiedente_via_txt").removeClass("required");
+            $("#dc_richiedente_localita").removeClass("required");
+            $("#dc_richiedente_localita_txt").removeClass("required");
+            $("#dc_richiedente_provincia").removeClass("required");
+            $("#dc_richiedente_provincia_txt").removeClass("required");
+            $("#dc_richiedente_email").removeClass("required");
+            $("#dc_richiedente_email_txt").removeClass("required");
+            $("#dc_richiedente_tel").removeClass("required");
+            $("#dc_richiedente_tel_txt").removeClass("required");
+
+            $("#pc_uploadCartaIdentitaFronte").removeClass("required");
+            $("#pc_uploadCartaIdentitaFronte_txt").removeClass("required");
+            $("#pc_uploadCartaIdentitaRetro").removeClass("required");
+            $("#pc_uploadCartaIdentitaRetro_txt").removeClass("required");
+            $("#pc_uploadCV").removeClass("required");
+            $("#pc_uploadCV_txt").removeClass("required");
+            $("#pc_uploadTitoliPreferenza").removeClass("required");
+            $("#pc_uploadTitoliPreferenza_txt").removeClass("required");
+
+        var form = $('#pc_frm_dati');
+        var disabled = form.find(':input:disabled').removeAttr('disabled');
+        formData = new FormData();
+        formParams = form.serializeArray();
+
+        $.each(form.find('input[type="file"]'), function(i, tag) {
+            $.each($(tag)[0].files, function(i, file) {
+                formData.append(tag.name, file);
+            });
+        });
+
+        $.each(formParams, function(i, val) {
+            formData.append(val.name, val.value);
+        });
+        disabled.attr('disabled','disabled');
+        
+        /* validazione e salvataggio come tmp */
+        $.ajax({
+            url: "save_dati.php",
+            type: $('#pc_frm_dati').attr("method"),
+            data: formData,
+            dataType: "json",
+            processData: false,
+            contentType: false
+        }).done(function (data) {
+            if (!data.success) {
+                $("#pc_frm_dati_pnl_return").empty();
+                $("#pc_frm_dati_pnl_return").append(
+                    "<div style='color: var(--bs-orange);'>ATTENZIONE</div>"
+                );
+                $("#pc_frm_dati_pnl_return").append("<div>Ci sono alcune informazioni mancanti o errate</div>");
+                $("#pc_frm_dati_pnl_return").append("<ul>");
+
+                /* script per segnalare i dati mancanti */
+                if (data.errors.pc_richiedente_nome) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_richiedente_nome);
+                    $("#pc_richiedente_nome").addClass("required");
+                    $("#pc_richiedente_nome_txt").addClass("required");
+                }
+                if (data.errors.pc_richiedente_cognome) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_richiedente_cognome);
+                    $("#pc_richiedente_cognome").addClass("required");
+                    $("#pc_richiedente_cognome_txt").addClass("required");
+                }
+                if (data.errors.pc_richiedente_cf) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_richiedente_cf);
+                    $("#pc_richiedente_cf").addClass("required");
+                    $("#pc_richiedente_cf_txt").addClass("required");
+                }
+                if (data.errors.pc_richiedente_data_nascita) {
+                    $("#pc_frm_dati_pnl_return").append(data.pc_richiedente_data_nascita);
+                    $("#pc_richiedente_data_nascita").addClass("required");
+                    $("#pc_richiedente_data_nascita_txt").addClass("required");
+                }
+                if (data.errors.pc_richiedente_luogo_nascita) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_richiedente_luogo_nascita);
+                    $("#pc_richiedente_luogo_nascita").addClass("required");
+                    $("#pc_richiedente_luogo_nascita_txt").addClass("required");
+                }
+                if (data.errors.pc_richiedente_via) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_richiedente_via);
+                    $("#pc_richiedente_via").addClass("required");
+                    $("#pc_richiedente_via_txt").addClass("required");
+                }
+                if (data.errors.pc_richiedente_localita) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_richiedente_localita);
+                    $("#pc_richiedente_localita").addClass("required");
+                    $("#pc_richiedente_localita_txt").addClass("required");
+                }
+                if (data.errors.pc_richiedente_provincia) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_richiedente_provincia);
+                    $("#pc_richiedente_provincia").addClass("required");
+                    $("#pc_richiedente_provincia_txt").addClass("required");
+                }
+                if (data.errors.pc_richiedente_email) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_richiedente_email);
+                    $("#pc_richiedente_email").addClass("required");
+                    $("#pc_richiedente_email_txt").addClass("required");
+                }
+                if (data.errors.pc_richiedente_tel) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_richiedente_tel);
+                    $("#pc_richiedente_tel").addClass("required");
+                    $("#pc_richiedente_tel_txt").addClass("required");
+                }
+                if (data.errors.pc_uploadCartaIdentitaFronte) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_uploadCartaIdentitaFronte);
+                    $("#pc_uploadCartaIdentitaFronte").addClass("required");
+                    $("#pc_uploadCartaIdentitaFronte_txt").addClass("required");
+                }
+                if (data.errors.pc_uploadCartaIdentitaRetro) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_uploadCartaIdentitaRetro);
+                    $("#pc_uploadCartaIdentitaRetro").addClass("required");
+                    $("#pc_uploadCartaIdentitaRetro_txt").addClass("required");
+                }
+                if (data.errors.pc_uploadCV) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_uploadCV);
+                    $("#pc_uploadCV").addClass("required");
+                    $("#pc_uploadCV_txt").addClass("required");
+                }
+                if (data.errors.pc_uploadTitoliPreferenza) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_uploadTitoliPreferenza);
+                    $("#pc_uploadTitoliPreferenza").addClass("required");
+                    $("#pc_uploadTitoliPreferenza_txt").addClass("required");
+                }
+
+                $("#pc_frm_dati_pnl_return").append("</ul>");
+
+            
+                $("#pc_frm_dati_pnl_return").addClass("alert alert-warning");
+                
+                $('html, body').animate({
+                    scrollTop: $("#pc_frm_dati_pnl_return").offset().top
+                }, 2000);
+                
+            } else {
+                window.location.href = 'dichiarazioni.php?pratican=' + data.message;
+            }
+        })
+        .fail(function (data) {
+            console.log(data);
+        }); 
+
+        event.preventDefault();
+    });
+    
+    $('#pc_conferma_invia').click(function(){
+        
+        $('#ElaborazioneRichiestaModal').modal('show');
+        
+        var form = $('#pc_conferma_invia');
+        formData = new FormData();
+        formParams = form.serializeArray();
+
+        $.each(formParams, function(i,val) {
+            formData.append(val.name, val.value);
+        });
+        
+        console.log(formData);
+        
+        /* prendo la pratica e inserisco il numero che genero e lo inserisco anche nella riga con status bozza */
+        $.ajax({
+            url: "save_pratica.php",
+            type: $('#pc_conferma_invia').attr("method"),
+            data: formData,
+            dataType: "json",
+            processData: false,
+            contentType: false
+        }).done(function (data) {
+            if (data.success) {
+                window.location.href = 'riepilogo.php?pratican=' + data.pratica + '&praticai=' + data.id;
+            }else{
+                console.log(data.error);
+            }
+        })
+        .fail(function (data) {
+            console.log(data);
+        }); 
+
+        event.preventDefault();
+    });
+
+    /* END pc_ partecipazione_concorso */
 });
 
 $(function(){

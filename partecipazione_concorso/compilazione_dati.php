@@ -22,20 +22,31 @@
     $richiedenteLocalita = "";
     $richiedenteProvincia = "";
     $richiedenteTel = "";
-    $inQualitaDi = "";
-    $beneficiarioNome = "";
-    $beneficiarioCognome = "";
-    $beneficiarioCf = "";
-    $beneficiarioDataNascita = "";
-    $beneficiarioLuogoNascita = "";
-    $beneficiarioVia = "";
-    $beneficiarioLocalita = "";
-    $beneficiarioProvincia = "";
-    $beneficiarioEmail = "";
-    $beneficiarioTel = "";
-    $importoContributo = "";
-    $finalitaContributo = "";
-    $tipoPagamento_id = "";
+    
+    $ConcorsoId = 1;
+    $Concorso = ConcorsoById(1);
+    $cittadinoItaliano = "";
+    $cittadinoEuropeo = "";
+    $statoEuropeo = "";
+    $conoscenzaLingua = "";
+    $idoneitaFisica = "";
+    $dirittiCiviliPolitici = "";
+    $destituzionePA = "";
+    $fedinaPulita = "";
+    $condanne = "";
+    $obbligoLeva = "";
+    $titoloStudio = "";
+    $titoloStudioScuola = "";
+    $titoloStudioVoto = "";
+    $conoscenzaInformatica = "";
+    $conoscenzaLinguaEstera = "";
+    $titoliPreferenza = "";
+    $necessitaHandicap = "";
+    $dirittoRiserva = "";
+    $accettazioneCondizioniBando = "";
+    $accettazioneDisposizioniComune = "";
+    $accettazioneComunicazioneVariazioniDomicilio = "";
+    
     $uploadCartaIdentitaFronte = "";
     $uploadCartaIdentitaFronteSaved = "";
     $uploadCartaIdentitaRetro = "";
@@ -71,23 +82,30 @@
                 $richiedenteProvincia = $row["richiedenteProvincia"];
                 $richiedenteTel = $row["richiedenteTel"];
 
-                $inQualitaDi = $row["inQualitaDi"];
-
-                $beneficiarioNome = $row["beneficiarioNome"];
-                $beneficiarioCognome = $row["beneficiarioCognome"];
-                $beneficiarioCf = $row["beneficiarioCf"];
-                $beneficiarioDataNascita = $row["beneficiarioDataNascita"];
-                $beneficiarioLuogoNascita = $row["beneficiarioLuogoNascita"];
-                $beneficiarioVia = $row["beneficiarioVia"];
-                $beneficiarioLocalita = $row["beneficiarioLocalita"];
-                $beneficiarioProvincia = $row["beneficiarioProvincia"];
-                $beneficiarioEmail = $row["beneficiarioEmail"];
-                $beneficiarioTel = $row["beneficiarioTel"];
-
-                $importoContributo = $row["importoContributo"];
-                $finalitaContributo = $row["finalitaContributo"];
-
-                $tipoPagamento_id = $row["tipoPagamento_id"];
+                $ConcorsoId = $row["ConcorsoId"];
+                $Concorso = ConcorsoById($row["ConcorsoId"]);
+                
+                $cittadinoItaliano = $row["cittadinoItaliano"];
+                $cittadinoEuropeo = $row["cittadinoEuropeo"];
+                $statoEuropeo = $row["statoEuropeo"];
+                $conoscenzaLingua = $row["conoscenzaLingua"];
+                $idoneitaFisica = $row["idoneitaFisica"];
+                $dirittiCiviliPolitici = $row["dirittiCiviliPolitici"];
+                $destituzionePA = $row["destituzionePA"];
+                $fedinaPulita = $row["fedinaPulita"];
+                $condanne = $row["condanne"];
+                $obbligoLeva = $row["obbligoLeva"];
+                $titoloStudio = $row["titoloStudio"];
+                $titoloStudioScuola = $row["titoloStudioScuola"];
+                $titoloStudioVoto = $row["titoloStudioVoto"];
+                $conoscenzaInformatica = $row["conoscenzaInformatica"];
+                $conoscenzaLinguaEstera = $row["conoscenzaLinguaEstera"];
+                $titoliPreferenza = $row["titoliPreferenza"];
+                $necessitaHandicap = $row["necessitaHandicap"];
+                $dirittoRiserva = $row["dirittoRiserva"];
+                $accettazioneCondizioniBando = $row["accettazioneCondizioniBando"];
+                $accettazioneDisposizioniComune = $row["accettazioneDisposizioniComune"];
+                $accettazioneComunicazioneVariazioniDomicilio = $row["accettazioneComunicazioneVariazioniDomicilio"];
 
                 if($row["uploadCartaIdentitaFronte"] != ''){
                     $uploadCartaIdentitaFronte = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadCartaIdentitaFronte"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
@@ -208,6 +226,11 @@
                                                                         </a>
                                                                     </li>
                                                                     <li class="nav-item">
+                                                                        <a class="nav-link" href="#pc_concorso">
+                                                                            <span class="title-medium">Concorso</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="nav-item">
                                                                         <a class="nav-link" href="#pc_dichiarazioni">
                                                                             <span class="title-medium">Dichiarazioni</span>
                                                                         </a>
@@ -244,7 +267,7 @@
                                                 <p><b>Informazioni su di te</b></p>
                                             </div>
                                         </div>
-                                        <div class="card-body" style="margin-bottom:40px;">
+                                        <div class="card-body">
                                             <h5><b><?php echo $_SESSION['Nome'] . ' ' . $_SESSION['Cognome']; ?></b></h5>
                                             <p class="subtitle-small">Codice Fiscale:<br/><b><?php echo $_SESSION['CF']; ?></b></p>
                                             <div class="row">
@@ -291,6 +314,26 @@
                                 </div>
                             </div>
 
+                            <div class="it-page-section mb-50 mb-lg-90" id="pc_concorso">
+                                <div class="cmp-card">
+                                    <div class="card">
+                                        <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                            <div>
+                                                <h2 class="title-xxlarge mb-3">Concorso</h2>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <input type="hidden" name="pc_ConcorsoId" id="pc_ConcorsoId" value="<?php echo $ConcorsoId; ?>" />
+                                                    <p><?php echo $Concorso; ?></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <div class="it-page-section mb-50 mb-lg-90" id="pc_dichiarazioni">
                                 <div class="cmp-card">
                                     <div class="card">
@@ -300,12 +343,176 @@
                                             </div>
                                         </div>
                                         <div class="card-body" id="pc_pnl_dichiarazioni">
-                                            DA FARE
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <p id="pc_cittadinoItaliano_txt">di essere cittadino/a *</p>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="pc_cittadino" id="pc_cittadinoItaliano" value="1" <?php  echo $cittadinoItaliano == 1 ? "checked" : ""; ?> />
+                                                        <label class="form-check-label" for="pc_cittadinoItaliano">italiano/a</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="pc_cittadino" id="pc_cittadinoEuropeo" value="1" <?php  echo $cittadinoEuropeo == 1 ? "checked" : ""; ?> />
+                                                        <label class="form-check-label" for="pc_cittadinoEuropeo" id="pc_statoEuropeo_txt">
+                                                            europeo<br/>
+                                                            <input type="text" id="pc_statoEuropeo" name="pc_statoEuropeo" value="<?php echo $statoEuropeo; ?>" placeholder="(indicare di quale paese della Comunità Europea)" />
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="pc_conoscenzaLingua" name="pc_conoscenzaLingua" value="1" <?php  echo $conoscenzaLingua == 1 ? "checked" : ""; ?>>
+                                                        <label class="form-check-label" for="pc_conoscenzaLingua" id="pc_conoscenzaLingua_txt">di conoscere la lingua italiana</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="pc_idoneitaFisica" id="pc_idoneitaFisica" value="1" <?php  echo $idoneitaFisica == 1 ? "checked" : ""; ?> />
+                                                        <label class="form-check-label" for="pc_idoneitaFisica" id="pc_idoneitaFisica_txt">
+                                                            di essere fisicamente idoneo/a all’impiego
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="pc_dirittiCiviliPolitici" id="pc_dirittiCiviliPolitici" value="1" <?php  echo $dirittiCiviliPolitici == 1 ? "checked" : ""; ?> />
+                                                        <label class="form-check-label" for="pc_dirittiCiviliPolitici" id="pc_dirittiCiviliPolitici_txt">
+                                                            di godere dei diritti civili e politici
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="pc_destituzionePA" id="pc_destituzionePA" value="1" <?php  echo $destituzionePA == 1 ? "checked" : ""; ?> />
+                                                        <label class="form-check-label" for="pc_destituzionePA" id="pc_destituzionePA_txt">
+                                                            di non essere stato destituito, dispensato o comunque licenziato dall’impiego presso una pubblica amministrazione per persistente insufficiente rendimento e di non essere stato dichiarato decaduto o licenziato da altro pubblico impiego per averlo conseguito mediante esibizione di documenti falsi o viziati da invalidità non sanabile (art.127 DPR 10/01/1957 n.3)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="pc_fedina" id="pc_fedinaPulita" value="1" <?php  echo $fedinaPulita == 1 ? "checked" : ""; ?> />
+                                                        <label class="form-check-label" for="pc_fedinaPulita" id="pc_fedinaPulita_txt">
+                                                            di non aver riportato condanne penali e di non aver procedimenti penali pendenti a proprio carico che impediscano, ai sensi delle vigenti disposizioni in materia, la costituzione del rapporto d’impiego con la Pubblica Amministrazione
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="pc_fedina" id="pc_fedinaSegnata" value="1" <?php  echo $condanne != "" ? "checked" : ""; ?> />
+                                                        <label class="form-check-label" for="pc_fedinaSegnata" id="pc_condanne_txt">
+                                                            di aver riportato le seguenti condanne (anche se sia concessa amnistia, condono indulto o perdono giudiziale) o di avere seguenti procedimenti penali in corso:
+                                                            <input type="text" id="pc_condanne" name="pc_condanne" value="<?php echo $condanne; ?>" />
+                                                        </label>
+                                                    </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="pc_obbligoLeva" id="pc_obbligoLeva" value="1" <?php  echo $obbligoLeva == 1 ? "checked" : ""; ?> />
+                                                        <label class="form-check-label" for="pc_obbligoLeva" id="pc_obbligoLeva_txt">
+                                                            di essere in regola nei confronti dell’obbligo di leva per i candidati di sesso maschile nati entro il 31/12/1985 ai sensi dell’art.1, Legge 23/8/2004, n.226
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="pc_titoloStudioHas" id="pc_titoloStudioHas" value="1" <?php  echo $titoloStudio != "" ? "checked" : ""; ?> />
+                                                        <label class="form-check-label" for="pc_titoloStudioHas" id="pc_titoloStudioHas_txt">
+                                                            di essere in possesso del seguente titolo di studio<br>
+                                                            <input type="text" id="pc_titoloStudio" name="pc_titoloStudio" value="<?php echo $titoloStudio; ?>" /><br>
+                                                            conseguito presso Il<br>
+                                                            <input type="text" id="pc_titoloStudioScuola" name="pc_titoloStudioScuola" value="<?php echo $titoloStudioScuola; ?>" /><br>
+                                                            con votazione finale di<br>
+                                                            <input type="text" id="pc_titoloStudioVoto" name="pc_titoloStudioVoto" value="<?php echo $titoloStudioVoto; ?>" />
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="pc_conoscenzaInformatica" id="pc_conoscenzaInformatica" value="1" <?php  echo $conoscenzaInformatica == 1 ? "checked" : ""; ?> />
+                                                        <label class="form-check-label" for="pc_conoscenzaInformatica" id="pc_conoscenzaInformatica_txt">
+                                                            di conoscere l’uso delle apparecchiature, delle applicazioni informatiche più diffuse e di scegliere la seguente lingua straniera (inglese o francese)
+                                                            <input type="text" id="pc_conoscenzaLinguaEstera" name="pc_conoscenzaLinguaEstera" value="<?php echo $conoscenzaLinguaEstera; ?>" />
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="pc_titoliPreferenzaHas" id="pc_titoliPreferenzaHas" value="1" <?php  echo $titoliPreferenza != "" ? "checked" : ""; ?> />
+                                                        <label class="form-check-label" for="pc_titoliPreferenzaHas" id="pc_titoliPreferenzaHas_txt">
+                                                            di essere in possesso dei seguenti titoli di preferenza (a parità di valutazione)
+                                                            <input type="text" id="pc_titoliPreferenza" name="pc_titoliPreferenza" value="<?php echo $titoliPreferenza; ?>" />
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="pc_dirittoRiserva" id="pc_dirittoRiserva" value="1" <?php  echo $dirittoRiserva == 1 ? "checked" : ""; ?> />
+                                                        <label class="form-check-label" for="pc_dirittoRiserva" id="pc_dirittoRiserva_txt">
+                                                            di aver diritto alla riserva ai sensi dell’art1014 e dell’art. 678, comma 9, del D.Lgs66/2010
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>    
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="pc_accettazioneCondizioniBando" id="pc_accettazioneCondizioniBando" value="1" <?php  echo $accettazioneCondizioniBando == 1 ? "checked" : ""; ?> />
+                                                        <label class="form-check-label" for="pc_accettazioneCondizioniBando" id="pc_accettazioneCondizioniBando_txt">
+                                                            di accettare espressamente ed incondizionatamente tutte le prescrizioni e condizioni contenute nel bando di concorso *
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>    
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="pc_accettazioneDisposizioniComune" id="pc_accettazioneDisposizioniComune" value="1" <?php  echo $accettazioneDisposizioniComune == 1 ? "checked" : ""; ?> />
+                                                        <label class="form-check-label" for="pc_accettazioneDisposizioniComune" id="pc_accettazioneDisposizioniComune_txt">
+                                                            di accettare, in caso di presa di servizio, tutte le disposizioni che regolano lo stato giuridico ed economici dei dipendenti del Comune di <?php echo $configData['nome_comune']; ?>. *
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>    
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="pc_accettazioneComunicazioneVariazioniDomicilio" id="pc_accettazioneComunicazioneVariazioniDomicilio" value="1" <?php  echo $accettazioneComunicazioneVariazioniDomicilio == 1 ? "checked" : ""; ?> />
+                                                        <label class="form-check-label" for="pc_accettazioneComunicazioneVariazioniDomicilio" id="pc_accettazioneComunicazioneVariazioniDomicilio_txt">
+                                                            di impegnarsi a comunicare, per iscritto, al Comune di <?php echo $configData['nome_comune']; ?> le eventuali successive variazioni di domicilio e riconosce che il Comune sarà esonerato da ogni responsabilità in caso di irreperibilità del destinatario o disguidi del servizio postale e/o telematico. *
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-check">
+                                                        <label class="form-check-label" id="pc_necessitaHandicap_txt">
+                                                            <b>Per i portatori di handicap:</b> indicare le necessità, per l’effettuazione delle prove, in relazione al proprio handicap, di eventuali tempi aggiuntivi e/o ausili specifici ai sensi dell’art. 20, comma 2 della L. 5.02.1992, n. 104 e dell’art. 16 della legge 68/99 10) di aver diritto alla riserva ai sensi dell’art1014 e dell’art. 678, comma 9, del D.Lgs66/2010
+                                                            <textarea id="pc_necessitaHandicap" name="pc_necessitaHandicap" rows="4"><?php echo $necessitaHandicap; ?></textarea>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
+                            </div>
+                        
                             <div class="it-page-section mb-50 mb-lg-90" id="pc_allegati">
                                 <div class="cmp-card">
                                     <div class="card">

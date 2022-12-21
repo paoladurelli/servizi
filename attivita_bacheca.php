@@ -50,8 +50,8 @@
                                         <div class="row">
                                             '.ViewThumbAllegatiById($row["ServizioId"],$row["pratica_id"]);
                                             if($row['StatusId'] > 1){
-                                                DownloadPraticaById($row["ServizioId"],$row["pratica_id"]);
-                                                DownloadRicevutaById($row["ServizioId"],$row["pratica_id"]);
+                                                echo DownloadPraticaById($row["ServizioId"],$row["pratica_id"]);
+                                                echo DownloadRicevutaById($row["ServizioId"],$row["pratica_id"]);
                                             }else{
                                                 echo '<div class="col-12 text-right">
                                                     <a class="btn-small btn-secondary mr-2 deleteLink" data-servizio-id="'.$row["ServizioId"].'" data-pratica-id="'.$row["pratica_id"].'" data-status-id="'.$row["StatusId"].'">Elimina</a>

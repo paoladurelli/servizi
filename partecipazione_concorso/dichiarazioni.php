@@ -45,12 +45,9 @@
                             <div class="cmp-card">
                                 <div class="card">
                                     <div class="card-body p-0">
-                                        <p>Ai sensi degli artt. 46, 47 e 48 del DPR 445/2000, consapevole delle responsabilità penali e delle sanzioni previste in caso di non veridicità del contenuto della presente dichiarazione, di dichiarazione mendace o di formazione di atti falsi di cui agli artt. 75 e 76 del DPR 445/2000, sotto la propria responsabilità</p>
-                                        <ul>
-                                            <li>di essere in possesso di ISEE in corso di validità e congruente allo stato di famiglia privo di omissioni e/o difformità;</li>
-                                            <li>l’insussistenza di rapporti di parentela, entro il quarto grado, o di altri vincoli anche di lavoro o professionali, in corso o riferibili ai due anni precedenti, con gli Amministratori e i Dirigenti del Comune di Villa di Serio.</li>
-                                            <li>di essere a conoscenza che a seguito della presente istanza sarà istruita la pratica e potrà essere richiesta eventuale integrazione di documenti e colloqui con assistente sociale</li>
-                                        </ul>
+                                        <p>Il/la sottoscritto/a dichiara ai sensi dell’art. 76 del D.P.R. 445 del 28/12/2000, di essere a conoscenza delle responsabilità penali cui può andare incontro in caso di dichiarazioni mendaci.<br>
+                                        (Le dichiarazioni sopra riportate sostituiscono a tutti gli effetti le corrispondenti certificazioni ai sensi dell’art.46 D.P.R. 445 del 28.12.2000)</p>
+                                        <p>Il/la sottoscritto/a autorizza ai sensi dell’art. 23 del D. Lgs. 196 del 30.06.2003 e del Regolamento(UE) 2016/679, il Comune di <?php echo $configData['nome_comune']; ?> al trattamento dei propri dati sia personali che eventualmente sensibili ai soli fini del presente procedimento concorsuale e dell’eventuale assunzione, qualora assunto in servizio.</p>
                                         <p><b>Cliccando su "Conferma e invia" confermi di aver preso visione dei termini e delle condizioni di servizio sopra elencate.</b></p>
                                     </div>
                                 </div>

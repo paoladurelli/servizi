@@ -266,6 +266,7 @@ function NumeroPraticaById($servizio_id,$pratica_id){
     switch($servizio_id) {
         case 9: $table = "assegno_maternita"; break;
         case 11: $table = "domanda_contributo"; break;
+        case 16: $table = "partecipazione_concorso"; break;
     }
     $configDB = require './env/config.php';
     $connessioneNPBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
@@ -298,6 +299,10 @@ function CfAltroByPraticaId($servizio_id,$pratica_id){
             }
             $connessioneCABPI->close();
             break;
+        case 16: 
+            /* partecipazione_concorso */
+            return "";
+            break;
     }
 
 }
@@ -308,17 +313,22 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
         case 9: 
             /* assegno_maternita */
             $connessioneVTABI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-            $sqlVTABI = "SELECT uploadCartaIdentitaFronte, uploadCartaIdentitaRetro, uploadTitoloSoggiorno, uploadDichiarazioneDatoreLavoro FROM assegno_maternita WHERE id = ". $PraticaId;
+            $sqlVTABI = "SELECT uploadCartaIdentitaFronte, uploadCartaIdentitaRetro, uploadTitoloSoggiorno, uploadDichiarazioneDatoreLavoro, NumeroPratica FROM assegno_maternita WHERE id = ". $PraticaId;
             $resultVTABI = $connessioneVTABI->query($sqlVTABI);
             if ($resultVTABI->num_rows > 0) {
                 while($rowVTABI = $resultVTABI->fetch_assoc()) {
                     
                     $returnText = "";
+					
+                    if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/pratiche/'.$rowVTABI['NumeroPratica'].'.pdf')){
+                            $col = "col-lg-6";
+                    }else{
+                            $col = "col-lg-9";
+                    }
 
                     if(($rowVTABI['uploadCartaIdentitaFronte'] != "" || $rowVTABI['uploadCartaIdentitaFronte'] != NULL) || ($rowVTABI['uploadCartaIdentitaRetro'] != "" || $rowVTABI['uploadCartaIdentitaRetro'] != NULL) || ($rowVTABI['uploadTitoloSoggiorno'] != "" || $rowVTABI['uploadTitoloSoggiorno'] != NULL) || ($rowVTABI['uploadDichiarazioneDatoreLavoro'] != "" || $rowVTABI['uploadDichiarazioneDatoreLavoro'] != NULL)){
-                        $returnText = "<div class='col-lg-6'><div class='col-lg-12 text-right'><p class='text-allegati-xsmall'>ALLEGATI</p>";
+                        $returnText = "<div class='".$col."'><div class='col-lg-12 text-right'><p class='text-allegati-xsmall'>ALLEGATI</p>";
                     }
-                    
                     
                     /* uploadCartaIdentitaFronte*/
                     if($rowVTABI['uploadCartaIdentitaFronte'] != "" || $rowVTABI['uploadCartaIdentitaFronte'] != NULL){
@@ -389,15 +399,21 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
         case 11:
             /* domanda_contributo */
             $connessioneVTABI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-            $sqlVTABI = "SELECT uploadPotereFirma, uploadDocumentazione FROM domanda_contributo WHERE id = ". $PraticaId;
+            $sqlVTABI = "SELECT uploadPotereFirma, uploadDocumentazione, NumeroPratica FROM domanda_contributo WHERE id = ". $PraticaId;
             $resultVTABI = $connessioneVTABI->query($sqlVTABI);
             if ($resultVTABI->num_rows > 0) {
                 while($rowVTABI = $resultVTABI->fetch_assoc()) {
                     
                     $returnText = "";
+					
+                    if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/pratiche/'.$rowVTABI['NumeroPratica'].'.pdf')){
+                            $col = "col-lg-6";
+                    }else{
+                            $col = "col-lg-9";
+                    }
                     
                     if(($rowVTABI['uploadPotereFirma'] != "" || $rowVTABI['uploadPotereFirma'] != NULL) || ($rowVTABI['uploadDocumentazione'] != "" || $rowVTABI['uploadDocumentazione'] != NULL)){
-                        $returnText .= "<div class='col-lg-6'><div class='col-lg-12 text-right'><p class='text-allegati-xsmall'>ALLEGATI</p>";
+                        $returnText .= "<div class='".$col."'><div class='col-lg-12 text-right'><p class='text-allegati-xsmall'>ALLEGATI</p>";
                     }
                     
                     /* potere firma */
@@ -436,6 +452,97 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                         $returnText .= "</div></div>";
                     }
                 }
+                return $returnText;
+            }
+            $connessioneVTABI->close();
+            break;
+        case 16: 
+            /* partecipazione_concorso */
+            $connessioneVTABI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+            $sqlVTABI = "SELECT uploadCartaIdentitaFronte,uploadCartaIdentitaRetro,uploadCV,uploadTitoliPreferenza,NumeroPratica FROM partecipazione_concorso WHERE id = ". $PraticaId;
+            $resultVTABI = $connessioneVTABI->query($sqlVTABI);
+            if ($resultVTABI->num_rows > 0) {
+                while($rowVTABI = $resultVTABI->fetch_assoc()) {
+                    
+                    $returnText = "";
+					
+                    if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/pratiche/'.$rowVTABI['NumeroPratica'].'.pdf')){
+                            $col = "col-lg-6";
+                    }else{
+                            $col = "col-lg-9";
+                    }
+
+                    if(($rowVTABI['uploadCartaIdentitaFronte'] != "" || $rowVTABI['uploadCartaIdentitaFronte'] != NULL) || ($rowVTABI['uploadCartaIdentitaRetro'] != "" || $rowVTABI['uploadCartaIdentitaRetro'] != NULL) || ($rowVTABI['uploadCV'] != "" || $rowVTABI['uploadCV'] != NULL) || ($rowVTABI['uploadTitoliPreferenza'] != "" || $rowVTABI['uploadTitoliPreferenza'] != NULL)){
+                        $returnText = "<div class='".$col."'><div class='col-lg-12 text-right'><p class='text-allegati-xsmall'>ALLEGATI</p>";
+                    }
+                    
+                    /* uploadCartaIdentitaFronte*/
+                    if($rowVTABI['uploadCartaIdentitaFronte'] != "" || $rowVTABI['uploadCartaIdentitaFronte'] != NULL){
+                        $fileName = $rowVTABI['uploadCartaIdentitaFronte'];
+                        $fileNameParts = explode('.', $fileName);
+                        $ext = end($fileNameParts);
+                        if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/partecipazione_concorso/'.$rowVTABI['uploadCartaIdentitaFronte'])){
+                            if( $ext == "pdf"){
+                                $returnText .= "<a href='./uploads/partecipazione_concorso/".$rowVTABI['uploadCartaIdentitaFronte']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='".$rowVTABI['uploadCartaIdentitaFronte']."' title='".$rowVTABI['uploadCartaIdentitaFronte']."'/></a>";
+                            }else{
+                                $returnText .= "<a href='./uploads/partecipazione_concorso/".$rowVTABI['uploadCartaIdentitaFronte']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='".$rowVTABI['uploadCartaIdentitaFronte']."' title='".$rowVTABI['uploadCartaIdentitaFronte']."'/></a>";
+                            }
+                        }
+                    }
+                    
+                    /* uploadCartaIdentitaRetro */
+                    if($rowVTABI['uploadCartaIdentitaRetro'] != "" || $rowVTABI['uploadCartaIdentitaRetro'] != NULL){
+                        $fileName = $rowVTABI['uploadCartaIdentitaRetro'];
+                        $fileNameParts = explode('.', $fileName);
+                        $ext = end($fileNameParts);
+                        if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/partecipazione_concorso/'.$rowVTABI['uploadCartaIdentitaRetro'])){
+                            if( $ext == "pdf"){
+                                $returnText .= "<a href='./uploads/partecipazione_concorso/".$rowVTABI['uploadCartaIdentitaRetro']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='".$rowVTABI['uploadCartaIdentitaRetro']."' title='".$rowVTABI['uploadCartaIdentitaRetro']."'/></a>";
+                            }else{
+                                $returnText .= "<a href='./uploads/partecipazione_concorso/".$rowVTABI['uploadCartaIdentitaRetro']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='".$rowVTABI['uploadCartaIdentitaRetro']."' title='".$rowVTABI['uploadCartaIdentitaRetro']."'/></a>";
+                            }
+                        }
+                    }
+
+                    /* uploadCV */
+                    if($rowVTABI['uploadCV'] != "" || $rowVTABI['uploadCV'] != NULL){
+                        $fileName = $rowVTABI['uploadTitoloSoggiorno'];
+                        $fileNameParts = explode('.', $fileName);
+                        $ext = end($fileNameParts);
+                        if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/partecipazione_concorso/'.$rowVTABI['uploadCV'])){
+                            if( $ext == "pdf"){
+                                $returnText .= "<a href='./uploads/partecipazione_concorso/".$rowVTABI['uploadCV']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='".$rowVTABI['uploadCV']."' title='".$rowVTABI['uploadCV']."'/></a>";
+                            }else{
+                                $returnText .= "<a href='./uploads/partecipazione_concorso/".$rowVTABI['uploadCV']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='".$rowVTABI['uploadCV']."' title='".$rowVTABI['uploadCV']."'/></a>";
+                            }
+                        }
+                    }
+
+                    /* uploadTitoliPreferenza */
+                    if($rowVTABI['uploadTitoliPreferenza'] != "" || $rowVTABI['uploadTitoliPreferenza'] != NULL){
+                        $tmpUploadTitoliPreferenza1 = substr($rowVTABI["uploadTitoliPreferenza"],0,-1);
+                        $tmpUploadTitoliPreferenzas = explode(';', $tmpUploadTitoliPreferenza1);
+                        $uploadTitoliPreferenza = "";
+                        foreach($tmpUploadTitoliPreferenzas as $tmpUploadTitoliPreferenza) {
+                            $fileNameParts = explode('.', $tmpUploadTitoliPreferenza);
+                            $ext = end($fileNameParts);
+                            
+                            if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/partecipazione_concorso/'.$tmpUploadTitoliPreferenza)){
+                                if( $ext == "pdf"){
+                                    $returnText .="<a href='./uploads/partecipazione_concorso/".$tmpUploadTitoliPreferenza."' target='_blank'><img src='./media/images/icons/pdf.png' alt='".$tmpUploadTitoliPreferenza."' title='".$tmpUploadTitoliPreferenza."'/></a>";
+                                }else{
+                                    $returnText .="<a href='./uploads/partecipazione_concorso/".$tmpUploadTitoliPreferenza."' target='_blank'><img src='./media/images/icons/jpg.png' alt='".$tmpUploadTitoliPreferenza."' title='".$tmpUploadTitoliPreferenza."'/></a>";
+                                }
+                            }
+                        }
+                    }
+
+                    if(($rowVTABI['uploadCartaIdentitaFronte'] != "" || $rowVTABI['uploadCartaIdentitaFronte'] != NULL) || ($rowVTABI['uploadCartaIdentitaRetro'] != "" || $rowVTABI['uploadCartaIdentitaRetro'] != NULL) || ($rowVTABI['uploadCV'] != "" || $rowVTABI['uploadCV'] != NULL) || ($rowVTABI['uploadTitoliPreferenza'] != "" || $rowVTABI['uploadTitoliPreferenza'] != NULL)){
+                        $returnText .= "</div></div>";
+                    }
+                    
+                }
+                
                 return $returnText;
             }
             $connessioneVTABI->close();
@@ -485,6 +592,25 @@ function DownloadRicevutaById($ServizioId,$PraticaId){
             }
             $connessioneDRBI->close();
             break;
+        case 16: 
+            /* partecipazione_concorso */
+            $connessioneDRBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+            $sqlVTABI = "SELECT status_id FROM partecipazione_concorso WHERE id = ". $PraticaId;
+            $resultDRBI = $connessioneDRBI->query($sqlVTABI);
+            if ($resultDRBI->num_rows > 0) {
+                while($rowDRBI = $resultDRBI->fetch_assoc()) {
+                    if($rowDRBI['status_id'] > 1){
+                        return '<div class="col-lg-3"><div class="col-lg-12 text-right"><p class="text-allegati-xsmall">RICEVUTA</p>
+                        <form action="./lib/tcpdf/TCPDF-master/examples/pc_pdf_pratica.php" method="POST" id="pc_frm_download_pdf" name="pc_frm_download_pdf">
+                            <input type="hidden" name="pc_download_pdf_id" id="pc_download_pdf_id" value="'.$PraticaId.'" />
+                            <input type="hidden" name="pc_download_pdf_pratica" id="pc_download_pdf_pratica" value="'.NumeroPraticaById($ServizioId,$PraticaId).'" />
+                            <input type="image" name="submit" src="./media/images/icons/pdf.png" alt="'.NumeroPraticaById($ServizioId,$PraticaId).'" title="'.NumeroPraticaById($ServizioId,$PraticaId).'" border="0" alt="Submit" />
+                        </form></div></div>';
+                    }
+                }
+            }
+            $connessioneDRBI->close();
+            break;
     }
 }    
 
@@ -520,5 +646,46 @@ function DownloadPraticaById($ServizioId,$PraticaId){
             }
             $connessioneDRBI->close();
             break;
+        case 16: 
+            /* partecipazione_concorso */
+            $connessioneDRBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+            $sqlVTABI = "SELECT NumeroPratica FROM partecipazione_concorso WHERE id = ". $PraticaId ." AND status_id > 1";
+            $resultDRBI = $connessioneDRBI->query($sqlVTABI);
+            if ($resultDRBI->num_rows > 0) {
+                while($rowDRBI = $resultDRBI->fetch_assoc()) {
+                    if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/pratiche/'.$rowDRBI['NumeroPratica'].'.pdf')){
+                        return "<div class='col-lg-3'><div class='col-lg-12 text-right'><p class='text-allegati-xsmall'>PRATICA</p><a href='./uploads/pratiche/".$rowDRBI['NumeroPratica'].".pdf' target='_blank'><img src='./media/images/icons/pdf.png' alt='Pratica ".$rowDRBI['NumeroPratica']."' title='Pratica ".$rowDRBI['NumeroPratica']."' /></a></div></div>";
+                    }
+                }
+            }
+            $connessioneDRBI->close();
+            break;
     }                              
+}
+
+function ConcorsoById($ConcorsoId){
+    $configDB = require '../env/config.php';
+    $connessioneCBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sqlCBI = "SELECT testo as Concorso FROM `concorsi` WHERE id = ". $ConcorsoId;
+    $resultCBI = $connessioneCBI->query($sqlCBI);
+    if ($resultCBI->num_rows > 0) {
+        while($rowCBI = $resultCBI->fetch_assoc()) {
+            return $rowCBI['Concorso'];
+        }
+    }
+    $connessioneCBI->close();
+}
+
+function GetDataScadenzaConcorsoById($PraticaId){
+    $configDB = require '../env/config.php';
+    $connessioneGDSCBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sqlGDSCBI = "SELECT concorsi.scadenza as DataScadenza FROM partecipazione_concorso LEFT JOIN concorsi ON partecipazione_concorso.ConcorsoId = concorsi.id WHERE partecipazione_concorso.id = ". $PraticaId;
+    $resultGDSCBI = $connessioneGDSCBI->query($sqlGDSCBI);    
+    if ($resultGDSCBI->num_rows > 0) {
+        while($rowGDSCBI = $resultGDSCBI->fetch_assoc()) {
+            $Date = $rowGDSCBI["DataScadenza"];
+            return '<span class="date-step-giorno">' . date('d', strtotime($Date)). '</span><br><span class="date-step-mese">'. date('M/Y', strtotime($Date)) . '</span>';
+        }
+    }
+    $connessioneGDSCBI->close();
 }

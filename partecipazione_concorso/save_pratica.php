@@ -37,10 +37,10 @@ $data = [];
                 $numberPraticaTmp = substr($LastPratica, -8);
                 $numberPraticaTmp2 = filter_var($numberPraticaTmp, FILTER_SANITIZE_NUMBER_INT) + 1;
                 $length = 8;
-                $NumeroPratica = "DC".str_pad($numberPraticaTmp2,$length,"0", STR_PAD_LEFT);
+                $NumeroPratica = "PC".str_pad($numberPraticaTmp2,$length,"0", STR_PAD_LEFT);
             }
         }else{
-            $NumeroPratica = "DC00000001";
+            $NumeroPratica = "PC00000001";
         }
 
         /* DATI ESTRAPOLATI DA DB - start */
@@ -58,40 +58,61 @@ $data = [];
                 /* rinomino i file */
                 $upload_location = "../uploads/partecipazione_concorso/";
                 
-                $NewuploadPotereFirma = "";
-                if(!empty($row["uploadPotereFirma"])){
-                    $uploadPotereFirma = $row["uploadPotereFirma"];
-                    $NewuploadPotereFirma = str_replace("_bozza_","_".$NumeroPratica."_",$uploadPotereFirma);
-                    if (file_exists($upload_location.$uploadPotereFirma)){
-                        $renamed= rename($upload_location.$uploadPotereFirma,$upload_location.$NewuploadPotereFirma);
+                $NewuploadCartaIdentitaFronte = "";
+                if(!empty($row["uploadCartaIdentitaFronte"])){
+                    $uploadCartaIdentitaFronte = $row["uploadCartaIdentitaFronte"];
+                    $NewuploadCartaIdentitaFronte = str_replace("_bozza_","_".$NumeroPratica."_",$uploadCartaIdentitaFronte);
+                    if (file_exists($upload_location.$uploadCartaIdentitaFronte)){
+                        $renamed= rename($upload_location.$uploadCartaIdentitaFronte,$upload_location.$NewuploadCartaIdentitaFronte);
+                    }else{
+                        $data['error'] = "The original file that you want to rename doesn't exist";
+                    }                    
+                }
+
+                $NewuploadCartaIdentitaRetro = "";
+                if(!empty($row["uploadCartaIdentitaRetro"])){
+                    $uploadCartaIdentitaRetro = $row["uploadCartaIdentitaRetro"];
+                    $NewuploadCartaIdentitaRetro = str_replace("_bozza_","_".$NumeroPratica."_",$uploadCartaIdentitaRetro);
+                    if (file_exists($upload_location.$uploadCartaIdentitaRetro)){
+                        $renamed= rename($upload_location.$uploadCartaIdentitaRetro,$upload_location.$NewuploadCartaIdentitaRetro);
+                    }else{
+                        $data['error'] = "The original file that you want to rename doesn't exist";
+                    }                    
+                }
+
+                $NewuploadCV = "";
+                if(!empty($row["uploadCV"])){
+                    $uploadCV = $row["uploadCV"];
+                    $NewuploadCV = str_replace("_bozza_","_".$NumeroPratica."_",$uploadCV);
+                    if (file_exists($upload_location.$uploadCV)){
+                        $renamed= rename($upload_location.$uploadCV,$upload_location.$NewuploadCV);
                     }else{
                         $data['error'] = "The original file that you want to rename doesn't exist";
                     }                    
                 }
 
 
-                $NewuploadDocumentazione = "";
-                if(!empty($row["uploadDocumentazione"])){
-                    $tmpUploadDocumentazione1 = substr($row["uploadDocumentazione"],0,-1);
-                    $tmpUploadDocumentaziones = explode(';', $tmpUploadDocumentazione1);
-                    $uploadDocumentazione = "";
-                    foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
-                        $uploadDocumentazione = $tmpUploadDocumentazione;
-                        $NewuploadDocumentazioneTmp = str_replace("_bozza_","_".$NumeroPratica."_",$uploadDocumentazione);
+                $NewuploadTitoliPreferenza = "";
+                if(!empty($row["uploadTitoliPreferenza"])){
+                    $tmpUploadTitoliPreferenza1 = substr($row["uploadTitoliPreferenza"],0,-1);
+                    $tmpUploadTitoliPreferenzas = explode(';', $tmpUploadTitoliPreferenza1);
+                    $uploadTitoliPreferenza = "";
+                    foreach($tmpUploadTitoliPreferenzas as $tmpUploadTitoliPreferenza) {
+                        $uploadTitoliPreferenza = $tmpUploadTitoliPreferenza;
+                        $NewuploadTitoliPreferenzaTmp = str_replace("_bozza_","_".$NumeroPratica."_",$uploadTitoliPreferenza);
 
-                        if (file_exists($upload_location.$uploadDocumentazione)){
-                            $renamed= rename($upload_location.$uploadDocumentazione,$upload_location.$NewuploadDocumentazioneTmp);
+                        if (file_exists($upload_location.$uploadTitoliPreferenza)){
+                            $renamed= rename($upload_location.$uploadTitoliPreferenza,$upload_location.$NewuploadTitoliPreferenzaTmp);
                         }else{
                             $data['error'] = "The original file that you want to rename doesn't exist";
                         }
-                        $NewuploadDocumentazione .= $NewuploadDocumentazioneTmp.";";
+                        $NewuploadTitoliPreferenza .= $NewuploadTitoliPreferenzaTmp.";";
                     }
                 }
-                //$data['pratica'] = $NewuploadDocumentazione;
 
                 /* salvo tutti i dati in una riga nuova con status 2 */
                 $connessioneINS = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-                $sqlINS = "INSERT INTO `partecipazione_concorso`(status_id,richiedenteNome,richiedenteCognome,richiedenteCf,richiedenteDataNascita,richiedenteLuogoNascita,richiedenteVia,richiedenteLocalita,richiedenteProvincia,richiedenteEmail,richiedenteTel,inQualitaDi,beneficiarioNome,beneficiarioCognome,beneficiarioCf,beneficiarioDataNascita,beneficiarioLuogoNascita,beneficiarioVia,beneficiarioLocalita,beneficiarioProvincia,beneficiarioEmail,beneficiarioTel,importoContributo,finalitaContributo,tipoPagamento_id,uploadPotereFirma,uploadDocumentazione,NumeroPratica) VALUES (2,'".addslashes($row['richiedenteNome'])."','".addslashes($row['richiedenteCognome'])."','".$row['richiedenteCf']."','".$row['richiedenteDataNascita']."','".addslashes($row['richiedenteLuogoNascita'])."','".addslashes($row['richiedenteVia'])."','".addslashes($row['richiedenteLocalita'])."','".$row['richiedenteProvincia']."','".$row['richiedenteEmail']."','".$row['richiedenteTel']."','".$row['inQualitaDi']."','".addslashes($row['beneficiarioNome'])."','".addslashes($row['beneficiarioCognome'])."','".$row['beneficiarioCf']."','".$row['beneficiarioDataNascita']."','".addslashes($row['beneficiarioLuogoNascita'])."','".addslashes($row['beneficiarioVia'])."','".addslashes($row['beneficiarioLocalita'])."','".$row['beneficiarioProvincia']."','".$row['beneficiarioEmail']."','".$row['beneficiarioTel']."','".$row['importoContributo']."','".addslashes($row['finalitaContributo'])."','".$row['tipoPagamento_id']."','".$NewuploadPotereFirma."','".$NewuploadDocumentazione."','".$NumeroPratica."')";
+                $sqlINS = "INSERT INTO `partecipazione_concorso` (status_id,richiedenteCf, richiedenteNome, richiedenteCognome, richiedenteDataNascita, richiedenteLuogoNascita, richiedenteVia, richiedenteLocalita, richiedenteProvincia, richiedenteEmail, richiedenteTel, ConcorsoId, cittadinoItaliano, cittadinoEuropeo, statoEuropeo, conoscenzaLingua, idoneitaFisica, dirittiCiviliPolitici, destituzionePA, fedinaPulita, condanne, obbligoLeva, titoloStudio, titoloStudioScuola, titoloStudioVoto, conoscenzaInformatica, conoscenzaLinguaEstera, titoliPreferenza, necessitaHandicap, dirittoRiserva, accettazioneCondizioniBando, accettazioneDisposizioniComune, accettazioneComunicazioneVariazioniDomicilio,uploadCartaIdentitaFronte,uploadCartaIdentitaRetro,uploadCV,uploadTitoliPreferenza,NumeroPratica) VALUES (2,'".$row['richiedenteCf']."','".addslashes($row['richiedenteNome'])."','".addslashes($row['richiedenteCognome'])."','".$row['richiedenteDataNascita']."','".addslashes($row['richiedenteLuogoNascita'])."','".addslashes($row['richiedenteVia'])."','".addslashes($row['richiedenteLocalita'])."','".$row['richiedenteProvincia']."','".$row['richiedenteEmail']."','".$row['richiedenteTel']."','".$row['ConcorsoId']."','".$row['cittadinoItaliano']."','".$row['cittadinoEuropeo']."','".$row['statoEuropeo']."','".$row['conoscenzaLingua']."','".$row['idoneitaFisica']."','".$row['dirittiCiviliPolitici']."','".$row['destituzionePA']."','".$row['fedinaPulita']."','".addslashes($row['pc_condanne'])."','".$row['obbligoLeva']."','".addslashes($row['pc_titoloStudio'])."','".addslashes($row['pc_titoloStudioScuola'])."','".$row['titoloStudioVoto']."','".$row['conoscenzaInformatica']."','".$row['conoscenzaLinguaEstera']."','".addslashes($row['titoliPreferenza'])."','".addslashes($row['pc_necessitaHandicap'])."','".$row['dirittoRiserva']."','".$row['accettazioneCondizioniBando']."','".$row['accettazioneDisposizioniComune']."','".$row['accettazioneComunicazioneVariazioniDomicilio']."','".$NewuploadCartaIdentitaFronte."','".$NewuploadCartaIdentitaRetro."','".$NewuploadCV."','".$NewuploadTitoliPreferenza."','".$NumeroPratica."')";
                 $connessioneINS->query($sqlINS);
 
                 /* ricavo il nuovo id */
@@ -112,12 +133,12 @@ $data = [];
                 $connessioneUPD->query($sqlUPD);
 
                 /* salvo nelle attitivà la creazione o modifica della bozza per partecipazione_concorso */
-                    $sqlINS = "INSERT INTO attivita (cf,servizio_id,pratica_id,status_id,data_attivita) VALUES ('". $_SESSION['CF'] ."',11,".$new_id.",2,'".date('Y-m-d')."')";
+                    $sqlINS = "INSERT INTO attivita (cf,servizio_id,pratica_id,status_id,data_attivita) VALUES ('". $_SESSION['CF'] ."',16,".$new_id.",2,'".date('Y-m-d')."')";
                     $connessioneINS->query($sqlINS);
 
 
                 /* salvo nei messaggi che ho una bozza da completare per partecipazione_concorso */
-                    $sqlINS = "INSERT INTO messaggi (CF_to,servizio_id,testo,data_msg) VALUES ('". $_SESSION['CF'] ."',11,'La tua domanda di contributo è stata inviata.<br/>Il numero della pratica è: <b>".$NumeroPratica."</b>','".date('Y-m-d')."')";
+                    $sqlINS = "INSERT INTO messaggi (CF_to,servizio_id,testo,data_msg) VALUES ('". $_SESSION['CF'] ."',16,'La tua richiesta di iscrizione al concorso è stata inviata.<br/>Il numero della pratica è: <b>".$NumeroPratica."</b>','".date('Y-m-d')."')";
                     $connessioneINS->query($sqlINS);  
                     
                 /* preparo il pdf da allegare alla mail del comune */
@@ -136,28 +157,33 @@ $data = [];
                     $phpmailer->setFrom($fromMail,$fromName);
                     $phpmailer->addAddress('paola.durelli@proximalab.it', 'Proxima');
                     $phpmailer->addAddress($configData['mail_comune'], 'Comune di ' . $configData['nome_comune']);
-                    $phpmailer->Subject = 'Comune di '. $configData['nome_comune'] . ' - Domanda di contributo  - '.$NumeroPratica.' - '. $_SESSION['CF'];
+                    $phpmailer->Subject = 'Comune di '. $configData['nome_comune'] . ' - Iscrizione al concorso  - '.$NumeroPratica.' - '. $_SESSION['CF'];
 
                     /* Add Static Attachment */
                     /* allego la pratica completa appena creata */
                     $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/pratiche/'. $NumeroPratica . '.pdf';
                     $phpmailer->AddAttachment($attachment , $NumeroPratica . '.pdf');
-                    echo $attachment;
                     
                     /* se ci sono altri documenti, li allego */
-                    if($NewuploadPotereFirma <> ''){
-                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/partecipazione_concorso/'. $NewuploadPotereFirma;
-                        $phpmailer->AddAttachment($attachment , $NewuploadPotereFirma);
-                        echo $attachment;
+                    if($NewuploadCartaIdentitaFronte <> ''){
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/partecipazione_concorso/'. $NewuploadCartaIdentitaFronte;
+                        $phpmailer->AddAttachment($attachment , $NewuploadCartaIdentitaFronte);
                     }
-                    if($NewuploadDocumentazione <> ''){
-                        $tmpUploadDocumentazione1 = substr($NewuploadDocumentazione,0,-1);
-                        $tmpUploadDocumentaziones = explode(';', $tmpUploadDocumentazione1);
+                    if($NewuploadCartaIdentitaRetro <> ''){
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/partecipazione_concorso/'. $NewuploadCartaIdentitaRetro;
+                        $phpmailer->AddAttachment($attachment , $NewuploadCartaIdentitaRetro);
+                    }
+                    if($NewuploadCV <> ''){
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/partecipazione_concorso/'. $NewuploadCV;
+                        $phpmailer->AddAttachment($attachment , $NewuploadCV);
+                    }
+                    if($NewuploadTitoliPreferenza <> ''){
+                        $tmpUploadTitoliPreferenza1 = substr($NewuploadTitoliPreferenza,0,-1);
+                        $tmpUploadTitoliPreferenzas = explode(';', $tmpUploadTitoliPreferenza1);
                         
-                        foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
-                            $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/partecipazione_concorso/'. $tmpUploadDocumentazione;
-                            $phpmailer->AddAttachment($attachment , $tmpUploadDocumentazione);
-                            echo $attachment;
+                        foreach($tmpUploadTitoliPreferenzas as $tmpUploadTitoliPreferenza) {
+                            $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/partecipazione_concorso/'. $tmpUploadTitoliPreferenza;
+                            $phpmailer->AddAttachment($attachment , $tmpUploadTitoliPreferenza);
                         }
                     }
                     
@@ -168,7 +194,7 @@ $data = [];
                     $message = str_replace('%cognome%', $_SESSION['Cognome'], $message);
                     $message = str_replace('%codicefiscale%', $_SESSION['CF'], $message);
                     $message = str_replace('%numeropratica%', $NumeroPratica, $message);
-                    $message = str_replace('%servizioselezionato%', 'domanda di contributo economico', $message);
+                    $message = str_replace('%servizioselezionato%', 'iscrizione ad un concorso', $message);
                     $message = str_replace('%urlservizi%', $configData['url_servizi'], $message);
                     $message = str_replace('%nomecomune%', $configData['nome_comune'], $message);
                     $message = str_replace('%anno%', date('Y'), $message);
@@ -193,7 +219,7 @@ $data = [];
                     $phpmailer2->setFrom($configData['mail_comune'], 'Comune di ' . $configData['nome_comune']);
                     $phpmailer2->addAddress('paola.durelli@proximalab.it', 'Proxima');
                     $phpmailer2->addAddress($_SESSION["Email"]);
-                    $phpmailer2->Subject = 'Comune di '. $configData['nome_comune'] . ' - Domanda di contributo ';
+                    $phpmailer2->Subject = 'Comune di '. $configData['nome_comune'] . ' - Iscrizione al concorso ';
                     $phpmailer2->isHTML(true);
                     
                     $message2 = file_get_contents('../template/mail/toUser.html');
@@ -201,7 +227,7 @@ $data = [];
                     $message2 = str_replace('%cognome%', $_SESSION['Cognome'], $message2);
                     $message2 = str_replace('%codicefiscale%', $_SESSION['CF'], $message2);
                     $message2 = str_replace('%numeropratica%', $NumeroPratica, $message2);
-                    $message2 = str_replace('%servizioselezionato%', 'domanda di contributo economico', $message2);
+                    $message2 = str_replace('%servizioselezionato%', 'iscrizione ad un concorso', $message2);
                     $message2 = str_replace('%urlservizi%', $configData['url_servizi'], $message);
                     $message2 = str_replace('%nomecomune%', $configData['nome_comune'], $message2);
                     $message2 = str_replace('%telcomune%', $configData['tel_comune'], $message2);

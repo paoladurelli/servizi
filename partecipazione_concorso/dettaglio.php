@@ -12,6 +12,7 @@
     
     /* settare le variabili */
     $status_id = "";
+    $pc_bozza_id = "";
     $cf = "";
     $nome = "";
     $cognome = "";
@@ -22,73 +23,112 @@
     $richiedenteLocalita = "";
     $richiedenteProvincia = "";
     $richiedenteTel = "";
-    $inQualitaDi = "";
-    $beneficiarioNome = "";
-    $beneficiarioCognome = "";
-    $beneficiarioCf = "";
-    $beneficiarioDataNascita = "";
-    $beneficiarioLuogoNascita = "";
-    $beneficiarioVia = "";
-    $beneficiarioLocalita = "";
-    $beneficiarioProvincia = "";
-    $beneficiarioEmail = "";
-    $beneficiarioTel = "";
-    $importoContributo = "";
-    $finalitaContributo = "";
-    $tipoPagamento_id = "";
-    $uploadPotereFirma = "";
-    $tmpUploadDocumentazione1 = "";
-    $tmpUploadDocumentaziones = "";
-    $uploadDocumentazione = "";
+    
+    $ConcorsoId = 1;
+    $Concorso = ConcorsoById(1);
+    $cittadinoItaliano = "";
+    $cittadinoEuropeo = "";
+    $statoEuropeo = "";
+    $conoscenzaLingua = "";
+    $idoneitaFisica = "";
+    $dirittiCiviliPolitici = "";
+    $destituzionePA = "";
+    $fedinaPulita = "";
+    $condanne = "";
+    $obbligoLeva = "";
+    $titoloStudio = "";
+    $titoloStudioScuola = "";
+    $titoloStudioVoto = "";
+    $conoscenzaInformatica = "";
+    $conoscenzaLinguaEstera = "";
+    $titoliPreferenza = "";
+    $necessitaHandicap = "";
+    $dirittoRiserva = "";
+    $accettazioneCondizioniBando = "";
+    $accettazioneDisposizioniComune = "";
+    $accettazioneComunicazioneVariazioniDomicilio = "";
+    
+    $uploadCartaIdentitaFronte = "";
+    $uploadCartaIdentitaFronteSaved = "";
+    $uploadCartaIdentitaRetro = "";
+    $uploadCartaIdentitaRetroSaved = "";
+    $uploadCV = "";
+    $uploadCVSaved = "";
+    $tmpUploadTitoliPreferenza1 = "";
+    $tmpUploadTitoliPreferenzas = "";
+    $uploadTitoliPreferenza = "";
+    $uploadTitoliPreferenzaSaved = "";
 
     
     /* con l'id vado a richiamare i dati salvati */
     if(isset($_GET["dc_pratica_id"]) && $_GET["dc_pratica_id"]<>''){
         /* DATI ESTRAPOLATI DA DB - start */ 
         $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-        $sql = "SELECT * FROM partecipazione_concorso WHERE richiedenteCf = '". $_SESSION['CF']."' and id =" . $_GET["dc_pratica_id"];
+        $sql = "SELECT * FROM partecipazione_concorso WHERE richiedenteCf = '". $_SESSION['CF']."' and id =" . $_GET["pc_bozza_id"];
         $result = $connessione->query($sql);
 
         if ($result->num_rows > 0) {
         // output data of each row
             while($row = $result->fetch_assoc()) {
                 $status_id = $row["status_id"];
+                $pc_bozza_id = $_GET["pc_bozza_id"];
                 $cf = $row["richiedenteCf"];
                 $nome = $row["richiedenteNome"];
                 $cognome = $row["richiedenteCognome"];
                 $email = $row["richiedenteEmail"];
-                $datanascita = date("d/m/Y", strtotime($row["richiedenteDataNascita"]));
+                $datanascita = $row["richiedenteDataNascita"];
                 $luogonascita = $row["richiedenteLuogoNascita"];
                 $richiedenteVia = $row["richiedenteVia"];
                 $richiedenteLocalita = $row["richiedenteLocalita"];
                 $richiedenteProvincia = $row["richiedenteProvincia"];
                 $richiedenteTel = $row["richiedenteTel"];
 
-                $inQualitaDi = $row["inQualitaDi"];
-
-                $beneficiarioNome = $row["beneficiarioNome"];
-                $beneficiarioCognome = $row["beneficiarioCognome"];
-                $beneficiarioCf = $row["beneficiarioCf"];
-                $beneficiarioDataNascita = date("d/m/Y", strtotime($row["beneficiarioDataNascita"]));
-                $beneficiarioLuogoNascita = $row["beneficiarioLuogoNascita"];
-                $beneficiarioVia = $row["beneficiarioVia"];
-                $beneficiarioLocalita = $row["beneficiarioLocalita"];
-                $beneficiarioProvincia = $row["beneficiarioProvincia"];
-                $beneficiarioEmail = $row["beneficiarioEmail"];
-                $beneficiarioTel = $row["beneficiarioTel"];
-
-                $importoContributo = $row["importoContributo"];
-                $finalitaContributo = $row["finalitaContributo"];
-
-                $tipoPagamento_id = $row["tipoPagamento_id"];
-
-                $uploadPotereFirma = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadPotereFirma"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
+                $ConcorsoId = $row["ConcorsoId"];
+                $Concorso = ConcorsoById($row["ConcorsoId"]);
                 
-                $tmpUploadDocumentazione1 = substr($row["uploadDocumentazione"],0,-1);
-                $tmpUploadDocumentaziones = explode(';', $tmpUploadDocumentazione1);
-                $uploadDocumentazione = "";
-                foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
-                    $uploadDocumentazione .= "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $tmpUploadDocumentazione ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
+                $cittadinoItaliano = $row["cittadinoItaliano"];
+                $cittadinoEuropeo = $row["cittadinoEuropeo"];
+                $statoEuropeo = $row["statoEuropeo"];
+                $conoscenzaLingua = $row["conoscenzaLingua"];
+                $idoneitaFisica = $row["idoneitaFisica"];
+                $dirittiCiviliPolitici = $row["dirittiCiviliPolitici"];
+                $destituzionePA = $row["destituzionePA"];
+                $fedinaPulita = $row["fedinaPulita"];
+                $condanne = $row["condanne"];
+                $obbligoLeva = $row["obbligoLeva"];
+                $titoloStudio = $row["titoloStudio"];
+                $titoloStudioScuola = $row["titoloStudioScuola"];
+                $titoloStudioVoto = $row["titoloStudioVoto"];
+                $conoscenzaInformatica = $row["conoscenzaInformatica"];
+                $conoscenzaLinguaEstera = $row["conoscenzaLinguaEstera"];
+                $titoliPreferenza = $row["titoliPreferenza"];
+                $necessitaHandicap = $row["necessitaHandicap"];
+                $dirittoRiserva = $row["dirittoRiserva"];
+                $accettazioneCondizioniBando = $row["accettazioneCondizioniBando"];
+                $accettazioneDisposizioniComune = $row["accettazioneDisposizioniComune"];
+                $accettazioneComunicazioneVariazioniDomicilio = $row["accettazioneComunicazioneVariazioniDomicilio"];
+
+                if($row["uploadCartaIdentitaFronte"] != ''){
+                    $uploadCartaIdentitaFronte = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadCartaIdentitaFronte"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
+                    $uploadCartaIdentitaFronteSaved = $row["uploadCartaIdentitaFronte"];
+                }
+                if($row["uploadCartaIdentitaRetro"] != ''){
+                    $uploadCartaIdentitaRetro = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadCartaIdentitaRetro"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
+                    $uploadCartaIdentitaRetroSaved = $row["uploadCartaIdentitaRetro"];
+                }
+                if($row["uploadCV"] != ''){
+                    $uploadCV = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadCV"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
+                    $uploadCVSaved = $row["uploadCV"];
+                }
+                
+                if($row["uploadTitoliPreferenza"] != ''){
+                    $tmpUploadTitoliPreferenza1 = substr($row["uploadTitoliPreferenza"],0,-1);
+                    $tmpUploadTitoliPreferenzas = explode(';', $tmpUploadDocumentazione1);
+                    $uploadTitoliPreferenza = "";
+                    foreach($tmpUploadTitoliPreferenzas as $tmpUploadTitoliPreferenza) {
+                        $uploadTitoliPreferenza .= "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $tmpUploadTitoliPreferenza ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
+                    }
+                    $uploadTitoliPreferenzaSaved = $row["uploadTitoliPreferenza"];
                 }
             }
         }
@@ -104,13 +144,13 @@
                             <ol class="breadcrumb p-0" data-element="breadcrumb">
                                 <li class="breadcrumb-item"><a href="../bacheca.php">Home</a></li>
                                 <li class="breadcrumb-item" aria-current="page"><span class="separator">/</span><a href="../servizi_list.php">Servizi</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><span class="separator">/</span>Presentare domanda per un contributo</li>
+                                <li class="breadcrumb-item active" aria-current="page"><span class="separator">/</span>Presentare domanda di partecipazione a un concorso pubblico</li>
                             </ol>
                         </nav>
                     </div>
                     <div class="cmp-heading pb-3 pb-lg-4">
-                        <h1 class="title-xxxlarge">Presentare domanda per un contributo</h1>
-                        <p class="subtitle-small">Servizio per la richiesta di sostegno nell'affrontare le spese relative all'assistenza per un familiare non autosufficiente</p>
+                        <h1 class="title-xxxlarge">Presentare domanda di partecipazione a un concorso pubblico</h1>
+                        <p class="subtitle-small">Servizio per l'iscrizione a concorsi per trovare impiego presso la Pubblica Amministrazione.</p>
                         <p style="display: inline;">Hai bisogno di assistenza?</p>
                         <form action="<?php echo $configData['url_comune']; ?>/richiesta-assistenza" method="post" id="frmRichiestaAssistenza" style="display: inline;">
                             <input type="hidden" name="id_assistenza" value="">
@@ -147,27 +187,22 @@
                                                         <div class="accordion-body">
                                                             <ul class="link-list" data-element="page-index">
                                                                 <li class="nav-item">
-                                                                    <a class="nav-link" href="#dc_richiedente">
+                                                                    <a class="nav-link" href="#pc_richiedente">
                                                                         <span class="title-medium">Richiedente</span>
                                                                     </a>
                                                                 </li>
                                                                 <li class="nav-item">
-                                                                    <a class="nav-link" href="#dc_beneficiario">
-                                                                        <span class="title-medium">Beneficiario</span>
+                                                                    <a class="nav-link" href="#pc_concorso">
+                                                                        <span class="title-medium">Concorso</span>
                                                                     </a>
                                                                 </li>
                                                                 <li class="nav-item">
-                                                                    <a class="nav-link" href="#dc_richiesta">
-                                                                        <span class="title-medium">Richiesta</span>
+                                                                    <a class="nav-link" href="#pc_dichiarazioni">
+                                                                        <span class="title-medium">Dichiarazioni</span>
                                                                     </a>
                                                                 </li>
                                                                 <li class="nav-item">
-                                                                    <a class="nav-link" href="#dc_pagamento">
-                                                                        <span class="title-medium">Metodi di pagamento</span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="nav-item">
-                                                                    <a class="nav-link" href="#dc_allegati">
+                                                                    <a class="nav-link" href="#pc_allegati">
                                                                         <span class="title-medium">Allegati</span>
                                                                     </a>
                                                                 </li>
@@ -267,90 +302,23 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="it-page-section mb-50 mb-lg-90" id="pc_concorso">
+                            <div class="cmp-card">
+                                <div class="card">
                                     <div class="card-header border-0 p-0 mb-lg-30 m-0">
                                         <div>
-                                            <p><b>In qualità di</b></p>
+                                            <h2 class="title-xxlarge mb-3">Concorso</h2>
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <?php 
-                                            switch($inQualitaDi) {
-                                                case "D": echo "diretto interessato"; break;
-                                                case "T": echo "tutore"; break;
-                                                case "A": echo "amministratore di sostegno"; break;
-                                                case "P": echo "procuratore"; break;
-                                                case "E": echo "persona delegata"; break;
-                                            }
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="it-page-section mb-50 mb-lg-90" id="dc_beneficiario">
-                            <div class="cmp-card">
-                                <div class="card">
-                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
-                                        <div class="d-flex">
-                                            <h2 class="title-xxlarge mb-3">Beneficiario</h2>
-                                        </div>
-                                    </div>
-                                    <div class="card-body" id="dc_pnl_beneficiario">
                                         <div class="row">
-                                            <div class="col-lg-12"><h5 class="color-primary"><b>Anagrafica</b></h5></div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="row">
-                                                    <div class="col-12"<p>Nome <b><?php echo $beneficiarioNome; ?></b></p></div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-12"><p>Cognome <b><?php echo $beneficiarioCognome; ?></b></p></div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-12"><p>Codice Fiscale <b><?php echo $beneficiarioCf; ?></b></p></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="row">
-                                                    <div class="col-12"><p>Data di Nascita <b><?php echo $beneficiarioDataNascita; ?></b></p></div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12"><p>Luogo di Nascita <b><?php echo $beneficiarioLuogoNascita; ?></b></p></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="row">
-                                                    <div class="col-12"><p>Località <b><?php echo $beneficiarioLocalita; ?></b></p></div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-12"><p>Provincia <b><?php echo $beneficiarioProvincia; ?></b></p></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="row">
-                                                    <div class="col-12"><p>Via e Numero civico <b><?php echo $beneficiarioVia; ?></b></p></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="row">
-                                                    <div class="col-12"><p>E-mail <b><?php echo $beneficiarioEmail; ?></b></p></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="row">
-                                                    <div class="col-12"><p>Telefono <b><?php echo $beneficiarioTel; ?></b></p></div>
-                                                </div>
+                                            <div class="col-lg-12">
+                                                <input type="hidden" name="pc_ConcorsoId" id="pc_ConcorsoId" value="<?php echo $ConcorsoId; ?>" />
+                                                <p><?php echo $Concorso; ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -358,52 +326,126 @@
                             </div>
                         </div>
 
-                        <div class="it-page-section mb-50 mb-lg-90" id="dc_richiesta">
+                        <div class="it-page-section mb-50 mb-lg-90" id="pc_dichiarazioni">
                             <div class="cmp-card">
                                 <div class="card">
                                     <div class="card-header border-0 p-0 mb-lg-30 m-0">
                                         <div class="d-flex">
-                                            <h2 class="title-xxlarge mb-3">Richiesta</h2>
+                                            <h2 class="title-xxlarge mb-3">Dichiarazioni</h2>
                                         </div>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body" id="pc_pnl_dichiarazioni">
                                         <div class="row">
-                                            <div class="col-12"><p>Contributo di &euro; <b><?php echo $importoContributo; ?></b></p></div>
+                                            <div class="col-lg-12">
+                                                <p id="pc_cittadinoItaliano_txt">di essere cittadino/a *
+                                                <?php if($cittadinoItaliano == 1){ ?>
+                                                    italiano/a
+                                                <?php }else{ ?>
+                                                    <?php if($cittadinoEuropeo == 1){ ?>
+                                                        europeo (<?php echo $statoEuropeo; ?>)
+                                                    <?php }
+                                                } ?>
+                                                </p>
+                                                <?php if($conoscenzaLingua == 1){ ?>
+                                                    <p>di conoscere la lingua italiana</p>
+                                                <?php } ?>
+                                            </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-12"><p>Finalizzato a <b><?php echo $finalitaContributo; ?></b></p></div>
-                                        </div>                                            
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="it-page-section mb-50 mb-lg-90" id="dc_pagamento">
-                            <div class="cmp-card">
-                                <div class="card">
-                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
-                                        <div class="d-flex">
-                                            <h2 class="title-xxlarge mb-3">Metodi di pagamento</h2>
+                                            <div class="col-lg-12">
+                                                <?php if( $idoneitaFisica == 1){ ?>
+                                                    di essere fisicamente idoneo/a all’impiego
+                                                <?php } ?>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <?php
-                                            $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-                                            $sql = "SELECT * FROM metodi_pagamento WHERE cf = '". $_SESSION['CF']."'";
-                                            $result = $connessione->query($sql);
-
-                                            if ($result->num_rows > 0) {
-                                            // output data of each row
-                                                while($row = $result->fetch_assoc()) {
-                                                    echo '<div class="row">';
-                                                        echo '<div class="col-12"><p>';
-                                                            if($row["id"]==$tipoPagamento_id){ echo NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"]; }
-                                                        echo '</p></div>';
-                                                    echo '</div>';
-                                                }
-                                            }
-                                            $connessione->close();
-                                        ?>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <?php if( $dirittiCiviliPolitici == 1){ ?>
+                                                    di godere dei diritti civili e politici
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <?php if( $destituzionePA == 1){ ?>
+                                                    di non essere stato destituito, dispensato o comunque licenziato dall’impiego presso una pubblica amministrazione per persistente insufficiente rendimento e di non essere stato dichiarato decaduto o licenziato da altro pubblico impiego per averlo conseguito mediante esibizione di documenti falsi o viziati da invalidità non sanabile (art.127 DPR 10/01/1957 n.3)
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <?php if( $fedinaPulita == 1){ ?>
+                                                    di non aver riportato condanne penali e di non aver procedimenti penali pendenti a proprio carico che impediscano, ai sensi delle vigenti disposizioni in materia, la costituzione del rapporto d’impiego con la Pubblica Amministrazione
+                                                <?php }else{ ?>
+                                                    di aver riportato le seguenti condanne (anche se sia concessa amnistia, condono indulto o perdono giudiziale) o di avere seguenti procedimenti penali in corso:<br>
+                                                    <?php echo $condanne; ?>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <?php if( $obbligoLeva == 1){ ?>
+                                                    di essere in regola nei confronti dell’obbligo di leva per i candidati di sesso maschile nati entro il 31/12/1985 ai sensi dell’art.1, Legge 23/8/2004, n.226
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <?php if( $titoloStudio != ""){ ?>
+                                                    di essere in possesso del seguente titolo di studio <b><?php echo $titoloStudio; ?>" /></b> conseguito presso Il <b><?php echo $titoloStudioScuola; ?>" /></b> con votazione finale di <b><?php echo $titoloStudioVoto; ?>" /></b>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <?php if( $conoscenzaInformatica == 1){ ?>
+                                                     di conoscere l’uso delle apparecchiature, delle applicazioni informatiche più diffuse e di scegliere la seguente lingua straniera <?php echo $conoscenzaLinguaEstera; ?>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <?php if( $titoliPreferenza != ""){ ?>
+                                                    di essere in possesso dei seguenti titoli di preferenza (a parità di valutazione) <b><?php echo $titoliPreferenza; ?></b>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <?php if( $dirittoRiserva == 1){ ?>
+                                                    di aver diritto alla riserva ai sensi dell’art1014 e dell’art. 678, comma 9, del D.Lgs66/2010
+                                                <?php } ?>
+                                            </div>
+                                        </div>    
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <?php if($accettazioneCondizioniBando == 1){ ?>
+                                                    di accettare espressamente ed incondizionatamente tutte le prescrizioni e condizioni contenute nel bando di concorso
+                                                <?php } ?>
+                                            </div>
+                                        </div>    
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <?php if($accettazioneDisposizioniComune == 1){ ?>
+                                                    di accettare, in caso di presa di servizio, tutte le disposizioni che regolano lo stato giuridico ed economici dei dipendenti del Comune di <?php echo $configData['nome_comune']; ?>.
+                                                <?php } ?>
+                                            </div>
+                                        </div>    
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <?php if($accettazioneComunicazioneVariazioniDomicilio == 1){ ?>
+                                                    di impegnarsi a comunicare, per iscritto, al Comune di <?php echo $configData['nome_comune']; ?> le eventuali successive variazioni di domicilio e riconosce che il Comune sarà esonerato da ogni responsabilità in caso di irreperibilità del destinatario o disguidi del servizio postale e/o telematico.
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                        <?php if( $necessitaHandicap != ""){ ?>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <b>Per i portatori di handicap:</b> indicare le necessità, per l’effettuazione delle prove, in relazione al proprio handicap, di eventuali tempi aggiuntivi e/o ausili specifici ai sensi dell’art. 20, comma 2 della L. 5.02.1992, n. 104 e dell’art. 16 della legge 68/99 10) di aver diritto alla riserva ai sensi dell’art1014 e dell’art. 678, comma 9, del D.Lgs66/2010<br>
+                                                    <?php echo $necessitaHandicap; ?>
+                                                </div>
+                                            </div>
+                                        <?php } ?>                                        
                                     </div>
                                 </div>
                             </div>

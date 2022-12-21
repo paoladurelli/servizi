@@ -13,7 +13,7 @@ html {
   scroll-behavior: smooth;
 }
 body {
-    color: #5b6f82;
+    color: var(--bs-body-color);
     background-color: #dcdcdc;
 }
 #main-container {
@@ -129,6 +129,16 @@ main {
 form{
     padding: 0;
     margin: 0;
+}
+
+.form-check [type="checkbox"] + label, 
+.form-check [type="radio"] + label{
+    height: auto;
+    width: 100%;
+}
+
+label{
+    color: var(--bs-body-color);
 }
 
 .btn{

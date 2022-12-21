@@ -16,25 +16,34 @@ $richiedenteLocalita = isset($_POST['pc_richiedente_localita']) ? addslashes($_P
 $richiedenteProvincia = isset($_POST['pc_richiedente_provincia']) ? $_POST['pc_richiedente_provincia'] : "";
 $richiedenteEmail = isset($_POST['pc_richiedente_email']) ? $_POST['pc_richiedente_email'] : "";
 $richiedenteTel = isset($_POST['pc_richiedente_tel']) ? $_POST['pc_richiedente_tel'] : "";
-$inQualitaDi = isset($_POST['pc_rb_qualita_di']) ? $_POST['pc_rb_qualita_di'] : "";
-$beneficiarioNome = isset($_POST['pc_beneficiario_nome']) ? addslashes($_POST['pc_beneficiario_nome']) : "";
-$beneficiarioCognome = isset($_POST['pc_beneficiario_cognome']) ? addslashes($_POST['pc_beneficiario_cognome']) : "";
-$beneficiarioCf = isset($_POST['pc_beneficiario_cf']) ? $_POST['pc_beneficiario_cf'] : "";
-$beneficiarioDataNascita = isset($_POST['pc_beneficiario_data_nascita']) ? $_POST['pc_beneficiario_data_nascita'] : "";
-$beneficiarioLuogoNascita = isset($_POST['pc_beneficiario_luogo_nascita']) ? addslashes($_POST['pc_beneficiario_luogo_nascita']) : "";
-$beneficiarioVia = isset($_POST['pc_beneficiario_via']) ? addslashes($_POST['pc_beneficiario_via']) : "";
-$beneficiarioLocalita = isset($_POST['pc_beneficiario_localita']) ? addslashes($_POST['pc_beneficiario_localita']) : "";
-$beneficiarioProvincia = isset($_POST['pc_beneficiario_provincia']) ? $_POST['pc_beneficiario_provincia'] : "";
-$beneficiarioEmail = isset($_POST['pc_beneficiario_email']) ? $_POST['pc_beneficiario_email'] : "";
-$beneficiarioTel = isset($_POST['pc_beneficiario_tel']) ? $_POST['pc_beneficiario_tel'] : "";
-$importoContributo = isset($_POST['pc_importo_contributo']) ? $_POST['pc_importo_contributo'] : "";
-$finalitaContributo = isset($_POST['pc_finalita_contributo']) ? addslashes($_POST['pc_finalita_contributo']) : "";
-$tipoPagamento_id = isset($_POST['ckb_pagamento']) ? $_POST['ckb_pagamento'] : "";
+
+    $ConcorsoId = isset($_POST['pc_ConcorsoId']) ? $_POST['pc_ConcorsoId'] : "0";
+    $cittadinoItaliano = isset($_POST['pc_cittadinoItaliano']) ? $_POST['pc_cittadinoItaliano'] : "0";
+    $cittadinoEuropeo = isset($_POST['pc_cittadinoEuropeo']) ? $_POST['pc_cittadinoEuropeo'] : "0";
+    $statoEuropeo = isset($_POST['pc_statoEuropeo']) ? addslashes($_POST['pc_statoEuropeo']) : "";
+    $conoscenzaLingua = isset($_POST['pc_conoscenzaLingua']) ? $_POST['pc_conoscenzaLingua'] : "0";
+    $idoneitaFisica = isset($_POST['pc_idoneitaFisica']) ? $_POST['pc_idoneitaFisica'] : "0";
+    $dirittiCiviliPolitici = isset($_POST['pc_dirittiCiviliPolitici']) ? $_POST['pc_dirittiCiviliPolitici'] : "0";
+    $destituzionePA = isset($_POST['pc_destituzionePA']) ? $_POST['pc_destituzionePA'] : "0";
+    $fedinaPulita = isset($_POST['pc_fedinaPulita']) ? $_POST['pc_fedinaPulita'] : "0";
+    $condanne = isset($_POST['pc_condanne']) ? addslashes($_POST['pc_condanne']) : "";
+    $obbligoLeva = isset($_POST['pc_obbligoLeva']) ? $_POST['pc_obbligoLeva'] : "0";
+    $titoloStudio = isset($_POST['pc_titoloStudio']) ? addslashes($_POST['pc_titoloStudio']) : "";
+    $titoloStudioScuola = isset($_POST['pc_titoloStudioScuola']) ? addslashes($_POST['pc_titoloStudioScuola']) : "";
+    $titoloStudioVoto = isset($_POST['pc_titoloStudioVoto']) ? addslashes($_POST['pc_titoloStudioVoto']) : "";
+    $conoscenzaInformatica = isset($_POST['pc_conoscenzaInformatica']) ? $_POST['pc_conoscenzaInformatica'] : "0";
+    $conoscenzaLinguaEstera = isset($_POST['pc_conoscenzaLinguaEstera']) ? addslashes($_POST['pc_conoscenzaLinguaEstera']) : "";
+    $titoliPreferenza = isset($_POST['pc_titoliPreferenza']) ? addslashes($_POST['pc_titoliPreferenza']) : "";
+    $necessitaHandicap = isset($_POST['pc_necessitaHandicap']) ? addslashes($_POST['pc_necessitaHandicap']) : "";
+    $dirittoRiserva = isset($_POST['pc_dirittoRiserva']) ? $_POST['pc_dirittoRiserva'] : "0";
+    $accettazioneCondizioniBando = isset($_POST['pc_accettazioneCondizioniBando']) ? $_POST['pc_accettazioneCondizioniBando'] : "0";
+    $accettazioneDisposizioniComune = isset($_POST['pc_accettazioneDisposizioniComune']) ? $_POST['pc_accettazioneDisposizioniComune'] : "0";
+    $accettazioneComunicazioneVariazioniDomicilio =isset($_POST['pc_accettazioneComunicazioneVariazioniDomicilio']) ? $_POST['pc_accettazioneComunicazioneVariazioniDomicilio'] : "0";
 
 /* salvo tutti i dati nel DB nella tabella partecipazione_concorso */
 if(!isset($_POST['pc_bozza_id']) || $_POST['pc_bozza_id'] == ''){
 
-    $sqlINS = "INSERT INTO `partecipazione_concorso`(status_id,richiedenteNome,richiedenteCognome,richiedenteCf,richiedenteDataNascita,richiedenteLuogoNascita,richiedenteVia,richiedenteLocalita,richiedenteProvincia,richiedenteEmail,richiedenteTel,inQualitaDi,beneficiarioNome,beneficiarioCognome,beneficiarioCf,beneficiarioDataNascita,beneficiarioLuogoNascita,beneficiarioVia,beneficiarioLocalita,beneficiarioProvincia,beneficiarioEmail,beneficiarioTel,importoContributo,finalitaContributo,tipoPagamento_id) VALUES (1,'".$richiedenteNome."','".$richiedenteCognome."','".$richiedenteCf."','".$richiedenteDataNascita."','".$richiedenteLuogoNascita."','".$richiedenteVia."','".$richiedenteLocalita."','".$richiedenteProvincia."','".$richiedenteEmail."','".$richiedenteTel."','".$inQualitaDi."','".$beneficiarioNome."','".$beneficiarioCognome."','".$beneficiarioCf."','".$beneficiarioDataNascita."','".$beneficiarioLuogoNascita."','".$beneficiarioVia."','".$beneficiarioLocalita."','".$beneficiarioProvincia."','".$beneficiarioEmail."','".$beneficiarioTel."','".$importoContributo."','".$finalitaContributo."','".$tipoPagamento_id."')";
+    $sqlINS = "INSERT INTO `partecipazione_concorso`(status_id, richiedenteCf, richiedenteNome, richiedenteCognome, richiedenteDataNascita, richiedenteLuogoNascita, richiedenteVia, richiedenteLocalita, richiedenteProvincia, richiedenteEmail, richiedenteTel, ConcorsoId, cittadinoItaliano, cittadinoEuropeo, statoEuropeo, conoscenzaLingua, idoneitaFisica, dirittiCiviliPolitici, destituzionePA, fedinaPulita, condanne, obbligoLeva, titoloStudio, titoloStudioScuola, titoloStudioVoto, conoscenzaInformatica, conoscenzaLinguaEstera, titoliPreferenza, necessitaHandicap, dirittoRiserva, accettazioneCondizioniBando, accettazioneDisposizioniComune, accettazioneComunicazioneVariazioniDomicilio) VALUES (1, '".$richiedenteCf."','".$richiedenteNome."','".$richiedenteCognome."','".$richiedenteDataNascita."','".$richiedenteLuogoNascita."','".$richiedenteVia."','".$richiedenteLocalita."','".$richiedenteProvincia."','".$richiedenteEmail."','".$richiedenteTel."','".$ConcorsoId."','".$cittadinoItaliano."','".$cittadinoEuropeo."','".$statoEuropeo."','".$conoscenzaLingua."','".$idoneitaFisica."','".$dirittiCiviliPolitici."','".$destituzionePA."','".$fedinaPulita."','".$condanne."','".$obbligoLeva."','".$titoloStudio."','".$titoloStudioScuola."','".$titoloStudioVoto."','".$conoscenzaInformatica."','".$conoscenzaLinguaEstera."','".$titoliPreferenza."','".$necessitaHandicap."','".$dirittoRiserva."','".$accettazioneCondizioniBando."','".$accettazioneDisposizioniComune."','".$accettazioneComunicazioneVariazioniDomicilio."')";
     $connessioneINS->query($sqlINS);
 
     $sqlINS = "SELECT id FROM partecipazione_concorso WHERE richiedenteCf = '". $_SESSION['CF']."' and status_id = 1 ORDER BY id DESC LIMIT 1";
@@ -50,7 +59,7 @@ if(!isset($_POST['pc_bozza_id']) || $_POST['pc_bozza_id'] == ''){
     }
 }else{
     /* se esiste già la bozza vado a modificarne i dati */
-    $sqlUPD = "UPDATE partecipazione_concorso SET richiedenteNome = '". $richiedenteNome ."', richiedenteCognome = '". $richiedenteCognome ."', richiedenteCf = '". $richiedenteCf ."', richiedenteDataNascita = '". $richiedenteDataNascita ."', richiedenteLuogoNascita = '". $richiedenteLuogoNascita ."', richiedenteVia = '". $richiedenteVia ."', richiedenteLocalita = '". $richiedenteLocalita ."', richiedenteProvincia = '". $richiedenteProvincia ."', richiedenteEmail = '". $richiedenteEmail ."', richiedenteTel = '". $richiedenteTel ."', inQualitaDi = '". $inQualitaDi ."', beneficiarioNome = '". $beneficiarioNome ."', beneficiarioCognome = '". $beneficiarioCognome ."', beneficiarioCf = '". $beneficiarioCf ."', beneficiarioDataNascita = '". $beneficiarioDataNascita ."', beneficiarioLuogoNascita = '". $beneficiarioLuogoNascita ."', beneficiarioVia = '". $beneficiarioVia ."', beneficiarioLocalita = '". $beneficiarioLocalita ."', beneficiarioProvincia = '". $beneficiarioProvincia ."', beneficiarioEmail = '". $beneficiarioEmail ."', beneficiarioTel = '". $beneficiarioTel ."', importoContributo = '". $importoContributo ."', finalitaContributo = '". $finalitaContributo ."', tipoPagamento_id = '". $tipoPagamento_id ."' WHERE id = '".$_POST['pc_bozza_id']."'";
+    $sqlUPD = "UPDATE `partecipazione_concorso` SET richiedenteCf='".$richiedenteCf."', richiedenteNome='".$richiedenteNome."', richiedenteCognome='".$richiedenteCognome."', richiedenteDataNascita='".$richiedenteCognome."', richiedenteLuogoNascita='".$richiedenteLuogoNascita."', richiedenteVia='".$richiedenteVia."', richiedenteLocalita='".$richiedenteLocalita."', richiedenteProvincia='".$richiedenteProvincia."', richiedenteEmail='".$richiedenteEmail."', richiedenteTel='".$richiedenteTel."', ConcorsoId='".$ConcorsoId."', cittadinoItaliano='".$cittadinoItaliano."', cittadinoEuropeo='".$cittadinoEuropeo."', statoEuropeo='".$statoEuropeo."', conoscenzaLingua='".$conoscenzaLingua."', idoneitaFisica='".$idoneitaFisica."', dirittiCiviliPolitici='".$dirittiCiviliPolitici."', destituzionePA='".$destituzionePA."', fedinaPulita='".$fedinaPulita."', condanne='".$condanne."', obbligoLeva='".$obbligoLeva."', titoloStudio='".$titoloStudio."', titoloStudioScuola='".$titoloStudioScuola."', titoloStudioVoto='".$titoloStudioVoto."', conoscenzaInformatica='".$conoscenzaInformatica."', conoscenzaLinguaEstera='".$conoscenzaLinguaEstera."', titoliPreferenza='".$titoliPreferenza."', necessitaHandicap='".$necessitaHandicap."', dirittoRiserva='".$dirittoRiserva."', accettazioneCondizioniBando='".$accettazioneCondizioniBando."', accettazioneDisposizioniComune='".$accettazioneDisposizioniComune."', accettazioneComunicazioneVariazioniDomicilio='".$accettazioneComunicazioneVariazioniDomicilio."' WHERE id = '".$_POST['pc_bozza_id']."'";
     $connessioneUPD->query($sqlUPD);
     $new_id = $_POST['pc_bozza_id'];
 }
@@ -61,10 +70,10 @@ if(!isset($_POST['pc_bozza_id']) || $_POST['pc_bozza_id'] == ''){
     // To store uploaded files path
     $files_arr = array();
 
-    /* pc_uploadPotereFirma - start */
-    if(isset($_FILES['pc_uploadPotereFirma']['name']) && $_FILES['pc_uploadPotereFirma']['name'] != ''){
+    /* pc_uploadCartaIdentitaFronte - start */
+    if(isset($_FILES['pc_uploadCartaIdentitaFronte']['name']) && $_FILES['pc_uploadCartaIdentitaFronte']['name'] != ''){
         // File name INIT
-        $filename = $_FILES['pc_uploadPotereFirma']['name'];
+        $filename = $_FILES['pc_uploadCartaIdentitaFronte']['name'];
 
         // Get extension
         $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
@@ -75,31 +84,89 @@ if(!isset($_POST['pc_bozza_id']) || $_POST['pc_bozza_id'] == ''){
         // Check extension
         if(in_array($ext, $valid_ext)){
             //New file name
-            $filename = "pc_potere_firma_bozza_" . $new_id. "." . $ext;
+            $filename = "pc_CartaIdentitaFronte_bozza_" . $new_id. "." . $ext;
             // File path
             $path = $upload_location.$filename;
 
             // Upload file
-            if(move_uploaded_file($_FILES['pc_uploadPotereFirma']['tmp_name'],$path)){
+            if(move_uploaded_file($_FILES['pc_uploadCartaIdentitaFronte']['tmp_name'],$path)){
                 $files_arr[] = $path;
                 /* salvo nel DB i nomi */
-                $sqlUPD = "UPDATE partecipazione_concorso SET uploadPotereFirma = '".$filename."' WHERE id = ".$new_id;
+                $sqlUPD = "UPDATE partecipazione_concorso SET uploadCartaIdentitaFronte = '".$filename."' WHERE id = ".$new_id;
                 $connessioneUPD->query($sqlUPD);
             }
         }
     }
-    /* pc_uploadPotereFirma - end */
+    /* pc_uploadCartaIdentitaFronte - end */
+    
+    /* pc_uploadCartaIdentitaRetro - start */
+    if(isset($_FILES['pc_uploadCartaIdentitaRetro']['name']) && $_FILES['pc_uploadCartaIdentitaRetro']['name'] != ''){
+        // File name INIT
+        $filename = $_FILES['pc_uploadCartaIdentitaRetro']['name'];
 
-    /* pc_uploadDocumentazione - start */
-    if(isset($_FILES['pc_uploadDocumentazione']) && $_FILES['pc_uploadDocumentazione'] != ''){
+        // Get extension
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+        // Valid image extension
+        $valid_ext = array("png","jpeg","jpg","pdf");
+
+        // Check extension
+        if(in_array($ext, $valid_ext)){
+            //New file name
+            $filename = "pc_CartaIdentitaRetro_bozza_" . $new_id. "." . $ext;
+            // File path
+            $path = $upload_location.$filename;
+
+            // Upload file
+            if(move_uploaded_file($_FILES['pc_uploadCartaIdentitaRetro']['tmp_name'],$path)){
+                $files_arr[] = $path;
+                /* salvo nel DB i nomi */
+                $sqlUPD = "UPDATE partecipazione_concorso SET uploadCartaIdentitaRetro = '".$filename."' WHERE id = ".$new_id;
+                $connessioneUPD->query($sqlUPD);
+            }
+        }
+    }
+    /* pc_uploadCartaIdentitaRetro - end */
+    
+    /* pc_uploadCV - start */
+    if(isset($_FILES['pc_uploadCV']['name']) && $_FILES['pc_uploadCV']['name'] != ''){
+        // File name INIT
+        $filename = $_FILES['pc_uploadCV']['name'];
+
+        // Get extension
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+        // Valid image extension
+        $valid_ext = array("png","jpeg","jpg","pdf");
+
+        // Check extension
+        if(in_array($ext, $valid_ext)){
+            //New file name
+            $filename = "pc_CV_bozza_" . $new_id. "." . $ext;
+            // File path
+            $path = $upload_location.$filename;
+
+            // Upload file
+            if(move_uploaded_file($_FILES['pc_uploadCV']['tmp_name'],$path)){
+                $files_arr[] = $path;
+                /* salvo nel DB i nomi */
+                $sqlUPD = "UPDATE partecipazione_concorso SET uploadCV = '".$filename."' WHERE id = ".$new_id;
+                $connessioneUPD->query($sqlUPD);
+            }
+        }
+    }
+    /* pc_uploadCV - end */
+
+    /* pc_uploadTitoliPreferenza - start */
+    if(isset($_FILES['pc_uploadTitoliPreferenza']) && $_FILES['pc_uploadTitoliPreferenza'] != ''){
         // Count total files
-        $countfiles = count($_FILES['pc_uploadDocumentazione']['name']);
+        $countfiles = count($_FILES['pc_uploadTitoliPreferenza']['name']);
         // Loop all files
         for($index = 0;$index < $countfiles;$index++){
 
-            if(isset($_FILES['pc_uploadDocumentazione']['name'][$index]) && $_FILES['pc_uploadDocumentazione']['name'][$index] != ''){
+            if(isset($_FILES['pc_uploadTitoliPreferenza']['name'][$index]) && $_FILES['pc_uploadTitoliPreferenza']['name'][$index] != ''){
                 // File name INIT
-                $filename = $_FILES['pc_uploadDocumentazione']['name'][$index];
+                $filename = $_FILES['pc_uploadTitoliPreferenza']['name'][$index];
 
                 // Get extension
                 $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
@@ -110,22 +177,22 @@ if(!isset($_POST['pc_bozza_id']) || $_POST['pc_bozza_id'] == ''){
                 // Check extension
                 if(in_array($ext, $valid_ext)){
                     //New file name
-                    $filename = "pc_documentazione_bozza_" . $new_id . "_" . $index. "." . $ext;
+                    $filename = "pc_TitoliPreferenza_bozza_" . $new_id . "_" . $index. "." . $ext;
                     // File path
                     $path = $upload_location.$filename;
 
                     // Upload file
-                    if(move_uploaded_file($_FILES['pc_uploadDocumentazione']['tmp_name'][$index],$path)){
+                    if(move_uploaded_file($_FILES['pc_uploadTitoliPreferenza']['tmp_name'][$index],$path)){
                         $files_arr[] = $path;
                         /* salvo nel DB i nomi */
-                        $sqlUPD = "UPDATE partecipazione_concorso SET uploadDocumentazione = CONCAT(uploadDocumentazione, '".$filename.";') WHERE id = ".$new_id;
+                        $sqlUPD = "UPDATE partecipazione_concorso SET uploadTitoliPreferenza = CONCAT(uploadTitoliPreferenza, '".$filename.";') WHERE id = ".$new_id;
                         $connessioneUPD->query($sqlUPD);
                     }
                 }
             }
         }
     }
-    /* pc_uploadDocumentazione - end */
+    /* pc_uploadTitoliPreferenza - end */
 
 /* salvo nelle attitivà la creazione o modifica della bozza per partecipazione_concorso */
     $sqlINS = "INSERT INTO attivita (cf,servizio_id,pratica_id,status_id,data_attivita) VALUES ('".$_POST['pc_richiedente_cf']."',16,".$new_id.",1,'".date('Y-m-d')."')";
