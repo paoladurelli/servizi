@@ -52,8 +52,8 @@ $data = [];
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 
-                $fromMail = $row['richiedenteEmail'];
-                $fromName = $row['richiedenteNome'] . " " . $row['richiedenteCognome'];
+                $fromMail = $configSmtp['smtp_username'];
+                $fromName = $configData['nome_comune'] . " - Servizi Online";
 
                 /* rinomino i file */
                 $upload_location = "../uploads/domanda_contributo/";
@@ -125,7 +125,6 @@ $data = [];
                     include '../lib/tcpdf/TCPDF-master/examples/dc_pdf_comune.php'; 
 
                 /* mando mail al comune - start */
-                    /*
                     $phpmailer = new PHPMailer();
                     $phpmailer->isSMTP();
                     $phpmailer->Host = $configSmtp['smtp_host'];
@@ -141,17 +140,15 @@ $data = [];
 
                     /* Add Static Attachment */
                     /* allego la pratica completa appena creata */
-                    /*
+
                     $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/pratiche/'. $NumeroPratica . '.pdf';
                     $phpmailer->AddAttachment($attachment , $NumeroPratica . '.pdf');
-                    echo $attachment;
                     
                     /* se ci sono altri documenti, li allego */
-                    /*
+
                     if($NewuploadPotereFirma <> ''){
                         $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/domanda_contributo/'. $NewuploadPotereFirma;
                         $phpmailer->AddAttachment($attachment , $NewuploadPotereFirma);
-                        echo $attachment;
                     }
                     if($NewuploadDocumentazione <> ''){
                         $tmpUploadDocumentazione1 = substr($NewuploadDocumentazione,0,-1);
@@ -160,7 +157,6 @@ $data = [];
                         foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
                             $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/domanda_contributo/'. $tmpUploadDocumentazione;
                             $phpmailer->AddAttachment($attachment , $tmpUploadDocumentazione);
-                            echo $attachment;
                         }
                     }
                     
@@ -185,7 +181,6 @@ $data = [];
                 /* mando mail al comune - end */
 
                 /* mando mail all'utente - start */
-                    /*
                     $phpmailer2 = new PHPMailer();
                     $phpmailer2->isSMTP();
                     $phpmailer2->Host = $configSmtp['smtp_host'];

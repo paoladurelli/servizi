@@ -1217,26 +1217,26 @@ $(document).ready(function () {
     
     $('#pc_btn_concludi_richiesta').click(function(){
         /* tolgo tutti i required */
-            $("#dc_richiedente_nome").removeClass("required");
-            $("#dc_richiedente_nome_txt").removeClass("required");
-            $("#dc_richiedente_cognome").removeClass("required");
-            $("#dc_richiedente_cognome_txt").removeClass("required");
-            $("#dc_richiedente_cf").removeClass("required");
-            $("#dc_richiedente_cf_txt").removeClass("required");
-            $("#dc_richiedente_data_nascita").removeClass("required");
-            $("#dc_richiedente_data_nascita_txt").removeClass("required");
-            $("#dc_richiedente_luogo_nascita").removeClass("required");
-            $("#dc_richiedente_luogo_nascita_txt").removeClass("required");
-            $("#dc_richiedente_via").removeClass("required");
-            $("#dc_richiedente_via_txt").removeClass("required");
-            $("#dc_richiedente_localita").removeClass("required");
-            $("#dc_richiedente_localita_txt").removeClass("required");
-            $("#dc_richiedente_provincia").removeClass("required");
-            $("#dc_richiedente_provincia_txt").removeClass("required");
-            $("#dc_richiedente_email").removeClass("required");
-            $("#dc_richiedente_email_txt").removeClass("required");
-            $("#dc_richiedente_tel").removeClass("required");
-            $("#dc_richiedente_tel_txt").removeClass("required");
+            $("#pc_richiedente_nome").removeClass("required");
+            $("#pc_richiedente_nome_txt").removeClass("required");
+            $("#pc_richiedente_cognome").removeClass("required");
+            $("#pc_richiedente_cognome_txt").removeClass("required");
+            $("#pc_richiedente_cf").removeClass("required");
+            $("#pc_richiedente_cf_txt").removeClass("required");
+            $("#pc_richiedente_data_nascita").removeClass("required");
+            $("#pc_richiedente_data_nascita_txt").removeClass("required");
+            $("#pc_richiedente_luogo_nascita").removeClass("required");
+            $("#pc_richiedente_luogo_nascita_txt").removeClass("required");
+            $("#pc_richiedente_via").removeClass("required");
+            $("#pc_richiedente_via_txt").removeClass("required");
+            $("#pc_richiedente_localita").removeClass("required");
+            $("#pc_richiedente_localita_txt").removeClass("required");
+            $("#pc_richiedente_provincia").removeClass("required");
+            $("#pc_richiedente_provincia_txt").removeClass("required");
+            $("#pc_richiedente_email").removeClass("required");
+            $("#pc_richiedente_email_txt").removeClass("required");
+            $("#pc_richiedente_tel").removeClass("required");
+            $("#pc_richiedente_tel_txt").removeClass("required");
 
             $("#pc_uploadCartaIdentitaFronte").removeClass("required");
             $("#pc_uploadCartaIdentitaFronte_txt").removeClass("required");
@@ -1330,6 +1330,66 @@ $(document).ready(function () {
                     $("#pc_frm_dati_pnl_return").append(data.errors.pc_richiedente_tel);
                     $("#pc_richiedente_tel").addClass("required");
                     $("#pc_richiedente_tel_txt").addClass("required");
+                }                
+                if (data.errors.pc_cittadino) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_cittadino);
+                    $("#pc_cittadino").addClass("required");
+                    $("#pc_cittadino_txt").addClass("required");
+                }
+                if (data.errors.pc_statoEuropeo) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_statoEuropeo);
+                    $("#pc_statoEuropeo").addClass("required");
+                    $("#pc_statoEuropeo_txt").addClass("required");
+                }
+                if (data.errors.pc_condanne) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_condanne);
+                    $("#pc_condanne").addClass("required");
+                    $("#pc_condanne_txt").addClass("required");
+                }
+                if (data.errors.pc_titoloStudio) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_titoloStudio);
+                    $("#pc_titoloStudio").addClass("required");
+                    $("#pc_titoloStudio_txt").addClass("required");
+                }
+                if (data.errors.pc_titoloStudioScuola) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_titoloStudioScuola);
+                    $("#pc_titoloStudioScuola").addClass("required");
+                    $("#pc_titoloStudio_txt").addClass("required");
+                }
+                if (data.errors.pc_titoloStudioData) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_titoloStudioData);
+                    $("#pc_titoloStudioData").addClass("required");
+                    $("#pc_titoloStudio_txt").addClass("required");
+                }
+                if (data.errors.pc_titoloStudioVoto) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_titoloStudioVoto);
+                    $("#pc_titoloStudioVoto").addClass("required");
+                    $("#pc_titoloStudio_txt").addClass("required");
+                }
+                if (data.errors.pc_conoscenzaLinguaEstera) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_conoscenzaLinguaEstera);
+                    $("#pc_conoscenzaLinguaEstera").addClass("required");
+                    $("#pc_conoscenzaLinguaEstera_txt").addClass("required");
+                }
+                if (data.errors.pc_titoliPreferenza) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_titoliPreferenza);
+                    $("#pc_titoliPreferenza").addClass("required");
+                    $("#pc_titoliPreferenza_txt").addClass("required");
+                }
+                if (data.errors.pc_accettazioneCondizioniBando) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_accettazioneCondizioniBando);
+                    $("#pc_accettazioneCondizioniBando").addClass("required");
+                    $("#pc_accettazioneCondizioniBando_txt").addClass("required");
+                }
+                if (data.errors.pc_accettazioneDisposizioniComune) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_accettazioneDisposizioniComune);
+                    $("#pc_accettazioneDisposizioniComune").addClass("required");
+                    $("#pc_accettazioneDisposizioniComune_txt").addClass("required");
+                }
+                if (data.errors.pc_accettazioneComunicazioneVariazioniDomicilio) {
+                    $("#pc_frm_dati_pnl_return").append(data.errors.pc_accettazioneComunicazioneVariazioniDomicilio);
+                    $("#pc_accettazioneComunicazioneVariazioniDomicilio").addClass("required");
+                    $("#pc_accettazioneComunicazioneVariazioniDomicilio_txt").addClass("required");
                 }
                 if (data.errors.pc_uploadCartaIdentitaFronte) {
                     $("#pc_frm_dati_pnl_return").append(data.errors.pc_uploadCartaIdentitaFronte);

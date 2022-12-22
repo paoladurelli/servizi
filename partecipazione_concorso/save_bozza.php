@@ -18,14 +18,23 @@ $richiedenteEmail = isset($_POST['pc_richiedente_email']) ? $_POST['pc_richieden
 $richiedenteTel = isset($_POST['pc_richiedente_tel']) ? $_POST['pc_richiedente_tel'] : "";
 
     $ConcorsoId = isset($_POST['pc_ConcorsoId']) ? $_POST['pc_ConcorsoId'] : "0";
-    $cittadinoItaliano = $_POST['pc_cittadino'] == 'I' ? "1" : "0";
-    $cittadinoEuropeo = $_POST['pc_cittadino'] == 'E' ? "1" : "0";
+    $cittadinoItaliano = 0;
+    $cittadinoEuropeo = 0;
+    if(isset($_POST['pc_cittadino'])){
+        if($_POST['pc_cittadino']== "I"){
+            $cittadinoItaliano = 1;
+            $cittadinoEuropeo = 0;
+        }else{
+            $cittadinoItaliano = 0;
+            $cittadinoEuropeo = 1;
+        }
+    }
     $statoEuropeo = isset($_POST['pc_statoEuropeo']) ? addslashes($_POST['pc_statoEuropeo']) : "";
     $conoscenzaLingua = isset($_POST['pc_conoscenzaLingua']) ? $_POST['pc_conoscenzaLingua'] : "0";
     $idoneitaFisica = isset($_POST['pc_idoneitaFisica']) ? $_POST['pc_idoneitaFisica'] : "0";
     $dirittiCiviliPolitici = isset($_POST['pc_dirittiCiviliPolitici']) ? $_POST['pc_dirittiCiviliPolitici'] : "0";
     $destituzionePA = isset($_POST['pc_destituzionePA']) ? $_POST['pc_destituzionePA'] : "0";
-    $fedinaPulita = $_POST['pc_fedina'];
+    $fedinaPulita = isset($_POST['pc_fedina']) ? $_POST['pc_fedina'] : "0" ;
     $condanne = isset($_POST['pc_condanne']) ? addslashes($_POST['pc_condanne']) : "";
     $obbligoLeva = isset($_POST['pc_obbligoLeva']) ? $_POST['pc_obbligoLeva'] : "0";
     $titoloStudio = isset($_POST['pc_titoloStudio']) ? addslashes($_POST['pc_titoloStudio']) : "";

@@ -347,7 +347,7 @@
                                         <div class="card-body" id="pc_pnl_dichiarazioni">
                                             <div class="row">
                                                 <div class="col-lg-12">
-                                                    <p id="pc_cittadinoItaliano_txt">di essere cittadino/a *</p>
+                                                    <p id="pc_cittadino_txt">di essere cittadino/a *</p>
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="radio" name="pc_cittadino" id="pc_cittadinoItaliano" value="I" <?php  echo $cittadinoItaliano == 1 ? "checked" : ""; ?> />
                                                         <label class="form-check-label" for="pc_cittadinoItaliano">italiano/a</label>
@@ -551,7 +551,7 @@
                                                 <div class="col-12 after-section">
                                                     <div class="row">
                                                         <div class="col-lg-8">
-                                                            <h6 id="pc_uploadCartaIdentitaFronte_txt">Documento di identità (retro) *</h6>
+                                                            <h6 id="pc_uploadCartaIdentitaRetro_txt">Documento di identità (retro) *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
                                                         <div class="col-lg-4 text-right">

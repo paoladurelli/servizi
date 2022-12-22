@@ -280,6 +280,10 @@ label{
     text-decoration: none;
     color: #f46007;
 }
+#pc_frm_dati_pnl_return li a{
+    text-decoration: none;
+    color: #f46007;
+}
 
 input[type="date"].required, 
 input[type="datetime-local"].required, 
@@ -291,7 +295,9 @@ input[type="tel"].required,
 input[type="text"].required,
 input[type="time"].required, 
 input[type="url"].required, 
-textarea.required {
+textarea.required,
+label.required,
+.form-check [type="checkbox"] + label.required{
   border: 1px solid #f46007 !important;
 }
 
@@ -1061,7 +1067,8 @@ a.pulsante_leggi_dipiu{
     #latest-posts .card::after,
     .body-messaggi .card::after,
     #latest-activities .card::after,
-    #pratiche .card::after{
+    #pratiche .card::after,
+    .body-riepilogo .card::after{
         content: none;
     }
 }

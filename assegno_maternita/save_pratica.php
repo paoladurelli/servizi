@@ -52,8 +52,8 @@ $data = [];
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 
-                $fromMail = $row['richiedenteEmail'];
-                $fromName = $row['richiedenteNome'] . " " . $row['richiedenteCognome'];
+                $fromMail = $configSmtp['smtp_username'];
+                $fromName = $configData['nome_comune'] . " - Servizi Online";
 
                 /* rinomino i file */
                 $upload_location = "../uploads/assegno_maternita/";

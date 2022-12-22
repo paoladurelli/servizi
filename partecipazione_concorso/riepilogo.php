@@ -127,7 +127,7 @@
                                                 <form action="../lib/tcpdf/TCPDF-master/examples/pc_pdf_pratica.php" method="POST" id="pc_frm_download_pdf" name="pc_frm_download_pdf">
                                                     <input type="hidden" name="pc_download_pdf_id" id="pc_download_pdf_id" value="<?php echo $_GET['praticai']; ?>" />
                                                     <input type="hidden" name="pc_download_pdf_pratica" id="pc_download_pdf_pratica" value="<?php echo $_GET['pratican']; ?>" />
-                                                    <p class="mt-5 text-center"><button type="submit" class="btn btn-primary" id="pc_download_pdf" name="pc_download_pdf" href="#">Scarica la ricevuta in PDF</button></p>
+                                                    <p class="mt-5 text-center"><button type="submit" class="btn btn-primary" id="pc_download_pdf" name="pc_download_pdf" href="#">Scarica la ricevuta</button></p>
                                                 </form>
                                             </div>
                                         </div>

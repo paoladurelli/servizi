@@ -4,26 +4,11 @@
 $configData = require '../env/config_servizi.php';
 $configDB = require '../env/config.php';
 
-function MetodoPagamentoById($Pagamento_id){
-    $configDB = require '../env/config.php';
-    $connessioneNMPBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-    $sqlNMPBI = "SELECT tipo_pagamento.Nome as NomePagamento, metodi_pagamento.numero_pagamento as NumeroPagamento FROM `metodi_pagamento` LEFT JOIN tipo_pagamento ON metodi_pagamento.tipo_pagamento = tipo_pagamento.id WHERE metodi_pagamento.id = ". $Pagamento_id;
-    $resultNMPBI = $connessioneNMPBI->query($sqlNMPBI);
-
-    if ($resultNMPBI->num_rows > 0) {
-    // output data of each row
-        while($rowNMPBI = $resultNMPBI->fetch_assoc()) {
-            return $rowNMPBI["NomePagamento"] . " <b>" . $rowNMPBI["NumeroPagamento"] . "</b>";
-        }
-    }
-    $connessioneNMPBI->close();
-}
-
 /* con l'id vado a richiamare i dati salvati */
     if(isset($new_id) && $new_id<>''){
         /* DATI ESTRAPOLATI DA DB - start */ 
         $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-        $sql = "SELECT * FROM assegno_maternita WHERE richiedenteCf = '". $_SESSION['CF']."' and id =" . $new_id;
+        $sql = "SELECT * FROM partecipazione_concorso WHERE richiedenteCf = '". $_SESSION['CF']."' and id =" . $new_id;
         $result = $connessione->query($sql);
 
         if ($result->num_rows > 0) {
@@ -51,23 +36,29 @@ function MetodoPagamentoById($Pagamento_id){
                        $cittadino = "<p>di essere cittadino/a " . $row["statoEuropeo"] . "</p>";
                     }
                 }
+                $conoscenzaLingua = "";
                 if($row["conoscenzaLingua"] == 1){
                     $conoscenzaLingua = "<p>di conoscere la lingua italiana</p>";
-                }                
+                }
+                $idoneitaFisica = "";
                 if($row["idoneitaFisica"] == 1){
                     $idoneitaFisica = "<p>di essere fisicamente idoneo/a all’impiego</p>";
-                }                
+                }
+                $dirittiCiviliPolitici = "";
                 if($row["dirittiCiviliPolitici"] == 1){
                     $dirittiCiviliPolitici = "<p>di godere dei diritti civili e politici</p>";
-                }                
+                }
+                $destituzionePA = "";
                 if($row["destituzionePA"] == 1){
                     $destituzionePA = "<p>di non essere stato destituito, dispensato o comunque licenziato dall’impiego presso una pubblica amministrazione per persistente insufficiente rendimento e di non essere stato dichiarato decaduto o licenziato da altro pubblico impiego per averlo conseguito mediante esibizione di documenti falsi o viziati da invalidità non sanabile (art.127 DPR 10/01/1957 n.3)</p>";
                 }
+                $fedina = "";
                 if($row["fedinaPulita"] == 1){
                     $fedina = "<p>di non aver riportato condanne penali e di non aver procedimenti penali pendenti a proprio carico che impediscano, ai sensi delle vigenti disposizioni in materia, la costituzione del rapporto d’impiego con la Pubblica Amministrazione</p>";
                 }elseif($row["condanne"]<>"") {
                     $fedina = "<p>di aver riportato le seguenti condanne (anche se sia concessa amnistia, condono indulto o perdono giudiziale) o di avere seguenti procedimenti penali in corso: <b>" . $row["condanne"] . "</b></p>";
                 }
+                $obbligoLeva = "";
                 if($row["obbligoLeva"] == 1){
                     $obbligoLeva = "<p>di essere in regola nei confronti dell’obbligo di leva per i candidati di sesso maschile nati entro il 31/12/1985 ai sensi dell’art.1, Legge 23/8/2004, n.226</p>";
                 }
@@ -77,16 +68,19 @@ function MetodoPagamentoById($Pagamento_id){
                     $titoloStudio.= " il <b>".$row["titoloStudioData"]."</b>"; /* DA FARE!!!!!!!!!!! */
                     $titoloStudio.= " con votazione finale di <b>".$row["titoloStudioVoto"]."</b></p>";
                 }
+                $conoscenzaInformatica = "";
                 if($row["conoscenzaInformatica"] == 1){
                     $conoscenzaInformatica = "<p>di conoscere l’uso delle apparecchiature, delle applicazioni informatiche più diffuse e di scegliere la seguente lingua straniera (inglese o francese) " . $row["conoscenzaLinguaEstera"] . "</p>";
                 }
+                $titoliPreferenza = "";
                 if($row["titoliPreferenza"] <> ""){
                     $titoliPreferenza = "<p>di essere in possesso dei seguenti titoli di preferenza (a parità di valutazione) <b>".$row["titoliPreferenza"]."</b></p>";
                 }
+                $necessitaHandicap = "";
                 if($row["necessitaHandicap"] <> ""){
                     $necessitaHandicap = "<p>per i portatori di handicap: indicare le necessità, per l’effettuazione delle prove, in relazione al proprio handicap, di eventuali tempi aggiuntivi e/o ausili specifici ai sensi dell’art. 20, comma 2 della L. 5.02.1992, n. 104 e dell’art. 16 della legge 68/99<br/><b>".$row["necessitaHandicap"]."</b></p>";
                 }
-                
+                $dirittoRiserva = "";
                 if($row["dirittoRiserva"] == 1){
                     $dirittoRiserva = "<p>di aver diritto alla riserva ai sensi dell’art1014 e dell’art. 678, comma 9, del D.Lgs66/2010</p>";
                 }

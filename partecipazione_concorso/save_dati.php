@@ -50,23 +50,28 @@ if($_POST['pc_richiedente_tel']==""){
 if(!isValidTelephoneNumber($_POST['pc_richiedente_tel']) == "error"){
     $errors['pc_richiedente_tel'] = "<li><a href='#pc_richiedente_tel_txt'>Telefono del richiedente NON corretto</a></li>";
 }
-if($_POST['pc_cittadino']== "E" && empty($_POST['pc_statoEuropeo'])){
+if(!isset($_POST['pc_cittadino'])){
+    $errors['pc_cittadino'] = "<li><a href='#pc_cittadino_txt'>Seleziona la tua cittadinanza</a></li>";
+}
+if(isset($_POST['pc_cittadino']) && $_POST['pc_cittadino']== "E" && empty($_POST['pc_statoEuropeo'])){
     $errors['pc_statoEuropeo'] = "<li><a href='#pc_statoEuropeo_txt'>Inserire di quale paese europei si è cittadini</a></li>";
 }
-if($_POST['pc_fedina'] == 0 && empty($_POST['pc_condanne'])){
+if(isset($_POST['pc_fedina']) && $_POST['pc_fedina'] == 0 && empty($_POST['pc_condanne'])){
     $errors['pc_condanne'] = "<li><a href='#pc_condanne_txt'>Inserire le condanne riportate</a></li>";
 }
-if(isset($_POST['pc_titoloStudioHas']) && empty($_POST['pc_titoloStudio'])){
-    $errors['pc_titoloStudio'] = "<li><a href='#pc_titoloStudioHas_txt'>Inserire il titolo di studio</a></li>";
-}
-if(isset($_POST['pc_titoloStudioHas']) && empty($_POST['pc_titoloStudioScuola'])){
-    $errors['pc_titoloStudio'] .= "<li><a href='#pc_titoloStudioHas_txt'>Inserire l'istituto in cui si è conseguito il titolo di studio</a></li>";
-}
-if(isset($_POST['pc_titoloStudioHas']) && empty($_POST['pc_titoloStudioData'])){
-    $errors['pc_titoloStudio'] .= "<li><a href='#pc_titoloStudioHas_txt'>Inserire la data nella quale si è conseguito il titolo di studio</a></li>";
-}
-if(isset($_POST['pc_titoloStudioHas']) && empty($_POST['pc_titoloStudioVoto'])){
-    $errors['pc_titoloStudio'] .= "<li><a href='#pc_titoloStudioHas_txt'>Inserire la votazione finale del titolo di studio</a></li>";
+if(isset($_POST['pc_titoloStudioHas'])){
+    if(empty($_POST['pc_titoloStudio'])){
+        $errors['pc_titoloStudio'] = "<li><a href='#pc_titoloStudioHas_txt'>Inserire il titolo di studio</a></li>";
+    }
+    if(empty($_POST['pc_titoloStudioScuola'])){
+        $errors['pc_titoloStudioScuola'] = "<li><a href='#pc_titoloStudioHas_txt'>Inserire l'istituto in cui si è conseguito il titolo di studio</a></li>";
+    }
+    if(empty($_POST['pc_titoloStudioData'])){
+        $errors['pc_titoloStudioData'] = "<li><a href='#pc_titoloStudioHas_txt'>Inserire la data nella quale si è conseguito il titolo di studio</a></li>";
+    }
+    if(empty($_POST['pc_titoloStudioVoto'])){
+        $errors['pc_titoloStudioVoto'] = "<li><a href='#pc_titoloStudioHas_txt'>Inserire la votazione finale del titolo di studio</a></li>";
+    }
 }
 if(isset($_POST['pc_conoscenzaInformatica']) && empty($_POST['pc_conoscenzaLinguaEstera'])){
     $errors['pc_conoscenzaLinguaEstera'] = "<li><a href='#pc_conoscenzaInformatica_txt'>Inserire almeno una lingua straniera</a></li>";
@@ -96,25 +101,71 @@ if (isset($_POST['am_DichiarazioneCittadinanza']) && $_POST['am_DichiarazioneCit
     $errors['pc_uploadTitoliPreferenza'] = "<li><a href='#pc_uploadTitoliPreferenzao_txt'>Allegare il Titolo di Preferenza</a></li>";
 }
 
-if($_POST['pc_cittadino']== "I"){
-    $pc_cittadinoItaliano = 1;
-}else{
-    $pc_cittadinoItaliano = 0;
-}
-
-if($_POST['pc_cittadino']== "E"){
-    $pc_cittadinoEuropeo = 1;
-}else{
-    $pc_cittadinoEuropeo = 0;
-}
-
 if (!empty($errors)) {
     $data['success'] = false;
     $data['errors'] = $errors;
 } else {
+
+    if($_POST['pc_cittadino']== "I"){
+        $pc_cittadinoItaliano = 1;
+        $pc_cittadinoEuropeo = 0;
+    }else{
+        $pc_cittadinoItaliano = 0;
+        $pc_cittadinoEuropeo = 1;
+    }
+
+    if(isset($_POST['pc_conoscenzaLingua'])){
+        $pc_conoscenzaLingua = 1;
+    }else{
+        $pc_conoscenzaLingua = 0;
+    }
+    if(isset($_POST['pc_idoneitaFisica'])){
+        $pc_idoneitaFisica = 1;
+    }else{
+        $pc_idoneitaFisica = 0;
+    }
+    if(isset($_POST['pc_dirittiCiviliPolitici'])){
+        $pc_dirittiCiviliPolitici = 1;
+    }else{
+        $pc_dirittiCiviliPolitici = 0;
+    }
+    if(isset($_POST['pc_destituzionePA'])){
+        $pc_destituzionePA = 1;
+    }else{
+        $pc_destituzionePA = 0;
+    }
+
+    if(isset($_POST['pc_obbligoLeva'])){
+        if($_POST['pc_obbligoLeva'] == "1"){
+            $pc_obbligoLeva = 1;
+        }else{
+            $pc_obbligoLeva = 0;
+        }
+    }else{
+        $pc_obbligoLeva = 0;
+    }
+
+    if(isset($_POST['pc_fedina'])){
+        $pc_fedina = 1;
+    }else{
+        $pc_fedina = 0;
+    }
+    
+    if(isset($_POST['pc_conoscenzaInformatica'])){
+        $pc_conoscenzaInformatica = 1;
+    }else{
+        $pc_conoscenzaInformatica = 0;
+    }
+    
+    if(isset($_POST['pc_dirittoRiserva'])){
+        $pc_dirittoRiserva = 1;
+    }else{
+        $pc_dirittoRiserva = 0;
+    }
+    
     /* salvo tutti i dati nel DB nella tabella partecipazione_concorso con status 0 */    
     $connessioneINS = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-    $sqlINS = "INSERT INTO partecipazione_concorso (status_id, richiedenteCf, richiedenteNome, richiedenteCognome, richiedenteDataNascita, richiedenteLuogoNascita, richiedenteVia, richiedenteLocalita, richiedenteProvincia, richiedenteEmail, richiedenteTel, ConcorsoId, cittadinoItaliano, cittadinoEuropeo, statoEuropeo, conoscenzaLingua, idoneitaFisica, dirittiCiviliPolitici, destituzionePA, fedinaPulita, condanne, obbligoLeva, titoloStudio, titoloStudioScuola, titoloStudioData, titoloStudioVoto, conoscenzaInformatica, conoscenzaLinguaEstera, titoliPreferenza, necessitaHandicap, dirittoRiserva, accettazioneCondizioniBando, accettazioneDisposizioniComune, accettazioneComunicazioneVariazioniDomicilio) VALUES (0,'".addslashes($_POST['pc_richiedente_cf'])."','".addslashes($_POST['pc_richiedente_nome'])."','".addslashes($_POST['pc_richiedente_cognome'])."','".$_POST['pc_richiedente_data_nascita']."','".addslashes($_POST['pc_richiedente_luogo_nascita'])."','".addslashes($_POST['pc_richiedente_via'])."','".addslashes($_POST['pc_richiedente_localita'])."','".$_POST['pc_richiedente_provincia']."','".$_POST['pc_richiedente_email']."','".$_POST['pc_richiedente_tel']."','".$_POST['pc_ConcorsoId']."','".$pc_cittadinoItaliano."','".$pc_cittadinoEuropeo."','".$_POST['pc_statoEuropeo']."','".$_POST['pc_conoscenzaLingua']."','".$_POST['pc_idoneitaFisica']."','".$_POST['pc_dirittiCiviliPolitici']."','".$_POST['pc_destituzionePA']."','".$_POST['pc_fedina']."','".addslashes($_POST['pc_condanne'])."','".$_POST['pc_obbligoLeva']."','".addslashes($_POST['pc_titoloStudio'])."','".addslashes($_POST['pc_titoloStudioScuola'])."','".$_POST['pc_titoloStudioData']."','".$_POST['pc_titoloStudioVoto']."','".$_POST['pc_conoscenzaInformatica']."','".$_POST['pc_conoscenzaLinguaEstera']."','".addslashes($_POST['pc_titoliPreferenza'])."','".addslashes($_POST['pc_necessitaHandicap'])."','".$_POST['pc_dirittoRiserva']."','".$_POST['pc_accettazioneCondizioniBando']."','".$_POST['pc_accettazioneDisposizioniComune']."','".$_POST['pc_accettazioneComunicazioneVariazioniDomicilio']."')";
+    $sqlINS = "INSERT INTO partecipazione_concorso (status_id, richiedenteCf, richiedenteNome, richiedenteCognome, richiedenteDataNascita, richiedenteLuogoNascita, richiedenteVia, richiedenteLocalita, richiedenteProvincia, richiedenteEmail, richiedenteTel, ConcorsoId, cittadinoItaliano, cittadinoEuropeo, statoEuropeo, conoscenzaLingua, idoneitaFisica, dirittiCiviliPolitici, destituzionePA, fedinaPulita, condanne, obbligoLeva, titoloStudio, titoloStudioScuola, titoloStudioData, titoloStudioVoto, conoscenzaInformatica, conoscenzaLinguaEstera, titoliPreferenza, necessitaHandicap, dirittoRiserva, accettazioneCondizioniBando, accettazioneDisposizioniComune, accettazioneComunicazioneVariazioniDomicilio) VALUES (0,'".addslashes($_POST['pc_richiedente_cf'])."','".addslashes($_POST['pc_richiedente_nome'])."','".addslashes($_POST['pc_richiedente_cognome'])."','".$_POST['pc_richiedente_data_nascita']."','".addslashes($_POST['pc_richiedente_luogo_nascita'])."','".addslashes($_POST['pc_richiedente_via'])."','".addslashes($_POST['pc_richiedente_localita'])."','".$_POST['pc_richiedente_provincia']."','".$_POST['pc_richiedente_email']."','".$_POST['pc_richiedente_tel']."','".$_POST['pc_ConcorsoId']."','".$pc_cittadinoItaliano."','".$pc_cittadinoEuropeo."','".$_POST['pc_statoEuropeo']."','".$pc_conoscenzaLingua."','".$pc_idoneitaFisica."','".$pc_dirittiCiviliPolitici."','".$pc_destituzionePA."','".$pc_fedina."','".addslashes($_POST['pc_condanne'])."','".$pc_obbligoLeva."','".addslashes($_POST['pc_titoloStudio'])."','".addslashes($_POST['pc_titoloStudioScuola'])."','".$_POST['pc_titoloStudioData']."','".$_POST['pc_titoloStudioVoto']."','".$pc_conoscenzaInformatica."','".$_POST['pc_conoscenzaLinguaEstera']."','".addslashes($_POST['pc_titoliPreferenza'])."','".addslashes($_POST['pc_necessitaHandicap'])."','".$pc_dirittoRiserva."','".$_POST['pc_accettazioneCondizioniBando']."','".$_POST['pc_accettazioneDisposizioniComune']."','".$_POST['pc_accettazioneComunicazioneVariazioniDomicilio']."')";
     $connessioneINS->query($sqlINS);
     
     $sqlINS = "SELECT id FROM partecipazione_concorso WHERE richiedenteCf = '". $_SESSION['CF']."' and status_id = 0 ORDER BY id DESC LIMIT 1";
