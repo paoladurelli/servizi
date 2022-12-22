@@ -18,18 +18,19 @@ $richiedenteEmail = isset($_POST['pc_richiedente_email']) ? $_POST['pc_richieden
 $richiedenteTel = isset($_POST['pc_richiedente_tel']) ? $_POST['pc_richiedente_tel'] : "";
 
     $ConcorsoId = isset($_POST['pc_ConcorsoId']) ? $_POST['pc_ConcorsoId'] : "0";
-    $cittadinoItaliano = isset($_POST['pc_cittadinoItaliano']) ? $_POST['pc_cittadinoItaliano'] : "0";
-    $cittadinoEuropeo = isset($_POST['pc_cittadinoEuropeo']) ? $_POST['pc_cittadinoEuropeo'] : "0";
+    $cittadinoItaliano = $_POST['pc_cittadino'] == 'I' ? "1" : "0";
+    $cittadinoEuropeo = $_POST['pc_cittadino'] == 'E' ? "1" : "0";
     $statoEuropeo = isset($_POST['pc_statoEuropeo']) ? addslashes($_POST['pc_statoEuropeo']) : "";
     $conoscenzaLingua = isset($_POST['pc_conoscenzaLingua']) ? $_POST['pc_conoscenzaLingua'] : "0";
     $idoneitaFisica = isset($_POST['pc_idoneitaFisica']) ? $_POST['pc_idoneitaFisica'] : "0";
     $dirittiCiviliPolitici = isset($_POST['pc_dirittiCiviliPolitici']) ? $_POST['pc_dirittiCiviliPolitici'] : "0";
     $destituzionePA = isset($_POST['pc_destituzionePA']) ? $_POST['pc_destituzionePA'] : "0";
-    $fedinaPulita = isset($_POST['pc_fedinaPulita']) ? $_POST['pc_fedinaPulita'] : "0";
+    $fedinaPulita = $_POST['pc_fedina'];
     $condanne = isset($_POST['pc_condanne']) ? addslashes($_POST['pc_condanne']) : "";
     $obbligoLeva = isset($_POST['pc_obbligoLeva']) ? $_POST['pc_obbligoLeva'] : "0";
     $titoloStudio = isset($_POST['pc_titoloStudio']) ? addslashes($_POST['pc_titoloStudio']) : "";
     $titoloStudioScuola = isset($_POST['pc_titoloStudioScuola']) ? addslashes($_POST['pc_titoloStudioScuola']) : "";
+    $titoloStudioData = isset($_POST['pc_titoloStudioData']) ? addslashes($_POST['pc_titoloStudioData']) : "";
     $titoloStudioVoto = isset($_POST['pc_titoloStudioVoto']) ? addslashes($_POST['pc_titoloStudioVoto']) : "";
     $conoscenzaInformatica = isset($_POST['pc_conoscenzaInformatica']) ? $_POST['pc_conoscenzaInformatica'] : "0";
     $conoscenzaLinguaEstera = isset($_POST['pc_conoscenzaLinguaEstera']) ? addslashes($_POST['pc_conoscenzaLinguaEstera']) : "";
@@ -40,10 +41,11 @@ $richiedenteTel = isset($_POST['pc_richiedente_tel']) ? $_POST['pc_richiedente_t
     $accettazioneDisposizioniComune = isset($_POST['pc_accettazioneDisposizioniComune']) ? $_POST['pc_accettazioneDisposizioniComune'] : "0";
     $accettazioneComunicazioneVariazioniDomicilio =isset($_POST['pc_accettazioneComunicazioneVariazioniDomicilio']) ? $_POST['pc_accettazioneComunicazioneVariazioniDomicilio'] : "0";
 
+    $writeMessages = false;
 /* salvo tutti i dati nel DB nella tabella partecipazione_concorso */
 if(!isset($_POST['pc_bozza_id']) || $_POST['pc_bozza_id'] == ''){
 
-    $sqlINS = "INSERT INTO `partecipazione_concorso`(status_id, richiedenteCf, richiedenteNome, richiedenteCognome, richiedenteDataNascita, richiedenteLuogoNascita, richiedenteVia, richiedenteLocalita, richiedenteProvincia, richiedenteEmail, richiedenteTel, ConcorsoId, cittadinoItaliano, cittadinoEuropeo, statoEuropeo, conoscenzaLingua, idoneitaFisica, dirittiCiviliPolitici, destituzionePA, fedinaPulita, condanne, obbligoLeva, titoloStudio, titoloStudioScuola, titoloStudioVoto, conoscenzaInformatica, conoscenzaLinguaEstera, titoliPreferenza, necessitaHandicap, dirittoRiserva, accettazioneCondizioniBando, accettazioneDisposizioniComune, accettazioneComunicazioneVariazioniDomicilio) VALUES (1, '".$richiedenteCf."','".$richiedenteNome."','".$richiedenteCognome."','".$richiedenteDataNascita."','".$richiedenteLuogoNascita."','".$richiedenteVia."','".$richiedenteLocalita."','".$richiedenteProvincia."','".$richiedenteEmail."','".$richiedenteTel."','".$ConcorsoId."','".$cittadinoItaliano."','".$cittadinoEuropeo."','".$statoEuropeo."','".$conoscenzaLingua."','".$idoneitaFisica."','".$dirittiCiviliPolitici."','".$destituzionePA."','".$fedinaPulita."','".$condanne."','".$obbligoLeva."','".$titoloStudio."','".$titoloStudioScuola."','".$titoloStudioVoto."','".$conoscenzaInformatica."','".$conoscenzaLinguaEstera."','".$titoliPreferenza."','".$necessitaHandicap."','".$dirittoRiserva."','".$accettazioneCondizioniBando."','".$accettazioneDisposizioniComune."','".$accettazioneComunicazioneVariazioniDomicilio."')";
+    $sqlINS = "INSERT INTO `partecipazione_concorso`(status_id, richiedenteCf, richiedenteNome, richiedenteCognome, richiedenteDataNascita, richiedenteLuogoNascita, richiedenteVia, richiedenteLocalita, richiedenteProvincia, richiedenteEmail, richiedenteTel, ConcorsoId, cittadinoItaliano, cittadinoEuropeo, statoEuropeo, conoscenzaLingua, idoneitaFisica, dirittiCiviliPolitici, destituzionePA, fedinaPulita, condanne, obbligoLeva, titoloStudio, titoloStudioScuola, titoloStudioData, titoloStudioVoto, conoscenzaInformatica, conoscenzaLinguaEstera, titoliPreferenza, necessitaHandicap, dirittoRiserva, accettazioneCondizioniBando, accettazioneDisposizioniComune, accettazioneComunicazioneVariazioniDomicilio) VALUES (1, '".$richiedenteCf."','".$richiedenteNome."','".$richiedenteCognome."','".$richiedenteDataNascita."','".$richiedenteLuogoNascita."','".$richiedenteVia."','".$richiedenteLocalita."','".$richiedenteProvincia."','".$richiedenteEmail."','".$richiedenteTel."','".$ConcorsoId."','".$cittadinoItaliano."','".$cittadinoEuropeo."','".$statoEuropeo."','".$conoscenzaLingua."','".$idoneitaFisica."','".$dirittiCiviliPolitici."','".$destituzionePA."','".$fedinaPulita."','".$condanne."','".$obbligoLeva."','".$titoloStudio."','".$titoloStudioScuola."','".$titoloStudioData."','".$titoloStudioVoto."','".$conoscenzaInformatica."','".$conoscenzaLinguaEstera."','".$titoliPreferenza."','".$necessitaHandicap."','".$dirittoRiserva."','".$accettazioneCondizioniBando."','".$accettazioneDisposizioniComune."','".$accettazioneComunicazioneVariazioniDomicilio."')";
     $connessioneINS->query($sqlINS);
 
     $sqlINS = "SELECT id FROM partecipazione_concorso WHERE richiedenteCf = '". $_SESSION['CF']."' and status_id = 1 ORDER BY id DESC LIMIT 1";
@@ -55,11 +57,12 @@ if(!isset($_POST['pc_bozza_id']) || $_POST['pc_bozza_id'] == ''){
             /* tutto ok */
             /* prendo l'id che mi servirà per costruire i nomi dei documenti */
             $new_id = $row['id'];
+            $writeMessages = true;
         }
     }
 }else{
     /* se esiste già la bozza vado a modificarne i dati */
-    $sqlUPD = "UPDATE `partecipazione_concorso` SET richiedenteCf='".$richiedenteCf."', richiedenteNome='".$richiedenteNome."', richiedenteCognome='".$richiedenteCognome."', richiedenteDataNascita='".$richiedenteCognome."', richiedenteLuogoNascita='".$richiedenteLuogoNascita."', richiedenteVia='".$richiedenteVia."', richiedenteLocalita='".$richiedenteLocalita."', richiedenteProvincia='".$richiedenteProvincia."', richiedenteEmail='".$richiedenteEmail."', richiedenteTel='".$richiedenteTel."', ConcorsoId='".$ConcorsoId."', cittadinoItaliano='".$cittadinoItaliano."', cittadinoEuropeo='".$cittadinoEuropeo."', statoEuropeo='".$statoEuropeo."', conoscenzaLingua='".$conoscenzaLingua."', idoneitaFisica='".$idoneitaFisica."', dirittiCiviliPolitici='".$dirittiCiviliPolitici."', destituzionePA='".$destituzionePA."', fedinaPulita='".$fedinaPulita."', condanne='".$condanne."', obbligoLeva='".$obbligoLeva."', titoloStudio='".$titoloStudio."', titoloStudioScuola='".$titoloStudioScuola."', titoloStudioVoto='".$titoloStudioVoto."', conoscenzaInformatica='".$conoscenzaInformatica."', conoscenzaLinguaEstera='".$conoscenzaLinguaEstera."', titoliPreferenza='".$titoliPreferenza."', necessitaHandicap='".$necessitaHandicap."', dirittoRiserva='".$dirittoRiserva."', accettazioneCondizioniBando='".$accettazioneCondizioniBando."', accettazioneDisposizioniComune='".$accettazioneDisposizioniComune."', accettazioneComunicazioneVariazioniDomicilio='".$accettazioneComunicazioneVariazioniDomicilio."' WHERE id = '".$_POST['pc_bozza_id']."'";
+    $sqlUPD = "UPDATE `partecipazione_concorso` SET richiedenteCf='".$richiedenteCf."', richiedenteNome='".$richiedenteNome."', richiedenteCognome='".$richiedenteCognome."', richiedenteDataNascita='".$richiedenteDataNascita."', richiedenteLuogoNascita='".$richiedenteLuogoNascita."', richiedenteVia='".$richiedenteVia."', richiedenteLocalita='".$richiedenteLocalita."', richiedenteProvincia='".$richiedenteProvincia."', richiedenteEmail='".$richiedenteEmail."', richiedenteTel='".$richiedenteTel."', ConcorsoId='".$ConcorsoId."', cittadinoItaliano='".$cittadinoItaliano."', cittadinoEuropeo='".$cittadinoEuropeo."', statoEuropeo='".$statoEuropeo."', conoscenzaLingua='".$conoscenzaLingua."', idoneitaFisica='".$idoneitaFisica."', dirittiCiviliPolitici='".$dirittiCiviliPolitici."', destituzionePA='".$destituzionePA."', fedinaPulita='".$fedinaPulita."', condanne='".$condanne."', obbligoLeva='".$obbligoLeva."', titoloStudio='".$titoloStudio."', titoloStudioScuola='".$titoloStudioScuola."', titoloStudioData='".$titoloStudioData."', titoloStudioVoto='".$titoloStudioVoto."', conoscenzaInformatica='".$conoscenzaInformatica."', conoscenzaLinguaEstera='".$conoscenzaLinguaEstera."', titoliPreferenza='".$titoliPreferenza."', necessitaHandicap='".$necessitaHandicap."', dirittoRiserva='".$dirittoRiserva."', accettazioneCondizioniBando='".$accettazioneCondizioniBando."', accettazioneDisposizioniComune='".$accettazioneDisposizioniComune."', accettazioneComunicazioneVariazioniDomicilio='".$accettazioneComunicazioneVariazioniDomicilio."' WHERE id = '".$_POST['pc_bozza_id']."'";
     $connessioneUPD->query($sqlUPD);
     $new_id = $_POST['pc_bozza_id'];
 }
@@ -194,14 +197,15 @@ if(!isset($_POST['pc_bozza_id']) || $_POST['pc_bozza_id'] == ''){
     }
     /* pc_uploadTitoliPreferenza - end */
 
-/* salvo nelle attitivà la creazione o modifica della bozza per partecipazione_concorso */
+if($writeMessages){
+    /* salvo nelle attitivà la creazione o modifica della bozza per partecipazione_concorso */
     $sqlINS = "INSERT INTO attivita (cf,servizio_id,pratica_id,status_id,data_attivita) VALUES ('".$_POST['pc_richiedente_cf']."',16,".$new_id.",1,'".date('Y-m-d')."')";
     $connessioneINS->query($sqlINS);
     
     
-/* salvo nei messaggi che ho una bozza da completare per partecipazione_concorso */
+    /* salvo nei messaggi che ho una bozza da completare per partecipazione_concorso */
     $sqlINS = "INSERT INTO messaggi (CF_to,servizio_id,testo,data_msg) VALUES ('".$_POST['pc_richiedente_cf']."',16,'La tua richiesta di iscrizione al concorso è stata salvata come  bozza','".date('Y-m-d')."')";
     $connessioneINS->query($sqlINS);
-    
+}    
 /* invio risposta al js */
 echo json_encode('allright');

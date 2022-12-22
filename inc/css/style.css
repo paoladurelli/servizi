@@ -299,6 +299,10 @@ p.required,h2.required,h6.required{
     color: #f46007;
 }
 
+.page-servizi .enabled .card .card-body .icon{
+    fill: var(--bs-primary);
+}
+
 .tag-categorie a{
   align-items: center;
   background: #fcfdff;

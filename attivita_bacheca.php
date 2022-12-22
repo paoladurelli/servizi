@@ -46,27 +46,36 @@
                                     <div class="col-lg-12 after-section-small">
                                         '.CfAltroByPraticaId($row['ServizioId'],$row["pratica_id"]).
                                     '</div>
-                                    <div class="col-lg-12">
-                                        <div class="row">
-                                            '.ViewThumbAllegatiById($row["ServizioId"],$row["pratica_id"]);
-                                            if($row['StatusId'] > 1){
-                                                echo DownloadPraticaById($row["ServizioId"],$row["pratica_id"]);
-                                                echo DownloadRicevutaById($row["ServizioId"],$row["pratica_id"]);
-                                            }else{
-                                                echo '<div class="col-12 text-right">
-                                                    <a class="btn-small btn-secondary mr-2 deleteLink" data-servizio-id="'.$row["ServizioId"].'" data-pratica-id="'.$row["pratica_id"].'" data-status-id="'.$row["StatusId"].'">Elimina</a>
-                                                    <a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="btn-small btn-primary">Completa</a>
-                                                </div>';
-                                            }
-                                        echo '</div>';
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">';
                                         if($row['StatusId'] > 1){
                                             echo '<div class="row">
                                                 <div class="col-12 text-right">
-                                                    <a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="btn-small btn-primary mt-3">Consulta</a>
+                                                    <a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="btn-small btn-primary">Consulta</a>
                                                 </div>
                                             </div>';
-                                        }        
+                                        }else{
+                                            echo '<div class="row">
+                                                <div class="col-12 text-right">
+                                                    <a class="btn-small btn-secondary mr-2 deleteLink" data-servizio-id="'.$row["ServizioId"].'" data-pratica-id="'.$row["pratica_id"].'" data-status-id="'.$row["StatusId"].'">Elimina</a>
+                                                    <a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="btn-small btn-primary">Completa</a>
+                                                </div>
+                                            </div>';
+                                        }
                                     echo '</div>
+                                    <div class="col-lg-12">
+                                        <div class="row">
+                                            <div class="col-12 mt-3">
+                                                <p class="text-allegati-xsmall">ALLEGATI</p>
+                                                '.ViewThumbAllegatiById($row["ServizioId"],$row["pratica_id"]);
+                                                if($row['StatusId'] > 1){
+                                                    echo DownloadPraticaById($row["ServizioId"],$row["pratica_id"]);
+                                                    echo DownloadRicevutaById($row["ServizioId"],$row["pratica_id"]);
+                                                }
+                                            echo '</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -136,11 +136,19 @@ $html = <<<EOD
 }
 
 </style>
- <br><h1> Iscrizione ad un concorso - <em>Ricevuta</em> </h1>
- <br>
- <br>
- <br>
+<br><h1> Iscrizione ad un concorso - <em>Ricevuta</em> </h1>
+<br>
+<br>
 <h3>Numero Pratica: $numeroPratica</h3>
+<br>
+<br>
+<h4>CONCORSO</h4>
+<br>
+<table style="padding: 12px 10px;">
+    <tr>
+        <td style="padding: 12px 10px; width: 60%; font-weight: normal;">$Concorso</td>
+    </tr>
+</table>
 <br>
 <h4>DATI RICHIEDENTE</h4>
 <br> 
@@ -177,14 +185,6 @@ $html = <<<EOD
     <tr>
         <td style="padding: 12px 10px; width: 40%; font-weight: 600;">Email</td>
         <td style="padding: 12px 10px; width: 60%; font-weight: normal;">$email</td>
-    </tr>
-</table>
-<br>
-<h4>Concorso</h4>
-<br>
-<table style="padding: 12px 10px;">
-    <tr>
-        <td style="padding: 12px 10px; width: 60%; font-weight: normal;">$Concorso</td>
     </tr>
 </table>
 EOD;

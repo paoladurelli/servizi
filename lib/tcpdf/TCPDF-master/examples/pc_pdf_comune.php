@@ -45,59 +45,59 @@ function MetodoPagamentoById($Pagamento_id){
                 $Concorso = ConcorsoById($row["ConcorsoId"]);
                 
                 if($row["cittadinoItaliano"] == 1){
-                   $cittadino = "di essere cittadino/a italiano/a";
+                   $cittadino = "<p>di essere cittadino/a italiano/a</p>";
                 }else{
                     if($row["cittadinoEuropeo"] == 1){ 
-                       $cittadino = "di essere cittadino/a " . $row["statoEuropeo"];
+                       $cittadino = "<p>di essere cittadino/a " . $row["statoEuropeo"] . "</p>";
                     }
                 }
                 if($row["conoscenzaLingua"] == 1){
                     $conoscenzaLingua = "<p>di conoscere la lingua italiana</p>";
                 }                
                 if($row["idoneitaFisica"] == 1){
-                    $idoneitaFisica = "di essere fisicamente idoneo/a all’impiego";
+                    $idoneitaFisica = "<p>di essere fisicamente idoneo/a all’impiego</p>";
                 }                
                 if($row["dirittiCiviliPolitici"] == 1){
-                    $dirittiCiviliPolitici = "di godere dei diritti civili e politici";
+                    $dirittiCiviliPolitici = "<p>di godere dei diritti civili e politici</p>";
                 }                
                 if($row["destituzionePA"] == 1){
-                    $destituzionePA = "di non essere stato destituito, dispensato o comunque licenziato dall’impiego presso una pubblica amministrazione per persistente insufficiente rendimento e di non essere stato dichiarato decaduto o licenziato da altro pubblico impiego per averlo conseguito mediante esibizione di documenti falsi o viziati da invalidità non sanabile (art.127 DPR 10/01/1957 n.3)";
+                    $destituzionePA = "<p>di non essere stato destituito, dispensato o comunque licenziato dall’impiego presso una pubblica amministrazione per persistente insufficiente rendimento e di non essere stato dichiarato decaduto o licenziato da altro pubblico impiego per averlo conseguito mediante esibizione di documenti falsi o viziati da invalidità non sanabile (art.127 DPR 10/01/1957 n.3)</p>";
                 }
                 if($row["fedinaPulita"] == 1){
-                    $fedina = "di non aver riportato condanne penali e di non aver procedimenti penali pendenti a proprio carico che impediscano, ai sensi delle vigenti disposizioni in materia, la costituzione del rapporto d’impiego con la Pubblica Amministrazione";
+                    $fedina = "<p>di non aver riportato condanne penali e di non aver procedimenti penali pendenti a proprio carico che impediscano, ai sensi delle vigenti disposizioni in materia, la costituzione del rapporto d’impiego con la Pubblica Amministrazione</p>";
                 }elseif($row["condanne"]<>"") {
-                    $fedina = "di aver riportato le seguenti condanne (anche se sia concessa amnistia, condono indulto o perdono giudiziale) o di avere seguenti procedimenti penali in corso: <b>" . $row["condanne"] . "</b>";
+                    $fedina = "<p>di aver riportato le seguenti condanne (anche se sia concessa amnistia, condono indulto o perdono giudiziale) o di avere seguenti procedimenti penali in corso: <b>" . $row["condanne"] . "</b></p>";
                 }
                 if($row["obbligoLeva"] == 1){
-                    $obbligoLeva = "di essere in regola nei confronti dell’obbligo di leva per i candidati di sesso maschile nati entro il 31/12/1985 ai sensi dell’art.1, Legge 23/8/2004, n.226";
+                    $obbligoLeva = "<p>di essere in regola nei confronti dell’obbligo di leva per i candidati di sesso maschile nati entro il 31/12/1985 ai sensi dell’art.1, Legge 23/8/2004, n.226</p>";
                 }
                 if($row["titoloStudio"] <> ""){
-                    $titoloStudio = "di essere in possesso del seguente titolo di studio <b>" . $row["titoloStudio"]."</b>";
+                    $titoloStudio = "<p>di essere in possesso del seguente titolo di studio <b>" . $row["titoloStudio"]."</b>";
                     $titoloStudio.= " conseguito presso <b>".$row["titoloStudioScuola"]."</b>";
                     $titoloStudio.= " il <b>".$row["titoloStudioData"]."</b>"; /* DA FARE!!!!!!!!!!! */
-                    $titoloStudio.= " con votazione finale di <b>".$row["titoloStudioVoto"]."</b>";
+                    $titoloStudio.= " con votazione finale di <b>".$row["titoloStudioVoto"]."</b></p>";
                 }
                 if($row["conoscenzaInformatica"] == 1){
-                    $conoscenzaInformatica = "di conoscere l’uso delle apparecchiature, delle applicazioni informatiche più diffuse e di scegliere la seguente lingua straniera (inglese o francese) " . $row["conoscenzaLinguaEstera"];
+                    $conoscenzaInformatica = "<p>di conoscere l’uso delle apparecchiature, delle applicazioni informatiche più diffuse e di scegliere la seguente lingua straniera (inglese o francese) " . $row["conoscenzaLinguaEstera"] . "</p>";
                 }
                 if($row["titoliPreferenza"] <> ""){
-                    $titoliPreferenza = "di essere in possesso dei seguenti titoli di preferenza (a parità di valutazione) <b>".$row["titoliPreferenza"]."</b>";
+                    $titoliPreferenza = "<p>di essere in possesso dei seguenti titoli di preferenza (a parità di valutazione) <b>".$row["titoliPreferenza"]."</b></p>";
                 }
                 if($row["necessitaHandicap"] <> ""){
-                    $necessitaHandicap = "per i portatori di handicap: indicare le necessità, per l’effettuazione delle prove, in relazione al proprio handicap, di eventuali tempi aggiuntivi e/o ausili specifici ai sensi dell’art. 20, comma 2 della L. 5.02.1992, n. 104 e dell’art. 16 della legge 68/99<br/><b>".$row["necessitaHandicap"]."</b>";
+                    $necessitaHandicap = "<p>per i portatori di handicap: indicare le necessità, per l’effettuazione delle prove, in relazione al proprio handicap, di eventuali tempi aggiuntivi e/o ausili specifici ai sensi dell’art. 20, comma 2 della L. 5.02.1992, n. 104 e dell’art. 16 della legge 68/99<br/><b>".$row["necessitaHandicap"]."</b></p>";
                 }
                 
                 if($row["dirittoRiserva"] == 1){
-                    $dirittoRiserva = "di aver diritto alla riserva ai sensi dell’art1014 e dell’art. 678, comma 9, del D.Lgs66/2010";
+                    $dirittoRiserva = "<p>di aver diritto alla riserva ai sensi dell’art1014 e dell’art. 678, comma 9, del D.Lgs66/2010</p>";
                 }
                 if($row["accettazioneCondizioniBando"] == 1){
-                    $accettazioneCondizioniBando = "di accettare espressamente ed incondizionatamente tutte le prescrizioni e condizioni contenute nel bando di concorso";
+                    $accettazioneCondizioniBando = "<p>di accettare espressamente ed incondizionatamente tutte le prescrizioni e condizioni contenute nel bando di concorso</p>";
                 }
                 if($row["accettazioneDisposizioniComune"] == 1){
-                    $accettazioneDisposizioniComune = "di accettare, in caso di presa di servizio, tutte le disposizioni che regolano lo stato giuridico ed economico dei dipendenti del Comune di ". $configData['nome_comune'] .";";
+                    $accettazioneDisposizioniComune = "<p>di accettare, in caso di presa di servizio, tutte le disposizioni che regolano lo stato giuridico ed economico dei dipendenti del Comune di ". $configData['nome_comune'] ."</p>";
                 }
                 if($row["accettazioneComunicazioneVariazioniDomicilio"] == 1){
-                    $accettazioneComunicazioneVariazioniDomicilio = "di impegnarsi a comunicare, per iscritto, al Comune di ". $configData['nome_comune'] ." le eventuali successive variazioni di domicilio e riconosce che il Comune sarà esonerato da ogni responsabilità in caso di irreperibilità del destinatario o disguidi del servizio postale e/o telematico.";
+                    $accettazioneComunicazioneVariazioniDomicilio = "<p>di impegnarsi a comunicare, per iscritto, al Comune di ". $configData['nome_comune'] ." le eventuali successive variazioni di domicilio e riconosce che il Comune sarà esonerato da ogni responsabilità in caso di irreperibilità del destinatario o disguidi del servizio postale e/o telematico.</p>";
                 }
                 $allegati = "";
                 if($row["uploadCartaIdentitaFronte"] <> '' && $row["uploadCartaIdentitaRetro"] <> ''){
@@ -210,12 +210,22 @@ $html = <<<EOD
     </tr>
     <tr>
         <td style="padding: 12px 10px;">
-
-            $cittadinanza
-            $affidamento
-
+            $cittadino
+            $conoscenzaLingua
+            $idoneitaFisica
+            $dirittiCiviliPolitici
+            $destituzionePA
+            $fedina
+            $obbligoLeva
+            $titoloStudio
+            $conoscenzaInformatica
+            $titoliPreferenza
+            $necessitaHandicap
+            $dirittoRiserva
             <p>Il recapito telematico presso il quale dovranno essere inviate eventuali comunicazioni è il seguente<br/>indirizzo e-mail <b>$email</b> n. tel. <b>$richiedenteTel</b></p>
-        
+            $accettazioneCondizioniBando
+            $accettazioneDisposizioniComune
+            $accettazioneComunicazioneVariazioniDomicilio
             <p></p>
             <p>Il/la sottoscritto/a dichiara ai sensi dell’art. 76 del D.P.R. 445 del 28/12/2000, di essere a conoscenza delle responsabilità penali cui può andare incontro in caso di dichiarazioni mendaci.<br><em>(Le dichiarazioni sopra riportate sostituiscono a tutti gli effetti le corrispondenti certificazioni ai sensi dell’art.46 D.P.R. 445 del 28.12.2000)</em></p>
             <p></p>

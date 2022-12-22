@@ -38,6 +38,7 @@
     $obbligoLeva = "";
     $titoloStudio = "";
     $titoloStudioScuola = "";
+    $titoloStudioData = "";
     $titoloStudioVoto = "";
     $conoscenzaInformatica = "";
     $conoscenzaLinguaEstera = "";
@@ -61,17 +62,17 @@
 
     
     /* con l'id vado a richiamare i dati salvati */
-    if(isset($_GET["dc_pratica_id"]) && $_GET["dc_pratica_id"]<>''){
+    if(isset($_GET["pc_pratica_id"]) && $_GET["pc_pratica_id"]<>''){
         /* DATI ESTRAPOLATI DA DB - start */ 
         $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-        $sql = "SELECT * FROM partecipazione_concorso WHERE richiedenteCf = '". $_SESSION['CF']."' and id =" . $_GET["pc_bozza_id"];
+        $sql = "SELECT * FROM partecipazione_concorso WHERE richiedenteCf = '". $_SESSION['CF']."' and id =" . $_GET["pc_pratica_id"];
         $result = $connessione->query($sql);
 
         if ($result->num_rows > 0) {
         // output data of each row
             while($row = $result->fetch_assoc()) {
                 $status_id = $row["status_id"];
-                $pc_bozza_id = $_GET["pc_bozza_id"];
+                $pc_bozza_id = $_GET["pc_pratica_id"];
                 $cf = $row["richiedenteCf"];
                 $nome = $row["richiedenteNome"];
                 $cognome = $row["richiedenteCognome"];
@@ -98,6 +99,7 @@
                 $obbligoLeva = $row["obbligoLeva"];
                 $titoloStudio = $row["titoloStudio"];
                 $titoloStudioScuola = $row["titoloStudioScuola"];
+                $titoloStudioData = date("d/m/Y", strtotime($row["titoloStudioScuola"]));
                 $titoloStudioVoto = $row["titoloStudioVoto"];
                 $conoscenzaInformatica = $row["conoscenzaInformatica"];
                 $conoscenzaLinguaEstera = $row["conoscenzaLinguaEstera"];
@@ -123,7 +125,7 @@
                 
                 if($row["uploadTitoliPreferenza"] != ''){
                     $tmpUploadTitoliPreferenza1 = substr($row["uploadTitoliPreferenza"],0,-1);
-                    $tmpUploadTitoliPreferenzas = explode(';', $tmpUploadDocumentazione1);
+                    $tmpUploadTitoliPreferenzas = explode(';', $tmpUploadTitoliPreferenza1);
                     $uploadTitoliPreferenza = "";
                     foreach($tmpUploadTitoliPreferenzas as $tmpUploadTitoliPreferenza) {
                         $uploadTitoliPreferenza .= "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $tmpUploadTitoliPreferenza ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
@@ -228,7 +230,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="it-page-section mb-50 mb-lg-90" id="dc_richiedente">
+                        <div class="it-page-section mb-50 mb-lg-90" id="pc_richiedente">
                             <div class="cmp-card">
                                 <div class="card">
                                     <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -392,7 +394,7 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <?php if( $titoloStudio != ""){ ?>
-                                                    di essere in possesso del seguente titolo di studio <b><?php echo $titoloStudio; ?>" /></b> conseguito presso Il <b><?php echo $titoloStudioScuola; ?>" /></b> con votazione finale di <b><?php echo $titoloStudioVoto; ?>" /></b>
+                                                    di essere in possesso del seguente titolo di studio <b><?php echo $titoloStudio; ?>" /></b> conseguito presso <b><?php echo $titoloStudioScuola; ?>" /></b> il <b><?php echo $titoloStudioData; ?>" /></b> con votazione finale di <b><?php echo $titoloStudioVoto; ?>" /></b>
                                                 <?php } ?>
                                             </div>
                                         </div>
@@ -464,11 +466,35 @@
                                             <div class="col-12 after-section">
                                                 <div class="row">
                                                     <div class="col-8">
-                                                        <h6>Documento che attesta potere di firma</h6>
+                                                        <h6>Documento di identità (fronte)</h6>
                                                     </div>
                                                     <div class="col-4">
-                                                        <ul class="upload-file-list" id="dc_uploadPotereFirma_file">
-                                                            <?php echo $uploadPotereFirma; ?>
+                                                        <ul class="upload-file-list" id="pc_uploadCartaIdentitaFronte_file">
+                                                            <?php echo $uploadCartaIdentitaFronte; ?>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 after-section">
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <h6>Documento di identità (retro)</h6>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <ul class="upload-file-list" id="dc_uploadCartaIdentitaRetro_file">
+                                                            <?php echo $uploadCartaIdentitaRetro; ?>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 after-section">
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <h6>Curriculum Vitae</h6>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <ul class="upload-file-list" id="pc_uploadCV_file">
+                                                            <?php echo $uploadCV; ?>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -476,12 +502,11 @@
                                             <div class="col-12">
                                                 <div class="row">
                                                     <div class="col-8">
-                                                        <h6>Documentazione utile al riconoscimento del contributo</h6>
-                                                        <p><small>(esempi: contratto affitto, bollette, spese sanitarie, debiti…)</small></p>
+                                                        <h6>Titoli di precedenza o preferenza</h6>
                                                     </div>
                                                     <div class="col-4">
-                                                        <ul class="upload-file-list" id="dc_uploadDocumentazione_file">
-                                                            <?php echo $uploadDocumentazione; ?>
+                                                        <ul class="upload-file-list" id="dc_uploadTitoliPreferenza_file">
+                                                            <?php echo $uploadTitoliPreferenza; ?>
                                                         </ul>
                                                     </div>
                                                 </div>

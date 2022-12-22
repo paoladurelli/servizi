@@ -37,6 +37,7 @@
     $obbligoLeva = "";
     $titoloStudio = "";
     $titoloStudioScuola = "";
+    $titoloStudioData = "";
     $titoloStudioVoto = "";
     $conoscenzaInformatica = "";
     $conoscenzaLinguaEstera = "";
@@ -97,6 +98,7 @@
                 $obbligoLeva = $row["obbligoLeva"];
                 $titoloStudio = $row["titoloStudio"];
                 $titoloStudioScuola = $row["titoloStudioScuola"];
+                $titoloStudioData = $row["titoloStudioData"];
                 $titoloStudioVoto = $row["titoloStudioVoto"];
                 $conoscenzaInformatica = $row["conoscenzaInformatica"];
                 $conoscenzaLinguaEstera = $row["conoscenzaLinguaEstera"];
@@ -122,7 +124,7 @@
                 
                 if($row["uploadTitoliPreferenza"] != ''){
                     $tmpUploadTitoliPreferenza1 = substr($row["uploadTitoliPreferenza"],0,-1);
-                    $tmpUploadTitoliPreferenzas = explode(';', $tmpUploadDocumentazione1);
+                    $tmpUploadTitoliPreferenzas = explode(';', $tmpUploadTitoliPreferenza1);
                     $uploadTitoliPreferenza = "";
                     foreach($tmpUploadTitoliPreferenzas as $tmpUploadTitoliPreferenza) {
                         $uploadTitoliPreferenza .= "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $tmpUploadTitoliPreferenza ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
@@ -347,11 +349,11 @@
                                                 <div class="col-lg-12">
                                                     <p id="pc_cittadinoItaliano_txt">di essere cittadino/a *</p>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="pc_cittadino" id="pc_cittadinoItaliano" value="1" <?php  echo $cittadinoItaliano == 1 ? "checked" : ""; ?> />
+                                                        <input class="form-check-input" type="radio" name="pc_cittadino" id="pc_cittadinoItaliano" value="I" <?php  echo $cittadinoItaliano == 1 ? "checked" : ""; ?> />
                                                         <label class="form-check-label" for="pc_cittadinoItaliano">italiano/a</label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="pc_cittadino" id="pc_cittadinoEuropeo" value="1" <?php  echo $cittadinoEuropeo == 1 ? "checked" : ""; ?> />
+                                                        <input class="form-check-input" type="radio" name="pc_cittadino" id="pc_cittadinoEuropeo" value="E" <?php  echo $cittadinoEuropeo == 1 ? "checked" : ""; ?> />
                                                         <label class="form-check-label" for="pc_cittadinoEuropeo" id="pc_statoEuropeo_txt">
                                                             europeo<br/>
                                                             <input type="text" id="pc_statoEuropeo" name="pc_statoEuropeo" value="<?php echo $statoEuropeo; ?>" placeholder="(indicare di quale paese della Comunità Europea)" />
@@ -403,7 +405,7 @@
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="pc_fedina" id="pc_fedinaSegnata" value="1" <?php  echo $condanne != "" ? "checked" : ""; ?> />
+                                                        <input class="form-check-input" type="radio" name="pc_fedina" id="pc_fedinaSegnata" value="0" <?php  echo $condanne != "" ? "checked" : ""; ?> />
                                                         <label class="form-check-label" for="pc_fedinaSegnata" id="pc_condanne_txt">
                                                             di aver riportato le seguenti condanne (anche se sia concessa amnistia, condono indulto o perdono giudiziale) o di avere seguenti procedimenti penali in corso:
                                                             <input type="text" id="pc_condanne" name="pc_condanne" value="<?php echo $condanne; ?>" />
@@ -427,8 +429,10 @@
                                                         <label class="form-check-label" for="pc_titoloStudioHas" id="pc_titoloStudioHas_txt">
                                                             di essere in possesso del seguente titolo di studio<br>
                                                             <input type="text" id="pc_titoloStudio" name="pc_titoloStudio" value="<?php echo $titoloStudio; ?>" /><br>
-                                                            conseguito presso Il<br>
+                                                            conseguito presso<br>
                                                             <input type="text" id="pc_titoloStudioScuola" name="pc_titoloStudioScuola" value="<?php echo $titoloStudioScuola; ?>" /><br>
+                                                            in data<br>
+                                                            <input type="date" id="pc_titoloStudioData" name="pc_titoloStudioData" value="<?php echo $titoloStudioData; ?>" /><br>
                                                             con votazione finale di<br>
                                                             <input type="text" id="pc_titoloStudioVoto" name="pc_titoloStudioVoto" value="<?php echo $titoloStudioVoto; ?>" />
                                                         </label>
@@ -599,7 +603,7 @@
                                                                 <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
                                                                 <span>Upload</span>
                                                             </label>                                                            
-                                                            <ul class="upload-file-list" id="dc_uploadTitoliPreferenza_file">
+                                                            <ul class="upload-file-list" id="pc_uploadTitoliPreferenza_file">
                                                                 <?php echo $uploadTitoliPreferenza; ?>
                                                             </ul>
                                                         </div>
