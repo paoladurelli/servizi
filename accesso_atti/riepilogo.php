@@ -18,7 +18,7 @@
                             <ol class="breadcrumb p-0" data-element="breadcrumb">
                                 <li class="breadcrumb-item"><a href="../bacheca.php">Home</a></li>
                                 <li class="breadcrumb-item" aria-current="page"><span class="separator">/</span><a href="../servizi_list.php">Servizi</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><span class="separator">/</span>Presentare domanda di partecipazione a un concorso pubblico</li>
+                                <li class="breadcrumb-item active" aria-current="page"><span class="separator">/</span>Richiedere l'accesso agli atti</li>
                             </ol>
                         </nav>
                     </div>
@@ -63,17 +63,17 @@
                                                         <div class="accordion-body">
                                                             <ul class="link-list" data-element="page-index">
                                                                 <li class="nav-item">
-                                                                    <a class="nav-link" href="#pc_stato_richiesta">
+                                                                    <a class="nav-link" href="#aa_stato_richiesta">
                                                                         <span class="title-medium">Stato richiesta</span>
                                                                     </a>
                                                                 </li>
                                                                 <li class="nav-item">
-                                                                    <a class="nav-link" href="#pc_scarica_ricevuta">
+                                                                    <a class="nav-link" href="#aa_scarica_ricevuta">
                                                                         <span class="title-medium">Scarica Ricevuta</span>
                                                                     </a>
                                                                 </li>
                                                                 <li class="nav-item">
-                                                                    <a class="nav-link" href="#pc_prossimi_passi">
+                                                                    <a class="nav-link" href="#aa_prossimi_passi">
                                                                         <span class="title-medium">Prossimi passi</span>
                                                                     </a>
                                                                 </li>
@@ -90,7 +90,7 @@
                     </div>
 
                     <div class="col-12 col-lg-9 body-riepilogo">
-                        <div class="it-page-section mb-50 mb-lg-90" id="pc_stato_richiesta">
+                        <div class="it-page-section mb-50 mb-lg-90" id="aa_stato_richiesta">
                             <div class="cmp-card">
                                 <div class="card">
                                     <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -98,13 +98,13 @@
                                             <h2 class="title-xxlarge mb-3">Stato richiesta</h2>
                                         </div>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body" style="margin-bottom:40px;">
                                         <div class="row">
                                             <div class="col-lg-12"><h5 class="color-primary"><b>Richiesta inviata correttamente</b></h5></div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <p>Abbiamo ricevuto la tua richiesta per la pratica:<br/><b><?php echo $_GET['pratican']; ?> domanda di partecipazione a un concorso pubblico.</b></p>
+                                                <p>Abbiamo ricevuto la tua richiesta per la pratica:<br/><b><?php echo $_GET['pratican']; ?> domanda di accesso agli atti.</b></p>
                                                 <p>Inviata il: <b><?php echo date("d-m-Y"); ?></b></p>
                                                 <p>Troverai il riepilogo nella tua e-mail: <b><?php echo $_SESSION["Email"]; ?></b></p>
                                             </div>
@@ -113,7 +113,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="it-page-section mb-50 mb-lg-90" id="pc_scarica_ricevuta">
+                        <div class="it-page-section mb-50 mb-lg-90" id="aa_scarica_ricevuta">
                             <div class="cmp-card">
                                 <div class="card">
                                     <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -121,13 +121,13 @@
                                             <h2 class="title-xxlarge mb-3">Scarica la ricevuta</h2>
                                         </div>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body" style="margin-bottom:40px;">
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <form action="../lib/tcpdf/TCPDF-master/examples/pc_pdf_pratica.php" method="POST" id="pc_frm_download_pdf" name="pc_frm_download_pdf">
-                                                    <input type="hidden" name="pc_download_pdf_id" id="pc_download_pdf_id" value="<?php echo $_GET['praticai']; ?>" />
-                                                    <input type="hidden" name="pc_download_pdf_pratica" id="pc_download_pdf_pratica" value="<?php echo $_GET['pratican']; ?>" />
-                                                    <p class="mt-5 text-center"><button type="submit" class="btn btn-primary" id="pc_download_pdf" name="pc_download_pdf" href="#">Scarica la ricevuta</button></p>
+                                                <form action="../lib/tcpdf/TCPDF-master/examples/aa_pdf_pratica.php" method="POST" id="aa_frm_download_pdf" name="aa_frm_download_pdf">
+                                                    <input type="hidden" name="aa_download_pdf_id" id="aa_download_pdf_id" value="<?php echo $_GET['praticai']; ?>" />
+                                                    <input type="hidden" name="aa_download_pdf_pratica" id="aa_download_pdf_pratica" value="<?php echo $_GET['pratican']; ?>" />
+                                                    <p class="mt-5 text-center"><button type="submit" class="btn btn-primary" id="aa_download_pdf" name="aa_download_pdf" href="#">Scarica la ricevuta</button></p>
                                                 </form>
                                             </div>
                                         </div>
@@ -135,7 +135,7 @@
                                 </div>
                             </div>          
                         </div>
-                        <div class="it-page-section mb-50 mb-lg-90" id="pc_prossimi_passi">
+                        <div class="it-page-section mb-50 mb-lg-90" id="aa_prossimi_passi">
                             <div class="cmp-card">
                                 <div class="card">
                                     <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -143,7 +143,7 @@
                                             <h2 class="title-xxlarge mb-3">Prossimi passi</h2>
                                         </div>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body" style="margin-bottom:40px;">
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="row stepper mb0">
@@ -164,12 +164,13 @@
 
                                                         <div class="step">
                                                             <div class="date-step">
-                                                                <?php echo GetDataScadenzaConcorsoById($_GET['praticai']); ?>
+                                                                <span class="date-step-giorno"><?php echo date('d', strtotime($Date. ' + 7 days')); ?></span><br>
+                                                                <span class="date-step-mese"><?php echo date('M/Y', strtotime($Date. ' + 7 days')); ?></span>
                                                                 <span class="pallino"></span>
                                                             </div>
                                                             <div class="testo-step">
                                                                 <div class="scheda-gestione">
-                                                                    <p>Data scadenza invio domande</p>
+                                                                    <p>Data esito richiesta</p>
                                                                 </div>
                                                             </div>
                                                         </div>

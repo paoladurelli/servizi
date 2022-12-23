@@ -283,6 +283,10 @@ function NumeroPraticaById($servizio_id,$pratica_id){
 
 function CfAltroByPraticaId($servizio_id,$pratica_id){
     switch($servizio_id) {
+        case 6:
+            /* accesso_atti */
+            return "";
+            break;
         case 9: 
             /* assegno_maternita */
             return "";
@@ -310,6 +314,133 @@ function CfAltroByPraticaId($servizio_id,$pratica_id){
 function ViewThumbAllegatiById($ServizioId,$PraticaId){
     $configDB = require './env/config.php';
     switch($ServizioId) {
+        case 6:
+            /* accesso_atti */
+            $connessioneVTABI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+            $sqlVTABI = "SELECT uploadTitoloDichiarato, uploadAffittuario, uploadAltroSoggetto, uploadNotaioRogante, uploadAltriTitoloDescrizione, uploadCartaIdentitaFronte, uploadCartaIdentitaRetro, uploadAttoNotarile, NumeroPratica FROM accesso_atti WHERE id = ". $PraticaId;
+            $resultVTABI = $connessioneVTABI->query($sqlVTABI);
+            if ($resultVTABI->num_rows > 0) {
+                while($rowVTABI = $resultVTABI->fetch_assoc()) {
+                    
+                    $returnText = "";
+
+                    /* uploadTitoloDichiarato */
+                    if($rowVTABI['uploadTitoloDichiarato'] != "" || $rowVTABI['uploadTitoloDichiarato'] != NULL){
+                        $fileName = $rowVTABI['uploadTitoloDichiarato'];
+                        $fileNameParts = explode('.', $fileName);
+                        $ext = end($fileNameParts);
+                        if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/accesso_atti/'.$rowVTABI['uploadTitoloDichiarato'])){
+                            if( $ext == "pdf"){
+                                $returnText .= "<a href='./uploads/accesso_atti/".$rowVTABI['uploadTitoloDichiarato']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Documentazione comprovante il titolo dichiarato' title='Documentazione comprovante il titolo dichiarato' class='thumb-view' /></a>";
+                            }else{
+                                $returnText .= "<a href='./uploads/accesso_atti/".$rowVTABI['uploadTitoloDichiarato']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Documentazione comprovante il titolo dichiarato' title='Documentazione comprovante il titolo dichiarato' class='thumb-view' /></a>";
+                            }
+                        }
+                    }
+                    
+                    /* uploadAffittuario */
+                    if($rowVTABI['uploadAffittuario'] != "" || $rowVTABI['uploadAffittuario'] != NULL){
+                        $fileName = $rowVTABI['uploadAffittuario'];
+                        $fileNameParts = explode('.', $fileName);
+                        $ext = end($fileNameParts);
+                        if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/accesso_atti/'.$rowVTABI['uploadAffittuario'])){
+                            if( $ext == "pdf"){
+                                $returnText .= "<a href='./uploads/accesso_atti/".$rowVTABI['uploadAffittuario']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Documentazione dichiarante che il soggetto è l'affittuario dell'immobile oggetto del procedimento' title='Documentazione dichiarante che il soggetto è l'affittuario dell'immobile oggetto del procedimento' class='thumb-view' /></a>";
+                            }else{
+                                $returnText .= "<a href='./uploads/accesso_atti/".$rowVTABI['uploadAffittuario']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Documentazione dichiarante che il soggetto è l'affittuario dell'immobile oggetto del procedimento' title='Documentazione dichiarante che il soggetto è l'affittuario dell'immobile oggetto del procedimento' class='thumb-view' /></a>";
+                            }
+                        }
+                    }
+
+                    /* uploadAltroSoggetto */
+                    if($rowVTABI['uploadAltroSoggetto'] != "" || $rowVTABI['uploadAltroSoggetto'] != NULL){
+                        $fileName = $rowVTABI['uploadAltroSoggetto'];
+                        $fileNameParts = explode('.', $fileName);
+                        $ext = end($fileNameParts);
+                        if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/accesso_atti/'.$rowVTABI['uploadAltroSoggetto'])){
+                            if( $ext == "pdf"){
+                                $returnText .= "<a href='./uploads/accesso_atti/".$rowVTABI['uploadAltroSoggetto']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Documentazione comprovante il titolo di 'Altro soggetto'' title='Documentazione comprovante il titolo di 'Altro soggetto'' class='thumb-view' /></a>";
+                            }else{
+                                $returnText .= "<a href='./uploads/accesso_atti/".$rowVTABI['uploadAltroSoggetto']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Documentazione comprovante il titolo di 'Altro soggetto'' title='Documentazione comprovante il titolo di 'Altro soggetto'' class='thumb-view' /></a>";
+                            }
+                        }
+                    }
+
+                    /* uploadNotaioRogante */
+                    if($rowVTABI['uploadNotaioRogante'] != "" || $rowVTABI['uploadNotaioRogante'] != NULL){
+                        $fileName = $rowVTABI['uploadNotaioRogante'];
+                        $fileNameParts = explode('.', $fileName);
+                        $ext = end($fileNameParts);
+                        if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/accesso_atti/'.$rowVTABI['uploadNotaioRogante'])){
+                            if( $ext == "pdf"){
+                                $returnText .= "<a href='./uploads/accesso_atti/".$rowVTABI['uploadNotaioRogante']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Documentazione comprovante il titolo dichiarato di 'notaio rogante'' title='Documentazione comprovante il titolo dichiarato di 'notaio rogante'' class='thumb-view' /></a>";
+                            }else{
+                                $returnText .= "<a href='./uploads/accesso_atti/".$rowVTABI['uploadNotaioRogante']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Documentazione comprovante il titolo dichiarato di 'notaio rogante'' title='Documentazione comprovante il titolo dichiarato di 'notaio rogante'' class='thumb-view' /></a>";
+                            }
+                        }
+                    }
+                    
+                    /* uploadAltriTitoloDescrizione */
+                    if($rowVTABI['uploadAltriTitoloDescrizione'] != "" || $rowVTABI['uploadAltriTitoloDescrizione'] != NULL){
+                        $fileName = $rowVTABI['uploadAltriTitoloDescrizione'];
+                        $fileNameParts = explode('.', $fileName);
+                        $ext = end($fileNameParts);
+                        if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/accesso_atti/'.$rowVTABI['uploadAltriTitoloDescrizione'])){
+                            if( $ext == "pdf"){
+                                $returnText .= "<a href='./uploads/accesso_atti/".$rowVTABI['uploadAltriTitoloDescrizione']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Documentazione comprovante il titolo dichiarato di 'altro titolo -> descrizione titolo'' title='Documentazione comprovante il titolo dichiarato di 'altro titolo -> descrizione titolo'' class='thumb-view' /></a>";
+                            }else{
+                                $returnText .= "<a href='./uploads/accesso_atti/".$rowVTABI['uploadAltriTitoloDescrizione']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Documentazione comprovante il titolo dichiarato di 'altro titolo -> descrizione titolo'' title='Documentazione comprovante il titolo dichiarato di 'altro titolo -> descrizione titolo'' class='thumb-view' /></a>";
+                            }
+                        }
+                    }
+                    
+                    /* uploadCartaIdentitaFronte*/
+                    if($rowVTABI['uploadCartaIdentitaFronte'] != "" || $rowVTABI['uploadCartaIdentitaFronte'] != NULL){
+                        $fileName = $rowVTABI['uploadCartaIdentitaFronte'];
+                        $fileNameParts = explode('.', $fileName);
+                        $ext = end($fileNameParts);
+                        if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/accesso_atti/'.$rowVTABI['uploadCartaIdentitaFronte'])){
+                            if( $ext == "pdf"){
+                                $returnText .= "<a href='./uploads/accesso_atti/".$rowVTABI['uploadCartaIdentitaFronte']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Carta Identita Fronte' title='Carta Identita Fronte' class='thumb-view' /></a>";
+                            }else{
+                                $returnText .= "<a href='./uploads/accesso_atti/".$rowVTABI['uploadCartaIdentitaFronte']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Carta Identita Fronte' title='Carta Identita Fronte' class='thumb-view' /></a>";
+                            }
+                        }
+                    }
+                    
+                    /* uploadCartaIdentitaRetro */
+                    if($rowVTABI['uploadCartaIdentitaRetro'] != "" || $rowVTABI['uploadCartaIdentitaRetro'] != NULL){
+                        $fileName = $rowVTABI['uploadCartaIdentitaRetro'];
+                        $fileNameParts = explode('.', $fileName);
+                        $ext = end($fileNameParts);
+                        if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/accesso_atti/'.$rowVTABI['uploadCartaIdentitaRetro'])){
+                            if( $ext == "pdf"){
+                                $returnText .= "<a href='./uploads/accesso_atti/".$rowVTABI['uploadCartaIdentitaRetro']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Carta Identita Retro' title='Carta Identita Retro' class='thumb-view' /></a>";
+                            }else{
+                                $returnText .= "<a href='./uploads/accesso_atti/".$rowVTABI['uploadCartaIdentitaRetro']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Carta Identita Retro' title='Carta Identita Retro' class='thumb-view' /></a>";
+                            }
+                        }
+                    }
+
+                    /* uploadAttoNotarile */
+                    if($rowVTABI['uploadAttoNotarile'] != "" || $rowVTABI['uploadAttoNotarile'] != NULL){
+                        $fileName = $rowVTABI['uploadAttoNotarile'];
+                        $fileNameParts = explode('.', $fileName);
+                        $ext = end($fileNameParts);
+                        if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/accesso_atti/'.$rowVTABI['uploadAttoNotarile'])){
+                            if( $ext == "pdf"){
+                                $returnText .= "<a href='./uploads/accesso_atti/".$rowVTABI['uploadAttoNotarile']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Atto notarile con il quale è stata conferita la procura' title='Atto notarile con il quale è stata conferita la procura' class='thumb-view' /></a>";
+                            }else{
+                                $returnText .= "<a href='./uploads/accesso_atti/".$rowVTABI['uploadAttoNotarile']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Atto notarile con il quale è stata conferita la procura' title='Atto notarile con il quale è stata conferita la procura' class='thumb-view' /></a>";
+                            }
+                        }
+                    }
+                }
+                
+                return $returnText;
+            }
+            $connessioneVTABI->close();
+            break;
         case 9: 
             /* assegno_maternita */
             $connessioneVTABI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
@@ -327,9 +458,9 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                         $ext = end($fileNameParts);
                         if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/assegno_maternita/'.$rowVTABI['uploadCartaIdentitaFronte'])){
                             if( $ext == "pdf"){
-                                $returnText .= "<a href='./uploads/assegno_maternita/".$rowVTABI['uploadCartaIdentitaFronte']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Carta Identita Fronte' title='Carta Identita Fronte'/></a>";
+                                $returnText .= "<a href='./uploads/assegno_maternita/".$rowVTABI['uploadCartaIdentitaFronte']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Carta Identita Fronte' title='Carta Identita Fronte' class='thumb-view' /></a>";
                             }else{
-                                $returnText .= "<a href='./uploads/assegno_maternita/".$rowVTABI['uploadCartaIdentitaFronte']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Carta Identita Fronte' title='Carta Identita Fronte'/></a>";
+                                $returnText .= "<a href='./uploads/assegno_maternita/".$rowVTABI['uploadCartaIdentitaFronte']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Carta Identita Fronte' title='Carta Identita Fronte' class='thumb-view' /></a>";
                             }
                         }
                     }
@@ -341,9 +472,9 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                         $ext = end($fileNameParts);
                         if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/assegno_maternita/'.$rowVTABI['uploadCartaIdentitaRetro'])){
                             if( $ext == "pdf"){
-                                $returnText .= "<a href='./uploads/assegno_maternita/".$rowVTABI['uploadCartaIdentitaRetro']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Carta Identita Retro' title='Carta Identita Retro'/></a>";
+                                $returnText .= "<a href='./uploads/assegno_maternita/".$rowVTABI['uploadCartaIdentitaRetro']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Carta Identita Retro' title='Carta Identita Retro' class='thumb-view' /></a>";
                             }else{
-                                $returnText .= "<a href='./uploads/assegno_maternita/".$rowVTABI['uploadCartaIdentitaRetro']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Carta Identita Retro' title='Carta Identita Retro'/></a>";
+                                $returnText .= "<a href='./uploads/assegno_maternita/".$rowVTABI['uploadCartaIdentitaRetro']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Carta Identita Retro' title='Carta Identita Retro' class='thumb-view' /></a>";
                             }
                         }
                     }
@@ -355,9 +486,9 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                         $ext = end($fileNameParts);
                         if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/assegno_maternita/'.$rowVTABI['uploadTitoloSoggiorno'])){
                             if( $ext == "pdf"){
-                                $returnText .= "<a href='./uploads/assegno_maternita/".$rowVTABI['uploadTitoloSoggiorno']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Titolo di Soggiorno' title='Titolo di Soggiorno'/></a>";
+                                $returnText .= "<a href='./uploads/assegno_maternita/".$rowVTABI['uploadTitoloSoggiorno']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Titolo di Soggiorno' title='Titolo di Soggiorno' class='thumb-view' /></a>";
                             }else{
-                                $returnText .= "<a href='./uploads/assegno_maternita/".$rowVTABI['uploadTitoloSoggiorno']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Titolo di Soggiorno' title='Titolo di Soggiorno'/></a>";
+                                $returnText .= "<a href='./uploads/assegno_maternita/".$rowVTABI['uploadTitoloSoggiorno']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Titolo di Soggiorno' title='Titolo di Soggiorno' class='thumb-view' /></a>";
                             }
                         }
                     }
@@ -369,9 +500,9 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                         $ext = end($fileNameParts);
                         if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/assegno_maternita/'.$rowVTABI['uploadDichiarazioneDatoreLavoro'])){
                             if( $ext == "pdf"){
-                                $returnText .= "<a href='./uploads/assegno_maternita/".$rowVTABI['uploadDichiarazioneDatoreLavoro']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Dichiarazione del Datore di Lavoro' title='Dichiarazione del Datore di Lavoro'/></a>";
+                                $returnText .= "<a href='./uploads/assegno_maternita/".$rowVTABI['uploadDichiarazioneDatoreLavoro']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Dichiarazione del Datore di Lavoro' title='Dichiarazione del Datore di Lavoro' class='thumb-view' /></a>";
                             }else{
-                                $returnText .= "<a href='./uploads/assegno_maternita/".$rowVTABI['uploadDichiarazioneDatoreLavoro']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Dichiarazione del Datore di Lavoro' title='Dichiarazione del Datore di Lavoro'/></a>";
+                                $returnText .= "<a href='./uploads/assegno_maternita/".$rowVTABI['uploadDichiarazioneDatoreLavoro']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Dichiarazione del Datore di Lavoro' title='Dichiarazione del Datore di Lavoro' class='thumb-view' /></a>";
                             }
                         }
                     }
@@ -398,9 +529,9 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                         $ext = end($fileNameParts);
                         if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/domanda_contributo/'.$rowVTABI['uploadPotereFirma'])){
                             if( $ext == "pdf"){
-                                $returnText .= "<a href='./uploads/domanda_contributo/".$rowVTABI['uploadPotereFirma']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Potere di Firma' title='Potere di Firma'/></a>";
+                                $returnText .= "<a href='./uploads/domanda_contributo/".$rowVTABI['uploadPotereFirma']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Potere di Firma' title='Potere di Firma' class='thumb-view' /></a>";
                             }else{
-                                $returnText .= "<a href='./uploads/domanda_contributo/".$rowVTABI['uploadPotereFirma']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Potere di Firma' title='Potere di Firma'/></a>";
+                                $returnText .= "<a href='./uploads/domanda_contributo/".$rowVTABI['uploadPotereFirma']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Potere di Firma' title='Potere di Firma' class='thumb-view' /></a>";
                             }
                         }
                     }
@@ -416,9 +547,9 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                             
                             if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/domanda_contributo/'.$tmpUploadDocumentazione)){
                                 if( $ext == "pdf"){
-                                    $returnText .="<a href='./uploads/domanda_contributo/".$tmpUploadDocumentazione."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Documentazione' title='Documentazione'/></a>";
+                                    $returnText .="<a href='./uploads/domanda_contributo/".$tmpUploadDocumentazione."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Documentazione' title='Documentazione' class='thumb-view' /></a>";
                                 }else{
-                                    $returnText .="<a href='./uploads/domanda_contributo/".$tmpUploadDocumentazione."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Documentazione' title='Documentazione'/></a>";
+                                    $returnText .="<a href='./uploads/domanda_contributo/".$tmpUploadDocumentazione."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Documentazione' title='Documentazione' class='thumb-view' /></a>";
                                 }
                             }
                         }
@@ -445,9 +576,9 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                         $ext = end($fileNameParts);
                         if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/partecipazione_concorso/'.$rowVTABI['uploadCartaIdentitaFronte'])){
                             if( $ext == "pdf"){
-                                $returnText .= "<a href='./uploads/partecipazione_concorso/".$rowVTABI['uploadCartaIdentitaFronte']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Carta Identita Fronte' title='Carta Identita Fronte'/></a>";
+                                $returnText .= "<a href='./uploads/partecipazione_concorso/".$rowVTABI['uploadCartaIdentitaFronte']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Carta Identita Fronte' title='Carta Identita Fronte' class='thumb-view' /></a>";
                             }else{
-                                $returnText .= "<a href='./uploads/partecipazione_concorso/".$rowVTABI['uploadCartaIdentitaFronte']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Carta Identita Fronte' title='Carta Identita Fronte'/></a>";
+                                $returnText .= "<a href='./uploads/partecipazione_concorso/".$rowVTABI['uploadCartaIdentitaFronte']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Carta Identita Fronte' title='Carta Identita Fronte' class='thumb-view' /></a>";
                             }
                         }
                     }
@@ -459,9 +590,9 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                         $ext = end($fileNameParts);
                         if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/partecipazione_concorso/'.$rowVTABI['uploadCartaIdentitaRetro'])){
                             if( $ext == "pdf"){
-                                $returnText .= "<a href='./uploads/partecipazione_concorso/".$rowVTABI['uploadCartaIdentitaRetro']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Carta Identita Retro' title='Carta Identita Retro'/></a>";
+                                $returnText .= "<a href='./uploads/partecipazione_concorso/".$rowVTABI['uploadCartaIdentitaRetro']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Carta Identita Retro' title='Carta Identita Retro' class='thumb-view' /></a>";
                             }else{
-                                $returnText .= "<a href='./uploads/partecipazione_concorso/".$rowVTABI['uploadCartaIdentitaRetro']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Carta Identita Retro' title='Carta Identita Retro'/></a>";
+                                $returnText .= "<a href='./uploads/partecipazione_concorso/".$rowVTABI['uploadCartaIdentitaRetro']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Carta Identita Retro' title='Carta Identita Retro' class='thumb-view' /></a>";
                             }
                         }
                     }
@@ -473,9 +604,9 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                         $ext = end($fileNameParts);
                         if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/partecipazione_concorso/'.$rowVTABI['uploadCV'])){
                             if( $ext == "pdf"){
-                                $returnText .= "<a href='./uploads/partecipazione_concorso/".$rowVTABI['uploadCV']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Curriculum Vitae' title='Curriculum Vitae'/></a>";
+                                $returnText .= "<a href='./uploads/partecipazione_concorso/".$rowVTABI['uploadCV']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Curriculum Vitae' title='Curriculum Vitae' class='thumb-view' /></a>";
                             }else{
-                                $returnText .= "<a href='./uploads/partecipazione_concorso/".$rowVTABI['uploadCV']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Curriculum Vitae' title='Curriculum Vitae'/></a>";
+                                $returnText .= "<a href='./uploads/partecipazione_concorso/".$rowVTABI['uploadCV']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Curriculum Vitae' title='Curriculum Vitae' class='thumb-view' /></a>";
                             }
                         }
                     }
@@ -491,9 +622,9 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                             
                             if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/partecipazione_concorso/'.$tmpUploadTitoliPreferenza)){
                                 if( $ext == "pdf"){
-                                    $returnText .="<a href='./uploads/partecipazione_concorso/".$tmpUploadTitoliPreferenza."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Titoli di Preferenza' title='Titoli di Preferenza'/></a>";
+                                    $returnText .="<a href='./uploads/partecipazione_concorso/".$tmpUploadTitoliPreferenza."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Titoli di Preferenza' title='Titoli di Preferenza' class='thumb-view' /></a>";
                                 }else{
-                                    $returnText .="<a href='./uploads/partecipazione_concorso/".$tmpUploadTitoliPreferenza."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Titoli di Preferenza' title='Titoli di Preferenza'/></a>";
+                                    $returnText .="<a href='./uploads/partecipazione_concorso/".$tmpUploadTitoliPreferenza."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Titoli di Preferenza' title='Titoli di Preferenza' class='thumb-view' /></a>";
                                 }
                             }
                         }
@@ -511,6 +642,25 @@ function DownloadRicevutaById($ServizioId,$PraticaId){
     $configDB = require './env/config.php';
     
     switch($ServizioId) {
+        case 6:
+            /* accesso_atti */
+            $connessioneDRBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+            $sqlVTABI = "SELECT status_id FROM accesso_atti WHERE id = ". $PraticaId;
+            $resultDRBI = $connessioneDRBI->query($sqlVTABI);
+            if ($resultDRBI->num_rows > 0) {
+                while($rowDRBI = $resultDRBI->fetch_assoc()) {
+                    if($rowDRBI['status_id'] > 1){
+                        return '
+                        <form action="./lib/tcpdf/TCPDF-master/examples/aa_pdf_pratica.php" method="POST" id="aa_frm_download_pdf" name="aa_frm_download_pdf" style="display: inline;">
+                            <input type="hidden" name="aa_download_pdf_id" id="aa_download_pdf_id" value="'.$PraticaId.'" />
+                            <input type="hidden" name="aa_download_pdf_pratica" id="aa_download_pdf_pratica" value="'.NumeroPraticaById($ServizioId,$PraticaId).'" />
+                            <input type="image" name="submit" src="./media/images/icons/pdf.png" alt="Ricevuta" title="Ricevuta" border="0" alt="Submit" class="thumb-view" />
+                        </form>';
+                    }
+                }
+            }
+            $connessioneDRBI->close();
+            break;
         case 9: 
             /* assegno_maternita */
             $connessioneDRBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
@@ -520,10 +670,10 @@ function DownloadRicevutaById($ServizioId,$PraticaId){
                 while($rowDRBI = $resultDRBI->fetch_assoc()) {
                     if($rowDRBI['status_id'] > 1){
                         return '
-                        <form action="./lib/tcpdf/TCPDF-master/examples/am_pdf_pratica.php" method="POST" id="am_frm_download_pdf" name="am_frm_download_pdf">
+                        <form action="./lib/tcpdf/TCPDF-master/examples/am_pdf_pratica.php" method="POST" id="am_frm_download_pdf" name="am_frm_download_pdf" style="display: inline;">
                             <input type="hidden" name="am_download_pdf_id" id="am_download_pdf_id" value="'.$PraticaId.'" />
                             <input type="hidden" name="am_download_pdf_pratica" id="am_download_pdf_pratica" value="'.NumeroPraticaById($ServizioId,$PraticaId).'" />
-                            <input type="image" name="submit" src="./media/images/icons/pdf.png" alt="Ricevuta" title="Ricevuta" border="0" alt="Submit" />
+                            <input type="image" name="submit" src="./media/images/icons/pdf.png" alt="Ricevuta" title="Ricevuta" border="0" alt="Submit" class="thumb-view" />
                         </form>';
                     }
                 }
@@ -539,10 +689,10 @@ function DownloadRicevutaById($ServizioId,$PraticaId){
                 while($rowDRBI = $resultDRBI->fetch_assoc()) {
                     if($rowDRBI['status_id'] > 1){
                         return '
-                        <form action="./lib/tcpdf/TCPDF-master/examples/dc_pdf_pratica.php" method="POST" id="dc_frm_download_pdf" name="dc_frm_download_pdf">
+                        <form action="./lib/tcpdf/TCPDF-master/examples/dc_pdf_pratica.php" method="POST" id="dc_frm_download_pdf" name="dc_frm_download_pdf" style="display: inline;">
                             <input type="hidden" name="dc_download_pdf_id" id="dc_download_pdf_id" value="'.$PraticaId.'" />
                             <input type="hidden" name="dc_download_pdf_pratica" id="dc_download_pdf_pratica" value="'.NumeroPraticaById($ServizioId,$PraticaId).'" />
-                            <input type="image" name="submit" src="./media/images/icons/pdf.png" alt="Ricevuta" title="Ricevuta" border="0" alt="Submit" />
+                            <input type="image" name="submit" src="./media/images/icons/pdf.png" alt="Ricevuta" title="Ricevuta" border="0" alt="Submit" class="thumb-view" />
                         </form>';
                     }
                 }
@@ -558,10 +708,10 @@ function DownloadRicevutaById($ServizioId,$PraticaId){
                 while($rowDRBI = $resultDRBI->fetch_assoc()) {
                     if($rowDRBI['status_id'] > 1){
                         return '
-                        <form action="./lib/tcpdf/TCPDF-master/examples/pc_pdf_pratica.php" method="POST" id="pc_frm_download_pdf" name="pc_frm_download_pdf">
+                        <form action="./lib/tcpdf/TCPDF-master/examples/pc_pdf_pratica.php" method="POST" id="pc_frm_download_pdf" name="pc_frm_download_pdf" style="display: inline;">
                             <input type="hidden" name="pc_download_pdf_id" id="pc_download_pdf_id" value="'.$PraticaId.'" />
                             <input type="hidden" name="pc_download_pdf_pratica" id="pc_download_pdf_pratica" value="'.NumeroPraticaById($ServizioId,$PraticaId).'" />
-                            <input type="image" name="submit" src="./media/images/icons/pdf.png" alt="Ricevuta" title="Ricevuta" border="0" alt="Submit" />
+                            <input type="image" name="submit" src="./media/images/icons/pdf.png" alt="Ricevuta" title="Ricevuta" border="0" alt="Submit" class="thumb-view" />
                         </form>';
                     }
                 }
@@ -575,6 +725,20 @@ function DownloadPraticaById($ServizioId,$PraticaId){
     $configDB = require './env/config.php';
     
     switch($ServizioId) {
+        case 6:
+            /* accesso_atti */
+            $connessioneDRBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+            $sqlVTABI = "SELECT NumeroPratica FROM accesso_atti WHERE id = ". $PraticaId ." AND status_id > 1";
+            $resultDRBI = $connessioneDRBI->query($sqlVTABI);
+            if ($resultDRBI->num_rows > 0) {
+                while($rowDRBI = $resultDRBI->fetch_assoc()) {
+                    if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/pratiche/'.$rowDRBI['NumeroPratica'].'.pdf')){
+                        return "<a href='./uploads/pratiche/".$rowDRBI['NumeroPratica'].".pdf' target='_blank'><img src='./media/images/icons/pdf.png' alt='Pratica' title='Pratica' class='thumb-view' /></a>";
+                    }
+                }
+            }
+            $connessioneDRBI->close();
+            break;
         case 9: 
             /* assegno_maternita */
             $connessioneDRBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
@@ -583,7 +747,7 @@ function DownloadPraticaById($ServizioId,$PraticaId){
             if ($resultDRBI->num_rows > 0) {
                 while($rowDRBI = $resultDRBI->fetch_assoc()) {
                     if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/pratiche/'.$rowDRBI['NumeroPratica'].'.pdf')){
-                        return "<a href='./uploads/pratiche/".$rowDRBI['NumeroPratica'].".pdf' target='_blank'><img src='./media/images/icons/pdf.png' alt='Pratica' title='Pratica' /></a>";
+                        return "<a href='./uploads/pratiche/".$rowDRBI['NumeroPratica'].".pdf' target='_blank'><img src='./media/images/icons/pdf.png' alt='Pratica' title='Pratica' class='thumb-view' /></a>";
                     }
                 }
             }
@@ -597,7 +761,7 @@ function DownloadPraticaById($ServizioId,$PraticaId){
             if ($resultDRBI->num_rows > 0) {
                 while($rowDRBI = $resultDRBI->fetch_assoc()) {
                     if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/pratiche/'.$rowDRBI['NumeroPratica'].'.pdf')){
-                        return "<a href='./uploads/pratiche/".$rowDRBI['NumeroPratica'].".pdf' target='_blank'><img src='./media/images/icons/pdf.png' alt='Pratica' title='Pratica' /></a>";
+                        return "<a href='./uploads/pratiche/".$rowDRBI['NumeroPratica'].".pdf' target='_blank'><img src='./media/images/icons/pdf.png' alt='Pratica' title='Pratica' class='thumb-view' /></a>";
                     }
                 }
             }
@@ -611,7 +775,7 @@ function DownloadPraticaById($ServizioId,$PraticaId){
             if ($resultDRBI->num_rows > 0) {
                 while($rowDRBI = $resultDRBI->fetch_assoc()) {
                     if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/pratiche/'.$rowDRBI['NumeroPratica'].'.pdf')){
-                        return "<a href='./uploads/pratiche/".$rowDRBI['NumeroPratica'].".pdf' target='_blank'><img src='./media/images/icons/pdf.png' alt='Pratica' title='Pratica' /></a>";
+                        return "<a href='./uploads/pratiche/".$rowDRBI['NumeroPratica'].".pdf' target='_blank'><img src='./media/images/icons/pdf.png' alt='Pratica' title='Pratica' class='thumb-view' /></a>";
                     }
                 }
             }
@@ -645,4 +809,27 @@ function GetDataScadenzaConcorsoById($PraticaId){
         }
     }
     $connessioneGDSCBI->close();
+}
+
+function LoadSelectUfficioDestinatario($ufficioDestinatarioId){
+    $configDB = require '../env/config.php';
+    $txtOption = "";
+    $connessioneLSUD = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sqlLSUD = "SELECT * FROM uffici";
+    $resultLSUD = $connessioneLSUD->query($sqlLSUD);    
+    if ($resultLSUD->num_rows > 0) {
+        while($rowLSUD = $resultLSUD->fetch_assoc()) {
+            $Nome = $rowLSUD["Nome"];
+            $Id = $rowLSUD["Id"];
+            
+            $txtOption = "<option value='" . $Id . "'";
+            if($Id == $ufficioDestinatarioId){
+                $txtOption .= " selected";
+            }
+            $txtOption .= ">" . $Nome . "</option>";
+        }
+    }
+    $connessioneLSUD->close();
+    
+    return $txtOption;
 }
