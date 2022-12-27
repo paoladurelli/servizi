@@ -272,15 +272,10 @@ label{
     margin-top: 20px;  
 }
 
-#dc_frm_dati_pnl_return li a{
-    text-decoration: none;
-    color: #f46007;
-}
-#am_frm_dati_pnl_return li a{
-    text-decoration: none;
-    color: #f46007;
-}
-#pc_frm_dati_pnl_return li a{
+#dc_frm_dati_pnl_return li a,
+#am_frm_dati_pnl_return li a,
+#pc_frm_dati_pnl_return li a,
+#aa_frm_dati_pnl_return li a{
     text-decoration: none;
     color: #f46007;
 }

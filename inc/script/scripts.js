@@ -1469,6 +1469,586 @@ $(document).ready(function () {
     });
 
     /* END pc_ partecipazione_concorso */
+    
+    /* START aa_ accesso_atti */
+    
+    /* visualizza o nascondi aa_opt_richiedenteTitoloRI */
+    $("#aa_opt_richiedenteTitoloRI").hide();
+    $("#aa_pnl_uploadAffittuario").hide();
+    $("#aa_pnl_uploadNotaioRogante").hide();
+    $("#aa_pnl_uploadAltroSoggetto").hide();
+    $("#aa_pnl_uploadAltriTitoloDescrizione").hide();
+    $("#aa_pnl_uploadAttoNotarile").hide();
+    $('input[type=radio][name=aa_richiedenteTitolo]').change(function() {
+        var richiedenteTitolo = this.value;
+        switch (richiedenteTitolo) { 
+            case 'AI': 
+                $("#aa_opt_richiedenteTitoloRI").hide(200);
+                $("#aa_pnl_uploadAffittuario").show(300);
+                $("#aa_pnl_uploadAltriTitoloDescrizione").hide();
+                break;
+            case 'NR': 
+                $("#aa_opt_richiedenteTitoloRI").hide(200);
+                $("#aa_pnl_uploadAffittuario").hide(200);
+                $("#aa_pnl_uploadNotaioRogante").show(300);
+                $("#aa_pnl_uploadAltriTitoloDescrizione").hide();
+                break;
+            case 'AT': 
+                $("#aa_opt_richiedenteTitoloRI").hide(200);
+                $("#aa_pnl_uploadAffittuario").hide(200);
+                $("#aa_pnl_uploadNotaioRogante").hide(200);
+                $("#aa_pnl_uploadAltriTitoloDescrizione").show(300);
+                break;		
+            case 'RI': 
+                $("#aa_opt_richiedenteTitoloRI").show(300);
+                $("#aa_pnl_uploadAffittuario").hide(200);
+                $("#aa_pnl_uploadNotaioRogante").hide(200);
+                $("#aa_pnl_uploadAltriTitoloDescrizione").hide(200);
+                break;
+            default:
+                $("#aa_opt_richiedenteTitoloRI").hide(200);
+                $("#aa_pnl_uploadAffittuario").hide(200);
+                $("#aa_pnl_uploadNotaioRogante").hide(200);
+                $("#aa_pnl_uploadAltriTitoloDescrizione").hide(200);
+        }
+    });
+    
+    /* script inerenti gli upload dei documenti */
+    $('#aa_uploadCartaIdentitaFronte').change(function(e) {
+        $('#aa_uploadCartaIdentitaFronte_file').empty();
+        let fileName = e.target.files[0].name;
+        var _size = e.target.files[0].size;
+        var maxFileSize = 500;
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'pdf'];
+        var checkSize = parseFloat(_size / 1024).toFixed(2);
+         //Check if the file size is less than maximum file size
+        if (checkSize < maxFileSize) {
+            var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
+            i=0;while(_size>900){_size/=1024;i++;}
+            var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
+            let fileSize = exactSize;
+
+            if ($.inArray(fileName.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Formati accettati : "+fileExtension.join(', '));
+            }else{
+                $('#aa_uploadCartaIdentitaFronte_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+                return true;
+            }
+        } else {
+             alert('Il file deve pesare al massimo 500 Kb');
+             $('#aa_uploadCartaIdentitaFronte').val('');
+             return false;
+        }        
+    });
+    $('#aa_uploadCartaIdentitaRetro').change(function(e) {
+        $('#aa_uploadCartaIdentitaRetro_file').empty();
+        let fileName = e.target.files[0].name;
+        var _size = e.target.files[0].size;
+        var maxFileSize = 500;
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'pdf'];
+        var checkSize = parseFloat(_size / 1024).toFixed(2);
+         //Check if the file size is less than maximum file size
+        if (checkSize < maxFileSize) {
+            var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
+            i=0;while(_size>900){_size/=1024;i++;}
+            var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
+            let fileSize = exactSize;
+
+            if ($.inArray(fileName.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Formati accettati : "+fileExtension.join(', '));
+            }else{
+                $('#aa_uploadCartaIdentitaRetro_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+                return true;
+            }
+        } else {
+             alert('Il file deve pesare al massimo 500 Kb');
+             $('#aa_uploadCartaIdentitaRetro').val('');
+             return false;
+        }        
+    });
+    $('#aa_uploadAffittuario').change(function(e) {
+        $('#aa_uploadAffittuario_file').empty();
+        let fileName = e.target.files[0].name;
+        var _size = e.target.files[0].size;
+        var maxFileSize = 500;
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'pdf'];
+        var checkSize = parseFloat(_size / 1024).toFixed(2);
+         //Check if the file size is less than maximum file size
+        if (checkSize < maxFileSize) {
+            var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
+            i=0;while(_size>900){_size/=1024;i++;}
+            var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
+            let fileSize = exactSize;
+
+            if ($.inArray(fileName.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Formati accettati : "+fileExtension.join(', '));
+            }else{
+                $('#aa_uploadAffittuario_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+                return true;
+            }
+        } else {
+             alert('Il file deve pesare al massimo 500 Kb');
+             $('#aa_uploadAffittuario').val('');
+             return false;
+        }        
+    });    
+    $('#aa_uploadAltroSoggetto').change(function(e) {
+        $('#aa_uploadAltroSoggetto_file').empty();
+        let fileName = e.target.files[0].name;
+        var _size = e.target.files[0].size;
+        var maxFileSize = 500;
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'pdf'];
+        var checkSize = parseFloat(_size / 1024).toFixed(2);
+         //Check if the file size is less than maximum file size
+        if (checkSize < maxFileSize) {
+            var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
+            i=0;while(_size>900){_size/=1024;i++;}
+            var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
+            let fileSize = exactSize;
+
+            if ($.inArray(fileName.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Formati accettati : "+fileExtension.join(', '));
+            }else{
+                $('#aa_uploadAltroSoggetto_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+                return true;
+            }
+        } else {
+             alert('Il file deve pesare al massimo 500 Kb');
+             $('#aa_uploadAltroSoggetto').val('');
+             return false;
+        }        
+    });    
+    $('#aa_uploadNotaioRogante').change(function(e) {
+        $('#aa_uploadNotaioRogante_file').empty();
+        let fileName = e.target.files[0].name;
+        var _size = e.target.files[0].size;
+        var maxFileSize = 500;
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'pdf'];
+        var checkSize = parseFloat(_size / 1024).toFixed(2);
+         //Check if the file size is less than maximum file size
+        if (checkSize < maxFileSize) {
+            var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
+            i=0;while(_size>900){_size/=1024;i++;}
+            var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
+            let fileSize = exactSize;
+
+            if ($.inArray(fileName.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Formati accettati : "+fileExtension.join(', '));
+            }else{
+                $('#aa_uploadNotaioRogante_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+                return true;
+            }
+        } else {
+             alert('Il file deve pesare al massimo 500 Kb');
+             $('#aa_uploadNotaioRogante').val('');
+             return false;
+        }        
+    });    
+    $('#aa_uploadAltriTitoloDescrizione').change(function(e) {
+        $('#aa_uploadAltriTitoloDescrizione_file').empty();
+        let fileName = e.target.files[0].name;
+        var _size = e.target.files[0].size;
+        var maxFileSize = 500;
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'pdf'];
+        var checkSize = parseFloat(_size / 1024).toFixed(2);
+         //Check if the file size is less than maximum file size
+        if (checkSize < maxFileSize) {
+            var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
+            i=0;while(_size>900){_size/=1024;i++;}
+            var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
+            let fileSize = exactSize;
+
+            if ($.inArray(fileName.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Formati accettati : "+fileExtension.join(', '));
+            }else{
+                $('#aa_uploadAltriTitoloDescrizione_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+                return true;
+            }
+        } else {
+             alert('Il file deve pesare al massimo 500 Kb');
+             $('#aa_uploadAltriTitoloDescrizione').val('');
+             return false;
+        }        
+    });    
+    $('#aa_uploadAttoNotarile').change(function(e) {
+        $('#aa_uploadAttoNotarile_file').empty();
+        let fileName = e.target.files[0].name;
+        var _size = e.target.files[0].size;
+        var maxFileSize = 500;
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'pdf'];
+        var checkSize = parseFloat(_size / 1024).toFixed(2);
+         //Check if the file size is less than maximum file size
+        if (checkSize < maxFileSize) {
+            var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
+            i=0;while(_size>900){_size/=1024;i++;}
+            var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
+            let fileSize = exactSize;
+
+            if ($.inArray(fileName.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Formati accettati : "+fileExtension.join(', '));
+            }else{
+                $('#aa_uploadAttoNotarile_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+                return true;
+            }
+        } else {
+             alert('Il file deve pesare al massimo 500 Kb');
+             $('#aa_uploadAttoNotarile').val('');
+             return false;
+        }        
+    });
+    
+    /* script inerenti le tre action del form principale */
+    $('#aa_btn_back').click(function(){
+        window.location.href = 'index.php';
+    });
+    $('#aa_salva_richiesta_btn_save').click(function(){
+        $('#SalvaRichiestaModal').modal('toggle');
+        
+        var form = $('#aa_frm_dati');
+        var disabled = form.find(':input:disabled').removeAttr('disabled');
+        formData = new FormData();
+        formParams = form.serializeArray();
+
+        $.each(form.find('input[type="file"]'), function(i, tag) {
+            $.each($(tag)[0].files, function(i, file) {
+                formData.append(tag.name, file);
+            });
+        });
+
+        $.each(formParams, function(i, val) {
+            formData.append(val.name, val.value);
+        });
+        disabled.attr('disabled','disabled');
+
+        $.ajax({
+            type: $('#aa_frm_dati').attr("method"),
+            url: "save_bozza.php",
+            data: formData,
+            dataType: "json",
+            processData: false,
+            contentType: false,
+            success: function (data)
+            {
+                window.location.href = '../attivita_list.php';
+            },
+            error: function (desc)
+            {
+                console.log(desc.responseText);
+            }
+        });
+        
+        event.preventDefault();
+    });
+    $('#aa_btn_concludi_richiesta').click(function(){
+        var form = $('#aa_frm_dati');
+        var disabled = form.find(':input:disabled').removeAttr('disabled');
+        formData = new FormData();
+        formParams = form.serializeArray();
+
+        $.each(form.find('input[type="file"]'), function(i, tag) {
+            $.each($(tag)[0].files, function(i, file) {
+                formData.append(tag.name, file);
+            });
+        });
+
+        $.each(formParams, function(i, val) {
+            formData.append(val.name, val.value);
+        });
+        disabled.attr('disabled','disabled');
+        
+        /* validazione e salvataggio come tmp */
+        $.ajax({
+            url: "save_dati.php",
+            type: $('#aa_frm_dati').attr("method"),
+            data: formData,
+            dataType: "json",
+            processData: false,
+            contentType: false
+        }).done(function (data) {
+            if (!data.success) {
+               $("#aa_frm_dati_pnl_return").empty();
+                $("#aa_frm_dati_pnl_return").append(
+                    "<div style='color: var(--bs-orange);'>ATTENZIONE</div>"
+                );
+                $("#aa_frm_dati_pnl_return").append("<div>Ci sono alcune informazioni mancanti o errate</div>");
+                $("#aa_frm_dati_pnl_return").append("<ul>");
+
+                /* script per segnalare i dati mancanti */
+                if (data.errors.dc_richiedente_nome) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.am_richiedente_nome);
+                    $("#aa_richiedente_nome").addClass("required");
+                    $("#aa_richiedente_nome_txt").addClass("required");
+                }
+                                
+                if (data.errors.am_richiedente_cognome) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.am_richiedente_cognome);
+                    $("#aa_richiedente_cognome").addClass("required");
+                    $("#aa_richiedente_cognome_txt").addClass("required");
+                }
+                
+                if (data.errors.am_richiedente_cf) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.am_richiedente_cf);
+                    $("#aa_richiedente_cf").addClass("required");
+                    $("#aa_richiedente_cf_txt").addClass("required");
+                }
+                
+                if (data.errors.am_richiedente_data_nascita) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.am_richiedente_data_nascita);
+                    $("#aa_richiedente_data_nascita").addClass("required");
+                    $("#aa_richiedente_data_nascita_txt").addClass("required");
+                }
+                
+                if (data.errors.am_richiedente_luogo_nascita) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.am_richiedente_luogo_nascita);
+                    $("#aa_richiedente_luogo_nascita").addClass("required");
+                    $("#aa_richiedente_luogo_nascita_txt").addClass("required");
+                }
+                
+                if (data.errors.am_richiedente_via) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.am_richiedente_via);
+                    $("#aa_richiedente_via").addClass("required");
+                    $("#aa_richiedente_via_txt").addClass("required");
+                }
+                
+                if (data.errors.am_richiedente_localita) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.am_richiedente_localita);
+                    $("#aa_richiedente_localita").addClass("required");
+                    $("#aa_richiedente_localita_txt").addClass("required");
+                }
+                
+                if (data.errors.am_richiedente_provincia) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.am_richiedente_provincia);
+                    $("#aa_richiedente_provincia").addClass("required");
+                    $("#aa_richiedente_provincia_txt").addClass("required");
+                }
+                
+                if (data.errors.am_richiedente_email) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.am_richiedente_email);
+                    $("#aa_richiedente_email").addClass("required");
+                    $("#aa_richiedente_email_txt").addClass("required");
+                }
+                
+                if (data.errors.am_richiedente_tel) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.am_richiedente_tel);
+                    $("#aa_richiedente_tel").addClass("required");
+                    $("#aa_richiedente_tel_txt").addClass("required");
+                }
+                
+                if (data.errors.aa_UfficioDestinatarioId) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_UfficioDestinatarioId);
+                    $("#aa_UfficioDestinatarioId").addClass("required");
+                    $("#aa_UfficioDestinatarioId_txt").addClass("required");
+                }
+                if (data.errors.aa_pgRuolo) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_pgRuolo);
+                    $("#aa_pgRuolo").addClass("required");
+                    $("#aa_pgRuolo_txt").addClass("required");
+                }                
+                if (data.errors.aa_pgDenominazione) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_pgDenominazione);
+                    $("#aa_pgDenominazione").addClass("required");
+                    $("#aa_pgDenominazione_txt").addClass("required");
+                }                
+                if (data.errors.aa_pgTipologia) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_pgTipologia);
+                    $("#aa_pgTipologia").addClass("required");
+                    $("#aa_pgTipologia_txt").addClass("required");
+                }                
+                if (data.errors.aa_pgSedeLegaleIndirizzo) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_pgSedeLegaleIndirizzo);
+                    $("#aa_pgSedeLegaleIndirizzo").addClass("required");
+                    $("#aa_pgSedeLegaleIndirizzo_txt").addClass("required");
+                }                
+                if (data.errors.aa_pgSedeLegaleLocalita) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_pgSedeLegaleLocalita);
+                    $("#aa_pgSedeLegaleLocalita").addClass("required");
+                    $("#aa_pgSedeLegaleLocalita_txt").addClass("required");
+                }                
+                if (data.errors.aa_pgSedeLegaleProvincia) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_pgSedeLegaleProvincia);
+                    $("#aa_pgSedeLegaleProvincia").addClass("required");
+                    $("#aa_pgSedeLegaleProvincia_txt").addClass("required");
+                }                
+                if (data.errors.aa_pgSedeLegaleCap) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_pgSedeLegaleCap);
+                    $("#aa_pgSedeLegaleCap").addClass("required");
+                    $("#aa_pgSedeLegaleCap_txt").addClass("required");
+                }                
+                if (data.errors.aa_pgCf) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_pgCf);
+                    $("#aa_pgCf").addClass("required");
+                    $("#aa_pgCf_txt").addClass("required");
+                }                
+                if (data.errors.aa_pgPiva) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_pgPiva);
+                    $("#aa_pgPiva").addClass("required");
+                    $("#aa_pgPiva_txt").addClass("required");
+                }                
+                if (data.errors.aa_pgTelefono) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_pgTelefono);
+                    $("#aa_pgTelefono").addClass("required");
+                    $("#aa_pgTelefono_txt").addClass("required");
+                }                
+                if (data.errors.aa_pgEmail) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_pgEmail);
+                    $("#aa_pgEmail").addClass("required");
+                    $("#aa_pgEmail_txt").addClass("required");
+                }                
+                if (data.errors.aa_pgPec) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_pgPec);
+                    $("#aa_pgPec").addClass("required");
+                    $("#aa_pgPec_txt").addClass("required");
+                }
+                if (data.errors.aa_richiedenteTitolo) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_richiedenteTitolo);
+                    $("#aa_richiedenteTitolo").addClass("required");
+                    $("#aa_richiedenteTitolo_txt").addClass("required");
+                }
+                if (data.errors.aa_uploadAffittuario) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_uploadAffittuario);
+                    $("#aa_uploadAffittuario").addClass("required");
+                    $("#aa_uploadAffittuario_txt").addClass("required");
+                }                
+                if (data.errors.aa_uploadNotaioRogante) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_uploadNotaioRogante);
+                    $("#aa_uploadNotaioRogante").addClass("required");
+                    $("#aa_uploadNotaioRogante_txt").addClass("required");
+                }                
+                if (data.errors.aa_uploadAltriTitoloDescrizione) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_uploadAltriTitoloDescrizione);
+                    $("#aa_uploadAltriTitoloDescrizione").addClass("required");
+                    $("#aa_uploadAltriTitoloDescrizione_txt").addClass("required");
+                }                
+                if (data.errors.aa_richiedenteProfessionistaIncaricatoDa) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_richiedenteProfessionistaIncaricatoDa);
+                    $("#aa_richiedenteProfessionistaIncaricatoDa").addClass("required");
+                    $("#aa_richiedenteProfessionistaIncaricatoDa_txt").addClass("required");
+                }                
+                if (data.errors.aa_richiedenteProfessionistaIncaricatoDaNome) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_richiedenteProfessionistaIncaricatoDaNome);
+                    $("#aa_richiedenteProfessionistaIncaricatoDaNome").addClass("required");
+                    $("#aa_richiedenteProfessionistaIncaricatoDaNome_txt").addClass("required");
+                }                
+                if (data.errors.aa_richiedenteProfessionistaIncaricatoDaCognome) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_richiedenteProfessionistaIncaricatoDaCognome);
+                    $("#aa_richiedenteProfessionistaIncaricatoDaCognome").addClass("required");
+                    $("#aa_richiedenteProfessionistaIncaricatoDaCognome_txt").addClass("required");
+                }                
+                if (data.errors.aa_richiedenteProfessionistaIncaricatoDaCf) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_richiedenteProfessionistaIncaricatoDaCf);
+                    $("#aa_richiedenteProfessionistaIncaricatoDaCf").addClass("required");
+                    $("#aa_richiedenteProfessionistaIncaricatoDaCf_txt").addClass("required");
+                }
+                if (data.errors.aa_richiestaTipo) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_richiestaTipo);
+                    $("#aa_richiestaTipo").addClass("required");
+                    $("#aa_richiestaTipo_txt").addClass("required");
+                }
+                if (data.errors.aa_richiestaAtti) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_richiestaAtti);
+                    $("#aa_richiestaAtti").addClass("required");
+                    $("#aa_richiestaAtti_txt").addClass("required");
+                }
+                if (data.errors.aa_motivo) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_motivo);
+                    $("#aa_motivo").addClass("required");
+                    $("#aa_motivo_txt").addClass("required");
+                }
+                if (data.errors.aa_motivoAltro) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_motivoAltro);
+                    $("#aa_motivoAltro").addClass("required");
+                    $("#aa_motivoAltro_txt").addClass("required");
+                }                
+                if (data.errors.aa_modoRitiro) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_modoRitiro);
+                    $("#aa_modoRitiro").addClass("required");
+                    $("#aa_modoRitiro_txt").addClass("required");
+                }                
+                if (data.errors.aa_modoRitiroPostaIndirizzo) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_modoRitiroPostaIndirizzo);
+                    $("#aa_modoRitiroPostaIndirizzo").addClass("required");
+                    $("#aa_modoRitiroPostaIndirizzo_txt").addClass("required");
+                }                
+                if (data.errors.aa_modoRitiroPostaLocalita) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_modoRitiroPostaLocalita);
+                    $("#aa_modoRitiroPostaLocalita").addClass("required");
+                    $("#aa_modoRitiroPostaLocalita_txt").addClass("required");
+                }                
+                if (data.errors.aa_modoRitiroPostaProvincia) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_modoRitiroPostaProvincia);
+                    $("#aa_modoRitiroPostaProvincia").addClass("required");
+                    $("#aa_modoRitiroPostaProvincia_txt").addClass("required");
+                }                
+                if (data.errors.aa_modoRitiroPostaCap) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_modoRitiroPostaCap);
+                    $("#aa_modoRitiroPostaCap").addClass("required");
+                    $("#aa_modoRitiroPostaCap_txt").addClass("required");
+                }                
+                if (data.errors.aa_uploadCartaIdentitaFronte) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_uploadCartaIdentitaFronte);
+                    $("#aa_uploadCartaIdentitaFronte").addClass("required");
+                    $("#aa_uploadCartaIdentitaFronte_txt").addClass("required");
+                }                
+                if (data.errors.aa_uploadCartaIdentitaRetro) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_uploadCartaIdentitaRetro);
+                    $("#aa_uploadCartaIdentitaRetro").addClass("required");
+                    $("#aa_uploadCartaIdentitaRetro_txt").addClass("required");
+                }                
+                $("#aa_frm_dati_pnl_return").append("</ul>");            
+                $("#aa_frm_dati_pnl_return").addClass("alert alert-warning");
+                
+                $('html, body').animate({
+                    scrollTop: $("#aa_frm_dati_pnl_return").offset().top
+                }, 2000);
+                
+            } else {
+                window.location.href = 'dichiarazioni.php?pratican=' + data.message;
+            }
+        })
+        .fail(function (data) {
+            console.log(data);
+        }); 
+
+        event.preventDefault();
+    }); 
+    $('#aa_conferma_invia').click(function(){
+        
+        $('#ElaborazioneRichiestaModal').modal('show');
+        
+        var form = $('#aa_conferma_invia');
+        formData = new FormData();
+        formParams = form.serializeArray();
+
+        $.each(formParams, function(i,val) {
+            formData.append(val.name, val.value);
+        });
+        
+        console.log(formData);
+        
+        /* prendo la pratica e inserisco il numero che genero e lo inserisco anche nella riga con status bozza */
+        $.ajax({
+            url: "save_pratica.php",
+            type: $('#aa_conferma_invia').attr("method"),
+            data: formData,
+            dataType: "json",
+            processData: false,
+            contentType: false
+        }).done(function (data) {
+            if (data.success) {
+                window.location.href = 'riepilogo.php?pratican=' + data.pratica + '&praticai=' + data.id;
+            }else{
+                console.log(data.error);
+            }
+        })
+        .fail(function (data) {
+            console.log(data);
+        }); 
+
+        event.preventDefault();
+    });
+    
+    
+    /* END aa_ accesso_atti */
 });
 
 $(function(){

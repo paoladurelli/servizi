@@ -13,7 +13,7 @@
     /* settare le variabili */
     $aa_bozza_id = "";
     $cf = "";
-    $UfficioDestinatarioId = "";
+    $UfficioDestinatarioId = 0;
     $nome = "";
     $cognome = "";
     $email = "";
@@ -83,7 +83,7 @@
     if(isset($_GET["aa_bozza_id"]) && $_GET["aa_bozza_id"]<>''){
         /* DATI ESTRAPOLATI DA DB - start */ 
         $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-        $sql = "SELECT * FROM domanda_contributo WHERE richiedenteCf = '". $_SESSION['CF']."' and id =" . $_GET["aa_bozza_id"];
+        $sql = "SELECT * FROM accesso_atti WHERE richiedenteCf = '". $_SESSION['CF']."' and id =" . $_GET["aa_bozza_id"];
         $result = $connessione->query($sql);
 
         if ($result->num_rows > 0) {
@@ -311,9 +311,11 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-lg-12">
-                                                    <p id="aa_UfficioDestinatarioId_txt">Ufficio destinatario *<br/>
+                                                    <p id="aa_UfficioDestinatarioId_txt">Ufficio destinatario *</p>
+                                                    <p>
                                                         <select id="aa_UfficioDestinatarioId" name="aa_UfficioDestinatarioId">
-                                                            <?php echo LoadSelectUfficioDestinatario($ufficioDestinatarioId); ?>
+                                                            <option value="">Seleziona Ufficio</option>
+                                                            <?php echo LoadSelectUfficioDestinatario($UfficioDestinatarioId); ?>
                                                         </select>
                                                     </p>
                                                 </div>
@@ -332,7 +334,7 @@
                                                 <p><b>Informazioni su di te</b></p>
                                             </div>
                                         </div>
-                                        <div class="card-body" style="margin-bottom:40px;">
+                                        <div class="card-body">
                                             <h5><b><?php echo $_SESSION['Nome'] . ' ' . $_SESSION['Cognome']; ?></b></h5>
                                             <p class="subtitle-small">Codice Fiscale:<br/><b><?php echo $_SESSION['CF']; ?></b></p>
                                             <div class="row">
@@ -375,7 +377,7 @@
                                                 <div class="col-lg-12"><p id="aa_richiedente_tel_txt">Telefono *<br/><input type="tel" id="aa_richiedente_tel" name="aa_richiedente_tel" value="<?php echo $richiedenteTel; ?>" /></p></div>
                                             </div>
                                         </div>
-                                        <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                        <div class="card-header border-0 p-0 mb-lg-30 mt-5">
                                             <div class="row">
                                                 <div class="col-lg-12"><p><b>Se il richiedente non è una persona fisica, compilare anche il form sottostante</b></p></div>
                                             </div>
@@ -400,8 +402,11 @@
                                                 <div class="col-lg-12"><p id="aa_pgSedeLegaleLocalita_txt">Comune<br/><input type="text" id="aa_pgSedeLegaleLocalita" name="aa_pgSedeLegaleLocalita" value="<?php echo $pgSedeLegaleLocalita; ?>" /></p></div>
                                             </div>                                            
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="aa_pgSedeLegaleCap_txt">Cap<br/><input type="text" id="aa_pgSedeLegaleProvincia" name="aa_pgSedeLegaleProvincia" value="<?php echo $pgSedeLegaleProvincia; ?>" /></p></div>
-                                            </div>                                            
+                                                <div class="col-lg-12"><p id="aa_pgSedeLegaleProvincia_txt">Provincia<br/><input type="text" id="aa_pgSedeLegaleProvincia" name="aa_pgSedeLegaleProvincia" value="<?php echo $pgSedeLegaleProvincia; ?>" /></p></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12"><p id="aa_pgSedeLegaleCap_txt">Cap<br/><input type="text" id="aa_pgSedeLegaleCap" name="aa_pgSedeLegaleCap" value="<?php echo $pgSedeLegaleCap; ?>" /></p></div>
+                                            </div>
                                             <div class="row">
                                                 <div class="col-lg-12"><p id="aa_pgCf_txt">Codice fiscale<br/><input type="text" id="aa_pgCf" name="aa_pgCf" value="<?php echo $pgCf; ?>" /></p></div>
                                             </div>                                            
@@ -421,9 +426,9 @@
                                                 <div class="col-lg-12"><p id="aa_pgPec_txt">Pec<br/><input type="tel" id="aa_pgPec" name="aa_pgPec" value="<?php echo $pgPec; ?>" /></p></div>
                                             </div>
                                         </div>
-                                        <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                        <div class="card-header border-0 p-0 mb-lg-30 mt-5">
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="aa_pgRuolo_txt"><b>In qualità di:</b></p></div>
+                                                <div class="col-lg-12"><p id="aa_richiedenteTitolo_txt"><b>In qualità di *</b></p></div>
                                             </div>
                                         </div>
                                         <div class="card-body">
@@ -455,38 +460,39 @@
                                                 <div class="col-lg-12">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="radio" name="aa_richiedenteTitolo" id="aa_richiedenteTitoloRI" value="RI" <?php  echo $richiedenteTitolo == "RI" ? "checked" : ""; ?> />
-                                                        <label class="form-check-label" for="aa_richiedenteTitoloRI">Professionista incaricato
-                                                        </label>
+                                                        <label class="form-check-label" for="aa_richiedenteTitoloRI">Professionista incaricato</label>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-lg-11 offset-lg-1">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="aa_richiedenteProfessionistaIncaricatoDa" id="aa_richiedenteProfessionistaIncaricatoDaTribunale" value="Tribunale" <?php  echo $richiedenteTitolo == "Tribunale" ? "checked" : ""; ?> />
-                                                        <label class="form-check-label" for="aa_richiedenteProfessionistaIncaricatoDaTribunale">dal tribunale altro organo giudiziario</label>
+                                            <div id="aa_opt_richiedenteTitoloRI">
+                                                <div class="row">
+                                                    <div class="col-lg-11 offset-lg-1">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="aa_richiedenteProfessionistaIncaricatoDa" id="aa_richiedenteProfessionistaIncaricatoDaTribunale" value="Tribunale" <?php  echo $richiedenteTitolo == "Tribunale" ? "checked" : ""; ?> />
+                                                            <label class="form-check-label" for="aa_richiedenteProfessionistaIncaricatoDaTribunale">dal tribunale altro organo giudiziario</label>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-11 offset-lg-1">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="aa_richiedenteProfessionistaIncaricatoDa" id="aa_richiedenteProfessionistaIncaricatoDaProprietario" value="Proprietario" <?php  echo $richiedenteTitolo == "Proprietario" ? "checked" : ""; ?> />
-                                                        <label class="form-check-label" for="aa_richiedenteProfessionistaIncaricatoDaProprietario">dal proprietario dell'immobile<br/>
-                                                            <input type="text" id="aa_richiedenteProfessionistaIncaricatoDaNome" name="aa_richiedenteProfessionistaIncaricatoDaNome" value="<?php echo $richiedenteProfessionistaIncaricatoDaNome; ?>" placeholder="Nome" /><br/>
-                                                            <input type="text" id="aa_richiedenteProfessionistaIncaricatoDaCognome" name="aa_richiedenteProfessionistaIncaricatoDaCognome" value="<?php echo $richiedenteProfessionistaIncaricatoDaCognome; ?>" placeholder="Cognome" /><br/>
-                                                            <input type="text" id="aa_richiedenteProfessionistaIncaricatoDaCf" name="aa_richiedenteProfessionistaIncaricatoDaCf" value="<?php echo $richiedenteProfessionistaIncaricatoDaCf; ?>" placeholder="Codice Fiscale" />
-                                                        </label>
+                                                <div class="row">
+                                                    <div class="col-lg-11 offset-lg-1">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="aa_richiedenteProfessionistaIncaricatoDa" id="aa_richiedenteProfessionistaIncaricatoDaProprietario" value="Proprietario" <?php  echo $richiedenteTitolo == "Proprietario" ? "checked" : ""; ?> />
+                                                            <label class="form-check-label" for="aa_richiedenteProfessionistaIncaricatoDaProprietario">dal proprietario dell'immobile<br/>
+                                                                <input type="text" id="aa_richiedenteProfessionistaIncaricatoDaNome" name="aa_richiedenteProfessionistaIncaricatoDaNome" value="<?php echo $richiedenteProfessionistaIncaricatoDaNome; ?>" placeholder="Nome" /><br/>
+                                                                <input type="text" id="aa_richiedenteProfessionistaIncaricatoDaCognome" name="aa_richiedenteProfessionistaIncaricatoDaCognome" value="<?php echo $richiedenteProfessionistaIncaricatoDaCognome; ?>" placeholder="Cognome" /><br/>
+                                                                <input type="text" id="aa_richiedenteProfessionistaIncaricatoDaCf" name="aa_richiedenteProfessionistaIncaricatoDaCf" value="<?php echo $richiedenteProfessionistaIncaricatoDaCf; ?>" placeholder="Codice Fiscale" />
+                                                            </label>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-11 offset-lg-1">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="aa_richiedenteProfessionistaIncaricatoDa" id="aa_richiedenteProfessionistaIncaricatoDaAltro" value="Altro" <?php  echo $richiedenteTitolo == "Altro" ? "checked" : ""; ?> />
-                                                        <label class="form-check-label" for="aa_richiedenteProfessionistaIncaricatoDaAltro">da altro soggetto<br/>
-                                                            <input type="text" id="aa_richiedenteProfessionistaIncaricatoDaAltroSoggetto" name="aa_richiedenteProfessionistaIncaricatoDaAltroSoggetto" value="<?php echo $richiedenteProfessionistaIncaricatoDaAltroSoggetto; ?>" placeholder="Altro Soggetto" />
-                                                        </label>
+                                                <div class="row">
+                                                    <div class="col-lg-11 offset-lg-1">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="aa_richiedenteProfessionistaIncaricatoDa" id="aa_richiedenteProfessionistaIncaricatoDaAltro" value="Altro" <?php  echo $richiedenteTitolo == "Altro" ? "checked" : ""; ?> />
+                                                            <label class="form-check-label" for="aa_richiedenteProfessionistaIncaricatoDaAltro">da altro soggetto<br/>
+                                                                <input type="text" id="aa_richiedenteProfessionistaIncaricatoDaAltroSoggetto" name="aa_richiedenteProfessionistaIncaricatoDaAltroSoggetto" value="<?php echo $richiedenteProfessionistaIncaricatoDaAltroSoggetto; ?>" placeholder="Altro Soggetto" />
+                                                            </label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -502,7 +508,7 @@
                                                 <div class="col-lg-12">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="radio" name="aa_richiedenteTitolo" id="aa_richiedenteTitoloAT" value="AT" <?php  echo $richiedenteTitolo == "AT" ? "checked" : ""; ?> />
-                                                        <label class="form-check-label" for="aa_richiedenteTitoloD">Altro titolo, pertanto si allegherà documentazione comprovante il titolo dichiarato<br/>
+                                                        <label class="form-check-label" for="aa_richiedenteTitoloAT">Altro titolo, pertanto si allegherà documentazione comprovante il titolo dichiarato<br/>
                                                             <input type="text" id="aa_richiedenteProfessionistaIncaricatoDaDescrizioneTitolo" name="aa_richiedenteProfessionistaIncaricatoDaDescrizioneTitolo" value="<?php echo $richiedenteProfessionistaIncaricatoDaDescrizioneTitolo; ?>" placeholder="(Descrizione titolo)" />
                                                         </label>
                                                     </div>
@@ -521,9 +527,9 @@
                                                 <h2 class="title-xxlarge mb-3">Richiesta</h2>
                                             </div>
                                         </div>
-                                        <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                        <div class="card-header border-0 p-0 mb-lg-30 mt-4">
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="aa_pgRuolo_txt"><b>di esercitare il diritto di accesso agli atti attraverso la richiesta di:</b></p></div>
+                                                <div class="col-lg-12"><p id="aa_richiestaTipo_txt"><b>Di esercitare il diritto di accesso agli atti attraverso la richiesta di *</b></p></div>
                                             </div>
                                         </div>
                                         <div class="card-body">
@@ -568,12 +574,12 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="aa_richiestaAtti_txt"><b>dei seguenti atti o documenti amministrativi:</b><br>
+                                                <div class="col-lg-12 mt-5"><p id="aa_richiestaAtti_txt"><b>dei seguenti atti o documenti amministrativi *</b></p>
                                                     <textarea id="aa_richiestaAtti" name="aa_richiestaAtti" rows="4"><?php echo $richiestaAtti; ?></textarea>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="aa_richiestaAtti_txt"><b>eventuali estremi identificativi degli atti o documenti:</b></div>
+                                                <div class="col-lg-12 mt-5"><p id="aa_richiestaAtti_txt"><b>eventuali estremi identificativi degli atti o documenti:</b></p></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12">
@@ -591,33 +597,57 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="aa_richiestaAtti_txt"><b>eventuale collocazione territoriale:</b></div>
+                                                <div class="col-lg-12 mt-5"><p id="aa_richiestaAtti_txt"><b>eventuale collocazione territoriale:</b></p></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12">
-                                                    Codice catastale<br>
-                                                    <input type="text" id="aa_collocazioneTerritorialeCodiceCatastale" name="aa_collocazioneTerritorialeCodiceCatastale" value="<?php echo $collocazioneTerritorialeCodiceCatastale; ?>" /><br>
-                                                    Sezione<br>
-                                                    <input type="text" id="aa_collocazioneTerritorialeSezione" name="aa_collocazioneTerritorialeSezione" value="<?php echo $collocazioneTerritorialeSezione; ?>" /><br>
-                                                    Foglio<br>
-                                                    <input type="text" id="aa_collocazioneTerritorialeFoglio" name="aa_collocazioneTerritorialeFoglio" value="<?php echo $collocazioneTerritorialeFoglio; ?>" /><br>
-                                                    Particella<br>
-                                                    <input type="text" id="aa_collocazioneTerritorialeParticella" name="aa_collocazioneTerritorialeParticella" value="<?php echo $collocazioneTerritorialeParticella; ?>" /><br>
-                                                    Subalterno<br>
-                                                    <input type="text" id="aa_collocazioneTerritorialeSubalterno" name="aa_collocazioneTerritorialeSubalterno" value="<?php echo $collocazioneTerritorialeSubalterno; ?>" /><br>
-                                                    Categoria<br>
-                                                    <input type="text" id="aa_collocazioneTerritorialeCategoria" name="aa_collocazioneTerritorialeCategoria" value="<?php echo $collocazioneTerritorialeCategoria; ?>" /><br>
-                                                    Indirizzo<br>
-                                                    <input type="text" id="aa_collocazioneTerritorialeIndirizzo" name="aa_collocazioneTerritorialeIndirizzo" value="<?php echo $collocazioneTerritorialeIndirizzo; ?>" /><br>
-                                                    Localita<br>
-                                                    <input type="text" id="aa_collocazioneTerritorialeLocalita" name="aa_collocazioneTerritorialeLocalita" value="<?php echo $collocazioneTerritorialeLocalita; ?>" /><br>
-                                                    Provincia<br>
-                                                    <input type="text" id="aa_collocazioneTerritorialeProvincia" name="aa_collocazioneTerritorialeProvincia" value="<?php echo $collocazioneTerritorialeProvincia; ?>" />
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <p>Codice catastale<br>
+                                                                <input type="text" id="aa_collocazioneTerritorialeCodiceCatastale" name="aa_collocazioneTerritorialeCodiceCatastale" value="<?php echo $collocazioneTerritorialeCodiceCatastale; ?>" /></p>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <p>Sezione<br>
+                                                                <input type="text" id="aa_collocazioneTerritorialeSezione" name="aa_collocazioneTerritorialeSezione" value="<?php echo $collocazioneTerritorialeSezione; ?>" /></p>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <p>Foglio<br>
+                                                                <input type="text" id="aa_collocazioneTerritorialeFoglio" name="aa_collocazioneTerritorialeFoglio" value="<?php echo $collocazioneTerritorialeFoglio; ?>" /></p>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <p>Particella<br>
+                                                                <input type="text" id="aa_collocazioneTerritorialeParticella" name="aa_collocazioneTerritorialeParticella" value="<?php echo $collocazioneTerritorialeParticella; ?>" /></p>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <p>Subalterno<br>
+                                                                <input type="text" id="aa_collocazioneTerritorialeSubalterno" name="aa_collocazioneTerritorialeSubalterno" value="<?php echo $collocazioneTerritorialeSubalterno; ?>" /></p>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <p>Categoria<br>
+                                                                <input type="text" id="aa_collocazioneTerritorialeCategoria" name="aa_collocazioneTerritorialeCategoria" value="<?php echo $collocazioneTerritorialeCategoria; ?>" /></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <p>Indirizzo<br>
+                                                        <input type="text" id="aa_collocazioneTerritorialeIndirizzo" name="aa_collocazioneTerritorialeIndirizzo" value="<?php echo $collocazioneTerritorialeIndirizzo; ?>" /></p>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <p>Localita<br>
+                                                        <input type="text" id="aa_collocazioneTerritorialeLocalita" name="aa_collocazioneTerritorialeLocalita" value="<?php echo $collocazioneTerritorialeLocalita; ?>" /></p>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <p>Provincia<br>
+                                                        <input type="text" id="aa_collocazioneTerritorialeProvincia" name="aa_collocazioneTerritorialeProvincia" value="<?php echo $collocazioneTerritorialeProvincia; ?>" /></p>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="card-header border-0 p-0 mb-lg-30 mt-5">
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="aa_motivo_txt"><b>di avere un interesse personale e concreto ovvero pubblico o diffuso all'accesso per la tutela di situazioni giuridicamente rilevanti per il seguente motivo:</b></div>
+                                                <div class="col-lg-12"><p id="aa_motivo_txt"><b>Di avere un interesse personale e concreto ovvero pubblico o diffuso all'accesso per la tutela di situazioni giuridicamente rilevanti per il seguente motivo *</b></div>
                                             </div>
+                                        </div>
+                                        <div class="card-body">
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="form-check">
@@ -684,9 +714,13 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="card-header border-0 p-0 mb-lg-30 mt-5">
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="aa_modoRitiro_txt"><b>Modo ritiro:</b></div>
+                                                <div class="col-lg-12"><p id="aa_modoRitiro_txt"><b>Modo ritiro *</b></div>
                                             </div>
+                                        </div>
+                                        <div class="card-body">
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="form-check">
@@ -715,21 +749,30 @@
                                                 <div class="col-lg-12">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="radio" name="aa_modoRitiro" id="aa_modoRitiroAltroIndirizzo" value="AltroIndirizzo" <?php  echo $modoRitiro == "AltroIndirizzo" ? "checked" : ""; ?> />
-                                                        <label class="form-check-label" for="aa_modoRitiroAltroIndirizzo">di riceverli a mezzo posta al seguente indirizzo<br>
-                                                            Indirizzo<br>
-                                                            <input type="text" id="aa_modoRitiroPostaIndirizzo" name="aa_modoRitiroPostaIndirizzo" value="<?php echo $modoRitiroPostaIndirizzo; ?>" /><br>                                                            
-                                                            Località<br>
-                                                            <input type="text" id="aa_modoRitiroPostaLocalita" name="aa_modoRitiroPostaLocalita" value="<?php echo $modoRitiroPostaLocalita; ?>" /><br>                                                            
-                                                            Provincia<br>
-                                                            <input type="text" id="aa_modoRitiroPostaProvincia" name="aa_modoRitiroPostaProvincia" value="<?php echo $modoRitiroPostaProvincia; ?>" /><br>                                                            
-                                                            Cap<br>
-                                                            <input type="text" id="aa_modoRitiroPostaCap" name="aa_modoRitiroPostaCap" value="<?php echo $modoRitiroPostaCap; ?>" />
+                                                        <label class="form-check-label" for="aa_modoRitiroAltroIndirizzo"><p>di riceverli a mezzo posta al seguente indirizzo</p>
+                                                            <p>Indirizzo<br>
+                                                                <input type="text" id="aa_modoRitiroPostaIndirizzo" name="aa_modoRitiroPostaIndirizzo" value="<?php echo $modoRitiroPostaIndirizzo; ?>" /></p>
+                                                            <p>Località<br>
+                                                                <input type="text" id="aa_modoRitiroPostaLocalita" name="aa_modoRitiroPostaLocalita" value="<?php echo $modoRitiroPostaLocalita; ?>" /></p>
+                                                            <p>Provincia<br>
+                                                                <input type="text" id="aa_modoRitiroPostaProvincia" name="aa_modoRitiroPostaProvincia" value="<?php echo $modoRitiroPostaProvincia; ?>" /></p>
+                                                            <p>Cap<br>
+                                                                <input type="text" id="aa_modoRitiroPostaCap" name="aa_modoRitiroPostaCap" value="<?php echo $modoRitiroPostaCap; ?>" /></p>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="card-header border-0 p-0 mb-lg-30 mt-5">
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="aa_annotazioni_txt"><b>Eventuali annotazioni:</b><br>
+                                                <div class="col-lg-12">
+                                                    <p id="aa_annotazioni_txt"><b>Eventuali annotazioni:</b></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-lg-12">
                                                     <textarea id="aa_annotazioni" name="aa_annotazioni" rows="4"><?php echo $annotazioni; ?></textarea>
                                                 </div>
                                             </div>
@@ -747,97 +790,10 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col-12">
-                                                    <div class="row">
-                                                        <div class="col-lg-8">
-                                                            <h6 id="aa_uploadDocumentazione_txt">Documentazione comprovante il titolo dichiarato: Affittuario</h6>
-                                                            <p><em><small>(esempi: contratto affitto, bollette, spese sanitarie, debiti…)</small></em></p>
-                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
-                                                        </div>                                                    
-                                                        <div class="col-lg-4 text-right">
-                                                            <input type="hidden" name="aa_uploadAffittuarioSaved" id="aa_uploadAffittuarioSaved" value="<?php echo $uploadAffittuarioSaved; ?>" />
-                                                            <input type="file" name="aa_uploadAffittuario" id="aa_uploadAffittuario" class="upload" value="<?php echo $uploadAffittuarioSaved; ?>" />
-                                                            <label for="aa_uploadAffittuario">
-                                                                <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
-                                                                <span>Upload</span>
-                                                            </label>                                                            
-                                                            <ul class="upload-file-list" id="aa_uploadAffittuario_file">
-                                                                <?php echo $uploadAffittuario; ?>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
                                                 <div class="col-12 after-section">
                                                     <div class="row">
                                                         <div class="col-lg-8">
-                                                            <h6 id="aa_uploadPotereFirma_txt">Documentazione comprovante il titolo dichiarato: professionista incaricato da altro soggetto</h6>
-                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
-                                                        </div>
-                                                        <div class="col-lg-4 text-right">
-                                                            <input type="hidden" name="aa_uploadAltroSoggettoSaved" id="aa_uploadAltroSoggettoSaved" value="<?php echo $uploadAltroSoggettoSaved; ?>" />
-                                                            <input type="file" name="aa_uploadAltroSoggetto" id="aa_uploadAltroSoggetto" class="upload" value="<?php echo $uploadAltroSoggettoSaved; ?>" />
-                                                            <label for="aa_uploadAltroSoggetto">
-                                                                <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
-                                                                <span>Upload</span>
-                                                            </label>
-                                                            <ul class="upload-file-list" id="aa_uploadAltroSoggetto_file">
-                                                                <?php echo $uploadAltroSoggetto; ?>
-                                                            </ul>                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="row">
-                                                        <div class="col-lg-8">
-                                                            <h6 id="aa_uploadDocumentazione_txt">Documentazione comprovante il titolo dichiarato: Notaio Rogante</h6>
-                                                            <p><em><small>(esempi: contratto affitto, bollette, spese sanitarie, debiti…)</small></em></p>
-                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
-                                                        </div>                                                    
-                                                        <div class="col-lg-4 text-right">
-                                                            <input type="hidden" name="aa_uploadNotaioRoganteSaved" id="aa_uploadNotaioRoganteSaved" value="<?php echo $uploadNotaioRoganteSaved; ?>" />
-                                                            <input type="file" name="aa_uploadNotaioRogante" id="aa_uploadNotaioRogante" class="upload" value="" />
-                                                            <label for="aa_uploadNotaioRogante">
-                                                                <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
-                                                                <span>Upload</span>
-                                                            </label>                                                            
-                                                            <ul class="upload-file-list" id="aa_uploadNotaioRogante_file">
-                                                                <?php echo $uploadNotaioRogante; ?>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12 after-section">
-                                                    <div class="row">
-                                                        <div class="col-lg-8">
-                                                            <h6 id="aa_uploadPotereFirma_txt">Documentazione comprovante il titolo dichiarato: Altro Titolo</h6>
-                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
-                                                        </div>
-                                                        <div class="col-lg-4 text-right">
-                                                            <input type="hidden" name="aa_uploadAltriTitoloDescrizioneSaved" id="aa_uploadAltriTitoloDescrizioneSaved" value="<?php echo $uploadAltriTitoloDescrizioneSaved; ?>" />
-                                                            <input type="file" name="aa_uploadAltriTitoloDescrizione" id="aa_uploadAltriTitoloDescrizione" class="upload" value="<?php echo $uploadAltriTitoloDescrizioneSaved; ?>" />
-                                                            <label for="aa_uploadAltriTitoloDescrizione">
-                                                                <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
-                                                                <span>Upload</span>
-                                                            </label>
-                                                            <ul class="upload-file-list" id="aa_uploadAltriTitoloDescrizione_file">
-                                                                <?php echo $uploadAltriTitoloDescrizione; ?>
-                                                            </ul>                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="row">
-                                                        <div class="col-lg-8">
-                                                            <h6 id="aa_uploadDocumentazione_txt">Carta d'Identita Fronte</h6>
-                                                            <p><em><small>(esempi: contratto affitto, bollette, spese sanitarie, debiti…)</small></em></p>
+                                                            <h6 id="aa_uploadCartaIdentitaFronte_txt">Carta d'Identita Fronte *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>                                                    
                                                         <div class="col-lg-4 text-right">
@@ -858,7 +814,7 @@
                                                 <div class="col-12 after-section">
                                                     <div class="row">
                                                         <div class="col-lg-8">
-                                                            <h6 id="aa_uploadPotereFirma_txt">Carta d'Identita Retro</h6>
+                                                            <h6 id="aa_uploadCartaIdentitaRetro_txt">Carta d'Identita Retro *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
                                                         <div class="col-lg-4 text-right">
@@ -876,11 +832,94 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-12">
+                                                <div class="col-12 after-section" id="aa_pnl_uploadAffittuario">
                                                     <div class="row">
                                                         <div class="col-lg-8">
-                                                            <h6 id="aa_uploadDocumentazione_txt">Atto notarile con il quale è stata conferita la procura</h6>
-                                                            <p><em><small>(esempi: contratto affitto, bollette, spese sanitarie, debiti…)</small></em></p>
+                                                            <h6 id="aa_uploadAffittuario_txt">Documentazione comprovante il titolo dichiarato: Affittuario *</h6>
+                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
+                                                        </div>                                                    
+                                                        <div class="col-lg-4 text-right">
+                                                            <input type="hidden" name="aa_uploadAffittuarioSaved" id="aa_uploadAffittuarioSaved" value="<?php echo $uploadAffittuarioSaved; ?>" />
+                                                            <input type="file" name="aa_uploadAffittuario" id="aa_uploadAffittuario" class="upload" value="<?php echo $uploadAffittuarioSaved; ?>" />
+                                                            <label for="aa_uploadAffittuario">
+                                                                <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
+                                                                <span>Upload</span>
+                                                            </label>                                                            
+                                                            <ul class="upload-file-list" id="aa_uploadAffittuario_file">
+                                                                <?php echo $uploadAffittuario; ?>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 after-section" id="aa_pnl_uploadAltroSoggetto">
+                                                    <div class="row">
+                                                        <div class="col-lg-8">
+                                                            <h6 id="aa_uploadAltroSoggetto_txt">Documentazione comprovante il titolo dichiarato: professionista incaricato da altro soggetto *</h6>
+                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
+                                                        </div>
+                                                        <div class="col-lg-4 text-right">
+                                                            <input type="hidden" name="aa_uploadAltroSoggettoSaved" id="aa_uploadAltroSoggettoSaved" value="<?php echo $uploadAltroSoggettoSaved; ?>" />
+                                                            <input type="file" name="aa_uploadAltroSoggetto" id="aa_uploadAltroSoggetto" class="upload" value="<?php echo $uploadAltroSoggettoSaved; ?>" />
+                                                            <label for="aa_uploadAltroSoggetto">
+                                                                <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
+                                                                <span>Upload</span>
+                                                            </label>
+                                                            <ul class="upload-file-list" id="aa_uploadAltroSoggetto_file">
+                                                                <?php echo $uploadAltroSoggetto; ?>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 after-section" id="aa_pnl_uploadNotaioRogante">
+                                                    <div class="row">
+                                                        <div class="col-lg-8">
+                                                            <h6 id="aa_uploadNotaioRogante_txt">Documentazione comprovante il titolo dichiarato: Notaio Rogante *</h6>
+                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
+                                                        </div>
+                                                        <div class="col-lg-4 text-right">
+                                                            <input type="hidden" name="aa_uploadNotaioRoganteSaved" id="aa_uploadNotaioRoganteSaved" value="<?php echo $uploadNotaioRoganteSaved; ?>" />
+                                                            <input type="file" name="aa_uploadNotaioRogante" id="aa_uploadNotaioRogante" class="upload" value="" />
+                                                            <label for="aa_uploadNotaioRogante">
+                                                                <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
+                                                                <span>Upload</span>
+                                                            </label>                                                            
+                                                            <ul class="upload-file-list" id="aa_uploadNotaioRogante_file">
+                                                                <?php echo $uploadNotaioRogante; ?>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 after-section" id="aa_pnl_uploadAltriTitoloDescrizione">
+                                                    <div class="row">
+                                                        <div class="col-lg-8">
+                                                            <h6 id="aa_uploadAltriTitoloDescrizione_txt">Documentazione comprovante il titolo dichiarato: Altro Titolo *</h6>
+                                                            <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
+                                                        </div>
+                                                        <div class="col-lg-4 text-right">
+                                                            <input type="hidden" name="aa_uploadAltriTitoloDescrizioneSaved" id="aa_uploadAltriTitoloDescrizioneSaved" value="<?php echo $uploadAltriTitoloDescrizioneSaved; ?>" />
+                                                            <input type="file" name="aa_uploadAltriTitoloDescrizione" id="aa_uploadAltriTitoloDescrizione" class="upload" value="<?php echo $uploadAltriTitoloDescrizioneSaved; ?>" />
+                                                            <label for="aa_uploadAltriTitoloDescrizione">
+                                                                <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
+                                                                <span>Upload</span>
+                                                            </label>
+                                                            <ul class="upload-file-list" id="aa_uploadAltriTitoloDescrizione_file">
+                                                                <?php echo $uploadAltriTitoloDescrizione; ?>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 after-section" id="aa_pnl_uploadAttoNotarile">
+                                                    <div class="row">
+                                                        <div class="col-lg-8">
+                                                            <h6 id="aa_uploadAttoNotarile_txt">Atto notarile con il quale è stata conferita la procura *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>                                                    
                                                         <div class="col-lg-4 text-right">
@@ -889,7 +928,7 @@
                                                             <label for="aa_uploadAttoNotarile">
                                                                 <svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-upload"></use></svg>
                                                                 <span>Upload</span>
-                                                            </label>                                                            
+                                                            </label>
                                                             <ul class="upload-file-list" id="aa_uploadAttoNotarile_file">
                                                                 <?php echo $uploadAttoNotarile; ?>
                                                             </ul>
@@ -916,48 +955,6 @@
         </div>
     </main>
     <!-- Modal -->
-    <div class="modal fade" tabindex="-1" role="dialog" id="AddPagamentoModal" aria-labelledby="AddPagamentoModalTitle">
-        <div class="modal-dialog" role="document">
-            <form method="POST" action="#" name="aa_frm_add_metodo_pagamento" id="aa_frm_add_metodo_pagamento">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="modal-title h5 no_toc" id="AddPagamentoModalTitle">Aggiungi metodo di pagamento</h2>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div id="aa_pnl_return"></div>
-                            </div>
-                        </div>
-                        <div id="aa_pnl_data">
-                            <div class="row">
-                                <div class="col-lg-12 mt-3 mb-3"><h6>Scegli il metodo di pagamento e inserisci i dati richiesti.</h6></div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <select id="aa_sel_tipo_pagamento" name="aa_sel_tipo_pagamento">
-                                        <?php echo ViewAllTipiPagamento(); ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12"><input type="text" id="aa_txt_numero_pagamento" value="" /></p></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 mt-5"><label><input type="checkbox" id="aa_ck_pagamento_predefinito" value="" />&nbsp;E' il pagamento predefinito</label></p></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary btn-sm" id="aa_btn_save" type="submit">Salva</button>
-                        <button class="btn btn-primary btn-sm" id="aa_btn_close" type="button" data-bs-dismiss="modal">Chiudi</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <div class="modal fade" tabindex="-1" role="dialog" id="SalvaRichiestaModal" aria-labelledby="SalvaRichiestaModalTitle">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

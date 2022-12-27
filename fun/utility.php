@@ -86,6 +86,37 @@ function isValidCodiceFiscale($cf){
     return true;
 }
 
+function isValidPartitaIva($partitaivaOrig){
+   $partitaiva = trim($partitaivaOrig);
+  try {
+    if (strlen($partitaiva) == 11) {
+      $tot = 0;
+      $dispari = 0;
+      	
+      for($i = 0; $i < 10; $i += 2)
+        $dispari += substr($partitaiva, $i, 1);
+      
+      for($i = 1; $i < 10; $i += 2) {
+        $tot = substr($partitaiva, $i, 1) * 2;
+        $tot = ($tot / 10) + ($tot % 10);
+        $dispari += $tot;
+      }
+      				
+      $controllo = substr($partitaiva,10, 1);
+      				
+      if((($dispari % 10) == 0 && ($controllo == 0)) || ((10 - ($dispari % 10)) == $controllo)) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }catch(e){
+    return false;
+  }
+}
+
 function isValidIBAN($iban)
 {
     if(strlen($iban) < 5) return false;
@@ -264,6 +295,7 @@ function NameStatusById($status_id){
 
 function NumeroPraticaById($servizio_id,$pratica_id){
     switch($servizio_id) {
+        case 6: $table = "accesso_atti"; break;
         case 9: $table = "assegno_maternita"; break;
         case 11: $table = "domanda_contributo"; break;
         case 16: $table = "partecipazione_concorso"; break;
@@ -815,21 +847,31 @@ function LoadSelectUfficioDestinatario($ufficioDestinatarioId){
     $configDB = require '../env/config.php';
     $txtOption = "";
     $connessioneLSUD = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-    $sqlLSUD = "SELECT * FROM uffici";
+    $sqlLSUD = "SELECT * FROM uffici ORDER BY sort ASC";
     $resultLSUD = $connessioneLSUD->query($sqlLSUD);    
     if ($resultLSUD->num_rows > 0) {
         while($rowLSUD = $resultLSUD->fetch_assoc()) {
-            $Nome = $rowLSUD["Nome"];
-            $Id = $rowLSUD["Id"];
-            
-            $txtOption = "<option value='" . $Id . "'";
-            if($Id == $ufficioDestinatarioId){
-                $txtOption .= " selected";
-            }
-            $txtOption .= ">" . $Nome . "</option>";
+            $txtOption .= "<option value='" . $rowLSUD["Id"] . "'";
+                if($rowLSUD["Id"] == $ufficioDestinatarioId){
+                    $txtOption .= " selected";
+                }
+            $txtOption .= ">" . $rowLSUD["Nome"] . "</option>";
         }
     }
     $connessioneLSUD->close();
     
     return $txtOption;
+}
+
+function UfficioDestinatarioById($ufficioDestinatarioId){
+    $configDB = require '../env/config.php';
+    $connessioneUDBY = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sqlUDBY = "SELECT Nome FROM uffici WHERE Id = ". $ufficioDestinatarioId;
+    $resultUDBY = $connessioneUDBY->query($sqlUDBY);    
+    if ($resultUDBY->num_rows > 0) {
+        while($rowUDBY = $resultUDBY->fetch_assoc()) {
+            return $rowUDBY["Nome"];
+        }
+    }
+    $connessioneUDBY->close();
 }

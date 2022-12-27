@@ -19,7 +19,7 @@ $data = [];
    
 /* controllo che non sia un refresh della pagina che creerebbe una nuova riga - controllo quindi che la riga con status tmp non abbia il campo numero pratica già popolato */
     $connessioneCheck = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-    $sqlCheck = "SELECT id FROM domanda_contributo WHERE richiedenteCf = '". $_SESSION['CF']."' and id = " . $_POST['pratican'] ." and status_id = 0 and numeroPratica = ''";
+    $sqlCheck = "SELECT id FROM accesso_atti WHERE richiedenteCf = '". $_SESSION['CF']."' and id = " . $_POST['pratican'] ." and status_id = 0 and numeroPratica = ''";
     $data['error'] = $sqlCheck;
     $resultCheck = $connessioneCheck->query($sqlCheck);
     
@@ -27,7 +27,7 @@ $data = [];
         
         /* genero numero pratica */
         $connessioneNP = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-        $sqlNP = "SELECT NumeroPratica FROM domanda_contributo WHERE status_id > 1 ORDER BY id DESC LIMIT 1";
+        $sqlNP = "SELECT NumeroPratica FROM accesso_atti WHERE status_id > 1 ORDER BY id DESC LIMIT 1";
         $resultNP = $connessioneNP->query($sqlNP);
 
         if ($resultNP->num_rows > 0) {
@@ -37,16 +37,16 @@ $data = [];
                 $numberPraticaTmp = substr($LastPratica, -8);
                 $numberPraticaTmp2 = filter_var($numberPraticaTmp, FILTER_SANITIZE_NUMBER_INT) + 1;
                 $length = 8;
-                $NumeroPratica = "DC".str_pad($numberPraticaTmp2,$length,"0", STR_PAD_LEFT);
+                $NumeroPratica = "AA".str_pad($numberPraticaTmp2,$length,"0", STR_PAD_LEFT);
             }
         }else{
-            $NumeroPratica = "DC00000001";
+            $NumeroPratica = "AA00000001";
         }
 
         /* DATI ESTRAPOLATI DA DB - start */
         /* estrapolo i dati salvati con status tmp */
         $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-        $sql = "SELECT * FROM `domanda_contributo` WHERE id = " . $_POST['pratican'];
+        $sql = "SELECT * FROM `accesso_atti` WHERE id = " . $_POST['pratican'];
         $result = $connessione->query($sql);
 
         if ($result->num_rows > 0) {
@@ -56,46 +56,96 @@ $data = [];
                 $fromName = $configData['nome_comune'] . " - Servizi Online";
 
                 /* rinomino i file */
-                $upload_location = "../uploads/domanda_contributo/";
+                $upload_location = "../uploads/accesso_atti/";
                 
-                $NewuploadPotereFirma = "";
-                if(!empty($row["uploadPotereFirma"])){
-                    $uploadPotereFirma = $row["uploadPotereFirma"];
-                    $NewuploadPotereFirma = str_replace("_bozza_","_".$NumeroPratica."_",$uploadPotereFirma);
-                    if (file_exists($upload_location.$uploadPotereFirma)){
-                        $renamed= rename($upload_location.$uploadPotereFirma,$upload_location.$NewuploadPotereFirma);
+                $NewuploadTitoloDichiarato = "";
+                if(!empty($row["uploadTitoloDichiarato"])){
+                    $uploadTitoloDichiarato = $row["uploadTitoloDichiarato"];
+                    $NewuploadTitoloDichiarato = str_replace("_bozza_","_".$NumeroPratica."_",$uploadTitoloDichiarato);
+                    if (file_exists($upload_location.$uploadTitoloDichiarato)){
+                        $renamed= rename($upload_location.$uploadTitoloDichiarato,$upload_location.$NewuploadTitoloDichiarato);
+                    }else{
+                        $data['error'] = "The original file that you want to rename doesn't exist";
+                    }
+                }
+                $NewuploadAffittuario = "";
+                if(!empty($row["uploadAffittuario"])){
+                    $uploadAffittuario = $row["uploadAffittuario"];
+                    $NewuploadAffittuario = str_replace("_bozza_","_".$NumeroPratica."_",$uploadAffittuario);
+                    if (file_exists($upload_location.$uploadAffittuario)){
+                        $renamed= rename($upload_location.$uploadAffittuario,$upload_location.$NewuploadAffittuario);
+                    }else{
+                        $data['error'] = "The original file that you want to rename doesn't exist";
+                    }
+                }
+                $NewuploadAltroSoggetto = "";
+                if(!empty($row["uploadAltroSoggetto"])){
+                    $uploadPotereFirma = $row["uploadAltroSoggetto"];
+                    $NewuploadAltroSoggetto = str_replace("_bozza_","_".$NumeroPratica."_",$uploadAltroSoggetto);
+                    if (file_exists($upload_location.$uploadAltroSoggetto)){
+                        $renamed= rename($upload_location.$uploadAltroSoggetto,$upload_location.$NewuploadAltroSoggetto);
+                    }else{
+                        $data['error'] = "The original file that you want to rename doesn't exist";
+                    }
+                }
+                $NewuploadNotaioRogante = "";
+                if(!empty($row["uploadNotaioRogante"])){
+                    $uploadNotaioRogante = $row["uploadNotaioRogante"];
+                    $NewuploadNotaioRogante = str_replace("_bozza_","_".$NumeroPratica."_",$uploadNotaioRogante);
+                    if (file_exists($upload_location.$uploadNotaioRogante)){
+                        $renamed= rename($upload_location.$uploadNotaioRogante,$upload_location.$NewuploadNotaioRogante);
+                    }else{
+                        $data['error'] = "The original file that you want to rename doesn't exist";
+                    }                    
+                }
+                $NewuploadAltriTitoloDescrizione = "";
+                if(!empty($row["uploadAltriTitoloDescrizione"])){
+                    $uploadAltriTitoloDescrizione = $row["uploadAltriTitoloDescrizione"];
+                    $NewuploadAltriTitoloDescrizione = str_replace("_bozza_","_".$NumeroPratica."_",$uploadAltriTitoloDescrizione);
+                    if (file_exists($upload_location.$uploadAltriTitoloDescrizione)){
+                        $renamed= rename($upload_location.$uploadAltriTitoloDescrizione,$upload_location.$NewuploadAltriTitoloDescrizione);
+                    }else{
+                        $data['error'] = "The original file that you want to rename doesn't exist";
+                    }                    
+                }
+                $NewuploadCartaIdentitaFronte = "";
+                if(!empty($row["uploadCartaIdentitaFronte"])){
+                    $uploadCartaIdentitaFronte = $row["uploadCartaIdentitaFronte"];
+                    $NewuploadCartaIdentitaFronte = str_replace("_bozza_","_".$NumeroPratica."_",$uploadCartaIdentitaFronte);
+                    if (file_exists($upload_location.$uploadCartaIdentitaFronte)){
+                        $renamed= rename($upload_location.$uploadCartaIdentitaFronte,$upload_location.$NewuploadCartaIdentitaFronte);
+                    }else{
+                        $data['error'] = "The original file that you want to rename doesn't exist";
+                    }                    
+                }
+                $NewuploadCartaIdentitaRetro = "";
+                if(!empty($row["uploadCartaIdentitaRetro"])){
+                    $uploadCartaIdentitaRetro = $row["uploadCartaIdentitaRetro"];
+                    $NewuploadCartaIdentitaRetro = str_replace("_bozza_","_".$NumeroPratica."_",$uploadCartaIdentitaRetro);
+                    if (file_exists($upload_location.$uploadCartaIdentitaRetro)){
+                        $renamed= rename($upload_location.$uploadCartaIdentitaRetro,$upload_location.$NewuploadCartaIdentitaRetro);
+                    }else{
+                        $data['error'] = "The original file that you want to rename doesn't exist";
+                    }                    
+                }
+                $NewuploadAttoNotarile = "";
+                if(!empty($row["uploadAttoNotarile"])){
+                    $uploadAttoNotarile = $row["uploadAttoNotarile"];
+                    $NewuploadAttoNotarile = str_replace("_bozza_","_".$NumeroPratica."_",$uploadAttoNotarile);
+                    if (file_exists($upload_location.$uploadAttoNotarile)){
+                        $renamed= rename($upload_location.$uploadAttoNotarile,$upload_location.$NewuploadAttoNotarile);
                     }else{
                         $data['error'] = "The original file that you want to rename doesn't exist";
                     }                    
                 }
 
-
-                $NewuploadDocumentazione = "";
-                if(!empty($row["uploadDocumentazione"])){
-                    $tmpUploadDocumentazione1 = substr($row["uploadDocumentazione"],0,-1);
-                    $tmpUploadDocumentaziones = explode(';', $tmpUploadDocumentazione1);
-                    $uploadDocumentazione = "";
-                    foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
-                        $uploadDocumentazione = $tmpUploadDocumentazione;
-                        $NewuploadDocumentazioneTmp = str_replace("_bozza_","_".$NumeroPratica."_",$uploadDocumentazione);
-
-                        if (file_exists($upload_location.$uploadDocumentazione)){
-                            $renamed= rename($upload_location.$uploadDocumentazione,$upload_location.$NewuploadDocumentazioneTmp);
-                        }else{
-                            $data['error'] = "The original file that you want to rename doesn't exist";
-                        }
-                        $NewuploadDocumentazione .= $NewuploadDocumentazioneTmp.";";
-                    }
-                }
-                //$data['pratica'] = $NewuploadDocumentazione;
-
                 /* salvo tutti i dati in una riga nuova con status 2 */
                 $connessioneINS = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-                $sqlINS = "INSERT INTO `domanda_contributo`(status_id,richiedenteNome,richiedenteCognome,richiedenteCf,richiedenteDataNascita,richiedenteLuogoNascita,richiedenteVia,richiedenteLocalita,richiedenteProvincia,richiedenteEmail,richiedenteTel,inQualitaDi,beneficiarioNome,beneficiarioCognome,beneficiarioCf,beneficiarioDataNascita,beneficiarioLuogoNascita,beneficiarioVia,beneficiarioLocalita,beneficiarioProvincia,beneficiarioEmail,beneficiarioTel,importoContributo,finalitaContributo,tipoPagamento_id,uploadPotereFirma,uploadDocumentazione,NumeroPratica) VALUES (2,'".addslashes($row['richiedenteNome'])."','".addslashes($row['richiedenteCognome'])."','".$row['richiedenteCf']."','".$row['richiedenteDataNascita']."','".addslashes($row['richiedenteLuogoNascita'])."','".addslashes($row['richiedenteVia'])."','".addslashes($row['richiedenteLocalita'])."','".$row['richiedenteProvincia']."','".$row['richiedenteEmail']."','".$row['richiedenteTel']."','".$row['inQualitaDi']."','".addslashes($row['beneficiarioNome'])."','".addslashes($row['beneficiarioCognome'])."','".$row['beneficiarioCf']."','".$row['beneficiarioDataNascita']."','".addslashes($row['beneficiarioLuogoNascita'])."','".addslashes($row['beneficiarioVia'])."','".addslashes($row['beneficiarioLocalita'])."','".$row['beneficiarioProvincia']."','".$row['beneficiarioEmail']."','".$row['beneficiarioTel']."','".$row['importoContributo']."','".addslashes($row['finalitaContributo'])."','".$row['tipoPagamento_id']."','".$NewuploadPotereFirma."','".$NewuploadDocumentazione."','".$NumeroPratica."')";
+                $sqlINS = "INSERT INTO accesso_atti(status_id,UfficioDestinatarioId,richiedenteCf,richiedenteNome,richiedenteCognome,richiedenteDataNascita,richiedenteLuogoNascita,richiedenteVia,richiedenteLocalita,richiedenteProvincia,richiedenteEmail,richiedenteTel,pgRuolo,pgDenominazione,pgTipologia,pgSedeLegaleIndirizzo,pgSedeLegaleLocalita,pgSedeLegaleProvincia,pgSedeLegaleCap,pgCf,pgPiva,pgTelefono,pgEmail,pgPec,richiedenteTitolo,richiedenteProfessionistaIncaricatoDa,richiedenteProfessionistaIncaricatoDaNome,richiedenteProfessionistaIncaricatoDaCognome,richiedenteProfessionistaIncaricatoDaCf,richiedenteProfessionistaIncaricatoDaAltroSoggetto,richiedenteProfessionistaIncaricatoDaDescrizioneTitolo,richiestaTipo,richiestaAtti,richiestaAttiTipoDocumento,richiestaAttiProtocollo,richiestaAttiData,collocazioneTerritorialeCodiceCatastale,collocazioneTerritorialeSezione,collocazioneTerritorialeFoglio,collocazioneTerritorialeParticella,collocazioneTerritorialeSubalterno,collocazioneTerritorialeCategoria,collocazioneTerritorialeIndirizzo,collocazioneTerritorialeLocalita,collocazioneTerritorialeProvincia,motivo,motivoAltro,modoRitiro,modoRitiroPostaIndirizzo,modoRitiroPostaLocalita,modoRitiroPostaProvincia,modoRitiroPostaCap,annotazioni,uploadTitoloDichiarato,uploadAffittuario,uploadAltroSoggetto,uploadNotaioRogante,uploadAltriTitoloDescrizione,uploadCartaIdentitaFronte,uploadCartaIdentitaRetro,uploadAttoNotarile,NumeroPratica) VALUES (2,'".$row['UfficioDestinatarioId']."','".$row['richiedenteCf']."','".addslashes($row['richiedenteNome'])."','".addslashes($row['richiedenteCognome'])."','".$row['richiedenteDataNascita']."','".addslashes($row['richiedenteLuogoNascita'])."','".addslashes($row['richiedenteVia'])."','".addslashes($row['richiedenteLocalita'])."','".$row['richiedenteProvincia']."','".$row['richiedenteEmail']."','".$row['richiedenteTel']."','".$row['pgRuolo']."','".addslashes($row['pgDenominazione'])."','".$row['pgTipologia']."','".addslashes($row['pgSedeLegaleIndirizzo'])."','".addslashes($row['pgSedeLegaleLocalita'])."','".$row['pgSedeLegaleProvincia']."','".$row['pgSedeLegaleCap']."','".$row['pgCf']."','".$row['pgPiva']."','".$row['pgTelefono']."','".$row['pgEmail']."','".$row['pgPec']."','".addslashes($row['richiedenteTitolo'])."','".addslashes($row['richiedenteProfessionistaIncaricatoDa'])."','".addslashes($row['richiedenteProfessionistaIncaricatoDaNome'])."','".addslashes($row['richiedenteProfessionistaIncaricatoDaCognome'])."','".$row['richiedenteProfessionistaIncaricatoDaCf']."','".addslashes($row['richiedenteProfessionistaIncaricatoDaAltroSoggetto'])."','".addslashes($row['richiedenteProfessionistaIncaricatoDaDescrizioneTitolo'])."','".addslashes($row['richiestaTipo'])."','".addslashes($row['richiestaAtti'])."','".addslashes($row['richiestaAttiTipoDocumento'])."','".addslashes($row['richiestaAttiProtocollo'])."','".$row['richiestaAttiData']."','".$row['collocazioneTerritorialeCodiceCatastale']."','".$row['collocazioneTerritorialeSezione']."','".$row['collocazioneTerritorialeFoglio']."','".$row['collocazioneTerritorialeParticella']."','".$row['collocazioneTerritorialeSubalterno']."','".$row['collocazioneTerritorialeCategoria']."','".addslashes($row['collocazioneTerritorialeIndirizzo'])."','".addslashes($row['collocazioneTerritorialeLocalita'])."','".$row['collocazioneTerritorialeProvincia']."','".addslashes($row['motivo'])."','".addslashes($row['motivoAltro'])."','".$row['modoRitiro']."','".addslashes($row['modoRitiroPostaIndirizzo'])."','".addslashes($row['modoRitiroPostaLocalita'])."','".$row['modoRitiroPostaProvincia']."','".$row['modoRitiroPostaCap']."','".addslashes($row['annotazioni'])."','".$NewuploadTitoloDichiarato."','".$NewuploadAffittuario."','".$NewuploadAltroSoggetto."','".$NewuploadNotaioRogante."','".$NewuploadAltriTitoloDescrizione."','".$NewuploadCartaIdentitaFronte."','".$NewuploadCartaIdentitaRetro."','".$NewuploadAttoNotarile."','".$NumeroPratica."')";
                 $connessioneINS->query($sqlINS);
 
                 /* ricavo il nuovo id */
-                $sqlINS = "SELECT id FROM domanda_contributo WHERE richiedenteCf = '". $_SESSION['CF'] ."' and status_id = 2 ORDER BY id DESC LIMIT 1";
+                $sqlINS = "SELECT id FROM accesso_atti WHERE richiedenteCf = '". $_SESSION['CF'] ."' and status_id = 2 ORDER BY id DESC LIMIT 1";
                 $resultINS = $connessioneINS->query($sqlINS);
                 if ($resultINS->num_rows > 0) {
                 // output data of each row
@@ -108,21 +158,21 @@ $data = [];
 
                 /* vado ad inserire nella bozza il numero pratica - questo mi serve per lo storico. */
                 $connessioneUPD = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-                $sqlUPD = "UPDATE domanda_contributo SET NumeroPratica = '".$NumeroPratica."' WHERE id = ".$_POST['pratican'];
+                $sqlUPD = "UPDATE accesso_atti SET NumeroPratica = '".$NumeroPratica."' WHERE id = ".$_POST['pratican'];
                 $connessioneUPD->query($sqlUPD);
 
-                /* salvo nelle attitivà la creazione o modifica della bozza per domanda_contributo */
-                    $sqlINS = "INSERT INTO attivita (cf,servizio_id,pratica_id,status_id,data_attivita) VALUES ('". $_SESSION['CF'] ."',11,".$new_id.",2,'".date('Y-m-d')."')";
+                /* salvo nelle attitivà la creazione o modifica della bozza per accesso_atti */
+                    $sqlINS = "INSERT INTO attivita (cf,servizio_id,pratica_id,status_id,data_attivita) VALUES ('". $_SESSION['CF'] ."',6,".$new_id.",2,'".date('Y-m-d')."')";
                     $connessioneINS->query($sqlINS);
 
 
-                /* salvo nei messaggi che ho una bozza da completare per domanda_contributo */
-                    $sqlINS = "INSERT INTO messaggi (CF_to,servizio_id,testo,data_msg) VALUES ('". $_SESSION['CF'] ."',11,'La tua domanda di contributo è stata inviata.<br/>Il numero della pratica è: <b>".$NumeroPratica."</b>','".date('Y-m-d')."')";
+                /* salvo nei messaggi che ho una bozza da completare per accesso_atti */
+                    $sqlINS = "INSERT INTO messaggi (CF_to,servizio_id,testo,data_msg) VALUES ('". $_SESSION['CF'] ."',6,'La tua domanda di accesso agli atti è stata inviata.<br/>Il numero della pratica è: <b>".$NumeroPratica."</b>','".date('Y-m-d')."')";
                     $connessioneINS->query($sqlINS);  
                     
                 /* preparo il pdf da allegare alla mail del comune */
                     include '../lib/tcpdf/TCPDF-master/tcpdf.php';
-                    include '../lib/tcpdf/TCPDF-master/examples/dc_pdf_comune.php'; 
+                    include '../lib/tcpdf/TCPDF-master/examples/aa_pdf_comune.php'; 
 
                 /* mando mail al comune - start */
                     $phpmailer = new PHPMailer();
@@ -136,7 +186,7 @@ $data = [];
                     $phpmailer->setFrom($fromMail,$fromName);
                     $phpmailer->addAddress('paola.durelli@proximalab.it', 'Proxima');
                     $phpmailer->addAddress($configData['mail_comune'], 'Comune di ' . $configData['nome_comune']);
-                    $phpmailer->Subject = 'Comune di '. $configData['nome_comune'] . ' - Domanda di contributo  - '.$NumeroPratica.' - '. $_SESSION['CF'];
+                    $phpmailer->Subject = 'Comune di '. $configData['nome_comune'] . ' - Domanda di accesso agli atti - '.$NumeroPratica.' - '. $_SESSION['CF'];
 
                     /* Add Static Attachment */
                     /* allego la pratica completa appena creata */
@@ -146,18 +196,37 @@ $data = [];
                     
                     /* se ci sono altri documenti, li allego */
 
-                    if($NewuploadPotereFirma <> ''){
-                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/domanda_contributo/'. $NewuploadPotereFirma;
-                        $phpmailer->AddAttachment($attachment , $NewuploadPotereFirma);
+                    if($NewuploadTitoloDichiarato <> ''){
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/accesso_atti/'. $NewuploadTitoloDichiarato;
+                        $phpmailer->AddAttachment($attachment , $NewuploadTitoloDichiarato);
                     }
-                    if($NewuploadDocumentazione <> ''){
-                        $tmpUploadDocumentazione1 = substr($NewuploadDocumentazione,0,-1);
-                        $tmpUploadDocumentaziones = explode(';', $tmpUploadDocumentazione1);
-                        
-                        foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
-                            $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/domanda_contributo/'. $tmpUploadDocumentazione;
-                            $phpmailer->AddAttachment($attachment , $tmpUploadDocumentazione);
-                        }
+                    if($NewuploadAffittuario <> ''){
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/accesso_atti/'. $NewuploadAffittuario;
+                        $phpmailer->AddAttachment($attachment , $NewuploadAffittuario);
+                    }
+                    if($NewuploadAltroSoggetto <> ''){
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/accesso_atti/'. $NewuploadAltroSoggetto;
+                        $phpmailer->AddAttachment($attachment , $NewuploadAltroSoggetto);
+                    }
+                    if($NewuploadNotaioRogante <> ''){
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/accesso_atti/'. $NewuploadNotaioRogante;
+                        $phpmailer->AddAttachment($attachment , $NewuploadNotaioRogante);
+                    }
+                    if($NewuploadAltriTitoloDescrizione <> ''){
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/accesso_atti/'. $NewuploadAltriTitoloDescrizione;
+                        $phpmailer->AddAttachment($attachment , $NewuploadAltriTitoloDescrizione);
+                    }
+                    if($NewuploadCartaIdentitaFronte <> ''){
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/accesso_atti/'. $NewuploadCartaIdentitaFronte;
+                        $phpmailer->AddAttachment($attachment , $NewuploadCartaIdentitaFronte);
+                    }
+                    if($NewuploadCartaIdentitaRetro <> ''){
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/accesso_atti/'. $NewuploadCartaIdentitaRetro;
+                        $phpmailer->AddAttachment($attachment , $NewuploadCartaIdentitaRetro);
+                    }
+                    if($NewuploadAttoNotarile <> ''){
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/accesso_atti/'. $NewuploadAttoNotarile;
+                        $phpmailer->AddAttachment($attachment , $NewuploadAttoNotarile);
                     }
                     
                     $phpmailer->isHTML(true);
@@ -167,7 +236,7 @@ $data = [];
                     $message = str_replace('%cognome%', $_SESSION['Cognome'], $message);
                     $message = str_replace('%codicefiscale%', $_SESSION['CF'], $message);
                     $message = str_replace('%numeropratica%', $NumeroPratica, $message);
-                    $message = str_replace('%servizioselezionato%', 'domanda di contributo economico', $message);
+                    $message = str_replace('%servizioselezionato%', 'domanda di accesso agli atti', $message);
                     $message = str_replace('%urlservizi%', $configData['url_servizi'], $message);
                     $message = str_replace('%nomecomune%', $configData['nome_comune'], $message);
                     $message = str_replace('%anno%', date('Y'), $message);
@@ -189,10 +258,10 @@ $data = [];
                     $phpmailer2->SMTPSecure = $configSmtp['smtp_secure'];
                     $phpmailer2->Username = $configSmtp['smtp_username'];
                     $phpmailer2->Password = $configSmtp['smtp_password'];
-                    $phpmailer2->setFrom($configData['mail_comune'], 'Comune di ' . $configData['nome_comune']);
+                    $phpmailer->setFrom($fromMail,$fromName);
                     $phpmailer2->addAddress('paola.durelli@proximalab.it', 'Proxima');
                     $phpmailer2->addAddress($_SESSION["Email"]);
-                    $phpmailer2->Subject = 'Comune di '. $configData['nome_comune'] . ' - Domanda di contributo ';
+                    $phpmailer2->Subject = 'Comune di '. $configData['nome_comune'] . ' - Accesso agli atti ';
                     $phpmailer2->isHTML(true);
                     
                     $message2 = file_get_contents('../template/mail/toUser.html');
@@ -200,7 +269,7 @@ $data = [];
                     $message2 = str_replace('%cognome%', $_SESSION['Cognome'], $message2);
                     $message2 = str_replace('%codicefiscale%', $_SESSION['CF'], $message2);
                     $message2 = str_replace('%numeropratica%', $NumeroPratica, $message2);
-                    $message2 = str_replace('%servizioselezionato%', 'domanda di contributo economico', $message2);
+                    $message2 = str_replace('%servizioselezionato%', 'domanda di accesso agli atti', $message2);
                     $message2 = str_replace('%urlservizi%', $configData['url_servizi'], $message);
                     $message2 = str_replace('%nomecomune%', $configData['nome_comune'], $message2);
                     $message2 = str_replace('%telcomune%', $configData['tel_comune'], $message2);

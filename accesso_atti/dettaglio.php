@@ -74,10 +74,10 @@
 
     
     /* con l'id vado a richiamare i dati salvati */
-    if(isset($_GET["dc_pratica_id"]) && $_GET["dc_pratica_id"]<>''){
+    if(isset($_GET["aa_pratica_id"]) && $_GET["aa_pratica_id"]<>''){
         /* DATI ESTRAPOLATI DA DB - start */ 
         $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-        $sql = "SELECT * FROM domanda_contributo WHERE richiedenteCf = '". $_SESSION['CF']."' and id =" . $_GET["dc_pratica_id"];
+        $sql = "SELECT * FROM accesso_atti WHERE richiedenteCf = '". $_SESSION['CF']."' and id =" . $_GET["aa_pratica_id"];
         $result = $connessione->query($sql);
 
         if ($result->num_rows > 0) {
@@ -135,13 +135,13 @@
                 $modoRitiroPostaProvincia = $row["modoRitiroPostaProvincia"];
                 $modoRitiroPostaCap = $row["modoRitiroPostaCap"];
                 $annotazioni = $row["annotazioni"];
-                $uploadAffittuario = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadPotereFirma"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
-                $uploadAltroSoggetto = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadPotereFirma"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
-                $uploadNotaioRogante = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadPotereFirma"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
-                $uploadAltriTitoloDescrizione = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadPotereFirma"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
-                $uploadCartaIdentitaFronte = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadPotereFirma"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
-                $uploadCartaIdentitaRetro = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadPotereFirma"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
-                $uploadAttoNotarile = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadPotereFirma"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
+                $uploadAffittuario = $row["uploadAffittuario"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadAffittuario"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>" : "";
+                $uploadAltroSoggetto = $row["uploadAltroSoggetto"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadAltroSoggetto"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>" : "";
+                $uploadNotaioRogante = $row["uploadNotaioRogante"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadNotaioRogante"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>" : "";
+                $uploadAltriTitoloDescrizione = $row["uploadAltriTitoloDescrizione"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadAltriTitoloDescrizione"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>" : "";
+                $uploadCartaIdentitaFronte = $row["uploadCartaIdentitaFronte"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadCartaIdentitaFronte"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>" : "";
+                $uploadCartaIdentitaRetro = $row["uploadCartaIdentitaRetro"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadCartaIdentitaRetro"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>" : "";
+                $uploadAttoNotarile = $row["uploadAttoNotarile"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadAttoNotarile"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>" : "";
             }
         }
         $connessione->close();
@@ -437,7 +437,7 @@
                                             <h2 class="title-xxlarge mb-3">Richiesta</h2>
                                         </div>
                                     </div>
-                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                    <div class="card-header border-0 p-0 m-0">
                                         <div class="row">
                                             <div class="col-lg-12"><p id="aa_pgRuolo_txt"><b>di esercitare il diritto di accesso agli atti attraverso la richiesta di:</b></p></div>
                                         </div>
@@ -490,24 +490,24 @@
                                         <?php } ?>
                                         <?php if($richiestaAtti <> ""){ ?>
                                             <div class="row">
-                                                <div class="col-lg-12"><p><b>dei seguenti atti o documenti amministrativi:</b><br><?php echo $richiestaAtti; ?></div>
+                                                <div class="col-lg-12 mt-5"><p><b>dei seguenti atti o documenti amministrativi:</b><br><?php echo $richiestaAtti; ?></div>
                                             </div>
                                         <?php } ?>
                                         <?php if($richiestaAttiTipoDocumento <> ""){ ?>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="aa_richiestaAtti_txt"><b>eventuali estremi identificativi degli atti o documenti:</b></div>
+                                                <div class="col-lg-12 mt-5"><p id="aa_richiestaAtti_txt"><b>eventuali estremi identificativi degli atti o documenti:</b></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="row">
                                                         <div class="col-lg-4">
-                                                            Tipo Documento: <?php echo $richiestaAttiTipoDocumento; ?>
+                                                            Tipo Documento: <b><?php echo $richiestaAttiTipoDocumento; ?></b>
                                                         </div>
                                                         <div class="col-lg-4">
-                                                            Protocollo: <?php echo $richiestaAttiProtocollo; ?>
+                                                            Protocollo: <b><?php echo $richiestaAttiProtocollo; ?></b>
                                                         </div>
                                                         <div class="col-lg-4">
-                                                            Data: <?php echo $richiestaAttiData; ?>
+                                                            Data: <b><?php echo $richiestaAttiData; ?></b>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -515,24 +515,40 @@
                                         <?php } ?>
                                         <?php if($collocazioneTerritorialeCodiceCatastale <> ""){ ?>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="aa_richiestaAtti_txt"><b>eventuale collocazione territoriale:</b></div>
+                                                <div class="col-lg-12 mt-5"><p id="aa_richiestaAtti_txt"><b>eventuale collocazione territoriale:</b></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12">
-                                                    Codice catastale<br><?php echo $collocazioneTerritorialeCodiceCatastale; ?><br>
-                                                    Sezione<br><?php echo $collocazioneTerritorialeSezione; ?><br>
-                                                    Foglio<br><?php echo $collocazioneTerritorialeFoglio; ?><br>
-                                                    Particella<br><?php echo $collocazioneTerritorialeParticella; ?><br>
-                                                    Subalterno<br><?php echo $collocazioneTerritorialeSubalterno; ?><br>
-                                                    Categoria<br><?php echo $collocazioneTerritorialeCategoria; ?><br>
-                                                    Indirizzo<br><?php echo $collocazioneTerritorialeIndirizzo; ?><br>
-                                                    Localita<br><?php echo $collocazioneTerritorialeLocalita; ?><br>
-                                                    Provincia<br><?php echo $collocazioneTerritorialeProvincia; ?>
+                                                <div class="col-lg-4">
+                                                    Codice catastale: <b><?php echo $collocazioneTerritorialeCodiceCatastale; ?></b>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    Sezione: <b><?php echo $collocazioneTerritorialeSezione; ?></b>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    Foglio: <b><?php echo $collocazioneTerritorialeFoglio; ?></b>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    Particella: <b><?php echo $collocazioneTerritorialeParticella; ?></b>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    Subalterno: <b><?php echo $collocazioneTerritorialeSubalterno; ?></b>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    Categoria: <b><?php echo $collocazioneTerritorialeCategoria; ?></b>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    Indirizzo: <b><?php echo $collocazioneTerritorialeIndirizzo; ?></b>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    Localita: <b><?php echo $collocazioneTerritorialeLocalita; ?></b>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    Provincia: <b><?php echo $collocazioneTerritorialeProvincia; ?></b>
                                                 </div>
                                             </div>
                                         <?php } ?>
                                         <div class="row">
-                                            <div class="col-lg-12"><p id="aa_motivo_txt"><b>di avere un interesse personale e concreto ovvero pubblico o diffuso all'accesso per la tutela di situazioni giuridicamente rilevanti per il seguente motivo:</b></div>
+                                            <div class="col-lg-12 mt-5"><p id="aa_motivo_txt"><b>di avere un interesse personale e concreto ovvero pubblico o diffuso all'accesso per la tutela di situazioni giuridicamente rilevanti per il seguente motivo:</b></div>
                                         </div>
                                         <?php if($motivo == "AttoNotarile"){ ?>
                                             <div class="row">
@@ -607,7 +623,7 @@
                                             </div>
                                         <?php } ?>
                                         <div class="row">
-                                            <div class="col-lg-12"><p id="aa_modoRitiro_txt"><b>Modo ritiro:</b></div>
+                                            <div class="col-lg-12 mt-5"><p id="aa_modoRitiro_txt"><b>Modo ritiro:</b></div>
                                         </div>
                                         <?php if($modoRitiro == "Ufficio"){ ?>
                                             <div class="row">
@@ -639,25 +655,30 @@
                                         <?php if($modoRitiro == "AltroIndirizzo"){ ?>
                                             <div class="row">
                                                 <div class="col-lg-12">
-                                                    <div class="form-check">
-                                                        <label class="form-check-label" for="aa_modoRitiroAltroIndirizzo">ricezione a mezzo posta al seguente indirizzo:<br>
-                                                            Indirizzo<br>
-                                                            <b><?php echo $modoRitiroPostaIndirizzo; ?></b><br>
-                                                            Località<br>
-                                                            <b><?php echo $modoRitiroPostaLocalita; ?></b><br>
-                                                            Provincia<br>
-                                                            <b><?php echo $modoRitiroPostaProvincia; ?></b><br>
-                                                            Cap<br>
-                                                            <b><?php echo $modoRitiroPostaCap; ?></b>
-                                                        </label>
-                                                    </div>
+                                                    <p>ricezione a mezzo posta al seguente indirizzo:</p>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    Indirizzo<br>
+                                                    <b><?php echo $modoRitiroPostaIndirizzo; ?></b>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    Località<br>
+                                                    <b><?php echo $modoRitiroPostaLocalita; ?></b>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    Provincia<br>
+                                                    <b><?php echo $modoRitiroPostaProvincia; ?></b>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    Cap<br>
+                                                    <b><?php echo $modoRitiroPostaCap; ?></b>
                                                 </div>
                                             </div>
                                         <?php } ?>
                                         <?php if($annotazioni <> ""){ ?>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="aa_annotazioni_txt"><b>Eventuali annotazioni:</b><br>
-                                                    <?php echo $annotazioni; ?>
+                                                <div class="col-lg-12 mt-5"><p id="aa_annotazioni_txt">Eventuali annotazioni:<br>
+                                                        <b><?php echo $annotazioni; ?></b>
                                                 </div>
                                             </div>
                                         <?php } ?>
@@ -675,64 +696,9 @@
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-lg-8">
-                                                        <h6 id="aa_uploadDocumentazione_txt">Documentazione comprovante il titolo dichiarato: Affittuario</h6>                                                        
-                                                    </div>                                                    
-                                                    <div class="col-lg-4 text-right">
-                                                        <ul class="upload-file-list" id="aa_uploadAffittuario_file">
-                                                            <?php echo $uploadAffittuario; ?>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <?php if($uploadCartaIdentitaFronte != ""){ ?>
                                         <div class="row">
                                             <div class="col-12 after-section">
-                                                <div class="row">
-                                                    <div class="col-lg-8">
-                                                        <h6 id="aa_uploadPotereFirma_txt">Documentazione comprovante il titolo dichiarato: professionista incaricato da altro soggetto</h6>
-                                                    </div>
-                                                    <div class="col-lg-4 text-right">
-                                                        <ul class="upload-file-list" id="aa_uploadAltroSoggetto_file">
-                                                            <?php echo $uploadAltroSoggetto; ?>
-                                                        </ul>                                                            
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-lg-8">
-                                                        <h6 id="aa_uploadDocumentazione_txt">Documentazione comprovante il titolo dichiarato: Notaio Rogante</h6>
-                                                    </div>                                                    
-                                                    <div class="col-lg-4 text-right">
-                                                        <ul class="upload-file-list" id="aa_uploadNotaioRogante_file">
-                                                            <?php echo $uploadNotaioRogante; ?>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12 after-section">
-                                                <div class="row">
-                                                    <div class="col-lg-8">
-                                                        <h6 id="aa_uploadPotereFirma_txt">Documentazione comprovante il titolo dichiarato: Altro Titolo</h6>
-                                                    </div>
-                                                    <div class="col-lg-4 text-right">
-                                                        <ul class="upload-file-list" id="aa_uploadAltriTitoloDescrizione_file">
-                                                            <?php echo $uploadAltriTitoloDescrizione; ?>
-                                                        </ul>                                                            
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12">
                                                 <div class="row">
                                                     <div class="col-lg-8">
                                                         <h6 id="aa_uploadDocumentazione_txt">Carta d'Identita Fronte</h6>
@@ -745,6 +711,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php } ?>
+                                        <?php if($uploadCartaIdentitaRetro != ""){ ?>
                                         <div class="row">
                                             <div class="col-12 after-section">
                                                 <div class="row">
@@ -759,8 +727,74 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php } ?>
+                                        <?php if($uploadAffittuario != ""){ ?>
                                         <div class="row">
-                                            <div class="col-12">
+                                            <div class="col-12 after-section">
+                                                <div class="row">
+                                                    <div class="col-lg-8">
+                                                        <h6 id="aa_uploadDocumentazione_txt">Documentazione comprovante il titolo dichiarato: Affittuario</h6>                                                        
+                                                    </div>                                                    
+                                                    <div class="col-lg-4 text-right">
+                                                        <ul class="upload-file-list" id="aa_uploadAffittuario_file">
+                                                            <?php echo $uploadAffittuario; ?>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php } ?>
+                                        <?php if($uploadAltroSoggetto != ""){ ?>
+                                        <div class="row">
+                                            <div class="col-12 after-section">
+                                                <div class="row">
+                                                    <div class="col-lg-8">
+                                                        <h6 id="aa_uploadPotereFirma_txt">Documentazione comprovante il titolo dichiarato: professionista incaricato da altro soggetto</h6>
+                                                    </div>
+                                                    <div class="col-lg-4 text-right">
+                                                        <ul class="upload-file-list" id="aa_uploadAltroSoggetto_file">
+                                                            <?php echo $uploadAltroSoggetto; ?>
+                                                        </ul>                                                            
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php } ?>
+                                        <?php if($uploadNotaioRogante != ""){ ?>
+                                        <div class="row">
+                                            <div class="col-12 after-section">
+                                                <div class="row">
+                                                    <div class="col-lg-8">
+                                                        <h6 id="aa_uploadDocumentazione_txt">Documentazione comprovante il titolo dichiarato: Notaio Rogante</h6>
+                                                    </div>                                                    
+                                                    <div class="col-lg-4 text-right">
+                                                        <ul class="upload-file-list" id="aa_uploadNotaioRogante_file">
+                                                            <?php echo $uploadNotaioRogante; ?>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php } ?>
+                                        <?php if($uploadAltriTitoloDescrizione != ""){ ?>
+                                        <div class="row">
+                                            <div class="col-12 after-section">
+                                                <div class="row">
+                                                    <div class="col-lg-8">
+                                                        <h6 id="aa_uploadPotereFirma_txt">Documentazione comprovante il titolo dichiarato: Altro Titolo</h6>
+                                                    </div>
+                                                    <div class="col-lg-4 text-right">
+                                                        <ul class="upload-file-list" id="aa_uploadAltriTitoloDescrizione_file">
+                                                            <?php echo $uploadAltriTitoloDescrizione; ?>
+                                                        </ul>                                                            
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php } ?>
+                                        <?php if($uploadAttoNotarile != ""){ ?>
+                                        <div class="row">
+                                            <div class="col-12 after-section">
                                                 <div class="row">
                                                     <div class="col-lg-8">
                                                         <h6 id="aa_uploadDocumentazione_txt">Atto notarile con il quale è stata conferita la procura</h6>
@@ -773,6 +807,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>

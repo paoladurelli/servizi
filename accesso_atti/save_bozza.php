@@ -64,7 +64,7 @@ $writeMessages = false;
 /* salvo tutti i dati nel DB nella tabella accesso_atti */
 if(!isset($_POST['aa_bozza_id']) || $_POST['aa_bozza_id'] == ''){
 
-    $sqlINS = "INSERT INTO `accesso_atti`(status_id,richiedenteNome,richiedenteCognome,richiedenteCf,richiedenteDataNascita,richiedenteLuogoNascita,richiedenteVia,richiedenteLocalita,richiedenteProvincia,richiedenteEmail,richiedenteTel,inQualitaDi,beneficiarioNome,beneficiarioCognome,beneficiarioCf,beneficiarioDataNascita,beneficiarioLuogoNascita,beneficiarioVia,beneficiarioLocalita,beneficiarioProvincia,beneficiarioEmail,beneficiarioTel,importoContributo,finalitaContributo,tipoPagamento_id) VALUES (1,'".$richiedenteNome."','".$richiedenteCognome."','".$richiedenteCf."','".$richiedenteDataNascita."','".$richiedenteLuogoNascita."','".$richiedenteVia."','".$richiedenteLocalita."','".$richiedenteProvincia."','".$richiedenteEmail."','".$richiedenteTel."','".$inQualitaDi."','".$beneficiarioNome."','".$beneficiarioCognome."','".$beneficiarioCf."','".$beneficiarioDataNascita."','".$beneficiarioLuogoNascita."','".$beneficiarioVia."','".$beneficiarioLocalita."','".$beneficiarioProvincia."','".$beneficiarioEmail."','".$beneficiarioTel."','".$importoContributo."','".$finalitaContributo."','".$tipoPagamento_id."')";
+    $sqlINS = "INSERT INTO `accesso_atti`(`status_id`,`UfficioDestinatarioId`, `richiedenteCf`, `richiedenteNome`, `richiedenteCognome`, `richiedenteDataNascita`, `richiedenteLuogoNascita`, `richiedenteVia`, `richiedenteLocalita`, `richiedenteProvincia`, `richiedenteEmail`, `richiedenteTel`, `pgRuolo`, `pgDenominazione`, `pgTipologia`, `pgSedeLegaleIndirizzo`, `pgSedeLegaleLocalita`, `pgSedeLegaleProvincia`, `pgSedeLegaleCap`, `pgCf`, `pgPiva`, `pgTelefono`, `pgEmail`, `pgPec`, `richiedenteTitolo`, `richiedenteProfessionistaIncaricatoDa`, `richiedenteProfessionistaIncaricatoDaNome`, `richiedenteProfessionistaIncaricatoDaCognome`, `richiedenteProfessionistaIncaricatoDaCf`, `richiedenteProfessionistaIncaricatoDaAltroSoggetto`, `richiedenteProfessionistaIncaricatoDaDescrizioneTitolo`, `richiestaTipo`, `richiestaAtti`, `richiestaAttiTipoDocumento`, `richiestaAttiProtocollo`, `richiestaAttiData`, `collocazioneTerritorialeCodiceCatastale`, `collocazioneTerritorialeSezione`, `collocazioneTerritorialeFoglio`, `collocazioneTerritorialeParticella`, `collocazioneTerritorialeSubalterno`, `collocazioneTerritorialeCategoria`, `collocazioneTerritorialeIndirizzo`, `collocazioneTerritorialeLocalita`, `collocazioneTerritorialeProvincia`, `motivo`, `motivoAltro`, `modoRitiro`, `modoRitiroPostaIndirizzo`, `modoRitiroPostaLocalita`, `modoRitiroPostaProvincia`, `modoRitiroPostaCap`, `annotazioni`) VALUES (1,'".$UfficioDestinatarioId."','".$richiedenteCf."','".$richiedenteNome."','".$richiedenteCognome."','".$richiedenteDataNascita."','".$richiedenteLuogoNascita."','".$richiedenteVia."','".$richiedenteLocalita."','".$richiedenteProvincia."','".$richiedenteEmail."','".$richiedenteTel."','".$pgRuolo."','".$pgDenominazione."','".$pgTipologia."','".$pgSedeLegaleIndirizzo."','".$pgSedeLegaleLocalita."','".$pgSedeLegaleProvincia."','".$pgSedeLegaleCap."','".$pgCf."','".$pgPiva."','".$pgTelefono."','".$pgEmail."','".$pgPec."','".$richiedenteTitolo."','".$richiedenteProfessionistaIncaricatoDa."','".$richiedenteProfessionistaIncaricatoDaNome."','".$richiedenteProfessionistaIncaricatoDaCognome."','".$richiedenteProfessionistaIncaricatoDaCf."','".$richiedenteProfessionistaIncaricatoDaAltroSoggetto."','".$richiedenteProfessionistaIncaricatoDaDescrizioneTitolo."','".$richiestaTipo."','".$richiestaAtti."','".$richiestaAttiTipoDocumento."','".$richiestaAttiProtocollo."','".$richiestaAttiData."','".$collocazioneTerritorialeCodiceCatastale."','".$collocazioneTerritorialeSezione."','".$collocazioneTerritorialeFoglio."','".$collocazioneTerritorialeParticella."','".$collocazioneTerritorialeSubalterno."','".$collocazioneTerritorialeCategoria."','".$collocazioneTerritorialeIndirizzo."','".$collocazioneTerritorialeLocalita."','".$collocazioneTerritorialeProvincia."','".$motivo."','".$motivoAltro."','".$modoRitiro."','".$modoRitiroPostaIndirizzo."','".$modoRitiroPostaLocalita."','".$modoRitiroPostaProvincia."','".$modoRitiroPostaCap."','".$annotazioni."')";
     $connessioneINS->query($sqlINS);
 
     $sqlINS = "SELECT id FROM accesso_atti WHERE richiedenteCf = '". $_SESSION['CF']."' and status_id = 1 ORDER BY id DESC LIMIT 1";
@@ -81,7 +81,7 @@ if(!isset($_POST['aa_bozza_id']) || $_POST['aa_bozza_id'] == ''){
     }
 }else{
     /* se esiste già la bozza vado a modificarne i dati */
-    $sqlUPD = "UPDATE accesso_atti SET richiedenteNome = '". $richiedenteNome ."', richiedenteCognome = '". $richiedenteCognome ."', richiedenteCf = '". $richiedenteCf ."', richiedenteDataNascita = '". $richiedenteDataNascita ."', richiedenteLuogoNascita = '". $richiedenteLuogoNascita ."', richiedenteVia = '". $richiedenteVia ."', richiedenteLocalita = '". $richiedenteLocalita ."', richiedenteProvincia = '". $richiedenteProvincia ."', richiedenteEmail = '". $richiedenteEmail ."', richiedenteTel = '". $richiedenteTel ."', inQualitaDi = '". $inQualitaDi ."', beneficiarioNome = '". $beneficiarioNome ."', beneficiarioCognome = '". $beneficiarioCognome ."', beneficiarioCf = '". $beneficiarioCf ."', beneficiarioDataNascita = '". $beneficiarioDataNascita ."', beneficiarioLuogoNascita = '". $beneficiarioLuogoNascita ."', beneficiarioVia = '". $beneficiarioVia ."', beneficiarioLocalita = '". $beneficiarioLocalita ."', beneficiarioProvincia = '". $beneficiarioProvincia ."', beneficiarioEmail = '". $beneficiarioEmail ."', beneficiarioTel = '". $beneficiarioTel ."', importoContributo = '". $importoContributo ."', finalitaContributo = '". $finalitaContributo ."', tipoPagamento_id = '". $tipoPagamento_id ."' WHERE id = '".$_POST['aa_bozza_id']."'";
+    $sqlUPD = "UPDATE accesso_atti SET UfficioDestinatarioId='".$UfficioDestinatarioId."',richiedenteCf='".$richiedenteCf."',richiedenteNome='".$richiedenteNome."',richiedenteCognome='".$richiedenteCognome."',richiedenteDataNascita='".$richiedenteDataNascita."',richiedenteLuogoNascita='".$richiedenteLuogoNascita."',richiedenteVia='".$richiedenteVia."',richiedenteLocalita='".$richiedenteLocalita."',richiedenteProvincia='".$richiedenteProvincia."',richiedenteEmail='".$richiedenteEmail."',richiedenteTel='".$richiedenteTel."',pgRuolo='".$pgRuolo."',pgDenominazione='".$pgDenominazione."',pgTipologia='".$pgTipologia."',pgSedeLegaleIndirizzo='".$pgSedeLegaleIndirizzo."',pgSedeLegaleLocalita='".$pgSedeLegaleLocalita."',pgSedeLegaleProvincia='".$pgSedeLegaleProvincia."',pgSedeLegaleCap='".$pgSedeLegaleCap."',pgCf='".$pgCf."',pgPiva='".$pgPiva."',pgTelefono='".$pgTelefono."',pgEmail='".$pgEmail."',pgPec='".$pgPec."',richiedenteTitolo='".$richiedenteTitolo."',richiedenteProfessionistaIncaricatoDa='".$richiedenteProfessionistaIncaricatoDa."',richiedenteProfessionistaIncaricatoDaNome='".$richiedenteProfessionistaIncaricatoDaNome."',richiedenteProfessionistaIncaricatoDaCognome='".$richiedenteProfessionistaIncaricatoDaCognome."',richiedenteProfessionistaIncaricatoDaCf='".$richiedenteProfessionistaIncaricatoDaCf."',richiedenteProfessionistaIncaricatoDaAltroSoggetto='".$richiedenteProfessionistaIncaricatoDaAltroSoggetto."',richiedenteProfessionistaIncaricatoDaDescrizioneTitolo='".$richiedenteProfessionistaIncaricatoDaDescrizioneTitolo."',richiestaTipo='".$richiestaTipo."',richiestaAtti='".$richiestaAtti."',richiestaAttiTipoDocumento='".$richiestaAttiTipoDocumento."',richiestaAttiProtocollo='".$richiestaAttiProtocollo."',richiestaAttiData='".$richiestaAttiData."',collocazioneTerritorialeCodiceCatastale='".$collocazioneTerritorialeCodiceCatastale."',collocazioneTerritorialeSezione='".$collocazioneTerritorialeSezione."',collocazioneTerritorialeFoglio='".$collocazioneTerritorialeFoglio."',collocazioneTerritorialeParticella='".$collocazioneTerritorialeParticella."',collocazioneTerritorialeSubalterno='".$collocazioneTerritorialeSubalterno."',collocazioneTerritorialeCategoria='".$collocazioneTerritorialeCategoria."',collocazioneTerritorialeIndirizzo='".$collocazioneTerritorialeIndirizzo."',collocazioneTerritorialeLocalita='".$collocazioneTerritorialeLocalita."',collocazioneTerritorialeProvincia='".$collocazioneTerritorialeProvincia."',motivo='".$motivo."',motivoAltro='".$motivoAltro."',modoRitiro='".$modoRitiro."',modoRitiroPostaIndirizzo='".$modoRitiroPostaIndirizzo."',modoRitiroPostaLocalita='".$modoRitiroPostaLocalita."',modoRitiroPostaProvincia='".$modoRitiroPostaProvincia."',modoRitiroPostaCap='".$modoRitiroPostaCap."',annotazioni='".$annotazioni."' WHERE id = '".$_POST['aa_bozza_id']."'";
     $connessioneUPD->query($sqlUPD);
     $new_id = $_POST['aa_bozza_id'];
 }
@@ -91,22 +91,11 @@ if(!isset($_POST['aa_bozza_id']) || $_POST['aa_bozza_id'] == ''){
     $upload_location = "../uploads/accesso_atti/";
     // To store uploaded files path
     $files_arr = array();
-
-
-$uploadAffittuario
-$uploadAltroSoggetto
-$uploadNotaioRogante
-$uploadAltriTitoloDescrizione
-$uploadCartaIdentitaFronte
-$uploadCartaIdentitaRetro
-$uploadAttoNotarile
-
     
-    
-    /* aa_uploadPotereFirma - start */
-    if(isset($_FILES['aa_uploadPotereFirma']['name']) && $_FILES['aa_uploadPotereFirma']['name'] != ''){
+    /* aa_uploadAffittuario - start */
+    if(isset($_FILES['aa_uploadAffittuario']['name']) && $_FILES['aa_uploadAffittuario']['name'] != ''){
         // File name INIT
-        $filename = $_FILES['aa_uploadPotereFirma']['name'];
+        $filename = $_FILES['aa_uploadAffittuario']['name'];
 
         // Get extension
         $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
@@ -117,29 +106,203 @@ $uploadAttoNotarile
         // Check extension
         if(in_array($ext, $valid_ext)){
             //New file name
-            $filename = "aa_potere_firma_bozza_" . $new_id. "." . $ext;
+            $filename = "aa_Affittuario_bozza_" . $new_id. "." . $ext;
             // File path
             $path = $upload_location.$filename;
 
             // Upload file
-            if(move_uploaded_file($_FILES['aa_uploadPotereFirma']['tmp_name'],$path)){
+            if(move_uploaded_file($_FILES['aa_uploadAffittuario']['tmp_name'],$path)){
                 $files_arr[] = $path;
                 /* salvo nel DB i nomi */
-                $sqlUPD = "UPDATE accesso_atti SET uploadPotereFirma = '".$filename."' WHERE id = ".$new_id;
+                $sqlUPD = "UPDATE accesso_atti SET uploadAffittuario = '".$filename."' WHERE id = ".$new_id;
                 $connessioneUPD->query($sqlUPD);
             }
         }
     }
-    /* aa_uploadPotereFirma - end */
+    /* aa_uploadAffittuario - end */
+    
+    /* aa_uploadAltroSoggetto - start */
+    if(isset($_FILES['aa_uploadAltroSoggetto']['name']) && $_FILES['aa_uploadAltroSoggetto']['name'] != ''){
+        // File name INIT
+        $filename = $_FILES['aa_uploadAltroSoggetto']['name'];
 
+        // Get extension
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+        // Valid image extension
+        $valid_ext = array("png","jpeg","jpg","pdf");
+
+        // Check extension
+        if(in_array($ext, $valid_ext)){
+            //New file name
+            $filename = "aa_AltroSoggetto_bozza_" . $new_id. "." . $ext;
+            // File path
+            $path = $upload_location.$filename;
+
+            // Upload file
+            if(move_uploaded_file($_FILES['aa_uploadAltroSoggetto']['tmp_name'],$path)){
+                $files_arr[] = $path;
+                /* salvo nel DB i nomi */
+                $sqlUPD = "UPDATE accesso_atti SET uploadAltroSoggetto = '".$filename."' WHERE id = ".$new_id;
+                $connessioneUPD->query($sqlUPD);
+            }
+        }
+    }
+    /* aa_uploadAltroSoggetto - end */
+    
+    /* aa_uploadNotaioRogante - start */
+    if(isset($_FILES['aa_uploadNotaioRogante']['name']) && $_FILES['aa_uploadNotaioRogante']['name'] != ''){
+        // File name INIT
+        $filename = $_FILES['aa_uploadNotaioRogante']['name'];
+
+        // Get extension
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+        // Valid image extension
+        $valid_ext = array("png","jpeg","jpg","pdf");
+
+        // Check extension
+        if(in_array($ext, $valid_ext)){
+            //New file name
+            $filename = "aa_NotaioRogante_bozza_" . $new_id. "." . $ext;
+            // File path
+            $path = $upload_location.$filename;
+
+            // Upload file
+            if(move_uploaded_file($_FILES['aa_uploadNotaioRogante']['tmp_name'],$path)){
+                $files_arr[] = $path;
+                /* salvo nel DB i nomi */
+                $sqlUPD = "UPDATE accesso_atti SET uploadNotaioRogante = '".$filename."' WHERE id = ".$new_id;
+                $connessioneUPD->query($sqlUPD);
+            }
+        }
+    }
+    /* aa_uploadNotaioRogante - end */
+    
+    /* aa_uploadAltriTitoloDescrizione - start */
+    if(isset($_FILES['aa_uploadAltriTitoloDescrizione']['name']) && $_FILES['aa_uploadAltriTitoloDescrizione']['name'] != ''){
+        // File name INIT
+        $filename = $_FILES['aa_uploadAltriTitoloDescrizione']['name'];
+
+        // Get extension
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+        // Valid image extension
+        $valid_ext = array("png","jpeg","jpg","pdf");
+
+        // Check extension
+        if(in_array($ext, $valid_ext)){
+            //New file name
+            $filename = "aa_AltriTitoloDescrizione_bozza_" . $new_id. "." . $ext;
+            // File path
+            $path = $upload_location.$filename;
+
+            // Upload file
+            if(move_uploaded_file($_FILES['aa_uploadAltriTitoloDescrizione']['tmp_name'],$path)){
+                $files_arr[] = $path;
+                /* salvo nel DB i nomi */
+                $sqlUPD = "UPDATE accesso_atti SET uploadAltriTitoloDescrizione = '".$filename."' WHERE id = ".$new_id;
+                $connessioneUPD->query($sqlUPD);
+            }
+        }
+    }
+    /* aa_uploadAltriTitoloDescrizione - end */
+    
+    /* aa_uploadCartaIdentitaFronte - start */
+    if(isset($_FILES['aa_uploadCartaIdentitaFronte']['name']) && $_FILES['aa_uploadCartaIdentitaFronte']['name'] != ''){
+        // File name INIT
+        $filename = $_FILES['aa_uploadCartaIdentitaFronte']['name'];
+
+        // Get extension
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+        // Valid image extension
+        $valid_ext = array("png","jpeg","jpg","pdf");
+
+        // Check extension
+        if(in_array($ext, $valid_ext)){
+            //New file name
+            $filename = "aa_CartaIdentitaFronte_bozza_" . $new_id. "." . $ext;
+            // File path
+            $path = $upload_location.$filename;
+
+            // Upload file
+            if(move_uploaded_file($_FILES['aa_uploadCartaIdentitaFronte']['tmp_name'],$path)){
+                $files_arr[] = $path;
+                /* salvo nel DB i nomi */
+                $sqlUPD = "UPDATE accesso_atti SET uploadCartaIdentitaFronte = '".$filename."' WHERE id = ".$new_id;
+                $connessioneUPD->query($sqlUPD);
+            }
+        }
+    }
+    /* aa_uploadCartaIdentitaFronte - end */
+    
+    /* aa_uploadCartaIdentitaRetro - start */
+    if(isset($_FILES['aa_uploadCartaIdentitaRetro']['name']) && $_FILES['aa_uploadCartaIdentitaRetro']['name'] != ''){
+        // File name INIT
+        $filename = $_FILES['aa_uploadCartaIdentitaRetro']['name'];
+
+        // Get extension
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+        // Valid image extension
+        $valid_ext = array("png","jpeg","jpg","pdf");
+
+        // Check extension
+        if(in_array($ext, $valid_ext)){
+            //New file name
+            $filename = "aa_CartaIdentitaRetro_bozza_" . $new_id. "." . $ext;
+            // File path
+            $path = $upload_location.$filename;
+
+            // Upload file
+            if(move_uploaded_file($_FILES['aa_uploadCartaIdentitaRetro']['tmp_name'],$path)){
+                $files_arr[] = $path;
+                /* salvo nel DB i nomi */
+                $sqlUPD = "UPDATE accesso_atti SET uploadCartaIdentitaRetro = '".$filename."' WHERE id = ".$new_id;
+                $connessioneUPD->query($sqlUPD);
+            }
+        }
+    }
+    /* aa_uploadCartaIdentitaRetro - end */
+    
+    /* aa_uploadAttoNotarile - start */
+    if(isset($_FILES['aa_uploadAttoNotarile']['name']) && $_FILES['aa_uploadAttoNotarile']['name'] != ''){
+        // File name INIT
+        $filename = $_FILES['aa_uploadAttoNotarile']['name'];
+
+        // Get extension
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+        // Valid image extension
+        $valid_ext = array("png","jpeg","jpg","pdf");
+
+        // Check extension
+        if(in_array($ext, $valid_ext)){
+            //New file name
+            $filename = "aa_AttoNotarile_bozza_" . $new_id. "." . $ext;
+            // File path
+            $path = $upload_location.$filename;
+
+            // Upload file
+            if(move_uploaded_file($_FILES['aa_uploadAttoNotarile']['tmp_name'],$path)){
+                $files_arr[] = $path;
+                /* salvo nel DB i nomi */
+                $sqlUPD = "UPDATE accesso_atti SET uploadAttoNotarile = '".$filename."' WHERE id = ".$new_id;
+                $connessioneUPD->query($sqlUPD);
+            }
+        }
+    }
+    /* aa_uploadAttoNotarile - end */
+    
 
 if($writeMessages){    
     /* salvo nelle attitivà la creazione o modifica della bozza per accesso_atti */
-    $sqlINS = "INSERT INTO attivita (cf,servizio_id,pratica_id,status_id,data_attivita) VALUES ('".$_POST['aa_richiedente_cf']."',11,".$new_id.",1,'".date('Y-m-d')."')";
+    $sqlINS = "INSERT INTO attivita (cf,servizio_id,pratica_id,status_id,data_attivita) VALUES ('".$_POST['aa_richiedente_cf']."',6,".$new_id.",1,'".date('Y-m-d')."')";
     $connessioneINS->query($sqlINS);
 
     /* salvo nei messaggi che ho una bozza da completare per accesso_atti */
-    $sqlINS = "INSERT INTO messaggi (CF_to,servizio_id,testo,data_msg) VALUES ('".$_POST['aa_richiedente_cf']."',11,'La tua domanda di contributo è stata salvata come  bozza','".date('Y-m-d')."')";
+    $sqlINS = "INSERT INTO messaggi (CF_to,servizio_id,testo,data_msg) VALUES ('".$_POST['aa_richiedente_cf']."',6,'La tua domanda di accesso agli atti è stata salvata come  bozza','".date('Y-m-d')."')";
     $connessioneINS->query($sqlINS);
 }    
 /* invio risposta al js */
