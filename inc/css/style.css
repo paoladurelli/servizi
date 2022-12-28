@@ -275,7 +275,9 @@ label{
 #dc_frm_dati_pnl_return li a,
 #am_frm_dati_pnl_return li a,
 #pc_frm_dati_pnl_return li a,
-#aa_frm_dati_pnl_return li a{
+#aa_frm_dati_pnl_return li a,
+#pm_frm_dati_pnl_return li a,
+#be_frm_dati_pnl_return li a{
     text-decoration: none;
     color: #f46007;
 }

@@ -66,6 +66,63 @@ $('input[type=radio][name=dc_rb_qualita_di]').change(function() {
     }
 });
 
+/* START be_ (bonus_economici) */
+$('input[type=radio][name=be_rb_qualita_di]').change(function() {
+    if (this.value === 'D') {
+        $('#be_beneficiario_nome').val($('#be_richiedente_nome').val());
+        $('#be_beneficiario_nome').prop( "disabled", true );
+        $('#be_beneficiario_cognome').val($('#be_richiedente_cognome').val());
+        $('#be_beneficiario_cognome').prop( "disabled", true );
+        $('#be_beneficiario_cf').val($('#be_richiedente_cf').val());
+        $('#be_beneficiario_cf').prop( "disabled", true );
+        $('#be_beneficiario_data_nascita').val($('#be_richiedente_data_nascita').val());
+        $('#be_beneficiario_data_nascita').prop( "disabled", true );
+        $('#be_beneficiario_luogo_nascita').val($('#be_richiedente_luogo_nascita').val());
+        $('#be_beneficiario_luogo_nascita').prop( "disabled", true );
+        /* Indirizzo */
+        $('#be_beneficiario_via').val($('#be_richiedente_via').val());
+        $('#be_beneficiario_via').prop( "disabled", true );
+        $('#be_beneficiario_localita').val($('#be_richiedente_localita').val());
+        $('#be_beneficiario_localita').prop( "disabled", true );
+        $('#be_beneficiario_provincia').val($('#be_richiedente_provincia').val());
+        $('#be_beneficiario_provincia').prop( "disabled", true );
+        /* Contatti */
+        $('#be_beneficiario_email').val($('#be_richiedente_email').val());
+        $('#be_beneficiario_email').prop( "disabled", true );
+        $('#be_beneficiario_tel').val($('#be_richiedente_tel').val());
+        $('#be_beneficiario_tel').prop( "disabled", true );
+        /* tolgo potere di firma come obbligatorio */
+        $("#be_uploadPotereFirma_txt").html("Documento che attesta potere di firma");
+    }
+    else{
+        $('#be_beneficiario_nome').val('');
+        $('#be_beneficiario_nome').prop( "disabled", false );
+        $('#be_beneficiario_cognome').val('');
+        $('#be_beneficiario_cognome').prop( "disabled", false );
+        $('#be_beneficiario_cf').val('');
+        $('#be_beneficiario_cf').prop( "disabled", false );
+        $('#be_beneficiario_data_nascita').val('');
+        $('#be_beneficiario_data_nascita').prop( "disabled", false );
+        $('#be_beneficiario_luogo_nascita').val('');
+        $('#be_beneficiario_luogo_nascita').prop( "disabled", false );
+        /* Indirizzo */
+        $('#be_beneficiario_via').val('');
+        $('#be_beneficiario_via').prop( "disabled", false );
+        $('#be_beneficiario_localita').val('');
+        $('#be_beneficiario_localita').prop( "disabled", false );
+        $('#be_beneficiario_provincia').val('');
+        $('#be_beneficiario_provincia').prop( "disabled", false );
+        /* Contatti */
+        $('#be_beneficiario_email').val('');
+        $('#be_beneficiario_email').prop( "disabled", false );
+        $('#be_beneficiario_tel').val('');
+        $('#be_beneficiario_tel').prop( "disabled", false );
+        /* metto potere di firma come obbligatorio */
+        $("#be_uploadPotereFirma_txt").append("*");
+    }
+});
+
+
 $(window).on('load', function(){
     /* circular progress bar */
     $('svg.radial-progress').each(function( index, value ) { 
@@ -1774,62 +1831,62 @@ $(document).ready(function () {
                 $("#aa_frm_dati_pnl_return").append("<ul>");
 
                 /* script per segnalare i dati mancanti */
-                if (data.errors.dc_richiedente_nome) {
-                    $("#aa_frm_dati_pnl_return").append(data.errors.am_richiedente_nome);
+                if (data.errors.aa_richiedente_nome) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_richiedente_nome);
                     $("#aa_richiedente_nome").addClass("required");
                     $("#aa_richiedente_nome_txt").addClass("required");
                 }
                                 
-                if (data.errors.am_richiedente_cognome) {
-                    $("#aa_frm_dati_pnl_return").append(data.errors.am_richiedente_cognome);
+                if (data.errors.aa_richiedente_cognome) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_richiedente_cognome);
                     $("#aa_richiedente_cognome").addClass("required");
                     $("#aa_richiedente_cognome_txt").addClass("required");
                 }
                 
-                if (data.errors.am_richiedente_cf) {
-                    $("#aa_frm_dati_pnl_return").append(data.errors.am_richiedente_cf);
+                if (data.errors.aa_richiedente_cf) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_richiedente_cf);
                     $("#aa_richiedente_cf").addClass("required");
                     $("#aa_richiedente_cf_txt").addClass("required");
                 }
                 
-                if (data.errors.am_richiedente_data_nascita) {
-                    $("#aa_frm_dati_pnl_return").append(data.errors.am_richiedente_data_nascita);
+                if (data.errors.aa_richiedente_data_nascita) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_richiedente_data_nascita);
                     $("#aa_richiedente_data_nascita").addClass("required");
                     $("#aa_richiedente_data_nascita_txt").addClass("required");
                 }
                 
-                if (data.errors.am_richiedente_luogo_nascita) {
-                    $("#aa_frm_dati_pnl_return").append(data.errors.am_richiedente_luogo_nascita);
+                if (data.errors.aa_richiedente_luogo_nascita) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_richiedente_luogo_nascita);
                     $("#aa_richiedente_luogo_nascita").addClass("required");
                     $("#aa_richiedente_luogo_nascita_txt").addClass("required");
                 }
                 
-                if (data.errors.am_richiedente_via) {
-                    $("#aa_frm_dati_pnl_return").append(data.errors.am_richiedente_via);
+                if (data.errors.aa_richiedente_via) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_richiedente_via);
                     $("#aa_richiedente_via").addClass("required");
                     $("#aa_richiedente_via_txt").addClass("required");
                 }
                 
-                if (data.errors.am_richiedente_localita) {
-                    $("#aa_frm_dati_pnl_return").append(data.errors.am_richiedente_localita);
+                if (data.errors.aa_richiedente_localita) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_richiedente_localita);
                     $("#aa_richiedente_localita").addClass("required");
                     $("#aa_richiedente_localita_txt").addClass("required");
                 }
                 
-                if (data.errors.am_richiedente_provincia) {
-                    $("#aa_frm_dati_pnl_return").append(data.errors.am_richiedente_provincia);
+                if (data.errors.aa_richiedente_provincia) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_richiedente_provincia);
                     $("#aa_richiedente_provincia").addClass("required");
                     $("#aa_richiedente_provincia_txt").addClass("required");
                 }
                 
-                if (data.errors.am_richiedente_email) {
-                    $("#aa_frm_dati_pnl_return").append(data.errors.am_richiedente_email);
+                if (data.errors.aa_richiedente_email) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_richiedente_email);
                     $("#aa_richiedente_email").addClass("required");
                     $("#aa_richiedente_email_txt").addClass("required");
                 }
                 
-                if (data.errors.am_richiedente_tel) {
-                    $("#aa_frm_dati_pnl_return").append(data.errors.am_richiedente_tel);
+                if (data.errors.aa_richiedente_tel) {
+                    $("#aa_frm_dati_pnl_return").append(data.errors.aa_richiedente_tel);
                     $("#aa_richiedente_tel").addClass("required");
                     $("#aa_richiedente_tel_txt").addClass("required");
                 }
@@ -2046,9 +2103,789 @@ $(document).ready(function () {
 
         event.preventDefault();
     });
-    
-    
     /* END aa_ accesso_atti */
+    
+    /* START pm_ pubblicazione_matrimonio */
+   
+    /* script inerenti le tre action del form principale */
+    $('#pm_btn_back').click(function(){
+        window.location.href = 'index.php';
+    });
+    $('#pm_salva_richiesta_btn_save').click(function(){
+        $('#SalvaRichiestaModal').modal('toggle');
+        
+        var form = $('#pm_frm_dati');
+        var disabled = form.find(':input:disabled').removeAttr('disabled');
+        formData = new FormData();
+        formParams = form.serializeArray();
+
+        $.each(form.find('input[type="file"]'), function(i, tag) {
+            $.each($(tag)[0].files, function(i, file) {
+                formData.append(tag.name, file);
+            });
+        });
+
+        $.each(formParams, function(i, val) {
+            formData.append(val.name, val.value);
+        });
+        disabled.attr('disabled','disabled');
+
+        $.ajax({
+            type: $('#pm_frm_dati').attr("method"),
+            url: "save_bozza.php",
+            data: formData,
+            dataType: "json",
+            processData: false,
+            contentType: false,
+            success: function (data)
+            {
+                window.location.href = '../attivita_list.php';
+            },
+            error: function (desc)
+            {
+                console.log(desc.responseText);
+            }
+        });
+        
+        event.preventDefault();
+    });
+    $('#pm_btn_concludi_richiesta').click(function(){
+        var form = $('#pm_frm_dati');
+        var disabled = form.find(':input:disabled').removeAttr('disabled');
+        formData = new FormData();
+        formParams = form.serializeArray();
+
+        $.each(form.find('input[type="file"]'), function(i, tag) {
+            $.each($(tag)[0].files, function(i, file) {
+                formData.append(tag.name, file);
+            });
+        });
+
+        $.each(formParams, function(i, val) {
+            formData.append(val.name, val.value);
+        });
+        disabled.attr('disabled','disabled');
+        
+        /* validazione e salvataggio come tmp */
+        $.ajax({
+            url: "save_dati.php",
+            type: $('#pm_frm_dati').attr("method"),
+            data: formData,
+            dataType: "json",
+            processData: false,
+            contentType: false
+        }).done(function (data) {
+            if (!data.success) {
+               $("#pm_frm_dati_pnl_return").empty();
+                $("#pm_frm_dati_pnl_return").append(
+                    "<div style='color: var(--bs-orange);'>ATTENZIONE</div>"
+                );
+                $("#pm_frm_dati_pnl_return").append("<div>Ci sono alcune informazioni mancanti o errate</div>");
+                $("#pm_frm_dati_pnl_return").append("<ul>");
+
+                /* script per segnalare i dati mancanti */
+                if (data.errors.pm_richiedente_nome) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_richiedente_nome);
+                    $("#pm_richiedente_nome").addClass("required");
+                    $("#pm_richiedente_nome_txt").addClass("required");
+                }
+                                
+                if (data.errors.pm_richiedente_cognome) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_richiedente_cognome);
+                    $("#pm_richiedente_cognome").addClass("required");
+                    $("#pm_richiedente_cognome_txt").addClass("required");
+                }
+                
+                if (data.errors.pm_richiedente_cf) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_richiedente_cf);
+                    $("#pm_richiedente_cf").addClass("required");
+                    $("#pm_richiedente_cf_txt").addClass("required");
+                }
+                
+                if (data.errors.pm_richiedente_data_nascita) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_richiedente_data_nascita);
+                    $("#pm_richiedente_data_nascita").addClass("required");
+                    $("#pm_richiedente_data_nascita_txt").addClass("required");
+                }
+                
+                if (data.errors.pm_richiedente_luogo_nascita) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_richiedente_luogo_nascita);
+                    $("#pm_richiedente_luogo_nascita").addClass("required");
+                    $("#pm_richiedente_luogo_nascita_txt").addClass("required");
+                }
+                
+                if (data.errors.pm_richiedente_via) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_richiedente_via);
+                    $("#pm_richiedente_via").addClass("required");
+                    $("#pm_richiedente_via_txt").addClass("required");
+                }
+                
+                if (data.errors.pm_richiedente_localita) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_richiedente_localita);
+                    $("#pm_richiedente_localita").addClass("required");
+                    $("#pm_richiedente_localita_txt").addClass("required");
+                }
+                
+                if (data.errors.pm_richiedente_provincia) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_richiedente_provincia);
+                    $("#pm_richiedente_provincia").addClass("required");
+                    $("#pm_richiedente_provincia_txt").addClass("required");
+                }
+                
+                if (data.errors.pm_richiedente_email) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_richiedente_email);
+                    $("#pm_richiedente_email").addClass("required");
+                    $("#pm_richiedente_email_txt").addClass("required");
+                }
+                
+                if (data.errors.pm_richiedente_tel) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_richiedente_tel);
+                    $("#pm_richiedente_tel").addClass("required");
+                    $("#pm_richiedente_tel_txt").addClass("required");
+                }
+                if (data.errors.pm_richiedenteStatoNascita) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_richiedenteStatoNascita);
+                    $("#pm_richiedenteStatoNascita").addClass("required");
+                    $("#pm_richiedenteStatoNascita_txt").addClass("required");
+                }
+                if (data.errors.pm_richiedenteStatoCivile) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_richiedenteStatoCivile);
+                    $("#pm_richiedenteStatoCivile").addClass("required");
+                    $("#pm_richiedenteStatoCivile_txt").addClass("required");
+                }
+                if (data.errors.pm_richiedenteAttoNascita) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_richiedenteAttoNascita);
+                    $("#pm_richiedenteAttoNascita").addClass("required");
+                    $("#pm_richiedenteAttoNascita_txt").addClass("required");
+                }
+                if (data.errors.pm_richiedenteAttoNascitaData) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_richiedenteAttoNascitaData);
+                    $("#pm_richiedenteAttoNascitaData").addClass("required");
+                    $("#pm_richiedenteAttoNascitaData_txt").addClass("required");
+                }
+                if (data.errors.pm_coniugeNome) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_coniugeNome);
+                    $("#pm_coniugeNome").addClass("required");
+                    $("#pm_coniugeNome_txt").addClass("required");
+                }
+                if (data.errors.pm_coniugeCognome) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_coniugeCognome);
+                    $("#pm_coniugeCognome").addClass("required");
+                    $("#pm_coniugeCognome_txt").addClass("required");
+                }
+                if (data.errors.pm_coniugeCf) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_coniugeCf);
+                    $("#pm_coniugeCf").addClass("required");
+                    $("#pm_coniugeCf_txt").addClass("required");
+                }
+                if (data.errors.pm_coniugeDataNascita) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_coniugeDataNascita);
+                    $("#pm_coniugeDataNascita").addClass("required");
+                    $("#pm_coniugeDataNascita_txt").addClass("required");
+                }
+                if (data.errors.pm_coniugeLuogoNascita) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_coniugeLuogoNascita);
+                    $("#pm_coniugeLuogoNascita").addClass("required");
+                    $("#pm_coniugeLuogoNascita_txt").addClass("required");
+                }
+                if (data.errors.pm_coniugeStatoNascita) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_coniugeStatoNascita);
+                    $("#pm_coniugeStatoNascita").addClass("required");
+                    $("#pm_coniugeStatoNascita_txt").addClass("required");
+                }
+                if (data.errors.pm_coniugeVia) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_coniugeVia);
+                    $("#pm_coniugeVia").addClass("required");
+                    $("#pm_coniugeVia_txt").addClass("required");
+                }
+                if (data.errors.pm_coniugeLocalita) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_coniugeLocalita);
+                    $("#pm_coniugeLocalita").addClass("required");
+                    $("#pm_coniugeLocalita_txt").addClass("required");
+                }
+                if (data.errors.pm_coniugeProvincia) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_coniugeProvincia);
+                    $("#pm_coniugeProvincia").addClass("required");
+                    $("#pm_coniugeProvincia_txt").addClass("required");
+                }
+                if (data.errors.pm_coniugeEmail) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_coniugeEmail);
+                    $("#pm_coniugeEmail").addClass("required");
+                    $("#pm_coniugeEmail_txt").addClass("required");
+                }
+                if (data.errors.pm_coniugeTel) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_coniugeTel);
+                    $("#pm_coniugeTel").addClass("required");
+                    $("#pm_coniugeTel_txt").addClass("required");
+                }
+                if (data.errors.pm_coniugeStatoCivile) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_coniugeStatoCivile);
+                    $("#pm_coniugeStatoCivile").addClass("required");
+                    $("#pm_coniugeStatoCivile_txt").addClass("required");
+                }
+                if (data.errors.pm_coniugeAttoNascita) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_coniugeAttoNascita);
+                    $("#pm_coniugeAttoNascita").addClass("required");
+                    $("#pm_coniugeAttoNascita_txt").addClass("required");
+                }
+                if (data.errors.pm_coniugeAttoNascitaData) {
+                    $("#pm_frm_dati_pnl_return").append(data.errors.pm_coniugeAttoNascitaData);
+                    $("#pm_coniugeAttoNascitaData").addClass("required");
+                    $("#pm_coniugeAttoNascitaData_txt").addClass("required");
+                }               
+                
+                $("#pm_frm_dati_pnl_return").append("</ul>");            
+                $("#pm_frm_dati_pnl_return").addClass("alert alert-warning");
+                
+                $('html, body').animate({
+                    scrollTop: $("#pm_frm_dati_pnl_return").offset().top
+                }, 2000);
+                
+            } else {
+                window.location.href = 'dichiarazioni.php?pratican=' + data.message;
+            }
+        })
+        .fail(function (data) {
+            console.log(data);
+        }); 
+
+        event.preventDefault();
+    }); 
+    $('#pm_conferma_invia').click(function(){
+        
+        $('#ElaborazioneRichiestaModal').modal('show');
+        
+        var form = $('#pm_conferma_invia');
+        formData = new FormData();
+        formParams = form.serializeArray();
+
+        $.each(formParams, function(i,val) {
+            formData.append(val.name, val.value);
+        });
+        
+        console.log(formData);
+        
+        /* prendo la pratica e inserisco il numero che genero e lo inserisco anche nella riga con status bozza */
+        $.ajax({
+            url: "save_pratica.php",
+            type: $('#pm_conferma_invia').attr("method"),
+            data: formData,
+            dataType: "json",
+            processData: false,
+            contentType: false
+        }).done(function (data) {
+            if (data.success) {
+                window.location.href = 'riepilogo.php?pratican=' + data.pratica + '&praticai=' + data.id;
+            }else{
+                console.log(data.error);
+            }
+        })
+        .fail(function (data) {
+            console.log(data);
+        }); 
+
+        event.preventDefault();
+    });
+    /* END pm_ pubblicazione_matrimonoi */
+    
+    /* START be_ bonus_economici */
+    /* script inerenti alla modale per l'aggiunta di un pagamento */
+    $("#be_frm_add_metodo_pagamento").submit(function (event) {
+        $("#be_pnl_return").removeClass();
+        $("#be_pnl_return").empty();
+
+        if($("#be_ck_pagamento_predefinito").is(':checked') ) { 
+            $ck_pagamento_predefinito = 1;
+        }else{
+            $ck_pagamento_predefinito = 0;
+        }
+        
+        var formData = {
+            sel_tipo_pagamento: $("#be_sel_tipo_pagamento").val(),
+            txt_numero_pagamento: $("#be_txt_numero_pagamento").val(),
+            ck_pagamento_predefinito: $ck_pagamento_predefinito
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "save_metodo_pagamento.php",
+            data: formData,
+            dataType: "json",
+            encode: true
+        }).done(function (data) {
+            if (!data.success) {
+                $("#be_pnl_return").addClass("alert alert-warning");
+                if (data.errors.sel_tipo_pagamento) {
+                    $("#be_pnl_return").append(
+                        '<div>' + data.errors.sel_tipo_pagamento + "</div>"
+                    );
+                }
+
+                if (data.errors.txt_numero_pagamento) {
+                    $("#be_pnl_return").append(
+                        '<div>' + data.errors.txt_numero_pagamento + "</div>"
+                    );
+                }
+
+            } else {
+                $("#be_pnl_data").hide();
+                $("#be_pnl_return").addClass("alert alert-success");
+                $("#be_pnl_return").append(data.message);
+                $("#be_pnl_new_mdp").html(data.new_row);
+                $("#be_btn_save").hide();
+                $("#be_btn_close").show();
+            }
+        })
+        .fail(function (data) {
+            console.log(data);
+        });
+
+        event.preventDefault();
+    });
+    
+    $('#be_btn_close').click(function(){
+        $("#be_pnl_data").show();
+        $("#be_pnl_return").removeClass("alert alert-success");
+        $("#be_pnl_return").empty();
+        $("#be_btn_save").show();
+    });
+    
+    /* cancella metodi di pagamento */
+    $('.delete_class').click(function(){
+        event.preventDefault();
+        var formData = {
+            del_id : $(this).attr('id')
+        };       
+        $.ajax({
+            type: "POST",
+            url: "../delete_pagamento.php",
+            data: formData,
+            dataType: "json",
+            encode: true
+        }).done(function (data) {
+            if (data.success) {
+                $('#be_pnl_metodi_pagamento').html(data.newDiv);                    
+            }
+        })
+        .fail(function (data) {
+            console.log(data);
+        });
+    });
+    
+    
+    /* script inerenti gli upload dei documenti */
+    $('#be_uploadPotereFirma').change(function(e) {
+        $('#be_uploadPotereFirma_file').empty();
+        let fileName = e.target.files[0].name;
+        var _size = e.target.files[0].size;
+        var maxFileSize = 500;
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'pdf'];
+        var checkSize = parseFloat(_size / 1024).toFixed(2);
+         //Check if the file size is less than maximum file size
+        if (checkSize < maxFileSize) {
+            var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
+            i=0;while(_size>900){_size/=1024;i++;}
+            var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
+            let fileSize = exactSize;
+
+            if ($.inArray(fileName.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Formati accettati : "+fileExtension.join(', '));
+            }else{
+                $('#be_uploadPotereFirma_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+                return true;
+            }
+        } else {
+             alert('Il file deve pesare al massimo 500 Kb');
+             $('#be_uploadPotereFirma').val('');
+             return false;
+        }        
+    });
+
+    $('#be_uploadIsee').change(function(e) {
+        $('#be_uploadIsee_file').empty();
+        let fileName = e.target.files[0].name;
+        var _size = e.target.files[0].size;
+        var maxFileSize = 500;
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'pdf'];
+        var checkSize = parseFloat(_size / 1024).toFixed(2);
+         //Check if the file size is less than maximum file size
+        if (checkSize < maxFileSize) {
+            var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
+            i=0;while(_size>900){_size/=1024;i++;}
+            var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
+            let fileSize = exactSize;
+
+            if ($.inArray(fileName.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Formati accettati : "+fileExtension.join(', '));
+            }else{
+                $('#be_uploadIsee_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+                return true;
+            }
+        } else {
+             alert('Il file deve pesare al massimo 500 Kb');
+             $('#be_uploadIsee').val('');
+             return false;
+        }        
+    });
+
+    $('#be_uploadDocumentazione').change(function(e) {
+        $('#be_uploadDocumentazione_file').empty();
+        
+        var totalfiles = document.getElementById('be_uploadDocumentazione').files.length;
+        for (var index = 0; index < totalfiles; index++) {
+            let fileName = e.target.files[index].name;
+            var _size = e.target.files[index].size;
+            var maxFileSize = 500;
+            var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'pdf'];
+            var checkSize = parseFloat(_size / 1024).toFixed(2);
+             //Check if the file size is less than maximum file size
+            if (checkSize < maxFileSize) {
+                var fSExt = new Array('Bytes', 'KB', 'MB', 'GB'),
+                i=0;while(_size>900){_size/=1024;i++;}
+                var exactSize = (Math.round(_size*100)/100)+' '+fSExt[i];
+                let fileSize = exactSize;
+                
+                if ($.inArray(fileName.split('.').pop().toLowerCase(), fileExtension) == -1) {
+                    alert("Formati accettati : "+fileExtension.join(', '));
+                }else{
+                    $('#be_uploadDocumentazione_file').append('<li class="upload-file success"><svg class="icon icon-sm" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg><p><span class="visually-hidden">File caricato:</span>' + fileName + '<span class="upload-file-weight">' + fileSize + '</span></p><button disabled><span class="visually-hidden">Caricamento ultimato</span><svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></button></li>');
+                    return true;
+                }
+            } else {
+                 alert('Il file deve pesare al massimo 500 Kb');
+                 $('#be_uploadDocumentazione').val('');
+                 return false;
+            }                
+        }
+    });
+
+    /* script inerenti le tre action del form principale */
+    $('#be_btn_back').click(function(){
+        window.location.href = 'index.php';
+    });
+    
+    $('#be_salva_richiesta_btn_save').click(function(){
+        $('#SalvaRichiestaModal').modal('toggle');
+        
+        var form = $('#be_frm_dati');
+        var disabled = form.find(':input:disabled').removeAttr('disabled');
+        formData = new FormData();
+        formParams = form.serializeArray();
+
+        $.each(form.find('input[type="file"]'), function(i, tag) {
+            $.each($(tag)[0].files, function(i, file) {
+                formData.append(tag.name, file);
+            });
+        });
+
+        $.each(formParams, function(i, val) {
+            formData.append(val.name, val.value);
+        });
+        disabled.attr('disabled','disabled');
+
+        $.ajax({
+            type: $('#be_frm_dati').attr("method"),
+            url: "save_bozza.php",
+            data: formData,
+            dataType: "json",
+            processData: false,
+            contentType: false,
+            success: function (data)
+            {
+                window.location.href = '../attivita_list.php';
+            },
+            error: function (desc)
+            {
+                console.log(desc.responseText);
+            }
+        });
+        
+        event.preventDefault();
+    });
+    
+    $('#be_btn_concludi_richiesta').click(function(){
+        /* tolgo tutti i required */
+            $("#be_richiedente_nome").removeClass("required");
+            $("#be_richiedente_nome_txt").removeClass("required");
+            $("#be_richiedente_cognome").removeClass("required");
+            $("#be_richiedente_cognome_txt").removeClass("required");
+            $("#be_richiedente_cf").removeClass("required");
+            $("#be_richiedente_cf_txt").removeClass("required");
+            $("#be_richiedente_data_nascita").removeClass("required");
+            $("#be_richiedente_data_nascita_txt").removeClass("required");
+            $("#be_richiedente_luogo_nascita").removeClass("required");
+            $("#be_richiedente_luogo_nascita_txt").removeClass("required");
+            $("#be_richiedente_via").removeClass("required");
+            $("#be_richiedente_via_txt").removeClass("required");
+            $("#be_richiedente_localita").removeClass("required");
+            $("#be_richiedente_localita_txt").removeClass("required");
+            $("#be_richiedente_provincia").removeClass("required");
+            $("#be_richiedente_provincia_txt").removeClass("required");
+            $("#be_richiedente_email").removeClass("required");
+            $("#be_richiedente_email_txt").removeClass("required");
+            $("#be_richiedente_tel").removeClass("required");
+            $("#be_richiedente_tel_txt").removeClass("required");
+            $("#be_rb_qualita_di").removeClass("required");
+            $("#be_rb_qualita_di_txt").removeClass("required");
+            $("#be_beneficiario_nome").removeClass("required");
+            $("#be_beneficiario_nome_txt").removeClass("required");
+            $("#be_beneficiario_cognome").removeClass("required");
+            $("#be_beneficiario_cognome_txt").removeClass("required");
+            $("#be_beneficiario_cf").removeClass("required");
+            $("#be_beneficiario_cf_txt").removeClass("required");
+            $("#be_beneficiario_data_nascita").removeClass("required");
+            $("#be_beneficiario_data_nascita_txt").removeClass("required");
+            $("#be_beneficiario_luogo_nascita").removeClass("required");
+            $("#be_beneficiario_luogo_nascita_txt").removeClass("required");
+            $("#be_beneficiario_via").removeClass("required");
+            $("#be_beneficiario_via_txt").removeClass("required");
+            $("#be_beneficiario_localita").removeClass("required");
+            $("#be_beneficiario_localita_txt").removeClass("required");
+            $("#be_beneficiario_provincia").removeClass("required");
+            $("#be_beneficiario_provincia_txt").removeClass("required");
+            $("#be_beneficiario_email").removeClass("required");
+            $("#be_beneficiario_email_txt").removeClass("required");
+            $("#be_beneficiario_tel").removeClass("required");
+            $("#be_beneficiario_tel_txt").removeClass("required");
+            $("#be_importo_contributo").removeClass("required");
+            $("#be_importo_contributo_txt").removeClass("required");
+            $("#be_finalita_contributo").removeClass("required");
+            $("#be_finalita_contributo_txt").removeClass("required");
+            $("#ckb_pagamento").removeClass("required");
+            $("#ckb_pagamento_txt").removeClass("required");
+            $("#be_uploadPotereFirma").removeClass("required");
+            $("#be_uploadPotereFirma_txt").removeClass("required");
+            $("#be_uploadIsee").removeClass("required");
+            $("#be_uploadIsee_txt").removeClass("required");
+            $("#be_uploadDocumentazione").removeClass("required");
+            $("#be_uploadDocumentazione_txt").removeClass("required");
+
+        var form = $('#be_frm_dati');
+        var disabled = form.find(':input:disabled').removeAttr('disabled');
+        formData = new FormData();
+        formParams = form.serializeArray();
+
+        $.each(form.find('input[type="file"]'), function(i, tag) {
+            $.each($(tag)[0].files, function(i, file) {
+                formData.append(tag.name, file);
+            });
+        });
+
+        $.each(formParams, function(i, val) {
+            formData.append(val.name, val.value);
+        });
+        disabled.attr('disabled','disabled');
+        
+        /* validazione e salvataggio come tmp */
+        $.ajax({
+            url: "save_dati.php",
+            type: $('#be_frm_dati').attr("method"),
+            data: formData,
+            dataType: "json",
+            processData: false,
+            contentType: false
+        }).done(function (data) {
+            if (!data.success) {
+                $("#be_frm_dati_pnl_return").empty();
+                $("#be_frm_dati_pnl_return").append(
+                    "<div style='color: var(--bs-orange);'>ATTENZIONE</div>"
+                );
+                $("#be_frm_dati_pnl_return").append("<div>Ci sono alcune informazioni mancanti o errate</div>");
+                $("#be_frm_dati_pnl_return").append("<ul>");
+
+                /* script per segnalare i dati mancanti */
+                if (data.errors.be_richiedente_nome) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_richiedente_nome);
+                    $("#be_richiedente_nome").addClass("required");
+                    $("#be_richiedente_nome_txt").addClass("required");
+                }
+                if (data.errors.be_richiedente_cognome) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_richiedente_cognome);
+                    $("#be_richiedente_cognome").addClass("required");
+                    $("#be_richiedente_cognome_txt").addClass("required");
+                }
+                if (data.errors.be_richiedente_cf) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_richiedente_cf);
+                    $("#be_richiedente_cf").addClass("required");
+                    $("#be_richiedente_cf_txt").addClass("required");
+                }
+                if (data.errors.be_richiedente_data_nascita) {
+                    $("#be_frm_dati_pnl_return").append(data.be_richiedente_data_nascita);
+                    $("#be_richiedente_data_nascita").addClass("required");
+                    $("#be_richiedente_data_nascita_txt").addClass("required");
+                }
+                if (data.errors.be_richiedente_luogo_nascita) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_richiedente_luogo_nascita);
+                    $("#be_richiedente_luogo_nascita").addClass("required");
+                    $("#be_richiedente_luogo_nascita_txt").addClass("required");
+                }
+                if (data.errors.be_richiedente_via) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_richiedente_via);
+                    $("#be_richiedente_via").addClass("required");
+                    $("#be_richiedente_via_txt").addClass("required");
+                }
+                if (data.errors.be_richiedente_localita) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_richiedente_localita);
+                    $("#be_richiedente_localita").addClass("required");
+                    $("#be_richiedente_localita_txt").addClass("required");
+                }
+                if (data.errors.be_richiedente_provincia) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_richiedente_provincia);
+                    $("#be_richiedente_provincia").addClass("required");
+                    $("#be_richiedente_provincia_txt").addClass("required");
+                }
+                if (data.errors.be_richiedente_email) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_richiedente_email);
+                    $("#be_richiedente_email").addClass("required");
+                    $("#be_richiedente_email_txt").addClass("required");
+                }
+                if (data.errors.be_richiedente_tel) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_richiedente_tel);
+                    $("#be_richiedente_tel").addClass("required");
+                    $("#be_richiedente_tel_txt").addClass("required");
+                }
+                if (data.errors.be_rb_qualita_di) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_rb_qualita_di);
+                    $("#be_rb_qualita_di_txt").addClass("required");
+                }
+                if (data.errors.be_beneficiario_nome) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_beneficiario_nome);
+                    $("#be_beneficiario_nome").addClass("required");
+                    $("#be_beneficiario_nome_txt").addClass("required");
+                }
+                if (data.errors.be_beneficiario_cognome) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_beneficiario_cognome);
+                    $("#be_beneficiario_cognome").addClass("required");
+                    $("#be_beneficiario_cognome_txt").addClass("required");
+                }
+                if (data.errors.be_beneficiario_cf) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_beneficiario_cf);
+                    $("#be_beneficiario_cf").addClass("required");
+                    $("#be_beneficiario_cf_txt").addClass("required");
+                }
+                if (data.errors.be_beneficiario_data_nascita) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_beneficiario_data_nascita);
+                    $("#be_beneficiario_data_nascita").addClass("required");
+                    $("#be_beneficiario_data_nascita_txt").addClass("required");
+                }
+                if (data.errors.be_beneficiario_luogo_nascita) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_beneficiario_luogo_nascita);
+                    $("#be_beneficiario_luogo_nascita").addClass("required");
+                    $("#be_beneficiario_luogo_nascita_txt").addClass("required");
+                }
+                if (data.errors.be_beneficiario_via) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_beneficiario_via);
+                    $("#be_beneficiario_via").addClass("required");
+                    $("#be_beneficiario_via_txt").addClass("required");
+                }
+                if (data.errors.be_beneficiario_localita) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_beneficiario_localita);
+                    $("#be_beneficiario_localita").addClass("required");
+                    $("#be_beneficiario_localita_txt").addClass("required");
+                }
+                if (data.errors.be_beneficiario_provincia) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_beneficiario_provincia);
+                    $("#be_beneficiario_provincia").addClass("required");
+                    $("#be_beneficiario_provincia_txt").addClass("required");
+                }
+                if (data.errors.be_beneficiario_email) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_beneficiario_email);
+                    $("#be_beneficiario_email").addClass("required");
+                    $("#be_beneficiario_email_txt").addClass("required");
+                }
+                if (data.errors.be_beneficiario_tel) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_beneficiario_tel);
+                    $("#be_beneficiario_tel").addClass("required");
+                    $("#be_beneficiario_tel_txt").addClass("required");
+                }
+                if (data.errors.be_importo_contributo) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_importo_contributo);
+                    $("#be_importo_contributo").addClass("required");
+                    $("#be_importo_contributo_txt").addClass("required");
+                }
+                if (data.errors.be_finalita_contributo) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_finalita_contributo);
+                    $("#be_finalita_contributo").addClass("required");
+                    $("#be_finalita_contributo_txt").addClass("required");
+                }
+                if (data.errors.ckb_pagamento) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.ckb_pagamento);
+                    $("#ckb_pagamento").addClass("required");
+                    $("#ckb_pagamento_txt").addClass("required");
+                }
+                if (data.errors.be_uploadPotereFirma) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_uploadPotereFirma);
+                    $("#be_uploadPotereFirma").addClass("required");
+                    $("#be_uploadPotereFirma_txt").addClass("required");
+                }
+                if (data.errors.be_uploadIsee) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_uploadIsee);
+                    $("#be_uploadIsee").addClass("required");
+                    $("#be_uploadIsee_txt").addClass("required");
+                }
+                if (data.errors.be_uploadDocumentazione) {
+                    $("#be_frm_dati_pnl_return").append(data.errors.be_uploadDocumentazione);
+                    $("#be_uploadDocumentazione").addClass("required");
+                    $("#be_uploadDocumentazione_txt").addClass("required");
+                }
+
+                $("#be_frm_dati_pnl_return").append("</ul>");
+
+            
+                $("#be_frm_dati_pnl_return").addClass("alert alert-warning");
+                
+                $('html, body').animate({
+                    scrollTop: $("#be_frm_dati_pnl_return").offset().top
+                }, 2000);
+                
+            } else {
+                window.location.href = 'dichiarazioni.php?pratican=' + data.message;
+            }
+        })
+        .fail(function (data) {
+            console.log(data);
+        }); 
+
+        event.preventDefault();
+    });
+    
+    $('#be_conferma_invia').click(function(){
+        
+        $('#ElaborazioneRichiestaModal').modal('show');
+        
+        var form = $('#be_conferma_invia');
+        formData = new FormData();
+        formParams = form.serializeArray();
+
+        $.each(formParams, function(i,val) {
+            formData.append(val.name, val.value);
+        });
+        
+        console.log(formData);
+        
+        /* prendo la pratica e inserisco il numero che genero e lo inserisco anche nella riga con status bozza */
+        $.ajax({
+            url: "save_pratica.php",
+            type: $('#be_conferma_invia').attr("method"),
+            data: formData,
+            dataType: "json",
+            processData: false,
+            contentType: false
+        }).done(function (data) {
+            if (data.success) {
+                window.location.href = 'riepilogo.php?pratican=' + data.pratica + '&praticai=' + data.id;
+            }else{
+                console.log(data.error);
+            }
+        })
+        .fail(function (data) {
+            console.log(data);
+        }); 
+
+        event.preventDefault();
+    });
+
+    /* END be_ */                
 });
 
 $(function(){

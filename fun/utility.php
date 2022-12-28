@@ -295,8 +295,10 @@ function NameStatusById($status_id){
 
 function NumeroPraticaById($servizio_id,$pratica_id){
     switch($servizio_id) {
+        case 5: $table = "pubblicazione_matrimonio"; break;
         case 6: $table = "accesso_atti"; break;
         case 9: $table = "assegno_maternita"; break;
+        case 10: $table = "bonus_economici"; break;
         case 11: $table = "domanda_contributo"; break;
         case 16: $table = "partecipazione_concorso"; break;
     }
@@ -315,6 +317,19 @@ function NumeroPraticaById($servizio_id,$pratica_id){
 
 function CfAltroByPraticaId($servizio_id,$pratica_id){
     switch($servizio_id) {
+        case 5:
+            /* pubblicazione_matrimonio */
+            $configDB = require './env/config.php';
+            $connessioneCABPI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+            $sqlCABPI = "SELECT coniugeCf FROM pubblicazione_matrimonio WHERE id = ". $pratica_id;
+            $resultCABPI = $connessioneCABPI->query($sqlCABPI);
+            if ($resultCABPI->num_rows > 0) {
+                while($rowCABPI = $resultCABPI->fetch_assoc()) {
+                    return "<p class='mb-1'>C.F. del coniuge: ". $rowCABPI["coniugeCf"] . "</p>";
+                }
+            }
+            $connessioneCABPI->close();
+            break;
         case 6:
             /* accesso_atti */
             return "";
@@ -323,7 +338,21 @@ function CfAltroByPraticaId($servizio_id,$pratica_id){
             /* assegno_maternita */
             return "";
             break;
+        case 10: 
+            /* bonus_economici */
+            $configDB = require './env/config.php';
+            $connessioneCABPI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+            $sqlCABPI = "SELECT beneficiarioCf FROM bonus_economici WHERE id = ". $pratica_id;
+            $resultCABPI = $connessioneCABPI->query($sqlCABPI);
+            if ($resultCABPI->num_rows > 0) {
+                while($rowCABPI = $resultCABPI->fetch_assoc()) {
+                    return "<p class='mb-1'>C.F. del beneficiario: ". $rowCABPI["beneficiarioCf"] . "</p>";
+                }
+            }
+            $connessioneCABPI->close();
+            break;
         case 11: 
+            /* domanda_contributo */
             $configDB = require './env/config.php';
             $connessioneCABPI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
             $sqlCABPI = "SELECT beneficiarioCf FROM domanda_contributo WHERE id = ". $pratica_id;
@@ -346,6 +375,10 @@ function CfAltroByPraticaId($servizio_id,$pratica_id){
 function ViewThumbAllegatiById($ServizioId,$PraticaId){
     $configDB = require './env/config.php';
     switch($ServizioId) {
+        case 5:
+            /* pubblicazione_matrimonio */
+            return "";
+            break;
         case 6:
             /* accesso_atti */
             $connessioneVTABI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
@@ -544,6 +577,67 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
             }
             $connessioneVTABI->close();
             break;
+        case 10:
+            /* bonus_economici */
+            $connessioneVTABI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+            $sqlVTABI = "SELECT uploadPotereFirma, uploadIsee, uploadDocumentazione, NumeroPratica FROM bonus_economici WHERE id = ". $PraticaId;
+            $resultVTABI = $connessioneVTABI->query($sqlVTABI);
+            if ($resultVTABI->num_rows > 0) {
+                while($rowVTABI = $resultVTABI->fetch_assoc()) {
+                    
+                    $returnText = "";
+                    
+                    /* potere firma */
+                    if($rowVTABI['uploadPotereFirma'] != "" || $rowVTABI['uploadPotereFirma'] != NULL){
+                        $fileName = $rowVTABI['uploadPotereFirma'];
+                        $fileNameParts = explode('.', $fileName);
+                        $ext = end($fileNameParts);
+                        if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/bonus_economici/'.$rowVTABI['uploadPotereFirma'])){
+                            if( $ext == "pdf"){
+                                $returnText .= "<a href='./uploads/bonus_economici/".$rowVTABI['uploadPotereFirma']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Potere di Firma' title='Potere di Firma' class='thumb-view' /></a>";
+                            }else{
+                                $returnText .= "<a href='./uploads/bonus_economici/".$rowVTABI['uploadPotereFirma']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Potere di Firma' title='Potere di Firma' class='thumb-view' /></a>";
+                            }
+                        }
+                    }
+                    
+                    /* Isee */
+                    if($rowVTABI['uploadIsee'] != "" || $rowVTABI['uploadIsee'] != NULL){
+                        $fileName = $rowVTABI['uploadIsee'];
+                        $fileNameParts = explode('.', $fileName);
+                        $ext = end($fileNameParts);
+                        if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/bonus_economici/'.$rowVTABI['uploadIsee'])){
+                            if( $ext == "pdf"){
+                                $returnText .= "<a href='./uploads/bonus_economici/".$rowVTABI['uploadIsee']."' target='_blank'><img src='./media/images/icons/pdf.png' alt='ISEE' title='ISEE' class='thumb-view' /></a>";
+                            }else{
+                                $returnText .= "<a href='./uploads/bonus_economici/".$rowVTABI['uploadIsee']."' target='_blank'><img src='./media/images/icons/jpg.png' alt='ISEE' title='ISEE' class='thumb-view' /></a>";
+                            }
+                        }
+                    }
+                    
+                    /* documentazione */
+                    if($rowVTABI['uploadDocumentazione'] != "" || $rowVTABI['uploadDocumentazione'] != NULL){
+                        $tmpUploadDocumentazione1 = substr($rowVTABI["uploadDocumentazione"],0,-1);
+                        $tmpUploadDocumentaziones = explode(';', $tmpUploadDocumentazione1);
+                        $uploadDocumentazione = "";
+                        foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
+                            $fileNameParts = explode('.', $tmpUploadDocumentazione);
+                            $ext = end($fileNameParts);
+                            
+                            if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/bonus_economici/'.$tmpUploadDocumentazione)){
+                                if( $ext == "pdf"){
+                                    $returnText .="<a href='./uploads/bonus_economici/".$tmpUploadDocumentazione."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Documentazione' title='Documentazione' class='thumb-view' /></a>";
+                                }else{
+                                    $returnText .="<a href='./uploads/bonus_economici/".$tmpUploadDocumentazione."' target='_blank'><img src='./media/images/icons/jpg.png' alt='Documentazione' title='Documentazione' class='thumb-view' /></a>";
+                                }
+                            }
+                        }
+                    }
+                }
+                return $returnText;
+            }
+            $connessioneVTABI->close();
+            break;
         case 11:
             /* domanda_contributo */
             $connessioneVTABI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
@@ -674,6 +768,25 @@ function DownloadRicevutaById($ServizioId,$PraticaId){
     $configDB = require './env/config.php';
     
     switch($ServizioId) {
+        case 5:
+            /* pubblicazione_matrimonio */
+            $connessioneDRBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+            $sqlVTABI = "SELECT status_id FROM pubblicazione_matrimonio WHERE id = ". $PraticaId;
+            $resultDRBI = $connessioneDRBI->query($sqlVTABI);
+            if ($resultDRBI->num_rows > 0) {
+                while($rowDRBI = $resultDRBI->fetch_assoc()) {
+                    if($rowDRBI['status_id'] > 1){
+                        return '
+                        <form action="./lib/tcpdf/TCPDF-master/examples/pm_pdf_pratica.php" method="POST" id="pm_frm_download_pdf" name="pm_frm_download_pdf" style="display: inline;">
+                            <input type="hidden" name="pm_download_pdf_id" id="pm_download_pdf_id" value="'.$PraticaId.'" />
+                            <input type="hidden" name="pm_download_pdf_pratica" id="pm_download_pdf_pratica" value="'.NumeroPraticaById($ServizioId,$PraticaId).'" />
+                            <input type="image" name="submit" src="./media/images/icons/pdf.png" alt="Ricevuta" title="Ricevuta" border="0" alt="Submit" class="thumb-view" />
+                        </form>';
+                    }
+                }
+            }
+            $connessioneDRBI->close();
+            break;
         case 6:
             /* accesso_atti */
             $connessioneDRBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
@@ -705,6 +818,25 @@ function DownloadRicevutaById($ServizioId,$PraticaId){
                         <form action="./lib/tcpdf/TCPDF-master/examples/am_pdf_pratica.php" method="POST" id="am_frm_download_pdf" name="am_frm_download_pdf" style="display: inline;">
                             <input type="hidden" name="am_download_pdf_id" id="am_download_pdf_id" value="'.$PraticaId.'" />
                             <input type="hidden" name="am_download_pdf_pratica" id="am_download_pdf_pratica" value="'.NumeroPraticaById($ServizioId,$PraticaId).'" />
+                            <input type="image" name="submit" src="./media/images/icons/pdf.png" alt="Ricevuta" title="Ricevuta" border="0" alt="Submit" class="thumb-view" />
+                        </form>';
+                    }
+                }
+            }
+            $connessioneDRBI->close();
+            break;
+        case 10:
+            /* bonus_economici */
+            $connessioneDRBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+            $sqlVTABI = "SELECT status_id FROM bonus_economici WHERE id = ". $PraticaId;
+            $resultDRBI = $connessioneDRBI->query($sqlVTABI);
+            if ($resultDRBI->num_rows > 0) {
+                while($rowDRBI = $resultDRBI->fetch_assoc()) {
+                    if($rowDRBI['status_id'] > 1){
+                        return '
+                        <form action="./lib/tcpdf/TCPDF-master/examples/be_pdf_pratica.php" method="POST" id="be_frm_download_pdf" name="be_frm_download_pdf" style="display: inline;">
+                            <input type="hidden" name="be_download_pdf_id" id="be_download_pdf_id" value="'.$PraticaId.'" />
+                            <input type="hidden" name="be_download_pdf_pratica" id="be_download_pdf_pratica" value="'.NumeroPraticaById($ServizioId,$PraticaId).'" />
                             <input type="image" name="submit" src="./media/images/icons/pdf.png" alt="Ricevuta" title="Ricevuta" border="0" alt="Submit" class="thumb-view" />
                         </form>';
                     }
@@ -757,6 +889,20 @@ function DownloadPraticaById($ServizioId,$PraticaId){
     $configDB = require './env/config.php';
     
     switch($ServizioId) {
+        case 5:
+            /* pubblicazione_matrimonio */
+            $connessioneDRBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+            $sqlVTABI = "SELECT NumeroPratica FROM pubblicazione_matrimonio WHERE id = ". $PraticaId ." AND status_id > 1";
+            $resultDRBI = $connessioneDRBI->query($sqlVTABI);
+            if ($resultDRBI->num_rows > 0) {
+                while($rowDRBI = $resultDRBI->fetch_assoc()) {
+                    if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/pratiche/'.$rowDRBI['NumeroPratica'].'.pdf')){
+                        return "<a href='./uploads/pratiche/".$rowDRBI['NumeroPratica'].".pdf' target='_blank'><img src='./media/images/icons/pdf.png' alt='Pratica' title='Pratica' class='thumb-view' /></a>";
+                    }
+                }
+            }
+            $connessioneDRBI->close();
+            break;
         case 6:
             /* accesso_atti */
             $connessioneDRBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
@@ -775,6 +921,20 @@ function DownloadPraticaById($ServizioId,$PraticaId){
             /* assegno_maternita */
             $connessioneDRBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
             $sqlVTABI = "SELECT NumeroPratica FROM assegno_maternita WHERE id = ". $PraticaId ." AND status_id > 1";
+            $resultDRBI = $connessioneDRBI->query($sqlVTABI);
+            if ($resultDRBI->num_rows > 0) {
+                while($rowDRBI = $resultDRBI->fetch_assoc()) {
+                    if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/pratiche/'.$rowDRBI['NumeroPratica'].'.pdf')){
+                        return "<a href='./uploads/pratiche/".$rowDRBI['NumeroPratica'].".pdf' target='_blank'><img src='./media/images/icons/pdf.png' alt='Pratica' title='Pratica' class='thumb-view' /></a>";
+                    }
+                }
+            }
+            $connessioneDRBI->close();
+            break;
+        case 10:
+            /* bonus_economici */
+            $connessioneDRBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+            $sqlVTABI = "SELECT NumeroPratica FROM bonus_economici WHERE id = ". $PraticaId ." AND status_id > 1";
             $resultDRBI = $connessioneDRBI->query($sqlVTABI);
             if ($resultDRBI->num_rows > 0) {
                 while($rowDRBI = $resultDRBI->fetch_assoc()) {
