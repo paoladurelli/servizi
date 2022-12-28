@@ -6,7 +6,7 @@
 /* mi connetto al DB per vedere se il codice fiscale è già presente nell'anagrafica */
     $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
 
-    $sql = "SELECT * FROM servizi";
+    $sql = "SELECT * FROM servizi WHERE Attivo = 1";
     $result = $connessione->query($sql);
 
     if ($result->num_rows > 0) {

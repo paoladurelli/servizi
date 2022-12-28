@@ -191,41 +191,41 @@ $data = [];
                     /* Add Static Attachment */
                     /* allego la pratica completa appena creata */
 
-                    $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/pratiche/'. $NumeroPratica . '.pdf';
+                    $attachment = $_SERVER['DOCUMENT_ROOT'].'uploads/pratiche/'. $NumeroPratica . '.pdf';
                     $phpmailer->AddAttachment($attachment , $NumeroPratica . '.pdf');
                     
                     /* se ci sono altri documenti, li allego */
 
                     if($NewuploadTitoloDichiarato <> ''){
-                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/accesso_atti/'. $NewuploadTitoloDichiarato;
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'uploads/accesso_atti/'. $NewuploadTitoloDichiarato;
                         $phpmailer->AddAttachment($attachment , $NewuploadTitoloDichiarato);
                     }
                     if($NewuploadAffittuario <> ''){
-                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/accesso_atti/'. $NewuploadAffittuario;
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'uploads/accesso_atti/'. $NewuploadAffittuario;
                         $phpmailer->AddAttachment($attachment , $NewuploadAffittuario);
                     }
                     if($NewuploadAltroSoggetto <> ''){
-                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/accesso_atti/'. $NewuploadAltroSoggetto;
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'uploads/accesso_atti/'. $NewuploadAltroSoggetto;
                         $phpmailer->AddAttachment($attachment , $NewuploadAltroSoggetto);
                     }
                     if($NewuploadNotaioRogante <> ''){
-                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/accesso_atti/'. $NewuploadNotaioRogante;
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'uploads/accesso_atti/'. $NewuploadNotaioRogante;
                         $phpmailer->AddAttachment($attachment , $NewuploadNotaioRogante);
                     }
                     if($NewuploadAltriTitoloDescrizione <> ''){
-                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/accesso_atti/'. $NewuploadAltriTitoloDescrizione;
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'uploads/accesso_atti/'. $NewuploadAltriTitoloDescrizione;
                         $phpmailer->AddAttachment($attachment , $NewuploadAltriTitoloDescrizione);
                     }
                     if($NewuploadCartaIdentitaFronte <> ''){
-                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/accesso_atti/'. $NewuploadCartaIdentitaFronte;
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'uploads/accesso_atti/'. $NewuploadCartaIdentitaFronte;
                         $phpmailer->AddAttachment($attachment , $NewuploadCartaIdentitaFronte);
                     }
                     if($NewuploadCartaIdentitaRetro <> ''){
-                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/accesso_atti/'. $NewuploadCartaIdentitaRetro;
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'uploads/accesso_atti/'. $NewuploadCartaIdentitaRetro;
                         $phpmailer->AddAttachment($attachment , $NewuploadCartaIdentitaRetro);
                     }
                     if($NewuploadAttoNotarile <> ''){
-                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/accesso_atti/'. $NewuploadAttoNotarile;
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'uploads/accesso_atti/'. $NewuploadAttoNotarile;
                         $phpmailer->AddAttachment($attachment , $NewuploadAttoNotarile);
                     }
                     

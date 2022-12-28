@@ -326,8 +326,7 @@ $pdf->writeHTMLCell(0,0,'','',$html,0,1,0,true,'',true);
 
 $filePath = realpath('../uploads/pratiche/');
 
-//$pdf->Output($filePath . '/'.$numeroPratica.'.pdf', 'F'); 
-$pdf->Output($numeroPratica.'.pdf','D');
+$pdf->Output($filePath . '/'.$numeroPratica.'.pdf', 'F'); 
 
 //============================================================+
 // END OF FILE

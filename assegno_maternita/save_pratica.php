@@ -155,24 +155,24 @@ $data = [];
                     
                 /* Add Static Attachment */
                     /* allego la pratica completa appena creata */
-                    $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/pratiche/'. $NumeroPratica . '.pdf';
+                    $attachment = $_SERVER['DOCUMENT_ROOT'].'uploads/pratiche/'. $NumeroPratica . '.pdf';
                     $phpmailer->AddAttachment($attachment , $NumeroPratica . '.pdf');
 
                 /* se ci sono altri documenti, li allego */
                     if($NewuploadCartaIdentitaFronte <> ''){
-                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/assegno_maternita/'. $NewuploadCartaIdentitaFronte;
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'uploads/assegno_maternita/'. $NewuploadCartaIdentitaFronte;
                         $phpmailer->AddAttachment($attachment , $NewuploadCartaIdentitaFronte);
                     }
                     if($NewuploadCartaIdentitaRetro <> ''){
-                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/assegno_maternita/'. $NewuploadCartaIdentitaRetro;
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'uploads/assegno_maternita/'. $NewuploadCartaIdentitaRetro;
                         $phpmailer->AddAttachment($attachment , $NewuploadCartaIdentitaRetro);
                     }
                     if($NewuploadTitoloSoggiorno <> ''){
-                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/assegno_maternita/'. $NewuploadTitoloSoggiorno;
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'uploads/assegno_maternita/'. $NewuploadTitoloSoggiorno;
                         $phpmailer->AddAttachment($attachment , $NewuploadTitoloSoggiorno);
                     }
                     if($NewuploadDichiarazioneDatoreLavoro <> ''){
-                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/assegno_maternita/'. $NewuploadDichiarazioneDatoreLavoro;
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'uploads/assegno_maternita/'. $NewuploadDichiarazioneDatoreLavoro;
                         $phpmailer->AddAttachment($attachment , $NewuploadDichiarazioneDatoreLavoro);
                     }
                     

@@ -117,7 +117,7 @@ CREATE TABLE `attivita` (
   `servizio_id` int(11) NOT NULL,
   `pratica_id` int(11) NOT NULL,
   `status_id` int(11) NOT NULL,
-  `data_attivita` date NOT NULL DEFAULT current_timestamp()
+  `data_attivita` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
@@ -205,7 +205,7 @@ CREATE TABLE `messaggi` (
   `CF_to` varchar(16) COLLATE utf8_bin NOT NULL,
   `servizio_id` int(11) NOT NULL,
   `testo` text COLLATE utf8_bin NOT NULL,
-  `data_msg` date NOT NULL DEFAULT current_timestamp()
+  `data_msg` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 

@@ -30,14 +30,12 @@
 // Description :Font methods for TCPDF library.
 //
 //============================================================+
-
 /**
  * @file
  * Unicode data and font methods for TCPDF library.
  * @author Nicola Asuni
  * @package com.tecnick.tcpdf
  */
-
 /**
  * @class TCPDF_FONTS
  * Font methods for TCPDF library.
@@ -46,13 +44,11 @@
  * @author Nicola Asuni - info@tecnick.com
  */
 class TCPDF_FONTS {
-
 	/**
 	 * Static cache used for speed up uniord performances
 	 * @protected
 	 */
 	protected static $cache_uniord = array();
-
 	/**
 	 * Convert and add the selected TrueType or Type1 font to the fonts folder (that must be writeable).
 	 * @param $fontfile (string) Font file (full path).
@@ -557,6 +553,7 @@ class TCPDF_FONTS {
 			$numGlyphs = TCPDF_STATIC::_getUSHORT($font, $offset);
 			// ---------- get CIDToGIDMap ----------
 			$ctg = array();
+			$c = 0;
 			foreach ($encodingTables as $enctable) {
 				// get only specified Platform ID and Encoding ID
 				if (($enctable['platformID'] == $platid) AND ($enctable['encodingID'] == $encid)) {
@@ -917,7 +914,6 @@ class TCPDF_FONTS {
 		// return TCPDF font name
 		return $font_name;
 	}
-
 	/**
 	 * Returs the checksum of a TTF table.
 	 * @param $table (string) table to check
@@ -939,7 +935,6 @@ class TCPDF_FONTS {
 		$sum = unpack('Ni', pack('N', $sum));
 		return $sum['i'];
 	}
-
 	/**
 	 * Returns a subset of the TrueType font data without the unused glyphs.
 	 * @param $font (string) TrueType font data.
@@ -956,6 +951,7 @@ class TCPDF_FONTS {
 			// sfnt version must be 0x00010000 for TrueType version 1.0.
 			return $font;
 		}
+		$c = 0;
 		$offset += 4;
 		// get number of tables
 		$numTables = TCPDF_STATIC::_getUSHORT($font, $offset);
@@ -1384,7 +1380,6 @@ class TCPDF_FONTS {
 		$font = substr($font, 0, $table['head']['offset'] + 8).pack('N', $checkSumAdjustment).substr($font, $table['head']['offset'] + 12);
 		return $font;
 	}
-
 	/**
 	 * Outputs font widths
 	 * @param $font (array) font data
@@ -1489,10 +1484,6 @@ class TCPDF_FONTS {
 		}
 		return '/W ['.$w.' ]';
 	}
-
-
-
-
 	/**
 	 * Update the CIDToGIDMap string with a new value.
 	 * @param $map (string) CIDToGIDMap.
@@ -1513,7 +1504,6 @@ class TCPDF_FONTS {
 		}
 		return $map;
 	}
-
 	/**
 	 * Return fonts path
 	 * @return string
@@ -1528,9 +1518,6 @@ class TCPDF_FONTS {
 		}
 		return defined('K_PATH_FONTS') ? K_PATH_FONTS : '';
 	}
-
-
-
 	/**
 	 * Return font full path
 	 * @param $file (string) Font file name.
@@ -1552,10 +1539,6 @@ class TCPDF_FONTS {
 		}
 		return $fontfile;
 	}
-
-
-
-
 	/**
 	 * Get a reference font size.
 	 * @param $size (string) String containing font size value.
@@ -1604,57 +1587,9 @@ class TCPDF_FONTS {
 		}
 		return $size;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // ====================================================================================================================
 // REIMPLEMENTED
 // ====================================================================================================================
-
-
-
-
-
-
-
-
 	/**
 	 * Returns the unicode caracter specified by the value
 	 * @param $c (int) UTF-8 value
@@ -1664,27 +1599,25 @@ class TCPDF_FONTS {
 	 * @public static
 	 */
 	public static function unichr($c, $unicode=true) {
-        if (is_numeric($c)){
-            if (!$unicode) {
-                return chr($c);
-            } elseif ($c <= 0x7F) {
-                // one byte
-                return chr($c);
-            } elseif ($c <= 0x7FF) {
-                // two bytes
-                return chr(0xC0 | $c >> 6).chr(0x80 | $c & 0x3F);
-            } elseif ($c <= 0xFFFF) {
-                // three bytes
-                return chr(0xE0 | $c >> 12).chr(0x80 | $c >> 6 & 0x3F).chr(0x80 | $c & 0x3F);
-            } elseif ($c <= 0x10FFFF) {
-                // four bytes
-                return chr(0xF0 | $c >> 18).chr(0x80 | $c >> 12 & 0x3F).chr(0x80 | $c >> 6 & 0x3F).chr(0x80 | $c & 0x3F);
-            } else {
-                return '';
-            }
-        }
+		$c = intval($c);
+		if (!$unicode) {
+			return chr($c);
+		} elseif ($c <= 0x7F) {
+			// one byte
+			return chr($c);
+		} elseif ($c <= 0x7FF) {
+			// two bytes
+			return chr(0xC0 | $c >> 6).chr(0x80 | $c & 0x3F);
+		} elseif ($c <= 0xFFFF) {
+			// three bytes
+			return chr(0xE0 | $c >> 12).chr(0x80 | $c >> 6 & 0x3F).chr(0x80 | $c & 0x3F);
+		} elseif ($c <= 0x10FFFF) {
+			// four bytes
+			return chr(0xF0 | $c >> 18).chr(0x80 | $c >> 12 & 0x3F).chr(0x80 | $c >> 6 & 0x3F).chr(0x80 | $c & 0x3F);
+		} else {
+			return '';
+		}
 	}
-
 	/**
 	 * Returns the unicode caracter specified by UTF-8 value
 	 * @param $c (int) UTF-8 value
@@ -1694,7 +1627,6 @@ class TCPDF_FONTS {
 	public static function unichrUnicode($c) {
 		return self::unichr($c, true);
 	}
-
 	/**
 	 * Returns the unicode caracter specified by ASCII value
 	 * @param $c (int) UTF-8 value
@@ -1704,7 +1636,6 @@ class TCPDF_FONTS {
 	public static function unichrASCII($c) {
 		return self::unichr($c, false);
 	}
-
 	/**
 	 * Converts array of UTF-8 characters to UTF16-BE string.<br>
 	 * Based on: http://www.faqs.org/rfcs/rfc2781.html
@@ -1768,7 +1699,6 @@ class TCPDF_FONTS {
 		}
 		return $outstr;
 	}
-
 	/**
 	 * Convert an array of UTF8 values to array of unicode characters
 	 * @param $ta (array) The input array of UTF8 values.
@@ -1783,7 +1713,6 @@ class TCPDF_FONTS {
 		}
 		return array_map(array('TCPDF_FONTS', 'unichrASCII'), $ta);
 	}
-
 	/**
 	 * Extract a slice of the $strarr array and return it as string.
 	 * @param $strarr (string) The input array of characters.
@@ -1806,7 +1735,6 @@ class TCPDF_FONTS {
 		}
 		return $string;
 	}
-
 	/**
 	 * Extract a slice of the $uniarr array and return it as string.
 	 * @param $uniarr (string) The input array of characters.
@@ -1829,7 +1757,6 @@ class TCPDF_FONTS {
 		}
 		return $string;
 	}
-
 	/**
 	 * Converts UTF-8 characters array to array of Latin1 characters array<br>
 	 * @param $unicode (array) array containing UTF-8 unicode values
@@ -1854,7 +1781,6 @@ class TCPDF_FONTS {
 		}
 		return $outarr;
 	}
-
 	/**
 	 * Converts UTF-8 characters array to array of Latin1 string<br>
 	 * @param $unicode (array) array containing UTF-8 unicode values
@@ -1879,12 +1805,11 @@ class TCPDF_FONTS {
 		}
 		return $outstr;
 	}
-
 	/**
 	 * Converts UTF-8 character to integer value.<br>
 	 * Uses the getUniord() method if the value is not cached.
 	 * @param $uch (string) character string to process.
-	 * @return integer Unicode value
+	 * @return int Unicode value
 	 * @public static
 	 */
 	public static function uniord($uch) {
@@ -1893,7 +1818,6 @@ class TCPDF_FONTS {
 		}
 		return self::$cache_uniord[$uch];
 	}
-
 	/**
 	 * Converts UTF-8 character to integer value.<br>
 	 * Invalid byte sequences will be replaced with 0xFFFD (replacement character)<br>
@@ -1923,7 +1847,7 @@ class TCPDF_FONTS {
 	 *   ---------------------------------------------------------------------
 	 * </pre>
 	 * @param $uch (string) character string to process.
-	 * @return integer Unicode value
+	 * @return int Unicode value
 	 * @author Nicola Asuni
 	 * @public static
 	 */
@@ -1985,7 +1909,6 @@ class TCPDF_FONTS {
 		}
 		return 0xFFFD;
 	}
-
 	/**
 	 * Converts UTF-8 strings to codepoints array.<br>
 	 * Invalid byte sequences will be replaced with 0xFFFD (replacement character)<br>
@@ -1996,7 +1919,7 @@ class TCPDF_FONTS {
 	 * @author Nicola Asuni
 	 * @public static
 	 */
-	public static function UTF8StringToArray($str, $isunicode=true, &$currentfont) {
+	public static function UTF8StringToArray($str, $isunicode, &$currentfont) {
 		if ($isunicode) {
 			// requires PCRE unicode support turned on
 			$chars = TCPDF_STATIC::pregSplit('//','u', $str, -1, PREG_SPLIT_NO_EMPTY);
@@ -2012,7 +1935,6 @@ class TCPDF_FONTS {
 		}
 		return $carr;
 	}
-
 	/**
 	 * Converts UTF-8 strings to Latin1 when using the standard 14 core fonts.<br>
 	 * @param $str (string) string to process.
@@ -2022,11 +1944,10 @@ class TCPDF_FONTS {
 	 * @since 3.2.000 (2008-06-23)
 	 * @public static
 	 */
-	public static function UTF8ToLatin1($str, $isunicode=true, &$currentfont) {
+	public static function UTF8ToLatin1($str, $isunicode, &$currentfont) {
 		$unicode = self::UTF8StringToArray($str, $isunicode, $currentfont); // array containing UTF-8 unicode values
 		return self::UTF8ArrToLatin1($unicode);
 	}
-
 	/**
 	 * Converts UTF-8 strings to UTF16-BE.<br>
 	 * @param $str (string) string to process.
@@ -2038,14 +1959,13 @@ class TCPDF_FONTS {
 	 * @since 1.53.0.TC005 (2005-01-05)
 	 * @public static
 	 */
-	public static function UTF8ToUTF16BE($str, $setbom=false, $isunicode=true, &$currentfont) {
+	public static function UTF8ToUTF16BE($str, $setbom, $isunicode, &$currentfont) {
 		if (!$isunicode) {
 			return $str; // string is not in unicode
 		}
 		$unicode = self::UTF8StringToArray($str, $isunicode, $currentfont); // array containing UTF-8 unicode values
 		return self::arrUTF8ToUTF16BE($unicode, $setbom);
 	}
-
 	/**
 	 * Reverse the RLT substrings using the Bidirectional Algorithm (http://unicode.org/reports/tr9/).
 	 * @param $str (string) string to manipulate.
@@ -2058,7 +1978,7 @@ class TCPDF_FONTS {
 	 * @since 2.1.000 (2008-01-08)
 	 * @public static
 	 */
-	public static function utf8StrRev($str, $setbom=false, $forcertl=false, $isunicode=true, &$currentfont) {
+	public static function utf8StrRev($str, $setbom, $forcertl, $isunicode, &$currentfont) {
 		return self::utf8StrArrRev(self::UTF8StringToArray($str, $isunicode, $currentfont), $str, $setbom, $forcertl, $isunicode, $currentfont);
 	}
 
@@ -2075,7 +1995,7 @@ class TCPDF_FONTS {
 	 * @since 4.9.000 (2010-03-27)
 	 * @public static
 	 */
-	public static function utf8StrArrRev($arr, $str='', $setbom=false, $forcertl=false, $isunicode=true, &$currentfont) {
+	public static function utf8StrArrRev($arr, $str, $setbom, $forcertl, $isunicode, &$currentfont) {
 		return self::arrUTF8ToUTF16BE(self::utf8Bidi($arr, $str, $forcertl, $isunicode, $currentfont), $setbom);
 	}
 
@@ -2091,7 +2011,7 @@ class TCPDF_FONTS {
 	 * @since 2.4.000 (2008-03-06)
 	 * @public static
 	 */
-	public static function utf8Bidi($ta, $str='', $forcertl=false, $isunicode=true, &$currentfont) {
+	public static function utf8Bidi($ta, $str, $forcertl, $isunicode, &$currentfont) {
 		// paragraph embedding level
 		$pel = 0;
 		// max level
@@ -2110,10 +2030,8 @@ class TCPDF_FONTS {
 		if (!($forcertl OR $arabic OR preg_match(TCPDF_FONT_DATA::$uni_RE_PATTERN_RTL, $str))) {
 			return $ta;
 		}
-
 		// get number of chars
 		$numchars = count($ta);
-
 		if ($forcertl == 'R') {
 			$pel = 1;
 		} elseif ($forcertl == 'L') {
@@ -2132,7 +2050,6 @@ class TCPDF_FONTS {
 				}
 			}
 		}
-
 		// Current Embedding Level
 		$cel = $pel;
 		// directional override status
@@ -2141,10 +2058,8 @@ class TCPDF_FONTS {
 		// start-of-level-run
 		$sor = $pel % 2 ? 'R' : 'L';
 		$eor = $sor;
-
 		// Array of characters data
 		$chardata = Array();
-
 		// X1. Begin by setting the current embedding level to the paragraph embedding level. Set the directional override status to neutral. Process each character iteratively, applying rules X2 through X9. Only embedding levels from 0 to 61 are valid in this phase.
 		// In the resolution of levels in rules I1 and I2, the maximum embedding level of 62 can be reached.
 		for ($i=0; $i < $numchars; ++$i) {
@@ -2232,16 +2147,13 @@ class TCPDF_FONTS {
 				$chardata[] = array('char' => $ta[$i], 'level' => $cel, 'type' => $chardir, 'sor' => $sor, 'eor' => $eor);
 			}
 		} // end for each char
-
 		// X8. All explicit directional embeddings and overrides are completely terminated at the end of each paragraph. Paragraph separators are not included in the embedding.
 		// X9. Remove all RLE, LRE, RLO, LRO, PDF, and BN codes.
 		// X10. The remaining rules are applied to each run of characters at the same level. For each run, determine the start-of-level-run (sor) and end-of-level-run (eor) type, either L or R. This depends on the higher of the two levels on either side of the boundary (at the start or end of the paragraph, the level of the 'other' run is the base embedding level). If the higher level is odd, the type is R; otherwise, it is L.
-
 		// 3.3.3 Resolving Weak Types
 		// Weak types are now resolved one level run at a time. At level run boundaries where the type of the character on the other side of the boundary is required, the type assigned to sor or eor is used.
 		// Nonspacing marks are now resolved based on the previous characters.
 		$numchars = count($chardata);
-
 		// W1. Examine each nonspacing mark (NSM) in the level run, and change the type of the NSM to the type of the previous character. If the NSM is at the start of the level run, it will get the type of sor.
 		$prevlevel = -1; // track level changes
 		$levcount = 0; // counts consecutive chars at the same level
@@ -2260,7 +2172,6 @@ class TCPDF_FONTS {
 			}
 			$prevlevel = $chardata[$i]['level'];
 		}
-
 		// W2. Search backward from each instance of a European number until the first strong type (R, L, AL, or sor) is found. If an AL is found, change the type of the European number to Arabic number.
 		$prevlevel = -1;
 		$levcount = 0;
@@ -2281,14 +2192,12 @@ class TCPDF_FONTS {
 			}
 			$prevlevel = $chardata[$i]['level'];
 		}
-
 		// W3. Change all ALs to R.
 		for ($i=0; $i < $numchars; ++$i) {
 			if ($chardata[$i]['type'] == 'AL') {
 				$chardata[$i]['type'] = 'R';
 			}
 		}
-
 		// W4. A single European separator between two European numbers changes to a European number. A single common separator between two numbers of the same type changes to that type.
 		$prevlevel = -1;
 		$levcount = 0;
@@ -2309,7 +2218,6 @@ class TCPDF_FONTS {
 			}
 			$prevlevel = $chardata[$i]['level'];
 		}
-
 		// W5. A sequence of European terminators adjacent to European numbers changes to all European numbers.
 		$prevlevel = -1;
 		$levcount = 0;
@@ -2337,7 +2245,6 @@ class TCPDF_FONTS {
 			}
 			$prevlevel = $chardata[$i]['level'];
 		}
-
 		// W6. Otherwise, separators and terminators change to Other Neutral.
 		$prevlevel = -1;
 		$levcount = 0;
@@ -2352,7 +2259,6 @@ class TCPDF_FONTS {
 			}
 			$prevlevel = $chardata[$i]['level'];
 		}
-
 		//W7. Search backward from each instance of a European number until the first strong type (R, L, or sor) is found. If an L is found, then change the type of the European number to L.
 		$prevlevel = -1;
 		$levcount = 0;
@@ -2373,7 +2279,6 @@ class TCPDF_FONTS {
 			}
 			$prevlevel = $chardata[$i]['level'];
 		}
-
 		// N1. A sequence of neutrals takes the direction of the surrounding strong text if the text on both sides has the same direction. European and Arabic numbers act as if they were R in terms of their influence on neutrals. Start-of-level-run (sor) and end-of-level-run (eor) are used at level run boundaries.
 		$prevlevel = -1;
 		$levcount = 0;
@@ -2424,7 +2329,6 @@ class TCPDF_FONTS {
 			}
 			$prevlevel = $chardata[$i]['level'];
 		}
-
 		// I1. For all characters with an even (left-to-right) embedding direction, those of type R go up one level and those of type AN or EN go up two levels.
 		// I2. For all characters with an odd (right-to-left) embedding direction, those of type L, EN or AN go up one level.
 		for ($i=0; $i < $numchars; ++$i) {
@@ -2442,7 +2346,6 @@ class TCPDF_FONTS {
 			}
 			$maxlevel = max($chardata[$i]['level'],$maxlevel);
 		}
-
 		// L1. On each line, reset the embedding level of the following characters to the paragraph embedding level:
 		//	1. Segment separators,
 		//	2. Paragraph separators,
@@ -2465,7 +2368,6 @@ class TCPDF_FONTS {
 				}
 			}
 		}
-
 		// Arabic Shaping
 		// Cursively connected scripts, such as Arabic or Syriac, require the selection of positional character shapes that depend on adjacent characters. Shaping is logically applied after the Bidirectional Algorithm is used and is limited to characters within the same directional run.
 		if ($arabic) {
@@ -2609,7 +2511,6 @@ class TCPDF_FONTS {
 			unset($laaletter);
 			unset($charAL);
 		}
-
 		// L2. From the highest level found in the text to the lowest odd level on each line, including intermediate levels not actually present in the text, reverse any contiguous sequence of characters that are at that level or higher.
 		for ($j=$maxlevel; $j > 0; $j--) {
 			$ordarray = Array();
@@ -2647,9 +2548,7 @@ class TCPDF_FONTS {
 		}
 		return $ordarray;
 	}
-
 } // END OF TCPDF_FONTS CLASS
-
 //============================================================+
 // END OF FILE
 //============================================================+

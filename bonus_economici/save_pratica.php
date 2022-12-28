@@ -151,17 +151,17 @@ $data = [];
                     /* Add Static Attachment */
                     /* allego la pratica completa appena creata */
 
-                    $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/pratiche/'. $NumeroPratica . '.pdf';
+                    $attachment = $_SERVER['DOCUMENT_ROOT'].'uploads/pratiche/'. $NumeroPratica . '.pdf';
                     $phpmailer->AddAttachment($attachment , $NumeroPratica . '.pdf');
                     
                     /* se ci sono altri documenti, li allego */
 
                     if($NewuploadPotereFirma <> ''){
-                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/bonus_economici/'. $NewuploadPotereFirma;
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'uploads/bonus_economici/'. $NewuploadPotereFirma;
                         $phpmailer->AddAttachment($attachment , $NewuploadPotereFirma);
                     }
                     if($NewuploadIsee <> ''){
-                        $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/bonus_economici/'. $NewuploadIsee;
+                        $attachment = $_SERVER['DOCUMENT_ROOT'].'uploads/bonus_economici/'. $NewuploadIsee;
                         $phpmailer->AddAttachment($attachment , $NewuploadIsee);
                     }
                     if($NewuploadDocumentazione <> ''){
@@ -169,7 +169,7 @@ $data = [];
                         $tmpUploadDocumentaziones = explode(';', $tmpUploadDocumentazione1);
                         
                         foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
-                            $attachment = $_SERVER['DOCUMENT_ROOT'].'servizi/uploads/bonus_economici/'. $tmpUploadDocumentazione;
+                            $attachment = $_SERVER['DOCUMENT_ROOT'].'uploads/bonus_economici/'. $tmpUploadDocumentazione;
                             $phpmailer->AddAttachment($attachment , $tmpUploadDocumentazione);
                         }
                     }
