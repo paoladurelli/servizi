@@ -10,10 +10,8 @@ function isValidTelephoneNumber(string $telephone, int $minDigits = 9, int $maxD
         $count = 1;
         $telephone = str_replace(['+'], '', $telephone, $count); //remove +
     }
-    
     //remove white space, dots, hyphens and brackets
     $telephone = str_replace([' ', '.', '-', '(', ')'], '', $telephone); 
-
     //are we left with digits only?
     return isDigits($telephone, $minDigits, $maxDigits); 
 }
@@ -22,10 +20,8 @@ function isValidCodiceFiscale($cf){
     /* funzione temporanea - se vengono passati i parametri potremmo utilizzare: https://github.com/Schema31/php-it-tax-code-sdk */
      if($cf=='')
 	return false;
-
      if(strlen($cf)!= 16)
 	return false;
-
      $cf=strtoupper($cf);
      if(!preg_match("/[A-Z0-9]+$/", $cf))
 	return false;
@@ -33,50 +29,49 @@ function isValidCodiceFiscale($cf){
      for($i=1; $i<=13; $i+=2){
 	$c=$cf[$i];
 	if('0'<=$c and $c<='9')
-	     $s+=ord($c)-ord('0');
+            $s+=ord($c)-ord('0');
 	else
-	     $s+=ord($c)-ord('A');
-     }
-
-     for($i=0; $i<=14; $i+=2){
+            $s+=ord($c)-ord('A');
+    }
+    for($i=0; $i<=14; $i+=2){
 	$c=$cf[$i];
 	switch($c){
-             case '0':  $s += 1;  break;
-	     case '1':  $s += 0;  break;
-             case '2':  $s += 5;  break;
-	     case '3':  $s += 7;  break;
-	     case '4':  $s += 9;  break;
-	     case '5':  $s += 13;  break;
-	     case '6':  $s += 15;  break;
-	     case '7':  $s += 17;  break;
-	     case '8':  $s += 19;  break;
-	     case '9':  $s += 21;  break;
-	     case 'A':  $s += 1;  break;
-	     case 'B':  $s += 0;  break;
-	     case 'C':  $s += 5;  break;
-	     case 'D':  $s += 7;  break;
-	     case 'E':  $s += 9;  break;
-	     case 'F':  $s += 13;  break;
-	     case 'G':  $s += 15;  break;
-	     case 'H':  $s += 17;  break;
-	     case 'I':  $s += 19;  break;
-	     case 'J':  $s += 21;  break;
-	     case 'K':  $s += 2;  break;
-	     case 'L':  $s += 4;  break;
-	     case 'M':  $s += 18;  break;
-	     case 'N':  $s += 20;  break;
-	     case 'O':  $s += 11;  break;
-	     case 'P':  $s += 3;  break;
-             case 'Q':  $s += 6;  break;
-	     case 'R':  $s += 8;  break;
-	     case 'S':  $s += 12;  break;
-	     case 'T':  $s += 14;  break;
-	     case 'U':  $s += 16;  break;
-	     case 'V':  $s += 10;  break;
-	     case 'W':  $s += 22;  break;
-	     case 'X':  $s += 25;  break;
-	     case 'Y':  $s += 24;  break;
-	     case 'Z':  $s += 23;  break;
+            case '0':  $s += 1;  break;
+            case '1':  $s += 0;  break;
+            case '2':  $s += 5;  break;
+            case '3':  $s += 7;  break;
+            case '4':  $s += 9;  break;
+            case '5':  $s += 13;  break;
+            case '6':  $s += 15;  break;
+            case '7':  $s += 17;  break;
+            case '8':  $s += 19;  break;
+            case '9':  $s += 21;  break;
+            case 'A':  $s += 1;  break;
+            case 'B':  $s += 0;  break;
+            case 'C':  $s += 5;  break;
+            case 'D':  $s += 7;  break;
+            case 'E':  $s += 9;  break;
+            case 'F':  $s += 13;  break;
+            case 'G':  $s += 15;  break;
+            case 'H':  $s += 17;  break;
+            case 'I':  $s += 19;  break;
+            case 'J':  $s += 21;  break;
+            case 'K':  $s += 2;  break;
+            case 'L':  $s += 4;  break;
+            case 'M':  $s += 18;  break;
+            case 'N':  $s += 20;  break;
+            case 'O':  $s += 11;  break;
+            case 'P':  $s += 3;  break;
+            case 'Q':  $s += 6;  break;
+            case 'R':  $s += 8;  break;
+            case 'S':  $s += 12;  break;
+            case 'T':  $s += 14;  break;
+            case 'U':  $s += 16;  break;
+            case 'V':  $s += 10;  break;
+            case 'W':  $s += 22;  break;
+            case 'X':  $s += 25;  break;
+            case 'Y':  $s += 24;  break;
+            case 'Z':  $s += 23;  break;
 	}
     }
 
@@ -87,45 +82,39 @@ function isValidCodiceFiscale($cf){
 }
 
 function isValidPartitaIva($partitaivaOrig){
-   $partitaiva = trim($partitaivaOrig);
-  try {
+    $partitaiva = trim($partitaivaOrig);
     if (strlen($partitaiva) == 11) {
-      $tot = 0;
-      $dispari = 0;
+            $tot = 0;
+            $dispari = 0;
       	
-      for($i = 0; $i < 10; $i += 2)
-        $dispari += substr($partitaiva, $i, 1);
+        for($i = 0; $i < 10; $i += 2)
+            $dispari += substr($partitaiva, $i, 1);
       
-      for($i = 1; $i < 10; $i += 2) {
-        $tot = substr($partitaiva, $i, 1) * 2;
-        $tot = ($tot / 10) + ($tot % 10);
-        $dispari += $tot;
-      }
+        for($i = 1; $i < 10; $i += 2) {
+            $tot = substr($partitaiva, $i, 1) * 2;
+            $tot = ($tot / 10) + ($tot % 10);
+            $dispari += $tot;
+        }
       				
-      $controllo = substr($partitaiva,10, 1);
+        $controllo = substr($partitaiva,10, 1);
       				
-      if((($dispari % 10) == 0 && ($controllo == 0)) || ((10 - ($dispari % 10)) == $controllo)) {
-        return true;
-      } else {
-        return false;
-      }
+        if((($dispari % 10) == 0 && ($controllo == 0)) || ((10 - ($dispari % 10)) == $controllo)) {
+            return true;
+        } else {
+            return false;
+        }
     } else {
-      return false;
+        return false;
     }
-  }catch(e){
-    return false;
-  }
 }
 
-function isValidIBAN($iban)
-{
+function isValidIBAN($iban){
     if(strlen($iban) < 5) return false;
     $iban = strtolower(str_replace(' ','',$iban));
     $Countries = array('al'=>28,'ad'=>24,'at'=>20,'az'=>28,'bh'=>22,'be'=>16,'ba'=>20,'br'=>29,'bg'=>22,'cr'=>21,'hr'=>21,'cy'=>28,'cz'=>24,'dk'=>18,'do'=>28,'ee'=>20,'fo'=>18,'fi'=>18,'fr'=>27,'ge'=>22,'de'=>22,'gi'=>23,'gr'=>27,'gl'=>18,'gt'=>28,'hu'=>28,'is'=>26,'ie'=>22,'il'=>23,'it'=>27,'jo'=>30,'kz'=>20,'kw'=>30,'lv'=>21,'lb'=>28,'li'=>21,'lt'=>20,'lu'=>20,'mk'=>19,'mt'=>31,'mr'=>27,'mu'=>30,'mc'=>27,'md'=>24,'me'=>22,'nl'=>18,'no'=>15,'pk'=>24,'ps'=>29,'pl'=>28,'pt'=>25,'qa'=>29,'ro'=>24,'sm'=>27,'sa'=>24,'rs'=>22,'sk'=>24,'si'=>19,'es'=>24,'se'=>24,'ch'=>21,'tn'=>24,'tr'=>26,'ae'=>23,'gb'=>22,'vg'=>24);
     $Chars = array('a'=>10,'b'=>11,'c'=>12,'d'=>13,'e'=>14,'f'=>15,'g'=>16,'h'=>17,'i'=>18,'j'=>19,'k'=>20,'l'=>21,'m'=>22,'n'=>23,'o'=>24,'p'=>25,'q'=>26,'r'=>27,'s'=>28,'t'=>29,'u'=>30,'v'=>31,'w'=>32,'x'=>33,'y'=>34,'z'=>35);
 
     if(array_key_exists(substr($iban,0,2), $Countries) && strlen($iban) == $Countries[substr($iban,0,2)]){
-                
         $MovedChar = substr($iban, 4).substr($iban,0,4);
         $MovedCharArray = str_split($MovedChar);
         $NewString = "";
@@ -137,7 +126,6 @@ function isValidIBAN($iban)
             }
             $NewString .= $MovedCharArray[$key];
         }
-        
         if(bcmod($NewString, '97') == 1)
         {
             return true;
@@ -146,8 +134,7 @@ function isValidIBAN($iban)
     return false;
 }
 
-function isValidCarta($carta)
-{
+function isValidCarta($carta){
     if(strlen($carta) < 5) return false;
     $carta = strtolower(str_replace(' ','',$carta));
 
@@ -169,9 +156,7 @@ function NomeServizioById($Servizio_id){
     $connessioneNomeServizioById = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
     $sqlNomeServizioById = "SELECT NomeServizio FROM servizi WHERE id = ". $Servizio_id;
     $resultNomeServizioById = $connessioneNomeServizioById->query($sqlNomeServizioById);
-
     if ($resultNomeServizioById->num_rows > 0) {
-    // output data of each row
         while($rowNomeServizioById = $resultNomeServizioById->fetch_assoc()) {
             return $rowNomeServizioById["NomeServizio"];
         }
@@ -184,9 +169,7 @@ function LinkServizioById($Servizio_id){
     $connessioneLinkServizioById = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
     $sqlLinkServizioById = "SELECT LinkServizio FROM servizi WHERE id = ". $Servizio_id;
     $resultLinkServizioById = $connessioneLinkServizioById->query($sqlLinkServizioById);
-
     if ($resultLinkServizioById->num_rows > 0) {
-    // output data of each row
         while($rowLinkServizioById = $resultLinkServizioById->fetch_assoc()) {
             return $rowLinkServizioById["LinkServizio"];
         }
@@ -199,9 +182,7 @@ function PrefissoServizioById($Servizio_id){
     $connessioneLinkServizioById = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
     $sqlLinkServizioById = "SELECT PrefissoServizio FROM servizi WHERE id = ". $Servizio_id;
     $resultLinkServizioById = $connessioneLinkServizioById->query($sqlLinkServizioById);
-
     if ($resultLinkServizioById->num_rows > 0) {
-    // output data of each row
         while($rowLinkServizioById = $resultLinkServizioById->fetch_assoc()) {
             return $rowLinkServizioById["PrefissoServizio"];
         }
@@ -214,9 +195,7 @@ function NomeMetodoPagamentoByIdMain($Pagamento_id){
     $connessioneNMPBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
     $sqlNMPBI = "SELECT Nome as NomeTipoPagamento FROM tipo_pagamento WHERE id = ". $Pagamento_id;
     $resultNMPBI = $connessioneNMPBI->query($sqlNMPBI);
-
     if ($resultNMPBI->num_rows > 0) {
-    // output data of each row
         while($rowNMPBI = $resultNMPBI->fetch_assoc()) {
             return $rowNMPBI["NomeTipoPagamento"];
         }
@@ -224,15 +203,12 @@ function NomeMetodoPagamentoByIdMain($Pagamento_id){
     $connessioneNMPBI->close();
 }
 
-
 function NomeMetodoPagamentoById($Pagamento_id){
     $configDB = require '../env/config.php';
     $connessioneNMPBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
     $sqlNMPBI = "SELECT Nome as NomeTipoPagamento FROM tipo_pagamento WHERE id = ". $Pagamento_id;
     $resultNMPBI = $connessioneNMPBI->query($sqlNMPBI);
-
     if ($resultNMPBI->num_rows > 0) {
-    // output data of each row
         while($rowNMPBI = $resultNMPBI->fetch_assoc()) {
             return $rowNMPBI["NomeTipoPagamento"];
         }
@@ -250,7 +226,6 @@ function ViewAllTipiPagamento(){
         while($rowVATP = $resultVATP->fetch_assoc()) {
             echo '<option value="' . $rowVATP["id"] . '">' . $rowVATP["Nome"] . '</option>';
         }
-        
     }
     $connessioneVATP->close();
 }
@@ -276,7 +251,6 @@ function CreateLinkAttivita($ServizioId,$pratica_id,$StatusId){
     }else{
         $linkServizio .= "/dettaglio.php?".$prefissoServizio."pratica_id=".$pratica_id;
     }
-    
     return $linkServizio;
 }
 
@@ -386,9 +360,7 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
             $resultVTABI = $connessioneVTABI->query($sqlVTABI);
             if ($resultVTABI->num_rows > 0) {
                 while($rowVTABI = $resultVTABI->fetch_assoc()) {
-                    
                     $returnText = "";
-
                     /* uploadTitoloDichiarato */
                     if($rowVTABI['uploadTitoloDichiarato'] != "" || $rowVTABI['uploadTitoloDichiarato'] != NULL){
                         $fileName = $rowVTABI['uploadTitoloDichiarato'];
@@ -402,7 +374,6 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                             }
                         }
                     }
-                    
                     /* uploadAffittuario */
                     if($rowVTABI['uploadAffittuario'] != "" || $rowVTABI['uploadAffittuario'] != NULL){
                         $fileName = $rowVTABI['uploadAffittuario'];
@@ -416,7 +387,6 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                             }
                         }
                     }
-
                     /* uploadAltroSoggetto */
                     if($rowVTABI['uploadAltroSoggetto'] != "" || $rowVTABI['uploadAltroSoggetto'] != NULL){
                         $fileName = $rowVTABI['uploadAltroSoggetto'];
@@ -430,7 +400,6 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                             }
                         }
                     }
-
                     /* uploadNotaioRogante */
                     if($rowVTABI['uploadNotaioRogante'] != "" || $rowVTABI['uploadNotaioRogante'] != NULL){
                         $fileName = $rowVTABI['uploadNotaioRogante'];
@@ -444,7 +413,6 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                             }
                         }
                     }
-                    
                     /* uploadAltriTitoloDescrizione */
                     if($rowVTABI['uploadAltriTitoloDescrizione'] != "" || $rowVTABI['uploadAltriTitoloDescrizione'] != NULL){
                         $fileName = $rowVTABI['uploadAltriTitoloDescrizione'];
@@ -458,7 +426,6 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                             }
                         }
                     }
-                    
                     /* uploadCartaIdentitaFronte*/
                     if($rowVTABI['uploadCartaIdentitaFronte'] != "" || $rowVTABI['uploadCartaIdentitaFronte'] != NULL){
                         $fileName = $rowVTABI['uploadCartaIdentitaFronte'];
@@ -472,7 +439,6 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                             }
                         }
                     }
-                    
                     /* uploadCartaIdentitaRetro */
                     if($rowVTABI['uploadCartaIdentitaRetro'] != "" || $rowVTABI['uploadCartaIdentitaRetro'] != NULL){
                         $fileName = $rowVTABI['uploadCartaIdentitaRetro'];
@@ -486,7 +452,6 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                             }
                         }
                     }
-
                     /* uploadAttoNotarile */
                     if($rowVTABI['uploadAttoNotarile'] != "" || $rowVTABI['uploadAttoNotarile'] != NULL){
                         $fileName = $rowVTABI['uploadAttoNotarile'];
@@ -501,7 +466,6 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                         }
                     }
                 }
-                
                 return $returnText;
             }
             $connessioneVTABI->close();
@@ -513,9 +477,7 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
             $resultVTABI = $connessioneVTABI->query($sqlVTABI);
             if ($resultVTABI->num_rows > 0) {
                 while($rowVTABI = $resultVTABI->fetch_assoc()) {
-                    
                     $returnText = "";
-
                     /* uploadCartaIdentitaFronte*/
                     if($rowVTABI['uploadCartaIdentitaFronte'] != "" || $rowVTABI['uploadCartaIdentitaFronte'] != NULL){
                         $fileName = $rowVTABI['uploadCartaIdentitaFronte'];
@@ -529,10 +491,9 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                             }
                         }
                     }
-                    
                     /* uploadCartaIdentitaRetro */
                     if($rowVTABI['uploadCartaIdentitaRetro'] != "" || $rowVTABI['uploadCartaIdentitaRetro'] != NULL){
-                        $fileName = $rowVTABI['uploadCartaIdentitaRetro'];
+                       $fileName = $rowVTABI['uploadCartaIdentitaRetro'];
                         $fileNameParts = explode('.', $fileName);
                         $ext = end($fileNameParts);
                         if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/assegno_maternita/'.$rowVTABI['uploadCartaIdentitaRetro'])){
@@ -543,7 +504,6 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                             }
                         }
                     }
-
                     /* uploadTitoloSoggiorno */
                     if($rowVTABI['uploadTitoloSoggiorno'] != "" || $rowVTABI['uploadTitoloSoggiorno'] != NULL){
                         $fileName = $rowVTABI['uploadTitoloSoggiorno'];
@@ -557,7 +517,6 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                             }
                         }
                     }
-
                     /* uploadDichiarazioneDatoreLavoro */
                     if($rowVTABI['uploadDichiarazioneDatoreLavoro'] != "" || $rowVTABI['uploadDichiarazioneDatoreLavoro'] != NULL){
                         $fileName = $rowVTABI['uploadDichiarazioneDatoreLavoro'];
@@ -572,7 +531,6 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                         }
                     }
                 }
-                
                 return $returnText;
             }
             $connessioneVTABI->close();
@@ -584,9 +542,7 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
             $resultVTABI = $connessioneVTABI->query($sqlVTABI);
             if ($resultVTABI->num_rows > 0) {
                 while($rowVTABI = $resultVTABI->fetch_assoc()) {
-                    
                     $returnText = "";
-                    
                     /* potere firma */
                     if($rowVTABI['uploadPotereFirma'] != "" || $rowVTABI['uploadPotereFirma'] != NULL){
                         $fileName = $rowVTABI['uploadPotereFirma'];
@@ -600,7 +556,6 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                             }
                         }
                     }
-                    
                     /* Isee */
                     if($rowVTABI['uploadIsee'] != "" || $rowVTABI['uploadIsee'] != NULL){
                         $fileName = $rowVTABI['uploadIsee'];
@@ -614,7 +569,6 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                             }
                         }
                     }
-                    
                     /* documentazione */
                     if($rowVTABI['uploadDocumentazione'] != "" || $rowVTABI['uploadDocumentazione'] != NULL){
                         $tmpUploadDocumentazione1 = substr($rowVTABI["uploadDocumentazione"],0,-1);
@@ -623,7 +577,6 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                         foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
                             $fileNameParts = explode('.', $tmpUploadDocumentazione);
                             $ext = end($fileNameParts);
-                            
                             if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/bonus_economici/'.$tmpUploadDocumentazione)){
                                 if( $ext == "pdf"){
                                     $returnText .="<a href='./uploads/bonus_economici/".$tmpUploadDocumentazione."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Documentazione' title='Documentazione' class='thumb-view' /></a>";
@@ -645,9 +598,7 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
             $resultVTABI = $connessioneVTABI->query($sqlVTABI);
             if ($resultVTABI->num_rows > 0) {
                 while($rowVTABI = $resultVTABI->fetch_assoc()) {
-                    
                     $returnText = "";
-                    
                     /* potere firma */
                     if($rowVTABI['uploadPotereFirma'] != "" || $rowVTABI['uploadPotereFirma'] != NULL){
                         $fileName = $rowVTABI['uploadPotereFirma'];
@@ -670,7 +621,6 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                         foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
                             $fileNameParts = explode('.', $tmpUploadDocumentazione);
                             $ext = end($fileNameParts);
-                            
                             if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/domanda_contributo/'.$tmpUploadDocumentazione)){
                                 if( $ext == "pdf"){
                                     $returnText .="<a href='./uploads/domanda_contributo/".$tmpUploadDocumentazione."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Documentazione' title='Documentazione' class='thumb-view' /></a>";
@@ -692,9 +642,7 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
             $resultVTABI = $connessioneVTABI->query($sqlVTABI);
             if ($resultVTABI->num_rows > 0) {
                 while($rowVTABI = $resultVTABI->fetch_assoc()) {
-                    
                     $returnText = "";
-                    
                     /* uploadCartaIdentitaFronte*/
                     if($rowVTABI['uploadCartaIdentitaFronte'] != "" || $rowVTABI['uploadCartaIdentitaFronte'] != NULL){
                         $fileName = $rowVTABI['uploadCartaIdentitaFronte'];
@@ -708,7 +656,6 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                             }
                         }
                     }
-                    
                     /* uploadCartaIdentitaRetro */
                     if($rowVTABI['uploadCartaIdentitaRetro'] != "" || $rowVTABI['uploadCartaIdentitaRetro'] != NULL){
                         $fileName = $rowVTABI['uploadCartaIdentitaRetro'];
@@ -722,7 +669,6 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                             }
                         }
                     }
-
                     /* uploadCV */
                     if($rowVTABI['uploadCV'] != "" || $rowVTABI['uploadCV'] != NULL){
                         $fileName = $rowVTABI['uploadCV'];
@@ -736,7 +682,6 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                             }
                         }
                     }
-
                     /* uploadTitoliPreferenza */
                     if($rowVTABI['uploadTitoliPreferenza'] != "" || $rowVTABI['uploadTitoliPreferenza'] != NULL){
                         $tmpUploadTitoliPreferenza1 = substr($rowVTABI["uploadTitoliPreferenza"],0,-1);
@@ -744,8 +689,7 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                         $uploadTitoliPreferenza = "";
                         foreach($tmpUploadTitoliPreferenzas as $tmpUploadTitoliPreferenza) {
                             $fileNameParts = explode('.', $tmpUploadTitoliPreferenza);
-                            $ext = end($fileNameParts);
-                            
+                            $ext = end($fileNameParts);                            
                             if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/partecipazione_concorso/'.$tmpUploadTitoliPreferenza)){
                                 if( $ext == "pdf"){
                                     $returnText .="<a href='./uploads/partecipazione_concorso/".$tmpUploadTitoliPreferenza."' target='_blank'><img src='./media/images/icons/pdf.png' alt='Titoli di Preferenza' title='Titoli di Preferenza' class='thumb-view' /></a>";
@@ -755,8 +699,7 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
                             }
                         }
                     }
-                }
-                
+                }                
                 return $returnText;
             }
             $connessioneVTABI->close();
@@ -766,7 +709,6 @@ function ViewThumbAllegatiById($ServizioId,$PraticaId){
 
 function DownloadRicevutaById($ServizioId,$PraticaId){
     $configDB = require './env/config.php';
-    
     switch($ServizioId) {
         case 5:
             /* pubblicazione_matrimonio */
@@ -887,7 +829,6 @@ function DownloadRicevutaById($ServizioId,$PraticaId){
 
 function DownloadPraticaById($ServizioId,$PraticaId){
     $configDB = require './env/config.php';
-    
     switch($ServizioId) {
         case 5:
             /* pubblicazione_matrimonio */
@@ -1034,4 +975,218 @@ function UfficioDestinatarioById($ufficioDestinatarioId){
         }
     }
     $connessioneUDBY->close();
+}
+
+function CreateTempTable(){
+    $configDB = require './env/config.php';
+    $connessioneCTT = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sqlCTT = "SELECT LinkServizio FROM servizi WHERE Attivo = 1";
+    $resultCTT = $connessioneCTT->query($sqlCTT);
+    if ($resultCTT->num_rows > 0) {
+        $i = 1;
+        $tmpTable = "";
+        while($rowCTT = $resultCTT->fetch_assoc()) {
+            $tmpTable .= "select t".$i.".id as id, t".$i.".NumeroPratica as NumeroPratica, t".$i.".richiedenteCf as CodiceFiscale, t".$i.".status_id as StatusId, t".$i.".data_compilazione as DataCompilazione from ".$rowCTT["LinkServizio"]." t".$i." union ";
+            $i++;
+        }
+    }
+    $connessioneCTT->close();
+    
+    $tmpTable = substr($tmpTable, 0, -6);
+            
+    return $tmpTable;
+}
+
+function MenuAttivita($CodiceFiscale,$SelectedService = null){
+    $configDB = require './env/config.php';
+    $connessioneMA = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sqlMA = "SELECT id,LinkServizio FROM servizi WHERE Attivo = 1";
+    $resultMA = $connessioneMA->query($sqlMA);
+    if ($resultMA->num_rows > 0) {
+        $menuAttivita = "";
+        while($rowMA = $resultMA->fetch_assoc()) {
+            $menuAttivita .= '<li class="nav-item"><a class="';
+            if($SelectedService == $rowMA['id']){
+                $menuAttivita .= ' active" href="#"';
+            }else{
+                $menuAttivita .= '" href="servizio_list.php?sid='.$rowMA['id'].'"';
+            }
+            $menuAttivita .= '><span class="title-medium">'.ucfirst(str_replace("_"," ",$rowMA["LinkServizio"])).'</span><span class="float-right menu-numbers">'.CountServizio($CodiceFiscale,$rowMA["LinkServizio"]).'</span></a></li>';
+        }
+    }
+    $connessioneMA->close();
+    
+    return $menuAttivita;
+}
+
+function CountServizio($CodiceFiscale,$Table){
+    $configDB = require './env/config.php';
+    $connessioneCS = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sqlCS = "SELECT Count(id) as CountServiceRows FROM ".$Table." WHERE richiedenteCf = '".$CodiceFiscale."' AND status_id > 1";
+    $resultCS = $connessioneCS->query($sqlCS);
+    if ($resultCS->num_rows > 0) {
+        while($rowCS = $resultCS->fetch_assoc()) {
+            $countServizio = $rowCS["CountServiceRows"];
+        }
+    }
+    $connessioneCS->close();
+    return $countServizio;
+}
+function countSent($cf,$sid = null){
+    $configDB = require './env/config.php';
+    $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sql = "SELECT COUNT(id) AS CountSent FROM attivita
+        WHERE cf = '".$cf."'";
+        if($sid != null){
+            $sql .= " AND servizio_id = '".$sid."'";
+        }
+        $sql .= " AND status_id > 0";
+    $result = $connessione->query($sql);
+
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+            return $row['CountSent'];
+        }
+    }
+    $connessione->close();
+}
+
+function ProgressBarInviate($cf,$sid = null){
+    $configDB = require './env/config.php';
+    $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sql = "SELECT COUNT(id) AS CountSent FROM attivita
+        WHERE cf = '".$cf."'";
+        if($sid != null){
+            $sql .= " AND servizio_id = '".$sid."'";
+        }
+        $sql .= " AND status_id > 1";
+    $result = $connessione->query($sql);
+   
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $countSent = $row['CountSent'];
+            $percentageSent = ($countSent*100)/countSent($cf,$sid);
+        }
+    }
+    $connessione->close();
+    return '<div class="col-lg-3 text-center">
+        <svg class="radial-progress sent" data-percentage="'.$percentageSent.'" viewBox="0 0 80 80">
+            <circle class="incomplete" cx="40" cy="40" r="35"></circle>
+            <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
+            <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">'.$countSent.'</text>
+        </svg>
+        <p>Pratiche inviate</p>
+    </div>';
+}    
+ 
+function ProgressBarInLavorazione($cf,$sid = null){
+    $configDB = require './env/config.php';
+    $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sql = "SELECT COUNT(id) AS CountWorking FROM attivita
+        WHERE attivita.cf = '".$cf."'";
+        if($sid != null){
+            $sql .= " AND servizio_id = '".$sid."'";
+        }
+        $sql .= " AND attivita.status_id = 3";
+    $result = $connessione->query($sql);
+
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $countWorking = $row['CountWorking'];
+            $percentageWorking = ($countWorking*100)/countSent($cf,$sid);
+        }
+    }
+    $connessione->close();
+    return '<div class="col-lg-3 text-center">
+        <svg class="radial-progress working" data-percentage="'.$percentageWorking.'" viewBox="0 0 80 80">
+            <circle class="incomplete" cx="40" cy="40" r="35"></circle>
+            <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
+            <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">'.$countWorking.'</text>
+        </svg>
+        <p>Pratiche in lavorazione</p>
+    </div>';
+}
+
+function ProgressBarAccettate($cf,$sid = null){
+    $configDB = require './env/config.php';
+    $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sql = "SELECT COUNT(id) AS CountAccepted FROM attivita
+        WHERE attivita.cf = '".$cf."'";
+        if($sid != null){
+            $sql .= " AND servizio_id = '".$sid."'";
+        }
+        $sql .= " AND attivita.status_id = 4";
+    $result = $connessione->query($sql);
+
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $countAccepted = $row['CountAccepted'];
+            $percentageAccepted = ($countAccepted*100)/countSent($cf,$sid);
+        }
+    }
+    $connessione->close();
+    return '<div class="col-lg-3 text-center">
+        <svg class="radial-progress accepted" data-percentage="'.$percentageAccepted.'" viewBox="0 0 80 80">
+            <circle class="incomplete" cx="40" cy="40" r="35"></circle>
+            <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
+            <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">'.$countAccepted.'</text>
+        </svg>
+        <p>Pratiche accettate</p>
+    </div>';    
+}
+
+function ProgressBarRifiutate($cf,$sid = null){
+    $configDB = require './env/config.php';
+    $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sql = "SELECT COUNT(id) AS CountRefused FROM attivita
+        WHERE attivita.cf = '".$cf."'";
+        if($sid != null){
+            $sql .= " AND servizio_id = '".$sid."'";
+        }
+        $sql .= " AND attivita.status_id = 5";
+    $result = $connessione->query($sql);
+
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $countRefused = $row['CountRefused'];
+            $percentageRefused = ($countRefused*100)/countSent($cf,$sid);
+        }
+    }
+    $connessione->close();
+    return '<div class="col-lg-3 text-center">
+        <svg class="radial-progress refused" data-percentage="'.$percentageRefused.'" viewBox="0 0 80 80">
+            <circle class="incomplete" cx="40" cy="40" r="35"></circle>
+            <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
+            <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">'.$countRefused.'</text>
+        </svg>
+        <p>Pratiche rifiutate</p>
+    </div>';
+}
+
+function ProgressBarBozze($cf){
+    $configDB = require './env/config.php';
+    $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sql = "SELECT COUNT(id) AS CountSent, servizio_id AS ServizioId FROM attivita
+        WHERE cf = '".$cf."'
+        AND status_id = 1
+        GROUP BY ServizioId";
+    $result = $connessione->query($sql);
+    $return = '';
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $countSent = $row['CountSent'];
+            $percentageSent = ($countSent*100)/$countSent;
+            $return .='<div class="col-lg-3 text-center">
+                <svg class="radial-progress draft" data-percentage="'.$percentageSent.'" viewBox="0 0 80 80">
+                    <circle class="incomplete" cx="40" cy="40" r="35"></circle>
+                    <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
+                    <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">'.$countSent.'</text>
+                </svg>
+                <p>'.NomeServizioById($row['ServizioId']).'</p>
+            </div>';
+        }
+    }
+    return $return;
+    $connessione->close();
 }

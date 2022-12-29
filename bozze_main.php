@@ -7,6 +7,7 @@
             LEFT JOIN servizi ON attivita.servizio_id = servizi.id
             LEFT JOIN status ON attivita.status_id = status.id
             WHERE attivita.cf = '".$_SESSION['CF']."'
+            AND status_id = 1
             ORDER BY attivita.data_attivita DESC, attivita.id DESC";
     /* paginazione - START*/        
         $perpage = $configDB['PER_PAGE_LIMIT'];
@@ -64,12 +65,12 @@
                             </div>
                             <div class="card-body p-0">
                                 <div class="row">
-                                    <div class="col-lg-12 after-section-small">
+                                    <div class="col-lg-12">
                                         '.CfAltroByPraticaId($row['ServizioId'],$row["pratica_id"]).
                                     '</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-12">';
+                                    <div class="col-lg-12 before-section-small">';
                                         if($row['StatusId'] > 1){
                                             echo '<div class="row">
                                                 <div class="col-12 text-right">

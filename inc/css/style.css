@@ -104,6 +104,14 @@ body {
     text-align: right;
 }
 
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
 .margin_bottom_0{
   margin-bottom: 0 !important;
 }
@@ -165,6 +173,27 @@ label{
     background: var(--bs-primary);
 }
 
+.accordion-item .accordion-body {
+    padding: 12px 24px 0px 16px;
+}
+
+.pagination .page-item.active .page-link{
+    background: var(--bs-primary);
+    color: #FFFFFF;
+}
+
+.menu-numbers{
+    font-weight: normal;
+}
+
+.menu-numbers:before{
+    content: "(";
+}
+
+.menu-numbers:after{
+    content: ")";
+}
+
 @media (min-width: 992px){
     .it-header-navbar-wrapper {
         background: var(--bs-primary);
@@ -177,6 +206,10 @@ label{
     }
     .navbar .navbar-collapsable .navbar-nav li a.nav-link {
         padding: 13px 24px 13px 0;
+    }
+
+    .navbar.it-navscroll-wrapper .link-list-wrapper ul li a {
+        padding-right: 0px;
     }
 }
 
@@ -1055,8 +1088,8 @@ a.pulsante_leggi_dipiu{
     }
     
     #latest-activities .card,
-    #pratiche .card{
-        min-height: 260px;
+    #attivita .card{
+        min-height: 290px;
         padding: 10px;
         margin-bottom: 30px;
     }
@@ -1064,7 +1097,7 @@ a.pulsante_leggi_dipiu{
     #latest-posts .card::after,
     .body-messaggi .card::after,
     #latest-activities .card::after,
-    #pratiche .card::after,
+    #attivita .card::after,
     .body-riepilogo .card::after{
         content: none;
     }
@@ -1105,6 +1138,7 @@ svg.radial-progress text {
 }
 
 /*** COLORS ***/
+svg.radial-progress.draft circle { stroke: #cdcdcd; }
 svg.radial-progress.sent circle { stroke: #202986; }
 svg.radial-progress.working circle { stroke: #e88a1a; }
 svg.radial-progress.accepted circle { stroke: #4e7e5b; }
@@ -1121,4 +1155,10 @@ svg.radial-progress.refused circle { stroke: #ef0303; }
   margin-bottom: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid #cdcdcd;
+}
+
+.before-section-small{
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #cdcdcd;
 }

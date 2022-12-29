@@ -72,11 +72,20 @@ $data = [];
                 }
                 $data['pratica'] = $NumeroPratica;
 
-                /* vado ad inserire nella bozza il numero pratica - questo mi serve per lo storico. */
-                $connessioneUPD = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-                $sqlUPD = "UPDATE pubblicazione_matrimonio SET NumeroPratica = '".$NumeroPratica."' WHERE id = ".$_POST['pratican'];
-                $connessioneUPD->query($sqlUPD);
+                /* vado ad eliminare la bozza e la tmp */
+                $connessioneDEL = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+                $sqlDEL = "DELETE FROM attivita WHERE cf = '". $_SESSION['CF'] ."' AND servizio_id = 5 AND status_id = 1 AND pratica_id = ".$row['id_orig'];
+                $connessioneDEL->query($sqlDEL);
+                
+                $sqlDEL = "DELETE FROM attivita WHERE cf = '". $_SESSION['CF'] ."' AND servizio_id = 5 AND status_id = 0 AND pratica_id = ".$_POST['pratican'];
+                $connessioneDEL->query($sqlDEL);                
 
+                $sqlDEL = "DELETE FROM pubblicazione_matrimonio WHERE id = ".$row['id_orig'];
+                $connessioneDEL->query($sqlDEL);
+                
+                $sqlDEL = "DELETE FROM pubblicazione_matrimonio WHERE id = ".$_POST['pratican'];
+                $connessioneDEL->query($sqlDEL);
+                
                 /* salvo nelle attitivà la creazione o modifica della bozza per pubblicazione_matrimonio */
                     $sqlINS = "INSERT INTO attivita (cf,servizio_id,pratica_id,status_id,data_attivita) VALUES ('". $_SESSION['CF'] ."',5,".$new_id.",2,'".date('Y-m-d')."')";
                     $connessioneINS->query($sqlINS);
