@@ -77,6 +77,13 @@
                                                                         <span class="title-medium">Prossimi passi</span>
                                                                     </a>
                                                                 </li>
+                                                                <?php if(!CheckRatingByCfService($_SESSION['CF'],'10')){ ?>
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link" href="#be_valuta_servizio">
+                                                                            <span class="title-medium">Valuta il servizio</span>
+                                                                        </a>
+                                                                    </li>
+                                                                <?php } ?>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -182,6 +189,11 @@
                                 </div>
                             </div>
                         </div>
+                        <?php 
+                        if(!CheckRatingByCfService($_SESSION['CF'],'10')){ 
+                            echo CallRatingLayout('be_',$_GET['praticai'],10);
+                        }
+                        ?>                        
                     </div>
                 </div>
             </div>

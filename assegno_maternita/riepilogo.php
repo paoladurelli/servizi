@@ -63,20 +63,27 @@
                                                         <div class="accordion-body">
                                                             <ul class="link-list" data-element="page-index">
                                                                 <li class="nav-item">
-                                                                    <a class="nav-link" href="#dc_stato_richiesta">
+                                                                    <a class="nav-link" href="#am_stato_richiesta">
                                                                         <span class="title-medium">Stato richiesta</span>
                                                                     </a>
                                                                 </li>
                                                                 <li class="nav-item">
-                                                                    <a class="nav-link" href="#dc_scarica_ricevuta">
+                                                                    <a class="nav-link" href="#am_scarica_ricevuta">
                                                                         <span class="title-medium">Scarica Ricevuta</span>
                                                                     </a>
                                                                 </li>
                                                                 <li class="nav-item">
-                                                                    <a class="nav-link" href="#dc_prossimi_passi">
+                                                                    <a class="nav-link" href="#am_prossimi_passi">
                                                                         <span class="title-medium">Prossimi passi</span>
                                                                     </a>
                                                                 </li>
+                                                                <?php if(!CheckRatingByCfService($_SESSION['CF'],'9')){ ?>
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link" href="#am_valuta_servizio">
+                                                                            <span class="title-medium">Valuta il servizio</span>
+                                                                        </a>
+                                                                    </li>
+                                                                <?php } ?>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -90,7 +97,7 @@
                     </div>
 
                     <div class="col-12 col-lg-9 body-riepilogo">
-                        <div class="it-page-section mb-50 mb-lg-90" id="dc_stato_richiesta">
+                        <div class="it-page-section mb-50 mb-lg-90" id="am_stato_richiesta">
                             <div class="cmp-card">
                                 <div class="card">
                                     <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -113,7 +120,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="it-page-section mb-50 mb-lg-90" id="dc_scarica_ricevuta">
+                        <div class="it-page-section mb-50 mb-lg-90" id="am_scarica_ricevuta">
                             <div class="cmp-card">
                                 <div class="card">
                                     <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -135,7 +142,7 @@
                                 </div>
                             </div>          
                         </div>
-                        <div class="it-page-section mb-50 mb-lg-90" id="dc_prossimi_passi">
+                        <div class="it-page-section mb-50 mb-lg-90" id="am_prossimi_passi">
                             <div class="cmp-card">
                                 <div class="card">
                                     <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -182,6 +189,11 @@
                                 </div>
                             </div>
                         </div>
+                        <?php 
+                        if(!CheckRatingByCfService($_SESSION['CF'],'9')){
+                            echo CallRatingLayout('am_',$_GET['praticai'],9);
+                        }
+                        ?>
                     </div>                                                    
                 </div>
             </div>

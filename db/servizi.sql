@@ -62,6 +62,7 @@ CREATE TABLE `accesso_atti` (
   `uploadCartaIdentitaRetro` text COLLATE utf8_bin DEFAULT NULL,
   `uploadAttoNotarile` text COLLATE utf8_bin DEFAULT NULL,
   `status_id` int(11) NOT NULL,
+  `id_orig` int(11) DEFAULT NULL,
   `data_compilazione` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -107,6 +108,7 @@ CREATE TABLE `assegno_maternita` (
   `uploadTitoloSoggiorno` text COLLATE utf8_bin DEFAULT NULL,
   `uploadDichiarazioneDatoreLavoro` text COLLATE utf8_bin DEFAULT NULL,
   `status_id` int(11) NOT NULL,
+  `id_orig` int(11) DEFAULT NULL,
   `data_compilazione` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -152,6 +154,7 @@ CREATE TABLE `bonus_economici` (
   `uploadIsee` text COLLATE utf8_bin NOT NULL,
   `uploadDocumentazione` text COLLATE utf8_bin NOT NULL,
   `status_id` int(11) NOT NULL,
+  `id_orig` int(11) DEFAULT NULL,
   `data_compilazione` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -196,6 +199,7 @@ CREATE TABLE `domanda_contributo` (
   `uploadPotereFirma` text COLLATE utf8_bin NOT NULL,
   `uploadDocumentazione` text COLLATE utf8_bin NOT NULL,
   `status_id` int(11) NOT NULL,
+  `id_orig` int(11) DEFAULT NULL,
   `data_compilazione` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -259,6 +263,7 @@ CREATE TABLE `partecipazione_concorso` (
   `uploadCartaIdentitaRetro` text COLLATE utf8_bin NOT NULL,
   `uploadTitoliPreferenza` text COLLATE utf8_bin NOT NULL,
   `status_id` int(11) NOT NULL,
+  `id_orig` int(11) DEFAULT NULL,
   `data_compilazione` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -295,7 +300,21 @@ CREATE TABLE `pubblicazione_matrimonio` (
   `coniugeEmail` text COLLATE utf8_bin NOT NULL,
   `coniugeTel` text COLLATE utf8_bin NOT NULL,
   `status_id` int(11) NOT NULL,
+  `id_orig` int(11) DEFAULT NULL,
   `data_compilazione` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+CREATE TABLE `rating` (
+  `id` int(11) NOT NULL,
+  `ServizioId` int(11) NOT NULL,
+  `PraticaId` int(11) NOT NULL,
+  `userCf` varchar(16) COLLATE utf8_bin NOT NULL,
+  `rating` int(11) NOT NULL,
+  `negative` int(11) NOT NULL,
+  `positive` int(11) NOT NULL,
+  `comment` text COLLATE utf8_bin NOT NULL,
+  `data_inserimento` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
@@ -419,6 +438,9 @@ ALTER TABLE `partecipazione_concorso`
 ALTER TABLE `pubblicazione_matrimonio`
   ADD PRIMARY KEY (`id`);
 
+ALTER TABLE `rating`
+  ADD PRIMARY KEY (`id`);
+
 ALTER TABLE `servizi`
   ADD PRIMARY KEY (`id`);
 
@@ -459,6 +481,9 @@ ALTER TABLE `partecipazione_concorso`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 ALTER TABLE `pubblicazione_matrimonio`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+ALTER TABLE `rating`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 ALTER TABLE `servizi`

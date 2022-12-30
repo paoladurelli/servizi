@@ -153,6 +153,14 @@ label{
     width: 200px;
 }
 
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
 .upload[type="file"] + label {
     width: 200px;
     cursor: pointer;
@@ -825,6 +833,21 @@ body{
   padding: 20px;
 }
 
+.body-dichiarazioni .cmp-card {
+  background-color: #ebeef0;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.body-dichiarazioni .cmp-card .card {
+  background-color: transparent;
+}
+
+.body-dichiarazioni .cmp-card .card .card-body{
+  background-color: #FFFFFF;
+  padding: 20px;
+}
+
 ul.card_rb{
     list-style: none;
 }
@@ -1075,6 +1098,14 @@ a.pulsante_leggi_dipiu{
     width: 100%;
 }
 
+.navbar.it-navscroll-wrapper .link-list-wrapper ul li a span {
+    font-weight: normal;
+}
+.navbar.it-navscroll-wrapper .link-list-wrapper ul li a.active span {
+    font-weight: bold;
+}
+
+
 @media (min-width: 992px){
     .card {
         min-height: 380px;
@@ -1083,7 +1114,13 @@ a.pulsante_leggi_dipiu{
     .body-riepilogo .card,
     .body-compilazione-dati .card,
     .body-messaggi .card,
-    #latest-posts .card{
+    #latest-posts .card,
+    #be_dichiarazioni .card,
+    #aa_dichiarazioni .card,
+    #dc_dichiarazioni .card,
+    #pc_dichiarazione .card,
+    #pm_dichiarazioni .card,
+    .body-dichiarazioni .card{
         min-height: 40px;
     }
     
@@ -1098,7 +1135,13 @@ a.pulsante_leggi_dipiu{
     .body-messaggi .card::after,
     #latest-activities .card::after,
     #attivita .card::after,
-    .body-riepilogo .card::after{
+    .body-riepilogo .card::after,
+    #be_dichiarazioni .card::after,
+    #aa_dichiarazioni .card::after,
+    #dc_dichiarazioni .card::after,
+    #pc_dichiarazione .card::after,
+    #pm_dichiarazioni .card::after,
+    .body-dichiarazioni .card::after{
         content: none;
     }
 }
@@ -1162,3 +1205,41 @@ svg.radial-progress.refused circle { stroke: #ef0303; }
   padding-top: 10px;
   border-top: 1px solid #cdcdcd;
 }
+
+/* rating - start */
+.rating-box .feed_title,
+#valutazione_positiva .feed_title,
+#valutazione_negativa .feed_title{
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+}
+
+.rating-box ul {
+    margin: 0;
+    padding: 0;
+}
+
+.rating-box li {
+    cursor: pointer;
+    list-style-type: none;
+    display: inline-block;
+    color: #F0F0F0;
+    text-shadow: 0 0 1px #666666;
+    font-size: 20px;
+}
+
+.rating-box .highlight, .rating-box .selected {
+    color: #F4B30A;
+    text-shadow: 0 0 1px #F48F0A;
+}
+
+.rating-box #loader-icon {
+    display: none;
+    vertical-align: top;
+}
+
+.rating-box #image-size {
+    width: 30px;
+}
+/* rating - end */

@@ -84,6 +84,7 @@
         // output data of each row
             while($row = $result->fetch_assoc()) {
                 $status_id = $row["status_id"];
+                $UfficioDestinatarioId = $row["UfficioDestinatarioId"];
                 $cf = $row["richiedenteCf"];
                 $nome = $row["richiedenteNome"];
                 $cognome = $row["richiedenteCognome"];

@@ -460,7 +460,7 @@
                                                 <div class="col-12 after-section">
                                                     <div class="row">
                                                         <div class="col-lg-8">
-                                                            <h6 id="be_uploadIsee_txt">ISEE</h6>
+                                                            <h6 id="be_uploadIsee_txt">ISEE *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
                                                         <div class="col-lg-4 text-right">
