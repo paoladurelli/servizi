@@ -27,16 +27,7 @@
                         <p class="subtitle-small">CF: <?php echo $_SESSION['CF']; ?></p>
                     </div>
                 </div>
-                <div class="col-12 p-0 menu-servizi">
-                    <div class="cmp-nav-tab mb-4 mb-lg-5 mt-lg-4">
-                        <div class="row">
-                            <div class="col-lg-3 text-center">INFORMATIVA SULLA PRIVACY</div>
-                            <div class="col-lg-3 text-center">COMPILAZIONE DATI</div>
-                            <div class="col-lg-3 text-center">TERMINI E CONDIZIONI</div>
-                            <div class="col-lg-3 text-center"><span class="active"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right-circle"></use></svg>RIEPILOGO</span></div>
-                        </div>
-                    </div>
-                </div>
+                <?php echo ViewMenuPratiche(4); ?>
             </div>
             <div class="it-page-sections-container">
                 <div class="row">
@@ -51,9 +42,6 @@
                                                     <span class="accordion-header" id="accordion-title-one">
                                                         <button class="accordion-button pb-10 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-one" aria-expanded="true" aria-controls="collapse-one">
                                                             INDICE DI PAGINA
-                                                            <svg class="icon icon-xs right">
-                                                                <use href="../lib/svg/sprites.svg#it-expand"></use>
-                                                            </svg>
                                                         </button>
                                                     </span>
                                                     <div class="progress">
@@ -105,7 +93,7 @@
                                             <h2 class="title-xxlarge mb-3">Stato richiesta</h2>
                                         </div>
                                     </div>
-                                    <div class="card-body" style="margin-bottom:40px;">
+                                    <div class="card-body mb-40">
                                         <div class="row">
                                             <div class="col-lg-12"><h5 class="color-primary"><b>Richiesta inviata correttamente</b></h5></div>
                                         </div>
@@ -128,7 +116,7 @@
                                             <h2 class="title-xxlarge mb-3">Scarica la ricevuta</h2>
                                         </div>
                                     </div>
-                                    <div class="card-body" style="margin-bottom:40px;">
+                                    <div class="card-body mb-40">
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <form action="../lib/tcpdf/TCPDF-master/examples/pm_pdf_pratica.php" method="POST" id="pm_frm_download_pdf" name="pm_frm_download_pdf">
@@ -150,11 +138,11 @@
                                             <h2 class="title-xxlarge mb-3">Prossimi passi</h2>
                                         </div>
                                     </div>
-                                    <div class="card-body" style="margin-bottom:40px;">
+                                    <div class="card-body mb-40">
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <div class="row stepper mb0">
-                                                    <div class="offset-md-1 col-md-11">
+                                                <div class="row stepper">
+                                                    <div class="offset-md-1 col-md-11 col-12">
                                                         <div class="step">
                                                             <div class="date-step">
                                                                 <span class="date-step-giorno"><?php echo date("d"); ?></span><br>

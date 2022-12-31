@@ -138,9 +138,6 @@
                                                     <span class="accordion-header" id="accordion-title-one">
                                                         <button class="accordion-button pb-10 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-one" aria-expanded="true" aria-controls="collapse-one">
                                                             INDICE DI PAGINA
-                                                            <svg class="icon icon-xs right">
-                                                                <use href="../lib/svg/sprites.svg#it-expand"></use>
-                                                            </svg>
                                                         </button>
                                                     </span>
                                                     <div class="progress">
@@ -191,7 +188,7 @@
                             <div class="col-12 p-0  menu-servizi">
                                 <div class="cmp-nav-tab mb-4 mb-lg-5 mt-lg-4">
                                     <div class="row">
-                                        <div class="col-12"><span class="active"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right-circle"></use></svg>Stato pratica: <b><?php echo NameStatusById($status_id); ?></b></span></div>
+                                        <div class="col-12"><span class="active"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right-circle"></use></svg>Stato pratica: <b><?php echo NameStatusById($status_id); ?></b></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -466,7 +463,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12 text-right mb-20">
-                                <a href="..\attivita_list.php" class="btn btn-secondary"><svg class="icon me-1 mr-lg-10" aria-hidden="true" fill="#fff"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
+                                <a href="..\attivita_list.php" class="btn btn-secondary"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true" fill="#fff"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
                             </div>
                         </div>
                     </div>

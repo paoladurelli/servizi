@@ -61,7 +61,7 @@
                         <textarea id="commento_positivo" name="commento_positivo" rows="4" placeholder="Breve commento"></textarea>
                     </label>
                 </div>
-                <button type="button" id="btn_invia_feedback_positivo" name="btn_invia_feedback_positivo" class="btn btn-primary">Invia Feedback <svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
+                <button type="button" id="btn_invia_feedback_positivo" name="btn_invia_feedback_positivo" class="btn btn-primary">Invia Feedback <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
             </div>
         </div>
         <div id="valutazione_negativa" class="hide">
@@ -92,7 +92,7 @@
                         <textarea id="commento_negativo" name="commento_negativo" rows="4" placeholder="Breve commento"></textarea>
                     </label>
                 </div>
-                <button type="button" id="btn_invia_feedback_negativo" name="btn_invia_feedback_negativo" class="btn btn-primary">Invia Feedback <svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
+                <button type="button" id="btn_invia_feedback_negativo" name="btn_invia_feedback_negativo" class="btn btn-primary">Invia Feedback <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
             </div>
         </div>
     <?php } ?>

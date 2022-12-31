@@ -27,28 +27,7 @@
                         <p class="subtitle-small">CF: <?php echo $_SESSION['CF']; ?></p>
                     </div>
                 </div>
-                <div class="col-12 menu-servizi">
-                    <div class="container mb-4 mb-lg-5 mt-lg-4">
-                        <div class="row">
-                            <div class="col-lg-3 text-center">
-                                <span class="active"><svg class="icon me-1 mr-lg-10" aria-hidden="true">
-                                        <use href="../lib/svg/sprites.svg#it-arrow-right-circle"></use>
-                                    </svg>INFORMATIVA SULLA PRIVACY</span>
-                                </a>
-                            </div>
-                            <div class="col-lg-3 text-center">
-                                <!--<span class="nav-link justify-content-start pr-10 pb-2 ps-1 pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab">
-                                    svg class="icon me-1 mr-lg-10" aria-hidden="true">
-                                        <use href="../lib/svg/sprites.svg#it-arrow-right-circle"></use>
-                                    </svg-->
-                                    COMPILAZIONE DATI
-                                    <!--<!-- </span> -->
-                            </div>
-                            <div class="col-lg-3 text-center">TERMINI E CONDIZIONI</div>
-                            <div class="col-lg-3 text-center">RIEPILOGO</div>
-                        </div>
-                    </div>
-                </div>
+                <?php echo ViewMenuPratiche(1); ?>
             </div>
             <div class="container">
                 <div class="row">
@@ -62,7 +41,7 @@
                                         <form name="frm_privacy" action="compilazione_dati.php" method="post">
                                             <input type="hidden" id="be_bozza_id" name="be_bozza_id" value="<?php if(isset($_GET["be_bozza_id"])){ echo $_GET["be_bozza_id"]; } ?>" />
                                             <p><label><input type="checkbox" name="ckb_privacy" required /> <b>Ho letto e compreso l'informativa sulla privacy</b></label></p>
-                                            <p><button type="submit" class="btn btn-primary">Avanti <svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button></p>
+                                            <p><button type="submit" class="btn btn-primary">Avanti <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button></p>
                                         </form>
                                     </div>
                                 </div>

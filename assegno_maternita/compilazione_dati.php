@@ -158,16 +158,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-12 p-0  menu-servizi">
-                    <div class="cmp-nav-tab mb-4 mb-lg-5 mt-lg-4">
-                        <div class="row">
-                            <div class="col-lg-3 text-center">INFORMATIVA SULLA PRIVACY</div>
-                            <div class="col-lg-3 text-center"><span class="active"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right-circle"></use></svg>COMPILAZIONE DATI</span></div>
-                            <div class="col-lg-3 text-center">TERMINI E CONDIZIONI</div>
-                            <div class="col-lg-3 text-center">RIEPILOGO</div>
-                        </div>
-                    </div>
-                </div>
+                <?php echo ViewMenuPratiche(2); ?>
             </div>
             <form action="#" id="am_frm_dati" method="post" enctype="multipart/form-data">
                 <input type="hidden" id="am_bozza_id" name="am_bozza_id" value="<?php echo $am_bozza_id; ?>"/>
@@ -184,9 +175,6 @@
                                                         <span class="accordion-header" id="accordion-title-one">
                                                             <button class="accordion-button pb-10 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-one" aria-expanded="true" aria-controls="collapse-one">
                                                                 INDICE DI PAGINA
-                                                                <svg class="icon icon-xs right">
-                                                                    <use href="../lib/svg/sprites.svg#it-expand"></use>
-                                                                </svg>
                                                             </button>
                                                         </span>
                                                         <div class="progress">
@@ -533,9 +521,9 @@
                             
                             <div class="row">
                                 <div class="col-12" id="divButtons">
-                                    <button type="button" id="am_btn_concludi_richiesta" name="am_btn_concludi_richiesta" class="btn btn-primary">Avanti <svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
+                                    <button type="button" id="am_btn_concludi_richiesta" name="am_btn_concludi_richiesta" class="btn btn-primary">Avanti <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
                                     <button type="button" id="am_btn_salva_richiesta" name="am_btn_salva_richiesta" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#SalvaRichiestaModal">Salva richiesta</button>
-                                    <a href="#" id="am_btn_back" class="btn btn-default"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
+                                    <a href="#" id="am_btn_back" class="btn btn-default"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
                                 </div>
                             </div>
                         </div>

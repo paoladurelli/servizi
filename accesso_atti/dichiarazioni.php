@@ -102,16 +102,7 @@
                         <p class="subtitle-small">CF: <?php echo $_SESSION['CF']; ?></p>
                     </div>
                 </div>
-                <div class="col-12 menu-servizi">
-                    <div class="container mb-4 mb-lg-5 mt-lg-4">
-                        <div class="row">
-                            <div class="col-lg-3 text-center">INFORMATIVA SULLA PRIVACY</div>
-                            <div class="col-lg-3 text-center">COMPILAZIONE DATI</div>
-                            <div class="col-lg-3 text-center"><span class="active"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right-circle"></use></svg>TERMINI E CONDIZIONI</span></div>
-                            <div class="col-lg-3 text-center">RIEPILOGO</div>
-                        </div>
-                    </div>
-                </div>
+                <?php echo ViewMenuPratiche(3); ?>
             </div>
             
             <div class="it-page-sections-container">
@@ -127,9 +118,6 @@
                                                     <span class="accordion-header" id="accordion-title-one">
                                                         <button class="accordion-button pb-10 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-one" aria-expanded="true" aria-controls="collapse-one">
                                                             INDICE DI PAGINA
-                                                            <svg class="icon icon-xs right">
-                                                                <use href="../lib/svg/sprites.svg#it-expand"></use>
-                                                            </svg>
                                                         </button>
                                                     </span>
                                                     <div class="progress">
@@ -556,10 +544,10 @@
                                         <div class="row">
                                             <div class="col-12 after-section">
                                                 <div class="row">
-                                                    <div class="col-lg-8">
+                                                    <div class="col-md-8">
                                                         <h6 id="aa_uploadDocumentazione_txt">Carta d'Identita Fronte</h6>
                                                     </div>                                                    
-                                                    <div class="col-lg-4 text-right">
+                                                    <div class="col-md-4 text-right">
                                                         <ul class="upload-file-list" id="aa_uploadCartaIdentitaFronte_file">
                                                             <?php echo $uploadCartaIdentitaFronte; ?>
                                                         </ul>
@@ -572,10 +560,10 @@
                                         <div class="row">
                                             <div class="col-12 after-section">
                                                 <div class="row">
-                                                    <div class="col-lg-8">
+                                                    <div class="col-md-8">
                                                         <h6 id="aa_uploadPotereFirma_txt">Carta d'Identita Retro</h6>
                                                     </div>
-                                                    <div class="col-lg-4 text-right">
+                                                    <div class="col-md-4 text-right">
                                                         <ul class="upload-file-list" id="aa_uploadCartaIdentitaRetro_file">
                                                             <?php echo $uploadCartaIdentitaRetro; ?>
                                                         </ul>                                                            
@@ -588,10 +576,10 @@
                                         <div class="row">
                                             <div class="col-12 after-section">
                                                 <div class="row">
-                                                    <div class="col-lg-8">
+                                                    <div class="col-md-8">
                                                         <h6 id="aa_uploadDocumentazione_txt">Documentazione comprovante il titolo dichiarato: Affittuario</h6>                                                        
                                                     </div>                                                    
-                                                    <div class="col-lg-4 text-right">
+                                                    <div class="col-md-4 text-right">
                                                         <ul class="upload-file-list" id="aa_uploadAffittuario_file">
                                                             <?php echo $uploadAffittuario; ?>
                                                         </ul>
@@ -604,10 +592,10 @@
                                         <div class="row">
                                             <div class="col-12 after-section">
                                                 <div class="row">
-                                                    <div class="col-lg-8">
+                                                    <div class="col-md-8">
                                                         <h6 id="aa_uploadPotereFirma_txt">Documentazione comprovante il titolo dichiarato: professionista incaricato da altro soggetto</h6>
                                                     </div>
-                                                    <div class="col-lg-4 text-right">
+                                                    <div class="col-md-4 text-right">
                                                         <ul class="upload-file-list" id="aa_uploadAltroSoggetto_file">
                                                             <?php echo $uploadAltroSoggetto; ?>
                                                         </ul>                                                            
@@ -620,10 +608,10 @@
                                         <div class="row">
                                             <div class="col-12 after-section">
                                                 <div class="row">
-                                                    <div class="col-lg-8">
+                                                    <div class="col-md-8">
                                                         <h6 id="aa_uploadDocumentazione_txt">Documentazione comprovante il titolo dichiarato: Notaio Rogante</h6>
                                                     </div>                                                    
-                                                    <div class="col-lg-4 text-right">
+                                                    <div class="col-md-4 text-right">
                                                         <ul class="upload-file-list" id="aa_uploadNotaioRogante_file">
                                                             <?php echo $uploadNotaioRogante; ?>
                                                         </ul>
@@ -636,10 +624,10 @@
                                         <div class="row">
                                             <div class="col-12 after-section">
                                                 <div class="row">
-                                                    <div class="col-lg-8">
+                                                    <div class="col-md-8">
                                                         <h6 id="aa_uploadPotereFirma_txt">Documentazione comprovante il titolo dichiarato: Altro Titolo</h6>
                                                     </div>
-                                                    <div class="col-lg-4 text-right">
+                                                    <div class="col-md-4 text-right">
                                                         <ul class="upload-file-list" id="aa_uploadAltriTitoloDescrizione_file">
                                                             <?php echo $uploadAltriTitoloDescrizione; ?>
                                                         </ul>                                                            
@@ -652,10 +640,10 @@
                                         <div class="row">
                                             <div class="col-12 after-section">
                                                 <div class="row">
-                                                    <div class="col-lg-8">
+                                                    <div class="col-md-8">
                                                         <h6 id="aa_uploadDocumentazione_txt">Atto notarile con il quale è stata conferita la procura</h6>
                                                     </div>                                                    
-                                                    <div class="col-lg-4 text-right">
+                                                    <div class="col-md-4 text-right">
                                                         <ul class="upload-file-list" id="aa_uploadAttoNotarile_file">
                                                             <?php echo $uploadAttoNotarile; ?>
                                                         </ul>
@@ -688,10 +676,10 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12 text-right mb-50">
-                        <button type="button" class="btn btn-default"><a href="compilazione_dati.php"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a></button>
+                        <a class="btn btn-default" href="compilazione_dati.php"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
                         <form method="POST" action="#" name="aa_conferma_invia" id="aa_conferma_invia" style="display: inline;">
                             <input type="hidden" name="pratican" id="pratican" value="<?php echo $_GET['pratican']; ?>" />
-                            <button type="button" class="btn btn-primary">Conferma e invia <svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
+                            <button type="button" class="btn btn-primary">Conferma e invia <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
                         </form>
                     </div>
                 </div>

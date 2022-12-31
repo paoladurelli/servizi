@@ -27,16 +27,7 @@
                         <p class="subtitle-small">CF: <?php echo $_SESSION['CF']; ?></p>
                     </div>
                 </div>
-                <div class="col-12 p-0 menu-servizi">
-                    <div class="cmp-nav-tab mb-4 mb-lg-5 mt-lg-4">
-                        <div class="row">
-                            <div class="col-lg-3 text-center">INFORMATIVA SULLA PRIVACY</div>
-                            <div class="col-lg-3 text-center">COMPILAZIONE DATI</div>
-                            <div class="col-lg-3 text-center">TERMINI E CONDIZIONI</div>
-                            <div class="col-lg-3 text-center"><span class="active"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right-circle"></use></svg>RIEPILOGO</span></div>
-                        </div>
-                    </div>
-                </div>
+                <?php echo ViewMenuPratiche(4); ?>
             </div>
             <div class="it-page-sections-container">
                 <div class="row">
@@ -51,9 +42,6 @@
                                                     <span class="accordion-header" id="accordion-title-one">
                                                         <button class="accordion-button pb-10 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-one" aria-expanded="true" aria-controls="collapse-one">
                                                             INDICE DI PAGINA
-                                                            <svg class="icon icon-xs right">
-                                                                <use href="../lib/svg/sprites.svg#it-expand"></use>
-                                                            </svg>
                                                         </button>
                                                     </span>
                                                     <div class="progress">

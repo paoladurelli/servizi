@@ -55,10 +55,10 @@
                                     echo '</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-9">
+                                    <div class="col-10">
                                         <p class="title-small-semi-bold t-primary m-0 mb-1"><a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="text-decoration-none">'.$row["NomeServizio"].'</a></p>
                                     </div>
-                                    <div class="col-lg-3 text-right">
+                                    <div class="col-2 text-right">
                                         <img src=".\media\images\icons\status_'.$row["StatusId"].'.png" title="'.$row["NomeStatus"].'" alt="'.$row["NomeStatus"].'"/><br/>
                                     </div>
                                 </div>
@@ -108,7 +108,7 @@
         }
     
         
-        echo '<nav aria-label="Page navigation example">
+        echo '<nav aria-label="pagination">
             <ul class="pagination float-end" id="previous-next">'.$perpage.'</ul>
         </nav>';
     } else {

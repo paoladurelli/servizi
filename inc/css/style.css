@@ -153,6 +153,22 @@ label{
     width: 200px;
 }
 
+.btn-default {
+    border: 1px solid #000;
+}
+
+.btn-primary, .btn-primary:hover {
+    border: 1px solid var(--bs-primary);
+}
+
+.btn-primary:hover {
+    border: 1px solid var(--bs-secondary);
+}
+
+.btn-secondary {
+  border: 1px solid var(--bs-body-color);
+}
+
 .show {
     display: block;
 }
@@ -200,25 +216,6 @@ label{
 
 .menu-numbers:after{
     content: ")";
-}
-
-@media (min-width: 992px){
-    .it-header-navbar-wrapper {
-        background: var(--bs-primary);
-    }
-    .it-header-slim-wrapper .it-header-slim-wrapper-content {
-        padding: 0;
-    }
-    .it-header-center-wrapper .it-header-center-content-wrapper {
-        padding-left: 0;
-    }
-    .navbar .navbar-collapsable .navbar-nav li a.nav-link {
-        padding: 13px 24px 13px 0;
-    }
-
-    .navbar.it-navscroll-wrapper .link-list-wrapper ul li a {
-        padding-right: 0px;
-    }
 }
 
 .it-footer-small-prints {
@@ -462,12 +459,6 @@ border-bottom: 0 !important;
   color: var(--bs-primary);
 }
 
-@media screen and (max-width: 767px){
-  .container_index_pagina{
-    text-align: center !important;
-  }
-}
-
 .breadcrumb .breadcrumb-item a{
   text-decoration: none;
 }
@@ -498,12 +489,6 @@ border-bottom: 0 !important;
 }
 .justy-center{
   justify-content: center !important;
-}
-
-@media screen and (max-width: 767px){
-  .it-page-title__wrapper h1.page-title{
-    padding-left: 10px;
-  }
 }
 
 .card_assistenza .card::after{
@@ -589,18 +574,6 @@ border-bottom: 0 !important;
   word-break: break-all !important;
 }
 
-@media screen and (min-width: 767px) {
-  #it-region-footer-first,
-  #it-region-footer-second,
-  #it-region-footer-third{
-    height: 100%;
-  }
-  #it-region-footer-first > nav,
-  #it-region-footer-second > nav,
-  #it-region-footer-third > nav{
-    min-height: 50%;
-  }
-}
 #it-region-footer-first h2,
 #it-region-footer-second h2,
 #it-region-footer-third h2,
@@ -694,15 +667,6 @@ body .contextual-links .quickedit a{
   font-size: 0.95rem !important;
 }
 
-@media screen and (max-width: 767px){
-  .it-footer-small-prints-list .list-inline-item{
-    padding-bottom: 0 !important
-  }
-  .hide-mobile-footer{
-    display: none !important;
-  }
-}
-
 .it-footer-small-prints-list .list-inline-item a:hover{
   text-decoration: underline !important;
 }
@@ -730,12 +694,6 @@ body .contextual-links .quickedit a{
 
 .container.main-container{
   padding-bottom: 15px !important;
-}
-
-@media screen and (max-width: 767px){
-  .container.main-container{
-    padding: 15px !important;
-  }
 }
 
 .background_image{
@@ -984,7 +942,7 @@ a.pulsante_leggi_dipiu{
   font-size: 0.8rem !important;
   font-weight: bold;
   text-decoration: none;
-  margin-bottom: 5px !important;
+  margin-bottom: 5px;
   text-align: right;  
   width: 100%;
   display: inline-block;
@@ -1038,13 +996,6 @@ a.pulsante_leggi_dipiu{
         width: 200px;
     }
     
-
-    @media screen and (max-width: 768px){
-        .loghi_progetto{
-            padding-bottom: 25px;
-        }
-    }
-
 /* CARD  */
 .page-servizi .card{ 
     min-height: 280px;
@@ -1103,47 +1054,6 @@ a.pulsante_leggi_dipiu{
 }
 .navbar.it-navscroll-wrapper .link-list-wrapper ul li a.active span {
     font-weight: bold;
-}
-
-
-@media (min-width: 992px){
-    .card {
-        min-height: 380px;
-    }
-
-    .body-riepilogo .card,
-    .body-compilazione-dati .card,
-    .body-messaggi .card,
-    #latest-posts .card,
-    #be_dichiarazioni .card,
-    #aa_dichiarazioni .card,
-    #dc_dichiarazioni .card,
-    #pc_dichiarazione .card,
-    #pm_dichiarazioni .card,
-    .body-dichiarazioni .card{
-        min-height: 40px;
-    }
-    
-    #latest-activities .card,
-    #attivita .card{
-        min-height: 290px;
-        padding: 10px;
-        margin-bottom: 30px;
-    }
-    
-    #latest-posts .card::after,
-    .body-messaggi .card::after,
-    #latest-activities .card::after,
-    #attivita .card::after,
-    .body-riepilogo .card::after,
-    #be_dichiarazioni .card::after,
-    #aa_dichiarazioni .card::after,
-    #dc_dichiarazioni .card::after,
-    #pc_dichiarazione .card::after,
-    #pm_dichiarazioni .card::after,
-    .body-dichiarazioni .card::after{
-        content: none;
-    }
 }
 
 .ui-dialog-titlebar {
@@ -1243,3 +1153,192 @@ svg.radial-progress.refused circle { stroke: #ef0303; }
     width: 30px;
 }
 /* rating - end */
+
+
+/* LEGENDA - start */
+.box-legenda{
+  width: 98%;
+  border: 1px solid #cdcdcd;
+  margin: 0 auto;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.box-legenda .title-xsmall{
+  color: var(--bs-primary);
+  font-weight: bold;
+  font-size: 16px;
+  border-bottom: 1px solid #cdcdcd;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+.box-legenda p{
+    margin: 12px 0 0;
+    display: block;
+    text-transform: uppercase;
+    font-size: 11px;
+}
+/* LEGENDA - end */
+
+
+/* RESPONSIVE - start*/
+@media (min-width: 992px){
+    .it-header-navbar-wrapper {
+        background: var(--bs-primary);
+    }
+    .it-header-slim-wrapper .it-header-slim-wrapper-content {
+        padding: 0;
+    }
+    .it-header-center-wrapper .it-header-center-content-wrapper {
+        padding-left: 0;
+    }
+    .navbar .navbar-collapsable .navbar-nav li a.nav-link {
+        padding: 13px 24px 13px 0;
+    }
+
+    .navbar.it-navscroll-wrapper .link-list-wrapper ul li a {
+        padding-right: 0px;
+    }
+    .card {
+        min-height: 380px;
+    }
+
+    .body-riepilogo .card,
+    .body-compilazione-dati .card,
+    .body-messaggi .card,
+    #latest-posts .card,
+    #be_dichiarazioni .card,
+    #aa_dichiarazioni .card,
+    #dc_dichiarazioni .card,
+    #pc_dichiarazione .card,
+    #pm_dichiarazioni .card,
+    .body-dichiarazioni .card{
+        min-height: 40px;
+    }
+    
+    #latest-activities .card,
+    #attivita .card{
+        min-height: 290px;
+        padding: 10px;
+        margin-bottom: 30px;
+    }
+    
+    #latest-posts .card::after,
+    .body-messaggi .card::after,
+    #latest-activities .card::after,
+    #attivita .card::after,
+    .body-riepilogo .card::after,
+    #be_dichiarazioni .card::after,
+    #aa_dichiarazioni .card::after,
+    #dc_dichiarazioni .card::after,
+    #pc_dichiarazione .card::after,
+    #pm_dichiarazioni .card::after,
+    .body-dichiarazioni .card::after{
+        content: none;
+    }
+}
+
+@media screen and (max-width: 991px){
+    .it-user-wrapper .btn{
+        width: auto;
+    }
+        
+    .navbar.it-navscroll-wrapper .menu-wrapper {
+        padding: 0px;
+    }
+    
+    #divButtons button {
+        width: 150px;
+    }
+    
+    .cmp-nav-tab {
+        border-top: 1px solid #cdcdcd;
+        border-bottom: 1px solid #cdcdcd;
+        padding: 10px 0;
+        font-size: 14px;
+    }
+
+    .cmp-nav-tab div {
+        min-height: 30px;
+    }
+    
+    .menu-servizi .active .icon {
+        width: 20px;
+        margin-top: -3px;
+    }
+    
+    .page-servizi a.pulsante_leggi_dipiu{
+        margin-bottom: 0px;
+    }
+    .page-servizi .card {
+        min-height: 220px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #it-region-footer-first,
+    #it-region-footer-second,
+    #it-region-footer-third{
+        height: 100%;
+    }
+    #it-region-footer-first > nav,
+    #it-region-footer-second > nav,
+    #it-region-footer-third > nav{
+        min-height: 50%;
+    }
+}
+
+@media screen and (max-width: 767px){
+    .btn{
+        width: auto;
+    }    
+    .it-user-wrapper .btn{
+        width: auto;
+    }
+    .container.main-container{
+        padding: 15px !important;
+    }
+    .container_index_pagina{
+        text-align: center !important;
+    }
+    .it-page-title__wrapper h1.page-title{
+        padding-left: 10px;
+    }
+    .it-footer-small-prints-list .list-inline-item{
+        padding-bottom: 0;
+    }
+    
+    .hide-mobile-footer{
+        display: none;
+    }
+    .loghi_progetto{
+        padding-bottom: 25px;
+    }
+    
+    #divButtons button {
+        width: 100%;
+        margin-right: 0px;
+    }
+    #divButtons button:first-child {
+        margin-right: 0px;
+    }
+    .modal-footer .btn {
+        width: 100%;
+    }
+    
+    .stepper .step .date-step {
+        width: 30%;
+        padding-right: 10px;
+    }
+    .stepper .step .testo-step {
+        width: 68%;
+        padding-left: 4px;
+    }
+    .scheda-gestione{
+        padding: 0px 4px;
+    }
+}
+
+
+/* RESPONSIVE - end*/

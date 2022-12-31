@@ -23,7 +23,7 @@
                     </div>
                     <div class="card-body p-0 mb-2">
                         <p class="title-small-semi-bold t-primary m-0 mb-1">'.$row["NomeServizio"].'</p>
-                        <p class="text-paragraph text-truncate">'.$row["testo"].'</p>
+                        <p class="text-paragraph">'.$row["testo"].'</p>
                     </div>
                 </div>
             </div>';

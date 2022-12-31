@@ -151,6 +151,32 @@ function isValidCarta($carta){
 
 /* funzioni per la validazione - end */
 
+/* CALL MENU - start */
+function ViewMenuPratiche($selected){
+    $selectedIcon = '<span class="active"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right-circle"></use></svg>';
+    $menuText = '<div class="col-12 p-0 menu-servizi">
+        <div class="cmp-nav-tab mb-4 mb-lg-5 mt-lg-4">
+            <div class="row">
+                <div class="col-lg-3 text-center">';
+                if($selected == 1){ $menuText .= $selectedIcon; }
+                $menuText .= 'INFORMATIVA SULLA PRIVACY</div>
+                <div class="col-lg-3 text-center">';
+                if($selected == 2){ $menuText .= $selectedIcon; }
+                $menuText .= 'COMPILAZIONE DATI</span></div>
+                <div class="col-lg-3 text-center">';
+                if($selected == 3){ $menuText .= $selectedIcon; }
+                $menuText .= 'TERMINI E CONDIZIONI</div>
+                <div class="col-lg-3 text-center">';
+                if($selected == 4){ $menuText .= $selectedIcon; }
+                $menuText .= 'RIEPILOGO</div>
+            </div>
+        </div>
+    </div>';
+    return $menuText;
+}
+/* CALL MENU - end */
+
+
 function NomeServizioById($Servizio_id){
     $configDB = require './env/config.php';
     $connessioneNomeServizioById = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
@@ -1086,7 +1112,7 @@ function ProgressBarInviate($cf,$sid = null){
         }
     }
     $connessione->close();
-    return '<div class="col-lg-3 text-center">
+    return '<div class="col-lg-3 col-6 text-center">
         <svg class="radial-progress sent" data-percentage="'.$percentageSent.'" viewBox="0 0 80 80">
             <circle class="incomplete" cx="40" cy="40" r="35"></circle>
             <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
@@ -1114,7 +1140,7 @@ function ProgressBarInLavorazione($cf,$sid = null){
         }
     }
     $connessione->close();
-    return '<div class="col-lg-3 text-center">
+    return '<div class="col-lg-3 col-6 text-center">
         <svg class="radial-progress working" data-percentage="'.$percentageWorking.'" viewBox="0 0 80 80">
             <circle class="incomplete" cx="40" cy="40" r="35"></circle>
             <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
@@ -1142,7 +1168,7 @@ function ProgressBarAccettate($cf,$sid = null){
         }
     }
     $connessione->close();
-    return '<div class="col-lg-3 text-center">
+    return '<div class="col-lg-3 col-6 text-center">
         <svg class="radial-progress accepted" data-percentage="'.$percentageAccepted.'" viewBox="0 0 80 80">
             <circle class="incomplete" cx="40" cy="40" r="35"></circle>
             <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
@@ -1170,7 +1196,7 @@ function ProgressBarRifiutate($cf,$sid = null){
         }
     }
     $connessione->close();
-    return '<div class="col-lg-3 text-center">
+    return '<div class="col-lg-3 col-6 text-center">
         <svg class="radial-progress refused" data-percentage="'.$percentageRefused.'" viewBox="0 0 80 80">
             <circle class="incomplete" cx="40" cy="40" r="35"></circle>
             <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
@@ -1193,7 +1219,7 @@ function ProgressBarBozze($cf){
         while($row = $result->fetch_assoc()) {
             $countSent = $row['CountSent'];
             $percentageSent = ($countSent*100)/$countSent;
-            $return .='<div class="col-lg-3 text-center">
+            $return .='<div class="col-lg-3 col-6 text-center">
                 <svg class="radial-progress draft" data-percentage="'.$percentageSent.'" viewBox="0 0 80 80">
                     <circle class="incomplete" cx="40" cy="40" r="35"></circle>
                     <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
@@ -1205,6 +1231,44 @@ function ProgressBarBozze($cf){
     }
     $connessione->close();
     return $return;
+}
+
+function LegendaStatus(){
+    $configDB = require './env/config.php';
+    $connessioneLS = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sqlLS = "SELECT * FROM status ORDER BY sort";
+    $resultLS = $connessioneLS->query($sqlLS);
+    $TextToReturn = '';
+    if ($resultLS->num_rows > 0) {
+        $numResults = $resultLS->num_rows;
+        $TextToReturn = '<div class="row box-legenda d-lg-none">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <p class="title-xsmall">LEGENDA</p>
+                    </div>
+                </div>';
+                $counter = 0;
+                while($rowLS = $resultLS->fetch_assoc()) {
+                    if (++$counter == $numResults) {
+                        $TextToReturn .= '<div class="row mb-2">';
+                    }else{
+                        $TextToReturn .= '<div class="row mb-4">';
+                    }
+                        $TextToReturn .= '<div class="col-2">
+                            <img src=".\media\images\icons\status_'.$rowLS["id"].'.png" title="'.$rowLS["nome"].'" alt="'.$rowLS["nome"].'"/>
+                        </div>
+                        <div class="col-10">
+                            <p>'.$rowLS["nome"].'</p>
+                        </div>
+                    </div>';
+                }
+
+            $TextToReturn .= '</div>
+        </div>';
+    }
+    $connessioneLS->close();
+    return $TextToReturn;
 }
 
 function CheckRatingByCfService($cf,$servizio){
@@ -1283,7 +1347,7 @@ function CallRatingLayout($prefix,$praticai,$servizio){
                                             <textarea id="commento_positivo" name="commento_positivo" rows="4" placeholder="Breve commento"></textarea>
                                         </label>
                                     </div>
-                                    <button type="button" id="btn_invia_feedback_positivo" name="btn_invia_feedback_positivo" class="btn btn-primary">Invia Feedback <svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
+                                    <button type="button" id="btn_invia_feedback_positivo" name="btn_invia_feedback_positivo" class="btn btn-primary">Invia Feedback <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
                                 </div>
                             </div>
                             <div id="valutazione_negativa" class="hide">
@@ -1314,7 +1378,7 @@ function CallRatingLayout($prefix,$praticai,$servizio){
                                             <textarea id="commento_negativo" name="commento_negativo" rows="4" placeholder="Breve commento"></textarea>
                                         </label>
                                     </div>
-                                    <button type="button" id="btn_invia_feedback_negativo" name="btn_invia_feedback_negativo" class="btn btn-primary">Invia Feedback <svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
+                                    <button type="button" id="btn_invia_feedback_negativo" name="btn_invia_feedback_negativo" class="btn btn-primary">Invia Feedback <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
                                 </div>
                             </div>
                         </div>
