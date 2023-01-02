@@ -187,10 +187,10 @@
                                     <div id="pm_frm_dati_pnl_return"></div>
                                 </div>
                             </div>
-                            <div class="it-page-section mb-50 mb-lg-90" id="pm_richiedente">
+                            <div class="it-page-section mb-30" id="pm_richiedente">
                                 <div class="cmp-card">
                                     <div class="card">
-                                        <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                        <div class="card-header border-0 p-0 m-0">
                                             <div>
                                                 <h2 class="title-xxlarge mb-3">Richiedente</h2>
                                                 <p><b>Informazioni su di te</b></p>
@@ -203,22 +203,22 @@
                                                 <div class="col-lg-12"><h5 class="color-primary"><b>Anagrafica</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="pm_richiedente_nome_txt">Nome *<br/><input type="text" id="pm_richiedente_nome" name="pm_richiedente_nome" value="<?php echo $nome; ?>" /></p></div>
+                                                <div class="col-lg-12"><p id="pm_richiedente_nome_txt">Nome *<br/><input type="text" id="pm_richiedente_nome" name="pm_richiedente_nome" value="<?php echo $nome; ?>" disabled /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="pm_richiedente_cognome_txt">Cognome *<br/><input type="text" id="pm_richiedente_cognome" name="pm_richiedente_cognome" value="<?php echo $cognome; ?>" /></p></div>
+                                                <div class="col-lg-12"><p id="pm_richiedente_cognome_txt">Cognome *<br/><input type="text" id="pm_richiedente_cognome" name="pm_richiedente_cognome" value="<?php echo $cognome; ?>" disabled /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="pm_richiedente_cf_txt">Codice Fiscale *<br/><input type="text" id="pm_richiedente_cf" name="pm_richiedente_cf" value="<?php echo $cf; ?>" /></p></div>
+                                                <div class="col-lg-12"><p id="pm_richiedente_cf_txt">Codice Fiscale *<br/><input type="text" id="pm_richiedente_cf" name="pm_richiedente_cf" value="<?php echo $cf; ?>" disabled /></p></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12"><p id="pm_richiedenteStatoCivile_txt">Stato Civile *<br/><input type="text" id="pm_richiedenteStatoCivile" name="pm_richiedenteStatoCivile" value="<?php echo $richiedenteStatoCivile; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="pm_richiedente_data_nascita_txt">Data di Nascita *<br/><input type="date" id="pm_richiedente_data_nascita" name="pm_richiedente_data_nascita" value="<?php echo $datanascita; ?>" /></p></div>
+                                                <div class="col-lg-12"><p id="pm_richiedente_data_nascita_txt">Data di Nascita *<br/><input type="date" id="pm_richiedente_data_nascita" name="pm_richiedente_data_nascita" value="<?php echo $datanascita; ?>" disabled /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="pm_richiedente_luogo_nascita_txt">Luogo di Nascita *<br/><input type="text" id="pm_richiedente_luogo_nascita" name="pm_richiedente_luogo_nascita" value="<?php echo $luogonascita; ?>" /></p></div>
+                                                <div class="col-lg-12"><p id="pm_richiedente_luogo_nascita_txt">Luogo di Nascita *<br/><input type="text" id="pm_richiedente_luogo_nascita" name="pm_richiedente_luogo_nascita" value="<?php echo $luogonascita; ?>" disabled /></p></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12"><p id="pm_richiedente_StatoNascita_txt">Stato di Nascita *<br/><input type="text" id="pm_richiedenteStatoNascita" name="pm_richiedenteStatoNascita" value="<?php echo $richiedenteStatoNascita; ?>" /></p></div>
@@ -230,19 +230,19 @@
                                                 <div class="col-lg-12"><p id="pm_richiedenteAttoNascitaData_txt">Atto di Nascita Anno *<br/><input type="text" id="pm_richiedenteAttoNascitaData" name="pm_richiedenteAttoNascitaData" value="<?php echo $richiedenteAttoNascitaData; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12"><p id="pm_richiedente_via_txt">Via e Numero civico *<br/><input type="text" id="pm_richiedente_via" name="pm_richiedente_via" value="<?php echo $richiedenteVia; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="pm_richiedente_localita_txt">Località *<br/><input type="text" id="pm_richiedente_localita" name="pm_richiedente_localita" value="<?php echo $richiedenteLocalita; ?>" /></p></div>
+                                                <div class="col-lg-12"><p id="pm_richiedente_localita_txt">Località *<br/><input type="text" id="pm_richiedente_localita" name="pm_richiedente_localita" value="<?php echo $richiedenteLocalita; ?>" disabled /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="pm_richiedente_provincia_txt">Provincia *<br/><input type="text" id="pm_richiedente_provincia" name="pm_richiedente_provincia" value="<?php echo $richiedenteProvincia; ?>" /></p></div>
+                                                <div class="col-lg-12"><p id="pm_richiedente_provincia_txt">Provincia *<br/><input type="text" id="pm_richiedente_provincia" name="pm_richiedente_provincia" value="<?php echo $richiedenteProvincia; ?>" disabled /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12"><p id="pm_richiedente_email_txt">E-mail *<br/><input type="email" id="pm_richiedente_email" name="pm_richiedente_email" value="<?php echo $email; ?>" disabled /></p></div>
@@ -255,16 +255,16 @@
                                 </div>
                             </div>
 
-                            <div class="it-page-section mb-50 mb-lg-90" id="pm_coniuge">
+                            <div class="it-page-section mb-30" id="pm_coniuge">
                                 <div class="cmp-card">
                                     <div class="card">
-                                        <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                        <div class="card-header border-0 p-0 m-0">
                                             <div class="d-flex">
                                                 <h2 class="title-xxlarge mb-3">Coniuge</h2>
                                             </div>
                                         </div>
                                         <div class="card-body" id="pm_pnl_coniuge">
-                                                                                        <div class="row">
+                                            <div class="row">
                                                 <div class="col-lg-12"><h5 class="color-primary"><b>Anagrafica</b></h5></div>
                                             </div>
                                             <div class="row">
@@ -295,7 +295,7 @@
                                                 <div class="col-lg-12"><p id="pm_coniugeAttoNascitaData_txt">Atto di Nascita Anno *<br/><input type="text" id="pm_coniugeAttoNascitaData" name="pm_coniugeAttoNascitaData" value="<?php echo $coniugeAttoNascitaData; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12"><p id="pm_coniugeVia_txt">Via e Numero civico *<br/><input type="text" id="pm_coniugeVia" name="pm_coniugeVia" value="<?php echo $coniugeVia; ?>" /></p></div>
@@ -307,7 +307,7 @@
                                                 <div class="col-lg-12"><p id="pm_coniugeProvincia_txt">Provincia *<br/><input type="text" id="pm_coniugeProvincia" name="pm_coniugeProvincia" value="<?php echo $coniugeProvincia; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12"><p id="pm_coniugeEmail_txt">E-mail *<br/><input type="email" id="pm_coniugeEmail" name="pm_coniugeEmail" value="<?php echo $coniugeEmail; ?>" /></p></div>
@@ -321,10 +321,12 @@
                             </div>
                     
                             <div class="row">
-                                <div class="col-12" id="divButtons">
-                                    <button type="button" id="pm_btn_concludi_richiesta" name="pm_btn_concludi_richiesta" class="btn btn-primary">Avanti <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
-                                    <button type="button" id="pm_btn_salva_richiesta" name="pm_btn_salva_richiesta" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#SalvaRichiestaModal">Salva richiesta</button>
-                                    <button type="button" id="pm_btn_back" class="btn btn-default"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</button>
+                                <div class="col-12">
+                                    <div class="row float-right" id="divButtons">
+                                        <button type="button" id="pm_btn_back" class="btn btn-default order-lg-1 mr-10"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</button>
+                                        <button type="button" id="pm_btn_salva_richiesta" name="pm_btn_salva_richiesta" class="btn btn-secondary order-lg-2" data-bs-toggle="modal" data-bs-target="#SalvaRichiestaModal">Salva richiesta</button>
+                                        <button type="button" id="pm_btn_concludi_richiesta" name="pm_btn_concludi_richiesta" class="btn btn-primary order-lg-3">Avanti <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

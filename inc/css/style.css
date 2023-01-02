@@ -112,6 +112,10 @@ body {
     float: left;
 }
 
+.display-inline{
+    display: inline;
+}
+
 .margin_bottom_0{
   margin-bottom: 0 !important;
 }
@@ -169,6 +173,10 @@ label{
   border: 1px solid var(--bs-body-color);
 }
 
+ .btn-special-width{
+    width: auto;
+}
+
 .show {
     display: block;
 }
@@ -188,6 +196,10 @@ label{
     text-align: center;
 }
 
+.card:after{
+    display: none;
+    content: none;
+}
 
 .it-header-slim-wrapper {
     background: var(--bs-secondary);
@@ -257,7 +269,19 @@ label{
 }
 
 #divButtons a {
-    float: right;
+    /*float: right;*/
+    margin-right: 10px;
+}
+
+#divButtons a.order-lg-1{
+  line-height: 1;
+  height: 51px;
+  padding-top: 14px;
+}
+
+
+#divButtons .order-lg-3 {
+  margin-right: 52px;
 }
 
 #divButtons button:first-child{
@@ -279,6 +303,71 @@ label{
 #it-region-footer-second svg {
   fill: #fff;
 }
+
+.step span{
+  color: var(--bs-primary);
+  background-color: #fff;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  line-height: 1em;
+  border-radius: 50%;
+  padding: 5px 5px 4px 3px;
+  margin-right: 10px;
+  border: 1px solid var(--bs-primary);
+}
+
+.step.active{
+  color: var(--bs-primary);
+  font-weight: 700;
+}
+.step.active span{
+  color: #fff;
+  background-color: var(--bs-primary);
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  line-height: 1em;
+  border-radius: 50%;
+  padding: 5px 5px 4px 3px;
+  margin-right: 10px;
+  border: 1px solid var(--bs-primary);
+}
+
+.step.future{
+  color: #999;
+  font-weight: 500;
+}
+.step.future span{
+  color: #999;
+  background-color: #fff;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  line-height: 1em;
+  border-radius: 50%;
+  padding: 5px 5px 4px 3px;
+  margin-right: 10px;
+  border: 1px solid #999;
+}
+
+.step.passed{
+  color: var(--bs-primary);
+  font-weight: 700;
+}
+.step.passed span{
+    visibility: hidden;
+    position: relative;
+}
+.step.passed span::after {
+    visibility: visible;
+    position: absolute;
+    top: 5px;
+    left: 12px;
+    content: "V";
+}
+
+
 
 .footer-menu-lista-apri {
   font-weight: 500;
@@ -454,11 +543,6 @@ border-bottom: 0 !important;
   font-size: 1.15rem !important;
 }
 
-.menu-servizi .active {
-  font-weight: 600;
-  color: var(--bs-primary);
-}
-
 .breadcrumb .breadcrumb-item a{
   text-decoration: none;
 }
@@ -466,7 +550,6 @@ border-bottom: 0 !important;
 .breadcrumb .breadcrumb-item a:hover{
   text-decoration: underline !important;
 }
-
 
 .it-page-title__wrapper h1.page-title{
   font-size: 1.4rem !important;
@@ -489,10 +572,6 @@ border-bottom: 0 !important;
 }
 .justy-center{
   justify-content: center !important;
-}
-
-.card_assistenza .card::after{
-    display: none !important;
 }
 
 .cmp-tag__tag {
@@ -647,10 +726,6 @@ body .contextual-links .quickedit a{
   padding-top: 65px;
 }
 
-#block-navigazioneprincipale-2 .card:after
-.col-tax-list .card:after{
-  display:none !important;
-}
 .col-tax-list a{
   text-decoration: none;
   /*color: black !important;*/
@@ -1223,20 +1298,6 @@ svg.radial-progress.refused circle { stroke: #ef0303; }
         padding: 10px;
         margin-bottom: 30px;
     }
-    
-    #latest-posts .card::after,
-    .body-messaggi .card::after,
-    #latest-activities .card::after,
-    #attivita .card::after,
-    .body-riepilogo .card::after,
-    #be_dichiarazioni .card::after,
-    #aa_dichiarazioni .card::after,
-    #dc_dichiarazioni .card::after,
-    #pc_dichiarazione .card::after,
-    #pm_dichiarazioni .card::after,
-    .body-dichiarazioni .card::after{
-        content: none;
-    }
 }
 
 @media screen and (max-width: 991px){
@@ -1290,12 +1351,22 @@ svg.radial-progress.refused circle { stroke: #ef0303; }
 }
 
 @media screen and (max-width: 767px){
+    
+    h2, .h2 {
+        font-size: 1.7rem;
+    }
     .btn{
         width: auto;
     }    
     .it-user-wrapper .btn{
         width: auto;
     }
+
+    .after-section {
+        margin-bottom: 20px;
+        padding-bottom: 0px;
+    }
+
     .container.main-container{
         padding: 15px !important;
     }
@@ -1316,6 +1387,27 @@ svg.radial-progress.refused circle { stroke: #ef0303; }
         padding-bottom: 25px;
     }
     
+    .upload[type="file"] + label {
+        width: 100%;
+        max-width: 100%;
+    }
+
+
+    #am_pagamento .btn,
+    #be_pagamento .btn,
+    #dc_pagamento .btn{
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    #divButtons .btn {
+        width: calc(100% - 30px);
+        margin-right: 15px;
+        margin-bottom: 20px;
+        margin-left: 15px;
+    }
+
     #divButtons button {
         width: 100%;
         margin-right: 0px;
@@ -1325,6 +1417,14 @@ svg.radial-progress.refused circle { stroke: #ef0303; }
     }
     .modal-footer .btn {
         width: 100%;
+    }
+    
+    #divButtons a {
+        float: left;
+    }
+    
+    #divButtons .order-lg-3 {
+        margin-right: 0px;
     }
     
     .stepper .step .date-step {

@@ -32,7 +32,7 @@
                     <div class="cmp-nav-tab mb-4 mb-lg-5 mt-lg-4">
                         <ul class="nav nav-tabs nav-tabs-icon-text w-100 flex-nowrap">
                             <li class="nav-item w-100 me-2 p-1">
-                                <a class="nav-link justify-content-start pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab" href="bacheca.php">
+                                <a class="nav-link text-center pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab" href="bacheca.php">
                                     <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true">
                                         <use href="./lib/svg/sprites.svg#it-pa"></use>
                                     </svg>
@@ -40,7 +40,7 @@
                                 </a>
                             </li>
                             <li class="nav-item w-100 me-2 p-1">
-                                <a class="nav-link justify-content-start pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab" href="messaggi_list.php">
+                                <a class="nav-link text-center pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab" href="messaggi_list.php">
                                     <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true">
                                         <use href="./lib/svg/sprites.svg#it-mail"></use>
                                     </svg>
@@ -48,7 +48,7 @@
                                 </a>
                             </li>
                             <li class="nav-item w-100 me-2 p-1">
-                                <a class="nav-link justify-content-start pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab active" href="#">
+                                <a class="nav-link text-center pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab active" href="#">
                                     <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true">
                                         <use href="./lib/svg/sprites.svg#it-files"></use>
                                     </svg>
@@ -56,7 +56,7 @@
                                 </a>
                             </li>
                             <li class="nav-item w-100 me-2 p-1">
-                                <a class="nav-link justify-content-start pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab" href="servizi_list.php">
+                                <a class="nav-link text-center pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab" href="servizi_list.php">
                                     <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true">
                                         <use href="./lib/svg/sprites.svg#it-settings"></use>
                                     </svg>

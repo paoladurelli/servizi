@@ -189,7 +189,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-6">
@@ -207,7 +207,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><h5 class="color-primary"><b>Contatti</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-6">
@@ -376,7 +376,7 @@
                                         <div class="row">
                                             <div class="col-12 after-section">
                                                 <div class="row">
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-8 mb-3">
                                                         <h6>Documento di identità (fronte)</h6>
                                                     </div>
                                                     <div class="col-md-4">
@@ -388,7 +388,7 @@
                                             </div>
                                             <div class="col-12 after-section">
                                                 <div class="row">
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-8 mb-3">
                                                         <h6>Documento di identità (retro)</h6>
                                                     </div>
                                                     <div class="col-md-4">
@@ -401,7 +401,7 @@
                                             <?php if($uploadTitoloSoggiorno != ''){ ?>
                                                 <div class="col-12 after-section">
                                                     <div class="row">
-                                                        <div class="col-md-8">
+                                                        <div class="col-md-8 mb-3">
                                                             <h6>Copia titolo di soggiorno oppure</br>ricevuta della richiesta di rilascio del permesso di soggiorno</h6>
                                                         </div>
                                                         <div class="col-md-4">
@@ -415,7 +415,7 @@
                                             <?php if($uploadDichiarazioneDatoreLavoro != ''){ ?>
                                                 <div class="col-12">
                                                     <div class="row">
-                                                        <div class="col-8">
+                                                        <div class="col-md-8 mb-3">
                                                             <h6>Copia della dichiarazione del datore di lavoro relativa all’importo percepito per la maternità</h6>
                                                             <p><small>(nel caso di richiesta della quota differenziale dell’assegno di maternità)</small></p>
                                                         </div>
@@ -439,7 +439,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-9 offset-lg-3">
-                        <div class="it-page-section mb-50">
+                        <div class="it-page-section mb-30">
                             <div class="cmp-card">
                                 <div class="card">
                                     <div class="card-body p-0">
@@ -460,9 +460,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-12 text-right mb-50">
+                    <div id="divButtons" class="col-lg-12 text-right mb-30">
                         <a class="btn btn-default" href="compilazione_dati.php"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
-                        <form method="POST" action="#" name="am_conferma_invia" id="am_conferma_invia" style="display: inline;">
+                        <form method="POST" action="#" name="am_conferma_invia" id="am_conferma_invia" class="display-inline">
                             <input type="hidden" name="pratican" id="pratican" value="<?php echo $_GET['pratican']; ?>" />
                             <button type="button" class="btn btn-primary">Conferma e invia <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
                         </form>

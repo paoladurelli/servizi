@@ -188,7 +188,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-6">
@@ -207,7 +207,7 @@
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-lg-12"><h5 class="color-primary"><b>Contatti</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-6">
@@ -222,8 +222,8 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12 mt-4">
-                                                    <p><b>In qualità di</b> 
+                                                <div class="col-lg-12 mt-3">
+                                                    <p class="m-0"><b>In qualità di</b> 
                                                     <?php 
                                                         switch($inQualitaDi) {
                                                             case "D": echo "diretto interessato"; break;
@@ -276,7 +276,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-12"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
+                                            <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -294,7 +294,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-12"><h5 class="color-primary"><b>Contatti</b></h5></div>
+                                            <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -326,7 +326,7 @@
                                             <div class="col-12"><p>Contributo di &euro; <b><?php echo $importoContributo; ?></b></p></div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-12"><p>Finalizzato a <b><?php echo $finalitaContributo; ?></b></p></div>
+                                            <div class="col-12"><p class="m-0">Finalizzato a <b><?php echo $finalitaContributo; ?></b></p></div>
                                         </div>                                            
                                     </div>
                                 </div>
@@ -351,7 +351,7 @@
                                             // output data of each row
                                                 while($row = $result->fetch_assoc()) {
                                                     echo '<div class="row">';
-                                                        echo '<div class="col-12"><p>';
+                                                        echo '<div class="col-12"><p class="m-0">';
                                                             if($row["id"]==$tipoPagamento_id){ echo NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"]; }
                                                         echo '</p></div>';
                                                     echo '</div>';
@@ -377,7 +377,7 @@
                                             <?php if($uploadPotereFirma!='' && $inQualitaDi != "D"){ ?>
                                                 <div class="col-12 after-section">
                                                     <div class="row">
-                                                        <div class="col-md-8">
+                                                        <div class="col-md-8 mb-3">
                                                             <h6>Documento che attesta potere di firma</h6>
                                                         </div>
                                                         <div class="col-md-4">
@@ -390,7 +390,7 @@
                                             <?php } ?>
                                             <div class="col-12 after-section">
                                                 <div class="row">
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-8 mb-3">
                                                         <h6>ISEE</h6>
                                                     </div>
                                                     <div class="col-md-4">
@@ -402,7 +402,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="row">
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-8 mb-3">
                                                         <h6>Documentazione utile al riconoscimento del contributo</h6>
                                                         <p><small>(esempi: contratto affitto, bollette, spese sanitarie, debiti…)</small></p>
                                                     </div>
@@ -422,7 +422,7 @@
                 </div>
                 <div class="row" id="be_dichiarazioni">
                     <div class="col-lg-9 offset-lg-3">
-                        <div class="it-page-section mb-50">
+                        <div class="it-page-section mb-30">
                             <div class="cmp-card">
                                 <div class="card">
                                     <div class="card-body p-0">
@@ -440,9 +440,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-12 text-right mb-50">
+                    <div id="divButtons" class="col-lg-12 text-right mb-30">
                         <a class="btn btn-default" href="compilazione_dati.php"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
-                        <form method="POST" action="#" name="be_conferma_invia" id="be_conferma_invia" style="display: inline;">
+                        <form method="POST" action="#" name="be_conferma_invia" id="be_conferma_invia" class="display-inline">
                             <input type="hidden" name="pratican" id="pratican" value="<?php echo $_GET['pratican']; ?>" />
                             <button type="button" class="btn btn-primary">Conferma e invia <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
                         </form>

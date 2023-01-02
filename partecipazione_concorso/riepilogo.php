@@ -85,7 +85,7 @@
                     </div>
 
                     <div class="col-12 col-lg-9 body-riepilogo">
-                        <div class="it-page-section mb-50 mb-lg-90" id="pc_stato_richiesta">
+                        <div class="it-page-section mb-30" id="pc_stato_richiesta">
                             <div class="cmp-card">
                                 <div class="card">
                                     <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -100,15 +100,15 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <p>Abbiamo ricevuto la tua richiesta per la pratica:<br/><b><?php echo $_GET['pratican']; ?> domanda di partecipazione a un concorso pubblico.</b></p>
-                                                <p>Inviata il: <b><?php echo date("d-m-Y"); ?></b></p>
-                                                <p>Troverai il riepilogo nella tua e-mail: <b><?php echo $_SESSION["Email"]; ?></b></p>
+                                                <p>Inviata il: <b><?php echo date("d/m/Y"); ?></b></p>
+                                                <p class="m-0">Troverai il riepilogo nella tua e-mail: <b><?php echo $_SESSION["Email"]; ?></b></p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="it-page-section mb-50 mb-lg-90" id="pc_scarica_ricevuta">
+                        <div class="it-page-section mb-30" id="pc_scarica_ricevuta">
                             <div class="cmp-card">
                                 <div class="card">
                                     <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -122,7 +122,7 @@
                                                 <form action="../lib/tcpdf/TCPDF-master/examples/pc_pdf_pratica.php" method="POST" id="pc_frm_download_pdf" name="pc_frm_download_pdf">
                                                     <input type="hidden" name="pc_download_pdf_id" id="pc_download_pdf_id" value="<?php echo $_GET['praticai']; ?>" />
                                                     <input type="hidden" name="pc_download_pdf_pratica" id="pc_download_pdf_pratica" value="<?php echo $_GET['pratican']; ?>" />
-                                                    <p class="mt-5 text-center"><button type="submit" class="btn btn-primary" id="pc_download_pdf" name="pc_download_pdf" href="#">Scarica la ricevuta</button></p>
+                                                    <p class="m-0 text-center"><button type="submit" class="btn btn-primary" id="pc_download_pdf" name="pc_download_pdf" href="#">Scarica la ricevuta</button></p>
                                                 </form>
                                             </div>
                                         </div>
@@ -130,7 +130,7 @@
                                 </div>
                             </div>          
                         </div>
-                        <div class="it-page-section mb-50 mb-lg-90" id="pc_prossimi_passi">
+                        <div class="it-page-section mb-30" id="pc_prossimi_passi">
                             <div class="cmp-card">
                                 <div class="card">
                                     <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -141,8 +141,8 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <div class="row stepper mb0">
-                                                    <div class="offset-md-1 col-md-11">
+                                                <div class="row stepper">
+                                                    <div class="offset-md-1 col-md-11 col-12">
                                                         <div class="step">
                                                             <div class="date-step">
                                                                 <span class="date-step-giorno"><?php echo date("d"); ?></span><br>

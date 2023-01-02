@@ -202,10 +202,10 @@
                                 <nav role="navigation" aria-labelledby="block-smallprints-menu" id="block-smallprints" class="block block-menu navigation menu--small-prints">
                                     <ul data-block="smallprints" class="it-footer-small-prints-list list-inline mb-0 d-flex flex-column flex-md-row">
                                         <li class="list-inline-item">
-                                            <a href="/informativa-sulla-privacy" data-drupal-link-system-path="node/598">Informativa sulla Privacy</a>
+                                            <a href="<?php echo $configData['url_comune']; ?>/informativa-sulla-privacy" data-drupal-link-system-path="node/598">Informativa sulla Privacy</a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="/utilizzo-dei-cookies" data-drupal-link-system-path="node/599">Utilizzo dei cookies</a>
+                                            <a href="<?php echo $configData['url_comune']; ?>/utilizzo-dei-cookies" data-drupal-link-system-path="node/599">Utilizzo dei cookies</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -242,6 +242,90 @@
                 </div>
             </div>
         </footer>
+<!-- MODALI START -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="confirmDialogMsg" aria-labelledby="confirmDialogTitle">
+            <div class="modal-dialog" role="dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title h5 no_toc" id="confirmDialogTitle">Elimina messaggio</h2>
+                    </div>
+                    <div class="modal-body">
+                        <p>Cliccando su "Elimina" il messaggio verrà cancellato definitivamente.</p>
+                        <h6>Vuoi eliminare il messaggio?</h6>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="confirmMsgId" id="confirmMsgId" />
+                        <input type="hidden" name="confirmLink" id="confirmLink" />
+                        <button class="btn btn-default btn-sm" type="button" data-bs-dismiss="modal">Chiudi</button>
+                        <button class="btn btn-primary btn-sm deleteMsg" type="submit">Elimina</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" tabindex="-1" role="dialog" id="confirmDialogThisMsg" aria-labelledby="confirmDialogTitle">
+            <div class="modal-dialog" role="dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title h5 no_toc" id="confirmDialogTitle">Elimina messaggi</h2>
+                    </div>
+                    <div class="modal-body">
+                        <p>Cliccando su "Elimina", <b>TUTTI i messaggi di questo servizio</b> verranno cancellati definitivamente.</p>
+                        <h6>Vuoi eliminare i messaggi?</h6>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="confirmServizioId" id="confirmServizioId" />
+                        <input type="hidden" name="confirmLink" id="confirmLink" />
+                        <button class="btn btn-default btn-sm" type="button" data-bs-dismiss="modal">Chiudi</button>
+                        <button class="btn btn-primary btn-sm deleteThisMsg" type="submit">Elimina</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" tabindex="-1" role="dialog" id="confirmDialogAllMsg" aria-labelledby="confirmDialogTitle">
+            <div class="modal-dialog" role="dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title h5 no_toc" id="confirmDialogTitle">Elimina messaggi</h2>
+                    </div>
+                    <div class="modal-body">
+                        <p>Cliccando su "Elimina", <b>TUTTI i messaggi</b> verranno cancellati definitivamente.</p>
+                        <h6>Vuoi eliminare i messaggi?</h6>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="confirmLink" id="confirmLink" />
+                        <button class="btn btn-default btn-sm" type="button" data-bs-dismiss="modal">Chiudi</button>
+                        <button class="btn btn-primary btn-sm deleteAllMsg" type="submit">Elimina</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="confirmDialog" aria-labelledby="confirmDialogTitle">
+        <div class="modal-dialog" role="dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title h5 no_toc" id="confirmDialogTitle">Elimina attività</h2>
+                </div>
+                <div class="modal-body">
+                    <p>Cliccando su "Elimina" la tua bozza verrà cancellata definitivamente.</p>
+                    <h6>Vuoi eliminare la bozza?</h6>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="confirmServizioId" id="confirmServizioId" />
+                    <input type="hidden" name="confirmPraticaId" id="confirmPraticaId" />
+                    <input type="hidden" name="confirmStatusId" id="confirmStatusId" />
+                    <input type="hidden" name="confirmLink" id="confirmLink" />
+                    <button class="btn btn-default btn-sm" type="button" data-bs-dismiss="modal">Chiudi</button>
+                    <button class="btn btn-primary btn-sm deleteAttivita" type="submit">Elimina</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- MODALI END -->
+
+
+
         <script>window.__PUBLIC_PATH__ = "./lib/fonts"</script>
         <script src="./lib/js/jquery-3.6.1.min.js"></script>
         <script src="./lib/js/jquery-ui.min.js"></script>

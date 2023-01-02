@@ -4,7 +4,7 @@
     $configDB = require './env/config.php';
     include './fun/utility.php';
 
-    /* pagina dove vengono visualizzati tutti i messaggi */
+    /* pagina dove vengono visualizzare le attività di un servizio specifico */
     session_start();
 
     include './template/head.php';
@@ -40,7 +40,7 @@
                                 </a>
                             </li>
                             <li class="nav-item w-100 me-2 p-1">
-                                <a class="nav-link text-center pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab active" href="#" aria-current="page" aria-controls="tab2" aria-selected="false" data-bs-toggle="tab" role="button" data-focus-mouse="false">
+                                <a class="nav-link text-center pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab active" href="#">
                                     <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true">
                                         <use href="./lib/svg/sprites.svg#it-mail"></use>
                                     </svg>
@@ -95,13 +95,13 @@
                                                                     $result = $connessione->query($sql);
                                                                     if ($result->num_rows > 0) {
                                                                         while($row = $result->fetch_assoc()) {
-                                                                            echo '<li class="nav-item"><a class="active" href="#"><span class="title-medium">Messaggi</span><span class="float-right menu-numbers">'.$row['CountRows'].'</span></a></li>';
+                                                                            echo '<li class="nav-item"><a class="" href="messaggi_list.php"><span class="title-medium">Messaggi</span><span class="float-right menu-numbers">'.$row['CountRows'].'</span></a></li>';
                                                                         }
                                                                     }
                                                                     $connessione->close();
                                                                     
                                                                     /* SERVIZI ATTIVI */
-                                                                    echo MenuMessaggi($_SESSION['CF']);
+                                                                    echo MenuMessaggi($_SESSION['CF'],$_GET['sid']);
                                                                 ?>
                                                             </ul>
                                                         </div>
@@ -114,16 +114,15 @@
                             </nav>
                         </div>
                     </div>
-
                     <div class="col-12 col-lg-9 body-attivita">
                         <div class="it-page-section mb-50 mb-lg-90" id="attivita">
                             <div class="row mb-20 after-section">
                                 <div class="col-12 text-right">
-                                    <a class="btn btn-primary btn-special-width mr-2 deleteAllMsgConfirm" data-link="<?php echo $_SERVER['REQUEST_URI']; ?>" >Elimina tutti i messaggi ricevuti</a>
+                                    <a class="btn btn-primary btn-special-width mr-2 deleteThisMsgConfirm" data-link="<?php echo $_SERVER['REQUEST_URI']; ?>" data-servizio-id="<?php echo $_GET['sid']; ?>" >Elimina tutti i messaggi ricevuti per questo servizio</a>
                                 </div>
                             </div>
                             <div class="row mb-20">
-                                <?php include 'messaggi_main.php'; ?>
+                                <?php include 'msg_servizio_main.php'; ?>
                             </div>
                         </div>
                     </div>

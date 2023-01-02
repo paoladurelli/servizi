@@ -165,7 +165,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="it-page-section mb-50 mb-lg-90" id="pm_richiedente">
+                        <div class="it-page-section mb-30" id="pm_richiedente">
                             <div class="cmp-card">
                                 <div class="card">
                                     <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -174,7 +174,7 @@
                                             <p><b>Informazioni su di te</b></p>
                                         </div>
                                     </div>
-                                    <div class="card-body" style="margin-bottom:40px;">
+                                    <div class="card-body">
                                         <h5><b><?php echo $_SESSION['Nome'] . ' ' . $_SESSION['Cognome']; ?></b></h5>
                                         <p class="subtitle-small">Codice Fiscale:<br/><b><?php echo $_SESSION['CF']; ?></b></p>
 
@@ -213,7 +213,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-6">
@@ -232,7 +232,7 @@
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-6">
@@ -252,7 +252,7 @@
                             </div>
                         </div>
 
-                        <div class="it-page-section mb-50 mb-lg-90" id="pm_coniuge">
+                        <div class="it-page-section mb-30" id="pm_coniuge">
                             <div class="cmp-card">
                                 <div class="card">
                                     <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -295,7 +295,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
+                                            <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -314,7 +314,7 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
+                                            <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6">

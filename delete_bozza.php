@@ -33,6 +33,11 @@ if (($resultAttivita = $connessioneAttivita->query($sqlAttivita)) !== FALSE)
 
     if (($resultServizio = $connessioneServizio->query($sqlServizio)) !== FALSE)
     {
+        if($_POST['ActualUrl']!=''){
+            $data['redirect'] = $_POST['ActualUrl'];
+        }else{
+            $data['redirect'] = './attivita_list.php';
+        } 
         $data['success'] = true;
     }
     else

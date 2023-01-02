@@ -153,22 +153,39 @@ function isValidCarta($carta){
 
 /* CALL MENU - start */
 function ViewMenuPratiche($selected){
-    $selectedIcon = '<span class="active"><svg class="icon me-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right-circle"></use></svg>';
-    $menuText = '<div class="col-12 p-0 menu-servizi">
+    $css[] = '';
+    if($selected == 1){ 
+        $css[1] = "active";
+        $css[2] = "future";
+        $css[3] = "future";
+        $css[4] = "future";        
+    }
+    if($selected == 2){ 
+        $css[1] = "passed";
+        $css[2] = "active";
+        $css[3] = "future";
+        $css[4] = "future";        
+    }    
+    if($selected == 3){ 
+        $css[1] = "passed";
+        $css[2] = "passed";
+        $css[3] = "active";
+        $css[4] = "future";        
+    }    
+    if($selected == 4){ 
+        $css[1] = "passed";
+        $css[2] = "passed";
+        $css[3] = "passed";
+        $css[4] = "active";        
+    }    
+
+    $menuText = '<div class="col-12 menu-servizi">
         <div class="cmp-nav-tab mb-4 mb-lg-5 mt-lg-4">
             <div class="row">
-                <div class="col-lg-3 text-center">';
-                if($selected == 1){ $menuText .= $selectedIcon; }
-                $menuText .= 'INFORMATIVA SULLA PRIVACY</div>
-                <div class="col-lg-3 text-center">';
-                if($selected == 2){ $menuText .= $selectedIcon; }
-                $menuText .= 'COMPILAZIONE DATI</span></div>
-                <div class="col-lg-3 text-center">';
-                if($selected == 3){ $menuText .= $selectedIcon; }
-                $menuText .= 'TERMINI E CONDIZIONI</div>
-                <div class="col-lg-3 text-center">';
-                if($selected == 4){ $menuText .= $selectedIcon; }
-                $menuText .= 'RIEPILOGO</div>
+                <div class="col-lg-3 text-center step '.$css[1].'"><span>1</span>INFORMATIVA SULLA PRIVACY</div>
+                <div class="col-lg-3 text-center step '.$css[2].'"><span>2</span>COMPILAZIONE DATI</span></div>
+                <div class="col-lg-3 text-center step '.$css[3].'"><span>3</span>TERMINI E CONDIZIONI</div>
+                <div class="col-lg-3 text-center step '.$css[4].'"><span>4</span>RIEPILOGO</div>
             </div>
         </div>
     </div>';
@@ -1019,6 +1036,7 @@ function UfficioDestinatarioById($ufficioDestinatarioId){
     $connessioneUDBY->close();
 }
 
+/* funzioni ATTIVITA - start */
 function CreateTempTable(){
     $configDB = require './env/config.php';
     $connessioneCTT = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
@@ -1270,6 +1288,90 @@ function LegendaStatus(){
     $connessioneLS->close();
     return $TextToReturn;
 }
+/* funzioni ATTIVITA - end */
+
+/* funzioni MESSAGGI - start */
+function MenuMessaggi($CodiceFiscale,$SelectedService = null){
+    $configDB = require './env/config.php';
+    $connessioneMA = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sqlMA = "SELECT id,LinkServizio FROM servizi WHERE Attivo = 1";
+    $resultMA = $connessioneMA->query($sqlMA);
+    if ($resultMA->num_rows > 0) {
+        $menuMessaggi = "";
+        while($rowMA = $resultMA->fetch_assoc()) {
+            $menuMessaggi .= '<li class="nav-item"><a class="';
+            if($SelectedService == $rowMA['id']){
+                $menuMessaggi .= ' active" href="#"';
+            }else{
+                $menuMessaggi .= '" href="msg_servizio_list.php?sid='.$rowMA['id'].'"';
+            }
+            $menuMessaggi .= '><span class="title-medium">'.ucfirst(str_replace("_"," ",$rowMA["LinkServizio"])).'</span><span class="float-right menu-numbers">'.CountServizioMsg($CodiceFiscale,$rowMA["id"]).'</span></a></li>';
+        }
+    }
+    $connessioneMA->close();
+    
+    return $menuMessaggi;
+}
+
+function CountServizioMsg($CodiceFiscale,$servizioId){
+    $configDB = require './env/config.php';
+    $connessioneCS = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sqlCS = "SELECT Count(id) as CountServiceRows FROM messaggi WHERE CF_to = '".$CodiceFiscale."' AND servizio_id = ". $servizioId;
+    $resultCS = $connessioneCS->query($sqlCS);
+    if ($resultCS->num_rows > 0) {
+        while($rowCS = $resultCS->fetch_assoc()) {
+            $countServizioMsg = $rowCS["CountServiceRows"];
+        }
+    }
+    $connessioneCS->close();
+    return $countServizioMsg;
+}
+function countSentMsg($cf,$sid = null){
+    $configDB = require './env/config.php';
+    $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sql = "SELECT COUNT(id) AS CountSent FROM messaggi
+        WHERE cf = '".$cf."'";
+        if($sid != null){
+            $sql .= " AND servizio_id = '".$sid."'";
+        }
+    $result = $connessione->query($sql);
+
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            return $row['CountSent'];
+        }
+    }
+    $connessione->close();
+}
+function ProgressBarMessaggi($cf,$sid = null){
+    $configDB = require './env/config.php';
+    $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sql = "SELECT COUNT(id) AS CountSent, servizio_id AS ServizioId FROM messaggi
+        WHERE CF_to = '".$cf."'";
+        if($sid != null){
+            $sql .= " AND servizio_id = '".$sid."'";
+        }
+        $sql .= "GROUP BY ServizioId";
+    $result = $connessione->query($sql);
+    $return = '';
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $countSent = $row['CountSent'];
+            $percentageSent = ($countSent*100)/$countSent;
+            $return .='<div class="col-lg-3 col-6 text-center">
+                <svg class="radial-progress sent" data-percentage="'.$percentageSent.'" viewBox="0 0 80 80">
+                    <circle class="incomplete" cx="40" cy="40" r="35"></circle>
+                    <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
+                    <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">'.$countSent.'</text>
+                </svg>
+                <p>'.NomeServizioById($row['ServizioId']).'</p>
+            </div>';
+        }
+    }
+    $connessione->close();
+    return $return;
+}
+/* funzioni MESSAGGI - end */
 
 function CheckRatingByCfService($cf,$servizio){
     $configDB = require '../env/config.php';
@@ -1289,7 +1391,7 @@ function CheckRatingByCfService($cf,$servizio){
 
 function CallRatingLayout($prefix,$praticai,$servizio){
     
-    $html = '<div class="it-page-section mb-50 mb-lg-90" id="'.$prefix.'valuta_servizio">
+    $html = '<div class="it-page-section mb-30" id="'.$prefix.'valuta_servizio">
         <div class="cmp-card">
             <div class="card">
                 <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -1297,7 +1399,7 @@ function CallRatingLayout($prefix,$praticai,$servizio){
                         <h2 class="title-xxlarge mb-3">Valuta il servizio</h2>
                     </div>
                 </div>
-                <div class="card-body" style="margin-bottom:40px;">
+                <div class="card-body">
                     <div class="row">
                         <div class="col-lg-12">
                             <div id="risultato-rating" class="text-center">Votazione inviata correttamente.</div>
@@ -1319,7 +1421,7 @@ function CallRatingLayout($prefix,$praticai,$servizio){
                                     </ul>
                                 </div>
                             </div>
-                            <div id="valutazione_positiva" class="hide">
+                            <div id="valutazione_positiva" class="hide mt-3">
                                 <div class="feed_title">Quali sono stati gli aspetti che hai preferito?</div>
                                 <div>
                                     <div class="form-check">
@@ -1347,10 +1449,10 @@ function CallRatingLayout($prefix,$praticai,$servizio){
                                             <textarea id="commento_positivo" name="commento_positivo" rows="4" placeholder="Breve commento"></textarea>
                                         </label>
                                     </div>
-                                    <button type="button" id="btn_invia_feedback_positivo" name="btn_invia_feedback_positivo" class="btn btn-primary">Invia Feedback <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
+                                    <button type="button" id="btn_invia_feedback_positivo" name="btn_invia_feedback_positivo" class="btn btn-primary mt-3">Invia Feedback <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
                                 </div>
                             </div>
-                            <div id="valutazione_negativa" class="hide">
+                            <div id="valutazione_negativa" class="hide mt-3">
                                 <div class="feed_title">Dove hai incontrato le maggiori difficoltà?</div>
                                 <div>
                                     <div class="form-check">
@@ -1378,7 +1480,7 @@ function CallRatingLayout($prefix,$praticai,$servizio){
                                             <textarea id="commento_negativo" name="commento_negativo" rows="4" placeholder="Breve commento"></textarea>
                                         </label>
                                     </div>
-                                    <button type="button" id="btn_invia_feedback_negativo" name="btn_invia_feedback_negativo" class="btn btn-primary">Invia Feedback <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
+                                    <button type="button" id="btn_invia_feedback_negativo" name="btn_invia_feedback_negativo" class="btn btn-primary mt-3">Invia Feedback <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
                                 </div>
                             </div>
                         </div>

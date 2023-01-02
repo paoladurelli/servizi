@@ -193,16 +193,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="it-page-section mb-50 mb-lg-90" id="be_richiedente">
-                            <div class="cmp-card">
+                        <div class="it-page-section" id="be_richiedente">
+                            <div class="cmp-card mb-30">
                                 <div class="card">
-                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                    <div class="card-header border-0 p-0">
                                         <div>
                                             <h2 class="title-xxlarge mb-3">Richiedente</h2>
                                             <p><b>Informazioni su di te</b></p>
                                         </div>
                                     </div>
-                                    <div class="card-body" style="margin-bottom:40px;">
+                                    <div class="card-body">
                                         <h5><b><?php echo $_SESSION['Nome'] . ' ' . $_SESSION['Cognome']; ?></b></h5>
                                         <p class="subtitle-small">Codice Fiscale:<br/><b><?php echo $_SESSION['CF']; ?></b></p>
 
@@ -232,7 +232,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-6">
@@ -251,7 +251,7 @@
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-6">
@@ -265,32 +265,31 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-lg-12 mt-3">
+                                                    <p class="m-0"><b>In qualità di</b> 
+                                                    <?php 
+                                                        switch($inQualitaDi) {
+                                                            case "D": echo "diretto interessato"; break;
+                                                            case "T": echo "tutore"; break;
+                                                            case "A": echo "amministratore di sostegno"; break;
+                                                            case "P": echo "procuratore"; break;
+                                                            case "E": echo "persona delegata"; break;
+                                                        }
+                                                    ?>
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
-                                        <div>
-                                            <p><b>In qualità di</b></p>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <?php 
-                                            switch($inQualitaDi) {
-                                                case "D": echo "diretto interessato"; break;
-                                                case "T": echo "tutore"; break;
-                                                case "A": echo "amministratore di sostegno"; break;
-                                                case "P": echo "procuratore"; break;
-                                                case "E": echo "persona delegata"; break;
-                                            }
-                                        ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="it-page-section mb-50 mb-lg-90" id="be_beneficiario">
-                            <div class="cmp-card">
+                        <div class="it-page-section" id="be_beneficiario">
+                            <div class="cmp-card mb-30">
                                 <div class="card">
-                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                    <div class="card-header border-0 p-0">
                                         <div class="d-flex">
                                             <h2 class="title-xxlarge mb-3">Beneficiario</h2>
                                         </div>
@@ -321,7 +320,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
+                                            <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -339,7 +338,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
+                                            <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -358,10 +357,10 @@
                             </div>
                         </div>
 
-                        <div class="it-page-section mb-50 mb-lg-90" id="be_richiesta">
-                            <div class="cmp-card">
+                        <div class="it-page-section" id="be_richiesta">
+                            <div class="cmp-card mb-30">
                                 <div class="card">
-                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                    <div class="card-header border-0 p-0">
                                         <div class="d-flex">
                                             <h2 class="title-xxlarge mb-3">Richiesta</h2>
                                         </div>
@@ -371,17 +370,17 @@
                                             <div class="col-12"><p>Contributo di &euro; <b><?php echo $importoContributo; ?></b></p></div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-12"><p>Finalizzato a <b><?php echo $finalitaContributo; ?></b></p></div>
+                                            <div class="col-12"><p class="m-0">Finalizzato a <b><?php echo $finalitaContributo; ?></b></p></div>
                                         </div>                                            
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="it-page-section mb-50 mb-lg-90" id="be_pagamento">
-                            <div class="cmp-card">
+                        <div class="it-page-section" id="be_pagamento">
+                            <div class="cmp-card mb-30">
                                 <div class="card">
-                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                    <div class="card-header border-0 p-0">
                                         <div class="d-flex">
                                             <h2 class="title-xxlarge mb-3">Metodi di pagamento</h2>
                                         </div>
@@ -396,7 +395,7 @@
                                             // output data of each row
                                                 while($row = $result->fetch_assoc()) {
                                                     echo '<div class="row">';
-                                                        echo '<div class="col-12"><p>';
+                                                        echo '<div class="col-12"><p class="m-0">';
                                                             if($row["id"]==$tipoPagamento_id){ echo NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"]; }
                                                         echo '</p></div>';
                                                     echo '</div>';
@@ -409,8 +408,8 @@
                             </div>
                         </div>
 
-                        <div class="it-page-section mb-50 mb-lg-90" id="be_allegati">
-                            <div class="cmp-card">
+                        <div class="it-page-section" id="be_allegati">
+                            <div class="cmp-card mb-30">
                                 <div class="card">
                                     <div class="card-header border-0 p-0 mb-lg-30 m-0">
                                         <div class="d-flex">
@@ -419,24 +418,26 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-12 after-section">
-                                                <div class="row">
-                                                    <div class="col-8">
-                                                        <h6>Documento che attesta potere di firma</h6>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <ul class="upload-file-list" id="be_uploadPotereFirma_file">
-                                                            <?php echo $uploadPotereFirma; ?>
-                                                        </ul>
+                                            <?php if($uploadPotereFirma!='' && $inQualitaDi != "D"){ ?>
+                                                <div class="col-12 after-section">
+                                                    <div class="row">
+                                                        <div class="col-md-8 mb-3">
+                                                            <h6>Documento che attesta potere di firma</h6>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <ul class="upload-file-list" id="be_uploadPotereFirma_file">
+                                                                <?php echo $uploadPotereFirma; ?>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            <?php } ?>
                                             <div class="col-12 after-section">
                                                 <div class="row">
-                                                    <div class="col-8">
+                                                    <div class="col-md-8 mb-3">
                                                         <h6>ISEE</h6>
                                                     </div>
-                                                    <div class="col-4">
+                                                    <div class="col-md-4">
                                                         <ul class="upload-file-list" id="be_uploadIsee_file">
                                                             <?php echo $uploadIsee; ?>
                                                         </ul>
@@ -445,11 +446,11 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="row">
-                                                    <div class="col-8">
+                                                    <div class="col-md-8 mb-3">
                                                         <h6>Documentazione utile al riconoscimento del contributo</h6>
                                                         <p><small>(esempi: contratto affitto, bollette, spese sanitarie, debiti…)</small></p>
                                                     </div>
-                                                    <div class="col-4">
+                                                    <div class="col-md-4">
                                                         <ul class="upload-file-list" id="be_uploadDocumentazione_file">
                                                             <?php echo $uploadDocumentazione; ?>
                                                         </ul>

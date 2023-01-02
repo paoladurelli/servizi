@@ -175,7 +175,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <p>Ufficio destinatario <b><?php echo LoadTextUfficioDestinatario($UfficioDestinatarioId); ?></b></p>
+                                                <p class="m-0">Ufficio destinatario <b><?php echo LoadTextUfficioDestinatario($UfficioDestinatarioId); ?></b></p>
                                             </div>
                                         </div>
                                     </div>
@@ -221,7 +221,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-6">
@@ -240,7 +240,7 @@
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-lg-12"><h5 class="color-primary"><b>Contatti</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-6">
@@ -255,7 +255,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12 mt-3"><p id="aa_pgRuolo_txt"><b>In qualità di:</b>
+                                                <div class="col-lg-12 mt-3"><p id="aa_pgRuolo_txt" class="m-0"><b>In qualità di:</b>
                                                 <?php if($richiedenteTitolo == "DI"){ ?>
                                                     Diretto interessato
                                                 <?php } ?>
@@ -544,7 +544,7 @@
                                         <div class="row">
                                             <div class="col-12 after-section">
                                                 <div class="row">
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-8 mb-3">
                                                         <h6 id="aa_uploadDocumentazione_txt">Carta d'Identita Fronte</h6>
                                                     </div>                                                    
                                                     <div class="col-md-4 text-right">
@@ -560,7 +560,7 @@
                                         <div class="row">
                                             <div class="col-12 after-section">
                                                 <div class="row">
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-8 mb-3">
                                                         <h6 id="aa_uploadPotereFirma_txt">Carta d'Identita Retro</h6>
                                                     </div>
                                                     <div class="col-md-4 text-right">
@@ -576,7 +576,7 @@
                                         <div class="row">
                                             <div class="col-12 after-section">
                                                 <div class="row">
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-8 mb-3">
                                                         <h6 id="aa_uploadDocumentazione_txt">Documentazione comprovante il titolo dichiarato: Affittuario</h6>                                                        
                                                     </div>                                                    
                                                     <div class="col-md-4 text-right">
@@ -592,7 +592,7 @@
                                         <div class="row">
                                             <div class="col-12 after-section">
                                                 <div class="row">
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-8 mb-3">
                                                         <h6 id="aa_uploadPotereFirma_txt">Documentazione comprovante il titolo dichiarato: professionista incaricato da altro soggetto</h6>
                                                     </div>
                                                     <div class="col-md-4 text-right">
@@ -608,7 +608,7 @@
                                         <div class="row">
                                             <div class="col-12 after-section">
                                                 <div class="row">
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-8 mb-3">
                                                         <h6 id="aa_uploadDocumentazione_txt">Documentazione comprovante il titolo dichiarato: Notaio Rogante</h6>
                                                     </div>                                                    
                                                     <div class="col-md-4 text-right">
@@ -624,7 +624,7 @@
                                         <div class="row">
                                             <div class="col-12 after-section">
                                                 <div class="row">
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-8 mb-3">
                                                         <h6 id="aa_uploadPotereFirma_txt">Documentazione comprovante il titolo dichiarato: Altro Titolo</h6>
                                                     </div>
                                                     <div class="col-md-4 text-right">
@@ -640,7 +640,7 @@
                                         <div class="row">
                                             <div class="col-12 after-section">
                                                 <div class="row">
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-8 mb-3">
                                                         <h6 id="aa_uploadDocumentazione_txt">Atto notarile con il quale è stata conferita la procura</h6>
                                                     </div>                                                    
                                                     <div class="col-md-4 text-right">
@@ -661,7 +661,7 @@
              
                 <div class="row" id="aa_dichiarazioni">
                     <div class="col-lg-9 offset-lg-3">
-                        <div class="it-page-section mb-50">
+                        <div class="it-page-section mb-30">
                             <div class="cmp-card">
                                 <div class="card">
                                     <div class="card-body p-0">
@@ -674,13 +674,16 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="row">
-                    <div class="col-lg-12 text-right mb-50">
-                        <a class="btn btn-default" href="compilazione_dati.php"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
-                        <form method="POST" action="#" name="aa_conferma_invia" id="aa_conferma_invia" style="display: inline;">
-                            <input type="hidden" name="pratican" id="pratican" value="<?php echo $_GET['pratican']; ?>" />
-                            <button type="button" class="btn btn-primary">Conferma e invia <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
-                        </form>
+                    <div class="col-12">
+                        <div class="row float-right" id="divButtons">
+                            <a class="btn btn-default order-lg-1" href="compilazione_dati.php"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
+                            <form method="POST" action="#" name="aa_conferma_invia" id="aa_conferma_invia" class="display-inline">
+                                <input type="hidden" name="pratican" id="pratican" value="<?php echo $_GET['pratican']; ?>" />
+                                <button type="button" class="btn btn-primary order-lg-2">Conferma e invia <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

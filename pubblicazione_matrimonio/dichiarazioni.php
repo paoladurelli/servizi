@@ -126,7 +126,7 @@
                         <div class="it-page-section mb-30" id="pm_richiedente">
                             <div class="cmp-card">
                                 <div class="card">
-                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                    <div class="card-header border-0 p-0 m-0">
                                         <div>
                                             <h2 class="title-xxlarge mb-3">Richiedente</h2>
                                             <p><b>Informazioni su di te</b></p>
@@ -171,7 +171,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-6">
@@ -190,7 +190,7 @@
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-lg-12"><h5 class="color-primary"><b>Contatti</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-6">
@@ -253,7 +253,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-12"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
+                                            <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -272,7 +272,7 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-lg-12"><h5 class="color-primary"><b>Contatti</b></h5></div>
+                                            <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -295,7 +295,7 @@
 
                 <div class="row" id="pm_dichiarazioni">
                     <div class="col-12 col-lg-9 offset-lg-3">
-                        <div class="it-page-section mb-50">
+                        <div class="it-page-section mb-30">
                             <div class="cmp-card">
                                 <div class="card">
                                     <div class="card-body p-0">
@@ -313,9 +313,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-12 text-right mb-50">
+                    <div class="col-lg-12 text-right mb-30" id="divButtons">
                         <a class="btn btn-default" href="compilazione_dati.php"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
-                        <form method="POST" action="#" name="pm_conferma_invia" id="pm_conferma_invia" style="display: inline;">
+                        <form method="POST" action="#" name="pm_conferma_invia" id="pm_conferma_invia" class="display-inline">
                             <input type="hidden" name="pratican" id="pratican" value="<?php echo $_GET['pratican']; ?>" />
                             <button type="button" class="btn btn-primary">Conferma e invia <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
                         </form>

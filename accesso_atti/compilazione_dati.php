@@ -288,10 +288,10 @@
                                 </div>
                             </div>
                             
-                            <div class="it-page-section mb-50 mb-lg-90" id="aa_ufficio">
+                            <div class="it-page-section  mb-30" id="aa_ufficio">
                                 <div class="cmp-card">
                                     <div class="card">
-                                        <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                        <div class="card-header border-0 p-0 m-0">
                                             <div class="d-flex">
                                                 <h2 class="title-xxlarge mb-3">Ufficio</h2>
                                             </div>
@@ -313,7 +313,7 @@
                                 </div>
                             </div>
                             
-                            <div class="it-page-section mb-50 mb-lg-90" id="aa_richiedente">
+                            <div class="it-page-section mb-30" id="aa_richiedente">
                                 <div class="cmp-card">
                                     <div class="card">
                                         <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -329,34 +329,34 @@
                                                 <div class="col-lg-12"><h5 class="color-primary"><b>Anagrafica</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="aa_richiedente_nome_txt">Nome *<br/><input type="text" id="aa_richiedente_nome" name="aa_richiedente_nome" value="<?php echo $nome; ?>" /></p></div>
+                                                <div class="col-lg-12"><p id="aa_richiedente_nome_txt">Nome *<br/><input type="text" id="aa_richiedente_nome" name="aa_richiedente_nome" value="<?php echo $nome; ?>" disabled /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="aa_richiedente_cognome_txt">Cognome *<br/><input type="text" id="aa_richiedente_cognome" name="aa_richiedente_cognome" value="<?php echo $cognome; ?>" /></p></div>
+                                                <div class="col-lg-12"><p id="aa_richiedente_cognome_txt">Cognome *<br/><input type="text" id="aa_richiedente_cognome" name="aa_richiedente_cognome" value="<?php echo $cognome; ?>" disabled /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="aa_richiedente_cf_txt">Codice Fiscale *<br/><input type="text" id="aa_richiedente_cf" name="aa_richiedente_cf" value="<?php echo $cf; ?>" /></p></div>
+                                                <div class="col-lg-12"><p id="aa_richiedente_cf_txt">Codice Fiscale *<br/><input type="text" id="aa_richiedente_cf" name="aa_richiedente_cf" value="<?php echo $cf; ?>" disabled /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="aa_richiedente_data_nascita_txt">Data di Nascita *<br/><input type="date" id="aa_richiedente_data_nascita" name="aa_richiedente_data_nascita" value="<?php echo $datanascita; ?>" /></p></div>
+                                                <div class="col-lg-12"><p id="aa_richiedente_data_nascita_txt">Data di Nascita *<br/><input type="date" id="aa_richiedente_data_nascita" name="aa_richiedente_data_nascita" value="<?php echo $datanascita; ?>" disabled /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="aa_richiedente_luogo_nascita_txt">Luogo di Nascita *<br/><input type="text" id="aa_richiedente_luogo_nascita" name="aa_richiedente_luogo_nascita" value="<?php echo $luogonascita; ?>" /></p></div>
+                                                <div class="col-lg-12"><p id="aa_richiedente_luogo_nascita_txt">Luogo di Nascita *<br/><input type="text" id="aa_richiedente_luogo_nascita" name="aa_richiedente_luogo_nascita" value="<?php echo $luogonascita; ?>" disabled /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12"><p id="aa_richiedente_via_txt">Via e Numero civico *<br/><input type="text" id="aa_richiedente_via" name="aa_richiedente_via" value="<?php echo $richiedenteVia; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="aa_richiedente_localita_txt">Località *<br/><input type="text" id="aa_richiedente_localita" name="aa_richiedente_localita" value="<?php echo $richiedenteLocalita; ?>" /></p></div>
+                                                <div class="col-lg-12"><p id="aa_richiedente_localita_txt">Località *<br/><input type="text" id="aa_richiedente_localita" name="aa_richiedente_localita" value="<?php echo $richiedenteLocalita; ?>" disabled /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="aa_richiedente_provincia_txt">Provincia *<br/><input type="text" id="aa_richiedente_provincia" name="aa_richiedente_provincia" value="<?php echo $richiedenteProvincia; ?>" /></p></div>
+                                                <div class="col-lg-12"><p id="aa_richiedente_provincia_txt">Provincia *<br/><input type="text" id="aa_richiedente_provincia" name="aa_richiedente_provincia" value="<?php echo $richiedenteProvincia; ?>" disabled /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12"><p id="aa_richiedente_email_txt">E-mail *<br/><input type="email" id="aa_richiedente_email" name="aa_richiedente_email" value="<?php echo $email; ?>" disabled /></p></div>
@@ -365,7 +365,7 @@
                                                 <div class="col-lg-12"><p id="aa_richiedente_tel_txt">Telefono *<br/><input type="tel" id="aa_richiedente_tel" name="aa_richiedente_tel" value="<?php echo $richiedenteTel; ?>" /></p></div>
                                             </div>
                                         </div>
-                                        <div class="card-header border-0 p-0 mb-lg-30 mt-5">
+                                        <div class="card-header border-0 p-0 mb-lg-30 mt-3">
                                             <div class="row">
                                                 <div class="col-lg-12"><p><b>Se il richiedente non è una persona fisica, compilare anche il form sottostante</b></p></div>
                                             </div>
@@ -381,7 +381,7 @@
                                                 <div class="col-lg-12"><p id="aa_pgTipologia_txt">Tipologia<br/><input type="text" id="aa_pgTipologia" name="aa_pgTipologia" value="<?php echo $pgTipologia; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Sede legale</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Sede legale</b></h5></div>
                                             </div>                                            
                                             <div class="row">
                                                 <div class="col-lg-12"><p id="aa_pgSedeLegaleIndirizzo_txt">Indirizzo<br/><input type="text" id="aa_pgSedeLegaleIndirizzo" name="aa_pgSedeLegaleIndirizzo" value="<?php echo $pgSedeLegaleIndirizzo; ?>" /></p></div>
@@ -402,7 +402,7 @@
                                                 <div class="col-lg-12"><p id="aa_pgPiva_txt">Partita IVA<br/><input type="text" id="aa_pgPiva" name="aa_pgPiva" value="<?php echo $pgPiva; ?>" /></p></div>
                                             </div>                                            
                                             <div class="row">
-                                                <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12"><p id="aa_pgTelefono_txt">Telefono<br/><input type="tel" id="aa_pgTelefono" name="aa_pgTelefono" value="<?php echo $pgTelefono; ?>" /></p></div>
@@ -414,7 +414,7 @@
                                                 <div class="col-lg-12"><p id="aa_pgPec_txt">Pec<br/><input type="tel" id="aa_pgPec" name="aa_pgPec" value="<?php echo $pgPec; ?>" /></p></div>
                                             </div>
                                         </div>
-                                        <div class="card-header border-0 p-0 mb-lg-30 mt-5">
+                                        <div class="card-header border-0 p-0 mt-3">
                                             <div class="row">
                                                 <div class="col-lg-12"><p id="aa_richiedenteTitolo_txt"><b>In qualità di *</b></p></div>
                                             </div>
@@ -515,7 +515,7 @@
                                                 <h2 class="title-xxlarge mb-3">Richiesta</h2>
                                             </div>
                                         </div>
-                                        <div class="card-header border-0 p-0 mb-lg-30 mt-4">
+                                        <div class="card-header border-0 p-0 mb-lg-30 mt-3">
                                             <div class="row">
                                                 <div class="col-lg-12"><p id="aa_richiestaTipo_txt"><b>Di esercitare il diritto di accesso agli atti attraverso la richiesta di *</b></p></div>
                                             </div>
@@ -585,7 +585,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12 mt-5"><p id="aa_richiestaAtti_txt"><b>eventuale collocazione territoriale:</b></p></div>
+                                                <div class="col-lg-12 mt-3"><p id="aa_richiestaAtti_txt"><b>eventuale collocazione territoriale:</b></p></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12">
@@ -630,7 +630,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card-header border-0 p-0 mb-lg-30 mt-5">
+                                        <div class="card-header border-0 p-0 mb-lg-30 mt-3">
                                             <div class="row">
                                                 <div class="col-lg-12"><p id="aa_motivo_txt"><b>Di avere un interesse personale e concreto ovvero pubblico o diffuso all'accesso per la tutela di situazioni giuridicamente rilevanti per il seguente motivo *</b></div>
                                             </div>
@@ -703,7 +703,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card-header border-0 p-0 mb-lg-30 mt-5">
+                                        <div class="card-header border-0 p-0 mb-lg-30 mt-3">
                                             <div class="row">
                                                 <div class="col-lg-12"><p id="aa_modoRitiro_txt"><b>Modo ritiro *</b></div>
                                             </div>
@@ -751,7 +751,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card-header border-0 p-0 mb-lg-30 mt-5">
+                                        <div class="card-header border-0 p-0 mb-lg-30 mt-3">
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <p id="aa_annotazioni_txt"><b>Eventuali annotazioni:</b></p>
@@ -768,7 +768,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="it-page-section mb-50 mb-lg-90" id="aa_allegati">
+                            <div class="it-page-section mb-30" id="aa_allegati">
                                 <div class="cmp-card">
                                     <div class="card">
                                         <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -780,7 +780,7 @@
                                             <div class="row">
                                                 <div class="col-12 after-section">
                                                     <div class="row">
-                                                        <div class="col-lg-8">
+                                                        <div class="col-lg-8 mb-3">
                                                             <h6 id="aa_uploadCartaIdentitaFronte_txt">Carta d'Identita Fronte *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>                                                    
@@ -801,7 +801,7 @@
                                             <div class="row">
                                                 <div class="col-12 after-section">
                                                     <div class="row">
-                                                        <div class="col-lg-8">
+                                                        <div class="col-lg-8 mb-3">
                                                             <h6 id="aa_uploadCartaIdentitaRetro_txt">Carta d'Identita Retro *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
@@ -822,7 +822,7 @@
                                             <div class="row">
                                                 <div class="col-12 after-section" id="aa_pnl_uploadAffittuario">
                                                     <div class="row">
-                                                        <div class="col-lg-8">
+                                                        <div class="col-lg-8 mb-3">
                                                             <h6 id="aa_uploadAffittuario_txt">Documentazione comprovante il titolo dichiarato: Affittuario *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>                                                    
@@ -843,7 +843,7 @@
                                             <div class="row">
                                                 <div class="col-12 after-section" id="aa_pnl_uploadAltroSoggetto">
                                                     <div class="row">
-                                                        <div class="col-lg-8">
+                                                        <div class="col-lg-8 mb-3">
                                                             <h6 id="aa_uploadAltroSoggetto_txt">Documentazione comprovante il titolo dichiarato: professionista incaricato da altro soggetto *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
@@ -864,7 +864,7 @@
                                             <div class="row">
                                                 <div class="col-12 after-section" id="aa_pnl_uploadNotaioRogante">
                                                     <div class="row">
-                                                        <div class="col-lg-8">
+                                                        <div class="col-lg-8 mb-3">
                                                             <h6 id="aa_uploadNotaioRogante_txt">Documentazione comprovante il titolo dichiarato: Notaio Rogante *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
@@ -885,7 +885,7 @@
                                             <div class="row">
                                                 <div class="col-12 after-section" id="aa_pnl_uploadAltriTitoloDescrizione">
                                                     <div class="row">
-                                                        <div class="col-lg-8">
+                                                        <div class="col-lg-8 mb-3">
                                                             <h6 id="aa_uploadAltriTitoloDescrizione_txt">Documentazione comprovante il titolo dichiarato: Altro Titolo *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
@@ -906,7 +906,7 @@
                                             <div class="row">
                                                 <div class="col-12 after-section" id="aa_pnl_uploadAttoNotarile">
                                                     <div class="row">
-                                                        <div class="col-lg-8">
+                                                        <div class="col-lg-8 mb-3">
                                                             <h6 id="aa_uploadAttoNotarile_txt">Atto notarile con il quale è stata conferita la procura *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>                                                    

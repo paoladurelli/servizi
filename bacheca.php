@@ -30,7 +30,7 @@
                     <div class="cmp-nav-tab mb-4 mb-lg-5 mt-lg-4">
                         <ul class="nav nav-tabs nav-tabs-icon-text w-100 flex-nowrap">
                             <li class="nav-item w-100 me-2 p-1" role="tab">
-                                <a class="nav-link justify-content-start pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab active" href="#">
+                                <a class="nav-link text-center pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab active" href="#">
                                     <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true">
                                         <use href="./lib/svg/sprites.svg#it-pa"></use>
                                     </svg>
@@ -38,7 +38,7 @@
                                 </a>
                             </li>
                             <li class="nav-item w-100 me-2 p-1">
-                                <a class="nav-link justify-content-start pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab" href="messaggi_list.php">
+                                <a class="nav-link text-center pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab" href="messaggi_list.php">
                                     <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true">
                                         <use href="./lib/svg/sprites.svg#it-mail"></use>
                                     </svg>
@@ -46,7 +46,7 @@
                                 </a>
                             </li>
                             <li class="nav-item w-100 me-2 p-1" role="tab">
-                                <a class="nav-link justify-content-start pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab" href="attivita_list.php">
+                                <a class="nav-link text-center pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab" href="attivita_list.php">
                                     <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true">
                                         <use href="./lib/svg/sprites.svg#it-files"></use>
                                     </svg>
@@ -54,7 +54,7 @@
                                 </a>
                             </li>
                             <li class="nav-item w-100 me-2 p-1" role="tab">
-                                <a class="nav-link justify-content-start pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab" href="servizi_list.php">
+                                <a class="nav-link text-center pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab" href="servizi_list.php">
                                     <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true">
                                         <use href="./lib/svg/sprites.svg#it-settings"></use>
                                     </svg>
@@ -137,8 +137,8 @@
                                             <?php include 'messaggi_bacheca.php'; ?>
                                         </div>
                                         <div class="row">
-                                            <div class="col-12 text-right">
-                                                <a href="messaggi_list.php" class="btn btn-primary" style="margin-right: 10px;">Vedi altri messaggi</a>
+                                            <div class="col-12 text-right mb-4">
+                                                <a href="messaggi_list.php" class="btn btn-primary mr-10">Vedi altri messaggi</a>
                                             </div>
                                         </div>
                                     </div>
@@ -161,7 +161,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 text-right mb-4">
-                                    <a href="attivita_list.php" class="btn btn-primary" style="margin-right: 10px;">Vedi altre attività</a>
+                                    <a href="attivita_list.php" class="btn btn-primary mr-10">Vedi altre attività</a>
                                 </div>
                             </div>
                         </div>

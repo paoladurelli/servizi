@@ -58,7 +58,7 @@
                                         }else{
                                             echo '<div class="row">
                                                 <div class="col-12 text-right">
-                                                    <a class="btn-small btn-secondary mr-2 deleteLink" data-servizio-id="'.$row["ServizioId"].'" data-pratica-id="'.$row["pratica_id"].'" data-status-id="'.$row["StatusId"].'">Elimina</a>
+                                                    <a class="btn-small btn-secondary mr-2 deleteLink" data-servizio-id="'.$row["ServizioId"].'" data-pratica-id="'.$row["pratica_id"].'" data-status-id="'.$row["StatusId"].'" data-link="'.$_SERVER['REQUEST_URI'].'" >Elimina</a>
                                                     <a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="btn-small btn-primary">Completa</a>
                                                 </div>
                                             </div>';
@@ -88,25 +88,3 @@
         echo "Nessun messaggio presente";
     }
     $connessione->close();
-?>
-
-    <div class="modal fade" tabindex="-1" role="dialog" id="confirmDialog" aria-labelledby="confirmDialogTitle">
-        <div class="modal-dialog" role="dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title h5 no_toc" id="confirmDialogTitle">Elimina attività</h2>
-                </div>
-                <div class="modal-body">
-                    <p>Cliccando su "Elimina" la tua bozza verrà cancellata definitivamente.</p>
-                    <h6>Vuoi eliminare la bozza?</h6>
-                </div>
-                <div class="modal-footer">
-                    <input type="hidden" name="confirmServizioId" id="confirmServizioId" />
-                    <input type="hidden" name="confirmPraticaId" id="confirmPraticaId" />
-                    <input type="hidden" name="confirmStatusId" id="confirmStatusId" />
-                    <button class="btn btn-default btn-sm" type="button" data-bs-dismiss="modal">Chiudi</button>
-                    <button class="btn btn-primary btn-sm deleteAttivita" type="submit">Elimina</button>
-                </div>
-            </div>
-        </div>
-    </div>

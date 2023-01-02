@@ -37,6 +37,7 @@ $('input[type=radio][name=dc_rb_qualita_di]').change(function() {
         $('#dc_beneficiario_tel').prop( "disabled", true );
         /* tolgo potere di firma come obbligatorio */
         $("#dc_uploadPotereFirma_txt").html("Documento che attesta potere di firma");
+        $("#dc_PotereFirma").hide();
     }
     else{
         $('#dc_beneficiario_nome').val('');
@@ -63,6 +64,7 @@ $('input[type=radio][name=dc_rb_qualita_di]').change(function() {
         $('#dc_beneficiario_tel').prop( "disabled", false );
         /* metto potere di firma come obbligatorio */
         $("#dc_uploadPotereFirma_txt").append("*");
+        $("#dc_PotereFirma").show();
     }
 });
 
@@ -93,6 +95,7 @@ $('input[type=radio][name=be_rb_qualita_di]').change(function() {
         $('#be_beneficiario_tel').prop( "disabled", true );
         /* tolgo potere di firma come obbligatorio */
         $("#be_uploadPotereFirma_txt").html("Documento che attesta potere di firma");
+        $("#be_PotereFirma").hide();
     }
     else{
         $('#be_beneficiario_nome').val('');
@@ -119,6 +122,7 @@ $('input[type=radio][name=be_rb_qualita_di]').change(function() {
         $('#be_beneficiario_tel').prop( "disabled", false );
         /* metto potere di firma come obbligatorio */
         $("#be_uploadPotereFirma_txt").append("*");
+        $("#be_PotereFirma").show();
     }
 });
 
@@ -2889,14 +2893,17 @@ $(document).ready(function () {
 });
 
 $(function(){
+    /* Cancella Attività - START */
     $(".deleteLink").click(function(){
        var ServizioId = $(this).data("servizio-id");
        var PraticaId = $(this).data("pratica-id");
        var StatusId = $(this).data("status-id");
+       var ActualUrl = $(this).data("link");
        
        $("#confirmServizioId").val(ServizioId);
        $("#confirmPraticaId").val(PraticaId);
        $("#confirmStatusId").val(StatusId);
+       $("#confirmLink").val(ActualUrl);
        
        $('#confirmDialog').modal('toggle');
        
@@ -2909,6 +2916,7 @@ $(function(){
         formData.append('servizioId', $("#confirmServizioId").val());
         formData.append('praticaId', $("#confirmPraticaId").val());
         formData.append('statusId', $("#confirmStatusId").val());
+        formData.append('ActualUrl', $("#confirmLink").val());
 
         $.ajax({
             type: "POST",
@@ -2919,7 +2927,7 @@ $(function(){
             contentType: false,
             success: function (data)
             {
-                window.location.href = './attivita_list.php';
+                window.location.href = data.redirect;
             },
             error: function (desc)
             {
@@ -2929,6 +2937,99 @@ $(function(){
 
         event.preventDefault();
     });
+    /* Cancella Attività - END */
+    
+    /* Cancella Messaggi - START */
+    $(".deleteMsgConfirm").click(function(){
+       var MsgId = $(this).data("msg-id");
+       var ActualUrl = $(this).data("link");
+       $("#confirmMsgId").val(MsgId);
+       $("#confirmLink").val(ActualUrl);
+       $('#confirmDialogMsg').modal('toggle');
+        event.preventDefault();
+    });
+    $(".deleteMsg").click(function(){
+        formData = new FormData();
+        formData.append('MsgId', $("#confirmMsgId").val());
+        formData.append('ActualUrl', $("#confirmLink").val());
+        $.ajax({
+            type: "POST",
+            url: "delete_msg.php",
+            data: formData,
+            dataType: "json",
+            processData: false,
+            contentType: false,
+            success: function (data)
+            {
+                window.location.href = data.redirect;
+            },
+            error: function (desc)
+            {
+                console.log(desc.responseText);
+            }
+        });
+        event.preventDefault();
+    });
+        
+    $(".deleteThisMsgConfirm").click(function(){
+       var ServizioId = $(this).data("servizio-id");
+       var ActualUrl = $(this).data("link");
+       $("#confirmServizioId").val(ServizioId);
+       $("#confirmLink").val(ActualUrl);
+       $('#confirmDialogThisMsg').modal('toggle');
+        event.preventDefault();
+    });
+    $(".deleteThisMsg").click(function(){
+        formData = new FormData();
+        formData.append('ServizioId', $("#confirmServizioId").val());
+        formData.append('ActualUrl', $("#confirmLink").val());
+        $.ajax({
+            type: "POST",
+            url: "delete_this_msg.php",
+            data: formData,
+            dataType: "json",
+            processData: false,
+            contentType: false,
+            success: function (data)
+            {
+                window.location.href = data.redirect;
+            },
+            error: function (desc)
+            {
+                console.log(desc.responseText);
+            }
+        });
+        event.preventDefault();
+    });
+    
+    $(".deleteAllMsgConfirm").click(function(){
+        var ActualUrl = $(this).data("link");
+        $("#confirmLink").val(ActualUrl);
+        $('#confirmDialogAllMsg').modal('toggle');
+        event.preventDefault();
+    });
+    $(".deleteAllMsg").click(function(){
+        formData = new FormData();
+        formData.append('ActualUrl', $("#confirmLink").val());
+        $.ajax({
+            type: "POST",
+            url: "delete_all_msg.php",
+            data: formData,
+            dataType: "json",
+            processData: false,
+            contentType: false,
+            success: function (data)
+            {
+                window.location.href = data.redirect;
+            },
+            error: function (desc)
+            {
+                console.log(desc.responseText);
+            }
+        });
+        event.preventDefault();
+    });
+    /* Cancella Messaggi - END */
 });
 
 /* funzioni rating - START */

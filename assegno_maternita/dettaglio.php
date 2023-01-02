@@ -188,10 +188,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="it-page-section mb-50 mb-lg-90" id="am_richiedente">
+
+                        <div class="it-page-section mb-30" id="am_richiedente">
                             <div class="cmp-card">
                                 <div class="card">
-                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                    <div class="card-header border-0 p-0">
                                         <div>
                                             <h2 class="title-xxlarge mb-3">Richiedente</h2>
                                             <p><b>Informazioni su di te</b></p>
@@ -227,7 +228,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-6">
@@ -245,7 +246,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-6">
@@ -265,10 +266,10 @@
                             </div>
                         </div>
 
-                        <div class="it-page-section mb-50 mb-lg-90" id="am_minore">
+                        <div class="it-page-section mb-30" id="am_minore">
                             <div class="cmp-card">
                                 <div class="card">
-                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                    <div class="card-header border-0 p-0 m-0">
                                         <div class="d-flex">
                                             <h2 class="title-xxlarge mb-3">Minore</h2>
                                         </div>
@@ -300,34 +301,34 @@
                             </div>
                         </div>
 
-                        <div class="it-page-section mb-50 mb-lg-90" id="am_richiesta">
+                        <div class="it-page-section mb-30" id="am_richiesta">
                             <div class="cmp-card">
                                 <div class="card">
-                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                    <div class="card-header border-0 p-0 m-0">
                                         <div class="d-flex">
                                             <h2 class="title-xxlarge mb-3">Richiesta</h2>
                                         </div>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-lg-12">
+                                            <div class="col-lg-12"><p class="m-0">
                                                 <?php 
                                                     switch($tipoRichiesta) {
                                                         case "AM": echo "Assegno di maternità"; break;
                                                         case "QD": echo "Quota differenziale dell’assegno di maternità"; break;
                                                     }
                                                 ?>
-                                            </div>
+                                            </p></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="it-page-section mb-50 mb-lg-90" id="am_dichiarazioni">
+                        <div class="it-page-section mb-30" id="am_dichiarazioni">
                             <div class="cmp-card">
                                 <div class="card">
-                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                    <div class="card-header border-0 p-0 m-0">
                                         <div class="d-flex">
                                             <h2 class="title-xxlarge mb-3">Dichiarazioni</h2>
                                         </div>
@@ -335,7 +336,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <p>Dichiaro
+                                                <p class="m-0">Dichiaro
                                                 <?php 
                                                     switch($DichiarazioneCittadinanza) {
                                                         case "I": echo " di essere cittadina italiana o di uno stato appartenente all’Unione Europea"; break;
@@ -371,12 +372,12 @@
                         </div>
 
 
-                        <div class="it-page-section mb-50 mb-lg-90" id="am_pagamento">
+                        <div class="it-page-section mb-30" id="am_pagamento">
                             <div class="cmp-card">
                                 <div class="card">
-                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                    <div class="card-header border-0 p-0 m-0">
                                         <div class="d-flex">
-                                            <h2 class="title-xxlarge mb-3">Metodi di pagamento</h2>
+                                            <h2 class="title-xxlarge">Metodi di pagamento</h2>
                                         </div>
                                     </div>
                                     <div class="card-body">
@@ -388,8 +389,8 @@
                                             if ($result->num_rows > 0) {
                                             // output data of each row
                                                 while($row = $result->fetch_assoc()) {
-                                                    echo '<div class="row mb-3">';
-                                                        echo '<div class="col-12"><p>';
+                                                    echo '<div class="row">';
+                                                        echo '<div class="col-12"><p class="m-0">';
                                                             if($row["id"]==$tipoPagamento_id){ echo NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"]; }
                                                         echo '</p></div>';
                                                     echo '</div>';
@@ -402,22 +403,22 @@
                             </div>
                         </div>
 
-                        <div class="it-page-section mb-50 mb-lg-90" id="am_allegati">
+                        <div class="it-page-section mb-30" id="am_allegati">
                             <div class="cmp-card">
                                 <div class="card">
-                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                    <div class="card-header border-0 p-0 m-0">
                                         <div class="d-flex">
-                                            <h2 class="title-xxlarge mb-3">Allegati</h2>
+                                            <h2 class="title-xxlarge">Allegati</h2>
                                         </div>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-12 after-section">
                                                 <div class="row">
-                                                    <div class="col-8">
+                                                    <div class="col-md-8 mb-3">
                                                         <h6>Documento di identità (fronte)</h6>
                                                     </div>
-                                                    <div class="col-4">
+                                                    <div class="col-md-4">
                                                         <ul class="upload-file-list" id="am_uploadCartaIdentitaFronte_file">
                                                             <?php echo $uploadCartaIdentitaFronte; ?>
                                                         </ul>
@@ -426,46 +427,51 @@
                                             </div>
                                             <div class="col-12 after-section">
                                                 <div class="row">
-                                                    <div class="col-8">
+                                                    <div class="col-md-8 mb-3">
                                                         <h6>Documento di identità (retro)</h6>
                                                     </div>
-                                                    <div class="col-4">
+                                                    <div class="col-md-4">
                                                         <ul class="upload-file-list" id="am_uploadCartaIdentitaRetro_file">
                                                             <?php echo $uploadCartaIdentitaRetro; ?>
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 after-section">
-                                                <div class="row">
-                                                    <div class="col-8">
-                                                        <h6>Copia titolo di soggiorno oppure</br>ricevuta della richiesta di rilascio del permesso di soggiorno</h6>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <ul class="upload-file-list" id="am_uploadTitoloSoggiorno_file">
-                                                            <?php echo $uploadTitoloSoggiorno; ?>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-8">
-                                                        <h6>Copia della dichiarazione del datore di lavoro relativa all’importo percepito per la maternità</h6>
-                                                        <p><small>(nel caso di richiesta della quota differenziale dell’assegno di maternità)</small></p>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <ul class="upload-file-list" id="am_uploadDichiarazioneDatoreLavoro_file">
-                                                            <?php echo $uploadDichiarazioneDatoreLavoro; ?>
-                                                        </ul>
+                                            <?php if($uploadTitoloSoggiorno != ''){ ?>
+                                                <div class="col-12 after-section">
+                                                    <div class="row">
+                                                        <div class="col-md-8 mb-3">
+                                                            <h6>Copia titolo di soggiorno oppure</br>ricevuta della richiesta di rilascio del permesso di soggiorno</h6>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <ul class="upload-file-list" id="am_uploadTitoloSoggiorno_file">
+                                                                <?php echo $uploadTitoloSoggiorno; ?>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            <?php } ?>
+                                            <?php if($uploadDichiarazioneDatoreLavoro != ''){ ?>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-md-8 mb-3">
+                                                            <h6>Copia della dichiarazione del datore di lavoro relativa all’importo percepito per la maternità</h6>
+                                                            <p><small>(nel caso di richiesta della quota differenziale dell’assegno di maternità)</small></p>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <ul class="upload-file-list" id="am_uploadDichiarazioneDatoreLavoro_file">
+                                                                <?php echo $uploadDichiarazioneDatoreLavoro; ?>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="row">
                             <div class="col-12 text-right mb-20">
                                 <a href="..\attivita_list.php" class="btn btn-secondary"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true" fill="#fff"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>

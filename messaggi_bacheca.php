@@ -24,6 +24,15 @@
                     <div class="card-body p-0 mb-2">
                         <p class="title-small-semi-bold t-primary m-0 mb-1">'.$row["NomeServizio"].'</p>
                         <p class="text-paragraph">'.$row["testo"].'</p>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-12 text-right">
+                                        <a class="btn-small btn-secondary mr-2 deleteMsgConfirm" data-msg-id="'.$row["messaggi_id"].'" data-link="'.$_SERVER['REQUEST_URI'].'" >Elimina</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>';

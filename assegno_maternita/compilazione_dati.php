@@ -231,7 +231,7 @@
                                     <div id="am_frm_dati_pnl_return"></div>
                                 </div>
                             </div>
-                            <div class="it-page-section mb-50 mb-lg-90" id="am_richiedente">
+                            <div class="it-page-section mb-30" id="am_richiedente">
                                 <div class="cmp-card">
                                     <div class="card">
                                         <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -240,7 +240,7 @@
                                                 <p><b>Informazioni su di te</b></p>
                                             </div>
                                         </div>
-                                        <div class="card-body" style="margin-bottom:40px;">
+                                        <div class="card-body">
                                             <h5><b><?php echo $_SESSION['Nome'] . ' ' . $_SESSION['Cognome']; ?></b></h5>
                                             <p class="subtitle-small">Codice Fiscale:<br/><b><?php echo $_SESSION['CF']; ?></b></p>
                                             <div class="row">
@@ -262,32 +262,32 @@
                                                 <div class="col-lg-12"><p id="am_richiedente_luogo_nascita_txt">Luogo di Nascita *<br/><input type="text" id="am_richiedente_luogo_nascita" name="am_richiedente_luogo_nascita" value="<?php echo $luogonascita; ?>" disabled /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Indirizzo</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="am_richiedente_via_txt">Via e Numero civico *<br/><input type="text" id="am_richiedente_via" name="am_richiedente_via" value="<?php echo $richiedenteVia; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p id="am_richiedente_via_txt">Via e Numero civico *<br/><input type="text" id="am_richiedente_via" name="am_richiedente_via" value="<?php echo $richiedenteVia; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="am_richiedente_localita_txt">Località *<br/><input type="text" id="am_richiedente_localita" name="am_richiedente_localita" value="<?php echo $richiedenteLocalita; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p id="am_richiedente_localita_txt">Località *<br/><input type="text" id="am_richiedente_localita" name="am_richiedente_localita" value="<?php echo $richiedenteLocalita; ?>" disabled /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="am_richiedente_provincia_txt">Provincia *<br/><input type="text" id="am_richiedente_provincia" name="am_richiedente_provincia" value="<?php echo $richiedenteProvincia; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p id="am_richiedente_provincia_txt">Provincia *<br/><input type="text" id="am_richiedente_provincia" name="am_richiedente_provincia" value="<?php echo $richiedenteProvincia; ?>" disabled /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12 mt-50"><h5 class="color-primary"><b>Contatti</b></h5></div>
+                                                <div class="col-lg-12 mt-3"><h5 class="color-primary"><b>Contatti</b></h5></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12"><p id="am_richiedente_email_txt">E-mail *<br/><input type="email" id="am_richiedente_email" name="am_richiedente_email" value="<?php echo $email; ?>" disabled /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="am_richiedente_tel_txt">Telefono *<br/><input type="tel" id="am_richiedente_tel" name="am_richiedente_tel" value="<?php echo $richiedenteTel; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p id="am_richiedente_tel_txt">Telefono *<br/><input type="tel" id="am_richiedente_tel" name="am_richiedente_tel" value="<?php echo $richiedenteTel; ?>" /></p></div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="it-page-section mb-50 mb-lg-90" id="am_minore">
+                            <div class="it-page-section mb-30" id="am_minore">
                                 <div class="cmp-card">
                                     <div class="card">
                                         <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -300,23 +300,23 @@
                                                 <div class="col-lg-12"><h5 class="color-primary"><b>Anagrafica</b></h5></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="am_minoreNome_txt">Nome *<br/><input type="text" id="am_minoreNome" name="am_minoreNome" value="<?php echo $minoreNome; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p id="am_minoreNome_txt">Nome *<br/><input type="text" id="am_minoreNome" name="am_minoreNome" value="<?php echo $minoreNome; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="am_minoreCognome_txt">Cognome *<br/><input type="text" id="am_minoreCognome" name="am_minoreCognome" value="<?php echo $minoreCognome; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p id="am_minoreCognome_txt">Cognome *<br/><input type="text" id="am_minoreCognome" name="am_minoreCognome" value="<?php echo $minoreCognome; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="am_minoreDataNascita_txt">Data di Nascita *<br/><input type="date" id="am_minoreDataNascita" name="am_minoreDataNascita" value="<?php echo $minoreDataNascita; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p id="am_minoreDataNascita_txt">Data di Nascita *<br/><input type="date" id="am_minoreDataNascita" name="am_minoreDataNascita" value="<?php echo $minoreDataNascita; ?>" /></p></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-12"><p id="am_minoreLuogoNascita_txt">Luogo di Nascita *<br/><input type="text" id="am_minoreLuogoNascita" name="am_minoreLuogoNascita" value="<?php echo $minoreLuogoNascita; ?>" required /></p></div>
+                                                <div class="col-lg-12"><p id="am_minoreLuogoNascita_txt">Luogo di Nascita *<br/><input type="text" id="am_minoreLuogoNascita" name="am_minoreLuogoNascita" value="<?php echo $minoreLuogoNascita; ?>" /></p></div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="it-page-section mb-50 mb-lg-90" id="am_richiesta">
+                            <div class="it-page-section mb-30" id="am_richiesta">
                                 <div class="cmp-card">
                                     <div class="card">
                                         <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -338,7 +338,7 @@
                                 </div>
                             </div>
 
-                            <div class="it-page-section mb-50 mb-lg-90" id="am_dichiarazioni">
+                            <div class="it-page-section mb-30" id="am_dichiarazioni">
                                 <div class="cmp-card">
                                     <div class="card">
                                         <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -379,7 +379,7 @@
                             </div>
                             
                             
-                            <div class="it-page-section mb-50 mb-lg-90" id="am_pagamento">
+                            <div class="it-page-section mb-30" id="am_pagamento">
                                 <div class="cmp-card">
                                     <div class="card">
                                         <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -426,7 +426,7 @@
                                 </div>
                             </div>
                             
-                            <div class="it-page-section mb-50 mb-lg-90" id="am_allegati">
+                            <div class="it-page-section mb-30" id="am_allegati">
                                 <div class="cmp-card">
                                     <div class="card">
                                         <div class="card-header border-0 p-0 mb-lg-30 m-0">
@@ -438,7 +438,7 @@
                                             <div class="row">
                                                 <div class="col-12 after-section">
                                                     <div class="row">
-                                                        <div class="col-lg-8">
+                                                        <div class="col-lg-8 mb-3">
                                                             <h6 id="am_uploadCartaIdentitaFronte_txt">Documento di identità (fronte) *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
@@ -457,7 +457,7 @@
                                                 </div>
                                                 <div class="col-12 after-section">
                                                     <div class="row">
-                                                        <div class="col-lg-8">
+                                                        <div class="col-lg-8 mb-3">
                                                             <h6 id="am_uploadCartaIdentitaRetro_txt">Documento di identità (retro) *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
@@ -476,7 +476,7 @@
                                                 </div>
                                                 <div class="col-12 after-section">
                                                     <div class="row">
-                                                        <div class="col-lg-8">
+                                                        <div class="col-lg-8 mb-3">
                                                             <h6 id="am_uploadTitoloSoggiorno_txt">Copia titolo di soggiorno oppure</br>ricevuta della richiesta di rilascio del permesso di soggiorno</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
@@ -495,7 +495,7 @@
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <div class="row">
-                                                        <div class="col-lg-8">
+                                                        <div class="col-lg-8 mb-3">
                                                             <h6 id="am_uploadDichiarazioneDatoreLavoro_txt">Copia della dichiarazione del datore di lavoro relativa all’importo percepito per la maternità</h6>
                                                             <p><em><small>(nel caso di richiesta della quota differenziale dell’assegno di maternità)</small></em></p>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
@@ -520,10 +520,12 @@
                             </div>
                             
                             <div class="row">
-                                <div class="col-12" id="divButtons">
-                                    <button type="button" id="am_btn_concludi_richiesta" name="am_btn_concludi_richiesta" class="btn btn-primary">Avanti <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
-                                    <button type="button" id="am_btn_salva_richiesta" name="am_btn_salva_richiesta" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#SalvaRichiestaModal">Salva richiesta</button>
-                                    <a href="#" id="am_btn_back" class="btn btn-default"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
+                                <div class="col-12">
+                                    <div class="row float-right" id="divButtons">
+                                        <a href="#" id="am_btn_back" class="btn btn-default order-lg-1"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
+                                        <button type="button" id="am_btn_salva_richiesta" name="am_btn_salva_richiesta" class="btn btn-secondary order-lg-2" data-bs-toggle="modal" data-bs-target="#SalvaRichiestaModal">Salva richiesta</button>
+                                        <button type="button" id="am_btn_concludi_richiesta" name="am_btn_concludi_richiesta" class="btn btn-primary order-lg-3">Avanti <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -567,8 +569,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <button class="btn btn-default btn-sm" id="am_btn_close" type="button" data-bs-dismiss="modal">Chiudi</button>
                         <button class="btn btn-primary btn-sm" id="am_btn_save" type="submit">Salva</button>
-                        <button class="btn btn-primary btn-sm" id="am_btn_close" type="button" data-bs-dismiss="modal">Chiudi</button>
                     </div>
                 </div>
             </form>

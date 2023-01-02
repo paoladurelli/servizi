@@ -85,44 +85,44 @@
                     </div>
 
                     <div class="col-12 col-lg-9 body-riepilogo">
-                        <div class="it-page-section mb-50 mb-lg-90" id="pm_stato_richiesta">
+                        <div class="it-page-section mb-30" id="pm_stato_richiesta">
                             <div class="cmp-card">
                                 <div class="card">
-                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                    <div class="card-header border-0 p-0 m-0">
                                         <div>
                                             <h2 class="title-xxlarge mb-3">Stato richiesta</h2>
                                         </div>
                                     </div>
-                                    <div class="card-body mb-40">
+                                    <div class="card-body mb-0">
                                         <div class="row">
                                             <div class="col-lg-12"><h5 class="color-primary"><b>Richiesta inviata correttamente</b></h5></div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <p>Abbiamo ricevuto la tua richiesta per la pratica:<br/><b><?php echo $_GET['pratican']; ?> richiesta di pubblicazione di matrimonio.</b></p>
-                                                <p>Inviata il: <b><?php echo date("d-m-Y"); ?></b></p>
-                                                <p>Troverai il riepilogo nella tua e-mail: <b><?php echo $_SESSION["Email"]; ?></b></p>
+                                                <p>Inviata il: <b><?php echo date("d/m/Y"); ?></b></p>
+                                                <p class="m-0">Troverai il riepilogo nella tua e-mail: <b><?php echo $_SESSION["Email"]; ?></b></p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="it-page-section mb-50 mb-lg-90" id="pm_scarica_ricevuta">
+                        <div class="it-page-section mb-30" id="pm_scarica_ricevuta">
                             <div class="cmp-card">
                                 <div class="card">
-                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                    <div class="card-header border-0 p-0 m-0">
                                         <div>
                                             <h2 class="title-xxlarge mb-3">Scarica la ricevuta</h2>
                                         </div>
                                     </div>
-                                    <div class="card-body mb-40">
+                                    <div class="card-body mb-0">
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <form action="../lib/tcpdf/TCPDF-master/examples/pm_pdf_pratica.php" method="POST" id="pm_frm_download_pdf" name="pm_frm_download_pdf">
                                                     <input type="hidden" name="pm_download_pdf_id" id="pm_download_pdf_id" value="<?php echo $_GET['praticai']; ?>" />
                                                     <input type="hidden" name="pm_download_pdf_pratica" id="pm_download_pdf_pratica" value="<?php echo $_GET['pratican']; ?>" />
-                                                    <p class="mt-5 text-center"><button type="submit" class="btn btn-primary" id="pm_download_pdf" name="pm_download_pdf" href="#">Scarica la ricevuta</button></p>
+                                                    <p class="m-0 text-center"><button type="submit" class="btn btn-primary" id="pm_download_pdf" name="pm_download_pdf" href="#">Scarica la ricevuta</button></p>
                                                 </form>
                                             </div>
                                         </div>
@@ -130,15 +130,15 @@
                                 </div>
                             </div>          
                         </div>
-                        <div class="it-page-section mb-50 mb-lg-90" id="pm_prossimi_passi">
+                        <div class="it-page-section mb-30" id="pm_prossimi_passi">
                             <div class="cmp-card">
                                 <div class="card">
-                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                    <div class="card-header border-0 p-0 m-0">
                                         <div>
                                             <h2 class="title-xxlarge mb-3">Prossimi passi</h2>
                                         </div>
                                     </div>
-                                    <div class="card-body mb-40">
+                                    <div class="card-body mb-0">
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="row stepper">
