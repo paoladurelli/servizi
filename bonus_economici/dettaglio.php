@@ -41,6 +41,7 @@
     $tmpUploadDocumentazione1 = "";
     $tmpUploadDocumentaziones = "";
     $uploadDocumentazione = "";
+    $data_compilazione = "";
 
     
     /* con l'id vado a richiamare i dati salvati */
@@ -93,6 +94,7 @@
                 foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
                     $uploadDocumentazione .= "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $tmpUploadDocumentazione ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
                 }
+                $data_compilazione = $row["data_compilazione"];
             }
         }
         $connessione->close();
@@ -169,6 +171,11 @@
                                                                 <li class="nav-item">
                                                                     <a class="nav-link" href="#be_allegati">
                                                                         <span class="title-medium">Allegati</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link" href="#be_prossimi_passi">
+                                                                        <span class="title-medium">Prossimi passi</span>
                                                                     </a>
                                                                 </li>
                                                             </ul>
@@ -462,6 +469,55 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="it-page-section mb-30" id="be_prossimi_passi">
+                            <div class="cmp-card">
+                                <div class="card">
+                                    <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                                        <div>
+                                            <h2 class="title-xxlarge mb-3">Prossimi passi</h2>
+                                        </div>
+                                    </div>
+                                    <div class="card-body mb-0">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="row stepper">
+                                                    <div class="offset-md-1 col-md-11 col-12">
+                                                        <div class="step">
+                                                            <div class="date-step">
+                                                                <span class="date-step-giorno"><?php echo date("d", strtotime($data_compilazione)); ?></span><br>
+                                                                <span class="date-step-mese"><?php echo date("M/Y", strtotime($data_compilazione)); ?></span>
+                                                                <span class="pallino"></span>
+                                                            </div>
+                                                            <div class="testo-step">
+                                                                <div class="scheda-gestione">
+                                                                    <p>Data invio richiesta</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <?php $Date = date('Y-m-d'); ?>
+
+                                                        <div class="step">
+                                                            <div class="date-step">
+                                                                <span class="date-step-giorno"><?php echo date('d', strtotime($data_compilazione. ' + 10 days')); ?></span><br>
+                                                                <span class="date-step-mese"><?php echo date('M/Y', strtotime($data_compilazione. ' + 10 days')); ?></span>
+                                                                <span class="pallino"></span>
+                                                            </div>
+                                                            <div class="testo-step">
+                                                                <div class="scheda-gestione">
+                                                                    <p>Data esito richiesta</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-12 text-right mb-20">
                                 <a href="..\attivita_list.php" class="btn btn-secondary"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true" fill="#fff"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>

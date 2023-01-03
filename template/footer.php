@@ -24,7 +24,7 @@
                     </section>
                     <section class="py-4 border-white">
                         <div class="row">
-                            <div class="col-md-3 col-lg-3 pb-2 hide-mobile-footer">
+                            <div class="col-md-4 col-lg-3 pb-2 hide-mobile-footer">
                                 <h5 class="border-bottom-white mb-15 pb-6 title_resized">AMMINISTRAZIONE</h5>
                                 <div id="it-region-footer-first" class="region footer_first">
                                     <div id="it-block-amministrazione" class="block block-block-content">
@@ -59,7 +59,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-lg-6 pb-2 hide-mobile-footer">
+                            <div class="col-md-8 col-lg-6 pb-2 hide-mobile-footer">
                                 <h5 class="border-bottom-white mb-15 pb-6 title_resized">CATEGORIE DI SERVIZIO</h5>
                                 <div class="row">
                                     <div class="col-md-6 col-lg-6 pb-2">
@@ -102,7 +102,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-lg-3 pb-2 hide-mobile-footer">
+                            <div class="col-md-4 col-lg-3 pb-2 hide-mobile-footer">
                                 <h5 class="border-bottom-white mb-15 pb-6 title_resized">NOTIZIE</h5>
                                 <div id="it-region-footer-fourth" class="region footer_fourth">
                                     <div id="it-block-notizie" class="block block-block-content">
@@ -114,10 +114,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-lg-9 pb-2">
+                            <div class="col-md-8 col-lg-9 pb-2">
                                 <h5 class="border-bottom-white mb-15 pb-6 title_resized">CONTATTI</h5>
                                 <div class="row">
-                                    <div class="col-md-4 col-lg-4 pb-2">
+                                    <div class="col-md-12 col-lg-4 pb-2">
                                         <div id="it-region-footer-five" class="region footer_five">
                                             <div id="it-block-footer1" class="block block-block-content">
                                                 <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item">
@@ -134,7 +134,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-lg-4 pb-2">
+                                    <div class="col-md-6 col-lg-4 pb-2">
                                         <div id="it-region-footer-six" class="region footer_six">
                                             <div id="it-block-dichiarazionediaccessibilita" class="block block-block-content">
                                                 <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item">
@@ -148,7 +148,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-lg-4 pb-2">
+                                    <div class="col-md-6 col-lg-4 pb-2">
                                         <div id="it-region-footer-seven" class="region footer_seven">
                                             <nav role="navigation" aria-labelledby="block-footerdocumentieatti-menu" id="block-footerdocumentieatti" class="block block-menu navigation menu--footer-documenti-e-atti">
                                                 <h2 class="visually-hidden" id="block-footerdocumentieatti-menu">Documenti e atti</h2>
@@ -171,7 +171,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-lg-3 pb-2">
+                            <div class="col-md-12 col-lg-3 pb-2">
                                 <h5 class="border-bottom-white mb-15 pb-6 title_resized">SEGUICI SU</h5>
                                 <div id="it-region-footer-eight" class="region footer_eight">
                                     <div id="it-block-seguicisu" class="block block-block-content">
@@ -197,7 +197,7 @@
             <div class="it-footer-small-prints clearfix">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-7 col-md-7">
+                        <div class="col-md-6">
                             <div id="it-region-footer-small-prints" class="region footer_small_prints">
                                 <nav role="navigation" aria-labelledby="block-smallprints-menu" id="block-smallprints" class="block block-menu navigation menu--small-prints">
                                     <ul data-block="smallprints" class="it-footer-small-prints-list list-inline mb-0 d-flex flex-column flex-md-row">
@@ -211,7 +211,7 @@
                                 </nav>
                             </div>
                         </div>
-                        <div class="col-lg-5 col-md-5">
+                        <div class="col-md-6 mb-md-3 mt-1 text-right">
                             <div id="it-region-footer-credits" class="region footer_credits">
                                 <div id="it-block-footerloghi" class="block block-block-content">
                                     <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item">
@@ -317,6 +317,16 @@
                     <input type="hidden" name="confirmLink" id="confirmLink" />
                     <button class="btn btn-default btn-sm" type="button" data-bs-dismiss="modal">Chiudi</button>
                     <button class="btn btn-primary btn-sm deleteAttivita" type="submit">Elimina</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="modalRating">
+        <div class="modal-dialog" role="dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <?php echo CallRatingLayout(); ?>
                 </div>
             </div>
         </div>

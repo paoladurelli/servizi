@@ -182,10 +182,10 @@ function ViewMenuPratiche($selected){
     $menuText = '<div class="col-12 menu-servizi">
         <div class="cmp-nav-tab mb-4 mb-lg-5 mt-lg-4">
             <div class="row">
-                <div class="col-lg-3 text-center step '.$css[1].'"><span>1</span>INFORMATIVA SULLA PRIVACY</div>
-                <div class="col-lg-3 text-center step '.$css[2].'"><span>2</span>COMPILAZIONE DATI</span></div>
-                <div class="col-lg-3 text-center step '.$css[3].'"><span>3</span>TERMINI E CONDIZIONI</div>
-                <div class="col-lg-3 text-center step '.$css[4].'"><span>4</span>RIEPILOGO</div>
+                <div class="col-lg-3 text-lg-center menu-step '.$css[1].'"><span>1</span>INFORMATIVA SULLA PRIVACY</div>
+                <div class="col-lg-3 text-lg-center menu-step '.$css[2].'"><span>2</span>COMPILAZIONE DATI</span></div>
+                <div class="col-lg-3 text-lg-center menu-step '.$css[3].'"><span>3</span>TERMINI E CONDIZIONI</div>
+                <div class="col-lg-3 text-lg-center menu-step '.$css[4].'"><span>4</span>RIEPILOGO</div>
             </div>
         </div>
     </div>';
@@ -1130,14 +1130,14 @@ function ProgressBarInviate($cf,$sid = null){
         }
     }
     $connessione->close();
-    return '<div class="col-lg-3 col-6 text-center">
+    return '
         <svg class="radial-progress sent" data-percentage="'.$percentageSent.'" viewBox="0 0 80 80">
             <circle class="incomplete" cx="40" cy="40" r="35"></circle>
             <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
             <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">'.$countSent.'</text>
         </svg>
         <p>Pratiche inviate</p>
-    </div>';
+    ';
 }    
  
 function ProgressBarInLavorazione($cf,$sid = null){
@@ -1158,14 +1158,14 @@ function ProgressBarInLavorazione($cf,$sid = null){
         }
     }
     $connessione->close();
-    return '<div class="col-lg-3 col-6 text-center">
+    return '
         <svg class="radial-progress working" data-percentage="'.$percentageWorking.'" viewBox="0 0 80 80">
             <circle class="incomplete" cx="40" cy="40" r="35"></circle>
             <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
             <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">'.$countWorking.'</text>
         </svg>
         <p>Pratiche in lavorazione</p>
-    </div>';
+    ';
 }
 
 function ProgressBarAccettate($cf,$sid = null){
@@ -1186,14 +1186,14 @@ function ProgressBarAccettate($cf,$sid = null){
         }
     }
     $connessione->close();
-    return '<div class="col-lg-3 col-6 text-center">
+    return '
         <svg class="radial-progress accepted" data-percentage="'.$percentageAccepted.'" viewBox="0 0 80 80">
             <circle class="incomplete" cx="40" cy="40" r="35"></circle>
             <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
             <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">'.$countAccepted.'</text>
         </svg>
         <p>Pratiche accettate</p>
-    </div>';    
+    ';    
 }
 
 function ProgressBarRifiutate($cf,$sid = null){
@@ -1214,14 +1214,14 @@ function ProgressBarRifiutate($cf,$sid = null){
         }
     }
     $connessione->close();
-    return '<div class="col-lg-3 col-6 text-center">
+    return '
         <svg class="radial-progress refused" data-percentage="'.$percentageRefused.'" viewBox="0 0 80 80">
             <circle class="incomplete" cx="40" cy="40" r="35"></circle>
             <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
             <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">'.$countRefused.'</text>
         </svg>
         <p>Pratiche rifiutate</p>
-    </div>';
+    ';
 }
 
 function ProgressBarBozze($cf){
@@ -1379,17 +1379,48 @@ function CheckRatingByCfService($cf,$servizio){
     $sql = "SELECT id AS Checked FROM rating
         WHERE userCf = '".$cf."'
         AND ServizioId = '".$servizio."'";
+    return $sql;
+    /*
     $result = $connessione->query($sql);
-    $return = '';
     if ($result->num_rows > 0) {
         return true;
     }else{
         return false;
     }
     $connessione->close();
+    */
 }
 
-function CallRatingLayout($prefix,$praticai,$servizio){
+function CheckRatingByCfServiceMain($ServizioId,$PraticaId){
+    $configDB = require './env/config.php';
+    $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sql = "SELECT id AS Checked FROM rating
+        WHERE PraticaId = '".$PraticaId."'
+        AND ServizioId = '".$ServizioId."'";
+    $result = $connessione->query($sql);
+    if ($result->num_rows > 0) {
+        return true;
+    }else{
+        $sql = "SELECT id AS Checked FROM rating
+            WHERE userCf = '".$_SESSION["CF"]."'
+            AND ServizioId = '".$ServizioId."'";
+        $result = $connessione->query($sql);
+        if ($result->num_rows > 0) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    $connessione->close();
+}
+
+function CallRatingLayout($prefix = null,$praticai = null,$servizio = null){
+    if(!isset($prefix)){
+        $ModalAppend = "Modal";
+    }else{
+        $ModalAppend = "";
+    }
+    
     
     $html = '<div class="it-page-section mb-30" id="'.$prefix.'valuta_servizio">
         <div class="cmp-card">
@@ -1399,88 +1430,154 @@ function CallRatingLayout($prefix,$praticai,$servizio){
                         <h2 class="title-xxlarge mb-3">Valuta il servizio</h2>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body">';
+                
+                    $html .= '<div id="risultato-rating" class="row">
+                        <div class="col-12">
+                            <div class="h4">Votazione inviata correttamente.</div>
+                        </div>';
+                        if(!isset($prefix)){
+                        $html .= '
+                        <div class="col-12 text-right">
+                            <button type="button" class="btn btn-default mt-4 btnCloseAndReload">Chiudi</button>
+                        </div>';
+                        }
+                    $html .= '</div>
+
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div id="risultato-rating" class="text-center">Votazione inviata correttamente.</div>
-                            <div class="rating-box" id="rating-box">
-                                <div class="feed_title">Quanto è stato facile usare questo servizio?</div>
-                                <div id="tutorial">
-                                    <input type="hidden" name="userCf" id="userCf" value="'.$_SESSION['CF'].'" />
-                                    <input type="hidden" name="ServizioId" id="ServizioId" value="'.$servizio.'" />
-                                    <input type="hidden" name="PraticaId" id="PraticaId" value="'.$praticai.'" />
-                                    <input type="hidden" name="rating" id="rating" value="" />
-                                    <ul>';
-                                        $i = 0;
-                                        for ($i = 0; $i <= 4; $i ++) {
-                                            $html .= '<li id="star-'.$i.'" onmouseover="highlightStar('.$i.');" onClick="addRating('.$i.');">&#9733;</li>';
-                                        }
-                                        $html .= '<div id="loader-icon">
-                                            <img src="./media/images/loader.gif" id="image-size" />
-                                        </div>
-                                    </ul>
-                                </div>
+                        <div class="col-12 rating-box" id="rating-box">
+                            <div class="feed_title">Quanto è stato facile usare questo servizio?</div>
+                            <div id="tutorial">
+                                <input type="hidden" name="userCf" id="userCf" value="'.$_SESSION['CF'].'" />
+                                <input type="hidden" name="ServizioId" id="ServizioId" value="'.$servizio.'" />
+                                <input type="hidden" name="PraticaId" id="PraticaId" value="'.$praticai.'" />
+                                <input type="hidden" name="ActualUrl" id="ActualUrl" value="" />
+                                <input type="hidden" name="rating" id="rating" value="" />
+                                <ul>';
+                                    $i = 1;
+                                    for ($i = 1; $i <= 5; $i ++) {
+                                        $html .= '<li id="star-'.$i.'" onmouseover="highlightStar'.$ModalAppend.'('.$i.');" onClick="addRating'.$ModalAppend.'('.$i.');">&#9733;</li>';
+                                    }
+                                    $html .= '<div id="loader-icon">
+                                        <img src="./media/images/loader.gif" id="image-size" />
+                                    </div>
+                                </ul>
                             </div>
-                            <div id="valutazione_positiva" class="hide mt-3">
-                                <div class="feed_title">Quali sono stati gli aspetti che hai preferito?</div>
-                                <div>
+                        </div>
+                    </div>
+                    <div id="valutazione_positiva" class="row hide mt-4">
+                        <div class="col-12">
+                            <div class="feed_title mb-2">Quali sono stati gli aspetti che hai preferito?</div>
+                            <div class="row">
+                                <div class="col-12">
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="positiva" id="positiva1" value="1" />
                                         <label class="form-check-label" for="positiva1">Le indicazioni erano chiare;</label>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="positiva" id="positiva2" value="2" />
                                         <label class="form-check-label" for="positiva2">Le indicazioni erano complete;</label>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="positiva" id="positiva3" value="3" />
                                         <label class="form-check-label" for="positiva3">Capivo sempre che stavo procedendo correttamente;</label>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="positiva" id="positiva4" value="4" />
                                         <label class="form-check-label" for="positiva4">Non ho avuto problemi tecnici;</label>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="positiva" id="positiva5" value="5" />
                                         <label class="form-check-label" for="positiva5">Altro.</label>
                                     </div>
-                                    <div class="form-check">
-                                        <label class="form-check-label" id="commento_positivo_txt">
-                                            <textarea id="commento_positivo" name="commento_positivo" rows="4" placeholder="Breve commento"></textarea>
-                                        </label>
-                                    </div>
-                                    <button type="button" id="btn_invia_feedback_positivo" name="btn_invia_feedback_positivo" class="btn btn-primary mt-3">Invia Feedback <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
                                 </div>
                             </div>
-                            <div id="valutazione_negativa" class="hide mt-3">
-                                <div class="feed_title">Dove hai incontrato le maggiori difficoltà?</div>
-                                <div>
+                            <div class="row">
+                                <div class="col-12 mt-3">
+                                    <div class="form-group">
+                                        <label for="commento_positivo">Lascia un breve commento</label>
+                                        <textarea class="form-control" id="commento_positivo" name="commento_positivo" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-right">
+                                    <button type="button" id="btn_invia_feedback_positivo" name="btn_invia_feedback_positivo" class="btn btn-primary mt-3">Invia Feedback <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="./lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                            
+                    <div id="valutazione_negativa" class="row hide mt-4">
+                        <div class="col-12">
+                            <div class="feed_title mb-2">Dove hai incontrato le maggiori difficoltà?</div>
+                            <div class="row">
+                                <div class="col-12">
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="negativa" id="negativa1" value="1" />
                                         <label class="form-check-label" for="negativa1">A volte le indicazioni non erano chiare;</label>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="negativa" id="negativa2" value="2" />
                                         <label class="form-check-label" for="negativa2">A volte le indicazioni non erano complete;</label>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="negativa" id="negativa3" value="3" />
                                         <label class="form-check-label" for="negativa3">A volte non capivo se stavo procedendo correttamente;</label>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="negativa" id="negativa4" value="4" />
                                         <label class="form-check-label" for="negativa4">Ho avuto problemi tecnici;</label>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="negativa" id="negativa5" value="5" />
                                         <label class="form-check-label" for="negativa5">Altro.</label>
                                     </div>
-                                    <div class="form-check">
-                                        <label class="form-check-label" id="commento_negativo_txt">
-                                            <textarea id="commento_negativo" name="commento_negativo" rows="4" placeholder="Breve commento"></textarea>
-                                        </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 mt-3">
+                                    <div class="form-group">
+                                        <label for="commento_negativo">Lascia un breve commento</label>
+                                        <textarea class="form-control" id="commento_negativo" name="commento_negativo" rows="3"></textarea>
                                     </div>
-                                    <button type="button" id="btn_invia_feedback_negativo" name="btn_invia_feedback_negativo" class="btn btn-primary mt-3">Invia Feedback <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-right">
+                                    <button type="button" id="btn_invia_feedback_negativo" name="btn_invia_feedback_negativo" class="btn btn-primary mt-3">Invia Feedback <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="./lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
                                 </div>
                             </div>
                         </div>
@@ -1489,5 +1586,42 @@ function CallRatingLayout($prefix,$praticai,$servizio){
             </div>
         </div>
     </div>';
+    return $html;
+}
+
+function ViewRatingStar($ServizioId,$PraticaId){
+    $configDB = require './env/config.php';
+    $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sql = "SELECT rating FROM rating
+        WHERE PraticaId = '".$PraticaId."'
+        AND ServizioId = '".$ServizioId."'";
+    $result = $connessione->query($sql);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $rating = $row["rating"];
+        }
+    }else{
+        $rating = 0;
+    }
+    $connessione->close();
+    
+    $html = '';
+    if($rating > 0){
+        $html .= '<div class="rating-box" id="rating-box">
+            <div id="tutorial">
+                <ul>';
+                    $i = 1;
+                    for ($i = 1; $i <= 5; $i ++) {
+                        if($i <= $rating){
+                            $html .= '<li id="star-'.$i.'" class="highlight">&#9733;</li>';
+                        }else{
+                            $html .= '<li id="star-'.$i.'">&#9733;</li>';
+                        }
+                    }
+                    $html .= '
+                </ul>
+            </div>
+        </div>';
+    }
     return $html;
 }

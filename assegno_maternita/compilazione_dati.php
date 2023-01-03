@@ -438,11 +438,11 @@
                                             <div class="row">
                                                 <div class="col-12 after-section">
                                                     <div class="row">
-                                                        <div class="col-lg-8 mb-3">
+                                                        <div class="col-lg-8 col-sm-6 mb-3">
                                                             <h6 id="am_uploadCartaIdentitaFronte_txt">Documento di identità (fronte) *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-4 text-right">
+                                                        <div class="col-lg-4 col-sm-6 text-right">
                                                             <input type="hidden" name="am_uploadCartaIdentitaFronteSaved" id="am_uploadCartaIdentitaFronteSaved" value="<?php echo $uploadCartaIdentitaFronteSaved; ?>" />
                                                             <input type="file" name="am_uploadCartaIdentitaFronte" id="am_uploadCartaIdentitaFronte" class="upload" />
                                                             <label for="am_uploadCartaIdentitaFronte" class="btn btn-primary">
@@ -457,11 +457,11 @@
                                                 </div>
                                                 <div class="col-12 after-section">
                                                     <div class="row">
-                                                        <div class="col-lg-8 mb-3">
+                                                        <div class="col-lg-8 col-sm-6 mb-3">
                                                             <h6 id="am_uploadCartaIdentitaRetro_txt">Documento di identità (retro) *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-4 text-right">
+                                                        <div class="col-lg-4 col-sm-6 text-right">
                                                             <input type="hidden" name="am_uploadCartaIdentitaRetroSaved" id="am_uploadCartaIdentitaRetroSaved" value="<?php echo $uploadCartaIdentitaRetroSaved; ?>" />
                                                             <input type="file" name="am_uploadCartaIdentitaRetro" id="am_uploadCartaIdentitaRetro" class="upload" />
                                                             <label for="am_uploadCartaIdentitaRetro" class="btn btn-primary">
@@ -476,11 +476,11 @@
                                                 </div>
                                                 <div class="col-12 after-section">
                                                     <div class="row">
-                                                        <div class="col-lg-8 mb-3">
+                                                        <div class="col-lg-8 col-sm-6 mb-3">
                                                             <h6 id="am_uploadTitoloSoggiorno_txt">Copia titolo di soggiorno oppure</br>ricevuta della richiesta di rilascio del permesso di soggiorno</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-4 text-right">
+                                                        <div class="col-lg-4 col-sm-6 text-right">
                                                             <input type="hidden" name="am_uploadTitoloSoggiornoSaved" id="am_uploadTitoloSoggiornoSaved" value="<?php echo $uploadTitoloSoggiornoSaved; ?>" />
                                                             <input type="file" name="am_uploadTitoloSoggiorno" id="am_uploadTitoloSoggiorno" class="upload" />
                                                             <label for="am_uploadTitoloSoggiorno" class="btn btn-primary">
@@ -495,12 +495,12 @@
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <div class="row">
-                                                        <div class="col-lg-8 mb-3">
+                                                        <div class="col-lg-8 col-sm-6 mb-3">
                                                             <h6 id="am_uploadDichiarazioneDatoreLavoro_txt">Copia della dichiarazione del datore di lavoro relativa all’importo percepito per la maternità</h6>
                                                             <p><em><small>(nel caso di richiesta della quota differenziale dell’assegno di maternità)</small></em></p>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-4 text-right">
+                                                        <div class="col-lg-4 col-sm-6 text-right">
                                                             <input type="hidden" name="am_uploadDichiarazioneDatoreLavoroSaved" id="am_uploadDichiarazioneDatoreLavoroSaved" value="<?php echo $uploadDichiarazioneDatoreLavoroSaved; ?>" />
                                                             <input type="file" name="am_uploadDichiarazioneDatoreLavoro" id="am_uploadDichiarazioneDatoreLavoro" class="upload" />
                                                             <label for="am_uploadDichiarazioneDatoreLavoro" class="btn btn-primary">

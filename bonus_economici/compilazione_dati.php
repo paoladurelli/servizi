@@ -426,11 +426,11 @@
                                             <div class="row hide" id="be_PotereFirma">
                                                 <div class="col-12 after-section">
                                                     <div class="row">
-                                                        <div class="col-lg-8 mb-3">
+                                                        <div class="col-lg-8 col-sm-6 mb-3">
                                                             <h6 id="be_uploadPotereFirma_txt">Documento che attesta potere di firma</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-4 text-right">
+                                                        <div class="col-lg-4 col-sm-6 text-right">
                                                             <input type="hidden" name="be_uploadPotereFirmaSaved" id="be_uploadPotereFirmaSaved" value="<?php echo $uploadPotereFirmaSaved; ?>" />
                                                             <input type="file" name="be_uploadPotereFirma" id="be_uploadPotereFirma" class="upload" value="<?php echo $uploadPotereFirmaSaved; ?>" />
                                                             <label for="be_uploadPotereFirma">
@@ -447,11 +447,11 @@
                                             <div class="row">
                                                 <div class="col-12 after-section">
                                                     <div class="row">
-                                                        <div class="col-lg-8 mb-3">
+                                                        <div class="col-lg-8 col-sm-6 mb-3">
                                                             <h6 id="be_uploadIsee_txt">ISEE *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-4 text-right">
+                                                        <div class="col-lg-4 col-sm-6 text-right">
                                                             <input type="hidden" name="be_uploadIseeSaved" id="be_uploadIseeSaved" value="<?php echo $uploadIseeSaved; ?>" />
                                                             <input type="file" name="be_uploadIsee" id="be_uploadIsee" class="upload" value="<?php echo $uploadIseeSaved; ?>" />
                                                             <label for="be_uploadIsee">
@@ -468,12 +468,12 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="row">
-                                                        <div class="col-lg-8 mb-3">
+                                                        <div class="col-lg-8 col-sm-6 mb-3">
                                                             <h6 id="be_uploadDocumentazione_txt">Documentazione utile al riconoscimento del contributo *</h6>
                                                             <p><em><small>(esempi: contratto affitto, bollette, spese sanitarie, debiti…)</small></em></p>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>                                                    
-                                                        <div class="col-lg-4 text-right">
+                                                        <div class="col-lg-4 col-sm-6 text-right">
                                                             <input type="hidden" name="be_uploadDocumentazioneSaved" id="be_uploadDocumentazioneSaved" value="<?php echo $uploadDocumentazioneSaved; ?>" />
                                                             <input type="file" name="be_uploadDocumentazione[]" id="be_uploadDocumentazione" class="upload" multiple="multiple" value="" />
                                                             <label for="be_uploadDocumentazione">

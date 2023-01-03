@@ -420,11 +420,11 @@
                                             <div class="row hide" id="dc_PotereFirma">
                                                 <div class="col-12 after-section">
                                                     <div class="row">
-                                                        <div class="col-lg-8 mb-3">
+                                                        <div class="col-lg-8 col-sm-6 mb-3">
                                                             <h6 id="dc_uploadPotereFirma_txt">Documento che attesta potere di firma</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-4 text-right">
+                                                        <div class="col-lg-4 col-sm-6 text-right">
                                                             <input type="hidden" name="dc_uploadPotereFirmaSaved" id="dc_uploadPotereFirmaSaved" value="<?php echo $uploadPotereFirmaSaved; ?>" />
                                                             <input type="file" name="dc_uploadPotereFirma" id="dc_uploadPotereFirma" class="upload" value="<?php echo $uploadPotereFirmaSaved; ?>" />
                                                             <label for="dc_uploadPotereFirma">
@@ -441,12 +441,12 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="row">
-                                                        <div class="col-lg-8 mb-3">
+                                                        <div class="col-lg-8 col-sm-6 mb-3">
                                                             <h6 id="dc_uploadDocumentazione_txt">Documentazione utile al riconoscimento del contributo *</h6>
                                                             <p><em><small>(esempi: contratto affitto, bollette, spese sanitarie, debiti…)</small></em></p>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>                                                    
-                                                        <div class="col-lg-4 text-right">
+                                                        <div class="col-lg-4 col-sm-6 text-right">
                                                             <input type="hidden" name="dc_uploadDocumentazioneSaved" id="dc_uploadDocumentazioneSaved" value="<?php echo $uploadDocumentazioneSaved; ?>" />
                                                             <input type="file" name="dc_uploadDocumentazione[]" id="dc_uploadDocumentazione" class="upload" multiple="multiple" value="" />
                                                             <label for="dc_uploadDocumentazione">

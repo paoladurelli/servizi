@@ -3030,17 +3030,144 @@ $(function(){
         event.preventDefault();
     });
     /* Cancella Messaggi - END */
+    
+    /* Apri modal per Voto - START */
+    $(".addVote").click(function(){
+        var ServizioId = $(this).data("servizio-id");
+        var PraticaId = $(this).data("pratica-id");
+        var ActualUrl = $(this).data("link");
+        
+        $("#modalRating #tutorial #ServizioId").val(ServizioId);
+        $("#modalRating #tutorial #PraticaId").val(PraticaId);
+        $("#modalRating #tutorial #ActualUrl").val(ActualUrl);
+        
+        $('#modalRating').modal('toggle');
+        event.preventDefault();
+    });    
+    /* Apri modal per Voto - END */
 });
+/* funzioni rating modal - START */
+$("#modalRating #valutazione_positiva").hide();
+$("#modalRating #valutazione_negativa").hide();
 
-/* funzioni rating - START */
+function highlightStarModal(id) {
+    removeHighlightModal();
+    $('#modalRating #tutorial li').each(function(index) {
+        $(this).addClass('highlight');
+        if(index+1 >= id){
+            return false;
+        }
+    });
+}
+
+function removeHighlightModal() {
+    $('#modalRating #tutorial li').removeClass('highlight');
+}
+
+function addRatingModal(id){
+    rating = id;
+    $("#modalRating #tutorial #loader-icon").hide();
+    if(rating <= 3){
+        $("#modalRating #tutorial #rating").val(rating);
+        $("#modalRating #valutazione_positiva").hide();
+        $("#modalRating #valutazione_negativa").show();
+    }else{
+        $("#modalRating #tutorial #rating").val(rating);
+        $("#modalRating #valutazione_positiva").show();
+        $("#modalRating #valutazione_negativa").hide();
+    }
+}
+
+function resetRatingModal() {
+    $('#modalRating #tutorial li').removeClass('highlight');
+}
+
+$(function(){
+    $("#modalRating #risultato-rating").hide();
+    
+    $("#modalRating .btnCloseAndReload").click(function(){
+        window.location.href = $("#modalRating #tutorial #ActualUrl").val();
+        event.preventDefault();
+    });
+    
+    $("#modalRating #btn_invia_feedback_positivo").click(function(){
+        rating = parseInt($("#modalRating #tutorial #rating").val()) + 1;
+        
+        formData = new FormData();
+        formData.append("userCf", $("#modalRating #tutorial #userCf").val());
+        formData.append("ServizioId",$("#modalRating #tutorial #ServizioId").val());
+        formData.append("PraticaId", $("#modalRating #tutorial #PraticaId").val());
+        formData.append("rating", rating);
+        formData.append("positiva", $("#modalRating input[name='positiva']:checked").val());
+        formData.append("negativa", '');
+        formData.append("commento", $("#modalRating #commento_positivo").val());
+
+        $.ajax({
+            type: "POST",
+            url: "./fun/addRating.php",
+            data: formData,
+            dataType: "json",
+            processData: false,
+            contentType: false,
+            success: function (data)
+            {
+                $("#modalRating #rating-box").hide();
+                $("#modalRating #valutazione_positiva").hide();
+                $("#modalRating #valutazione_negativa").hide();
+                $("#modalRating #risultato-rating").show();
+            },
+            error: function (desc)
+            {
+                console.log(desc.statusText);
+            }
+        });
+    });
+    
+    $("#modalRating #btn_invia_feedback_negativo").click(function(){
+        rating = parseInt($("#modalRating #tutorial #rating").val()) + 1;
+        
+        formData = new FormData();
+        formData.append("userCf", $("#modalRating #tutorial #userCf").val());
+        formData.append("ServizioId",$("#modalRating #tutorial #ServizioId").val());
+        formData.append("PraticaId", $("#modalRating #tutorial #PraticaId").val());
+        formData.append("rating", rating);
+        formData.append("positiva", '');
+        formData.append("negativa", $("#modalRating input[name='negativa']:checked").val());
+        formData.append("commento", $("#modalRating #commento_negativo").val());
+
+        $.ajax({
+            type: "POST",
+            url: "../fun/addRating.php",
+            data: formData,
+            dataType: "json",
+            processData: false,
+            contentType: false,
+            success: function (data)
+            {
+                $("#modalRating #rating-box").hide();
+                $("#modalRating #valutazione_positiva").hide();
+                $("#modalRating #valutazione_negativa").hide();
+                $("#modalRating #risultato-rating").show();
+            },
+            error: function (desc)
+            {
+                console.log(desc.statusText);
+            }
+        });
+    });
+
+});
+/* funzioni rating modal - END */
+
+/* funzioni rating onpage - START */
 $("#valutazione_positiva").hide();
 $("#valutazione_negativa").hide();
 
 function highlightStar(id) {
-    removeHighlight();
+    /*removeHighlight();*/
     $('#tutorial li').each(function(index) {
         $(this).addClass('highlight');
-        if(index === id){        
+        if(index+1 >= id){
             return false;
         }
     });
@@ -3051,9 +3178,9 @@ function removeHighlight() {
 }
 
 function addRating(id){
-    rating = id + 1;
+    rating = id;
     $("#tutorial #loader-icon").hide();
-    if(rating <= 3){
+    if(rating <= 5){
         $("#tutorial #rating").val(rating);
         $("#valutazione_positiva").hide();
         $("#valutazione_negativa").show();
@@ -3139,7 +3266,4 @@ $(function(){
     });
 
 });
-
-
-
-/* funzioni rating - END */
+/* funzioni rating onpage - END */

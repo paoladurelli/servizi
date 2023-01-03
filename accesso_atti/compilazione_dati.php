@@ -780,11 +780,11 @@
                                             <div class="row">
                                                 <div class="col-12 after-section">
                                                     <div class="row">
-                                                        <div class="col-lg-8 mb-3">
+                                                        <div class="col-lg-8 col-sm-6 mb-3">
                                                             <h6 id="aa_uploadCartaIdentitaFronte_txt">Carta d'Identita Fronte *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>                                                    
-                                                        <div class="col-lg-4 text-right">
+                                                        <div class="col-lg-4 col-sm-6 text-right">
                                                             <input type="hidden" name="aa_uploadCartaIdentitaFronteSaved" id="aa_uploadCartaIdentitaFronteSaved" value="<?php echo $uploadCartaIdentitaFronteSaved; ?>" />
                                                             <input type="file" name="aa_uploadCartaIdentitaFronte" id="aa_uploadCartaIdentitaFronte" class="upload" value="" />
                                                             <label for="aa_uploadCartaIdentitaFronte">
@@ -801,11 +801,11 @@
                                             <div class="row">
                                                 <div class="col-12 after-section">
                                                     <div class="row">
-                                                        <div class="col-lg-8 mb-3">
+                                                        <div class="col-lg-8 col-sm-6 mb-3">
                                                             <h6 id="aa_uploadCartaIdentitaRetro_txt">Carta d'Identita Retro *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-4 text-right">
+                                                        <div class="col-lg-4 col-sm-6 text-right">
                                                             <input type="hidden" name="aa_uploadCartaIdentitaRetroSaved" id="aa_uploadCartaIdentitaRetroSaved" value="<?php echo $uploadCartaIdentitaRetroSaved; ?>" />
                                                             <input type="file" name="aa_uploadCartaIdentitaRetro" id="aa_uploadCartaIdentitaRetro" class="upload" value="<?php echo $uploadCartaIdentitaRetroSaved; ?>" />
                                                             <label for="aa_uploadCartaIdentitaRetro">
@@ -822,11 +822,11 @@
                                             <div class="row">
                                                 <div class="col-12 after-section" id="aa_pnl_uploadAffittuario">
                                                     <div class="row">
-                                                        <div class="col-lg-8 mb-3">
+                                                        <div class="col-lg-8 col-sm-6 mb-3">
                                                             <h6 id="aa_uploadAffittuario_txt">Documentazione comprovante il titolo dichiarato: Affittuario *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>                                                    
-                                                        <div class="col-lg-4 text-right">
+                                                        <div class="col-lg-4 col-sm-6 text-right">
                                                             <input type="hidden" name="aa_uploadAffittuarioSaved" id="aa_uploadAffittuarioSaved" value="<?php echo $uploadAffittuarioSaved; ?>" />
                                                             <input type="file" name="aa_uploadAffittuario" id="aa_uploadAffittuario" class="upload" value="<?php echo $uploadAffittuarioSaved; ?>" />
                                                             <label for="aa_uploadAffittuario">
@@ -843,11 +843,11 @@
                                             <div class="row">
                                                 <div class="col-12 after-section" id="aa_pnl_uploadAltroSoggetto">
                                                     <div class="row">
-                                                        <div class="col-lg-8 mb-3">
+                                                        <div class="col-lg-8 col-sm-6 mb-3">
                                                             <h6 id="aa_uploadAltroSoggetto_txt">Documentazione comprovante il titolo dichiarato: professionista incaricato da altro soggetto *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-4 text-right">
+                                                        <div class="col-lg-4 col-sm-6 text-right">
                                                             <input type="hidden" name="aa_uploadAltroSoggettoSaved" id="aa_uploadAltroSoggettoSaved" value="<?php echo $uploadAltroSoggettoSaved; ?>" />
                                                             <input type="file" name="aa_uploadAltroSoggetto" id="aa_uploadAltroSoggetto" class="upload" value="<?php echo $uploadAltroSoggettoSaved; ?>" />
                                                             <label for="aa_uploadAltroSoggetto">
@@ -864,7 +864,7 @@
                                             <div class="row">
                                                 <div class="col-12 after-section" id="aa_pnl_uploadNotaioRogante">
                                                     <div class="row">
-                                                        <div class="col-lg-8 mb-3">
+                                                        <div class="col-lg-8 col-sm-6 mb-3">
                                                             <h6 id="aa_uploadNotaioRogante_txt">Documentazione comprovante il titolo dichiarato: Notaio Rogante *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
@@ -885,11 +885,11 @@
                                             <div class="row">
                                                 <div class="col-12 after-section" id="aa_pnl_uploadAltriTitoloDescrizione">
                                                     <div class="row">
-                                                        <div class="col-lg-8 mb-3">
+                                                        <div class="col-lg-8 col-sm-6 mb-3">
                                                             <h6 id="aa_uploadAltriTitoloDescrizione_txt">Documentazione comprovante il titolo dichiarato: Altro Titolo *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-4 text-right">
+                                                        <div class="col-lg-4 col-sm-6 text-right">
                                                             <input type="hidden" name="aa_uploadAltriTitoloDescrizioneSaved" id="aa_uploadAltriTitoloDescrizioneSaved" value="<?php echo $uploadAltriTitoloDescrizioneSaved; ?>" />
                                                             <input type="file" name="aa_uploadAltriTitoloDescrizione" id="aa_uploadAltriTitoloDescrizione" class="upload" value="<?php echo $uploadAltriTitoloDescrizioneSaved; ?>" />
                                                             <label for="aa_uploadAltriTitoloDescrizione">
@@ -906,11 +906,11 @@
                                             <div class="row">
                                                 <div class="col-12 after-section" id="aa_pnl_uploadAttoNotarile">
                                                     <div class="row">
-                                                        <div class="col-lg-8 mb-3">
+                                                        <div class="col-lg-8 col-sm-6 mb-3">
                                                             <h6 id="aa_uploadAttoNotarile_txt">Atto notarile con il quale è stata conferita la procura *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
-                                                        </div>                                                    
-                                                        <div class="col-lg-4 text-right">
+                                                        </div>
+                                                        <div class="col-lg-4 col-sm-6 text-right">
                                                             <input type="hidden" name="aa_uploadAttoNotarileSaved" id="aa_uploadAttoNotarileSaved" value="<?php echo $uploadAttoNotarileSaved; ?>" />
                                                             <input type="file" name="aa_uploadAttoNotarile" id="aa_uploadAttoNotarile" class="upload" value="" />
                                                             <label for="aa_uploadAttoNotarile">

@@ -125,15 +125,59 @@
                     </div>
                     <div class="col-12 col-lg-9 body-attivita">
                         <div class="row after-section">
+                            <div id="carouselExampleControls" class="carousel slide d-lg-none" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item col-lg-3 col-12 text-center active">
+                                    <?php 
+                                        echo ProgressBarInviate($_SESSION['CF']);
+                                    ?>
+                                    </div>
+                                    <div class="carousel-item col-lg-3 col-12 text-center">
+                                    <?php 
+                                        echo ProgressBarInLavorazione($_SESSION['CF']);
+                                    ?>
+                                    </div>
+                                    <div class="carousel-item col-lg-3 col-12 text-center">
+                                    <?php 
+                                        echo ProgressBarAccettate($_SESSION['CF']);
+                                    ?>
+                                    </div>
+                                    <div class="carousel-item col-lg-3 col-12 text-center">
+                                    <?php 
+                                        echo ProgressBarRifiutate($_SESSION['CF']);
+                                    ?>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                            
+                            <div class="col-lg-3 col-6 text-center d-none d-lg-block">
                             <?php 
-                            echo ProgressBarInviate($_SESSION['CF']);
-                            
-                            echo ProgressBarInLavorazione($_SESSION['CF']);
-                            
-                            echo ProgressBarAccettate($_SESSION['CF']);
-                            
-                            echo ProgressBarRifiutate($_SESSION['CF']);
+                                echo ProgressBarInviate($_SESSION['CF']);
                             ?>
+                            </div>
+                            <div class="col-lg-3 col-6 text-center d-none d-lg-block">
+                            <?php 
+                                echo ProgressBarInLavorazione($_SESSION['CF']);
+                            ?>
+                            </div>
+                            <div class="col-lg-3 col-6 text-center d-none d-lg-block">
+                            <?php 
+                                echo ProgressBarAccettate($_SESSION['CF']);
+                            ?>
+                            </div>
+                            <div class="col-lg-3 col-6 text-center d-none d-lg-block">
+                            <?php 
+                                echo ProgressBarRifiutate($_SESSION['CF']);
+                            ?>
+                            </div>
                         </div>
                         <div class="it-page-section mb-50 mb-lg-90" id="attivita">
                             <div class="row mb-20">

@@ -43,7 +43,7 @@
                 echo '<div class="col-lg-6">
                     <div class="cmp-card-latest-messages mb-4">
                         <div class="card shadow-sm">
-                            <div class="card-header border-0 p-0 m-0">
+                            <div class="card-header border-0 p-lg-0 m-0">
                                 <div class="row mb-2">
                                     <div class="col-6">
                                         <date class="date-xsmall">'.date_format($date,"d/m/Y").'</date>
@@ -63,7 +63,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body p-0">
+                            <div class="card-body p-lg-1">
                                 <div class="row">
                                     <div class="col-lg-12 after-section-small">
                                         '.CfAltroByPraticaId($row['ServizioId'],$row["pratica_id"]).
@@ -72,11 +72,21 @@
                                 <div class="row">
                                     <div class="col-lg-12">';
                                         if($row['StatusId'] > 1){
-                                            echo '<div class="row">
-                                                <div class="col-12 text-right">
-                                                    <a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="btn-small btn-primary">Consulta</a>
-                                                </div>
-                                            </div>';
+                                            echo '<div class="row">';
+                                                if(!CheckRatingByCfServiceMain($row["ServizioId"],$row["pratica_id"])){
+                                                    echo '<div class="col-12 text-right">
+                                                        <a href="#" class="btn-small btn-primary addVote" data-servizio-id="'.$row["ServizioId"].'" data-pratica-id="'.$row["pratica_id"].'"  data-link="'.$_SERVER['REQUEST_URI'].'">Valuta</a>
+                                                        <a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="btn-small btn-primary">Consulta</a>
+                                                    </div>';
+                                                }else{
+                                                    echo '<div class="col-6 text-left">';
+                                                        echo ViewRatingStar($row["ServizioId"],$row["pratica_id"]);
+                                                    echo '</div>';
+                                                    echo '<div class="col-6 text-right">
+                                                        <a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="btn-small btn-primary">Consulta</a>
+                                                    </div>';
+                                                }
+                                            echo '</div>';
                                         }else{
                                             echo '<div class="row">
                                                 <div class="col-12 text-right">

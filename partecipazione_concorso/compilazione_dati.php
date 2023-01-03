@@ -517,11 +517,11 @@
                                             <div class="row">
                                                 <div class="col-12 after-section">
                                                     <div class="row">
-                                                        <div class="col-lg-8 mb-3">
+                                                        <div class="col-lg-8 col-sm-6 mb-3">
                                                             <h6 id="pc_uploadCartaIdentitaFronte_txt">Documento di identità (fronte) *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-4 text-right">
+                                                        <div class="col-lg-4 col-sm-6 text-right">
                                                             <input type="hidden" name="pc_uploadCartaIdentitaFronteSaved" id="pc_uploadCartaIdentitaFronteSaved" value="<?php echo $uploadCartaIdentitaFronteSaved; ?>" />
                                                             <input type="file" name="pc_uploadCartaIdentitaFronte" id="pc_uploadCartaIdentitaFronte" class="upload" value="<?php echo $uploadCartaIdentitaFronteSaved; ?>" />
                                                             <label for="pc_uploadCartaIdentitaFronte">
@@ -538,11 +538,11 @@
                                             <div class="row">
                                                 <div class="col-12 after-section">
                                                     <div class="row">
-                                                        <div class="col-lg-8 mb-3">
+                                                        <div class="col-lg-8 col-sm-6 mb-3">
                                                             <h6 id="pc_uploadCartaIdentitaRetro_txt">Documento di identità (retro) *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
-                                                        <div class="col-lg-4 text-right">
+                                                        <div class="col-lg-4 col-sm-6 text-right">
                                                             <input type="hidden" name="pc_uploadCartaIdentitaRetroSaved" id="pc_uploadCartaIdentitaRetroSaved" value="<?php echo $uploadCartaIdentitaRetroSaved; ?>" />
                                                             <input type="file" name="pc_uploadCartaIdentitaRetro" id="pc_uploadCartaIdentitaRetro" class="upload" value="<?php echo $uploadCartaIdentitaRetroSaved; ?>" />
                                                             <label for="pc_uploadCartaIdentitaRetro">
@@ -559,11 +559,11 @@
                                             <div class="row">
                                                 <div class="col-12 after-section">
                                                     <div class="row">
-                                                        <div class="col-lg-8 mb-3">
+                                                        <div class="col-lg-8 col-sm-6 mb-3">
                                                             <h6 id="pc_uploadCV_txt">Curriculum Vitae *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>                                                    
-                                                        <div class="col-lg-4 text-right">
+                                                        <div class="col-lg-4 col-sm-6 text-right">
                                                             <input type="hidden" name="pc_uploadCVSaved" id="pc_uploadCVSaved" value="<?php echo $uploadCVSaved; ?>" />
                                                             <input type="file" name="pc_uploadCV" id="pc_uploadCV" class="upload" value="" />
                                                             <label for="pc_uploadCV">
@@ -580,11 +580,11 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="row">
-                                                        <div class="col-lg-8 mb-3">
+                                                        <div class="col-lg-8 col-sm-6 mb-3">
                                                             <h6 id="dc_uploadTitoliPreferenza_txt">Titoli di precedenza o preferenza</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>                                                    
-                                                        <div class="col-lg-4 text-right">
+                                                        <div class="col-lg-4 col-sm-6 text-right">
                                                             <input type="hidden" name="pc_uploadTitoliPreferenzaSaved" id="pc_uploadTitoliPreferenzaSaved" value="<?php echo $uploadTitoliPreferenzaSaved; ?>" />
                                                             <input type="file" name="pc_uploadTitoliPreferenza[]" id="pc_uploadTitoliPreferenza" class="upload" multiple="multiple" value="" />
                                                             <label for="pc_uploadTitoliPreferenza">

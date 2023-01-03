@@ -71,6 +71,7 @@
     $uploadCartaIdentitaFronte = "";
     $uploadCartaIdentitaRetro = "";
     $uploadAttoNotarile = "";
+    $data_compilazione = "";
 
     
     /* con l'id vado a richiamare i dati salvati */
@@ -143,6 +144,7 @@
                 $uploadCartaIdentitaFronte = $row["uploadCartaIdentitaFronte"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadCartaIdentitaFronte"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>" : "";
                 $uploadCartaIdentitaRetro = $row["uploadCartaIdentitaRetro"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadCartaIdentitaRetro"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>" : "";
                 $uploadAttoNotarile = $row["uploadAttoNotarile"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadAttoNotarile"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>" : "";
+                $data_compilazione = $row['data_compilazione'];
             }
         }
         $connessione->close();
@@ -216,6 +218,18 @@
                                                                         <span class="title-medium">Allegati</span>
                                                                     </a>
                                                                 </li>
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link" href="#aa_prossimi_passi">
+                                                                        <span class="title-medium">Prossimi passi</span>
+                                                                    </a>
+                                                                </li>
+                                                                <?php if(!CheckRatingByCfService($_SESSION['CF'],'6')){ ?>
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link" href="#aa_valuta_servizio">
+                                                                            <span class="title-medium">Valuta il servizio</span>
+                                                                        </a>
+                                                                    </li>
+                                                                <?php } ?>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -729,6 +743,58 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="it-page-section mb-30" id="aa_prossimi_passi">
+                                <div class="cmp-card">
+                                    <div class="card">
+                                        <div class="card-header border-0 p-0 m-0">
+                                            <div>
+                                                <h2 class="title-xxlarge mb-3">Prossimi passi</h2>
+                                            </div>
+                                        </div>
+                                        <div class="card-body mb-0">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="row stepper">
+                                                        <div class="offset-md-1 col-md-11 col-12">
+                                                            <div class="step">
+                                                                <div class="date-step">
+                                                                    <span class="date-step-giorno"><?php echo date("d", strtotime($data_compilazione)); ?></span><br>
+                                                                    <span class="date-step-mese"><?php echo date("M/Y", strtotime($data_compilazione)); ?></span>
+                                                                    <span class="pallino"></span>
+                                                                </div>
+                                                                <div class="testo-step">
+                                                                    <div class="scheda-gestione">
+                                                                        <p>Data invio richiesta</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="step">
+                                                                <div class="date-step">
+                                                                    <span class="date-step-giorno"><?php echo date('d', strtotime($data_compilazione. ' + 7 days')); ?></span><br>
+                                                                    <span class="date-step-mese"><?php echo date('M/Y', strtotime($data_compilazione. ' + 7 days')); ?></span>
+                                                                    <span class="pallino"></span>
+                                                                </div>
+                                                                <div class="testo-step">
+                                                                    <div class="scheda-gestione">
+                                                                        <p>Data esito richiesta</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <?php 
+                            if(!CheckRatingByCfService($_SESSION['CF'],'6')){ 
+                                echo CallRatingLayout('aa_',$_GET["aa_pratica_id"],6);
+                            }
+                            ?>
                         </div>
                        
                         <div class="row">
