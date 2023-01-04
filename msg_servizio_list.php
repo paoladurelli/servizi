@@ -28,48 +28,11 @@
                         <p class="subtitle-small">CF: <?php echo $_SESSION['CF']; ?></p>
                     </div>
                 </div>
-                <div class="col-12 p-0">
-                    <div class="cmp-nav-tab mb-4 mb-lg-5 mt-lg-4">
-                        <ul class="nav nav-tabs nav-tabs-icon-text w-100 flex-nowrap">
-                            <li class="nav-item w-100 me-2 p-1">
-                                <a class="nav-link text-center pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab" href="bacheca.php">
-                                    <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true">
-                                        <use href="./lib/svg/sprites.svg#it-pa"></use>
-                                    </svg>
-                                    <span class="d-none d-lg-block">Scrivania</span>
-                                </a>
-                            </li>
-                            <li class="nav-item w-100 me-2 p-1">
-                                <a class="nav-link text-center pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab active" href="#">
-                                    <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true">
-                                        <use href="./lib/svg/sprites.svg#it-mail"></use>
-                                    </svg>
-                                    <span class="d-none d-lg-block">Messaggi</span>
-                                </a>
-                            </li>
-                            <li class="nav-item w-100 me-2 p-1">
-                                <a class="nav-link text-center pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab" href="attivita_list.php">
-                                    <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true">
-                                        <use href="./lib/svg/sprites.svg#it-files"></use>
-                                    </svg>
-                                    <span class="d-none d-lg-block">Attività</span>
-                                </a>
-                            </li>
-                            <li class="nav-item w-100 me-2 p-1">
-                                <a class="nav-link text-center pe-lg-none pb-lg-15 ps-lg-3 me-lg-5 text-tab" href="servizi_list.php">
-                                    <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true">
-                                        <use href="./lib/svg/sprites.svg#it-settings"></use>
-                                    </svg>
-                                    <span class="d-none d-lg-block">Servizi</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <?php echo ViewMenuMain(2); ?>
             </div>
             <div class="it-page-sections-container">
                 <div class="row">
-                    <div class="col-12 col-lg-3">
+                    <div class="col-12 col-xl-3">
                         <div class="cmp-navscroll sticky-top" aria-labelledby="accordion-title-one">
                             <nav class="navbar it-navscroll-wrapper navbar-expand-lg" data-bs-navscroll>
                                 <div class="navbar-custom" id="navbarNavProgress">
@@ -114,7 +77,7 @@
                             </nav>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-9 body-attivita">
+                    <div class="col-12 col-xl-9 body-attivita">
                         <div class="it-page-section mb-50 mb-lg-90" id="attivita">
                             <div class="row mb-20 after-section">
                                 <div class="col-12 text-right">

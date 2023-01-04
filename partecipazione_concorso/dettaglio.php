@@ -212,6 +212,14 @@
                                                                         <span class="title-medium">Prossimi passi</span>
                                                                     </a>
                                                                 </li>
+                                                                <?php if(!CheckRatingByCfService($_SESSION['CF'],'16')){ ?>
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link" href="#pc_valuta_servizio">
+                                                                            <span class="title-medium">Valuta il servizio</span>
+                                                                        </a>
+                                                                    </li>
+                                                                <?php } ?>
+
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -226,7 +234,7 @@
 
                     <div class="col-12 col-lg-9 body-riepilogo">
                         <div class="row">
-                            <div class="col-12 p-0  menu-servizi">
+                            <div class="col-12 menu-servizi">
                                 <div class="cmp-nav-tab mb-4 mb-lg-5 mt-lg-4">
                                     <div class="row">
                                         <div class="col-12"><span class="active"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right-circle"></use></svg>Stato pratica: <b><?php echo NameStatusById($status_id); ?></b></span></div>
@@ -567,9 +575,14 @@
                                 </div>
                             </div>
                         </div>
+                        <?php 
+                        if(!CheckRatingByCfService($_SESSION['CF'],'16')){ 
+                            echo CallRatingLayout('pc_',$_GET["pc_pratica_id"],16);
+                        }
+                        ?>
                         <div class="row">
                             <div class="col-12 text-right mb-20">
-                                <a href="..\attivita_list.php" class="btn btn-secondary"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true" fill="#fff"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
+                                <a href="..\attivita_list.php" class="btn btn-secondary mr-lg-40"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true" fill="#fff"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
                             </div>
                         </div>
                     </div>

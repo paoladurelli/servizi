@@ -109,7 +109,7 @@
             
             <div class="it-page-sections-container">
                 <div class="row">
-                    <div class="col-12 col-lg-3 d-lg-block mb-4 d-none">
+                    <div class="col-12 col-xl-3 d-xl-block mb-4 d-none">
                         <div class="cmp-navscroll sticky-top" aria-labelledby="accordion-title-one">
                             <nav class="navbar it-navscroll-wrapper navbar-expand-lg" data-bs-navscroll>
                                 <div class="navbar-custom" id="navbarNavProgress">
@@ -165,7 +165,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-lg-9 body-dichiarazioni after-section">
+                    <div class="col-12 col-xl-9 body-dichiarazioni after-section">
                         <div class="it-page-section mb-30" id="pc_richiedente">
                             <div class="cmp-card">
                                 <div class="card">
@@ -460,11 +460,11 @@
 
 
                 <div class="row" id="pc_dichiarazione">
-                    <div class="col-12 col-lg-9 offset-lg-3">
+                    <div class="col-xl-9 offset-xl-3">
                         <div class="it-page-section mb-30">
                             <div class="cmp-card">
                                 <div class="card">
-                                    <div class="card-body p-0">
+                                    <div class="card-body">
                                         <p>Il/la sottoscritto/a dichiara ai sensi dell’art. 76 del D.P.R. 445 del 28/12/2000, di essere a conoscenza delle responsabilità penali cui può andare incontro in caso di dichiarazioni mendaci.<br>
                                         (Le dichiarazioni sopra riportate sostituiscono a tutti gli effetti le corrispondenti certificazioni ai sensi dell’art.46 D.P.R. 445 del 28.12.2000)</p>
                                         <p>Il/la sottoscritto/a autorizza ai sensi dell’art. 23 del D. Lgs. 196 del 30.06.2003 e del Regolamento(UE) 2016/679, il Comune di <?php echo $configData['nome_comune']; ?> al trattamento dei propri dati sia personali che eventualmente sensibili ai soli fini del presente procedimento concorsuale e dell’eventuale assunzione, qualora assunto in servizio.</p>
@@ -476,12 +476,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div id="divButtons" class="col-lg-12 text-right mb-30">
-                        <a class="btn btn-default" href="compilazione_dati.php"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
-                        <form method="POST" action="#" name="pc_conferma_invia" id="pc_conferma_invia" class="display-inline">
-                            <input type="hidden" name="pratican" id="pratican" value="<?php echo $_GET['pratican']; ?>" />
-                            <button type="button" class="btn btn-primary">Conferma e invia <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
-                        </form>
+                    <div class="col-12">
+                        <div id="divButtons" class="float-right mr-lg-40">
+                            <a class="btn btn-default" href="compilazione_dati.php"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
+                            <form method="POST" action="#" name="pc_conferma_invia" id="pc_conferma_invia" class="display-inline">
+                                <input type="hidden" name="pratican" id="pratican" value="<?php echo $_GET['pratican']; ?>" />
+                                <button type="button" class="btn btn-primary">Conferma e invia <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

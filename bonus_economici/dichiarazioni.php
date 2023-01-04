@@ -88,7 +88,7 @@
             </div>
             <div class="it-page-sections-container">
                 <div class="row">
-                    <div class="col-12 col-lg-3 d-lg-block mb-4 d-none">
+                    <div class="col-12 col-xl-3 d-xl-block mb-4 d-none">
                         <div class="cmp-navscroll sticky-top" aria-labelledby="accordion-title-one">
                             <nav class="navbar it-navscroll-wrapper navbar-expand-lg" data-bs-navscroll>
                                 <div class="navbar-custom" id="navbarNavProgress">
@@ -148,7 +148,7 @@
                             </nav>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-9 body-dichiarazioni after-section">
+                    <div class="col-12 col-xl-9 body-dichiarazioni after-section">
                         <div class="it-page-section" id="be_richiedente">
                             <div class="cmp-card mb-30">
                                 <div class="card">
@@ -421,11 +421,11 @@
                     </div>
                 </div>
                 <div class="row" id="be_dichiarazioni">
-                    <div class="col-lg-9 offset-lg-3">
+                    <div class="col-xl-9 offset-xl-3">
                         <div class="it-page-section mb-30">
                             <div class="cmp-card">
                                 <div class="card">
-                                    <div class="card-body p-0">
+                                    <div class="card-body">
                                         <p>Ai sensi degli artt. 46, 47 e 48 del DPR 445/2000, consapevole delle responsabilità penali e delle sanzioni previste in caso di non veridicità del contenuto della presente dichiarazione, di dichiarazione mendace o di formazione di atti falsi di cui agli artt. 75 e 76 del DPR 445/2000, sotto la propria responsabilità</p>
                                         <ul>
                                             <li>di essere in possesso di ISEE in corso di validità e congruente allo stato di famiglia privo di omissioni e/o difformità;</li>
@@ -440,12 +440,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div id="divButtons" class="col-lg-12 text-right mb-30">
-                        <a class="btn btn-default" href="compilazione_dati.php"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
-                        <form method="POST" action="#" name="be_conferma_invia" id="be_conferma_invia" class="display-inline">
-                            <input type="hidden" name="pratican" id="pratican" value="<?php echo $_GET['pratican']; ?>" />
-                            <button type="button" class="btn btn-primary">Conferma e invia <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
-                        </form>
+                    <div class="col-12">
+                        <div id="divButtons" class="float-right mr-lg-40">
+                            <a class="btn btn-default" href="compilazione_dati.php"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
+                            <form method="POST" action="#" name="be_conferma_invia" id="be_conferma_invia" class="display-inline">
+                                <input type="hidden" name="pratican" id="pratican" value="<?php echo $_GET['pratican']; ?>" />
+                                <button type="button" class="btn btn-primary">Conferma e invia <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

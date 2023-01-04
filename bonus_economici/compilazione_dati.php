@@ -162,7 +162,7 @@
                 <input type="hidden" id="be_bozza_id" name="be_bozza_id" value="<?php echo $be_bozza_id; ?>"/>
                 <div class="it-page-sections-container">
                     <div class="row">
-                        <div class="col-12 col-lg-3 d-lg-block mb-4 d-none">
+                        <div class="col-12 col-xl-3 d-xl-block mb-4 d-none">
                             <div class="cmp-navscroll sticky-top" aria-labelledby="accordion-title-one">
                                 <nav class="navbar it-navscroll-wrapper navbar-expand-lg" data-bs-navscroll>
                                     <div class="navbar-custom" id="navbarNavProgress">
@@ -218,7 +218,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-9 body-compilazione-dati">
+                        <div class="col-12 col-xl-9 body-compilazione-dati">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div id="be_frm_dati_pnl_return"></div>
@@ -282,12 +282,12 @@
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <ul class="card_rb">
-                                                <li><label><input type="radio" id="be_rb_qualita_di" name="be_rb_qualita_di" value="D" <?php if($inQualitaDi == "D"){ echo 'checked'; } ?>>diretto interessato</label></li>
-                                                <li><label><input type="radio" id="be_rb_qualita_di" name="be_rb_qualita_di" value="T" <?php if($inQualitaDi == "T"){ echo 'checked'; } ?>>tutore</label></li>
-                                                <li><label><input type="radio" id="be_rb_qualita_di" name="be_rb_qualita_di" value="A" <?php if($inQualitaDi == "A"){ echo 'checked'; } ?>>amministratore di sostegno</label></li>
-                                                <li><label><input type="radio" id="be_rb_qualita_di" name="be_rb_qualita_di" value="P" <?php if($inQualitaDi == "P"){ echo 'checked'; } ?>>procuratore</label></li>
-                                                <li><label><input type="radio" id="be_rb_qualita_di" name="be_rb_qualita_di" value="E" <?php if($inQualitaDi == "E"){ echo 'checked'; } ?>>persona delegata</label></li>
+                                            <ul class="card_rb form-check">
+                                                <li><input type="radio" class="form-check-input" id="be_rb_qualita_diD" name="be_rb_qualita_di" value="D" <?php if($inQualitaDi == "D"){ echo 'checked'; } ?>><label class="form-check-label" for="be_rb_qualita_diD">diretto interessato</label></li>
+                                                <li><input type="radio" class="form-check-input" id="be_rb_qualita_diT" name="be_rb_qualita_di" value="T" <?php if($inQualitaDi == "T"){ echo 'checked'; } ?>><label class="form-check-label" for="be_rb_qualita_diT">tutore</label></li>
+                                                <li><input type="radio" class="form-check-input" id="be_rb_qualita_diA" name="be_rb_qualita_di" value="A" <?php if($inQualitaDi == "A"){ echo 'checked'; } ?>><label class="form-check-label" for="be_rb_qualita_diA">amministratore di sostegno</label></li>
+                                                <li><input type="radio" class="form-check-input" id="be_rb_qualita_diP" name="be_rb_qualita_di" value="P" <?php if($inQualitaDi == "P"){ echo 'checked'; } ?>><label class="form-check-label" for="be_rb_qualita_diP">procuratore</label></li>
+                                                <li><input type="radio" class="form-check-input" id="be_rb_qualita_diE" name="be_rb_qualita_di" value="E" <?php if($inQualitaDi == "E"){ echo 'checked'; } ?>><label class="form-check-label" for="be_rb_qualita_diE">persona delegata</label></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -377,37 +377,7 @@
                                         </div>
                                         <div class="card-body">
                                             <div id="be_pnl_metodi_pagamento">
-                                            <?php
-                                                $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-                                                $sql = "SELECT * FROM metodi_pagamento WHERE cf = '". $_SESSION['CF']."'";
-                                                $result = $connessione->query($sql);
-
-                                                if ($result->num_rows > 0) {
-                                                // output data of each row
-                                                    while($row = $result->fetch_assoc()) {
-                                                        echo '<div class="row mb-3">';
-                                                            echo '<div class="col-11"><p><label>';
-                                                                echo '<input type="radio" id="ckb_pagamento" name="ckb_pagamento" value="'.$row['id'].'" ';
-                                                                if($row["predefinito"]=='1'){ echo 'checked'; }
-                                                                if($row["predefinito"]==$tipoPagamento_id){ echo 'checked'; }
-                                                                if($row["id"]==$tipoPagamento_id){ echo 'checked'; }
-                                                                echo ' />&nbsp;' . NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"];
-                                                            echo '</label></p></div>';
-                                                            echo '<div class="col-1">';
-                                                                echo '<a href="#" class="delete_class" id="'.$row['id'].'" alt="cancella metodo di pagamento" title="cancella metodo di pagamento"><svg class="bg-light icon align-bottom"><use href="../lib/svg/sprites.svg#it-close-circle"></use></svg></a>';
-                                                            echo '</div>';
-                                                        echo '</div>';
-                                                    }
-                                                }
-                                                $connessione->close();
-                                            ?>
-                                            </div>
-                                            <div id="be_pnl_new_mdp"></div>
-
-                                            <div class="row">
-                                                <div class="col-12 text-right">
-                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddPagamentoModal"><svg class="icon"><use href="../lib/svg/sprites.svg#it-plus"></use></svg>Aggiungi</button>
-                                                </div>
+                                                <?php echo ViewMetodiPagamento($tipoPagamento_id); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -508,48 +478,6 @@
         </div>
     </main>
     <!-- Modal -->
-    <div class="modal fade" tabindex="-1" role="dialog" id="AddPagamentoModal" aria-labelledby="AddPagamentoModalTitle">
-        <div class="modal-dialog" role="document">
-            <form method="POST" action="#" name="be_frm_add_metodo_pagamento" id="be_frm_add_metodo_pagamento">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="modal-title h5 no_toc" id="AddPagamentoModalTitle">Aggiungi metodo di pagamento</h2>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div id="be_pnl_return"></div>
-                            </div>
-                        </div>
-                        <div id="be_pnl_data">
-                            <div class="row">
-                                <div class="col-lg-12 mt-3 mb-3"><h6>Scegli il metodo di pagamento e inserisci i dati richiesti.</h6></div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <select id="be_sel_tipo_pagamento" name="be_sel_tipo_pagamento">
-                                        <?php echo ViewAllTipiPagamento(); ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12"><input type="text" id="be_txt_numero_pagamento" value="" /></p></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 mt-5"><label><input type="checkbox" id="be_ck_pagamento_predefinito" value="" />&nbsp;E' il pagamento predefinito</label></p></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-default btn-sm" id="be_btn_close" type="button" data-bs-dismiss="modal">Chiudi</button>
-                        <button class="btn btn-primary btn-sm" id="be_btn_save" type="submit">Salva</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <div class="modal fade" tabindex="-1" role="dialog" id="SalvaRichiestaModal" aria-labelledby="SalvaRichiestaModalTitle">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

@@ -70,32 +70,23 @@
                                     '</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-12">';
-                                        if($row['StatusId'] > 1){
-                                            echo '<div class="row">';
-                                                if(!CheckRatingByCfServiceMain($row["ServizioId"],$row["pratica_id"])){
-                                                    echo '<div class="col-12 text-right">
-                                                        <a href="#" class="btn-small btn-primary addVote" data-servizio-id="'.$row["ServizioId"].'" data-pratica-id="'.$row["pratica_id"].'"  data-link="'.$_SERVER['REQUEST_URI'].'">Valuta</a>
-                                                        <a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="btn-small btn-primary">Consulta</a>
-                                                    </div>';
-                                                }else{
-                                                    echo '<div class="col-6 text-left">';
-                                                        echo ViewRatingStar($row["ServizioId"],$row["pratica_id"]);
-                                                    echo '</div>';
-                                                    echo '<div class="col-6 text-right">
-                                                        <a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="btn-small btn-primary">Consulta</a>
-                                                    </div>';
-                                                }
-                                            echo '</div>';
-                                        }else{
-                                            echo '<div class="row">
-                                                <div class="col-12 text-right">
-                                                    <a class="btn-small btn-secondary mr-2 deleteLink" data-servizio-id="'.$row["ServizioId"].'" data-pratica-id="'.$row["pratica_id"].'" data-status-id="'.$row["StatusId"].'" data-link="'.$_SERVER['REQUEST_URI'].'" >Elimina</a>
-                                                    <a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="btn-small btn-primary">Completa</a>
-                                                </div>
-                                            </div>';
-                                        }
-                                    echo '</div>
+                                    <div class="col-lg-12">
+                                        <div class="row">';
+                                            if(!CheckRatingByCfServiceMain($row["ServizioId"],$row["pratica_id"])){
+                                                echo '<div class="col-12 text-right">
+                                                    <a href="#" class="btn-small btn-vote addVote" data-servizio-id="'.$row["ServizioId"].'" data-pratica-id="'.$row["pratica_id"].'"  data-link="'.$_SERVER['REQUEST_URI'].'"><span>&#9733;</span> Valuta</a>
+                                                    <a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="btn-small btn-primary">Consulta</a>
+                                                </div>';
+                                            }else{
+                                                echo '<div class="col-6 text-left">';
+                                                    echo ViewRatingStar($row["ServizioId"],$row["pratica_id"]);
+                                                echo '</div>';
+                                                echo '<div class="col-6 text-right">
+                                                    <a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="btn-small btn-primary">Consulta</a>
+                                                </div>';
+                                            }
+                                        echo '</div>
+                                    </div>
                                     <div class="col-lg-12">
                                         <div class="row">
                                             <div class="col-12 mt-3">

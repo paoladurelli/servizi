@@ -164,7 +164,7 @@
                 <input type="hidden" id="am_bozza_id" name="am_bozza_id" value="<?php echo $am_bozza_id; ?>"/>
                 <div class="it-page-sections-container">
                     <div class="row">
-                        <div class="col-12 col-lg-3 d-lg-block mb-4 d-none">
+                        <div class="col-12 col-xl-3 d-xl-block mb-4 d-none">
                             <div class="cmp-navscroll sticky-top" aria-labelledby="accordion-title-one">
                                 <nav class="navbar it-navscroll-wrapper navbar-expand-lg" data-bs-navscroll>
                                     <div class="navbar-custom" id="navbarNavProgress">
@@ -225,7 +225,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-9 body-compilazione-dati">
+                        <div class="col-12 col-xl-9 body-compilazione-dati">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div id="am_frm_dati_pnl_return"></div>
@@ -328,8 +328,8 @@
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <ul class="card_rb">
-                                                        <li><label><input type="radio" id="am_tipoRichiesta" name="am_tipoRichiesta" value="AM" <?php if($tipoRichiesta == "AM"){ echo 'checked'; } ?>>assegno di maternità</label></li>
-                                                        <li><label><input type="radio" id="am_tipoRichiesta" name="am_tipoRichiesta" value="QD" <?php if($tipoRichiesta == "QD"){ echo 'checked'; } ?>>quota differenziale dell’assegno di maternità</label></li>
+                                                        <li class="form-check"><input type="radio" class="form-check-input" id="am_tipoRichiestaAM" name="am_tipoRichiesta" value="AM" <?php if($tipoRichiesta == "AM"){ echo 'checked'; } ?>><label class="form-check-label" for="am_tipoRichiestaAM">assegno di maternità</label></li>
+                                                        <li class="form-check"><input type="radio" class="form-check-input" id="am_tipoRichiestaQD" name="am_tipoRichiesta" value="QD" <?php if($tipoRichiesta == "QD"){ echo 'checked'; } ?>><label class="form-check-label" for="am_tipoRichiestaQD">quota differenziale dell’assegno di maternità</label></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -351,8 +351,8 @@
                                                 <div class="col-lg-12">
                                                     <p>Dichiaro di:</p>
                                                     <ul class="card_rb">
-                                                        <li><label><input type="radio" id="am_DichiarazioneCittadinanza" name="am_DichiarazioneCittadinanza" value="I" <?php if($DichiarazioneCittadinanza == "I"){ echo 'checked'; } ?>>di essere cittadina italiana o di uno stato appartenente all’Unione Europea;</label></li>
-                                                        <li><label><input type="radio" id="am_DichiarazioneCittadinanza" name="am_DichiarazioneCittadinanza" value="E" <?php if($DichiarazioneCittadinanza == "E"){ echo 'checked'; } ?>>di essere cittadina extracomunitaria in possesso di titolo di soggiorno in corso di validità;</label></li>
+                                                        <li class="form-check"><input type="radio" class="form-check-input" id="am_DichiarazioneCittadinanzaI" name="am_DichiarazioneCittadinanza" value="I" <?php if($DichiarazioneCittadinanza == "I"){ echo 'checked'; } ?>><label class="form-check-label" for="am_DichiarazioneCittadinanzaI">di essere cittadina italiana o di uno stato appartenente all’Unione Europea;</label></li>
+                                                        <li class="form-check"><input type="radio" class="form-check-input" id="am_DichiarazioneCittadinanzaE" name="am_DichiarazioneCittadinanza" value="E" <?php if($DichiarazioneCittadinanza == "E"){ echo 'checked'; } ?>><label class="form-check-label" for="am_DichiarazioneCittadinanzaE">di essere cittadina extracomunitaria in possesso di titolo di soggiorno in corso di validità;</label></li>
                                                     </ul>
                                                     <div id="am_DichiarazioneSoggiorno" name="am_DichiarazioneSoggiorno">
                                                         <p id="am_DichiarazioneSoggiornoNumero_txt">Numero titolo di soggiorno<br/><input type="text" id="am_DichiarazioneSoggiornoNumero" name="am_DichiarazioneSoggiornoNumero" value="<?php echo $DichiarazioneSoggiornoNumero; ?>" required /></p>
@@ -367,7 +367,7 @@
                                                         </ul>
                                                     </div>
                                                     <p>&nbsp;</p>
-                                                    <p><label><input type="checkbox" id="am_DichiarazioneAffidamento" name="am_DichiarazioneAffidamento" value="1" <?php if($DichiarazioneAffidamento == 1){ echo 'checked'; } ?>> che il figlio per il quale viene richiesto l’assegno di maternità è in affidamento</label> 
+                                                    <p class="form-check"><input type="checkbox" class="form-check-input" id="am_DichiarazioneAffidamento" name="am_DichiarazioneAffidamento" value="1" <?php if($DichiarazioneAffidamento == 1){ echo 'checked'; } ?>><label class="form-check-label" for="am_DichiarazioneAffidamento">che il figlio per il quale viene richiesto l’assegno di maternità è in affidamento</label> 
                                                     <div id="am_DataAffidamento" name="am_DataAffidamento">    
                                                         <p id="am_DichiarazioneAffidamentoData_txt">Data Inizio affidamento (in caso di adozione o affidamento preadottivo)<br/><input type="date" id="am_DichiarazioneAffidamentoData" name="am_DichiarazioneAffidamentoData" value="<?php echo $DichiarazioneAffidamentoData; ?>" required /></p>
                                                     </div>
@@ -388,38 +388,8 @@
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <div id="dc_pnl_metodi_pagamento">
-                                            <?php
-                                                $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-                                                $sql = "SELECT * FROM metodi_pagamento WHERE cf = '". $_SESSION['CF']."'";
-                                                $result = $connessione->query($sql);
-
-                                                if ($result->num_rows > 0) {
-                                                // output data of each row
-                                                    while($row = $result->fetch_assoc()) {
-                                                        echo '<div class="row mb-3">';
-                                                            echo '<div class="col-11"><p><label>';
-                                                                echo '<input type="radio" id="ckb_pagamento" name="ckb_pagamento" value="'.$row['id'].'" ';
-                                                                if($row["predefinito"]=='1'){ echo 'checked'; }
-                                                                if($row["predefinito"]==$tipoPagamento_id){ echo 'checked'; }
-                                                                if($row["id"]==$tipoPagamento_id){ echo 'checked'; }
-                                                                echo ' />&nbsp;' . NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"];
-                                                            echo '</label></p></div>';
-                                                            echo '<div class="col-1">';
-                                                                echo '<a href="#" class="delete_class" id="'.$row['id'].'" alt="cancella metodo di pagamento" title="cancella metodo di pagamento"><svg class="bg-light icon align-bottom"><use href="../lib/svg/sprites.svg#it-close-circle"></use></svg></a>';
-                                                            echo '</div>';
-                                                        echo '</div>';
-                                                    }
-                                                }
-                                                $connessione->close();
-                                            ?>
-                                            </div>
-                                            <div id="am_pnl_new_mdp"></div>
-
-                                            <div class="row">
-                                                <div class="col-12 text-right">
-                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddPagamentoModal"><svg class="icon"><use href="../lib/svg/sprites.svg#it-plus"></use></svg>Aggiungi</button>
-                                                </div>
+                                            <div id="am_pnl_metodi_pagamento">
+                                                <?php echo ViewMetodiPagamento($tipoPagamento_id); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -474,10 +444,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-12 after-section">
+                                                <div class="col-12 after-section hide" id="am_TitoloSoggiorno">
                                                     <div class="row">
                                                         <div class="col-lg-8 col-sm-6 mb-3">
-                                                            <h6 id="am_uploadTitoloSoggiorno_txt">Copia titolo di soggiorno oppure</br>ricevuta della richiesta di rilascio del permesso di soggiorno</h6>
+                                                            <h6 id="am_uploadTitoloSoggiorno_txt">Copia titolo di soggiorno oppure</br>ricevuta della richiesta di rilascio del permesso di soggiorno *</h6>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
                                                         <div class="col-lg-4 col-sm-6 text-right">
@@ -493,10 +463,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-12">
+                                                <div class="col-lg-12 hide" id="am_DichiarazioneDatoreLavoro">
                                                     <div class="row">
                                                         <div class="col-lg-8 col-sm-6 mb-3">
-                                                            <h6 id="am_uploadDichiarazioneDatoreLavoro_txt">Copia della dichiarazione del datore di lavoro relativa all’importo percepito per la maternità</h6>
+                                                            <h6 id="am_uploadDichiarazioneDatoreLavoro_txt">Copia della dichiarazione del datore di lavoro relativa all’importo percepito per la maternità *</h6>
                                                             <p><em><small>(nel caso di richiesta della quota differenziale dell’assegno di maternità)</small></em></p>
                                                             <p class='text-xsmall'>Dimensione Massima: 500 Kb</p><p class='text-xsmall'>Estensioni accettate: 'jpeg', 'jpg', 'png', 'gif', 'pdf'</p>
                                                         </div>
@@ -535,48 +505,6 @@
         </div>
     </main>
     <!-- Modal -->
-    <div class="modal fade" tabindex="-1" role="dialog" id="AddPagamentoModal" aria-labelledby="AddPagamentoModalTitle">
-        <div class="modal-dialog" role="document">
-            <form method="POST" action="#" name="am_frm_add_metodo_pagamento" id="am_frm_add_metodo_pagamento">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="modal-title h5 no_toc" id="AddPagamentoModalTitle">Aggiungi metodo di pagamento</h2>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div id="am_pnl_return"></div>
-                            </div>
-                        </div>
-                        <div id="am_pnl_data">
-                            <div class="row">
-                                <div class="col-lg-12 mt-3 mb-3"><h6>Scegli il metodo di pagamento e inserisci i dati richiesti.</h6></div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <select id="am_sel_tipo_pagamento">
-                                        <?php echo ViewAllTipiPagamento(); ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12"><input type="text" id="am_txt_numero_pagamento" value="" /></p></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 mt-5"><label><input type="checkbox" id="am_ck_pagamento_predefinito" value="" />&nbsp;E' il pagamento predefinito</label></p></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-default btn-sm" id="am_btn_close" type="button" data-bs-dismiss="modal">Chiudi</button>
-                        <button class="btn btn-primary btn-sm" id="am_btn_save" type="submit">Salva</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <div class="modal fade" tabindex="-1" role="dialog" id="SalvaRichiestaModal" aria-labelledby="SalvaRichiestaModalTitle">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

@@ -152,32 +152,103 @@ function isValidCarta($carta){
 /* funzioni per la validazione - end */
 
 /* CALL MENU - start */
+function ViewMenuMain($selected){
+    $tags[] = '';
+        switch($selected) {
+        case 1: 
+            $tags[1] = ' active" href="#"';
+            $tags[2] = '" href="messaggi_list.php"';
+            $tags[3] = '" href="attivita_list.php"';
+            $tags[4] = '" href="servizi_list.php"';
+            break;
+        case 2: 
+            $tags[1] = '" href="bacheca.php"';
+            $tags[2] = ' active" href="#"';
+            $tags[3] = '" href="attivita_list.php"';
+            $tags[4] = '" href="servizi_list.php"';
+            break;
+        case 3: 
+            $tags[1] = '" href="bacheca.php"';
+            $tags[2] = '" href="messaggi_list.php"';
+            $tags[3] = ' active" href="#"';
+            $tags[4] = '" href="servizi_list.php"';
+            break;
+        case 4: 
+            $tags[1] = '" href="bacheca.php"';
+            $tags[2] = '" href="messaggi_list.php"';
+            $tags[3] = '" href="attivita_list.php"';
+            $tags[4] = ' active" href="#"';
+            break;
+    }
+    $menumain = '<div class="col-12 p-0">
+        <div class="cmp-nav-tab mb-4 mb-lg-5 mt-lg-4">
+            <ul class="nav nav-tabs nav-tabs-icon-text w-100 flex-nowrap">
+                <li class="nav-item w-100 me-2 p-1">
+                    <a class="nav-link text-center pe-lg-none pb-lg-15 ps-lg-3 me-xl-5 text-tab'.$tags[1].'>
+                        <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true">
+                            <use href="./lib/svg/sprites.svg#it-pa"></use>
+                        </svg>
+                        <span class="d-none d-xl-block">Scrivania</span>
+                    </a>
+                </li>
+                <li class="nav-item w-100 me-2 p-1">
+                    <a class="nav-link text-center pe-lg-none pb-lg-15 ps-lg-3 me-xl-5 text-tab'.$tags[2].'>
+                        <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true">
+                            <use href="./lib/svg/sprites.svg#it-mail"></use>
+                        </svg>
+                        <span class="d-none d-xl-block">Messaggi</span>
+                    </a>
+                </li>
+                <li class="nav-item w-100 me-2 p-1">
+                    <a class="nav-link text-center pe-lg-none pb-lg-15 ps-lg-3 me-xl-5 text-tab'.$tags[3].'>
+                        <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true">
+                            <use href="./lib/svg/sprites.svg#it-files"></use>
+                        </svg>
+                        <span class="d-none d-xl-block">Attività</span>
+                    </a>
+                </li>
+                <li class="nav-item w-100 me-2 p-1">
+                    <a class="nav-link text-center pe-lg-none pb-lg-15 ps-lg-3 me-xl-5 text-tab'.$tags[4].'>
+                        <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true">
+                            <use href="./lib/svg/sprites.svg#it-settings"></use>
+                        </svg>
+                        <span class="d-none d-xl-block">Servizi</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>';
+    return $menumain;
+}
+
 function ViewMenuPratiche($selected){
     $css[] = '';
-    if($selected == 1){ 
-        $css[1] = "active";
-        $css[2] = "future";
-        $css[3] = "future";
-        $css[4] = "future";        
+    switch($selected) {
+        case 1: 
+            $css[1] = "active";
+            $css[2] = "future";
+            $css[3] = "future";
+            $css[4] = "future";
+            break;
+        case 2: 
+            $css[1] = "passed";
+            $css[2] = "active";
+            $css[3] = "future";
+            $css[4] = "future";
+            break;
+        case 3: 
+            $css[1] = "passed";
+            $css[2] = "passed";
+            $css[3] = "active";
+            $css[4] = "future";
+            break;
+        case 4: 
+            $css[1] = "passed";
+            $css[2] = "passed";
+            $css[3] = "passed";
+            $css[4] = "active";
+            break;
     }
-    if($selected == 2){ 
-        $css[1] = "passed";
-        $css[2] = "active";
-        $css[3] = "future";
-        $css[4] = "future";        
-    }    
-    if($selected == 3){ 
-        $css[1] = "passed";
-        $css[2] = "passed";
-        $css[3] = "active";
-        $css[4] = "future";        
-    }    
-    if($selected == 4){ 
-        $css[1] = "passed";
-        $css[2] = "passed";
-        $css[3] = "passed";
-        $css[4] = "active";        
-    }    
 
     $menuText = '<div class="col-12 menu-servizi">
         <div class="cmp-nav-tab mb-4 mb-lg-5 mt-lg-4">
@@ -259,12 +330,27 @@ function NomeMetodoPagamentoById($Pagamento_id){
     $connessioneNMPBI->close();
 }
 
+function NomeMetodoPagamentoByIdDelete($Pagamento_id){
+    $configDB = require './env/config.php';
+    $connessioneNMPBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sqlNMPBI = "SELECT Nome as NomeTipoPagamento FROM tipo_pagamento WHERE id = ". $Pagamento_id;
+    $resultNMPBI = $connessioneNMPBI->query($sqlNMPBI);
+    if ($resultNMPBI->num_rows > 0) {
+        while($rowNMPBI = $resultNMPBI->fetch_assoc()) {
+            return $rowNMPBI["NomeTipoPagamento"];
+        }
+    }
+    $connessioneNMPBI->close();
+}
+
 function ViewAllTipiPagamento(){
+    echo 'eccomi';
     $configDB = require '../env/config.php';
     $connessioneVATP = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
     $sqlVATP = "SELECT * FROM tipo_pagamento";
     $resultVATP = $connessioneVATP->query($sqlVATP);    
     if ($resultVATP->num_rows > 0) {
+        
         echo '<option value="">Seleziona tipo di pagamento</option>';
         while($rowVATP = $resultVATP->fetch_assoc()) {
             echo '<option value="' . $rowVATP["id"] . '">' . $rowVATP["Nome"] . '</option>';
@@ -1379,8 +1465,6 @@ function CheckRatingByCfService($cf,$servizio){
     $sql = "SELECT id AS Checked FROM rating
         WHERE userCf = '".$cf."'
         AND ServizioId = '".$servizio."'";
-    return $sql;
-    /*
     $result = $connessione->query($sql);
     if ($result->num_rows > 0) {
         return true;
@@ -1388,7 +1472,6 @@ function CheckRatingByCfService($cf,$servizio){
         return false;
     }
     $connessione->close();
-    */
 }
 
 function CheckRatingByCfServiceMain($ServizioId,$PraticaId){
@@ -1623,5 +1706,43 @@ function ViewRatingStar($ServizioId,$PraticaId){
             </div>
         </div>';
     }
+    return $html;
+}
+
+function ViewMetodiPagamento($selected = null){
+    $configDB = require '../env/config.php';
+    $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sql = "SELECT * FROM metodi_pagamento WHERE cf = '". $_SESSION['CF']."'";
+    $result = $connessione->query($sql);
+    $html = '<div id="pnl_metodi_pagamento">';
+    
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $html .= '<div class="row mb-3">';
+                $html .= '<div class="col-12"><p class="form-check">';
+                    $html .= '<input type="radio" class="form-check-input" id="ckb_pagamento'.$row['id'].'" name="ckb_pagamento" value="'.$row['id'].'" ';
+                    if($row["predefinito"] == '1'){ 
+                        $html .= 'checked'; 
+                    }else{
+                        if($row['id'] == $selected){
+                            $html .= 'checked'; 
+                        }
+                    }
+                    $html .= ' /><label class="form-check-label" for="ckb_pagamento'.$row['id'].'">' . NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"].'</label>';
+                $html .= '</p></div>';
+                $html .= '<div class="col-12 float-right">';
+                $html .= '<a href="#" class="btn-small btn-secondary float-right metodi_pagamento_delete" id="'.$row['id'].'" alt="cancella metodo di pagamento" title="cancella metodo di pagamento">Elimina</a>';
+                $html .= '<a href="#" class="btn-small btn-primary float-right metodi_pagamento_update mr-10" id="'.$row['id'].'" alt="modifica metodo di pagamento" title="modifica metodo di pagamento">Modifica</a>';
+                $html .= '</div>';
+            $html .= '</div>';
+        }
+    }
+    $html .= '</div>
+    <div class="row before-section-small">
+        <div class="col-12 text-right">
+            <button type="button" class="btn btn-primary pt-3" data-bs-toggle="modal" data-bs-target="#AddPagamentoModal"><svg class="icon"><use href="../lib/svg/sprites.svg#it-plus"></use></svg>Aggiungi</button>
+        </div>
+    </div>';
+    $connessione->close();
     return $html;
 }

@@ -107,7 +107,7 @@
             
             <div class="it-page-sections-container">
                 <div class="row">
-                    <div class="col-12 col-lg-3 d-lg-block mb-4 d-none">
+                    <div class="col-12 col-xl-3 d-xl-block mb-4 d-none">
                         <div class="cmp-navscroll sticky-top" aria-labelledby="accordion-title-one">
                             <nav class="navbar it-navscroll-wrapper navbar-expand-lg" data-bs-navscroll>
                                 <div class="navbar-custom" id="navbarNavProgress">
@@ -163,7 +163,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-lg-9 body-dichiarazioni after-section">
+                    <div class="col-12 col-xl-9 body-dichiarazioni after-section">
                         <div class="it-page-section mb-30" id="aa_ufficio">
                             <div class="cmp-card">
                                 <div class="card">
@@ -660,11 +660,11 @@
                 </div>
              
                 <div class="row" id="aa_dichiarazioni">
-                    <div class="col-lg-9 offset-lg-3">
+                    <div class="col-xl-9 offset-xl-3">
                         <div class="it-page-section mb-30">
                             <div class="cmp-card">
                                 <div class="card">
-                                    <div class="card-body p-0">
+                                    <div class="card-body">
                                         <p>Ai sensi del Regolamento Comunitario 27/04/2016, n. 2016/679 e del Decreto Legislativo 30/06/2003, n. 196)<br/>
                                             dichiara di aver preso visione dell'informativa relativa al trattamento dei dati personali pubblicata sul sito internet istituzionale dell'Amministrazione destinataria, titolare del trattamento delle informazioni trasmesse all'atto della presentazione della pratica.</p>
                                         <p><b>Cliccando su "Conferma e invia" confermi di aver preso visione dei termini e delle condizioni di servizio sopra elencate.</b></p>
@@ -677,7 +677,7 @@
                 
                 <div class="row">
                     <div class="col-12">
-                        <div class="row float-right" id="divButtons">
+                        <div id="divButtons" class="float-right mr-lg-40">
                             <a class="btn btn-default order-lg-1" href="compilazione_dati.php"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
                             <form method="POST" action="#" name="aa_conferma_invia" id="aa_conferma_invia" class="display-inline">
                                 <input type="hidden" name="pratican" id="pratican" value="<?php echo $_GET['pratican']; ?>" />

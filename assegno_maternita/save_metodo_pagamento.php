@@ -45,11 +45,11 @@ if (!empty($errors)) {
     // output data of each row
         while($row = $result->fetch_assoc()) {
             $data['new_row'] = '<div class="row mb-3">';
-                $data['new_row'] .= '<div class="col-11"><p><label>';
-                    $data['new_row'] .= '<input type="radio" name="ckb_pagamento" value="'.$row['id'].'" ';
-                    if($row["predefinito"]==1){ $data['new_row'] .= 'checked'; }
-                    $data['new_row'] .= ' />&nbsp;' . NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"];
-                $data['new_row'] .= '</label></p></div>';
+                $data['new_row'] .= '<div class="col-11"><p class="form-check">';
+                    $data['new_row'] .= '<input type="radio" class="form-check-input" id="ckb_pagamento'.$row['id'].'" name="ckb_pagamento" value="'.$row['id'].'" ';
+                    if($row["predefinito"]=='1'){ $data['new_row'] .= 'checked'; }
+                    $data['new_row'] .= ' /><label class="form-check-label" for="ckb_pagamento'.$row['id'].'">' . NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"].'</label>';
+                $data['new_row'] .= '</p></div>';
                 $data['new_row'] .= '<div class="col-1">';
                     $data['new_row'] .= '<a href="#" class="delete_class" id="'.$row["id"].'" alt="cancella metodo di pagamento" title="cancella metodo di pagamento"><svg class="bg-light icon align-bottom"><use href="../lib/svg/sprites.svg#it-close-circle"></use></svg></a>';
                 $data['new_row'] .= '</div>';

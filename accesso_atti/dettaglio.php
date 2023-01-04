@@ -179,7 +179,7 @@
             </div>
             <div class="it-page-sections-container">
                 <div class="row">
-                    <div class="col-12 col-lg-3 d-lg-block mb-4 d-none">
+                    <div class="col-12 col-xl-3 d-xl-block mb-4 d-none">
                         <div class="cmp-navscroll sticky-top" aria-labelledby="accordion-title-one">
                             <nav class="navbar it-navscroll-wrapper navbar-expand-lg" data-bs-navscroll>
                                 <div class="navbar-custom" id="navbarNavProgress">
@@ -242,15 +242,16 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-lg-9 body-riepilogo">
+                    <div class="col-12 col-xl-9 body-riepilogo">
                         <div class="row">
-                            <div class="col-12 p-0  menu-servizi">
+                            <div class="col-12 menu-servizi">
                                 <div class="cmp-nav-tab mb-4 mb-lg-5 mt-lg-4">
                                     <div class="row">
                                         <div class="col-12"><span class="active"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right-circle"></use></svg>Stato pratica: <b><?php echo NameStatusById($status_id); ?></b></span></div>
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="it-page-section mb-30" id="aa_ufficio">
                                 <div class="cmp-card">
                                     <div class="card">
@@ -269,6 +270,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="it-page-section mb-30" id="aa_richiedente">
                                 <div class="cmp-card">
                                     <div class="card">
@@ -799,7 +801,7 @@
                        
                         <div class="row">
                             <div class="col-12 text-right mb-20">
-                                <a href="..\attivita_list.php" class="btn btn-secondary"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true" fill="#fff"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
+                                <a href="..\attivita_list.php" class="btn btn-secondary mr-lg-40"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true" fill="#fff"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>
                             </div>
                         </div>
                     </div>

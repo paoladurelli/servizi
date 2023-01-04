@@ -31,7 +31,7 @@
             </div>
             <div class="it-page-sections-container">
                 <div class="row">
-                    <div class="col-12 col-lg-3 d-lg-block mb-4 d-none">
+                    <div class="col-12 col-xl-3 d-xl-block mb-4 d-none">
                         <div class="cmp-navscroll sticky-top" aria-labelledby="accordion-title-one">
                             <nav class="navbar it-navscroll-wrapper navbar-expand-lg" data-bs-navscroll>
                                 <div class="navbar-custom" id="navbarNavProgress">
@@ -84,7 +84,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-lg-9 body-riepilogo">
+                    <div class="col-12 col-xl-9 body-riepilogo">
                         <div class="it-page-section mb-30" id="be_stato_richiesta">
                             <div class="cmp-card">
                                 <div class="card">

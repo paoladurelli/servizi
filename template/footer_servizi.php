@@ -242,6 +242,7 @@
                 </div>
             </div>
         </footer>
+        <?php include 'modal_servizi.php'; ?>
         <script>window.__PUBLIC_PATH__ = "../lib/fonts"</script>
         <script src="../lib/js/jquery-3.6.1.min.js"></script>
         <script src="../lib/js/jquery-ui.min.js"></script>

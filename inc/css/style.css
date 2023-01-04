@@ -72,6 +72,10 @@ body {
   margin-top: 30px;
 }
 
+.mr-lg-40{
+    margin-right: 40px;
+}
+
 .pb-6{
   padding-bottom: 6px;
 }
@@ -161,6 +165,7 @@ main {
 form{
     padding: 0;
     margin: 0;
+    width: auto!important;
 }
 
 .form-check [type="checkbox"] + label, 
@@ -197,6 +202,23 @@ label{
     width: auto;
 }
 
+.btn-small.btn-vote{
+    border: 1px solid #000;
+    color: #000;
+}
+.btn-small.btn-vote:hover{
+    border: 1px solid #000;
+    color: #000;
+    background-color: #cfcfcf;
+}
+
+.btn-small.btn-vote span {
+  color: #F4B30A;
+  font-size: 15px;
+  padding-right: 1px;
+  line-height: 0em;
+}
+
 .show {
     display: block;
 }
@@ -219,6 +241,10 @@ label{
 .card:after{
     display: none;
     content: none;
+}
+
+.nav-tabs {
+    overflow-x: auto;
 }
 
 .it-header-slim-wrapper {
@@ -266,18 +292,19 @@ label{
     width: 66%;
 }
 
-.menu-servizi .active .icon {
+/*.menu-servizi .active .icon {
   fill: var(--bs-primary);
   width: 20px;
+}*/
+.menu-servizi .active .icon {
+  fill: var(--bs-primary);
+  width: 30px;
+  margin-top: -2px;
 }
 
 .btn .icon {
   width: 21px;
   height: 21px;
-}
-
-#dc_pnl_metodi_pagamento .icon{
-    background-color: #FFFFFF!important;
 }
 
 #divButtons button {
@@ -1235,7 +1262,7 @@ svg.radial-progress.refused circle { stroke: #ef0303; }
 }
 
 .cmp-card-latest-messages .rating-box li {
-    cursor: pointer;
+    cursor: default;
     list-style-type: none;
     display: inline-block;
     color: #F0F0F0;
@@ -1331,17 +1358,22 @@ svg.radial-progress.refused circle { stroke: #ef0303; }
     }
 }
 
+@media screen and (max-width: 1023px){
+    #divButtons .order-lg-3 {
+        margin-right: 27px;
+    }
+}
+
 @media screen and (max-width: 991px){
+    .mr-lg-40{
+        margin-right: 0px;
+    }
     .it-user-wrapper .btn{
         width: auto;
     }
         
     .navbar.it-navscroll-wrapper .menu-wrapper {
         padding: 0px;
-    }
-    
-    #divButtons button {
-        width: 150px;
     }
     
     .cmp-nav-tab {
@@ -1411,6 +1443,9 @@ svg.radial-progress.refused circle { stroke: #ef0303; }
         max-width: 760px;
     }
         
+    h1, .h1 {
+        font-size: 2rem;
+    }
     h2, .h2 {
         font-size: 1.7rem;
     }
@@ -1423,7 +1458,7 @@ svg.radial-progress.refused circle { stroke: #ef0303; }
 
     .after-section {
         margin-bottom: 20px;
-        padding-bottom: 0px;
+        /*padding-bottom: 0px;*/
     }
 
     .container.main-container{
@@ -1466,7 +1501,7 @@ svg.radial-progress.refused circle { stroke: #ef0303; }
         margin-bottom: 20px;
         margin-left: 15px;
     }
-
+    
     #divButtons button {
         width: 100%;
         margin-right: 0px;

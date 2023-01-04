@@ -19,7 +19,7 @@
             }else{
                 $class_attivo = " disabled";
             }
-            echo '<div class="col-lg-4 mb-10' . $class_attivo . '">';
+            echo '<div class="col-xl-4 col-lg-6 mb-10' . $class_attivo . '">';
                 echo '<div class="card h-100">';
                     echo '<div class="card-body pb-lg-0">';
                         echo '<div class="row">';

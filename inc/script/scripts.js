@@ -67,8 +67,6 @@ $('input[type=radio][name=dc_rb_qualita_di]').change(function() {
         $("#dc_PotereFirma").show();
     }
 });
-
-/* START be_ (bonus_economici) */
 $('input[type=radio][name=be_rb_qualita_di]').change(function() {
     if (this.value === 'D') {
         $('#be_beneficiario_nome').val($('#be_richiedente_nome').val());
@@ -125,9 +123,7 @@ $('input[type=radio][name=be_rb_qualita_di]').change(function() {
         $("#be_PotereFirma").show();
     }
 });
-
-
-$(window).on('load', function(){
+$(document).ready(function () {
     /* circular progress bar */
     $('svg.radial-progress').each(function( index, value ) { 
         // Get percentage of progress
@@ -141,54 +137,47 @@ $(window).on('load', function(){
         // Transition progress for 1.25 seconds
         $(this).find($('circle.complete')).animate({'stroke-dashoffset': strokeDashOffset}, 1250);
     });
-});
-
-$(document).ready(function () {
-    /* script inerenti alla modale per l'aggiunta di un pagamento */
-    $("#dc_frm_add_metodo_pagamento").submit(function (event) {
-        $("#dc_pnl_return").removeClass();
-        $("#dc_pnl_return").empty();
-
-        if($("#dc_ck_pagamento_predefinito").is(':checked') ) { 
+    
+    /* gestione metodi di pagamento - START */
+    $("#frm_add_metodo_pagamento").submit(function (event) {
+        $("#metodi_pagamento_pnl_return").removeClass("alert alert-warning");
+        $("#metodi_pagamento_pnl_return").empty();
+        
+        if($("#metodi_pagamento_ck_pagamento_predefinito").is(':checked') ) { 
             $ck_pagamento_predefinito = 1;
         }else{
             $ck_pagamento_predefinito = 0;
         }
         
         var formData = {
-            sel_tipo_pagamento: $("#dc_sel_tipo_pagamento").val(),
-            txt_numero_pagamento: $("#dc_txt_numero_pagamento").val(),
+            upd_id : $("#metodi_pagamento_id").val(),
+            sel_tipo_pagamento: $("#metodi_pagamento_sel_tipo_pagamento").val(),
+            txt_numero_pagamento: $("#metodi_pagamento_txt_numero_pagamento").val(),
             ck_pagamento_predefinito: $ck_pagamento_predefinito
         };
 
         $.ajax({
             type: "POST",
-            url: "save_metodo_pagamento.php",
+            url: "../metodi_pagamento_save.php",
             data: formData,
             dataType: "json",
             encode: true
         }).done(function (data) {
             if (!data.success) {
-                $("#dc_pnl_return").addClass("alert alert-warning");
+                $("#metodi_pagamento_pnl_return").addClass("alert alert-warning");
                 if (data.errors.sel_tipo_pagamento) {
-                    $("#dc_pnl_return").append(
-                        '<div>' + data.errors.sel_tipo_pagamento + "</div>"
-                    );
+                    $("#metodi_pagamento_pnl_return").append('<div>' + data.errors.sel_tipo_pagamento + '</div>');
                 }
-
                 if (data.errors.txt_numero_pagamento) {
-                    $("#dc_pnl_return").append(
-                        '<div>' + data.errors.txt_numero_pagamento + "</div>"
-                    );
+                    $("#metodi_pagamento_pnl_return").append('<div>' + data.errors.txt_numero_pagamento + '</div>');
                 }
-
             } else {
-                $("#dc_pnl_data").hide();
-                $("#dc_pnl_return").addClass("alert alert-success");
-                $("#dc_pnl_return").append(data.message);
-                $("#dc_pnl_new_mdp").html(data.new_row);
-                $("#dc_btn_save").hide();
-                $("#dc_btn_close").show();
+                $("#metodi_pagamento_pnl_data").hide();
+                $("#metodi_pagamento_pnl_return").addClass("alert alert-success");
+                $("#metodi_pagamento_pnl_return").append(data.message);
+                $("#pnl_metodi_pagamento").load(" #pnl_metodi_pagamento");
+                $("#metodi_pagamento_btn_save").hide();
+                $("#metodi_pagamento_btn_close").show();
             }
         })
         .fail(function (data) {
@@ -197,37 +186,67 @@ $(document).ready(function () {
 
         event.preventDefault();
     });
-    
-    $('#dc_btn_close').click(function(){
-        $("#dc_pnl_data").show();
-        $("#dc_pnl_return").removeClass("alert alert-success");
-        $("#dc_pnl_return").empty();
-        $("#dc_btn_save").show();
+    $('#metodi_pagamento_btn_close').click(function(){
+        $("#metodi_pagamento_pnl_data").show();
+        $("#metodi_pagamento_pnl_return").removeClass("alert alert-success");
+        $("#metodi_pagamento_pnl_return").empty();
+        $("#metodi_pagamento_sel_tipo_pagamento").prop('selectedIndex',0);
+        $("#metodi_pagamento_id").val('');
+        $("#metodi_pagamento_txt_numero_pagamento").val('');
+        $('#metodi_pagamento_ck_pagamento_predefinito').prop('checked', false);
+        $("#metodi_pagamento_btn_save").show();
     });
-    
-    /* cancella metodi di pagamento */
-    $('.delete_class').click(function(){
-        event.preventDefault();
+    $('#pnl_metodi_pagamento').on('click', '.metodi_pagamento_delete', function () {
         var formData = {
             del_id : $(this).attr('id')
-        };       
+        };
+        
         $.ajax({
             type: "POST",
-            url: "../delete_pagamento.php",
+            url: "../metodi_pagamento_delete.php",
             data: formData,
             dataType: "json",
             encode: true
         }).done(function (data) {
             if (data.success) {
-                $('#dc_pnl_metodi_pagamento').html(data.newDiv);                    
+                $("#pnl_metodi_pagamento").load(" #pnl_metodi_pagamento");
             }
         })
         .fail(function (data) {
             console.log(data);
         });
+        event.preventDefault();
     });
+    $('#pnl_metodi_pagamento').on('click', '.metodi_pagamento_update', function () {
+        id = $(this).attr('id');
+        var formData = {upd_id : id};        
+        $.ajax({
+            type: "POST",
+            url: "../metodi_pagamento_load.php",
+            data: formData,
+            dataType: "json",
+            encode: true
+        }).done(function (data) {
+            if (data.success) {
+                $("#metodi_pagamento_id").val(id);
+                $("#metodi_pagamento_sel_tipo_pagamento").val(data.sel_tipo_pagamento);
+                $("#metodi_pagamento_txt_numero_pagamento").val(data.txt_numero_pagamento);
+                if(data.ck_pagamento_predefinito == '1'){
+                    $('#metodi_pagamento_ck_pagamento_predefinito').prop('checked', true);
+                }else{
+                    $('#metodi_pagamento_ck_pagamento_predefinito').prop('checked', false);
+                }
+                $('#AddPagamentoModal').modal('toggle');
+            }
+        })
+        .fail(function (data) {
+            console.log(data);
+        });
+        event.preventDefault();
+    });
+    /* gestione metodi di pagamento - END */
     
-    
+    /* START dc_ (domanda_contributo) */
     /* script inerenti gli upload dei documenti */
     $('#dc_uploadPotereFirma').change(function(e) {
         $('#dc_uploadPotereFirma_file').empty();
@@ -255,7 +274,6 @@ $(document).ready(function () {
              return false;
         }        
     });
-
     $('#dc_uploadDocumentazione').change(function(e) {
         $('#dc_uploadDocumentazione_file').empty();
         
@@ -290,8 +308,7 @@ $(document).ready(function () {
     /* script inerenti le tre action del form principale */
     $('#dc_btn_back').click(function(){
         window.location.href = 'index.php';
-    });
-    
+    });    
     $('#dc_salva_richiesta_btn_save').click(function(){
         $('#SalvaRichiestaModal').modal('toggle');
         
@@ -329,8 +346,7 @@ $(document).ready(function () {
         });
         
         event.preventDefault();
-    });
-    
+    });    
     $('#dc_btn_concludi_richiesta').click(function(){
         /* tolgo tutti i required */
             $("#dc_richiedente_nome").removeClass("required");
@@ -568,8 +584,7 @@ $(document).ready(function () {
         }); 
 
         event.preventDefault();
-    });
-    
+    });    
     $('#dc_conferma_invia').click(function(){
         
         $('#ElaborazioneRichiestaModal').modal('show');
@@ -605,107 +620,32 @@ $(document).ready(function () {
 
         event.preventDefault();
     });
-
     /* END dc_ */
     
     /* START am_ (assegno maternita) */
-
-    /* script inerenti alla modale per l'aggiunta di un pagamento */
-    
-    $("#am_frm_add_metodo_pagamento").submit(function (event) {
-        $("#am_pnl_return").removeClass();
-        $("#am_pnl_return").empty();
-
-        if($("#am_ck_pagamento_predefinito").is(':checked') ) { 
-            $ck_pagamento_predefinito = 1;
-        }else{
-            $ck_pagamento_predefinito = 0;
+    /* visualizza o nascondi upload certificato del datore di lavoro */
+    $("input[name$='am_tipoRichiesta']").change(function() {
+        if($(this).val() == 'QD') {
+            $('#am_DichiarazioneDatoreLavoro').show(300);
+        } else {
+            $('#am_DichiarazioneDatoreLavoro').hide(200);
         }
-        
-        var formData = {
-            sel_tipo_pagamento: $("#am_sel_tipo_pagamento").val(),
-            txt_numero_pagamento: $("#am_txt_numero_pagamento").val(),
-            ck_pagamento_predefinito: $ck_pagamento_predefinito
-        };
-        $.ajax({
-            type: "POST",
-            url: "save_metodo_pagamento.php",
-            data: formData,
-            dataType: "json",
-            encode: true
-        }).done(function (data) {
-            if (!data.success) {
-                $("#am_pnl_return").addClass("alert alert-warning");
-                if (data.errors.sel_tipo_pagamento) {
-                    $("#am_pnl_return").append(
-                        '<div>' + data.errors.sel_tipo_pagamento + "</div>"
-                    );
-                }
-
-                if (data.errors.txt_numero_pagamento) {
-                    $("#am_pnl_return").append(
-                        '<div>' + data.errors.txt_numero_pagamento + "</div>"
-                    );
-                }
-
-            } else {
-                $("#am_pnl_data").hide();
-                $("#am_pnl_return").addClass("alert alert-success");
-                $("#am_pnl_return").append(data.message);
-                $("#am_pnl_new_mdp").html(data.new_row);
-                $("#am_btn_save").hide();
-                $("#am_btn_close").show();
-            }
-        })
-        .fail(function (data) {
-            console.log(data);
-        });
-
-        event.preventDefault();
-    });
-    
-    $('#am_btn_close').click(function(){
-        $("#am_pnl_data").show();
-        $("#am_pnl_return").removeClass("alert alert-success");
-        $("#am_pnl_return").empty();
-        $("#am_btn_save").show();
     });
 
-    /* cancella metodi di pagamento */
-    $('.delete_class').click(function(){
-        event.preventDefault();
-        var formData = {
-            del_id : $(this).attr('id')
-        };       
-        $.ajax({
-            type: "POST",
-            url: "../delete_pagamento.php",
-            data: formData,
-            dataType: "json",
-            encode: true
-        }).done(function (data) {
-            if (data.success) {
-                $('#am_pnl_metodi_pagamento').html(data.newDiv);
-            }
-        })
-        .fail(function (data) {
-            console.log(data);
-        });
-    });
-    
-    /* visualizza o nascondi am_DichiarazioneSoggiorno */
+   /* visualizza o nascondi am_DichiarazioneSoggiorno e am_DataAffidamento */
     $("#am_DichiarazioneSoggiorno").hide();
     $("#am_DataAffidamento").hide();
 
     $("input[name$='am_DichiarazioneCittadinanza']").change(function() {
-        var test = $(this).val();
-        if(test == "E"){
+        if($(this).val() == 'E') {
             $("#am_DichiarazioneSoggiorno").show(300);
-        }else{
+            $('#am_TitoloSoggiorno').show(300);
+        } else {
             $("#am_DichiarazioneSoggiorno").hide(200);
+            $('#am_TitoloSoggiorno').hide(200);
         }
     });
-    
+   
     $("input[name$='am_DichiarazioneAffidamento']").click(function() {
         if($(this).is(":checked")) {
             $("#am_DataAffidamento").show(300);
@@ -740,8 +680,7 @@ $(document).ready(function () {
              $('#am_uploadCartaIdentitaFronte').val('');
              return false;
         }
-    });
-    
+    });    
     $('#am_uploadCartaIdentitaRetro').change(function(e) {
         $('#am_uploadCartaIdentitaRetro_file').empty();
         let fileName = e.target.files[0].name;
@@ -767,8 +706,7 @@ $(document).ready(function () {
              $('#am_uploadCartaIdentitaRetro').val('');
              return false;
         }
-    });
-    
+    });    
     $('#am_uploadTitoloSoggiorno').change(function(e) {
         $('#am_uploadTitoloSoggiorno_file').empty();
         let fileName = e.target.files[0].name;
@@ -795,7 +733,6 @@ $(document).ready(function () {
              return false;
         }
     });
-
     $('#am_uploadDichiarazioneDatoreLavoro').change(function(e) {
         $('am_uploadDichiarazioneDatoreLavoro_file').empty();
         let fileName = e.target.files[0].name;
@@ -826,8 +763,7 @@ $(document).ready(function () {
     /* script inerenti le tre action del form principale */
     $('#am_btn_back').click(function(){
         window.location.href = 'index.php';
-    });
-    
+    });    
     $('#am_salva_richiesta_btn_save').click(function(){
         $('#SalvaRichiestaModal').modal('toggle');
         
@@ -865,8 +801,7 @@ $(document).ready(function () {
         });
         
         event.preventDefault();
-    });
-    
+    });    
     $('#am_btn_concludi_richiesta').click(function(){
         var form = $('#am_frm_dati');
         var disabled = form.find(':input:disabled').removeAttr('disabled');
@@ -1081,8 +1016,7 @@ $(document).ready(function () {
         }); 
 
         event.preventDefault();
-    });
-    
+    });    
     $('#am_conferma_invia').click(function(){
         
         $('#ElaborazioneRichiestaModal').modal('show');
@@ -1146,7 +1080,6 @@ $(document).ready(function () {
              return false;
         }        
     });
-
     $('#pc_uploadCartaIdentitaRetro').change(function(e) {
         $('#pc_uploadCartaIdentitaRetro_file').empty();
         let fileName = e.target.files[0].name;
@@ -1173,7 +1106,6 @@ $(document).ready(function () {
              return false;
         }        
     });
-
     $('#pc_uploadCV').change(function(e) {
         $('#pc_uploadCV_file').empty();
         let fileName = e.target.files[0].name;
@@ -1200,7 +1132,6 @@ $(document).ready(function () {
              return false;
         }        
     });
-
     $('#pc_uploadTitoliPreferenza').change(function(e) {
         $('#pc_uploadTitoliPreferenza_file').empty();
         
@@ -1235,8 +1166,7 @@ $(document).ready(function () {
     /* script inerenti le tre action del form principale */
     $('#pc_btn_back').click(function(){
         window.location.href = 'index.php';
-    });
-    
+    });    
     $('#pc_salva_richiesta_btn_save').click(function(){
         $('#SalvaRichiestaModal').modal('toggle');
         
@@ -1274,8 +1204,7 @@ $(document).ready(function () {
         });
         
         event.preventDefault();
-    });
-    
+    });    
     $('#pc_btn_concludi_richiesta').click(function(){
         /* tolgo tutti i required */
             $("#pc_richiedente_nome").removeClass("required");
@@ -1491,8 +1420,7 @@ $(document).ready(function () {
         }); 
 
         event.preventDefault();
-    });
-    
+    });    
     $('#pc_conferma_invia').click(function(){
         
         $('#ElaborazioneRichiestaModal').modal('show');
@@ -1528,11 +1456,9 @@ $(document).ready(function () {
 
         event.preventDefault();
     });
-
     /* END pc_ partecipazione_concorso */
     
-    /* START aa_ accesso_atti */
-    
+    /* START aa_ accesso_atti */    
     /* visualizza o nascondi aa_opt_richiedenteTitoloRI */
     $("#aa_opt_richiedenteTitoloRI").hide();
     $("#aa_pnl_uploadAffittuario").hide();
@@ -1540,6 +1466,7 @@ $(document).ready(function () {
     $("#aa_pnl_uploadAltroSoggetto").hide();
     $("#aa_pnl_uploadAltriTitoloDescrizione").hide();
     $("#aa_pnl_uploadAttoNotarile").hide();
+    
     $('input[type=radio][name=aa_richiedenteTitolo]').change(function() {
         var richiedenteTitolo = this.value;
         switch (richiedenteTitolo) { 
@@ -2109,8 +2036,7 @@ $(document).ready(function () {
     });
     /* END aa_ accesso_atti */
     
-    /* START pm_ pubblicazione_matrimonio */
-   
+    /* START pm_ pubblicazione_matrimonio */   
     /* script inerenti le tre action del form principale */
     $('#pm_btn_back').click(function(){
         window.location.href = 'index.php';
@@ -2392,91 +2318,7 @@ $(document).ready(function () {
     });
     /* END pm_ pubblicazione_matrimonoi */
     
-    /* START be_ bonus_economici */
-    /* script inerenti alla modale per l'aggiunta di un pagamento */
-    $("#be_frm_add_metodo_pagamento").submit(function (event) {
-        $("#be_pnl_return").removeClass();
-        $("#be_pnl_return").empty();
-
-        if($("#be_ck_pagamento_predefinito").is(':checked') ) { 
-            $ck_pagamento_predefinito = 1;
-        }else{
-            $ck_pagamento_predefinito = 0;
-        }
-        
-        var formData = {
-            sel_tipo_pagamento: $("#be_sel_tipo_pagamento").val(),
-            txt_numero_pagamento: $("#be_txt_numero_pagamento").val(),
-            ck_pagamento_predefinito: $ck_pagamento_predefinito
-        };
-
-        $.ajax({
-            type: "POST",
-            url: "save_metodo_pagamento.php",
-            data: formData,
-            dataType: "json",
-            encode: true
-        }).done(function (data) {
-            if (!data.success) {
-                $("#be_pnl_return").addClass("alert alert-warning");
-                if (data.errors.sel_tipo_pagamento) {
-                    $("#be_pnl_return").append(
-                        '<div>' + data.errors.sel_tipo_pagamento + "</div>"
-                    );
-                }
-
-                if (data.errors.txt_numero_pagamento) {
-                    $("#be_pnl_return").append(
-                        '<div>' + data.errors.txt_numero_pagamento + "</div>"
-                    );
-                }
-
-            } else {
-                $("#be_pnl_data").hide();
-                $("#be_pnl_return").addClass("alert alert-success");
-                $("#be_pnl_return").append(data.message);
-                $("#be_pnl_new_mdp").html(data.new_row);
-                $("#be_btn_save").hide();
-                $("#be_btn_close").show();
-            }
-        })
-        .fail(function (data) {
-            console.log(data);
-        });
-
-        event.preventDefault();
-    });
-    
-    $('#be_btn_close').click(function(){
-        $("#be_pnl_data").show();
-        $("#be_pnl_return").removeClass("alert alert-success");
-        $("#be_pnl_return").empty();
-        $("#be_btn_save").show();
-    });
-    
-    /* cancella metodi di pagamento */
-    $('.delete_class').click(function(){
-        event.preventDefault();
-        var formData = {
-            del_id : $(this).attr('id')
-        };       
-        $.ajax({
-            type: "POST",
-            url: "../delete_pagamento.php",
-            data: formData,
-            dataType: "json",
-            encode: true
-        }).done(function (data) {
-            if (data.success) {
-                $('#be_pnl_metodi_pagamento').html(data.newDiv);                    
-            }
-        })
-        .fail(function (data) {
-            console.log(data);
-        });
-    });
-    
-    
+    /* START be_ bonus_economici */    
     /* script inerenti gli upload dei documenti */
     $('#be_uploadPotereFirma').change(function(e) {
         $('#be_uploadPotereFirma_file').empty();
@@ -2504,7 +2346,6 @@ $(document).ready(function () {
              return false;
         }        
     });
-
     $('#be_uploadIsee').change(function(e) {
         $('#be_uploadIsee_file').empty();
         let fileName = e.target.files[0].name;
@@ -2531,7 +2372,6 @@ $(document).ready(function () {
              return false;
         }        
     });
-
     $('#be_uploadDocumentazione').change(function(e) {
         $('#be_uploadDocumentazione_file').empty();
         
@@ -2567,7 +2407,6 @@ $(document).ready(function () {
     $('#be_btn_back').click(function(){
         window.location.href = 'index.php';
     });
-    
     $('#be_salva_richiesta_btn_save').click(function(){
         $('#SalvaRichiestaModal').modal('toggle');
         
@@ -2606,7 +2445,6 @@ $(document).ready(function () {
         
         event.preventDefault();
     });
-    
     $('#be_btn_concludi_richiesta').click(function(){
         /* tolgo tutti i required */
             $("#be_richiedente_nome").removeClass("required");
@@ -2852,7 +2690,6 @@ $(document).ready(function () {
 
         event.preventDefault();
     });
-    
     $('#be_conferma_invia').click(function(){
         
         $('#ElaborazioneRichiestaModal').modal('show');
@@ -2888,7 +2725,6 @@ $(document).ready(function () {
 
         event.preventDefault();
     });
-
     /* END be_ */                
 });
 
@@ -3091,7 +2927,7 @@ $(function(){
     });
     
     $("#modalRating #btn_invia_feedback_positivo").click(function(){
-        rating = parseInt($("#modalRating #tutorial #rating").val()) + 1;
+        rating = parseInt($("#modalRating #tutorial #rating").val());
         
         formData = new FormData();
         formData.append("userCf", $("#modalRating #tutorial #userCf").val());
@@ -3124,7 +2960,7 @@ $(function(){
     });
     
     $("#modalRating #btn_invia_feedback_negativo").click(function(){
-        rating = parseInt($("#modalRating #tutorial #rating").val()) + 1;
+        rating = parseInt($("#modalRating #tutorial #rating").val());
         
         formData = new FormData();
         formData.append("userCf", $("#modalRating #tutorial #userCf").val());
@@ -3137,7 +2973,7 @@ $(function(){
 
         $.ajax({
             type: "POST",
-            url: "../fun/addRating.php",
+            url: "./fun/addRating.php",
             data: formData,
             dataType: "json",
             processData: false,
@@ -3164,7 +3000,7 @@ $("#valutazione_positiva").hide();
 $("#valutazione_negativa").hide();
 
 function highlightStar(id) {
-    /*removeHighlight();*/
+    removeHighlight();
     $('#tutorial li').each(function(index) {
         $(this).addClass('highlight');
         if(index+1 >= id){
@@ -3180,7 +3016,7 @@ function removeHighlight() {
 function addRating(id){
     rating = id;
     $("#tutorial #loader-icon").hide();
-    if(rating <= 5){
+    if(rating <= 3){
         $("#tutorial #rating").val(rating);
         $("#valutazione_positiva").hide();
         $("#valutazione_negativa").show();
@@ -3200,7 +3036,7 @@ $(function(){
     
     
     $("#btn_invia_feedback_positivo").click(function(){
-        rating = parseInt($("#tutorial #rating").val()) + 1;
+        rating = parseInt($("#tutorial #rating").val());
         
         formData = new FormData();
         formData.append("userCf", $("#tutorial #userCf").val());
@@ -3233,7 +3069,7 @@ $(function(){
     });
     
     $("#btn_invia_feedback_negativo").click(function(){
-        rating = parseInt($("#tutorial #rating").val()) + 1;
+        rating = parseInt($("#tutorial #rating").val());
         
         formData = new FormData();
         formData.append("userCf", $("#tutorial #userCf").val());
