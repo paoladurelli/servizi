@@ -27,11 +27,13 @@ if (!empty($errors)) {
     $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
     if(!empty($_POST['upd_id'])){
         $sql = "UPDATE metodi_pagamento SET tipo_pagamento='".$_POST['sel_tipo_pagamento']."', numero_pagamento='".$_POST['txt_numero_pagamento']."', predefinito='".$_POST['ck_pagamento_predefinito']."'  WHERE id = ".$_POST['upd_id'];
+        $data['message'] = 'Metodo di Pagamento Modificato con Successo';
     }else{
         $sql = "INSERT INTO `metodi_pagamento`(`cf`, `tipo_pagamento`, `numero_pagamento`, `predefinito`) VALUES ('".$_SESSION['CF']."','".$_POST['sel_tipo_pagamento']."','".$_POST['txt_numero_pagamento']."',".$_POST['ck_pagamento_predefinito'].")";
+        $data['message'] = 'Metodo di Pagamento Aggiunto con Successo';
     }
     $connessione->query($sql);
     $data['success'] = true;
-    $data['message'] = 'Success';
+    
 }
 echo json_encode($data);

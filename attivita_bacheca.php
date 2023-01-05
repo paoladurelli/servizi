@@ -14,7 +14,9 @@
     if ($result->num_rows > 0) {
     // output data of each row
         $i=1;
-
+        echo '<div class="row">
+            <div class="col-12">
+                <div class="row">';
         while($row = $result->fetch_assoc()) {
             $date = date_create($row["data_attivita"]);
             if($row['StatusId'] != "0" || (NumeroPraticaById($row["ServizioId"],$row["pratica_id"]) != '')){
@@ -50,11 +52,21 @@
                                 <div class="row">
                                     <div class="col-lg-12">';
                                         if($row['StatusId'] > 1){
-                                            echo '<div class="row">
-                                                <div class="col-12 text-right">
+                                            echo '<div class="row">';
+                                            if(!CheckRatingByCfServiceMain($row["ServizioId"],$row["pratica_id"])){
+                                                echo '<div class="col-12 text-right">
+                                                    <a href="#" class="btn-small btn-vote addVote" data-servizio-id="'.$row["ServizioId"].'" data-pratica-id="'.$row["pratica_id"].'"  data-link="'.$_SERVER['REQUEST_URI'].'"><span>&#9733;</span> Valuta</a>
                                                     <a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="btn-small btn-primary">Consulta</a>
-                                                </div>
-                                            </div>';
+                                                </div>';
+                                            }else{
+                                                echo '<div class="col-6 text-left">';
+                                                    echo ViewRatingStar($row["ServizioId"],$row["pratica_id"]);
+                                                echo '</div>';
+                                                echo '<div class="col-6 text-right">
+                                                    <a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="btn-small btn-primary">Consulta</a>
+                                                </div>';
+                                            }
+                                            echo '</div>';
                                         }else{
                                             echo '<div class="row">
                                                 <div class="col-12 text-right">
@@ -84,7 +96,15 @@
                 $i++;
             }
         }
+                echo '</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-right mb-4">
+                <a href="attivita_list.php" class="btn btn-primary mr-10">Vedi altre attività</a>
+            </div>
+        </div>';
     } else {
-        echo "Nessun messaggio presente";
+        echo "Nessuna attività presente";
     }
     $connessione->close();

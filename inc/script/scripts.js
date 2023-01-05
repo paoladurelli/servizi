@@ -189,6 +189,7 @@ $(document).ready(function () {
     $('#metodi_pagamento_btn_close').click(function(){
         $("#metodi_pagamento_pnl_data").show();
         $("#metodi_pagamento_pnl_return").removeClass("alert alert-success");
+        $("#metodi_pagamento_pnl_return").removeClass("alert alert-warning");
         $("#metodi_pagamento_pnl_return").empty();
         $("#metodi_pagamento_sel_tipo_pagamento").prop('selectedIndex',0);
         $("#metodi_pagamento_id").val('');
@@ -2882,6 +2883,129 @@ $(function(){
     });    
     /* Apri modal per Voto - END */
 });
+
+/* funzioni rating onpage - START */
+$("#valutazione_positiva").hide();
+$("#valutazione_negativa").hide();
+
+function highlightStar(id) {
+    removeHighlight();
+    $('#tutorial li').each(function(index) {
+        $(this).addClass('highlight');
+        if(index+1 >= id){
+            return false;
+        }
+    });
+}
+
+function removeHighlight() {
+    $('#tutorial li').removeClass('highlight');
+}
+
+function addRating(id){
+    rating = id;
+    $("#tutorial #loader-icon").hide();
+    if(rating <= 3){
+        $("#tutorial #rating").val(rating);
+        $("#valutazione_positiva").hide();
+        $("#valutazione_negativa").show();
+    }else{
+        $("#tutorial #rating").val(rating);
+        $("#valutazione_positiva").show();
+        $("#valutazione_negativa").hide();
+    }
+}
+
+function resetRating() {
+    $('#tutorial li').removeClass('highlight');
+}
+
+$(function(){
+    $("#risultato-rating").hide();
+    $("#btn_invia_feedback_positivo").click(function(){
+        rating = parseInt($("#tutorial #rating").val());
+        if($("input[name='positiva']:checked").length > 0){
+            formData = new FormData();
+            formData.append("userCf", $("#tutorial #userCf").val());
+            formData.append("ServizioId",$("#tutorial #ServizioId").val());
+            formData.append("PraticaId", $("#tutorial #PraticaId").val());
+            formData.append("rating", rating);
+            formData.append("positiva", $("input[name='positiva']:checked").val());
+            formData.append("negativa", '');
+            formData.append("commento", $("#commento_positivo").val());
+
+            $.ajax({
+                type: "POST",
+                url: "../fun/addRating.php",
+                data: formData,
+                dataType: "json",
+                processData: false,
+                contentType: false,
+                success: function (data)
+                {
+                    $("#rating-box").hide();
+                    $("#valutazione_positiva").hide();
+                    $("#valutazione_negativa").hide();
+                    $("#risultato-rating").show();
+                },
+                error: function (desc)
+                {
+                    console.log(desc.statusText);
+                }
+            });
+        }else{
+            $('#label_commento_positivo').addClass('required');
+            event.preventDefault();
+        }
+    });   
+    $("#btn_invia_feedback_negativo").click(function(){
+        rating = parseInt($("#tutorial #rating").val());
+        if($("input[name='negativa']:checked").length > 0 && $("#commento_negativo").val() != ''){
+            formData = new FormData();
+            formData.append("userCf", $("#tutorial #userCf").val());
+            formData.append("ServizioId",$("#tutorial #ServizioId").val());
+            formData.append("PraticaId", $("#tutorial #PraticaId").val());
+            formData.append("rating", rating);
+            formData.append("positiva", '');
+            formData.append("negativa", $("input[name='negativa']:checked").val());
+            formData.append("commento", $("#commento_negativo").val());
+
+            $.ajax({
+                type: "POST",
+                url: "../fun/addRating.php",
+                data: formData,
+                dataType: "json",
+                processData: false,
+                contentType: false,
+                success: function (data)
+                {
+                    $("#rating-box").hide();
+                    $("#valutazione_positiva").hide();
+                    $("#valutazione_negativa").hide();
+                    $("#risultato-rating").show();
+                },
+                error: function (desc)
+                {
+                    console.log(desc.statusText);
+                }
+            });
+        }else{
+            if($("input[name='negativa']:checked").length == 0){
+                $('#valutazione_negativa .feed_title p').addClass('required');
+            }else{
+                $('#valutazione_negativa .feed_title p').removeClass('required');
+            }
+            if($("#commento_negativo").val() == ''){
+                $('#commento_negativo').addClass('required');
+            }else{
+                $('#commento_negativo').removeClass('required');
+            }
+            event.preventDefault();            
+        }
+    });
+});
+/* funzioni rating onpage - END */
+
 /* funzioni rating modal - START */
 $("#modalRating #valutazione_positiva").hide();
 $("#modalRating #valutazione_negativa").hide();
@@ -2928,178 +3052,94 @@ $(function(){
     
     $("#modalRating #btn_invia_feedback_positivo").click(function(){
         rating = parseInt($("#modalRating #tutorial #rating").val());
-        
-        formData = new FormData();
-        formData.append("userCf", $("#modalRating #tutorial #userCf").val());
-        formData.append("ServizioId",$("#modalRating #tutorial #ServizioId").val());
-        formData.append("PraticaId", $("#modalRating #tutorial #PraticaId").val());
-        formData.append("rating", rating);
-        formData.append("positiva", $("#modalRating input[name='positiva']:checked").val());
-        formData.append("negativa", '');
-        formData.append("commento", $("#modalRating #commento_positivo").val());
+        if($("#modalRating input[name='negativa']:checked").length > 0 && $("#modalRating #commento_negativo").val() != ''){
+            formData = new FormData();
+            formData.append("userCf", $("#modalRating #tutorial #userCf").val());
+            formData.append("ServizioId",$("#modalRating #tutorial #ServizioId").val());
+            formData.append("PraticaId", $("#modalRating #tutorial #PraticaId").val());
+            formData.append("rating", rating);
+            formData.append("positiva", '');
+            formData.append("negativa", $("#modalRating input[name='negativa']:checked").val());
+            formData.append("commento", $("#commento_negativo").val());
 
-        $.ajax({
-            type: "POST",
-            url: "./fun/addRating.php",
-            data: formData,
-            dataType: "json",
-            processData: false,
-            contentType: false,
-            success: function (data)
-            {
-                $("#modalRating #rating-box").hide();
-                $("#modalRating #valutazione_positiva").hide();
-                $("#modalRating #valutazione_negativa").hide();
-                $("#modalRating #risultato-rating").show();
-            },
-            error: function (desc)
-            {
-                console.log(desc.statusText);
+            $.ajax({
+                type: "POST",
+                url: "./fun/addRating.php",
+                data: formData,
+                dataType: "json",
+                processData: false,
+                contentType: false,
+                success: function (data)
+                {
+                    $("#modalRating #rating-box").hide();
+                    $("#modalRating #valutazione_positiva").hide();
+                    $("#modalRating #valutazione_negativa").hide();
+                    $("#modalRating #risultato-rating").show();
+                },
+                error: function (desc)
+                {
+                    console.log(desc.statusText);
+                }
+            });
+        }else{
+            if($("#modalRating input[name='negativa']:checked").length == 0){
+                $('#modalRating #valutazione_negativa .feed_title p').addClass('required');
+            }else{
+                $('#modalRating #valutazione_negativa .feed_title p').removeClass('required');
             }
-        });
+            if($("#modalRating #commento_negativo").val() == ''){
+                $('#modalRating #commento_negativo').addClass('required');
+            }else{
+                $('#modalRating #commento_negativo').removeClass('required');
+            }
+            event.preventDefault();            
+        }
     });
     
     $("#modalRating #btn_invia_feedback_negativo").click(function(){
         rating = parseInt($("#modalRating #tutorial #rating").val());
-        
-        formData = new FormData();
-        formData.append("userCf", $("#modalRating #tutorial #userCf").val());
-        formData.append("ServizioId",$("#modalRating #tutorial #ServizioId").val());
-        formData.append("PraticaId", $("#modalRating #tutorial #PraticaId").val());
-        formData.append("rating", rating);
-        formData.append("positiva", '');
-        formData.append("negativa", $("#modalRating input[name='negativa']:checked").val());
-        formData.append("commento", $("#modalRating #commento_negativo").val());
+        if($("#modalRating input[name='negativa']:checked").length > 0 && $("#modalRating #commento_negativo").val() != ''){
+            formData = new FormData();
+            formData.append("userCf", $("#modalRating #tutorial #userCf").val());
+            formData.append("ServizioId",$("#modalRating #tutorial #ServizioId").val());
+            formData.append("PraticaId", $("#modalRating #tutorial #PraticaId").val());
+            formData.append("rating", rating);
+            formData.append("positiva", '');
+            formData.append("negativa", $("#modalRating input[name='negativa']:checked").val());
+            formData.append("commento", $("#modalRating #commento_negativo").val());
 
-        $.ajax({
-            type: "POST",
-            url: "./fun/addRating.php",
-            data: formData,
-            dataType: "json",
-            processData: false,
-            contentType: false,
-            success: function (data)
-            {
-                $("#modalRating #rating-box").hide();
-                $("#modalRating #valutazione_positiva").hide();
-                $("#modalRating #valutazione_negativa").hide();
-                $("#modalRating #risultato-rating").show();
-            },
-            error: function (desc)
-            {
-                console.log(desc.statusText);
+            $.ajax({
+                type: "POST",
+                url: "./fun/addRating.php",
+                data: formData,
+                dataType: "json",
+                processData: false,
+                contentType: false,
+                success: function (data)
+                {
+                    $("#modalRating #rating-box").hide();
+                    $("#modalRating #valutazione_positiva").hide();
+                    $("#modalRating #valutazione_negativa").hide();
+                    $("#modalRating #risultato-rating").show();
+                },
+                error: function (desc)
+                {
+                    console.log(desc.statusText);
+                }
+            });
+        }else{
+            if($("#modalRating input[name='negativa']:checked").length == 0){
+                $('#modalRating #valutazione_negativa .feed_title p').addClass('required');
+            }else{
+                $('#modalRating #valutazione_negativa .feed_title p').removeClass('required');
             }
-        });
-    });
-
-});
-/* funzioni rating modal - END */
-
-/* funzioni rating onpage - START */
-$("#valutazione_positiva").hide();
-$("#valutazione_negativa").hide();
-
-function highlightStar(id) {
-    removeHighlight();
-    $('#tutorial li').each(function(index) {
-        $(this).addClass('highlight');
-        if(index+1 >= id){
-            return false;
+            if($("#modalRating #commento_negativo").val() == ''){
+                $('#modalRating #commento_negativo').addClass('required');
+            }else{
+                $('#modalRating #commento_negativo').removeClass('required');
+            }
+            event.preventDefault();            
         }
     });
-}
-
-function removeHighlight() {
-    $('#tutorial li').removeClass('highlight');
-}
-
-function addRating(id){
-    rating = id;
-    $("#tutorial #loader-icon").hide();
-    if(rating <= 3){
-        $("#tutorial #rating").val(rating);
-        $("#valutazione_positiva").hide();
-        $("#valutazione_negativa").show();
-    }else{
-        $("#tutorial #rating").val(rating);
-        $("#valutazione_positiva").show();
-        $("#valutazione_negativa").hide();
-    }
-}
-
-function resetRating() {
-    $('#tutorial li').removeClass('highlight');
-}
-
-$(function(){
-    $("#risultato-rating").hide();
-    
-    
-    $("#btn_invia_feedback_positivo").click(function(){
-        rating = parseInt($("#tutorial #rating").val());
-        
-        formData = new FormData();
-        formData.append("userCf", $("#tutorial #userCf").val());
-        formData.append("ServizioId",$("#tutorial #ServizioId").val());
-        formData.append("PraticaId", $("#tutorial #PraticaId").val());
-        formData.append("rating", rating);
-        formData.append("positiva", $("input[name='positiva']:checked").val());
-        formData.append("negativa", '');
-        formData.append("commento", $("#commento_positivo").val());
-
-        $.ajax({
-            type: "POST",
-            url: "../fun/addRating.php",
-            data: formData,
-            dataType: "json",
-            processData: false,
-            contentType: false,
-            success: function (data)
-            {
-                $("#rating-box").hide();
-                $("#valutazione_positiva").hide();
-                $("#valutazione_negativa").hide();
-                $("#risultato-rating").show();
-            },
-            error: function (desc)
-            {
-                console.log(desc.statusText);
-            }
-        });
-    });
-    
-    $("#btn_invia_feedback_negativo").click(function(){
-        rating = parseInt($("#tutorial #rating").val());
-        
-        formData = new FormData();
-        formData.append("userCf", $("#tutorial #userCf").val());
-        formData.append("ServizioId",$("#tutorial #ServizioId").val());
-        formData.append("PraticaId", $("#tutorial #PraticaId").val());
-        formData.append("rating", rating);
-        formData.append("positiva", '');
-        formData.append("negativa", $("input[name='negativa']:checked").val());
-        formData.append("commento", $("#commento_negativo").val());
-
-        $.ajax({
-            type: "POST",
-            url: "../fun/addRating.php",
-            data: formData,
-            dataType: "json",
-            processData: false,
-            contentType: false,
-            success: function (data)
-            {
-                $("#rating-box").hide();
-                $("#valutazione_positiva").hide();
-                $("#valutazione_negativa").hide();
-                $("#risultato-rating").show();
-            },
-            error: function (desc)
-            {
-                console.log(desc.statusText);
-            }
-        });
-    });
-
 });
-/* funzioni rating onpage - END */
+/* funzioni rating modal - END */

@@ -87,7 +87,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-xl-9 body-attivita">
-                        <div class="row after-section">
+                        <div class="row after-section mb-3 mt-3">
                             <div id="carouselExampleControls" class="carousel slide d-lg-none" data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item col-lg-3 col-12 text-center active">

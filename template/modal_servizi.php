@@ -43,4 +43,13 @@
         </div>
     </div>
 
+    <div class="modal fade" tabindex="-1" role="dialog" id="modalRating">
+        <div class="modal-dialog" role="dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <?php echo CallRatingLayout(); ?>
+                </div>
+            </div>
+        </div>
+    </div>
 <!-- MODALI END -->

@@ -14,6 +14,14 @@ if(!empty($_POST['cf'])){
     $nome = $_POST['name'];
     $cognome = $_POST['surname'];
     $cf = $_POST['cf'];
+    
+    if($_POST['cf'] == 'FRMTTR76M06B715E'){
+        $cf = 'VZZMRO78E09B157O';
+    }
+    if($_POST['cf'] == 'LVLDAA85T50G702B'){
+        $cf = 'FGLLCU90L24G856K';
+    }
+
     $datanascita = $_POST['data_nascita'];
     $luogonascita = $_POST['luogo_nascita'] .' ('.$_POST['provincia_nascita'].')';
     $email = $_POST['mail'];

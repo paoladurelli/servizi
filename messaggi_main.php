@@ -64,6 +64,6 @@
             <ul class="pagination float-end" id="previous-next">'.$perpage.'</ul>
         </nav>';
     } else {
-        echo "Nessun messaggio presente";
+        echo "<div class='col-12'>Nessun messaggio presente</div>";
     }
     $connessione->close();                                            

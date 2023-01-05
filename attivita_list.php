@@ -87,7 +87,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-xl-9 body-attivita">
-                        <div class="row after-section">
+                        <div class="row after-section mb-3">
                             <div id="carouselExampleControls" class="carousel slide d-lg-none" data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item col-lg-3 col-12 text-center active">
@@ -142,11 +142,15 @@
                             ?>
                             </div>
                         </div>
-                        <div class="it-page-section mb-50 mb-lg-90" id="attivita">
-                            <div class="row mb-20">
-                                <?php include 'attivita_main.php'; ?>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="it-page-section mb-50 mb-lg-90" id="attivita">
+                                    <div class="row mb-20">
+                                        <?php include 'attivita_main.php'; ?>
+                                    </div>
+                                    <?php echo LegendaStatus(); ?>
+                                </div>                            
                             </div>
-                            <?php echo LegendaStatus(); ?>
                         </div>
                     </div>
                 </div>

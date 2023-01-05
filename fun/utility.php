@@ -1,5 +1,151 @@
 <?php
 
+function getNumeroProtocollo(){
+    $configDB = require '../env/config.php';
+    $connessioneGNP = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sqlGNP = "SELECT * FROM config_settings WHERE id = 1";
+    $resultGNP = $connessioneGNP->query($sqlGNP);
+    if ($resultGNP->num_rows > 0) {
+        while($rowGNP = $resultGNP->fetch_assoc()) {
+            $startValue = $rowGNP["value"];
+            $prefix = $rowGNP["prefix"];
+            $suffix = $rowGNP["suffix"];
+        }
+    }
+    $connessioneGNP->close();
+    
+    $numberProtocolloTmp = substr($startValue, -6);
+    $numberProtocolloTmp2 = filter_var($numberProtocolloTmp, FILTER_SANITIZE_NUMBER_INT) + 1;
+    $length = 6;
+    $value = str_pad($numberProtocolloTmp2,$length,"0", STR_PAD_LEFT);
+    
+    return  $prefix.$value."/".$suffix;
+}
+function getNumeroProtocolloNumber(){
+    $configDB = require '../env/config.php';
+    $connessioneGNP = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sqlGNP = "SELECT * FROM config_settings WHERE id = 1";
+    $resultGNP = $connessioneGNP->query($sqlGNP);
+    if ($resultGNP->num_rows > 0) {
+        while($rowGNP = $resultGNP->fetch_assoc()) {
+            $startValue = $rowGNP["value"];
+        }
+    }
+    $connessioneGNP->close();
+    
+    $numberProtocolloTmp = substr($startValue, -6);
+    $numberProtocolloTmp2 = filter_var($numberProtocolloTmp, FILTER_SANITIZE_NUMBER_INT) + 1;
+    $length = 6;
+    $value = str_pad($numberProtocolloTmp2,$length,"0", STR_PAD_LEFT);
+    
+    return  $value;
+}
+
+function setNumeroProtocollo($numberProtocollo){
+    $configDB = require '../env/config.php';
+    $connessioneGNP = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sqlGNP = "UPDATE `config_settings` SET value='".$numberProtocollo."' WHERE id = 1";
+    $resultGNP = $connessioneGNP->query($sqlGNP);
+    if($resultGNP){
+        return true;
+    }else{
+        return false;
+    }
+    $connessioneGNP->close();
+}
+
+function SendToAppIo($table,$NumeroPratica){
+    $configDB = require '../env/config.php';
+    $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sql = "SELECT * FROM ".$table." WHERE richiedenteCf = '".$_SESSION['CF']."'";
+    $result = $connessione->query($sql);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $nome = $row['richiedenteNome'];
+            $cognome = $row['richiedenteCognome'];
+            $cf = $row['richiedenteCf'];
+        }
+    }
+    $connessione->close();
+
+    $cf_destinatario = $cf;
+    $messaggio_per_user = 'Gentile '. $nome . ' '. $cognome . ',\n\n Ti avvisiamo che la tua pratica: <b>'.$NumeroPratica.'</b> è stata inviata. \n\n';
+    $messaggio_per_user .= 'Cordiali saluti. \n\n';
+    
+    /*
+    switch ($table){
+        case 'accesso_atti':
+//          Comunicazione accesso agli atti - Funzionante
+            $appio_key = "daa1a40292494acd9449ec179a252ff6";
+            break;
+        case 'assegno_maternita':
+//          Comunicazione domanda assegno di maternità
+            $appio_key = "59288ac6eccf4dd9b2c37d667bafaae7";
+            break;
+        case 'domanda_contributo':
+//          Comunicazione domanda di contributo
+            $appio_key = "48785f78880049869228ce340326543b";
+            break;
+        case 'bonus_economici':
+//          Avvisi area "Servizi Sociali"
+            $appio_key = "6d089949062248e19ea94a621e1322f0";
+            break;
+        case 'partecipazione_concorso':
+//          Comunicazione iscrizione concorso pubblico
+            $appio_key = "f0c175320098421a9dfd4d9f9b2eac29";
+            break;
+    }
+    CHIAVE TEMPORANEA DA ELIMINARE */
+    $appio_key = "daa1a40292494acd9449ec179a252ff6";
+    
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.io.italia.it/api/v1/profiles/' . strtoupper($cf_destinatario),
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+            'Ocp-Apim-Subscription-Key:' . $appio_key .''
+        ),
+    ));
+    
+    $response = curl_exec($curl);
+    curl_close($curl);
+    $array = json_decode($response, true);
+    if ($array['sender_allowed']) {
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.io.italia.it/api/v1/messages',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS =>'{
+          "time_to_live": 3600,
+          "content": {
+            "subject": "Avviso Invio pratica",
+            "markdown": "'. $messaggio_per_user.'"
+          },
+          "fiscal_code": "'. strtoupper($cf_destinatario) .'"
+        }',
+            CURLOPT_HTTPHEADER => array(
+                'Ocp-Apim-Subscription-Key:' .$appio_key . '',
+                'Content-Type: application/json'
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        curl_close($curl);
+    }
+}
+
 /* funzioni per la validazione - start */
 function isDigits(string $s, int $minDigits = 9, int $maxDigits = 14): bool {
     return preg_match('/^[0-9]{'.$minDigits.','.$maxDigits.'}\z/', $s);
@@ -181,7 +327,7 @@ function ViewMenuMain($selected){
             break;
     }
     $menumain = '<div class="col-12 p-0">
-        <div class="cmp-nav-tab mb-4 mb-lg-5 mt-lg-4">
+        <div class="cmp-nav-tab mb-3 mb-lg-3 mt-lg-3">
             <ul class="nav nav-tabs nav-tabs-icon-text w-100 flex-nowrap">
                 <li class="nav-item w-100 me-2 p-1">
                     <a class="nav-link text-center pe-lg-none pb-lg-15 ps-lg-3 me-xl-5 text-tab'.$tags[1].'>
@@ -1206,24 +1352,27 @@ function ProgressBarInviate($cf,$sid = null){
         if($sid != null){
             $sql .= " AND servizio_id = '".$sid."'";
         }
-        $sql .= " AND status_id > 1";
+    $sql .= " AND status_id > 1";
     $result = $connessione->query($sql);
    
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            $countSent = $row['CountSent'];
-            $percentageSent = ($countSent*100)/countSent($cf,$sid);
+            if($row['CountSent'] > 0){
+                $countSent = $row['CountSent'];
+                $percentageSent = ($countSent*100)/countSent($cf,$sid);
+            }else{
+                $countSent = 0;
+                $percentageSent = 0;
+            }
         }
     }
     $connessione->close();
-    return '
-        <svg class="radial-progress sent" data-percentage="'.$percentageSent.'" viewBox="0 0 80 80">
-            <circle class="incomplete" cx="40" cy="40" r="35"></circle>
-            <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
-            <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">'.$countSent.'</text>
-        </svg>
-        <p>Pratiche inviate</p>
-    ';
+    return '<svg class="radial-progress sent" data-percentage="'.$percentageSent.'" viewBox="0 0 80 80">
+        <circle class="incomplete" cx="40" cy="40" r="35"></circle>
+        <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
+        <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">'.$countSent.'</text>
+    </svg>
+    <p>Pratiche inviate</p>';
 }    
  
 function ProgressBarInLavorazione($cf,$sid = null){
@@ -1239,19 +1388,22 @@ function ProgressBarInLavorazione($cf,$sid = null){
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            $countWorking = $row['CountWorking'];
-            $percentageWorking = ($countWorking*100)/countSent($cf,$sid);
+            if($row['CountWorking'] > 0){
+                $countWorking = $row['CountWorking'];
+                $percentageWorking = ($countWorking*100)/countSent($cf,$sid);
+            }else{
+                $countWorking = 0;
+                $percentageWorking = 0;
+            }
         }
     }
     $connessione->close();
-    return '
-        <svg class="radial-progress working" data-percentage="'.$percentageWorking.'" viewBox="0 0 80 80">
-            <circle class="incomplete" cx="40" cy="40" r="35"></circle>
-            <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
-            <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">'.$countWorking.'</text>
-        </svg>
-        <p>Pratiche in lavorazione</p>
-    ';
+    return '<svg class="radial-progress working" data-percentage="'.$percentageWorking.'" viewBox="0 0 80 80">
+        <circle class="incomplete" cx="40" cy="40" r="35"></circle>
+        <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
+        <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">'.$countWorking.'</text>
+    </svg>
+    <p>Pratiche in lavorazione</p>';
 }
 
 function ProgressBarAccettate($cf,$sid = null){
@@ -1267,19 +1419,22 @@ function ProgressBarAccettate($cf,$sid = null){
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            $countAccepted = $row['CountAccepted'];
-            $percentageAccepted = ($countAccepted*100)/countSent($cf,$sid);
+            if($row['CountAccepted'] > 0){
+                $countAccepted = $row['CountAccepted'];
+                $percentageAccepted = ($countAccepted*100)/countSent($cf,$sid);
+            }else{
+                $countAccepted = 0;
+                $percentageAccepted = 0;
+            }
         }
     }
     $connessione->close();
-    return '
-        <svg class="radial-progress accepted" data-percentage="'.$percentageAccepted.'" viewBox="0 0 80 80">
-            <circle class="incomplete" cx="40" cy="40" r="35"></circle>
-            <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
-            <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">'.$countAccepted.'</text>
-        </svg>
-        <p>Pratiche accettate</p>
-    ';    
+    return '<svg class="radial-progress accepted" data-percentage="'.$percentageAccepted.'" viewBox="0 0 80 80">
+        <circle class="incomplete" cx="40" cy="40" r="35"></circle>
+        <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
+        <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">'.$countAccepted.'</text>
+    </svg>
+    <p>Pratiche accettate</p>';
 }
 
 function ProgressBarRifiutate($cf,$sid = null){
@@ -1295,46 +1450,22 @@ function ProgressBarRifiutate($cf,$sid = null){
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            $countRefused = $row['CountRefused'];
-            $percentageRefused = ($countRefused*100)/countSent($cf,$sid);
+            if($row['CountRefused'] > 0){
+                $countRefused = $row['CountRefused'];
+                $percentageRefused = ($countRefused*100)/countSent($cf,$sid);
+            }else{
+                $countRefused = 0;
+                $percentageRefused = 0;
+            }
         }
     }
     $connessione->close();
-    return '
-        <svg class="radial-progress refused" data-percentage="'.$percentageRefused.'" viewBox="0 0 80 80">
-            <circle class="incomplete" cx="40" cy="40" r="35"></circle>
-            <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
-            <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">'.$countRefused.'</text>
-        </svg>
-        <p>Pratiche rifiutate</p>
-    ';
-}
-
-function ProgressBarBozze($cf){
-    $configDB = require './env/config.php';
-    $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-    $sql = "SELECT COUNT(id) AS CountSent, servizio_id AS ServizioId FROM attivita
-        WHERE cf = '".$cf."'
-        AND status_id = 1
-        GROUP BY ServizioId";
-    $result = $connessione->query($sql);
-    $return = '';
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            $countSent = $row['CountSent'];
-            $percentageSent = ($countSent*100)/$countSent;
-            $return .='<div class="col-lg-3 col-6 text-center">
-                <svg class="radial-progress draft" data-percentage="'.$percentageSent.'" viewBox="0 0 80 80">
-                    <circle class="incomplete" cx="40" cy="40" r="35"></circle>
-                    <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
-                    <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">'.$countSent.'</text>
-                </svg>
-                <p>'.NomeServizioById($row['ServizioId']).'</p>
-            </div>';
-        }
-    }
-    $connessione->close();
-    return $return;
+    return '<svg class="radial-progress refused" data-percentage="'.$percentageRefused.'" viewBox="0 0 80 80">
+        <circle class="incomplete" cx="40" cy="40" r="35"></circle>
+        <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
+        <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">'.$countRefused.'</text>
+    </svg>
+    <p>Pratiche rifiutate</p>';
 }
 
 function LegendaStatus(){
@@ -1429,42 +1560,31 @@ function countSentMsg($cf,$sid = null){
     }
     $connessione->close();
 }
-function ProgressBarMessaggi($cf,$sid = null){
-    $configDB = require './env/config.php';
-    $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-    $sql = "SELECT COUNT(id) AS CountSent, servizio_id AS ServizioId FROM messaggi
-        WHERE CF_to = '".$cf."'";
-        if($sid != null){
-            $sql .= " AND servizio_id = '".$sid."'";
-        }
-        $sql .= "GROUP BY ServizioId";
-    $result = $connessione->query($sql);
-    $return = '';
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            $countSent = $row['CountSent'];
-            $percentageSent = ($countSent*100)/$countSent;
-            $return .='<div class="col-lg-3 col-6 text-center">
-                <svg class="radial-progress sent" data-percentage="'.$percentageSent.'" viewBox="0 0 80 80">
-                    <circle class="incomplete" cx="40" cy="40" r="35"></circle>
-                    <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 220;"></circle>
-                    <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">'.$countSent.'</text>
-                </svg>
-                <p>'.NomeServizioById($row['ServizioId']).'</p>
-            </div>';
-        }
-    }
-    $connessione->close();
-    return $return;
-}
+
 /* funzioni MESSAGGI - end */
 
+
+
+/* funzioni RATING - start */
 function CheckRatingByCfService($cf,$servizio){
     $configDB = require '../env/config.php';
     $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
     $sql = "SELECT id AS Checked FROM rating
         WHERE userCf = '".$cf."'
         AND ServizioId = '".$servizio."'";
+    $result = $connessione->query($sql);
+    if ($result->num_rows > 0) {
+        return true;
+    }else{
+        return false;
+    }
+    $connessione->close();
+}
+function CheckMyRatingService($praticaId){
+    $configDB = require '../env/config.php';
+    $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sql = "SELECT id AS Checked FROM rating
+        WHERE PraticaId = '".$praticaId."'";
     $result = $connessione->query($sql);
     if ($result->num_rows > 0) {
         return true;
@@ -1500,11 +1620,12 @@ function CheckRatingByCfServiceMain($ServizioId,$PraticaId){
 function CallRatingLayout($prefix = null,$praticai = null,$servizio = null){
     if(!isset($prefix)){
         $ModalAppend = "Modal";
+        $url = "./";
     }else{
         $ModalAppend = "";
+        $url = "../";
     }
-    
-    
+   
     $html = '<div class="it-page-section mb-30" id="'.$prefix.'valuta_servizio">
         <div class="cmp-card">
             <div class="card">
@@ -1542,7 +1663,7 @@ function CallRatingLayout($prefix = null,$praticai = null,$servizio = null){
                                         $html .= '<li id="star-'.$i.'" onmouseover="highlightStar'.$ModalAppend.'('.$i.');" onClick="addRating'.$ModalAppend.'('.$i.');">&#9733;</li>';
                                     }
                                     $html .= '<div id="loader-icon">
-                                        <img src="./media/images/loader.gif" id="image-size" />
+                                        <img src="'.$url.'media/images/loader.gif" id="image-size" />
                                     </div>
                                 </ul>
                             </div>
@@ -1550,7 +1671,7 @@ function CallRatingLayout($prefix = null,$praticai = null,$servizio = null){
                     </div>
                     <div id="valutazione_positiva" class="row hide mt-4">
                         <div class="col-12">
-                            <div class="feed_title mb-2">Quali sono stati gli aspetti che hai preferito?</div>
+                            <div class="feed_title"><p class="mb-0">Quali sono stati gli aspetti che hai preferito? *</p></div>
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-check">
@@ -1594,14 +1715,14 @@ function CallRatingLayout($prefix = null,$praticai = null,$servizio = null){
                             <div class="row">
                                 <div class="col-12 mt-3">
                                     <div class="form-group">
-                                        <label for="commento_positivo">Lascia un breve commento</label>
+                                        <label id="label_commento_positivo" for="commento_positivo">Lascia un breve commento</label>
                                         <textarea class="form-control" id="commento_positivo" name="commento_positivo" rows="3"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12 text-right">
-                                    <button type="button" id="btn_invia_feedback_positivo" name="btn_invia_feedback_positivo" class="btn btn-primary mt-3">Invia Feedback <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="./lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
+                                    <button type="button" id="btn_invia_feedback_positivo" name="btn_invia_feedback_positivo" class="btn btn-primary mt-3">Invia Feedback <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="'.$url.'lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
                                 </div>
                             </div>
                         </div>
@@ -1609,7 +1730,7 @@ function CallRatingLayout($prefix = null,$praticai = null,$servizio = null){
                             
                     <div id="valutazione_negativa" class="row hide mt-4">
                         <div class="col-12">
-                            <div class="feed_title mb-2">Dove hai incontrato le maggiori difficoltà?</div>
+                            <div class="feed_title"><p class="mb-0">Dove hai incontrato le maggiori difficoltà?</p></div>
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-check">
@@ -1653,14 +1774,14 @@ function CallRatingLayout($prefix = null,$praticai = null,$servizio = null){
                             <div class="row">
                                 <div class="col-12 mt-3">
                                     <div class="form-group">
-                                        <label for="commento_negativo">Lascia un breve commento</label>
+                                        <label id="label_commento_negativo" for="commento_negativo">Lascia un breve commento</label>
                                         <textarea class="form-control" id="commento_negativo" name="commento_negativo" rows="3"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12 text-right">
-                                    <button type="button" id="btn_invia_feedback_negativo" name="btn_invia_feedback_negativo" class="btn btn-primary mt-3">Invia Feedback <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="./lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
+                                    <button type="button" id="btn_invia_feedback_negativo" name="btn_invia_feedback_negativo" class="btn btn-primary mt-3">Invia Feedback <svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="'.$url.'lib/svg/sprites.svg#it-arrow-right"></use></svg></button>
                                 </div>
                             </div>
                         </div>
@@ -1709,6 +1830,94 @@ function ViewRatingStar($ServizioId,$PraticaId){
     return $html;
 }
 
+function ViewMyRatingStar($prefix,$PraticaId){
+    $configDB = require '../env/config.php';
+    $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sql = "SELECT * FROM rating
+        WHERE PraticaId = '".$PraticaId."'";
+    $result = $connessione->query($sql);
+    $html = '';
+    
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $rating = $row["rating"];
+            $html .= '<div class="it-page-section mb-30" id="'.$prefix.'valuta_servizio">
+                <div class="cmp-card">
+                    <div class="card">
+                        <div class="card-header border-0 p-0 mb-lg-30 m-0">
+                            <div>
+                                <h2 class="title-xxlarge mb-3">Valutazione del servizio</h2>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="rating-box" id="rating-box">
+                                <div id="tutorial">
+                                    <ul>';
+                                        $i = 1;
+                                        for ($i = 1; $i <= 5; $i ++) {
+                                            if($i <= $rating){
+                                                $html .= '<li id="star-'.$i.'" class="highlight">&#9733;</li>';
+                                            }else{
+                                                $html .= '<li id="star-'.$i.'">&#9733;</li>';
+                                            }
+                                        }
+                                    $html .= '</ul>
+                                </div>
+                            </div>';
+                            if($row["positive"] > 0){
+                                $html .= '<div class="row mt-4">
+                                    <div class="col-12">
+                                        <div class="feed_title"><p class="mb-0"><b>Quali sono stati gli aspetti che hai preferito?</b></p></div>
+                                        <div>';
+                                            switch ($row["positive"]){
+                                                case 1: $html .='Le indicazioni erano chiare'; break;
+                                                case 2: $html .='Le indicazioni erano complete'; break;
+                                                case 3: $html .='Capivo sempre che stavo procedendo correttamente'; break;
+                                                case 4: $html .='Non ho avuto problemi tecnici'; break;
+                                                case 5: $html .='Altro'; break;
+                                            }
+                                    $html .= '</div>
+                                    </div>
+                                </div>';
+                            }
+                            if($row["negative"] > 0){
+                                $html .= '<div class="row mt-4">
+                                    <div class="col-12">
+                                        <div class="feed_title"><p class="mb-0"><b>Dove hai incontrato le maggiori difficoltà?</b></p></div>
+                                        <div>';
+                                            switch ($row["negative"]){
+                                                case 1: $html .='A volte le indicazioni non erano chiare'; break;
+                                                case 2: $html .='A volte le indicazioni non erano complete'; break;
+                                                case 3: $html .='A volte non capivo se stavo procedendo correttamente'; break;
+                                                case 4: $html .='Ho avuto problemi tecnici'; break;
+                                                case 5: $html .='Altro'; break;
+                                            }
+                                    $html .= '</div>
+                                    </div>
+                                </div>';
+                            }
+                            if($row["comment"] != ''){
+                                $html .= '<div class="row">
+                                    <div class="col-12 mt-3">
+                                        <div class="feed_title"><p class="mb-0"><b>Commento:</b></p></div>
+                                        <div>
+                                            <p>'.$row['comment'].'</p>
+                                        </div>
+                                    </div>
+                                </div>';
+                            }
+                        $html .= '</div>
+                    </div>
+                </div>
+            </div>';
+        }
+    }
+    $connessione->close();
+    return $html;
+}
+/* funzioni RATING - end */
+
+/* funzioni METODI DI PAGAMENTO - start */
 function ViewMetodiPagamento($selected = null){
     $configDB = require '../env/config.php';
     $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
@@ -1718,8 +1927,8 @@ function ViewMetodiPagamento($selected = null){
     
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            $html .= '<div class="row mb-3">';
-                $html .= '<div class="col-12"><p class="form-check">';
+            $html .= '<div class="row">';
+                $html .= '<div class="col-12 col-xl-9"><p class="form-check">';
                     $html .= '<input type="radio" class="form-check-input" id="ckb_pagamento'.$row['id'].'" name="ckb_pagamento" value="'.$row['id'].'" ';
                     if($row["predefinito"] == '1'){ 
                         $html .= 'checked'; 
@@ -1730,7 +1939,7 @@ function ViewMetodiPagamento($selected = null){
                     }
                     $html .= ' /><label class="form-check-label" for="ckb_pagamento'.$row['id'].'">' . NomeMetodoPagamentoById($row["tipo_pagamento"]) . ' ' . $row["numero_pagamento"].'</label>';
                 $html .= '</p></div>';
-                $html .= '<div class="col-12 float-right">';
+                $html .= '<div class="col-12 col-xl-3 float-right mt-10">';
                 $html .= '<a href="#" class="btn-small btn-secondary float-right metodi_pagamento_delete" id="'.$row['id'].'" alt="cancella metodo di pagamento" title="cancella metodo di pagamento">Elimina</a>';
                 $html .= '<a href="#" class="btn-small btn-primary float-right metodi_pagamento_update mr-10" id="'.$row['id'].'" alt="modifica metodo di pagamento" title="modifica metodo di pagamento">Modifica</a>';
                 $html .= '</div>';
@@ -1738,7 +1947,7 @@ function ViewMetodiPagamento($selected = null){
         }
     }
     $html .= '</div>
-    <div class="row before-section-small">
+    <div class="row before-section-small mt-1">
         <div class="col-12 text-right">
             <button type="button" class="btn btn-primary pt-3" data-bs-toggle="modal" data-bs-target="#AddPagamentoModal"><svg class="icon"><use href="../lib/svg/sprites.svg#it-plus"></use></svg>Aggiungi</button>
         </div>
@@ -1746,3 +1955,28 @@ function ViewMetodiPagamento($selected = null){
     $connessione->close();
     return $html;
 }
+/* funzioni METODI DI PAGAMENTO - end */
+
+/* funzioni SERVIZI - start */
+function MenuServizi($SelectedService = null){
+    $configDB = require './env/config.php';
+    $connessioneMS = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sqlMS = "SELECT id,LinkServizio FROM servizi WHERE Attivo = 1";
+    $resultMS = $connessioneMS->query($sqlMS);
+    if ($resultMS->num_rows > 0) {
+        $menuServizi = "";
+        while($rowMS = $resultMS->fetch_assoc()) {
+            $menuServizi .= '<li class="nav-item"><a class="';
+            if($SelectedService == $rowMS['id']){
+                $menuServizi .= ' active" href="#"';
+            }else{
+                $menuServizi .= '" href="#?sid='.$rowMS['id'].'"';
+            }
+            $menuServizi .= '><span class="title-medium">'.ucfirst(str_replace("_"," ",$rowMS["LinkServizio"])).'</span></a></li>';
+        }
+    }
+    $connessioneMS->close();
+    
+    return $menuServizi;
+}
+/* funzioni SERVIZI - end */

@@ -21,55 +21,61 @@ body {
     min-height: 600px;
 }
 .cmp-breadcrumbs {
-  margin-top: 30px;
+    margin-top: 30px;
 }
 
 .mb-5{
-  margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 .mb-10{
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 .mb-15{
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 .mb-30{
-  margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 .mb-20{
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 .mb-50{
-  margin-bottom: 50px;
+    margin-bottom: 50px;
 }
 
 .ml-5{
-  margin-left: 5px;
+    margin-left: 5px;
 }
 .ml-10{
-  margin-left: 10px;
+    margin-left: 10px;
 }
 .ml-15{
-  margin-left: 15px;
+    margin-left: 15px;
 }
 .ml-30{
-  margin-left: 30px;
+    margin-left: 30px;
 }
 .ml-20{
-  margin-left: 20px;
+    margin-left: 20px;
 }
 .ml-50{
-  margin-left: 50px;
+    margin-left: 50px;
 }
 
+.mt-10{
+    margin-top: 10px;
+}
 .mt-15{
-  margin-top: 15px;
+    margin-top: 15px;
+}
+.mt-20{
+    margin-top: 20px; 
 }
 .mt-50{
-  margin-top: 50px;
+    margin-top: 50px;
 }
 .mt-30{
-  margin-top: 30px;
+    margin-top: 30px;
 }
 
 .mr-lg-40{
@@ -77,34 +83,34 @@ body {
 }
 
 .pb-6{
-  padding-bottom: 6px;
+    padding-bottom: 6px;
 }
 .pd-15{
-  padding: 15px;
+    padding: 15px;
 }
 .pd-30{
-  padding: 30px;
+    padding: 30px;
 }
 
 .pl-15{
-  padding-left: 15px;
+    padding-left: 15px;
 }
 .pl-10{
-  padding-left: 10px;
+    padding-left: 10px;
 }
 .pl-25{
-  padding-left: 25px;
+    padding-left: 25px;
 }
 
 .pr-10{
-  padding-right: 10px;
+    padding-right: 10px;
 }
 .pt-35{
-  padding-top: 35px;
+    padding-top: 35px;
 }
 
 .fs-1rem{
-  font-size: 1rem !important;
+    font-size: 1rem !important;
 }
 
 .inline_element{
@@ -180,7 +186,30 @@ label{
 
 .btn{
     width: 200px;
+    line-height: 1em;
 }
+
+.btn-small {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 13px;
+  white-space: initial;
+  line-height: 1em;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid rgba(0,0,0,0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+  border-radius: 4px;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  padding: 10px 20px;
+}
+
 
 .btn-default {
     border: 1px solid #000;
@@ -292,10 +321,6 @@ label{
     width: 66%;
 }
 
-/*.menu-servizi .active .icon {
-  fill: var(--bs-primary);
-  width: 20px;
-}*/
 .menu-servizi .active .icon {
   fill: var(--bs-primary);
   width: 30px;
@@ -333,6 +358,10 @@ label{
 
 #divButtons button:first-child{
     margin-right: 40px;
+}
+
+#pnl_metodi_pagamento .btn-small {
+  padding: 10px 24px;
 }
 
 .footer_show_more_menulista {
@@ -640,28 +669,6 @@ border-bottom: 0 !important;
 .bg-grigio {
   background-color: #eceff1!important;
 }
-
-.btn-small {
-  display: inline-block;
-  font-weight: 600;
-  font-size: 13px;
-  white-space: initial;
-  line-height: 1;
-  text-align: center;
-  text-decoration: none;
-  vertical-align: middle;
-  cursor: pointer;
-  user-select: none;
-  border: 1px solid rgba(0,0,0,0);
-    border-top-color: rgba(0, 0, 0, 0);
-    border-right-color: rgba(0, 0, 0, 0);
-    border-bottom-color: rgba(0, 0, 0, 0);
-    border-left-color: rgba(0, 0, 0, 0);
-  border-radius: 4px;
-  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-  padding: 10px 20px;
-}
-
 
 .navbar .navbar-collapsable .navbar-nav li a.nav-link.active.focus--mouse
 {
@@ -1238,7 +1245,6 @@ svg.radial-progress.refused circle { stroke: #ef0303; }
 #valutazione_positiva .feed_title,
 #valutazione_negativa .feed_title{
     text-decoration: none;
-    color: #000000;
     font-weight: bold;
 }
 
@@ -1355,6 +1361,10 @@ svg.radial-progress.refused circle { stroke: #ef0303; }
         min-height: 290px;
         padding: 10px;
         margin-bottom: 30px;
+    }
+    
+    .navbar.it-navscroll-wrapper .menu-wrapper {
+        padding: 20px 0 24px;
     }
 }
 

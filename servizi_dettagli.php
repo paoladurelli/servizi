@@ -1,10 +1,9 @@
 <?php 
     /* file di inclusione */
     $configData = require './env/config_servizi.php';
-    $configDB = require './env/config.php';
     include './fun/utility.php';
 
-    /* pagina dove vengono visualizzare le attività di un servizio specifico */
+    /* pagina di tutti i servizi */
     session_start();
 
     include './template/head.php';
@@ -28,7 +27,7 @@
                         <p class="subtitle-small">CF: <?php echo $_SESSION['CF']; ?></p>
                     </div>
                 </div>
-                <?php echo ViewMenuMain(2); ?>
+                <?php echo ViewMenuMain(4); ?>
             </div>
             <div class="it-page-sections-container">
                 <div class="row">
@@ -52,19 +51,8 @@
                                                         <div class="accordion-body">
                                                             <ul class="link-list" data-element="page-index">
                                                                 <?php
-                                                                    /* MESSAGGI */
-                                                                    $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-                                                                    $sql = "SELECT COUNT(id) as CountRows FROM messaggi WHERE CF_to = '".$_SESSION['CF']."'";
-                                                                    $result = $connessione->query($sql);
-                                                                    if ($result->num_rows > 0) {
-                                                                        while($row = $result->fetch_assoc()) {
-                                                                            echo '<li class="nav-item"><a class="" href="messaggi_list.php"><span class="title-medium">Messaggi</span><span class="float-right menu-numbers">'.$row['CountRows'].'</span></a></li>';
-                                                                        }
-                                                                    }
-                                                                    $connessione->close();
-                                                                    
                                                                     /* SERVIZI ATTIVI */
-                                                                    echo MenuMessaggi($_SESSION['CF'],$_GET['sid']);
+                                                                    echo MenuServizi();
                                                                 ?>
                                                             </ul>
                                                         </div>
@@ -78,14 +66,13 @@
                         </div>
                     </div>
                     <div class="col-12 col-xl-9 body-attivita">
-                        <div class="it-page-section mb-50 mb-lg-90" id="attivita">
-                            <div class="row after-section pb-2 mb-3">
-                                <div class="col-12 text-right mt-20">
-                                    <a class="btn btn-primary btn-special-width mr-2 deleteThisMsgConfirm" data-link="<?php echo $_SERVER['REQUEST_URI']; ?>" data-servizio-id="<?php echo $_GET['sid']; ?>" >Elimina tutti i messaggi ricevuti per questo servizio</a>
-                                </div>
-                            </div>
-                            <div class="row mb-20">
-                                <?php include 'msg_servizio_main.php'; ?>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="it-page-section mb-50 mb-lg-90" id="attivita">
+                                    <div class="row mb-20">
+                                        <?php //include 'attivita_main.php'; ?>
+                                    </div>
+                                </div>                            
                             </div>
                         </div>
                     </div>

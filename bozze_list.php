@@ -87,13 +87,8 @@
                         </div>
                     </div>
                     <div class="col-12 col-xl-9 body-attivita">
-                        <div class="row after-section">
-                            <?php 
-                            echo ProgressBarBozze($_SESSION['CF']);
-                            ?>
-                        </div>
                         <div class="it-page-section mb-50 mb-lg-90" id="attivita">
-                            <div class="row mb-20">
+                            <div class="row mb-20 mt-3">
                                 <?php include 'bozze_main.php'; ?>
                             </div>
                             <?php echo LegendaStatus(); ?>

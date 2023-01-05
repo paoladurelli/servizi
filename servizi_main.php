@@ -24,10 +24,11 @@
                     echo '<div class="card-body pb-lg-0">';
                         echo '<div class="row">';
                             echo '<div class="col-12">';
-                                echo '<h4 class="card-title text_resized mb-5">';
+                                echo '<h4 class="card-title text_resized mb-0">';
                                     echo '<svg class="icon"><use href="./lib/svg/sprites.svg#it-settings" xlink:href="./lib/svg/sprites.svg#it-settings"></use></svg>';
                                     if($row["Attivo"] == '1'){
                                         echo '<a href="' . $row["LinkServizio"] . '" class="mr-5 text_resized">' . $row["NomeServizio"] . '</a>';
+                                        /*echo '<a href="servizi_dettagli.php?table=' . $row["LinkServizio"] . '" class="mr-5 text_resized">' . $row["NomeServizio"] . '</a>';*/
                                     }else{
                                         echo $row["NomeServizio"];
                                     }
@@ -36,9 +37,10 @@
                         echo '</div>';
                         echo '<div class="row">';
                             echo '<div class="col-12">';
-                                echo '<p class="descrizione_menu_block">';
+                                echo '<p class="descrizione_menu_block mb-1">';
                                     echo '<b>Ufficio</b>: ' . $row["NomeUfficio"] . '<br/>';
-                                    echo '<b>Area</b>: ' . $row["NomeArea"] . '<br/>';
+                                    echo '<b>Area</b>: ' . $row["NomeArea"] . '</p>';
+                                echo '<p class="descrizione_menu_block">';    
                                     echo $row["DescrizioneServizio"];
                                 echo '</p>';
                                 if($row["Attivo"] == '1'){

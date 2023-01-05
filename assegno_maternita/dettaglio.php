@@ -11,6 +11,8 @@
     include '../template/header_servizi.php';
     
     /* settare le variabili */
+    $NumeroPratica = "";
+    $NumeroProtocollo = "";
     $cf = "";
     $nome = "";
     $cognome = "";
@@ -52,6 +54,8 @@
         // output data of each row
             while($row = $result->fetch_assoc()) {
                 $status_id = $row["status_id"];
+                $NumeroPratica = $row["NumeroPratica"];
+                $NumeroProtocollo = $row["NumeroProtocollo"];
                 $cf = $row["richiedenteCf"];
                 $nome = $row["richiedenteNome"];
                 $cognome = $row["richiedenteCognome"];
@@ -179,7 +183,15 @@
                                                                             <span class="title-medium">Valuta il servizio</span>
                                                                         </a>
                                                                     </li>
-                                                                <?php } ?>
+                                                                <?php }else{ 
+                                                                    if(CheckMyRatingService($_GET["am_pratica_id"])){?>
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link" href="#am_valuta_servizio">
+                                                                            <span class="title-medium">Valutazione del servizio</span>
+                                                                        </a>
+                                                                    </li>                                                                    
+                                                                <?php }
+                                                                } ?>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -195,9 +207,19 @@
                     <div class="col-12 col-lg-9 body-riepilogo">
                         <div class="row">
                             <div class="col-12 menu-servizi">
-                                <div class="cmp-nav-tab mb-4 mb-lg-5 mt-lg-4">
+                                <div class="cmp-nav-tab mb-4 mt-20">
                                     <div class="row">
-                                        <div class="col-12"><span class="active"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right-circle"></use></svg>Stato pratica: <b><?php echo NameStatusById($status_id); ?></b></span></div>
+                                        <div class="col-12 col-xl-4">
+                                            <span class="active"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right-circle"></use></svg>Stato pratica: <b><?php echo NameStatusById($status_id); ?></b></span>
+                                        </div>
+                                        <div class="col-12 col-xl-4">
+                                            <span class="active"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right-circle"></use></svg>Numero pratica: <b><?php echo $NumeroPratica; ?></b></span>
+                                        </div>
+                                        <div class="col-12 col-xl-4">
+                                            <?php if($configDB['ProtocollazioneAttiva']){ ?>
+                                                <span class="active"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-arrow-right-circle"></use></svg>Numero protocollo: <b><?php echo $NumeroProtocollo; ?></b></span>
+                                            <?php } ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -533,13 +555,13 @@
                                 </div>
                             </div>
                         </div>
-                        
                         <?php 
                         if(!CheckRatingByCfService($_SESSION['CF'],'9')){
                             echo CallRatingLayout('am_',$_GET["am_pratica_id"],9);
+                        }else{
+                            echo ViewMyRatingStar('am_',$_GET["am_pratica_id"]);
                         }
                         ?>                      
-                        
                         <div class="row">
                             <div class="col-12 text-right mb-20">
                                 <a href="..\attivita_list.php" class="btn btn-secondary mr-lg-40"><svg class="icon me-0 me-lg-1 mr-lg-10" aria-hidden="true" fill="#fff"><use href="../lib/svg/sprites.svg#it-arrow-left"></use></svg> Indietro</a>

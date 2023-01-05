@@ -10,12 +10,11 @@
     $result = $connessione->query($sql);
    
     if ($result->num_rows > 0) {
-    // output data of each row
         $i=1;
-
+        echo '<div class="card-body p-0">
+            <div class="row">';
         while($row = $result->fetch_assoc()) {
-            $date = date_create($row["data_msg"]);
-            
+            $date = date_create($row["data_msg"]);            
             echo '<div class="col-lg-6">
                 <div class="card shadow-sm mb-4 px-4 pt-4 pb-4">
                     <div class="card-header border-0 p-0 m-0">
@@ -37,6 +36,12 @@
                 </div>
             </div>';
         }
+        echo '</div>
+        <div class="row">
+            <div class="col-12 text-right mb-4">
+                <a href="messaggi_list.php" class="btn btn-primary mr-10">Vedi altri messaggi</a>
+            </div>
+        </div>';
     } else {
         echo "Nessun messaggio presente";
     }

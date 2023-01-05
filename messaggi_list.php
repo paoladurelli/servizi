@@ -78,10 +78,10 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-xl-9 body-attivita">
-                        <div class="it-page-section mb-50 mb-lg-90" id="attivita">
-                            <div class="row mb-20 after-section">
-                                <div class="col-12 text-right">
+                    <div class="col-12 col-xl-9 body-messaggi">
+                        <div class="it-page-section mb-50 mb-lg-90" id="messaggi">
+                            <div class="row after-section pb-2 mb-3">
+                                <div class="col-12 text-right mt-20">
                                     <a class="btn btn-primary btn-special-width mr-2 deleteAllMsgConfirm" data-link="<?php echo $_SERVER['REQUEST_URI']; ?>" >Elimina tutti i messaggi ricevuti</a>
                                 </div>
                             </div>
