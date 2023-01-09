@@ -398,13 +398,13 @@
 
                                                         <div class="step">
                                                             <div class="date-step">
-                                                                <span class="date-step-giorno"><?php echo date('d', strtotime($data_compilazione. ' + 10 days')); ?></span><br>
-                                                                <span class="date-step-mese"><?php echo date('M/Y', strtotime($data_compilazione. ' + 10 days')); ?></span>
+                                                                <span class="date-step-giorno"><?php echo date('d', strtotime($data_compilazione. ' + 60 days')); ?></span><br>
+                                                                <span class="date-step-mese"><?php echo date('M/Y', strtotime($data_compilazione. ' + 60 days')); ?></span>
                                                                 <span class="pallino"></span>
                                                             </div>
                                                             <div class="testo-step">
                                                                 <div class="scheda-gestione">
-                                                                    <p>Data esito richiesta</p>
+                                                                    <p>Data probabile dell'affissione delle pubblicazioni</p>
                                                                 </div>
                                                             </div>
                                                         </div>

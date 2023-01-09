@@ -27,7 +27,7 @@
                         <p class="subtitle-small">CF: <?php echo $_SESSION['CF']; ?></p>
                     </div>
                 </div>
-                <?php echo ViewMenuMain(4); ?>
+                <?php echo ViewMenuMain(); ?>
             </div>
             <div class="it-page-sections-container">
                 <div class="row">
@@ -52,7 +52,7 @@
                                                             <ul class="link-list" data-element="page-index">
                                                                 <?php
                                                                     /* SERVIZI ATTIVI */
-                                                                    echo MenuServizi();
+                                                                    echo MenuDettaglioServizi($configData['url_comune'],$configData['mail_comune']);
                                                                 ?>
                                                             </ul>
                                                         </div>
@@ -70,7 +70,55 @@
                             <div class="col-12">
                                 <div class="it-page-section mb-50 mb-lg-90" id="attivita">
                                     <div class="row mb-20">
-                                        <?php //include 'attivita_main.php'; ?>
+                                        <?php
+                                            $configDB = require './env/config.php';
+                                            $connessioneMS = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+                                            $sqlMS = "SELECT * FROM servizi WHERE LinkServizio = '".$_GET['table']."'";
+                                            $resultMS = $connessioneMS->query($sqlMS);
+                                            if ($resultMS->num_rows > 0) {
+                                                while($rowMS = $resultMS->fetch_assoc()) { ?>
+                                                    <div>
+                                                        <h2 class="mb-50 mt-30"><?php echo $rowMS['NomeServizio']; ?></h2>
+                                                    </div>
+                                                    <div id="a_chi_rivolto">
+                                                        <div class="title-dettaglio-servizio mb-10">A chi è rivolto</div>
+                                                        <div class="mb-30"><?php echo $rowMS['PaginaChiRivolto'];?></div>
+                                                    </div>
+                                                    <div id="contenuto">
+                                                        <div class="title-dettaglio-servizio mb-10">Descrizione</div>
+                                                        <div class="mb-30"><?php echo $rowMS['PaginaDescrizione'];?></div>
+                                                    </div>
+                                                    <div id="come_fare">
+                                                        <div class="title-dettaglio-servizio mb-10">Come fare</div>
+                                                        <div class="mb-30"><?php echo $rowMS['PaginaComeFare'];?></div>
+                                                    </div>
+                                                    <div id="cosa_serve">
+                                                        <div class="title-dettaglio-servizio mb-10">Cosa serve</div>
+                                                        <div class="mb-30"><?php echo $rowMS['PaginaCosaServe'];?></div>
+                                                    </div>
+                                                    <div id="cosa_siottiene">
+                                                        <div class="title-dettaglio-servizio mb-10">Cosa si ottiene</div>
+                                                        <div class="mb-30"><?php echo $rowMS['PaginaCosaOttiene'];?></div>
+                                                    </div>
+                                                    <div id="tempi_scadenze">
+                                                        <div class="title-dettaglio-servizio mb-10">Tempi e scadenze</div>
+                                                        <div class="mb-30"><?php echo $rowMS['PaginaTempiScadenze'];?></div>
+                                                    </div>
+                                                    <div id="accedi_al_servizio">
+                                                        <div class="title-dettaglio-servizio mb-10">Accedi al servizio</div>
+                                                        <div class="mb-30"><?php echo $rowMS['PaginaAccediServizio'];?></div>
+                                                    </div>
+                                                    <div id="accedi_al_servizio_digitale mb-10">
+                                                        <div class="title-dettaglio-servizio mb-10">Accedi al servizio digitale</div>
+                                                        <div class="mb-30"><a href="<?php echo $_GET['table'];?>" class="btn btn-primary">Accedi al Servizio</a></div>
+                                                    </div>
+                                                    <div id="contatti">
+                                                        <div class="title-dettaglio-servizio mb-10">Contatti</div>
+                                                        <div class="mb-30"><?php echo $rowMS['PaginaContatti'];?></div>
+                                                    </div>
+                                                <?php }
+                                            }
+                                            $connessioneMS->close(); ?>
                                     </div>
                                 </div>                            
                             </div>

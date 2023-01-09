@@ -176,16 +176,7 @@
                                 <div id="it-region-footer-eight" class="region footer_eight">
                                     <div id="it-block-seguicisu" class="block block-block-content">
                                         <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item">
-                                            <ul class="list-inline text-left social mt-15">
-                                                <li class="list-inline-item"><a class="text-white" href="#" target="_blank"><svg class="icon"><use href="../lib/svg/sprites.svg#it-facebook" xlink:href="../lib/sprites.svg#it-facebook"></use></svg></a></li>
-                                                <li class="list-inline-item"><a class="text-white" href="#" target="_blank"><svg class="icon"><use href="../lib/svg/sprites.svg#it-instagram" xlink:href="../lib/svg/sprites.svg#it-instagram"></use></svg></a></li>
-                                                <li class="list-inline-item"><a class="text-white" href="#" target="_blank"><svg class="icon"><use href="../lib/svg/sprites.svg#it-linkedin" xlink:href="../lib/svg/sprites.svg#it-linkedin"></use></svg></a></li>
-                                                <li class="list-inline-item"><a class="text-white" href="#" target="_blank"><svg class="icon"><use href="../lib/svg/sprites.svg#it-rss" xlink:href="../lib/svg/sprites.svg#it-rss"></use></svg></a></li>
-                                                <li class="list-inline-item"><a class="text-white" href="#" target="_blank"><svg class="icon"><use href="../lib/svg/sprites.svg#it-twitter" xlink:href="../lib/svg/sprites.svg#it-twitter"></use></svg></a></li>
-                                                <li class="list-inline-item"><a class="text-white" href="#" target="_blank"><svg class="icon"><use href="../lib/svg/sprites.svg#it-telegram" xlink:href="../lib/svg/sprites.svg#it-telegram"></use></svg></a></li>
-                                                <li class="list-inline-item"><a class="text-white" href="#" target="_blank"><svg class="icon"><use href="../lib/svg/sprites.svg#it-whatsapp" xlink:href="../lib/svg/sprites.svg#it-whatsapp"></use></svg></a></li>
-                                                <li class="list-inline-item"><a class="text-white" href="#" target="_blank"><svg class="icon"><use href="../lib/svg/sprites.svg#it-youtube" xlink:href="../lib/svg/sprites.svg#it-youtube"></use></svg></a></li>
-                                            </ul>
+                                            <?php echo LoadSocial('S'); ?>
                                         </div>
                                     </div>
                                 </div>

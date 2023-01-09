@@ -297,8 +297,49 @@ function isValidCarta($carta){
 
 /* funzioni per la validazione - end */
 
+/* LOAD SOCIAL - start */
+function LoadSocial($where = null){
+    if($where == "S"){
+        $url = "../";
+    }else{
+        $url = "./";
+    }
+
+    $configSOCIAL = require $url.'env/config_social.php';
+
+    $social = '<ul class="list-inline text-left social mt-15">';
+        if($configSOCIAL['facebook'] != ''){
+            $social .= '<li class="list-inline-item"><a class="text-white" href="'.$configSOCIAL['facebook'].'" target="_blank"><svg class="icon"><use href="'.$url.'lib/svg/sprites.svg#it-facebook" xlink:href="'.$url.'lib/sprites.svg#it-facebook"></use></svg></a></li>';
+        }
+        if($configSOCIAL['instagram'] != ''){
+            $social .= '<li class="list-inline-item"><a class="text-white" href="'.$configSOCIAL['instagram'].'" target="_blank"><svg class="icon"><use href="'.$url.'lib/svg/sprites.svg#it-instagram" xlink:href="'.$url.'lib/svg/sprites.svg#it-instagram"></use></svg></a></li>';
+        }
+        if($configSOCIAL['linkedin'] != ''){
+            $social .= '<li class="list-inline-item"><a class="text-white" href="'.$configSOCIAL['linkedin'].'" target="_blank"><svg class="icon"><use href="'.$url.'lib/svg/sprites.svg#it-linkedin" xlink:href="'.$url.'lib/svg/sprites.svg#it-linkedin"></use></svg></a></li>';
+        }
+        if($configSOCIAL['rss'] != ''){
+            $social .= '<li class="list-inline-item"><a class="text-white" href="'.$configSOCIAL['rss'].'" target="_blank"><svg class="icon"><use href="'.$url.'lib/svg/sprites.svg#it-rss" xlink:href="'.$url.'lib/svg/sprites.svg#it-rss"></use></svg></a></li>';
+        }
+        if($configSOCIAL['twitter'] != ''){
+            $social .= '<li class="list-inline-item"><a class="text-white" href="'.$configSOCIAL['twitter'].'" target="_blank"><svg class="icon"><use href="'.$url.'lib/svg/sprites.svg#it-twitter" xlink:href="'.$url.'lib/svg/sprites.svg#it-twitter"></use></svg></a></li>';
+        }
+        if($configSOCIAL['telegram'] != ''){
+            $social .= '<li class="list-inline-item"><a class="text-white" href="'.$configSOCIAL['telegram'].'" target="_blank"><svg class="icon"><use href="'.$url.'lib/svg/sprites.svg#it-telegram" xlink:href="'.$url.'lib/svg/sprites.svg#it-telegram"></use></svg></a></li>';
+        }
+        if($configSOCIAL['whatsapp'] != ''){
+            $social .= '<li class="list-inline-item"><a class="text-white" href="'.$configSOCIAL['whatsapp'].'" target="_blank"><svg class="icon"><use href="'.$url.'lib/svg/sprites.svg#it-whatsapp" xlink:href="'.$url.'lib/svg/sprites.svg#it-whatsapp"></use></svg></a></li>';
+        }
+        if($configSOCIAL['youtube'] != ''){
+            $social .= '<li class="list-inline-item"><a class="text-white" href="'.$configSOCIAL['youtube'].'" target="_blank"><svg class="icon"><use href="'.$url.'lib/svg/sprites.svg#it-youtube" xlink:href="'.$url.'lib/svg/sprites.svg#it-youtube"></use></svg></a></li>';
+        }
+    $social .= '</ul>';
+    
+    return $social;
+}
+/* LOAD SOCIAL - end */
+
 /* CALL MENU - start */
-function ViewMenuMain($selected){
+function ViewMenuMain($selected = null){
     $tags[] = '';
         switch($selected) {
         case 1: 
@@ -324,6 +365,12 @@ function ViewMenuMain($selected){
             $tags[2] = '" href="messaggi_list.php"';
             $tags[3] = '" href="attivita_list.php"';
             $tags[4] = ' active" href="#"';
+            break;
+        default :
+            $tags[1] = '" href="bacheca.php"';
+            $tags[2] = '" href="messaggi_list.php"';
+            $tags[3] = '" href="attivita_list.php"';
+            $tags[4] = '" href="servizi_list.php"';
             break;
     }
     $menumain = '<div class="col-12 p-0">
@@ -1978,5 +2025,23 @@ function MenuServizi($SelectedService = null){
     $connessioneMS->close();
     
     return $menuServizi;
+}
+
+function MenuDettaglioServizi($urlComune,$mailComune){
+    $menuDettaglioServizi = '';
+    $menuDettaglioServizi .= '<li><a href="#a_chi_rivolto">A chi è rivolto</a></li>';
+    $menuDettaglioServizi .= '<li><a href="#contenuto">Descrizione</a></li>';
+    $menuDettaglioServizi .= '<li><a href="#come_fare">Come fare</a></li>';
+    $menuDettaglioServizi .= '<li><a href="#cosa_serve">Cosa serve</a></li>';
+    $menuDettaglioServizi .= '<li><a href="#cosa_siottiene">Cosa si ottiene</a></li>';
+    $menuDettaglioServizi .= '<li><a href="#tempi_scadenze">Tempi e scadenze</a></li>';
+    $menuDettaglioServizi .= '<li><a href="#accedi_al_servizio">Accedi al servizio</a></li>';
+    $menuDettaglioServizi .= '<li><a href="#accedi_al_servizio_digitale">Accedi al servizio digitale</a></li>';
+    $menuDettaglioServizi .= '<li><a href="#contatti">Contatti</a></li>';
+    $menuDettaglioServizi .= '<li><a href="'.$urlComune.'/prenotazione-appuntamento">Prenota Appuntamento</a></li>';
+    $menuDettaglioServizi .= '<li><a href="mailto:'.$mailComune.'?subject=Segnalazione disservizio: Domanda per bonus economici">Segnalazione disservizio</a></li>';
+    $menuDettaglioServizi .= '<li><a href="'.$urlComune.'/richiesta-assistenza">Richiesta assistenza</a></li>';
+    
+    return $menuDettaglioServizi;
 }
 /* funzioni SERVIZI - end */

@@ -27,8 +27,8 @@
                                 echo '<h4 class="card-title text_resized mb-0">';
                                     echo '<svg class="icon"><use href="./lib/svg/sprites.svg#it-settings" xlink:href="./lib/svg/sprites.svg#it-settings"></use></svg>';
                                     if($row["Attivo"] == '1'){
-                                        echo '<a href="' . $row["LinkServizio"] . '" class="mr-5 text_resized">' . $row["NomeServizio"] . '</a>';
-                                        /*echo '<a href="servizi_dettagli.php?table=' . $row["LinkServizio"] . '" class="mr-5 text_resized">' . $row["NomeServizio"] . '</a>';*/
+                                        /*echo '<a href="' . $row["LinkServizio"] . '" class="mr-5 text_resized">' . $row["NomeServizio"] . '</a>';*/
+                                        echo '<a href="servizi_dettagli.php?table=' . $row["LinkServizio"] . '" class="mr-5 text_resized">' . $row["NomeServizio"] . '</a>';
                                     }else{
                                         echo $row["NomeServizio"];
                                     }

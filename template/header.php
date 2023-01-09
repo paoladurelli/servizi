@@ -95,14 +95,18 @@
                                     </a>
                                 </div>
                                 <div class="it-right-zone">
-                                    <!--div class="it-search-wrapper">
-                                        <span class="d-none d-md-block">Cerca</span>
-                                        <button class="search-link rounded-icon" type="button" data-bs-toggle="modal" data-bs-target="#search-modal" aria-label="Cerca nel sito">
+                                    <div id="it-header-region" class="d-none d-md-block">
+                                        <?php echo LoadSocial(); ?>
+                                    </div>
+                                    <div class="search-box">
+                                        <button class="btn-search" id="btnSearch">
                                             <svg class="icon">
                                                 <use href="./lib/svg/sprites.svg#it-search"></use>
                                             </svg>
                                         </button>
-                                    </div-->
+                                        <input type="hidden" class="input-search-where" id="input-search-where" name="input-search-where" value="">
+                                        <input type="text" class="input-search" id="input-search" name="input-search" placeholder="Cerca servizi, pratiche...">
+                                    </div>
                                 </div>
                             </div>
                         </div>

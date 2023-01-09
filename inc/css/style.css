@@ -276,6 +276,84 @@ label{
     overflow-x: auto;
 }
 
+.it-right-zone{
+    position: relative;
+}
+
+#it-header-region{
+    margin-right: 100px;
+}
+#it-header-region .social li {
+  margin-right: 16px;
+}
+#it-header-region svg{
+  fill: #ffffff;
+  width: 24px;
+  height: 24px;
+}
+#it-header-region a:hover svg{
+  fill: #999999;
+}
+
+.search-box{
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  right: 0;
+}
+#input-search{
+  height: 50px;
+  width: 50px;
+  border-style: none;
+  padding: 10px;
+  font-size: 18px;
+  outline: none;
+  border-radius: 25px;
+  transition: all .5s ease-in-out;
+  padding-right: 40px;
+  color:#fff;
+  margin-left: 10px;
+}
+#input-search::placeholder{
+  color:rgba(255,255,255,.5);
+  font-size: 18px;
+  font-weight: 100;
+}
+.btn-search{
+  width: 50px;
+  height: 50px;
+  border-style: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  right: 0px;
+  color: #ffffff ;
+  background-color:transparent;
+  pointer-events: painted;  
+}
+.btn-search svg{
+    fill: var(--bs-secondary);
+}
+.btn-search:focus ~ #input-search{
+  width: 300px;
+  border-radius: 0px;
+  color: #999999;
+  background-color: #FFFFFF;
+  border-bottom:1px solid rgba(255,255,255,.5);
+  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+#input-search:focus{
+  width: 300px;
+  border-radius: 0px;
+  color: #999999;
+  background-color: #FFFFFF;
+  border-bottom:1px solid rgba(255,255,255,.5);
+  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
 .it-header-slim-wrapper {
     background: var(--bs-secondary);
 }
@@ -706,18 +784,18 @@ border-bottom: 0 !important;
 #it-region-footer-second h2,
 #it-region-footer-third h2,
 #it-region-footer-four h2{
-  border-bottom: 1px solid white !important;
-  padding-bottom: 5px !important;
+  border-bottom: 1px solid white;
+  padding-bottom: 5px;
 }
 
 #it-region-footer-eight svg{
-  fill: white;
-  width: 20px !important;
-  height: 20px !important;
+  fill: #ffffff;
+  width: 20px;
+  height: 20px;
 }
 
 #it-region-footer-eight a:hover svg{
-  fill: #0066cc !important;
+  fill: #999999;
 }
 
 .it-footer-small-prints ul.it-footer-small-prints-list {
@@ -795,18 +873,6 @@ body .contextual-links .quickedit a{
   text-decoration: underline !important;
 }
 
-/*.it-header-center-wrapper .it-header-center-content-wrapper .it-right-zone .it-socials ul .icon{*/
-.it-header-center-wrapper .it-header-center-content-wrapper .it-right-zone .it-socials .icon{
-  width: 20px !important;
-  height: 20px !important;
-}
-.it-header-center-wrapper .it-header-center-content-wrapper .it-right-zone .it-socials a .icon{
-  fill: white;
-}
-
-.it-header-center-wrapper .it-header-center-content-wrapper .it-right-zone .it-socials a:hover .icon{
-  fill: black !important;
-}
 
 .it-local-tasks_wrapper.mb-5{
   margin-bottom: 15px !important;
@@ -1058,10 +1124,6 @@ ul.card_rb input{
     margin-bottom: 10px;
 }
 
-  /*-----------------------------------------------------*/
-
-/*------------------------------------------------------*/
-
 a.pulsante_leggi_dipiu{
   font-size: 0.8rem !important;
   font-weight: bold;
@@ -1092,11 +1154,6 @@ a.pulsante_leggi_dipiu{
     .it-header-wrapper {
       margin-bottom: 0px;
     }
-
-    /*header .menu-wrapper {
-        display: none !important;
-    }*/
-
     
 /* FOOTER */
     .loghi_progetto_img a{
@@ -1321,6 +1378,19 @@ svg.radial-progress.refused circle { stroke: #ef0303; }
 }
 /* LEGENDA - end */
 
+.pagina-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.title-dettaglio-servizio{
+    font-weight: 400;
+    font-size: 1.333rem;
+    line-height: 1.2;
+    color: #19191a;
+    font-family: Titillium Web, Geneva, Tahoma, sans-serif;
+}
+
 
 /* RESPONSIVE - start*/
 @media (min-width: 992px){
@@ -1471,6 +1541,15 @@ svg.radial-progress.refused circle { stroke: #ef0303; }
         /*padding-bottom: 0px;*/
     }
 
+    .it-header-wrapper .it-nav-wrapper .it-brand-wrapper {
+        padding-left: 20px;
+        padding-right: 40px;
+    }
+    
+    .search-box {
+        right: -15px;
+    }
+    
     .container.main-container{
         padding: 15px !important;
     }

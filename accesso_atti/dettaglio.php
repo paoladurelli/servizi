@@ -795,8 +795,8 @@
                                                             </div>
                                                             <div class="step">
                                                                 <div class="date-step">
-                                                                    <span class="date-step-giorno"><?php echo date('d', strtotime($data_compilazione. ' + 7 days')); ?></span><br>
-                                                                    <span class="date-step-mese"><?php echo date('M/Y', strtotime($data_compilazione. ' + 7 days')); ?></span>
+                                                                    <span class="date-step-giorno"><?php echo date('d', strtotime($data_compilazione. ' + 30 days')); ?></span><br>
+                                                                    <span class="date-step-mese"><?php echo date('M/Y', strtotime($data_compilazione. ' + 30 days')); ?></span>
                                                                     <span class="pallino"></span>
                                                                 </div>
                                                                 <div class="testo-step">

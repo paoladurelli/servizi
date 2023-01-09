@@ -3143,3 +3143,31 @@ $(function(){
     });
 });
 /* funzioni rating modal - END */
+
+/* funzioni cerca - START */
+$('#input-search').bind("enterKey",function(e){
+    if($('#input-search').val() == ''){
+        event.preventDefault();
+    }else{
+        window.location.href = 'cerca.php?txt=' + $('#input-search').val();
+    }
+});
+$('#input-search').keyup(function(e){
+    if(e.keyCode == 13)
+    {
+        $(this).trigger("enterKey");
+    }
+});
+$(".btn-search").click(function(){
+    if($('#input-search').val() == ''){
+        event.preventDefault();
+    }else{
+        if($('#input-search-where').val() == ''){
+            window.location.href = 'cerca.php?txt=' + $('#input-search').val();
+        }else{
+            window.location.href = '../cerca.php?txt=' + $('#input-search').val();
+        }
+    }
+});
+
+/* funzioni cerca - END */

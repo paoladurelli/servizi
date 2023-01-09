@@ -159,8 +159,8 @@
 
                                                         <div class="step">
                                                             <div class="date-step">
-                                                                <span class="date-step-giorno"><?php echo date('d', strtotime($Date. ' +1 month')); ?></span><br>
-                                                                <span class="date-step-mese"><?php echo date('M/Y', strtotime($Date. ' +1 month')); ?></span>
+                                                                <span class="date-step-giorno"><?php echo date('d', strtotime($Date. ' + 30 days')); ?></span><br>
+                                                                <span class="date-step-mese"><?php echo date('M/Y', strtotime($Date. ' + 30 days')); ?></span>
                                                                 <span class="pallino"></span>
                                                             </div>
                                                             <div class="testo-step">
