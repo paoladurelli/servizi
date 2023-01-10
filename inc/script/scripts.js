@@ -589,6 +589,9 @@ $(document).ready(function () {
     $('#dc_conferma_invia').click(function(){
         
         $('#ElaborazioneRichiestaModal').modal('show');
+        setTimeout(function() {
+            $('ElaborazioneRichiestaModal .modal-body').append('<p>Protocollazione in corso...</p>');
+        }, 5000);
         
         var form = $('#dc_conferma_invia');
         formData = new FormData();
@@ -1021,6 +1024,9 @@ $(document).ready(function () {
     $('#am_conferma_invia').click(function(){
         
         $('#ElaborazioneRichiestaModal').modal('show');
+        setTimeout(function() {
+            $('ElaborazioneRichiestaModal .modal-body').append('<p>Protocollazione in corso...</p>');
+        }, 5000);
         
         var form = $('#am_conferma_invia');
         formData = new FormData();
@@ -1425,6 +1431,9 @@ $(document).ready(function () {
     $('#pc_conferma_invia').click(function(){
         
         $('#ElaborazioneRichiestaModal').modal('show');
+        setTimeout(function() {
+            $('ElaborazioneRichiestaModal .modal-body').append('<p>Protocollazione in corso...</p>');
+        }, 5000);
         
         var form = $('#pc_conferma_invia');
         formData = new FormData();
@@ -2003,7 +2012,10 @@ $(document).ready(function () {
     $('#aa_conferma_invia').click(function(){
         
         $('#ElaborazioneRichiestaModal').modal('show');
-        
+        setTimeout(function() {
+            $('ElaborazioneRichiestaModal .modal-body').append('<p>Protocollazione in corso...</p>');
+        }, 5000);
+
         var form = $('#aa_conferma_invia');
         formData = new FormData();
         formParams = form.serializeArray();
@@ -2285,7 +2297,10 @@ $(document).ready(function () {
     $('#pm_conferma_invia').click(function(){
         
         $('#ElaborazioneRichiestaModal').modal('show');
-        
+        setTimeout(function() {
+            $('ElaborazioneRichiestaModal .modal-body').append('<p>Protocollazione in corso...</p>');
+        }, 5000);
+
         var form = $('#pm_conferma_invia');
         formData = new FormData();
         formParams = form.serializeArray();
@@ -2694,7 +2709,10 @@ $(document).ready(function () {
     $('#be_conferma_invia').click(function(){
         
         $('#ElaborazioneRichiestaModal').modal('show');
-        
+        setTimeout(function() {
+            $('ElaborazioneRichiestaModal .modal-body').append('<p>Protocollazione in corso...</p>');
+        }, 5000);
+
         var form = $('#be_conferma_invia');
         formData = new FormData();
         formParams = form.serializeArray();
@@ -2746,7 +2764,6 @@ $(function(){
        
        event.preventDefault();
     });
-    
 
     $(".deleteAttivita").click(function(){
         formData = new FormData();
@@ -3044,12 +3061,10 @@ function resetRatingModal() {
 
 $(function(){
     $("#modalRating #risultato-rating").hide();
-    
     $("#modalRating .btnCloseAndReload").click(function(){
         window.location.href = $("#modalRating #tutorial #ActualUrl").val();
         event.preventDefault();
     });
-    
     $("#modalRating #btn_invia_feedback_positivo").click(function(){
         rating = parseInt($("#modalRating #tutorial #rating").val());
         if($("#modalRating input[name='negativa']:checked").length > 0 && $("#modalRating #commento_negativo").val() != ''){
@@ -3095,7 +3110,6 @@ $(function(){
             event.preventDefault();            
         }
     });
-    
     $("#modalRating #btn_invia_feedback_negativo").click(function(){
         rating = parseInt($("#modalRating #tutorial #rating").val());
         if($("#modalRating input[name='negativa']:checked").length > 0 && $("#modalRating #commento_negativo").val() != ''){

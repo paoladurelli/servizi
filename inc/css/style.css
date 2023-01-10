@@ -1451,7 +1451,11 @@ svg.radial-progress.refused circle { stroke: #ef0303; }
     .it-user-wrapper .btn{
         width: auto;
     }
-        
+
+    .it-header-wrapper .it-nav-wrapper .it-brand-wrapper {
+        padding-left: 0px;
+    }
+    
     .navbar.it-navscroll-wrapper .menu-wrapper {
         padding: 0px;
     }
@@ -1462,7 +1466,6 @@ svg.radial-progress.refused circle { stroke: #ef0303; }
         padding: 10px 0;
         font-size: 14px;
     }
-
     .cmp-nav-tab div {
         min-height: 40px;
     }

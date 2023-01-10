@@ -71,32 +71,14 @@ function SendToAppIo($table,$NumeroPratica){
     $cf_destinatario = $cf;
     $messaggio_per_user = 'Gentile '. $nome . ' '. $cognome . ',\n\n Ti avvisiamo che la tua pratica: <b>'.$NumeroPratica.'</b> è stata inviata. \n\n';
     $messaggio_per_user .= 'Cordiali saluti. \n\n';
-    
-    /*
-    switch ($table){
-        case 'accesso_atti':
-//          Comunicazione accesso agli atti - Funzionante
-            $appio_key = "daa1a40292494acd9449ec179a252ff6";
-            break;
-        case 'assegno_maternita':
-//          Comunicazione domanda assegno di maternità
-            $appio_key = "59288ac6eccf4dd9b2c37d667bafaae7";
-            break;
-        case 'domanda_contributo':
-//          Comunicazione domanda di contributo
-            $appio_key = "48785f78880049869228ce340326543b";
-            break;
-        case 'bonus_economici':
-//          Avvisi area "Servizi Sociali"
-            $appio_key = "6d089949062248e19ea94a621e1322f0";
-            break;
-        case 'partecipazione_concorso':
-//          Comunicazione iscrizione concorso pubblico
-            $appio_key = "f0c175320098421a9dfd4d9f9b2eac29";
-            break;
+
+/* leggo la chiave dal file di configurazione */
+    $configIO = require '../env/config_io.php';
+    if($configIO[$table] == ''){
+        $appio_key = $configIO['default'];
+    }else{
+        $appio_key = $configIO[$table];
     }
-    CHIAVE TEMPORANEA DA ELIMINARE */
-    $appio_key = "daa1a40292494acd9449ec179a252ff6";
     
     $curl = curl_init();
     curl_setopt_array($curl, array(
