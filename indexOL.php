@@ -8,6 +8,7 @@ if (!empty($_SESSION["CF"])){
     unset($_SESSION["Email"]);
 }
 
+$IsOperatore = base64_decode($_POST['abilitazione']);
 
 if(!empty($_POST['cf'])){
 /* leggo il form che mi viene mandato dal sito */

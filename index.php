@@ -8,6 +8,8 @@ if (!empty(trim($_SESSION["CF"]))){
     unset($_SESSION["Email"]);
 }
 
+$IsOperatore = base64_decode($_POST['abilitazione']);
+
 /* file di inclusione */
     $configDB = require 'env/config.php';
     

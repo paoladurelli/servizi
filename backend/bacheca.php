@@ -1,13 +1,13 @@
 <?php 
     /* file di inclusione */
     $configData = require '../env/config_servizi.php';
-    include '../fun/utility.php';
+    include 'fun/utility.php';
 
     /* pagina iniziale */
     session_start();
 
-    include '../template/head_servizi.php';
-    include '../template/header_servizi.php';
+    include 'template/head.php';
+    include 'template/header.php';
 ?>
     <main>
         <div class="container" id="main-container">
@@ -17,15 +17,16 @@
                         <nav class="breadcrumb-container">
                             <ol class="breadcrumb p-0" data-element="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><span class="separator">/</span>Backend</li>
+                                <li class="breadcrumb-item active" aria-current="page"><span class="separator">/</span>Pannello Operatore</li>
                             </ol>
                         </nav>
                     </div>
                     <div class="cmp-heading pb-3 pb-lg-4">
-                        <h1 class="title-xxxlarge"><?php echo $_SESSION['Nome'] . ' ' . $_SESSION['Cognome']; ?></h1>
+                        <h1 class="title"><?php echo $_SESSION['Nome'] . ' ' . $_SESSION['Cognome']; ?></h1>
                         <p class="subtitle-small">CF: <?php echo $_SESSION['CF']; ?></p>
                     </div>
                 </div>
+                <?php echo ViewMenuMain(1); ?>
             </div>
             <div class="it-page-sections-container">
                 <div class="row">
@@ -40,9 +41,6 @@
                                                     <span class="accordion-header" id="accordion-title-one">
                                                         <button class="accordion-button pb-10 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-one" aria-expanded="true" aria-controls="collapse-one">
                                                             INDICE DELLA PAGINA
-                                                            <svg class="icon icon-xs right">
-                                                                <use href="../lib/svg/sprites.svg#it-expand"></use>
-                                                            </svg>
                                                         </button>
                                                     </span>
                                                     <div class="progress">
@@ -52,8 +50,8 @@
                                                         <div class="accordion-body">
                                                             <ul class="link-list" data-element="page-index">
                                                                 <li class="nav-item">
-                                                                    <a class="nav-link" href="#newest-pratiche">
-                                                                        <span class="title-medium">Nuove pratiche</span>
+                                                                    <a class="nav-link" href="praticheRicevute_list.php">
+                                                                        <span class="title-medium">Pratiche Ricevute</span>
                                                                     </a>
                                                                 </li>
                                                             </ul>
@@ -170,7 +168,7 @@
                         <div class="it-page-section" id="newest-pratiche">
                             <div class="row">
                                 <div class="col-12">
-                                    <h2 class="title-xxlarge mb-3">Nuove pratiche</h2>
+                                    <h2 class="title-xxlarge mb-3">Ultime pratiche ricevute</h2>
                                 </div>
                             </div>
                             <div class="row">
@@ -182,7 +180,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 text-right mb-4">
-                                    <a href="pratiche_list.php" class="btn btn-primary" style="margin-right: 10px;">Vedi tutte le pratiche</a>
+                                    <a href="praticheRicevute_list.php" class="btn btn-primary" style="margin-right: 10px;">Vedi tutte le pratiche ricevute</a>
                                 </div>
                             </div>
                         </div>
@@ -192,4 +190,4 @@
         </div>
     </main>
 
-<?php include '../template/footer_servizi.php'; 
+<?php include 'template/footer.php'; 

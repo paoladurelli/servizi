@@ -13,6 +13,6 @@
 
 <ul class="navbar-nav">
     <li class="nav-item ">
-        <a class="nav-link" href="backend\bacheca.php">Vai al BackEnd</a>
+        <a class="nav-link" href="..\bacheca.php">Vai al Pannello Utente</a>
     </li>
 </ul>

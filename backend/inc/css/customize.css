@@ -1,0 +1,12 @@
+/* 
+    Created on : 10 gen 2023
+    Author     : paola.durelli
+*/
+:root{
+  --bs-primary: #f08e53;
+  --bs-primary-hls: hsl(23deg, 65%, 94%);
+  --bs-secondary: #f46007;
+  --btn-primary: #f08e53;
+  --btn-primary-hover: #f46007;
+  --bs-body-color: #5b6f82;
+}

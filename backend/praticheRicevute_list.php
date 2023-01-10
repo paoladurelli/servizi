@@ -1,14 +1,14 @@
 <?php 
     /* file di inclusione */
-    $configDB = require './env/config.php';
-    $configData = require './env/config_servizi.php';
-    include './fun/utility.php';
+    $configData = require '../env/config_servizi.php';
+    $configDB = require '../env/config.php';
+    include 'fun/utility.php';
 
-    /* pagina di tutti i servizi */
+    /* pagina dove vengono visualizzare le attività di un servizio specifico */
     session_start();
 
-    include './template/head.php';
-    include './template/header.php';
+    include 'template/head.php';
+    include 'template/header.php';
 
 ?>
     <main>
@@ -19,7 +19,8 @@
                         <nav class="breadcrumb-container">
                             <ol class="breadcrumb p-0" data-element="breadcrumb">
                                 <li class="breadcrumb-item"><a href="bacheca.php">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><span class="separator">/</span>Area personale</li>
+                                <li class="breadcrumb-item"><span class="separator">/</span>Pannello Operatore</li>
+                                <li class="breadcrumb-item active" aria-current="page"><span class="separator">/</span>Pratiche Ricevute</li>
                             </ol>
                         </nav>
                     </div>
@@ -28,10 +29,10 @@
                         <p class="subtitle-small">CF: <?php echo $_SESSION['CF']; ?></p>
                     </div>
                 </div>
-                <?php echo ViewMenuMain(); ?>
+                <?php echo ViewMenuMain(3); ?>
             </div>
-            <div class="it-page-sections-container page-cerca pb-5">
-                <div class="row mb-30">
+            <div class="it-page-sections-container">
+                <div class="row">
                     <div class="col-12 col-xl-3">
                         <div class="cmp-navscroll sticky-top" aria-labelledby="accordion-title-one">
                             <nav class="navbar it-navscroll-wrapper navbar-expand-lg" data-bs-navscroll>
@@ -52,28 +53,8 @@
                                                         <div class="accordion-body">
                                                             <ul class="link-list" data-element="page-index">
                                                                 <?php
-                                                                    /* PRATICHE */
-                                                                    $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-                                                                    $sql = "SELECT COUNT(id) as CountRows FROM (". CreateTempTable() . ") servizi_tmp WHERE CodiceFiscale = '".$_SESSION['CF']."' AND StatusId > 1";
-                                                                    $result = $connessione->query($sql);
-                                                                    if ($result->num_rows > 0) {
-                                                                        while($row = $result->fetch_assoc()) {
-                                                                            echo '<li class="nav-item"><a class="" href="attivita_list.php"><span class="title-medium">Pratiche</span><span class="float-right menu-numbers">'.$row['CountRows'].'</span></a></li>';
-                                                                        }
-                                                                    }
-                                                                    $connessione->close();
-                                                                    
-                                                                    /* BOZZE */
-                                                                    $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-                                                                    $sql = "SELECT COUNT(id) as CountRows FROM (". CreateTempTable() . ") servizi_tmp  WHERE CodiceFiscale = '".$_SESSION['CF']."' AND StatusId = 1 AND NumeroPratica = ''";
-                                                                    $result = $connessione->query($sql);
-                                                                    if ($result->num_rows > 0) {
-                                                                        while($row = $result->fetch_assoc()) {
-                                                                            echo '<li class="nav-item"><a class="" href="bozze_list.php"><span class="title-medium">Le mie bozze</span><span class="float-right menu-numbers">'.$row['CountRows'].'</span></a></li>';
-                                                                        }
-                                                                    }
-                                                                    /* SERVIZI ATTIVI */
-                                                                    echo MenuAttivita($_SESSION['CF']);
+                                                                    /* MENU PRATICHE */
+                                                                    echo MenuPratiche('I');
                                                                 ?>
                                                             </ul>
                                                         </div>
@@ -86,11 +67,13 @@
                             </nav>
                         </div>
                     </div>
-                    <div class="col-12 col-xl-9 body-cerca">
-                        <div class="mt-3 mb-3">
-                            <h5>Risultati per la ricerca: <b><?php echo $_GET['txt']; ?></b></h5>
+                    <div class="col-12 col-xl-9 body-attivita">
+                        <div class="it-page-section mb-50 mb-lg-90" id="attivita">
+                            <div class="row mb-20 mt-3">
+                                <?php include 'praticheRicevute_main.php'; ?>
+                            </div>
+                            <?php echo LegendaStatus(); ?>
                         </div>
-                        <?php include 'cerca_results.php'; ?>
                     </div>
                 </div>
             </div>

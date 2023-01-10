@@ -1,7 +1,5 @@
 <?php
-/* file di inclusione */
-    $configDB = require 'env/config.php';
-    
+
 /* mi connetto al DB */
     $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
 
