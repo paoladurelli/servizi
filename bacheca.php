@@ -40,10 +40,7 @@
                                                 <div class="accordion-item">
                                                     <span class="accordion-header" id="accordion-title-one">
                                                         <button class="accordion-button pb-10 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-one" aria-expanded="true" aria-controls="collapse-one">
-                                                            INDICE DI PAGINA
-                                                            <svg class="icon icon-xs right">
-                                                                <use href="./lib/svg/sprites.svg#it-expand"></use>
-                                                            </svg>
+                                                            INDICE DELLA PAGINA
                                                         </button>
                                                     </span>
                                                     <div class="progress">
