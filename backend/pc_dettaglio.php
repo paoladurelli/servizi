@@ -52,15 +52,11 @@
     $accettazioneComunicazioneVariazioniDomicilio = "";
     
     $uploadCartaIdentitaFronte = "";
-    $uploadCartaIdentitaFronteSaved = "";
     $uploadCartaIdentitaRetro = "";
-    $uploadCartaIdentitaRetroSaved = "";
     $uploadCV = "";
-    $uploadCVSaved = "";
     $tmpUploadTitoliPreferenza1 = "";
     $tmpUploadTitoliPreferenzas = "";
     $uploadTitoliPreferenza = "";
-    $uploadTitoliPreferenzaSaved = "";
     $data_compilazione  ="";
 
     
@@ -115,27 +111,17 @@
                 $accettazioneDisposizioniComune = $row["accettazioneDisposizioniComune"];
                 $accettazioneComunicazioneVariazioniDomicilio = $row["accettazioneComunicazioneVariazioniDomicilio"];
 
-                if($row["uploadCartaIdentitaFronte"] != ''){
-                    $uploadCartaIdentitaFronte = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><a href='../uploads/partecipazione_concorso/". $row["uploadCartaIdentitaFronte"] ."' target='_blank'>". $row["uploadCartaIdentitaFronte"] ."</a></p></li>";
-                    $uploadCartaIdentitaFronteSaved = $row["uploadCartaIdentitaFronte"];
-                }
-                if($row["uploadCartaIdentitaRetro"] != ''){
-                    $uploadCartaIdentitaRetro = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><a href='../uploads/partecipazione_concorso/". $row["uploadCartaIdentitaRetro"] ."' target='_blank'>". $row["uploadCartaIdentitaRetro"] ."</a></p></li>";
-                    $uploadCartaIdentitaRetroSaved = $row["uploadCartaIdentitaRetro"];
-                }
-                if($row["uploadCV"] != ''){
-                    $uploadCV = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><a href='../uploads/partecipazione_concorso/". $row["uploadCV"] ."' target='_blank'>". $row["uploadCV"] ."</a></p></li>";
-                    $uploadCVSaved = $row["uploadCV"];
-                }
+                $uploadCartaIdentitaFronte = $row["uploadCartaIdentitaFronte"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><a href='../uploads/partecipazione_concorso/". $row["uploadCartaIdentitaFronte"] ."' target='_blank'>". $row["uploadCartaIdentitaFronte"] ."</a></p></li>" : "";
+                $uploadCartaIdentitaRetro = $row["uploadCartaIdentitaRetro"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><a href='../uploads/partecipazione_concorso/". $row["uploadCartaIdentitaRetro"] ."' target='_blank'>". $row["uploadCartaIdentitaRetro"] ."</a></p></li>" : "";
+                $uploadCV = $row["uploadCV"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><a href='../uploads/partecipazione_concorso/". $row["uploadCV"] ."' target='_blank'>". $row["uploadCV"] ."</a></p></li>" : "";
                 
                 if($row["uploadTitoliPreferenza"] != ''){
                     $tmpUploadTitoliPreferenza1 = substr($row["uploadTitoliPreferenza"],0,-1);
                     $tmpUploadTitoliPreferenzas = explode(';', $tmpUploadTitoliPreferenza1);
                     $uploadTitoliPreferenza = "";
                     foreach($tmpUploadTitoliPreferenzas as $tmpUploadTitoliPreferenza) {
-                        $uploadTitoliPreferenza .= "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><a href='../uploads/partecipazione_concorso/". $tmpUploadTitoliPreferenza ."' target='_blank'>". $tmpUploadTitoliPreferenza ."</a></p></li>";
+                        $uploadTitoliPreferenza .= $tmpUploadTitoliPreferenza != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><a href='../uploads/partecipazione_concorso/". $tmpUploadTitoliPreferenza ."' target='_blank'>". $tmpUploadTitoliPreferenza ."</a></p></li>" : "";
                     }
-                    $uploadTitoliPreferenzaSaved = $row["uploadTitoliPreferenza"];
                 }
                 $data_compilazione = $row["data_compilazione"];
             }

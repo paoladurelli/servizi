@@ -239,6 +239,6 @@
         <script src="../lib/js/jquery-ui.min.js"></script>
         <script src="../lib/js/jquery.validate.min.js"></script>
         <script src="../lib/js/bootstrap-italia.bundle.min.js"></script>
-        <script src="../inc/script/scripts.js"></script>
+        <script src="inc/script/scripts.js"></script>
     </body>
 </html>

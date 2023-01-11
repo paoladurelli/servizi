@@ -20,7 +20,7 @@
                             <ol class="breadcrumb p-0" data-element="breadcrumb">
                                 <li class="breadcrumb-item"><a href="bacheca.php">Home</a></li>
                                 <li class="breadcrumb-item"><span class="separator">/</span>Pannello Operatore</li>
-                                <li class="breadcrumb-item active" aria-current="page"><span class="separator">/</span>Pratiche Ricevute</li>
+                                <li class="breadcrumb-item active" aria-current="page"><span class="separator">/</span>Pratiche Rifiutate</li>
                             </ol>
                         </nav>
                     </div>
@@ -54,7 +54,7 @@
                                                             <ul class="link-list" data-element="page-index">
                                                                 <?php
                                                                     /* MENU PRATICHE */
-                                                                    echo MenuPratiche('I');
+                                                                    echo MenuPratiche('R');
                                                                 ?>
                                                             </ul>
                                                         </div>
@@ -71,9 +71,9 @@
                         <div class="it-page-section mb-50 mb-lg-90" id="attivita">
                             <div class="row mb-20 mt-3">
                                 <div class="col-12 title-pratiche pb-3 mb-3 after-section">
-                                    <img src="..\media\images\icons\status_2.png" title="Pratiche Ricevute" alt="Pratiche Ricevute"/><h5>Pratiche Ricevute</h5>
+                                    <img src="..\media\images\icons\status_5.png" title="Pratiche Rifiutate" alt="Pratiche Rifiutate"/><h5>Pratiche Rifiutate</h5>
                                 </div>
-                                <?php include 'praticheRicevute_main.php'; ?>
+                                <?php include 'praticheRifiutate_main.php'; ?>
                             </div>
                             <?php echo LegendaStatus(); ?>
                         </div>

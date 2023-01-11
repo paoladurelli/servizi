@@ -6,7 +6,7 @@
     $sql = "SELECT attivita.id as attivita_id, attivita.data_attivita, attivita.pratica_id as pratica_id, attivita.servizio_id as ServizioId, attivita.status_id as StatusId, servizi.NomeServizio as NomeServizio, status.nome as NomeStatus FROM attivita
             LEFT JOIN servizi ON attivita.servizio_id = servizi.id
             LEFT JOIN status ON attivita.status_id = status.id
-            WHERE attivita.status_id = 2
+            WHERE attivita.status_id = 3
             ORDER BY attivita.data_attivita DESC, attivita.id DESC";
     /* paginazione - START*/        
         $perpage = $configDB['PER_PAGE_LIMIT'];
@@ -70,7 +70,8 @@
                                     <div class="col-lg-12">
                                         <div class="row">';
                                             echo '<div class="col-12 text-right">
-                                                <a href="#" class="btn-small btn-primary changeStatusLavorazione" data-id="'.$row["pratica_id"].'" data-servizio="'.$row["ServizioId"].'">Metti in Lavorazione</a>
+                                                <a href="#" class="btn-small btn-primary btn-with-icon changeStatusAccetta" data-id="'.$row["pratica_id"].'" data-servizio="'.$row["ServizioId"].'">Accetta<svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-check"></use></svg></a>
+                                                <a href="#" class="btn-small btn-primary btn-with-icon changeStatusRifiuta" data-id="'.$row["pratica_id"].'" data-servizio="'.$row["ServizioId"].'">Rifiuta<svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-close"></use></svg></a>
                                                 <a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="btn-small btn-secondary">Consulta</a>
                                             </div>';
                                         echo '</div>

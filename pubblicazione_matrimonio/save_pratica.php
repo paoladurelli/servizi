@@ -111,7 +111,7 @@ if ($resultCheck->num_rows > 0) {
                 $phpmailer->setFrom($fromMail,$fromName);
                 $phpmailer->addAddress('paola.durelli@proximalab.it', 'Proxima');
                 $phpmailer->addAddress($configData['mail_comune'], 'Comune di ' . $configData['nome_comune']);
-                $phpmailer->Subject = 'Comune di '. $configData['nome_comune'] . ' - Richiesta di pubblicazione di matrimonio  - '.$NumeroPratica.' - '. $_SESSION['CF'];
+                $phpmailer->Subject = 'Comune di '. $configData['nome_comune'] . ' - Richiesta di pubblicazione di matrimonio - '.$NumeroPratica.' - '. $_SESSION['CF'];
 
                 /* Add Static Attachment */
                 /* allego la pratica completa appena creata */
@@ -159,7 +159,7 @@ if ($resultCheck->num_rows > 0) {
                 $message2 = str_replace('%codicefiscale%', $_SESSION['CF'], $message2);
                 $message2 = str_replace('%numeropratica%', $NumeroPratica, $message2);
                 $message2 = str_replace('%servizioselezionato%', 'domanda di contributo economico', $message2);
-                $message2 = str_replace('%urlservizi%', $configData['url_servizi'], $message);
+                $message2 = str_replace('%urlservizi%', $configData['url_servizi'], $message2);
                 $message2 = str_replace('%nomecomune%', $configData['nome_comune'], $message2);
                 $message2 = str_replace('%telcomune%', $configData['tel_comune'], $message2);
                 $message2 = str_replace('%mailcomune%', $configData['mail_comune'], $message2);

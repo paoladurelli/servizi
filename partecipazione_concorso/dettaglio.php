@@ -52,15 +52,11 @@
     $accettazioneComunicazioneVariazioniDomicilio = "";
     
     $uploadCartaIdentitaFronte = "";
-    $uploadCartaIdentitaFronteSaved = "";
     $uploadCartaIdentitaRetro = "";
-    $uploadCartaIdentitaRetroSaved = "";
     $uploadCV = "";
-    $uploadCVSaved = "";
     $tmpUploadTitoliPreferenza1 = "";
     $tmpUploadTitoliPreferenzas = "";
     $uploadTitoliPreferenza = "";
-    $uploadTitoliPreferenzaSaved = "";
     $data_compilazione  ="";
 
     
@@ -115,27 +111,17 @@
                 $accettazioneDisposizioniComune = $row["accettazioneDisposizioniComune"];
                 $accettazioneComunicazioneVariazioniDomicilio = $row["accettazioneComunicazioneVariazioniDomicilio"];
 
-                if($row["uploadCartaIdentitaFronte"] != ''){
-                    $uploadCartaIdentitaFronte = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadCartaIdentitaFronte"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
-                    $uploadCartaIdentitaFronteSaved = $row["uploadCartaIdentitaFronte"];
-                }
-                if($row["uploadCartaIdentitaRetro"] != ''){
-                    $uploadCartaIdentitaRetro = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadCartaIdentitaRetro"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
-                    $uploadCartaIdentitaRetroSaved = $row["uploadCartaIdentitaRetro"];
-                }
-                if($row["uploadCV"] != ''){
-                    $uploadCV = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadCV"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
-                    $uploadCVSaved = $row["uploadCV"];
-                }
-                
+                $uploadCartaIdentitaFronte = $row["uploadCartaIdentitaFronte"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p>". $row["uploadCartaIdentitaFronte"] ."</p></li>" : "";
+                $uploadCartaIdentitaRetro = $row["uploadCartaIdentitaRetro"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p>". $row["uploadCartaIdentitaRetro"] ."</p></li>" : "";
+                $uploadCV = $row["uploadCV"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p>". $row["uploadCV"] ."</p></li>" : "";
+               
                 if($row["uploadTitoliPreferenza"] != ''){
                     $tmpUploadTitoliPreferenza1 = substr($row["uploadTitoliPreferenza"],0,-1);
                     $tmpUploadTitoliPreferenzas = explode(';', $tmpUploadTitoliPreferenza1);
                     $uploadTitoliPreferenza = "";
                     foreach($tmpUploadTitoliPreferenzas as $tmpUploadTitoliPreferenza) {
-                        $uploadTitoliPreferenza .= "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $tmpUploadTitoliPreferenza ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
+                        $uploadTitoliPreferenza .= $tmpUploadTitoliPreferenza != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p>". $tmpUploadTitoliPreferenza ."</p></li>" : "";
                     }
-                    $uploadTitoliPreferenzaSaved = $row["uploadTitoliPreferenza"];
                 }
                 $data_compilazione = $row["data_compilazione"];
             }

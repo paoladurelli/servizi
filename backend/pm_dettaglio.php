@@ -386,8 +386,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <?php $Date = date('Y-m-d'); ?>
-
                                                         <div class="step">
                                                             <div class="date-step">
                                                                 <span class="date-step-giorno"><?php echo date('d', strtotime($data_compilazione. ' + 60 days')); ?></span><br>

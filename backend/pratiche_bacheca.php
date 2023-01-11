@@ -48,20 +48,12 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">';
-                                        if($row['StatusId'] > 1){
-                                            echo '<div class="row">
-                                                <div class="col-12 text-right">
-                                                    <a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="btn-small btn-primary">Consulta</a>
-                                                </div>
-                                            </div>';
-                                        }else{
-                                            echo '<div class="row">
-                                                <div class="col-12 text-right">
-                                                    <a class="btn-small btn-secondary mr-2 deleteLink" data-servizio-id="'.$row["ServizioId"].'" data-pratica-id="'.$row["pratica_id"].'" data-status-id="'.$row["StatusId"].'">Elimina</a>
-                                                    <a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="btn-small btn-primary">Completa</a>
-                                                </div>
-                                            </div>';
-                                        }
+                                        echo '<div class="row">
+                                            <div class="col-12 text-right">
+                                                <a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="btn-small btn-primary">Metti in Lavorazione</a>
+                                                <a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="btn-small btn-secondary">Consulta</a>
+                                            </div>
+                                        </div>';
                                     echo '</div>
                                     <div class="col-lg-12">
                                         <div class="row">

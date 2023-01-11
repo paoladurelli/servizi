@@ -88,15 +88,15 @@
 
                 $tipoPagamento_id = $row["tipoPagamento_id"];
 
-                $uploadPotereFirma = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadPotereFirma"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
+                $uploadPotereFirma = $row["uploadPotereFirma"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p>". $row["uploadPotereFirma"] ."</p></li>" : "";
                 
-                $uploadIsee = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $row["uploadIsee"] ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
+                $uploadIsee = $row["uploadIsee"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p>". $row["uploadIsee"] ."</p></li>" : "";
                 
                 $tmpUploadDocumentazione1 = substr($row["uploadDocumentazione"],0,-1);
                 $tmpUploadDocumentaziones = explode(';', $tmpUploadDocumentazione1);
                 $uploadDocumentazione = "";
                 foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
-                    $uploadDocumentazione .= "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><span class='visually-hidden'>File caricato:</span>". $tmpUploadDocumentazione ."</p><button disabled><svg class='icon' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-check'></use></svg></button></li>";
+                    $uploadDocumentazione .= $tmpUploadDocumentazione != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p>". $tmpUploadDocumentazione ."</p></li>" : "";
                 }
                 $data_compilazione = $row["data_compilazione"];
             }

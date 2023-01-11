@@ -58,25 +58,23 @@ function setNumeroProtocollo($numberProtocollo){
 /* FUNZIONI PER LA PROTOCOLLAZIONE - end */
 
 /* FUNZIONI PER L'INVIO DI NOTIFICHE ALL'APP IO - start */
-function SendToAppIo($table,$NumeroPratica){
+function SendToAppIoChangeStatus($table,$NumeroPratica,$cf_destinatario,$action){
     $configDB = require '../env/config.php';
     $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-    $sql = "SELECT * FROM ".$table." WHERE richiedenteCf = '".$_SESSION['CF']."'";
+    $sql = "SELECT * FROM ".$table." WHERE richiedenteCf = '".$cf_destinatario."'";
     $result = $connessione->query($sql);
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
             $nome = $row['richiedenteNome'];
             $cognome = $row['richiedenteCognome'];
-            $cf = $row['richiedenteCf'];
         }
     }
     $connessione->close();
 
-    $cf_destinatario = $cf;
-    $messaggio_per_user = 'Gentile '. $nome . ' '. $cognome . ',\n\n Ti avvisiamo che la tua pratica: <b>'.$NumeroPratica.'</b> è stata inviata. \n\n';
+    $messaggio_per_user = 'Gentile '. $nome . ' '. $cognome . ',\n\n Ti avvisiamo che la tua pratica: <b>'.$NumeroPratica.'</b> è stata '.$action.'. \n\n';
     $messaggio_per_user .= 'Cordiali saluti. \n\n';
 
-/* leggo la chiave dal file di configurazione */
+    /* leggo la chiave dal file di configurazione */
     $configIO = require '../env/config_io.php';
     if($configIO[$table] == ''){
         $appio_key = $configIO['default'];
@@ -102,7 +100,9 @@ function SendToAppIo($table,$NumeroPratica){
     $response = curl_exec($curl);
     curl_close($curl);
     $array = json_decode($response, true);
-    if ($array['sender_allowed']) {
+    
+    if (empty($array)) {
+        if ($array['sender_allowed']) {
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => 'https://api.io.italia.it/api/v1/messages',
@@ -129,6 +129,7 @@ function SendToAppIo($table,$NumeroPratica){
 
         $response = curl_exec($curl);
         curl_close($curl);
+        }
     }
 }
 /* FUNZIONI PER L'INVIO DI NOTIFICHE ALL'APP IO - end */

@@ -267,7 +267,7 @@ if ($resultCheck->num_rows > 0) {
                 $phpmailer2->SMTPSecure = $configSmtp['smtp_secure'];
                 $phpmailer2->Username = $configSmtp['smtp_username'];
                 $phpmailer2->Password = $configSmtp['smtp_password'];
-                $phpmailer->setFrom($fromMail,$fromName);
+                $phpmailer2->setFrom($fromMail,$fromName);
                 $phpmailer2->addAddress('paola.durelli@proximalab.it', 'Proxima');
                 $phpmailer2->addAddress($_SESSION["Email"]);
                 $phpmailer2->Subject = 'Comune di '. $configData['nome_comune'] . ' - Accesso agli atti ';
@@ -279,7 +279,7 @@ if ($resultCheck->num_rows > 0) {
                 $message2 = str_replace('%codicefiscale%', $_SESSION['CF'], $message2);
                 $message2 = str_replace('%numeropratica%', $NumeroPratica, $message2);
                 $message2 = str_replace('%servizioselezionato%', 'domanda di accesso agli atti', $message2);
-                $message2 = str_replace('%urlservizi%', $configData['url_servizi'], $message);
+                $message2 = str_replace('%urlservizi%', $configData['url_servizi'], $message2);
                 $message2 = str_replace('%nomecomune%', $configData['nome_comune'], $message2);
                 $message2 = str_replace('%telcomune%', $configData['tel_comune'], $message2);
                 $message2 = str_replace('%mailcomune%', $configData['mail_comune'], $message2);

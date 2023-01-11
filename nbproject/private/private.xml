@@ -11,6 +11,13 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/xampp/htdocs/servizi/backend/fun/utility.php</file>
+            <file>file:/C:/xampp/htdocs/servizi/backend/pm_dettaglio.php</file>
+            <file>file:/C:/xampp/htdocs/servizi/backend/template/modal.php</file>
+            <file>file:/C:/xampp/htdocs/servizi/backend/am_dettaglio.php</file>
+            <file>file:/C:/xampp/htdocs/servizi/backend/inc/script/scripts.js</file>
+            <file>file:/C:/xampp/htdocs/servizi/backend/inc/css/style.css</file>
+        </group>
     </open-files>
 </project-private>

@@ -88,21 +88,14 @@
 
                 $tipoPagamento_id = $row["tipoPagamento_id"];
 
-                if($row["uploadPotereFirma"] != ''){
-                    $uploadPotereFirma = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><a href='../uploads/bonus_econimici/". $row["uploadPotereFirma"] ."' target='_blank'>". $row["uploadPotereFirma"] ."</a></p></li>";
-                }
-               
-                if($row["uploadIsee"] != ''){
-                    $uploadIsee = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><a href='../uploads/bonus_econimici/". $row["uploadIsee"] ."' target='_blank'>". $row["uploadIsee"] ."</a></p></li>";
-                }
+                $uploadPotereFirma = $row["uploadPotereFirma"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><a href='../uploads/bonus_econimici/". $row["uploadPotereFirma"] ."' target='_blank'>". $row["uploadPotereFirma"] ."</a></p></li>" : "";
+                $uploadIsee = $row["uploadIsee"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><a href='../uploads/bonus_econimici/". $row["uploadIsee"] ."' target='_blank'>". $row["uploadIsee"] ."</a></p></li>" : "";
                 
                 $tmpUploadDocumentazione1 = substr($row["uploadDocumentazione"],0,-1);
                 $tmpUploadDocumentaziones = explode(';', $tmpUploadDocumentazione1);
                 $uploadDocumentazione = "";
                 foreach($tmpUploadDocumentaziones as $tmpUploadDocumentazione) {
-                    if($tmpUploadDocumentazione != ''){
-                        $uploadDocumentazione .= "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><a href='../uploads/bonus_economici/". $tmpUploadDocumentazione ."' target='_blank'>". $tmpUploadDocumentazione ."</a></p></li>";
-                    }
+                    $uploadDocumentazione .= $tmpUploadDocumentazione != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><a href='../uploads/bonus_economici/". $tmpUploadDocumentazione ."' target='_blank'>". $tmpUploadDocumentazione ."</a></p></li>" : "";
                 }
                 $data_compilazione = $row["data_compilazione"];
             }

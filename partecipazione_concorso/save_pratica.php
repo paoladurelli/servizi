@@ -237,7 +237,7 @@ if ($resultCheck->num_rows > 0) {
                 $message2 = str_replace('%codicefiscale%', $_SESSION['CF'], $message2);
                 $message2 = str_replace('%numeropratica%', $NumeroPratica, $message2);
                 $message2 = str_replace('%servizioselezionato%', 'iscrizione ad un concorso', $message2);
-                $message2 = str_replace('%urlservizi%', $configData['url_servizi'], $message);
+                $message2 = str_replace('%urlservizi%', $configData['url_servizi'], $message2);
                 $message2 = str_replace('%nomecomune%', $configData['nome_comune'], $message2);
                 $message2 = str_replace('%telcomune%', $configData['tel_comune'], $message2);
                 $message2 = str_replace('%mailcomune%', $configData['mail_comune'], $message2);

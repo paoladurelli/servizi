@@ -249,6 +249,19 @@ label{
   line-height: 0em;
 }
 
+.btn-with-icon{
+    height: 35px;
+    padding: 8px 10px 0px 20px;
+}
+
+.btn-with-icon svg{
+    fill: #fff;
+    line-height: 1;
+    margin-top: -5px;
+    height: 25px;
+    width: 25px;
+}
+
 .show {
     display: block;
 }
@@ -361,6 +374,14 @@ label{
 
 .it-header-center-wrapper {
     background: var(--bs-primary);
+}
+
+.title-pratiche img{
+  float: left;
+}
+.title-pratiche h5{
+  margin-left: 54px;
+  margin-top: 8px;
 }
 
 .accordion-item .accordion-body {
@@ -1235,7 +1256,7 @@ a.pulsante_leggi_dipiu{
     font-weight: normal;
 }
 .navbar.it-navscroll-wrapper .link-list-wrapper ul li a.active span {
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .ui-dialog-titlebar {
@@ -1410,6 +1431,8 @@ svg.radial-progress.refused circle { stroke: #ef0303; }
 
     .navbar.it-navscroll-wrapper .link-list-wrapper ul li a {
         padding-right: 0px;
+        padding-left: 20px;
+        font-size: 16px;
     }
     .card {
         min-height: 380px;

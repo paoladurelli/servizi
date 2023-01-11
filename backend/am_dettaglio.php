@@ -84,18 +84,11 @@
 
                 $tipoPagamento_id = $row["tipoPagamento_id"];
                 
-                if($row["uploadCartaIdentitaFronte"] != ''){
-                    $uploadCartaIdentitaFronte = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><a href='../uploads/assegno_maternita/". $row["uploadCartaIdentitaFronte"] ."' target='_blank'>". $row["uploadCartaIdentitaFronte"] ."</a></p></li>";
-                }
-                if($row["uploadCartaIdentitaRetro"] != ''){
-                    $uploadCartaIdentitaRetro = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><a href='../uploads/assegno_maternita/". $row["uploadCartaIdentitaRetro"] ."' target='_blank'>". $row["uploadCartaIdentitaRetro"] ."</a></p></li>";
-                }
-                if($row["uploadTitoloSoggiorno"] != ''){
-                    $uploadTitoloSoggiorno = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><a href='../uploads/assegno_maternita/". $row["uploadTitoloSoggiorno"] ."' target='_blank'>". $row["uploadTitoloSoggiorno"] ."</a></p></li>";
-                }
-                if($row["uploadDichiarazioneDatoreLavoro"] != ''){
-                    $uploadDichiarazioneDatoreLavoro = "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><a href='../uploads/assegno_maternita/". $row["uploadDichiarazioneDatoreLavoro"] ."' target='_blank'>". $row["uploadDichiarazioneDatoreLavoro"] ."</a></p></li>";
-                }
+                $uploadCartaIdentitaFronte = $row["uploadCartaIdentitaFronte"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><a href='../uploads/assegno_maternita/". $row["uploadCartaIdentitaFronte"] ."' target='_blank'>". $row["uploadCartaIdentitaFronte"] ."</a></p></li>" : "";
+                $uploadCartaIdentitaRetro = $row["uploadCartaIdentitaRetro"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><a href='../uploads/assegno_maternita/". $row["uploadCartaIdentitaRetro"] ."' target='_blank'>". $row["uploadCartaIdentitaRetro"] ."</a></p></li>" : "";
+                $uploadTitoloSoggiorno = $row["uploadTitoloSoggiorno"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><a href='../uploads/assegno_maternita/". $row["uploadTitoloSoggiorno"] ."' target='_blank'>". $row["uploadTitoloSoggiorno"] ."</a></p></li>" : "";
+                $uploadDichiarazioneDatoreLavoro = $row["uploadDichiarazioneDatoreLavoro"] != "" ? "<li class='upload-file success'><svg class='icon icon-sm' aria-hidden='true'><use href='../lib/svg/sprites.svg#it-file'></use></svg><p><a href='../uploads/assegno_maternita/". $row["uploadDichiarazioneDatoreLavoro"] ."' target='_blank'>". $row["uploadDichiarazioneDatoreLavoro"] ."</a></p></li>" : "";
+
                 $data_compilazione = $row["data_compilazione"];
             }
         }
@@ -533,8 +526,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <?php $Date = date('Y-m-d'); ?>
-
                                                         <div class="step">
                                                             <div class="date-step">
                                                                 <span class="date-step-giorno"><?php echo date('d', strtotime($data_compilazione. ' + 30 days')); ?></span><br>
