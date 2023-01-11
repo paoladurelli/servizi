@@ -49,11 +49,10 @@
                                                     <div id="collapse-one" class="accordion-collapse collapse show" role="region" aria-labelledby="accordion-title-one">
                                                         <div class="accordion-body">
                                                             <ul class="link-list" data-element="page-index">
-                                                                <li class="nav-item">
-                                                                    <a class="nav-link" href="praticheRicevute_list.php">
-                                                                        <span class="title-medium">Pratiche Ricevute</span>
-                                                                    </a>
-                                                                </li>
+                                                                <?php
+                                                                    /* MENU PRATICHE */
+                                                                    echo MenuPratiche('I');
+                                                                ?>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -69,22 +68,36 @@
                     <div class="col-12 col-lg-9">
                         <?php
                             /* recupero i dati per le progress bar */
-                            /* INVIATE */
+                            /* TOTALE PRATICHE */
                             $configDB = require '../env/config.php';
                             $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
-                            $sql = "SELECT COUNT(id) AS CountSent FROM attivita
+                            $sql = "SELECT COUNT(id) AS CountTotal FROM attivita
                                 WHERE status_id > 1";
                             $result = $connessione->query($sql);
    
                             if ($result->num_rows > 0) {
                                 // output data of each row
                                 while($row = $result->fetch_assoc()) {
-                                    $countSent = $row['CountSent'];
-                                    $percentageSent = ($countSent*100)/$countSent;
+                                    $countTotal = $row['CountTotal'];
                                 }
                             }
                             $connessione->close();
                             /* INVIATE */
+                            $configDB = require '../env/config.php';
+                            $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+                            $sql = "SELECT COUNT(id) AS CountSent FROM attivita
+                                WHERE status_id = 2";
+                            $result = $connessione->query($sql);
+   
+                            if ($result->num_rows > 0) {
+                                // output data of each row
+                                while($row = $result->fetch_assoc()) {
+                                    $countSent = $row['CountSent'];
+                                    $percentageSent = ($countSent*100)/$countTotal;
+                                }
+                            }
+                            $connessione->close();
+                            /* IN LAVORAZIONE */
                             $configDB = require '../env/config.php';
                             $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
                             $sql = "SELECT COUNT(id) AS CountWorking FROM attivita
@@ -95,7 +108,7 @@
                                 // output data of each row
                                 while($row = $result->fetch_assoc()) {
                                     $countWorking = $row['CountWorking'];
-                                    $percentageWorking = ($countWorking*100)/$countSent;
+                                    $percentageWorking = ($countWorking*100)/$countTotal;
                                 }
                             }
                             $connessione->close();
@@ -110,7 +123,7 @@
                                 // output data of each row
                                 while($row = $result->fetch_assoc()) {
                                     $countAccepted = $row['CountAccepted'];
-                                    $percentageAccepted = ($countAccepted*100)/$countSent;
+                                    $percentageAccepted = ($countAccepted*100)/$countTotal;
                                 }
                             }
                             $connessione->close();
@@ -125,7 +138,7 @@
                                 // output data of each row
                                 while($row = $result->fetch_assoc()) {
                                     $countRefused = $row['CountRefused'];
-                                    $percentageRefused = ($countRefused*100)/$countSent;
+                                    $percentageRefused = ($countRefused*100)/$countTotal;
                                 }
                             }
                             $connessione->close();

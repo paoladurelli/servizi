@@ -1,0 +1,57 @@
+carico pagina delle pratiche in lavorazione.
+carico pagina delle pratiche in lavorazione.
+11-01-2023 03:43 - carico pagina delle pratiche in lavorazione.
+[15:45] - carico pagina delle pratiche in lavorazione.
+[15:46] - carico pagina delle pratiche in lavorazione.
+[15:46] - carico pagina delle pratiche in lavorazione.
+[15:47] - carico pagina delle pratiche in lavorazione.
+[15:47] - carico pagina delle pratiche in lavorazione.
+[15:48] - carico pagina delle pratiche in lavorazione.
+[15:48] - carico pagina delle pratiche in lavorazione.
+[15:50] - carico pagina delle pratiche in lavorazione.
+[15:50] - carico pagina delle pratiche in lavorazione.
+[15:50] - carico pagina delle pratiche in lavorazione.
+[15:52] - carico pagina delle pratiche in lavorazione.
+[15:52] - carico pagina delle pratiche in lavorazione.
+[15:54] - carico pagina delle pratiche in lavorazione.
+[15:54] - carico pagina delle pratiche in lavorazione.
+[15:54] - carico pagina delle pratiche in lavorazione.
+[15:55] - carico pagina delle pratiche in lavorazione.
+[15:55] - carico pagina delle pratiche in lavorazione.
+[15:55] - carico pagina delle pratiche in lavorazione.
+[15:56] - carico ChangeStatusRifiuta.php
+[15:56] - 5-54
+[15:57] - carico pagina delle pratiche in lavorazione.
+[15:57] - carico ChangeStatusRifiuta.php
+[15:57] - 5-54
+[15:57] - 5,54,fgffgffhfghfjffjgjg
+[15:57] - SELECT * FROM pubblicazione_matrimonio WHERE id = '54'
+[15:57] - INSERT INTO motivazioni_rifiuto (servizioId, praticaId, motivazione) VALUES ('5','54','fgffgffhfghfjffjgjg')
+[15:57] - carico pagina delle pratiche in lavorazione.
+[16:00] - carico pagina delle pratiche in lavorazione.
+[16:00] - 5-54
+[16:01] - carico pagina delle pratiche in lavorazione.
+[16:02] - 5-54
+[16:02] - carico pagina delle pratiche in lavorazione.
+[16:04] - 5-54
+[16:07] - carico pagina delle pratiche in lavorazione.
+[16:14] - carico pagina delle pratiche in lavorazione.
+[16:14] - carico pagina delle pratiche in lavorazione.
+[16:16] - carico pagina delle pratiche in lavorazione.
+[16:46] - 5-60
+[16:46] - CREATE TEMPORARY TABLE tmptable_1 SELECT * FROM pubblicazione_matrimonio WHERE id = '60';
+        UPDATE tmptable_1 SET id = NULL;
+        UPDATE tmptable_1 SET status_id = 1;
+        UPDATE tmptable_1 SET data_compilazione = NULL;
+        UPDATE tmptable_1 SET NumeroPratica = NULL;
+        UPDATE tmptable_1 SET NumeroProtocollo = NULL;
+        UPDATE tmptable_1 SET ultimo_aggiornamento = NULL;
+        INSERT INTO pubblicazione_matrimonio SELECT * FROM tmptable_1 LIMIT 1;
+        DROP TEMPORARY TABLE IF EXISTS tmptable_1;
+[16:53] - 5-60
+[17:01] - 5-60
+[17:08] - 5-54
+[17:13] - 5-54
+[17:22] - 5-54
+[17:23] - 5-60
+[17:29] - carico pagina delle pratiche in lavorazione.

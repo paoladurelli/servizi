@@ -87,11 +87,20 @@ $(document).ready(function () {
     $(".changeStatusRifiuta").click(function(){
         var ServizioId = $(this).data("servizio");
         var PraticaId = $(this).data("id");
-        
+        var NumeroPratica = $(this).data("numero");
+        $("#RifiutaPraticaModal #PraticaRifiutata").text(NumeroPratica);
+        $("#RifiutaPraticaModal #ConfermaRifiutoServizioId").val(ServizioId);
+        $("#RifiutaPraticaModal #ConfermaRifiutoPraticaId").val(PraticaId);
+       
+        $('#RifiutaPraticaModal').modal('show');
+       
+        event.preventDefault();
+    });
+    $("#conferma_rifiuto_btn_conferma").click(function(){
         formData = new FormData();
-        formData.append("ServizioId",ServizioId);
-        formData.append("PraticaId", PraticaId);
-        
+        formData.append('ServizioId', $("#RifiutaPraticaModal #ConfermaRifiutoServizioId").val());
+        formData.append('PraticaId', $("#RifiutaPraticaModal #ConfermaRifiutoPraticaId").val());
+        formData.append('Motivazione', $("#RifiutaPraticaModal #ConfermaRifiutoMotivazione").val());
         $.ajax({
             type: "POST",
             url: "ChangeStatusRifiuta.php",
@@ -112,7 +121,38 @@ $(document).ready(function () {
         });
         event.preventDefault();
     });
-
+    /* crea nuova bozza */
+    $(".creaBozza").click(function(){
+        var ServizioId = $(this).data("servizio");
+        var PraticaId = $(this).data("id");
+        var NumeroPratica = $(this).data("numero");
+        
+        formData = new FormData();
+        formData.append("ServizioId",ServizioId);
+        formData.append("PraticaId", PraticaId);
+        
+        $.ajax({
+            type: "POST",
+            url: "CreaBozza.php",
+            data: formData,
+            dataType: "json",
+            processData: false,
+            contentType: false,
+            success: function (data)
+            {
+                if(data.success){
+                    $("#CreaBozzaModal #PraticaRifiutata").text(NumeroPratica);
+                    $('#CreaBozzaModal').modal('show');
+                    event.preventDefault();
+                }
+            },
+            error: function (desc)
+            {
+                console.log(desc.statusText);
+            }
+        });
+        event.preventDefault();
+    });
 });
 
 /* funzioni cerca - START */

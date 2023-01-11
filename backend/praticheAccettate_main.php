@@ -62,7 +62,8 @@
                             </div>
                             <div class="card-body p-lg-1">
                                 <div class="row">
-                                    <div class="col-lg-12 after-section-small">
+                                    <div class="col-lg-12 after-section-small small">
+                                        Codice Fiscale del Richiedente: <b>'.CfById($row['ServizioId'],$row["pratica_id"]).'</b><br>
                                         '.CfAltroByPraticaId($row['ServizioId'],$row["pratica_id"]).
                                     '</div>
                                 </div>

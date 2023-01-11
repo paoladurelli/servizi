@@ -5,7 +5,7 @@
     $sql = "SELECT attivita.id as attivita_id, attivita.data_attivita, attivita.pratica_id as pratica_id, attivita.servizio_id as ServizioId, attivita.status_id as StatusId, servizi.NomeServizio as NomeServizio, status.nome as NomeStatus FROM attivita
             LEFT JOIN servizi ON attivita.servizio_id = servizi.id
             LEFT JOIN status ON attivita.status_id = status.id
-            WHERE attivita.status_id > 1
+            WHERE attivita.status_id = 2
             ORDER BY attivita.data_attivita DESC, attivita.id DESC
             LIMIT 6";
     $result = $connessione->query($sql);
@@ -42,7 +42,8 @@
                             </div>
                             <div class="card-body p-0">
                                 <div class="row">
-                                    <div class="col-lg-12 after-section-small">
+                                    <div class="col-lg-12 after-section-small small">
+                                        Codice Fiscale del Richiedente: <b>'.CfById($row['ServizioId'],$row["pratica_id"]).'</b><br>
                                         '.CfAltroByPraticaId($row['ServizioId'],$row["pratica_id"]).
                                     '</div>
                                 </div>

@@ -62,7 +62,8 @@
                             </div>
                             <div class="card-body p-lg-1">
                                 <div class="row">
-                                    <div class="col-lg-12 after-section-small">
+                                    <div class="col-lg-12 after-section-small small">
+                                        Codice Fiscale del Richiedente: <b>'.CfById($row['ServizioId'],$row["pratica_id"]).'</b><br>
                                         '.CfAltroByPraticaId($row['ServizioId'],$row["pratica_id"]).
                                     '</div>
                                 </div>
@@ -70,6 +71,7 @@
                                     <div class="col-lg-12">
                                         <div class="row">';
                                             echo '<div class="col-12 text-right">
+                                                <a href="#" class="btn-small btn-primary btn-with-icon creaBozza" data-id="'.$row["pratica_id"].'" data-servizio="'.$row["ServizioId"].'" data-numero="'.NumeroPraticaById($row["ServizioId"],$row["pratica_id"]).'">Genera nuova bozza<svg class="icon" aria-hidden="true"><use href="../lib/svg/sprites.svg#it-file"></use></svg></a>
                                                 <a href="'.CreateLinkAttivita($row["ServizioId"],$row["pratica_id"],$row["StatusId"]).'" class="btn-small btn-secondary">Consulta</a>
                                             </div>';
                                         echo '</div>

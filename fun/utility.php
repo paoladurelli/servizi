@@ -98,33 +98,35 @@ function SendToAppIo($table,$NumeroPratica){
     $response = curl_exec($curl);
     curl_close($curl);
     $array = json_decode($response, true);
-    if ($array['sender_allowed']) {
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://api.io.italia.it/api/v1/messages',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS =>'{
-          "time_to_live": 3600,
-          "content": {
-            "subject": "Avviso Invio pratica",
-            "markdown": "'. $messaggio_per_user.'"
-          },
-          "fiscal_code": "'. strtoupper($cf_destinatario) .'"
-        }',
-            CURLOPT_HTTPHEADER => array(
-                'Ocp-Apim-Subscription-Key:' .$appio_key . '',
-                'Content-Type: application/json'
-            ),
-        ));
+    if (!empty($array)) {
+        if ($array['sender_allowed']) {
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://api.io.italia.it/api/v1/messages',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS =>'{
+              "time_to_live": 3600,
+              "content": {
+                "subject": "Avviso Invio pratica",
+                "markdown": "'. $messaggio_per_user.'"
+              },
+              "fiscal_code": "'. strtoupper($cf_destinatario) .'"
+            }',
+                CURLOPT_HTTPHEADER => array(
+                    'Ocp-Apim-Subscription-Key:' .$appio_key . '',
+                    'Content-Type: application/json'
+                ),
+            ));
 
-        $response = curl_exec($curl);
-        curl_close($curl);
+            $response = curl_exec($curl);
+            curl_close($curl);
+        }
     }
 }
 

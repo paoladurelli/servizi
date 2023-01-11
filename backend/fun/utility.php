@@ -1,5 +1,16 @@
 <?php
-
+/* FUNZIONE PER LOG - start */
+function SetLog($log_msg){
+    $log_dirname = "log_servizi";
+    if (!file_exists($log_dirname)){
+        // create directory/folder uploads.
+        mkdir($log_dirname, 0777, true);
+    }
+    $log_file_data = $log_dirname.'/log_' . date('d-m-Y') . '.log';
+    // if you don't add `FILE_APPEND`, the file will be erased each time you add a log
+    file_put_contents($log_file_data, "[" . date('H:i') . "] - " . $log_msg . "\n", FILE_APPEND);
+} 
+/* FUNZIONE PER LOG - end */
 /* FUNZIONI PER LA PROTOCOLLAZIONE - start */
 function getNumeroProtocollo(){
     $configDB = require '../env/config.php';
@@ -101,7 +112,82 @@ function SendToAppIoChangeStatus($table,$NumeroPratica,$cf_destinatario,$action)
     curl_close($curl);
     $array = json_decode($response, true);
     
-    if (empty($array)) {
+    if (!empty($array)) {
+        if ($array['sender_allowed']) {
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.io.italia.it/api/v1/messages',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS =>'{
+          "time_to_live": 3600,
+          "content": {
+            "subject": "Avviso Invio pratica",
+            "markdown": "'. $messaggio_per_user.'"
+          },
+          "fiscal_code": "'. strtoupper($cf_destinatario) .'"
+        }',
+            CURLOPT_HTTPHEADER => array(
+                'Ocp-Apim-Subscription-Key:' .$appio_key . '',
+                'Content-Type: application/json'
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        curl_close($curl);
+        }
+    }
+}
+function SendToAppIoCreateNewDraft($table,$pratica_id,$cf_destinatario){
+    $configDB = require '../env/config.php';
+    $connessione = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sql = "SELECT * FROM ".$table." WHERE id = '".$pratica_id."'";
+    $result = $connessione->query($sql);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $nome = $row['richiedenteNome'];
+            $cognome = $row['richiedenteCognome'];
+            $NumeroPratica = $row['NumeroPratica'];
+        }
+    }
+    $connessione->close();
+
+    $messaggio_per_user = 'Gentile '. $nome . ' '. $cognome . ',\n\n abbiamo creato una nuova bozza della pratica nr. <b>'.$NumeroPratica.'</b>. \n\n';
+    $messaggio_per_user .= 'Cordiali saluti. \n\n';
+
+    /* leggo la chiave dal file di configurazione */
+    $configIO = require '../env/config_io.php';
+    if($configIO[$table] == ''){
+        $appio_key = $configIO['default'];
+    }else{
+        $appio_key = $configIO[$table];
+    }
+    
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.io.italia.it/api/v1/profiles/' . strtoupper($cf_destinatario),
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+            'Ocp-Apim-Subscription-Key:' . $appio_key .''
+        ),
+    ));
+    
+    $response = curl_exec($curl);
+    curl_close($curl);
+    $array = json_decode($response, true);
+    
+    if (!empty($array)) {
         if ($array['sender_allowed']) {
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -482,6 +568,26 @@ function NumeroPraticaById($servizio_id,$pratica_id){
         }
     }
     $connessioneNPBI->close();
+}
+function CfById($servizio_id,$pratica_id){
+    switch($servizio_id) {
+        case 5: $table = "pubblicazione_matrimonio"; break;
+        case 6: $table = "accesso_atti"; break;
+        case 9: $table = "assegno_maternita"; break;
+        case 10: $table = "bonus_economici"; break;
+        case 11: $table = "domanda_contributo"; break;
+        case 16: $table = "partecipazione_concorso"; break;
+    }
+    $configDB = require '../env/config.php';
+    $connessioneCFBI = mysqli_connect($configDB['db_host'],$configDB['db_user'],$configDB['db_pass'],$configDB['db_name']);
+    $sqlCFBI = "SELECT richiedenteCf FROM " . $table . " WHERE id = ". $pratica_id;
+    $resultCFBI = $connessioneCFBI->query($sqlCFBI);
+    if ($resultCFBI->num_rows > 0) {
+        while($rowCFBI = $resultCFBI->fetch_assoc()) {
+            return $rowCFBI["richiedenteCf"];
+        }
+    }
+    $connessioneCFBI->close();
 }
 
 function CfAltroByPraticaId($servizio_id,$pratica_id){
